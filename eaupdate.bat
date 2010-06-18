@@ -1,0 +1,1 @@
+TortoiseProc /command:update /path:"." /closeonend:1
