@@ -3,7 +3,9 @@ new_account: 0
 allowed_regs: 1
 time_allowed: 60
 min_level_to_connect: 0
-case_sensitive: no
+case_sensitive: 0
+check_client_version: 1
+client_version_to_connect: 20
 
 //Comentado no servidor local:
 login_port: 6901
