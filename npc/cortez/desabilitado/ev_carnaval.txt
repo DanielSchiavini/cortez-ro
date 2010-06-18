@@ -9,7 +9,7 @@ gonryun,160,116,5	script	Garota Carnaval	845,{
 	mes "[Garota Carnaval]";
 	mes "Olá "+strcharinfo(0)+"!";
 	mes "O que acha de fazer uma missão de carnaval?";
-	mes "Para ficar no estilo do Carnaval CortezRO!";
+	mes "Para ficar no estilo do Carnaval Cortez Online!";
 	next;
 	if(select("Nah, não interessa:Parece legal!")==1) goto L_Cancelar;
 	

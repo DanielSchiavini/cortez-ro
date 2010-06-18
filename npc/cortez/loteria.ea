@@ -156,7 +156,7 @@ schg_cas03,23,74,5	script	Loteria	73,{
 			sleep 2000;
 			// Fazendo suspense
 			announce "[Loteria] E o vencedor do prêmio de "+.@premio$+" é...",bc_all;
-			if(.@vencedor<=0){
+			if(.@vencedor<=0 && .@i>=0){
 				set $lot_acc, .@acc[.@i];
 				query_sql "Select char_name From loteria Where loteria_id="+escape_sql($lot_id)+" and account_id="+escape_sql($lot_acc), .@char$;
 				callfunc("log_mes","[Loteria] "+$lot_id+": *Vencedor nr."+.@vencedor+", "+.@premio$+", pos."+.@i,.@char$,"schg_cas03",$lot_acc);

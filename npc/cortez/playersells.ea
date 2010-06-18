@@ -257,6 +257,15 @@ schg_cas03,69,72,5	script	Wilbis	784,{
 			}else{
 				set @card,0;
 				set @item,getequipid(@equip);
+				if(countitem(@item)!=1){
+					mes "Você só pode ter um " + getequipname(@equip) + " no inventário.";
+					mes "Senão, não sei qual deles você vai querer vender!";
+					close;
+				}else if(getequippercentrefinery(@equip) < 50){
+					mes "Este item já é +" + getequiprefinerycnt(@equip) + ", e tem refinamentos demais!";
+					mes "Os itens que eu vendo são sempre sem refinamento!";
+					close;
+				}
 			}
 			if(@item<=0){
 				mes "Não consegui achar seu item!";

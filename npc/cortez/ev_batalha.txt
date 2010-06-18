@@ -1,14 +1,11 @@
-arena_room	mapflag	nosave	SavePoint
-prt_are_in	mapflag	nosave	SavePoint
-guild_vs2-1	mapflag	nosave	SavePoint
-guild_vs2-1	mapflag	nomemo
-guild_vs2-1	mapflag	nopenalty
-guild_vs2-1	mapflag	nosave
-guild_vs2-1	mapflag	restricted	4
-guild_vs2-1	mapflag	nodrop
-guild_vs2-1	mapflag	notrade
-guild_vs2-1	mapflag	nowarpto
-guild_vs2-1	mapflag	nocommand	10
+force_1-3	mapflag	nosave	SavePoint
+force_1-3	mapflag	nomemo
+force_1-3	mapflag	nopenalty
+force_1-3	mapflag	nosave
+force_1-3	mapflag	restricted	4
+force_1-3	mapflag	nodrop
+force_1-3	mapflag	notrade
+force_1-3	mapflag	nowarpto
 
 new_zone01,49,127,6	script	Batalha de PVP	936,{
 	if(getgmlevel()<10) end;
@@ -23,16 +20,16 @@ new_zone01,49,127,6	script	Batalha de PVP	936,{
 	}
 }
 
-guild_vs2-1,50,53,4	script	Batalha PvP	936,{
+force_1-3,100,173,4	script	Batalha PvP	936,{
 	if(getgmlevel()>=10){
 		if(.BatalhaPVP>1){
-			if(getmapusers("guild_vs2-1")==2){
+			if(getmapusers("force_1-3")==2){
 				dispbottom "Você foi retirado do mapa para que o vencedor consiga ganhar o evento.";
 				warp "SavePoint",0,0;
 				end;
-			}else if(getmapusers("guild_vs2-1")!=1){
+			}else if(getmapusers("force_1-3")!=1){
 				mes "[^660066 Batalha PvP ^000000]";
-				mes "Deseja cancelar a batalha atual? Ainda há "+getmapusers("guild_vs2-1")+" jogadores no mapa, incluindo você.";
+				mes "Deseja cancelar a batalha atual? Ainda há "+getmapusers("force_1-3")+" jogadores no mapa, incluindo você.";
 				next;
 				if(select("Não!:Sim, por favor")==1) close;
 				
@@ -44,11 +41,9 @@ guild_vs2-1,50,53,4	script	Batalha PvP	936,{
 			}
 			
 			set .BatalhaPVP, 0;
-			gvgoff "guild_vs2-1";
+			gvgoff "force_1-3";
 			logmes "[Batalha] Evento cancelado";
-			mapwarp "prt_are_in","schg_cas03",48,48;
-			mapwarp "arena_room","schg_cas03",48,48;
-			mapwarp "guild_vs2-1","schg_cas03",48,48;
+			mapwarp "force_1-3","SavePoint",0,0;
 			end;
 		}else if(.BatalhaPVP==1){
 			mes "[^660066 Batalha PvP ^000000]";
@@ -62,7 +57,7 @@ guild_vs2-1,50,53,4	script	Batalha PvP	936,{
 		next;
 		
 		L_Preparar:
-			if (getmapusers("guild_vs2-1")>1){
+			if (getmapusers("force_1-3")>1){
 				mes "[^660066 Batalha PvP ^000000]";
 				mes "Por favor, tire todos os outros jogadores do mapa para começar.";
 				close;
@@ -145,43 +140,48 @@ guild_vs2-1,50,53,4	script	Batalha PvP	936,{
 			close2;
 			
 			//warp e desbuffs
-			warpparty "prt_are_in",  22,  83, .@party_id1;
-			warpparty "arena_room", 135, 133, .@party_id2;
+			warpparty "force_1-3",15,180, .@party_id1;
+			warpparty "force_1-3",185,180, .@party_id2;
 			for(set .@i, 0; .@i < .@Nr_Part; set .@i, .@i + 1){
 				sc_end SC_ALL, getcharid(3,.@party_members1$[.@i]);
 				sc_end SC_ALL, getcharid(3,.@party_members2$[.@i]);
 			}
 			
-			sleep 5000; //Loading screen
+			sleep 6000; //Loading screen
 			
-			mapannounce "prt_are_in","Vocês têm 40 segundos para se prepararem para a batalha!",bc_yellow;
-			mapannounce "arena_room","Vocês têm 40 segundos para se prepararem para a batalha!",bc_yellow;
+			mapannounce "force_1-3","Bem vindos ao modo de Batalha!",bc_yellow;
+			sleep 5000;
+			
+			mapannounce "force_1-3","Dentro da arena vocês não poderão abrir o armazém.",bc_yellow;
+			sleep 10000;
+			
+			mapannounce "force_1-3","Por favor se preparem para o combate, vocês tem 1 minuto",bc_yellow;
+			sleep 30000;
+			
+			mapannounce "force_1-3","Por favor se preparem para o combate, vocês tem 30 segundos",bc_yellow;
 			sleep 20000;
 			
-			mapannounce "prt_are_in","Vocês têm 20 segundos para se prepararem para a batalha!",bc_yellow;
-			mapannounce "arena_room","Vocês têm 20 segundos para se prepararem para a batalha!",bc_yellow;
-			sleep 10000;
-			
-			mapannounce "prt_are_in","Vocês têm 10 segundos para se prepararem para a batalha!",bc_yellow;
-			mapannounce "arena_room","Vocês têm 10 segundos para se prepararem para a batalha!",bc_yellow;
-			sleep 10000;
+			mapannounce "force_1-3","Por favor se preparem para o combate, vocês tem 10 segundos",bc_yellow;
+			sleep 8000;
+
+			mapannounce "force_1-3", "A batalha vai começar em 2 segundos! Boa sorte!", bc_yellow;
+			sleep 2000;
 			
 			for(set .@i, 0; .@i < .@Nr_Part; set .@i, .@i + 1) {
 				//warpando grupos sem usar warpparty para garantir só Nr_Part por grupo
-				set .@x, (.@i>=7);
-				warpchar "guild_vs2-1", 10-.@x, 53-.@i+7*.@x, getcharid(0, .@party_members1$[.@i]);
-				warpchar "guild_vs2-1", 90-.@x, 53-.@i+7*.@x, getcharid(0, .@party_members2$[.@i]);
+				warpchar "force_1-3",70,180, getcharid(0, .@party_members1$[.@i]);
+				warpchar "force_1-3",130,180, getcharid(0, .@party_members2$[.@i]);
 			}
-			sleep 5000; //Loading screen
-			mapannounce "guild_vs2-1", "A batalha vai começar em 2 segundos! Boa sorte!", bc_yellow;
-			sleep 2500;
+
 			set .BatalhaPVP, 2;
 			
-			if (getmapusers("guild_vs2-1")<1){
-				gvgoff "guild_vs2-1";
+			if (getmapusers("force_1-3")<1){
+				gvgoff "force_1-3";
+				removemapflag "force_1-3",mf_nocommand;
 			}else{
-				gvgon "guild_vs2-1";
-				mapannounce "guild_vs2-1", "Modo GVG ativado... Que vença o melhor!", bc_yellow;
+				gvgon "force_1-3";
+				setmapflag "force_1-3",mf_nocommand;
+				mapannounce "force_1-3", "Modo GVG ativado... Que vença o melhor!", bc_yellow;
 			}
 			end;
 		
@@ -195,13 +195,14 @@ guild_vs2-1,50,53,4	script	Batalha PvP	936,{
 		if(.BatalhaPVP==0){
 			dispbottom "Batalha PvP: A batalha ainda não começou!";
 		}else{
-			if (getmapusers("guild_vs2-1")>1){
+			if (getmapusers("force_1-3")>1){
 				dispbottom "Batalha PvP: Só falo com campeões!!!";
 			}else{
 				dispbottom "Batalha PvP: Você foi o campeão do evento! Parabéns!!!";
 				set .BatalhaPVP, 0;
 				logmes "[Batalha] "+strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" foi o campeão";
-				gvgoff "guild_vs2-1";
+				gvgoff "force_1-3";
+				removemapflag "force_1-3",mf_nocommand;
 				warp "SavePoint",0,0;
 			}
 		}

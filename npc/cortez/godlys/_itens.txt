@@ -95,9 +95,9 @@ Gleipnir (7058)		 ???
 	4x Footprints of Cat (7080) Passos de Gato (3% Moonlight Flower 1150)
 	4x Root of Stone (7082) Raiz de Montanha (3% Tao Gunka 1583)
 
-Megingjard (2629)	200kk 
-	1x Gleipnir(7058) 
-	20x Gold
+Megingjard (2629)	200kk - R$ 75
+	1x Gleipnir(7058) - R$ 58,70
+	20x Gold - 
 	50x Black Charm Stone (7430) Pedra Encantada Preta (5% Skeggiold 1754)
 	4x Morrigane`s Belt (2650) Cinto de Morrigane (10% Kiel D-01 1734)
 	4x Witch`s Tonic (7308) Tônico da Bruxa (6% RSX-0806 1623)

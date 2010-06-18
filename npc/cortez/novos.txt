@@ -81,6 +81,7 @@ guild_vs3,1,1,0	script	LoadMapaIni	-1,{
 		//sleep2 300;
 		skilleffect 289,1;
 		sc_end SC_ALL;
+		sc_end SC_ENDURE;
 		end;
 }
 
