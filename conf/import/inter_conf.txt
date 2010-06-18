@@ -3,3 +3,4 @@ login_server_id: cortez
 login_server_pw: ph9dr7vadRatStus9AmuXeJe
 login_server_port: 1306
 //ph9dr7vadRatStus9AmuXeJe
+// hey dan, it works!
