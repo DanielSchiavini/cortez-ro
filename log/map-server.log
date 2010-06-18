@@ -498,3 +498,7 @@
 [1;31m[Error][0m: mob_skill: Non existant Mob id 1956 at mob_skill_db.txt, line 4832
 [1;31m[Error][0m: make_connection: connect failed (socket #2, code 10061)!
 [1;31m[Error][0m: mob_skill: Non existant Mob id 1956 at mob_skill_db.txt, line 4832
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !

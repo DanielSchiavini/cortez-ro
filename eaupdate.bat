@@ -1,1 +1,1 @@
-TortoiseProc /command:update /path:"." /closeonend:1
+TortoiseProc /command:update /path:"C:\Server\SVN\eA" /closeonend:1
