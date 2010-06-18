@@ -1,0 +1,67 @@
+mjolnir_03,195,212,4	script	Baldino	813,{
+	mes "^006611[ Baldino ]^333333";
+	if(countitem(7331)<1){
+		mes "Você vai acabar se perdendo, vá embora.";
+		close;
+	}
+	mes "Ei meu jovem, volte aqui";
+	next;
+	menu "Conversar",-,"Cancelar",L_Fechar;
+	
+	mes "^006611[ Baldino ]^333333";
+	mes "Você está aqui por causa do Mjolnir eu sei...";
+	mes "Se realmente quer ele me traga mais algusn itens.";
+	next;
+	mes "^006611[ Baldino ]^333333";
+	mes "Os itens são difíceis de conseguir.";
+	next;
+	mes "^006611[ Baldino ]^333333";
+	mes "Os itens que eu quero são:";
+	mes "- 150x Manopla de Thor";
+	mes "- 100x Dama de Ferro";
+	mes "- 5x Essência de Espírito";
+	mes "- 5x Presságio de Tempestade ";
+	mes "- 3x Fúria das Valquírias";
+	mes "- 3x Tsunami";
+	mes "- 40x Ouros";
+	next;
+	mes "^006611[ Baldino ]^333333";
+	mes "Você tem pouco tempo, por tanto se apresse...";
+	next;
+	menu "Estou com os itens",L_DarItens,"Estou sem eles.",-;
+	
+	mes "^006611[ Baldino ]^333333";
+	mes "Traga-os para mim, que eu lhe darei um recompensa.";
+	close;
+	
+	L_DarItens:
+	mes "^006611[ Baldino ]^333333";
+	mes "Deixe-me ver..";
+	if (countitem(7074)<150 || countitem(7075)<100 ||
+		countitem(7087)<5 || countitem(7078)<3 ||
+		countitem(7089)<5 || countitem(7091)<3 ||
+		countitem(969)<40 ){
+		mes "Você está sem os itens!!!";
+	}else{
+		mes "Ótimo, vejo que conseguiu.";
+		next;
+		mes "^006611[ Baldino ]^333333";
+		mes "Será muito feliz com ele...";
+		next;
+		mes "^006611[ Baldino ]^333333";
+		mes "Aqui está.";
+		next;
+		delitem 7074,150;
+		delitem 7075,100;
+		delitem 7087,5;
+		delitem 7089,5;
+		delitem 7078,3;
+		delitem 7091,3;
+		delitem 969,40;
+		
+		getitem 1530,1;
+	}
+	
+	L_Fechar:
+		close;
+}

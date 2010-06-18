@@ -1,0 +1,244 @@
+//===== eAthena Script =======================================
+//= War of Emperium Al De Baran Guild Flags
+//===== By: ==================================================
+//= jAthena - kalen (1.0)
+//= 1.1 by Akaru, ho|yAnge|X, and Valaris
+//===== Current Version: =====================================
+//= 1.4
+//===== Compatible With: =====================================
+//= eAthena 0.1+; RO Episode 4+
+//===== Description: =========================================
+//= WoE flag scripts.  Display guild emblems on flags.
+//===== Additional Comments: =================================
+//= v1.2 Optimized with functions.[kobra_k88]
+//= v1.3 Changed to iRO castle names [DracoRPG]
+//= v1.4 Can now only flag in from outside the castle [Kayla]
+//============================================================
+
+
+////================================================================================//
+//// 					Castle 1
+////================================================================================//
+////aldebaran,152,97,4	script	Sirius#a1-1::Sirius	722,{
+//hugel,91,157,4	script	Sirius#a1-1::Sirius	722,{
+//	callfunc "F_Flags","Aldebaran","aldeg_cas01",218,170,1;
+//	close;
+//
+//OnRecvCastleA01:
+//	FlagEmblem GetCastleData("aldeg_cas01",1);
+//	end;
+//}
+//
+//alde_gld,61,87,6	script	Sirius#a1-2::Sirius2	722,{
+//	callfunc "F_Flags","Aldebaran","aldeg_cas01",218,170,1;
+//	close;
+//
+//OnRecvCastleA01:
+//	FlagEmblem GetCastleData("aldeg_cas01",1);
+//	end;
+//}
+//
+//// In Guild =============================================
+//alde_gld,61,79,6	duplicate(Sirius2)	Sirius#a1-3	722
+//alde_gld,45,87,8	duplicate(Sirius2)	Sirius#a1-4	722
+//alde_gld,51,87,8	duplicate(Sirius2)	Sirius#a1-5	722
+//// In Castle ============================================
+//aldeg_cas01,30,248,4	duplicate(Sirius)	Sirius#a1-6	722
+//aldeg_cas01,30,246,4	duplicate(Sirius)	Sirius#a1-7	722
+//aldeg_cas01,37,248,4	duplicate(Sirius)	Sirius#a1-8	722
+//aldeg_cas01,37,246,4	duplicate(Sirius)	Sirius#a1-9	722
+//aldeg_cas01,95,80,2	duplicate(Sirius)	Sirius#a1-10	722
+//aldeg_cas01,95,59,2	duplicate(Sirius)	Sirius#a1-11	722
+//aldeg_cas01,62,75,2	duplicate(Sirius)	Sirius#a1-12	722
+//aldeg_cas01,70,75,2	duplicate(Sirius)	Sirius#a1-13	722
+//aldeg_cas01,74,75,2	duplicate(Sirius)	Sirius#a1-14	722
+//aldeg_cas01,62,64,2	duplicate(Sirius)	Sirius#a1-15	722
+//aldeg_cas01,66,64,2	duplicate(Sirius)	Sirius#a1-16	722
+//aldeg_cas01,70,64,2	duplicate(Sirius)	Sirius#a1-17	722
+//aldeg_cas01,74,64,2	duplicate(Sirius)	Sirius#a1-18	722
+//aldeg_cas01,203,150,4	duplicate(Sirius)	Sirius#a1-19	722
+//aldeg_cas01,210,150,4	duplicate(Sirius)	Sirius#a1-20	722
+//
+//
+//
+//
+////================================================================================//
+//// 					Castle 2
+////================================================================================//
+////aldebaran,149,97,4	script	Astrum#a2-1::Astrum	722,{
+//hugel,86,157,4	script	Astrum#a2-1::Astrum	722,{
+//	callfunc "F_Flags","Aldebaran","aldeg_cas02",85,72,1;
+//	close;
+//
+//OnRecvCastleA02:
+//	FlagEmblem GetCastleData("aldeg_cas02",1);
+//	end;
+//}
+//
+//alde_gld,93,250,5	script	Astrum#a2-2::Astrum2	722,{
+//	callfunc "F_Flags","Aldebaran","aldeg_cas02",85,72,1;
+//	close;
+//
+//OnRecvCastleA02:
+//	FlagEmblem GetCastleData("aldeg_cas02",1);
+//	end;
+//}
+//
+//// In Guild =================================================
+//alde_gld,98,250,5	duplicate(Astrum2)	Astrum#a2-3	722
+//// In Castle =============================================
+//aldeg_cas02,82,71,2	duplicate(Astrum)	Astrum#a2-4	722
+//aldeg_cas02,67,30,2	duplicate(Astrum)	Astrum#a2-5	722
+//aldeg_cas02,183,140,2	duplicate(Astrum)	Astrum#a2-6	722
+//aldeg_cas02,212,152,2	duplicate(Astrum)	Astrum#a2-7	722
+//aldeg_cas02,108,39,2	duplicate(Astrum)	Astrum#a2-8	722
+//aldeg_cas02,57,213,2	duplicate(Astrum)	Astrum#a2-9	722
+//aldeg_cas02,91,181,2	duplicate(Astrum)	Astrum#a2-10	722
+//aldeg_cas02,103,53,2	duplicate(Astrum)	Astrum#a2-11	722
+//aldeg_cas02,73,53,2	duplicate(Astrum)	Astrum#a2-12	722
+//aldeg_cas02,63,41,2	duplicate(Astrum)	Astrum#a2-13	722
+//aldeg_cas02,229,6,2	duplicate(Astrum)	Astrum#a2-14	722
+//aldeg_cas02,230,40,2	duplicate(Astrum)	Astrum#a2-15	722
+//aldeg_cas02,197,40,2	duplicate(Astrum)	Astrum#a2-16	722
+//aldeg_cas02,32,213,2	duplicate(Astrum)	Astrum#a2-17	722
+//aldeg_cas02,88,180,2	duplicate(Astrum)	Astrum#a2-18	722
+//aldeg_cas02,121,29,2	duplicate(Astrum)	Astrum#a2-19	722
+
+///================================================================================//
+// 					Castle 3
+////================================================================================//
+//aldebaran,134,97,4	script	Canopus#a3-1::Canopus	722,{
+prontera,128,213,5	script	Canopus#a3-1::Canopus	722,{
+	callfunc "F_Flags","Aldebaran","aldeg_cas03",118,76,1;
+	close;
+
+OnRecvCastleA03:
+	FlagEmblem 1;//GetCastleData("aldeg_cas03",1);
+	end;
+}
+
+alde_gld,139,83,1	script	Canopus#a3-2::Canopus2	722,{
+	callfunc "F_Flags","Al De Baran","aldeg_cas03",118,76,1;
+	close;
+
+OnRecvCastleA03:
+	FlagEmblem 1;//GetCastleData("aldeg_cas03",1);
+	end;
+}
+
+// In Guild  ===============================================
+alde_gld,145,83,1	duplicate(Canopus2)	Canopus#a3-3	722
+// In Castle =============================================
+aldeg_cas03,176,175,4	duplicate(Canopus)	Canopus#a3-4	722
+aldeg_cas03,85,103,4	duplicate(Canopus)	Canopus#a3-5	722
+aldeg_cas03,77,115,4	duplicate(Canopus)	Canopus#a3-6	722
+aldeg_cas03,77,215,4	duplicate(Canopus)	Canopus#a3-7	722
+aldeg_cas03,112,107,4	duplicate(Canopus)	Canopus#a3-8	722
+aldeg_cas03,112,117,4	duplicate(Canopus)	Canopus#a3-9	722
+aldeg_cas03,69,71,4	duplicate(Canopus)	Canopus#a3-10	722
+aldeg_cas03,91,69,4	duplicate(Canopus)	Canopus#a3-11	722
+aldeg_cas03,108,60,4	duplicate(Canopus)	Canopus#a3-12	722
+aldeg_cas03,121,73,4	duplicate(Canopus)	Canopus#a3-13	722
+aldeg_cas03,121,73,4	duplicate(Canopus)	Canopus#a3-14	722
+aldeg_cas03,75,102,4	duplicate(Canopus)	Canopus#a3-15	722
+aldeg_cas03,199,169,4	duplicate(Canopus)	Canopus#a3-16	722
+aldeg_cas03,181,179,4	duplicate(Canopus)	Canopus#a3-17	722
+aldeg_cas03,192,44,4	duplicate(Canopus)	Canopus#a3-18	722
+aldeg_cas03,88,108,4	duplicate(Canopus)	Canopus#a3-19	722
+aldeg_cas03,208,145,4	duplicate(Canopus)	Canopus#a3-20	722
+aldeg_cas03,207,75,4	duplicate(Canopus)	Canopus#a3-21	722
+aldeg_cas03,96,62,4	duplicate(Canopus)	Canopus#a3-22	722
+
+
+
+
+////================================================================================//
+//// 					Castle 4
+////================================================================================//
+//aldebaran,131,97,4	script	Rigel#a4-1::Rigel	722,{
+//	callfunc "F_Flags","Al De Baran","aldeg_cas04",45,88,0;
+//	close;
+//
+//OnRecvCastleA04:
+//	FlagEmblem GetCastleData("aldeg_cas04",1);
+//	end;
+//}
+//
+//alde_gld,239,247,1	script	Rigel#a4-2::Rigel2	722,{
+//	callfunc "F_Flags","Al De Baran","aldeg_cas04",45,88,1;
+//	close;
+//
+//OnRecvCastleA04:
+//	FlagEmblem GetCastleData("aldeg_cas04",1);
+//	end;
+//}
+//// In Guild  ===============================================
+//alde_gld,234,247,1	duplicate(Rigel2)	Rigel#a4-3	722
+//alde_gld,241,239,7	duplicate(Rigel2)	Rigel#a4-4	722
+//alde_gld,241,234,7	duplicate(Rigel2)	Rigel#a4-5	722
+//// In Castle =============================================
+//aldeg_cas04,167,61,2	duplicate(Rigel)	Rigel#a4-6	722
+//aldeg_cas04,164,90,2	duplicate(Rigel)	Rigel#a4-7	722
+//aldeg_cas04,143,209,2	duplicate(Rigel)	Rigel#a4-8	722
+//aldeg_cas04,129,193,2	duplicate(Rigel)	Rigel#a4-9	722
+//aldeg_cas04,112,206,2	duplicate(Rigel)	Rigel#a4-10	722
+//aldeg_cas04,113,212,2	duplicate(Rigel)	Rigel#a4-11	722
+//aldeg_cas04,77,117,2	duplicate(Rigel)	Rigel#a4-12	722
+//aldeg_cas04,186,42,2	duplicate(Rigel)	Rigel#a4-13	722
+//aldeg_cas04,30,69,2	duplicate(Rigel)	Rigel#a4-14	722
+//aldeg_cas04,55,97,2	duplicate(Rigel)	Rigel#a4-15	722
+//aldeg_cas04,45,98,2	duplicate(Rigel)	Rigel#a4-16	722
+//aldeg_cas04,33,116,2	duplicate(Rigel)	Rigel#a4-17	722
+//aldeg_cas04,130,180,2	duplicate(Rigel)	Rigel#a4-18	722
+//aldeg_cas04,129,193,2	duplicate(Rigel)	Rigel#a4-19	722
+//aldeg_cas04,142,209,2	duplicate(Rigel)	Rigel#a4-20	722
+//aldeg_cas04,33,107,2	duplicate(Rigel)	Rigel#a4-21	722
+//aldeg_cas04,133,220,2	duplicate(Rigel)	Rigel#a4-22	722
+//aldeg_cas04,169,22,2	duplicate(Rigel)	Rigel#a4-23	722
+//aldeg_cas04,169,15,2	duplicate(Rigel)	Rigel#a4-24	722
+
+
+
+
+//================================================================================//
+// 					Castle 5
+//================================================================================//
+//aldebaran,128,97,4	script	Acrux#a5-1::Acrux	722,{
+prontera,131,216,5	script	Acrux#a5-1::Acrux	722,{
+	callfunc "F_Flags","Al De Baran","aldeg_cas05",31,190,1;
+	close;
+
+OnRecvCastleA05:
+	FlagEmblem 1;//GetCastleData("aldeg_cas05",1);
+	end;
+}
+
+alde_gld,266,92,7	script	Acrux#a5-2::Acrux2	722,{
+	callfunc "F_Flags","Al De Baran","aldeg_cas05",31,190,1;
+	close;
+
+OnRecvCastleA05:
+	FlagEmblem 1;//GetCastleData("aldeg_cas05",1);
+	end;
+}
+
+// In Guild  ===============================================
+alde_gld,266,88,7	duplicate(Acrux2)	Acrux#a5-3	722
+// In Castle =============================================
+aldeg_cas05,170,85,2	duplicate(Acrux)	Acrux#a5-4	722
+aldeg_cas05,142,212,2	duplicate(Acrux)	Acrux#a5-5	722
+aldeg_cas05,149,196,2	duplicate(Acrux)	Acrux#a5-6	722
+aldeg_cas05,41,180,2	duplicate(Acrux)	Acrux#a5-7	722
+aldeg_cas05,38,201,2	duplicate(Acrux)	Acrux#a5-8	722
+aldeg_cas05,65,182,2	duplicate(Acrux)	Acrux#a5-9	722
+aldeg_cas05,65,205,2	duplicate(Acrux)	Acrux#a5-10	722
+aldeg_cas05,10,218,2	duplicate(Acrux)	Acrux#a5-11	722
+aldeg_cas05,164,201,2	duplicate(Acrux)	Acrux#a5-12	722
+aldeg_cas05,216,96,2	duplicate(Acrux)	Acrux#a5-13	722
+aldeg_cas05,217,80,2	duplicate(Acrux)	Acrux#a5-14	722
+aldeg_cas05,14,117,2	duplicate(Acrux)	Acrux#a5-15	722
+aldeg_cas05,10,225,2	duplicate(Acrux)	Acrux#a5-16	722
+aldeg_cas05,187,59,2	duplicate(Acrux)	Acrux#a5-17	722
+aldeg_cas05,154,51,2	duplicate(Acrux)	Acrux#a5-18	722
+aldeg_cas05,22,211,2	duplicate(Acrux)	Acrux#a5-19	722
+aldeg_cas05,150,202,2	duplicate(Acrux)	Acrux#a5-20	722

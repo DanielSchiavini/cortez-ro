@@ -1,0 +1,168 @@
+//===== eAthena Script =======================================
+//= Kafra Express - Stat/Reset Module
+//===== By: ==================================================
+//= Skotlex
+//===== Current Version: =====================================
+//= 2.2
+//===== Compatible With: =====================================
+//= eAthena SVN R3424+
+//===== Description: =========================================
+//= Part of the Kafra Express Script Package.
+//= Offers stat raising and Stat/Reset skills
+//===== Additional Comments: =================================
+//= See config.txt for configuration.
+//============================================================
+
+-	script	keInit_stats	-1,{
+OnInit:	//Load Config
+	donpcevent "keConfig::OnLoadStats";
+	end;
+}
+
+function	script	resetStats	{
+	ResetStatus;
+	if(reborn <= 12 && BaseLevel > 100)
+		set reborn,13;
+	if(reborn > 1 && StatusPoint <= 1582)
+		set StatusPoint, StatusPoint + (reborn-1)*(100+20*(getgmlevel()>0 || reborn>12));
+	dispbottom "Seus pontos de atributo foram reiniciados.";
+	return 1;
+}
+
+function	script	resetSkills	{
+	set @questFalcon,getskilllv(127)-checkfalcon();
+	ResetSkill;
+	if ($@kest_resetBasic){
+		set @basic,getskilllv(1);
+	}else{
+		set @basic, Class==Job_Novice ? JobLevel-1 : 9;
+		skill 1,@basic,0;
+	}
+	if(Class==Job_Novice)
+		set SkillPoint,JobLevel-1-@basic;
+	else if((Class>=Job_Knight && Class<=Job_Dancer) || (Class>=Job_Lord_Knight && Class<=Job_Gypsy) || (Class>=Job_Baby_Knight && Class<=Job_Baby_Dancer) || (Class>=Job_Star_Gladiator && Class<=Job_Soul_Linker))
+		set  SkillPoint,JobLevel+57-@basic;
+	else
+		set SkillPoint,JobLevel+8-@basic;
+	
+	if(@questFalcon==-1)
+		atcommand "@option 0 0 16";
+	dispbottom "Seus pontos de habilidade foram reiniciados.";
+	return 1;
+}
+
+function	script	F_keStats	{
+
+	function SF_statRaise;
+
+	set @discount,callfunc("F_keCost",100,$@kest_discount);
+	do {
+		set @kmenu, select(
+			"- Return",
+			"- Aumentar Atributos",
+			"- Resetar Atributos ("+$@kest_stResetCost+"z+"+$@kest_BaseLvCost+"/blv)",
+			"- Resetar Habilidades ("+$@kest_skResetCost+"z+"+$@kest_JobLvCost+"/jlv)",
+			"- Resetar Ambos ("+$@kest_resetCost+"z+"+$@kest_BothLvCost+"/lv)"
+		);
+		switch (@kmenu) {
+		case 2: //Stat raising
+			SF_statRaise();
+			set @cost, 0;
+			set @reset, 0;
+			break;
+		case 3: //Reset Stat
+			set @cost, $@kest_stResetCost+BaseLevel*$@kest_BaseLvCost;
+			set @reset, 1;
+			break;
+		case 4: //Reset Skills
+			set @cost, $@kest_skResetCost+(JobLevel+jobchange_level)*$@kest_JobLvCost;
+			set @reset, 2;
+			break;
+		case 5: //Reset Both
+			set @cost, $@kest_resetCost+(BaseLevel+JobLevel+jobchange_level)*$@kest_BothLvCost;
+			set @reset, 3;
+			break;
+		default: //Cancel
+			set @cost, 0;
+			set @reset, 0;
+			break;
+		}
+		if (@reset > 0) {
+			mes "["+@name$+"]";
+			if (getgmlevel()>=5) {
+				mes "Você é VIP!! Portanto, não pagará nada por este serviço!";
+				mes "Boa diversão!";
+				set @cost, 0;
+			} else if (Weight>0) {
+				mes "Você não pode estar com nenhum item equipado ou segurando!";
+				mes "Ou seja, seu peso precisa estar em ^0000FFzero^000000.";
+				mes "Obrigado!";
+				close;
+			} else {
+				mes "Você terá que pagar " + (@cost*@discount/100) + "z por isso.";
+				mes "Para quem é vip, o reset é de graça...";
+				mes "Boa sorte!";
+			}
+			next;
+			if (select("- Voltar","- Resetar por "+(@cost*@discount/100)+"z") == 2) {
+				if (!(callfunc("F_keCharge",@cost,$@kest_discount,1))) {
+					callfunc "F_keIntro", e_an, "Desculpe, você não tem dinheiro suficiente.";
+				} else {
+					if (@reset&1) callfunc("resetStats");
+					if (@reset&2) callfunc("resetSkills");
+					emotion e_hmm;
+				}
+			}
+		}
+	} while (@kmenu > 1);
+	return;
+	
+function SF_statRaise {
+	do {
+		set @submenu, select(
+			"- Return",
+			"- Aumentar Força",
+			"- Aumentar Agilidade",
+			"- Aumentar Vitalidade",
+			"- Aumentar Inteligência",
+			"- Aumentar Destreza",
+			"- Aumentar Sorte"
+		);
+		switch (@submenu) {
+		case 2:
+			set @stat,bStr;
+			break;
+		case 3:
+			set @stat,bAgi;
+			break;
+		case 4:
+			set @stat,bVit;
+			break;
+		case 5:
+			set @stat,bInt;
+			break;
+		case 6:
+			set @stat,bDex;
+			break;
+		case 7:
+			set @stat,bLuk;
+			break;
+		default:
+			return;
+		}
+		input @qty;
+		if (@qty <1) {
+			callfunc "F_keIntro", e_swt, "Eu não diminuo atributos, tente resetá-los.";
+		} else if (@qty >120) {
+			callfunc "F_keIntro", e_swt2, "Desculpe... Eu só posso Aumentar stats até 120 de cada vez.";
+		} else {
+			do {
+				statusup @stat;
+				set @qty,@qty-1;
+			} while (@qty > 0);
+			emotion e_ok;
+		}
+	} while (@submenu > 1);
+}
+
+}

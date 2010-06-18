@@ -1,0 +1,287 @@
+////////Autor////////////////////////////////////////////
+//= Gui meira e TheBusiness
+////////NPC//////////////////////////////////////////////
+//= NPC Multi Função
+////////Emulador/////////////////////////////////////////
+//= eathena sql
+////////Comentarios adicionais///////////////////////////
+//= Obrigado ao DEX por ser o nossso mentor e o mestre nos
+//= NPCs e a nós dois (eu e gui) por conseguir fazer este
+//= NPC.
+/////////////////////////////////////////////////////////
+
+prt_in,164,174,5	script	Senhor do PvP#1	52,{
+	if ($eventopvp == 1) goto EVENTOACONTECENDO;
+	mes "[Senhor do PvP]";
+	mes "Ola senhor GM.";
+	mes "O que acha de iniciar um evento PvP?";
+	next;
+	menu "Boa idéia!",INICIAR,"Quem sabe depois?",CANCEL;
+
+	INICIAR:
+	mes "[Senhor do PvP]";
+	mes "O que vai dar ao jogador como premio?";
+	next;
+	menu "Itens",ITENS,"Zenys",ZENYS,"Nada!",NADA,"Eu premiarei o campeão",PREMIOGM;
+
+	ITENS:
+	mes "[Senhor do PvP]";
+	mes "Por favor, digite o ID do item que sera o premio:";
+	input $idpremio;
+	next;
+	mes "[Senhor do PvP]";
+	mes "Agora digite o nome do item:";
+	input $nomepremio$;
+	next;
+	mes "[Senhor do PvP]";
+	mes "Agora digite a quantidade desse item que o jogador recebera:";
+	input $quantpremio;
+	set $tipopremio,1;
+	next;
+	goto LEVELEVENTO;
+
+	ZENYS:
+	mes "[Senhor do PvP]";
+	mes "Por favor, digite a quantidade de zenys que o jogador receberá:";
+	input $quantpremio;
+	set $tipopremio,2;
+	next;
+	goto LEVELEVENTO;
+	NADA:
+	set $tipopremio,3;
+	goto LEVELEVENTO;
+	PREMIOGM:
+	set $tipopremio,4;
+	goto LEVELEVENTO;
+
+	
+	LEVELEVENTO:
+	mes "[Senhor do PvP]";
+	mes "Qual o level mínimo para que participem deste evento?";
+	mes "Coloque 0 para nao haver level mínimo";
+	input $levelminimo;
+	next;
+	mes "[Senhor do PvP]";
+	mes "Qual o level máximo para que participem deste evento?";
+	mes "Coloque 0 para nao haver level máximo";
+	input $levelmaximo;
+	next;
+	mes "[Senhor do PvP]";
+	mes "Evento configurado com sucesso!";
+	close2;
+	goto CONTROLEEVENTO;
+	end;
+
+	CANCEL:
+	mes "[Senhor do PvP]";
+	mes "Ok, volte aqui se mudar de ideia!";
+	close;
+	EVENTOACONTECENDO:
+	mes "[Senhor do PvP]";
+	mes "Me desculpe mas ja existe um evento PvP acontecendo!";
+	menu "Ok.",FECHANDO,"Cancelar Evento",-;
+	
+	disablenpc "Senhor do PvP#2";
+	set $idpremio,0;
+	set $nomepremio$,0;
+	set $quantpremio,0;
+	set $tipopremio,0;
+	set $eventopvp,0;
+	set $levelminimo,0;
+	set $levelmaximo,0;
+	
+	FECHANDO:
+	close;
+
+	CONTROLEEVENTO:
+	initnpctimer;
+	set $eventopvp,1;
+	announce "Ola aventureiros de RuneMidgard! Aqui é o Senhor do PvP!",0;
+	end;
+	
+	OnTimer15000:
+	announce "Está iniciado mais um Evento PvP!",0;
+	end;
+	
+	OnTimer30000:
+	if ($tipopremio == 1){
+		announce "O prêmio será "+$quantpremio+" "+$nomepremio$+"(s)",0;
+		logmes "[Evento] Prêmio "+$quantpremio+" "+$nomepremio$+"(s)";
+	}
+	if ($tipopremio == 2){
+		announce "O prêmio será "+$quantpremio+" zenys!",0;
+		logmes "[Evento] Prêmio "+$quantpremio+"z";
+	}
+	if ($tipopremio == 3){
+		announce "Neste evento não haverá premiacão!",0;
+		logmes "[Evento] Sem premiacão";
+	}
+	if ($tipopremio == 4){
+		announce "O prêmio sera entregue pelo GM em pessoa!",0;
+		logmes "[Evento] Prêmio entregue pelo GM";
+	}
+	end;
+	
+	OnTimer45000:
+	if(($levelminimo == 0)&&($levelmaximo == 0)){
+		announce "Jogadores de qualquer level podem participar deste evento!",0;
+		end;
+	}
+	if ($levelminimo == 0) announce "Não há level mínimo para participar deste evento!",0;
+	if ($levelminimo > 0) announce "O level mínimo para participar deste evento é "+$levelminimo+"!",0;
+	end;
+	
+	OnTimer60000:
+	if(($levelminimo == 0)&&($levelmaximo == 0)) end;
+	if ($levelmaximo == 0) announce "Não há level máximo para participar deste evento!",0;
+	if ($levelmaximo > 0) announce "E o level máximo para participar deste evento é "+$levelmaximo+"!",0;
+	end;
+
+	OnTimer75000:
+	announce "Os interessados em participar me procurem no centro da cidade para se inscreverem! Eu só ficarei lá 5 minutos!",0;
+	enablenpc "Senhor do PvP#2";
+	end;
+
+	OnTimer255000:
+	announce "O evento irá começar em dois minutos!!!",0;
+	end;
+	
+	OnTimer375000:
+	if (getmapusers("guild_vs4") < 2) goto CANCELEVENTO;
+	announce "Inscrições encerradas! O evento começa agora com "+getmapusers("guild_vs4")+" competidores!",0;
+	announce "Quem sobreviver ganha o prêmio! Que vença o melhor!",0;
+	disablenpc "Senhor do PvP#2";
+	pvpon "guild_vs4";
+	stopnpctimer;
+	end;
+
+	CANCELEVENTO:
+	announce "O evento foi cancelado por falta de jogadores!",0;
+	disablenpc "Senhor do PvP#2";
+	set $idpremio,0;
+	set $nomepremio$,0;
+	set $quantpremio,0;
+	set $tipopremio,0;
+	set $eventopvp,0;
+	set $levelminimo,0;
+	set $levelmaximo,0;
+	end;
+}
+
+prontera,71,62,5	script	Senhor do PvP#2	52,{
+	if ($eventopvp == 0) goto SEMEVENTO;
+	if ((BaseLevel < $levelminimo) && ($levelminino != 0) || (BaseLevel > $levelmaximo) && ($levelmaximo != 0)) goto SEMLEVEL;
+	mes "[Senhor do PvP]";
+	mes "Olá! Veio se inscrever no Evento PvP?";
+	next;
+	menu "Sim!",INSCREVER,"Não...",CANCEL;
+	
+	INSCREVER:
+	mes "[Senhor do PvP]";
+	mes "Prontinho! Voce está inscrito no Evento! Aguarde a hora da luta dentro da arena e boa sorte!";
+	close2;
+	warp "guild_vs4",0,0;
+	end;
+
+	SEMEVENTO:
+	mes "[Senhor do PvP]";
+	mes "No momento não está acontecendo nenhum Evento PvP!";
+	mes "Na verdade eu nem deveria estar aqui, por favor comunique-se com um GM!";
+	close;
+
+	SEMLEVEL:
+	mes "[Senhor do PvP]";
+	if(BaseLevel < $levelminimo)
+		mes "Me desculpe mas você precisa ser pelo menos level "+$levelminimo+" para participar!";
+	if(BaseLevel > $levelmaximo)
+		mes "Me desculpe mas você precisa ser no máximo level "+$levelminimo+" para participar!";
+	close;
+
+	CANCEL:
+	mes "[Senhor do PvP]";
+	mes "Ok, volte aqui se mudar de idéia, mas decida rápido antes que o tempo acabe!";
+	close;
+}
+
+guild_vs4,44,55,5	script	Senhor do PvP#3	52,{
+	if (getmapusers("guild_vs4") > 1) goto EVENTOACONTECENDO;
+	mes "[Senhor do PvP]";
+	mes "Vejo que voce foi o campeão desse evento!";
+	mes "Meus parabéns meu jovem!!!!";
+	logmes "[Evento] "+strcharinfo(0)+" foi o campeão";
+	next;
+	if ($tipopremio == 1) goto ITEM;
+	if ($tipopremio == 2) goto ZENYS;
+	if ($tipopremio == 3) goto NADA;
+	if ($tipopremio == 4) goto PREMIOGM;
+
+	ITEM:
+	getitem $idpremio,$quantpremio;
+	mes "[Senhor do PvP]";
+	mes "Aqui está o seu premio! Meus parabéns!";
+	mes "Agora volte para Prontera!";
+	close2;
+	announce "O jogador "+strcharinfo(0)+" foi o campeão deste evento! Parabéns para ele!",0;
+	warp "prontera",77,56;
+	goto FIMDEEVENTO;
+
+	ZENYS:
+	set Zeny,Zeny+$quantpremio;
+	mes "Aqui está o seu premio! Meus parabéns!";
+	mes "Agora volte para Prontera!";
+	close2;
+	announce "O jogador "+strcharinfo(0)+" foi o campeão deste evento! Parabéns para ele!",0;
+	warp "prontera",77,56;
+	goto FIMDEEVENTO;
+
+	NADA:
+	mes "[Senhor do PvP]";
+	mes "O importante e competir, e este evento não estava valendo nenhum prêmio! Mesmo assim parabéns!";
+	mes "Agora volte para Prontera!";
+	close2;
+	announce "O jogador "+strcharinfo(0)+" foi o campeão deste evento! Parabéns para ele!",0;
+	warp "prontera",77,56;
+	goto FIMDEEVENTO;
+
+	PREMIOGM:
+	mes "[Senhor do PvP]";
+	mes "O GM lhe chamará no castelo daqui a pouco para que você receba o seu prêmio!";
+	mes "Agora volte para Prontera!";
+	close2;
+	announce "O jogador "+strcharinfo(0)+" foi o campeão deste evento! Parabéns para ele!",0;
+	warp "prontera",77,56;
+	goto FIMDEEVENTO;
+
+	FIMDEEVENTO:
+	set $idpremio,0;
+	set $nomepremio$,0;
+	set $quantpremio,0;
+	set $tipopremio,0;
+	set $eventopvp,0;
+	set $levelminimo,0;
+	set $levelmaximo,0;
+	disablenpc "Senhor do PvP#2";
+	pvpoff "guild_vs4";
+	end;
+}
+
+-	script	AntiBug	-1,{
+	OnInit:
+	disablenpc "Senhor do PvP#2";
+	removemapflag "guild_vs4",6;
+	set $idpremio,0;
+	set $nomepremio$,0;
+	set $quantpremio,0;
+	set $tipopremio,0;
+	set $eventopvp,0;
+	set $levelminimo,0;
+	set $levelmaximo,0;
+	end;
+}
+
+-	script	PCDieEvent	-1,{
+	getmapxy @lugar$,@coordx,@coordy,0,strcharinfo(0);
+	if (@lugar$ != "guild_vs4") end;
+	if (getmapusers("guild_vs4") > 1) end;
+	pvpoff "guild_vs4";
+}

@@ -1,0 +1,102 @@
+valkyrie,48,82,4	script	Valkyrie	811,{
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Bom. Vejo que você conseguiu chegar até aqui e sei que foi uma tarefa muito difícil, porém sua tarefa ainda não acabou.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Os itens que você busca são extremamente raros e com um grande poder, não será fácil de conseguir.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Qual item você procura?";
+	next;
+	menu "Nenhum",-,
+		 "Brisingamen",I_Brisin,
+		 "Gleipnir",I_Gleipnir,
+		 "Megingjard",I_Meging,
+		 "Mjolnir",I_Mjolnir,
+		 "Sleipnir",I_Sleipnir,
+		 "Skeleton Manteau",I_Skeleton;
+	close;
+	
+	I_Brisin:
+	mes "^006611[ Valkyrie ]^333333";
+	mes "^0000FFBrisingamen^333333";
+	mes "Dizem que Freya, a deusa da beleza, era adorada por todos. Por isso, quatro anões (Alfrik, Berling, Dvalin e Grer) juntaram os itens mais belos de Rune-Midgard e criaram uma jóia de valor inestimável.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Este colar era capaz de tornar irresistível qualquer um que o usasse. O colar foi objeto de cobiça de muitos, inclusive de Loki, que o roubou na esperança de usá-lo para dominar os deuses.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Talvez você encontre Loki e consiga recuperá-lo. Mas será difícil, Loki tem uma aparência amigável, mas uma natureza maligna. Ele é calculista e malicioso, uma figura traiçoeira, não se sabe quando se pode confiar nele.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "A última vez que eu tive notícias dele, ele estava em Nifflhem... Não é certeza, mas se você correr ainda pode encontrá-lo.";
+	close;
+	
+	I_Gleipnir:
+	mes "^006611[ Valkyrie ]^333333";
+	mes "^0000FFGleipnir^333333";
+	mes "Grilhão macio como a seda porem indestrutível que foi forjado por anões a pedido de Odin, para prender o Fenris até a chegada do Destino Final dos Deuses - Batalha que levará ao fim do Mundo de Rune Midgard.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Não fique com medo... É apenas uma lenda, o mundo não vai acabar!";
+	mes " ";
+	mes "Gleipnir é utilizado para fazer o cinturão mais cobiçado de Midgard - O Megingjard. Se você tiver sorte pode encontrar algum anão herdeiro de tal habilidade capaz de forjar este precioso item.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Uma vez encontrei um nos arredores de Yuno que comentou algo a respeito do item, mas já faz muito tempo... Não me lembro muito bem, você terá que procurá-lo.";
+	close;
+	
+	I_Meging:
+	mes "^006611[ Valkyrie ]^333333";
+	mes "^0000FFMegingjard^333333";
+	mes "Dizem que o Megingjard é o cinturão usado por Thor, sem dúvida é o mais poderoso dos itens selados. Ele garantia ao deus do trovão uma força sem igual, mesmo para uma divindade.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Foi ele quem permitiu a Thor erguer o martelo Mjolnir, provando ser digno de usar a arma de seu pai. Estes dois equipamentos faziam do deus o mais poderoso de todos os guerreiros.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Uma vez um poderoso ferreiro tentou criar um Megingjard, mas falhou por não saber os itens necessários, daí em diante ele se dedicou a pesquisar sobre o cinturão na tentativa de descobrir algo e forjar um com poder igual ou até mesmo maior.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Ele está em uma cidade esquecida pelas pessoas, perto de Prontera.";
+	close;
+	
+	I_Mjolnir:
+	mes "^006611[ Valkyrie ]^333333";
+	mes "^0000FFMjolnir^333333";
+	mes "O Martelo de Thor é a mais poderosa arma existente, capaz de causar devastação nos campos de batalha.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Dizem que seu dono será veloz como o trovão, terá grande força e dificilmente errará seu inimigo.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "A ultima vez que eu vi alguem falar disso foi quando eu andava em um monte chamado Mjolnir.";
+	close;
+	
+	I_Sleipnir:
+	mes "^006611[ Valkyrie ]^333333";
+	mes "^0000FFSleipnir^333333";
+	mes "Estas botas têm o nome do magnífico e lendário cavalo de Odin. Em certa ocasião Sleipnir foi ferido e Odin o transformou em um par de botas, conservando assim seu poder místico, sendo necessário para sua utilização o poder do sol.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Toda a velocidade e vigor do lendário animal repousam agora nessa bota.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Após o final da guerra milenar dos deuses ela se espalhou junto com todos os itens divinos e não se sabe do seu paradeiro, será seu trabalho achar. Não se esqueça que preciso de 2 emblemas do deus sol para revivê-la..";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Este item é muito dificil de se encontrar pois pelo que dizem, quem o porta é muito rápido e some facil na escuridão. Havia boatos que ele vivia nas proximidades do Templo de Odin";
+	close;
+
+	I_Skeleton:
+	mes "^006611[ Valkyrie ]^333333";
+	mes "^0000FFSkeleton Manteau^333333";
+	mes "Este manto tem esse nome devido o grande número de guerreiros derrotado por seu portador.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Ele acumulava a energia que havia nos crânios dos oponentes que eram aniquilados, e com isso adquiriu forte resistência contra humanos.";
+	next;
+	mes "^006611[ Valkyrie ]^333333";
+	mes "Diz-se que o portador do manto é um pianista famoso...";
+	close;
+}

@@ -1,0 +1,175 @@
+//===== eAthena Script =======================================
+//= War of Emperium (Al De baran)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Al De Baran Guild Castle 1
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//============================================================
+
+aldeg_cas01	mapflag	gvg_castle
+aldeg_cas01	mapflag	monster_noteleport
+aldeg_cas01	mapflag	noicewall
+aldeg_cas01	mapflag	nomemo
+aldeg_cas01	mapflag	nosave	SavePoint
+aldeg_cas01	mapflag	noteleport
+aldeg_cas01	mapflag	nowarp
+aldeg_cas01	mapflag	nowarpto
+aldeg_cas01	mapflag	noreturn
+aldeg_cas01	mapflag	nogo
+aldeg_cas01	mapflag	nocommand	10
+
+alde_gld,48,79,0	warp	aldg01	1,1,aldeg_cas01,34,248
+aldeg_cas01,34,252,0	warp	aldg01-1	1,1,alde_gld,48,83
+
+aldeg_cas01,50,222,0	warp	aldg101	1,1,aldeg_cas01,104,108
+aldeg_cas01,104,112,0	warp	aldg101-1	1,1,aldeg_cas01,45,224
+aldeg_cas01,66,191,0	warp	aldg102	1,1,aldeg_cas01,122,61
+aldeg_cas01,126,61,0	warp	aldg102-1	1,1,aldeg_cas01,62,191
+aldeg_cas01,54,27,0	warp	aldg102-2	1,1,aldeg_cas01,62,191
+aldeg_cas01,26,188,0	warp	aldg103	1,1,aldeg_cas01,50,70
+aldeg_cas01,46,70,0	warp	aldg103-1	1,1,aldeg_cas01,24,188
+aldeg_cas01,70,112,0	warp	aldg104	1,1,aldeg_cas01,42,225
+aldeg_cas01,39,222,0	warp	aldg104-1	1,1,aldeg_cas01,70,108
+aldeg_cas01,89,23,0	warp	aldg105	1,1,aldeg_cas01,207,132
+aldeg_cas01,207,128,0	warp	aldg105-1	1,1,aldeg_cas01,89,27
+aldeg_cas01,206,188,0	warp	aldg106	1,1,aldeg_cas01,216,50
+aldeg_cas01,216,54,0	warp	aldg106-1	1,1,aldeg_cas01,206,184
+aldeg_cas01,232,186,0	warp	aldg107	1,1,aldeg_cas01,42,197
+aldeg_cas01,46,197,0	warp	aldg107-1	1,1,aldeg_cas01,232,182
+aldeg_cas01,171,175,0	warp	aldg108	1,1,aldeg_cas01,35,197
+aldeg_cas01,31,197,0	warp	aldg108-1	1,1,aldeg_cas01,175,175
+
+// Guild Flags
+//============================================================
+alde_gld,61,87,6	script	Sirius#a1-2::Sirius2	722,{
+	set .@GID, GetCastleData("aldeg_cas01",1);
+	if (.@GID == 0) {
+		mes "[ Edital do Reino Divino de Midgard ]";
+		mes " ";
+		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
+		mes " ";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
+	} else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo aventureiro...";
+			mes "Deseja voltar ao seu local de glória e honra?";
+			next;
+			if (select("Voltar:Quit.") == 1) {
+				if (getcharid(2) == GetCastleData("aldeg_cas01",1)) {
+					warp "aldeg_cas01",218,170;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ Edital do Reino Divino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastleA01:
+	FlagEmblem 1;
+	//FlagEmblem GetCastleData("aldeg_cas01",1);
+	end;
+}
+gonryun,155,130,4	duplicate(Sirius2)	Sirius#a1-1	722
+alde_gld,61,79,6	duplicate(Sirius2)	Sirius#a1-3	722
+alde_gld,45,87,8	duplicate(Sirius2)	Sirius#a1-4	722
+alde_gld,51,87,8	duplicate(Sirius2)	Sirius#a1-5	722
+
+// Guild Flag (Inside Castle)
+//============================================================
+aldeg_cas01,30,248,4	script	Sirius#a1-6::Sirius3	722,{
+	set .@GID, GetCastleData("aldeg_cas01",1);
+	if (.@GID == 0) {
+		mes "[ Edital do Reino Divino de Midgard ]";
+		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
+		mes " ";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
+	}
+	else {
+		mes "[ Edital do Reino Divino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastleA01:
+	FlagEmblem GetCastleData("aldeg_cas01",1);
+	end;
+}
+
+aldeg_cas01,30,246,4	duplicate(Sirius3)	Sirius#a1-7	722
+aldeg_cas01,37,248,4	duplicate(Sirius3)	Sirius#a1-8	722
+aldeg_cas01,37,246,4	duplicate(Sirius3)	Sirius#a1-9	722
+aldeg_cas01,95,80,2	duplicate(Sirius3)	Sirius#a1-10	722
+aldeg_cas01,95,59,2	duplicate(Sirius3)	Sirius#a1-11	722
+aldeg_cas01,62,75,2	duplicate(Sirius3)	Sirius#a1-12	722
+aldeg_cas01,70,75,2	duplicate(Sirius3)	Sirius#a1-13	722
+aldeg_cas01,74,75,2	duplicate(Sirius3)	Sirius#a1-14	722
+aldeg_cas01,62,64,2	duplicate(Sirius3)	Sirius#a1-15	722
+aldeg_cas01,66,64,2	duplicate(Sirius3)	Sirius#a1-16	722
+aldeg_cas01,70,64,2	duplicate(Sirius3)	Sirius#a1-17	722
+aldeg_cas01,74,64,2	duplicate(Sirius3)	Sirius#a1-18	722
+aldeg_cas01,203,150,4	duplicate(Sirius3)	Sirius#a1-19	722
+aldeg_cas01,210,150,4	duplicate(Sirius3)	Sirius#a1-20	722
+aldeg_cas01,66,75,2	duplicate(Sirius3)	Sirius#a1-21	722
+
+// AGIT Manager
+//============================================================
+aldeg_cas01,216,24,0	duplicate(Gld_Agit_Manager)	Agit#aldeg_cas01	-1
+
+// Steward
+//============================================================
+aldeg_cas01,218,175,0	duplicate(Gld_Mngr_Template)	Alfredo#aldeg_cas01	55
+
+// Guardians
+//============================================================
+aldeg_cas01,218,175,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas01	-1
+
+// Kafra
+//============================================================
+aldeg_cas01,218,170,0	duplicate(Gld_Kafra_Template)	Kafra#aldeg_cas01	117
+
+// Master's Room Exit
+//============================================================
+aldeg_cas01,123,223,0	script	#switch_A01	111,{
+	mes " ";
+	mes "Há um pequeno interruptor. Deseja apertá-lo?";
+	next;
+	switch(select("Apertar:Não")) {
+	case 1:
+		warp "aldeg_cas01",218,176;
+		break;
+	case 2:
+		break;
+	}
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+aldeg_cas01,118,223,0	duplicate(Gld_Trea_Protect)	ban_warp#aldeg_cas01	-1,8,8
+
+// Guild Treasure Spawns
+//============================================================
+aldeg_cas01,118,223,0	duplicate(Gld_Trea_Spawn)	Treasure#aldeg_cas01	-1
+
+// Guild Dungeon Switch
+//============================================================
+aldeg_cas01,211,181,0	duplicate(Gld_Dun_Template)	#aldeg_cas01	111

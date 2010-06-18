@@ -1,0 +1,9 @@
+userid: server
+passwd: Hd83odasnH2s09
+
+char_ip: 174.123.60.34
+map_ip:174.123.60.34
+char_port: 6902
+map_port: 6903
+
+use_grf: no

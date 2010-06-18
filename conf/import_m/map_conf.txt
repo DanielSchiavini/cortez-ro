@@ -1,0 +1,9 @@
+userid: servero
+passwd: M4wrap2rEbrU
+
+char_ip: 174.123.60.34
+map_ip: 174.123.60.34
+char_port: 6908
+map_port: 6909
+
+use_grf: no

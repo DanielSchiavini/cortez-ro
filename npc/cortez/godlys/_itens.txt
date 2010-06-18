@@ -1,0 +1,103 @@
+//--Godly Items--//
+Kaho`s Horn (5013)	150kk
+Skeleton Manteau (2511)	50kk
+Mjolnir (1530)		100kk
+	2x Thor`s Guntlet (7074)
+	4x Iron Maiden (7075)
+	5x Breath of Soul (7087)
+	5x Wrath of Valkyrie (7078)
+	5x Omen of tempest (7089)
+Sleipnir (2410)		50kk
+	3x Wheel of the Unknown (7076)
+	5x Feather of Angel (7079)
+	3x Spirit of Fish (7083)
+	3x Emblem of the Sun God (7086)
+Brisingamen (2630)	???
+	4x Freya`s Jewel (7073)
+	4x Silver Ornament (7077)
+	3x Snow Crystal (7088)
+	3x Ripple (7090)
+	3x Drifting Air (7092)
+Gleipnir (7058)		???
+	4x Footprints of Cat (7080)
+	5x Woman`s Moustache (7081)
+	4x Stone Fragment (7067)
+	3x Sputum of Bird (7084)
+	3x Sinew of Bear (7085)
+Megingjard (2629)	200kk
+	1x Gleipnir(7058)
+
+raiz da montanha - 25~30kk
+passos de gato - 15kk
+simbolo do deus sol - 20~25kk
+tsunami - 15kk
+presságio da tempestade - 10~15kk
+ornamento de prata - 15~20kk
+floco de neve - 15~20kk
+desejo das trevas - Não sei
+pedra encantada preta - 500k~1kk
+fúria das valquírias - 10~15kk
+essência de espiríto - 100~500k
+penas de asas angelicais - 100~500k
+
+
+// Monstros normais: 50% = 250				Mvps: 1% = 5
+NPC 1
+	1x Gema de Luz Estelar (7178) 1492-INCANTATION_SAMURAI 50%
+	1x Sussurros Espirituais (7307) 1185-Giant Whisper 10%
+	1x Alforje de Couro do Infinito (7042) 1582-Deviling 40%
+
+NPC 2
+	1 Lamento de Lucifer (7025)	1389	DRACULA	50%
+	1 Pingente Velho (7341)		1511	AMON_RA	50%
+	1 Simbolo dos Nove Reinos (7305)	1039	BAPHOMET	50%
+	1 O sinal (7314)	1682	REMOVER	2%
+
+Skeleton Manteau (2511)	50kk 
+	200x Nightmare (7102) Pedra do pesadelo (100% Abysmal Knight 1219)
+	150x Magic Paint (7045) Tinta Mágica (100% Elder 1377)
+	3x Will of the Darkness (7340) Desejo das Trevas (3% Dark Lord 1272)
+	1x Ancient Cape (2507) Capa do Marquês
+
+Mjolnir (1530)		100kk 
+	150x Thor`s Guntlet (7074) Manopla de Thor (75% Howard Alt-Eisen 1636)
+	100x Iron Maiden (7075) Dama de Ferro (50% Zherlthsh 1200)
+	5x Breath of Soul (7087)  Essência de Espírito (3% Ghostring 1120)
+	5x Omen of Tempest (7089) Presságio de Tempestade (2.6% Stormy Knight 1251)
+	3x Wrath of Valkyrie (7078) Fúria das Valquírias (10% Valkyrie Randrigs 1751)
+	3x Billow (7091) Tsunami (3% Drake 1112)
+	40x Gold
+
+Sleipnir (2410)		50kk
+	200x Wheel of the Unknown (7076) Roda Desconhecida (100% Apocalipse 1365)
+	200x Spirit of Fish (7083) Hálito de Peixe (100% Deviace 1108)
+	5x Feather of Angel (7079) Pena de Asas Angelicais (3% Angeling 1096/4% Archangeling 1388)
+	3x Emblem of the Sun God (7086) Simbolo do Deus-Sol
+	3x High Heels (2409) Salto alto
+	20x Gold
+
+Brisingamen (2630)	???
+	150x Blue Charm Stone (7428) Pedra Encantada Azul (100% Swordfish 1069)
+	150x Yellow Charm Stone (7427) Pedra Encantada Amarela (100% Hode 1127)
+	150x Red Charm Stone(7426) Pedra Encantada Vermelha (100% Nightmare Terror 1379)
+	150x Green Charm Stone(7429) Pedra Encantada Verde (100% Stone Shooter 1495)
+	150x Freya`s Jewel (7073) Lagrímas de Freyja (100% Shining Plant 1083)
+	150x Drifting Air (7092) Ar Silencioso (50% Observarion 1700)
+	150x Ripple (7090) Murmúrio (50% Dullahan 1504)
+	6x Silver Ornament (7077) Ornamento de Prata (6% White Lady 1518)
+	6x Snow Crystal (7088) Floco de Neve (6% Garm 1252)
+	20x Gold
+
+Gleipnir (7058)		 ???
+	150x Woman’ s Moustache (7081) Barbas de Mulher (50% Gemini-S58 1681)
+	150x Sinew of Bear (7085) Nervos de Urso (100% Leib Olmai 1306)
+	100x Sputum of Bird (7084) Saliva de Ave (75% Harpy 1376)
+	4x Footprints of Cat (7080) Passos de Gato (3% Moonlight Flower 1150)
+	4x Root of Stone (7082) Raiz de Montanha (3% Tao Gunka 1583)
+
+Megingjard (2629)	200kk 
+	1x Gleipnir(7058) 
+	20x Gold
+	50x Black Charm Stone (7430) Pedra Encantada Preta (5% Skeggiold 1754)
+	4x Morrigane`s Belt (2650) Cinto de Morrigane (10% Kiel D-01 1734)
+	4x Witch`s Tonic (7308) Tônico da Bruxa (6% RSX-0806 1623)

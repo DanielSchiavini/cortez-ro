@@ -1,0 +1,208 @@
+//NPC 1 QUEST NATAL CORTEZRO Boneco de Neve
+gonryun,136,138,5	script	Boneco de Neve	710,{
+	mes "[^0008FFBoneco de Neve^000000]";
+	mes "Olá, Feliz Natal";
+	mes "Sabe, hoje estamos nos aproximando da data do natal e estamos com um grande problema.";
+	mes "Não sei se você sabe.. mas o Papai Noel tem um irmão chamado Antonio! ";
+	next;
+	mes "[^0008FFBoneco de Neve^000000]";
+	mes "E de tanta inveja, agora ele quer destruir o natal do papai noel!";
+	mes "Mais esse ano a gente tem um plano para unir os dois, e você quer nos ajudar?";
+	next;
+	if(select("Por quê? Natal é uma farsa..:Claro!!")==3){
+		mes "[^0008FFBoneco de Neve^000000]";
+		mes "Obrigado, procure ajuda em Aldebaran";
+		if(#natal==0){
+			set #natal, 1;
+		}
+	}else{
+		mes "[^0008FFBoneco de Neve^000000]";
+		mes "Ok, nem todas as pessoas são solidárias...";
+		if(#natal==1){
+			set #natal, 0;
+		}
+	}
+	close;
+	
+	OnInit:
+		if(gettime(5)<28 && gettime(6)==12) end;
+	OnDay1228:
+		disablenpc "Boneco de Neve";
+		disablenpc "Goblin Christmas";
+		disablenpc "Frizz Dingo";
+		disablenpc "Tio Peludo";
+		disablenpc "Antônio";
+}
+
+//NPC 2 QUEST NATAL CORTEZRO !
+aldebaran,45,86,5	script	Goblin Christmas	1825,{
+	if(#natal == 0){
+		mes "[^0008FFGoblin Christmas^000000]";
+		mes "Feliz Natal!";
+	}else if(#natal >= 2){
+		mes "[^0008FFGoblin Christmas^000000]";
+		mes "Por favor, vá para Geffen para nos ajudar!";
+	}else{ //#natal == 1
+		mes "[^0008FFGoblin Christmas^000000]";
+		mes "Hmm.";
+		mes "Vejo que por estar aqui, deve querer ajudar os irmãos Noel né";
+		mes "Se quer realmente ajudar, nos traga 100 balas, para adoçar o coração do irmão malvado";
+		next;
+		if(select("Já tenho, aqui estão:Nem to afim..")==1){
+			mes "[^0008FFGoblin Christmas^000000]";
+			mes "Deixe me ver se esta com minhas balinhas...";	
+			next;
+			if (countitem(529) < 100){
+				mes "[^0008FFGoblin Christmas^000000]";
+				mes "Você ainda não tem todos os itens necessários..";
+				mes "Volte quando estiver pronto!";
+			}else{
+				mes "[^0008FFGoblin Christmas^000000]";
+				mes "Parabéns, tudo certo!";
+				delitem 529, 100;
+				set #natal, 2;
+				next;
+				mes "[^0008FFGoblin Christmas^000000]";
+				mes "Que bom que trouxe as balas, agora vá à Geffen e procure por nosso outro amigo!";
+			}
+		}else{
+			mes "[^0008FFGoblin Christmas^000000]";
+			mes "Credo, espírito natalino realmente não existe em você...";
+		}
+	}
+	close;
+}
+
+//NPC 3 QUEST NATAL CORTEZRO
+geffen,170,100,5	script	Frizz Dingo	714,{
+	if(#natal <= 1){
+		mes "[^0008FFFrizz Dingo ^000000]";
+		mes "Feliz Natal!";
+	}else if(#natal >= 3){
+		mes "[^0008FFFrizz Dingo^000000]";
+		mes "Por favor, vá para Yuno para nos ajudar!";
+	}else{ //#natal == 2
+		mes "[^0008FFFrizz Dingo^000000]";
+		mes "Se quer ajudar neste natal, me traga 70 bengalas doces,";
+		mes "para serem entregues ao nosso amigo do mal, assim melhorando o seu espírito natalino, com a pureza deste item.";
+		next;
+		if(select("Já tenho, aqui estão:Não tenho doces nem pra mim")==1){
+			mes "[^0008FFFrizz Dingo^000000]";
+			mes "Deixe me ver se trouxe o que eu pedi...";
+			next;
+			if (countitem(530) < 70){
+				mes "[^0008FFFrizz Dingo^000000]";
+				mes "Você ainda não tem todos os itens necessários..";
+				mes "Volte quando estiver pronto!";
+			}else{
+				mes "[^0008FFFrizz Dingo^000000]";
+				mes "Parabéns, tudo certo!";
+				delitem 530, 70;
+				set #natal, 3;
+				next;
+				mes "[^0008FFFrizz Dingo^000000]";
+				mes "Obrigado pelos itens, agora vá à Yuno e procure outra forma de ajudar";
+			}
+		}else{
+			mes "[^0008FFFrizz Dingo^000000]";
+			mes "Credo, você não é o 1° e nem será o ultimo a desistir...";
+		}
+	}
+	close;
+}
+
+//NPC 4 QUEST NATAL CORTEZRO
+yuno,210,313,8	script	Tio Peludo	712,{
+	if(#natal <= 2){
+		mes "[^0008FFTio Peludo^000000]";
+		mes "Feliz Natal!";
+	}else if(#natal == 4){
+		mes "[^0008FFTio Peludo^000000]";
+		mes "Por favor, vá para Moscóvia para nos ajudar!";
+	}else{ //#natal == 3
+		mes "[^0008FFTio Peludo^000000]";
+		mes "Como o dia do aniversario de noel está chegando,";
+		mes "Preciso de 120 pedaços de bolo para Antonio, entregar nesta data, e melhorar o clima entre ambos.";
+		next;
+		if(select("Já tenho, aqui estão:Não sei fazer bolos...")==1){
+			mes "[^0008FFTio Peludo^000000]";
+			mes "Deixe me ver se algo aqui me interessa....";
+			next;
+			if (countitem(539) < 120){
+				mes "[^0008FFTio Peludo^000000]";
+				mes "Você ainda não tem todos os itens necessários..";
+				mes "Volte quando estiver pronto!";
+			}else{
+				mes "[^0008FFTio Peludo^000000]";
+				mes "Parabéns, tudo certo!";
+				delitem 539, 120;
+				set #natal, 4;
+				next;
+				mes "[^0008FFTio Peludo^000000]";
+				mes "Vejo que já estamos perto de terminar com nosso plano,já que trouxe um dos últimos itens de nossa lista";
+				mes "Agora só resta falar com Antonio e ver o que ele precisa.";
+				mes "Se não me engano ele foi visitar a nova cidade de Moscóvia.";
+			}
+		}else{
+			mes "[^0008FFTio Peludo^000000]";
+			mes "Além, De não saber fazer poderia ao menos comprar um né....";
+		}
+	}
+	close;
+}
+
+//NPC 5 QUEST NATAL CORTEZRO
+moscovia,135,248,5	script	Antônio	1247,{
+	if(#natal != 4){
+		mes "[^0008FFOAntônio^000000]";
+		mes "Feliz natal!";
+	}else{
+		mes "[^0008FFOAntônio^000000]";
+		mes "Sabe, esse Natal está sendo especial para mim..";
+		mes "Estou recebendo vários presentes, isso nunca tinha acontecido!";
+		mes "O que? Você quer me dar um presente também?";
+		next;
+		if(select("Claro que sim!:Você não merece..")==1){
+			mes "[^0008FFOAntônio^000000]";
+			mes "Oba! Pode me dar uns... 5 daqueles gorrinhos de natal?";
+			next;
+			if(select("Já tenho, aqui estão:Não quer alguma coisa mais fácil não?")==1){
+				mes "[^0008FFOAntônio^000000]";
+				mes "Vamos ver se você tem tudo o que eu pedi..";
+				next;
+				if (countitem(2236) != 5){
+					mes "[^0008FFOAntônio^000000]";
+					mes "Você ainda não tem 5 gorros de natal.. Você têm " + countitem(2236) + ".";
+					mes "Volte quando estiver pronto!";
+				}else{
+					mes "[^0008FFOAntônio^000000]";
+					mes "O ho ho! Era tudo o que eu queria!";
+					next;
+					mes "[^0008FFOAntônio^000000]";
+					mes "Sabe.. com toda essa ajuda eu até vou falar com meu irmão";
+					mes "Acho que você conseguiu alegrar o meu natal!";
+					mes "Obrigado pela ajuda.. Tome isso como recompensa!";
+					delitem 2236, 5;
+					getitem 2204, 1;
+					next;
+					mes "[^0008FFOAntônio^000000]";
+					mes "Parece bobo não? Mas ele tem um poder secreto! ho ho";
+					mes "Use ele com um bigode grisalho e um gorro de natal!";
+					mes "Ou se não com um Chapéu de Inverno..";
+					next;
+					mes "[^0008FFOAntônio^000000]";
+					mes "Durante essa época de natal, eles ficam surpreendende poderosos!!";
+					set #natal, 0;
+				}
+			}else{
+				mes "[^0008FFOAntônio^000000]";
+				mes "Mais fácil que gorros de natal?";
+				mes "Você está de brincadeira comigo..";
+			}
+		}else{
+			mes "[^0008FFOAntônio^000000]";
+			mes "Estou profundamente magoado com você";
+		}
+	}
+	close;
+}

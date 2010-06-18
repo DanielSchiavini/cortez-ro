@@ -1,0 +1,22 @@
+//ATENÇÃO: Retirar o NPC Witch de npc/cities/nifflheim.txt
+
+nif_in,188,168,3	script	Bruxa	792,{
+	mes "[Kilgana]";
+	mes "hmm? você não é um humano vivo?";
+	mes "parece que você fez algum esforço";
+	mes "para chegar nesse lugar...";
+	mes "Embora, isso não é um lugar";
+	mes "onde a vida pertencerá...";
+	next;
+	mes "[Kilgana]";
+	mes "Eu usarei meus poderes para você voltar...";
+	mes "mas você não deve voltar aqui...";
+	next;
+	close2;
+	warp "que_sign01",197,220;
+	end;
+}
+
+que_sign01,197,177,0	warp	godly_01	1,1,niflheim,230,274,0
+nif_fild01,235,224,0	warp	godly_02	1,1,que_sign01,45,15,0
+que_sign01,45,13,0	warp	godly_03	1,1,nif_fild01,233,226,0

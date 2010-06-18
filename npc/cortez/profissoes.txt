@@ -1,0 +1,1063 @@
+function	script	jobmaster	{
+	L_Start:
+		mes "[^666699 Profissões~ ^000000]";
+		if(NextJobExp){
+			mes "Olá, você ainda não atingiu o nível de classe máximo, não poderei te ajudar...";
+			next;
+			goto L_Sair;
+		}else if(checkriding()){
+			mes "Olá, você ainda está utilizando seu peco-peco, não poderei te ajudar...";
+			next;
+			goto L_Sair;
+		}else if(getcharid(1)){
+			mes "Olá, você ainda está em grupo, você precisa sair para que eu te ajude...";
+			close;
+		}else if(SkillPoint){
+			goto L_SkillPoints;
+		}else if(BaseLevel>100 || (reborn>12 && (BaseLevel==100 || JobLevel==70))){
+			goto L_Quests;
+		}else if(BaseLevel>=100-(getgmlevel()>0)){
+			goto L_Reborn;
+		}
+		
+	L_Job:
+		set @amuletos, 1;
+		switch(Class){
+			case Job_Novice:
+			case Job_Baby:
+				if(JobLevel<10) goto L_notEn;
+				skill 142,1,0;
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				if(Class==Job_Baby)
+					set @opcao, select("Continuar como Bebê:Bebê Espadachim:Bebê Mago:Bebê Arqueiro:Bebê Noviço:Bebê Mercador:Bebê Gatuno:Super Bebê");
+				else
+					set @opcao, select("Continuar como aprendiz:Espadachim:Mago:Arqueiro:Noviço:Mercador:Gatuno:Super Aprendiz:Taekwon:Justiceiro:Ninja");
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2: //Espadachim
+						mes "Tem certeza absoluta que deseja se tornar um espadachim?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class+1;
+						if(@amuletos){
+							getitem 16701,1;
+							getitem 16701,1;
+						}
+						break;
+					case 3: //Mago
+						mes "Tem certeza absoluta que deseja se tornar um mago?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class+2;
+						if(@amuletos){
+							getitem 16702,1;
+							getitem 16702,1;
+						}
+						break;
+					case 4: //Arqueiro
+						mes "Tem certeza absoluta que deseja se tornar um arqueiro?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class+3;
+						if(@amuletos){
+							getitem 16703,1;
+							getitem 16703,1;
+						}
+						getitem 1701,1;
+						getitem 1750,100;
+						break;
+					case 5: //Noviço
+						mes "Tem certeza absoluta que deseja se tornar um noviço?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class+4;
+						if(@amuletos){
+							getitem 16704,1;
+							getitem 16704,1;
+						}
+						getitem 1503,1;
+						break;
+					case 6: //Mercador
+						mes "Tem certeza absoluta que deseja se tornar um mercador?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class+5;
+						if(@amuletos){
+							getitem 16705,1;
+							getitem 16705,1;
+						}
+						break;
+					case 7: //Gatuno
+						mes "Tem certeza absoluta que deseja se tornar um gatuno?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class+6;
+						if(@amuletos){
+							getitem 16706,1;
+							getitem 16706,1;
+						}
+						break;
+					case 8: //Super Aprendiz
+						if(BaseLevel < 45){
+							mes "Para se tornar um super-aprendiz, é necessário ter nível de classe 45 ou mais...";
+							close;
+						}
+						mes "Tem certeza absoluta que deseja se tornar um super aprendiz?";
+						next;
+						if(select("Não:Sim")==1) break;
+						if(Class==Job_Baby)
+							jobchange Job_Super_Baby;
+						else
+							jobchange Job_SuperNovice;
+						if(@amuletos){
+							getitem 16710,1;
+							getitem 16710,1;
+						}
+						break;
+					case 9: //Taekwon
+						mes "Tem certeza absoluta que deseja se tornar um taekwon?";
+						next;
+						if(select("Não:Sim")==1) break;
+						setlook 7,0;
+						jobchange Job_Taekwon;
+						if(@amuletos){
+							getitem 16707,1;
+							getitem 16707,1;
+						}
+						callfunc "F_ClearJobVar";
+						break;
+					case 10: //Justiceiro
+						mes "Tem certeza absoluta que deseja se tornar um justiceiro?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Job_Gunslinger;
+						if(@amuletos){
+							getitem 16709,1;
+							getitem 16709,1;
+						}
+						callfunc "F_ClearJobVar";
+						break;
+					case 11: //Ninja
+						mes "Tem certeza absoluta que deseja se tornar um ninja?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Job_Ninja;
+						if(@amuletos){
+							getitem 16708,1;
+							getitem 16708,1;
+						}
+						callfunc "F_ClearJobVar";
+						break;
+					default:
+						mes "Boa sorte em sua jornada de aprendiz!";
+						next;
+						goto L_Sair;
+				}
+				if(Class!=Job_Novice && Class!=Job_Baby && @amuletos && $serv==6){
+					getitem 601,20; //Fly Wing
+					getitem 602,5; //Butterfly Wing
+					getitem 569,100; // Novice_Potion
+				}
+				break;
+			
+			case Job_Swordman:
+			case Job_Baby_Swordman:
+				if(JobLevel<50) close;
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				set @opcao, select("Continuar como espadachim:Cavaleiro:Templário");
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2:
+						mes "Tem certeza absoluta que deseja se tornar um cavaleiro?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 6;
+						break;
+					case 3:
+						mes "Tem certeza absoluta que deseja se tornar um templário?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 13;
+						break;
+				}
+				break;
+				
+			case Job_Mage:
+			case Job_Baby_Mage:
+				if(JobLevel<50) close;
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				set @opcao, select("Continuar como mago:Bruxo:Sábio");
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2:
+						mes "Tem certeza absoluta que deseja se tornar um bruxo?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 7;
+						break;
+					case 3:
+						mes "Tem certeza absoluta que deseja se tornar um sábio?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 14;
+						break;
+				}
+				break;
+			
+			case Job_Archer:
+			case Job_Baby_Archer:
+				if(JobLevel<50) close;
+				if(Sex) set @prof$, "Bardo"; else set @prof$, "Odalisca";
+				
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				set @opcao, select("Continuar como arqueiro:Caçador:" + @prof$);
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2:
+						mes "Tem certeza absoluta que deseja se tornar caçador?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 8;
+						break;
+					case 3:
+						mes "Tem certeza absoluta que deseja se tornar " + @prof$ + "?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 17 - Sex; //16 bardo, 17 dancer
+						break;
+				}
+				break;
+			
+			case Job_Acolyte:
+			case Job_Baby_Acolyte:
+				if(JobLevel<50) close;
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				set @opcao, select("Continuar como noviço:Sacerdote:Monge");
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2:
+						mes "Tem certeza absoluta que deseja se tornar um sacerdote?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 4;
+						break;
+					case 3:
+						mes "Tem certeza absoluta que deseja se tornar um monge?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 11;
+						break;
+				}
+				break;
+			
+			case Job_Merchant:
+			case Job_Baby_Merchant:
+				if(JobLevel<50) close;
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				set @opcao, select("Continuar como mercador:Ferreiro:Alquimista");
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2:
+						mes "Tem certeza absoluta que deseja se tornar um ferreiro?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 5;
+						break;
+					case 3:
+						mes "Tem certeza absoluta que deseja se tornar um alquimista?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 13;
+						break;
+				}
+				break;
+			
+			case Job_Thief:
+			case Job_Baby_Thief:
+				if(JobLevel<50) close;
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				set @opcao, select("Continuar como gatuno:Assassino:Arruaceiro");
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2:
+						mes "Tem certeza absoluta que deseja se tornar um assassino?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 6;
+						break;
+					case 3:
+						mes "Tem certeza absoluta que deseja se tornar um arruaceiro?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Class + 11;
+						break;
+				}
+				break;
+			
+			case Job_Taekwon:
+				if(JobLevel<50) close;
+				mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+				next;
+				set @opcao, select("Continuar como taekwon:Gladiador Estelar:Espiritualista");
+				mes "[^666699 Profissões~ ^000000]";
+				switch(@opcao){
+					case 2:
+						mes "Tem certeza absoluta que deseja se tornar um gladiador estelar?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Job_Star_Gladiator;
+						break;
+					case 3:
+						mes "Tem certeza absoluta que deseja se tornar um espiritualista?";
+						next;
+						if(select("Não:Sim")==1) break;
+						jobchange Job_Soul_Linker;
+						break;
+				}
+				if(@opcao>1){
+					ResetSkill;
+					skill 1,9,0;
+					set SkillPoint,49;
+					callfunc "F_ClearJobVar";
+				}
+				break;
+			
+			default:
+				mes "Olá, você poderá renascer em breve...";
+				if(getgmlevel()){
+					mes "Mas antes precisará chegar ao nível 99, pois você é VIP.";
+					mes "Se você não fosse VIP, precisaria de nível 100.";
+				}else{
+					mes "Mas antes precisará chegar ao nível 100.";
+					mes "Se você fosse VIP, precisaria de nível 99.";
+				}
+				mes "Portanto, vá ganhar mais alguns níveis rapidamente!";
+				next;
+		}
+		callfunc "platinum";
+		goto L_Sair;
+	
+	L_Reborn:
+		if (reborn==0) set reborn, 1;
+		if(BaseLevel<100-(getgmlevel()>0)) close;
+		mes "Você já está em condições de renascer!";
+		if(Class>=Job_Knight && Class<=Job_Dancer){
+			if(reborn>=10){
+				mes "Agora é quase seu último renascimento, você vai precisar virar transclasse!";
+				mes "Deseja fazer isso agora?";
+				next;
+				set @opcao, 2;
+			}else{
+				mes "Você pode renascer continuando na sua classe, ou pode virar transclasse...";
+				mes "O que deseja fazer?";
+				next;
+				set @opcao, select("Continuar assim!:Virar transclasse");
+			}
+			mes "[^666699 Profissões~ ^000000]";
+			if(@opcao==2){
+				mes "Tem certeza que deseja virar transclasse?";
+				next;
+				if(select("Não...acho que não...:Tenho certeza!")==1) goto L_Sair;
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Parabéns, agora se tornou transclasse!";
+				jobchange Class+4001;
+				ResetStatus;
+				set BaseLevel, 1;
+				set StatusPoint, reborn*(100+20*(getgmlevel()>0)) + (50+10*(getgmlevel()>0))*(reborn<12);
+				ResetSkill;
+				skill 1,9,0;
+				set SkillPoint,49;
+				close;
+			}
+		}else if((Class>=Job_Novice && Class<=Job_Thief) || Class==Job_Taekwon || (Class>=Job_Novice_High && Class<=Job_Thief_High) || (Class>=Job_Baby && Class<=Job_Baby_Thief)){
+			mes "Estou vendo que você ainda pode mudar de classe...";
+			mes "O que deseja fazer?";
+			next;
+			set @opcao, select("Mudar de classe:Continuar assim!");
+			mes "[^666699 Profissões~ ^000000]";
+			if(@opcao==1) goto L_Job;
+		}
+		
+		if(reborn>12){
+			mes "Mas já atingiu o máximo de renascimentos...!";
+			close;
+		}
+		mes "O que deseja fazer?";
+		next;
+		set @opcao, select("Nada, obrigado:Renascer!:Só minhas habilidades");
+		switch(@opcao){
+			case 2:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Ok, esta será a " +reborn+ "ª vez que você renasce.";
+				set @points, reborn*(100+20*(getgmlevel()>0 || reborn>=12));
+				mes "Você vai voltar ao nível 1 com a mesma classe, mas com " +@points+ " pontos de atributo.";
+				mes "Tem ceterteza?";
+				next;
+				if(select("Não, acho que não...:Sim, tenho!")==1) goto L_Sair;
+				
+				ResetStatus;
+				set BaseLevel, 1;
+				set StatusPoint, @points;
+				set reborn, reborn + 1;
+				query_sql "Update `char` Set resets="+(reborn-1)+" Where char_id="+getcharid(0);
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Parabéns, agora você renasceu!";
+				close;
+				
+			case 3:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Ok, aí vão suas habilidades!";
+				callfunc "platinum";
+				next;
+				break;
+			default:
+				break;
+		}
+		goto L_Sair;
+	
+	L_Quests:
+		if(BaseLevel < 100) close;
+		if(reborn <= 12 && BaseLevel > 100) set reborn,13;
+		if(Premio110==1){
+			mes "Deseja retirar seu prêmio, um item refinado até +10 com seu nome mas com slots removidos?";
+			mes "Ele deve estar equipado no seu personagem.";
+			if(select("Não, obrigado:Sim, eu gostaria")==2){
+				next;
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Legal! Qual dos seus itens eu devo ver?";
+				set @equip,select("Mudei de idéia...",getequipname(1),getequipname(2),getequipname(3),getequipname(4),getequipname(5),getequipname(6),getequipname(7),getequipname(8),getequipname(9),getequipname(10))-1;
+				if(@equip>0){
+					next;
+					mes "[^666699 Profissões~ ^000000]";
+					if(getequipcardcnt(@equip)>0){
+						mes "O item precisa estar sem cartas, pois os slots serão removidos...";
+					}else{
+						set @item,getequipid(@equip);
+						if(countitem(@item)!=1){
+							mes "Você tem "+countitem(@item)+" "+getequipname(@equip);
+							mes "Por favor, volte com um.";
+						}else{
+							logmes "[Prêmio 110] Item "+getequipname(@equip)+" refinado até +10!";
+							set Premio110, 0;
+							delitem @item, 1;
+							getitem2 @item,1,1,10,0,255,0,getcharid(0) & 0xFFFF,(getcharid(0)-(getcharid(0)&0xFFFF))>>0x10;
+							mes "Pronto, item entregue...";
+							mes "Meus parabéns!";
+						}
+					}
+				}
+			}
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+		}else{
+			mes "Você já atingiu o máximo de 12 renascimentos...";
+			mes "Mas eu tenho algumas missões para você!";
+		}
+		mes "O que você deseja melhorar?";
+		next;
+		if(BaseLevel>=101 && JobLevel>=70 && JobLevel<=75)
+			set @opcao, select("Nada, obrigado:Meu nível de base:Meu nível de classe:Minhas habilidades:Minha classe");
+		else
+			set @opcao, select("Nada, obrigado:Meu nível de base:Meu nível de classe:Minhas habilidades");
+		switch(@opcao){
+			case 2:
+				mes "[^666699 Profissões~ ^000000]";
+				if(BaseLevel>=110){
+					mes "Você já chegou ao 110! Eu não posso mais te ajudar...";
+				}else{
+					mes "Completando a missão, você poderá conseguir avançar para o nível "+(BaseLevel+1)+".";
+					mes "O que acha?";
+					next;
+					if(select("Não me interessa:Qual a missão?")==2){
+						next;
+						deletearray @itens[0],getarraysize(@itens);
+						deletearray @qtde[0],getarraysize(@qtde);
+						if($serv==6 || $serv==-1){
+							switch(BaseLevel+1){
+								case 101:
+									setarray @itens[0],	4245,			4151,				4221,						9930,					16759;
+									setarray @itens$[0],"Carta Am Mut",	"Carta Gajomart",	"Carta Skeleton General",	"Ombreira de Madeira",	"Cacau";
+									setarray @qtde[0],	1,				1,					1,							1,						500;
+									break;
+								case 102:
+									setarray @itens[0],	4189,				4204,				4274,					931,				7025;
+									setarray @itens$[0],"Carta Wraith Dead","Carta Mini Demon",	"Carta Zombie Master",	"Amuleto dos Orcs",	"Lamento de Lucifer";
+									setarray @qtde[0],	2,					2,					2,						1000,				1;
+									break;
+								case 103:
+									setarray @itens[0],	4298,					4188,				4164,					4289,				934,		7020;
+									setarray @itens$[0],"Carta Creamy Fear",	"Carta Leib Olmai",	"Carta Gullinbursti",	"Carta Caterpillar","Espolio", 	"Pesadelo Maternal";
+									setarray @qtde[0],	3,						3,					3,						5,					1500,		1;
+									break;
+								case 104:
+									setarray @itens[0],	4249,					4271,					4270,					4301,					1057,			2234,		2235;
+									setarray @itens$[0],"Carta Ancient Worm",	"Carta Giant Hornet",	"Carta Giant Spider",	"Carta Killer Mantis",	"Po de Traca",	"Coroa",	"Diadema";
+									setarray @qtde[0],	4,						4,						4,						4,						2000,			1,			1;
+									break;
+								case 105:
+									setarray @itens[0],	1014,					1552,		1418,		2696;
+									setarray @itens$[0],"Mandibula de Formiga",	"Tabula",	"Gungnir",	"Vesper Core 01";
+									setarray @qtde[0],	20,						2,			1,			1;
+									break;
+								case 106:
+									setarray @itens[0],	2268,		16711,		5053,				1468,		5025;
+									setarray @itens$[0],"Cachimbo",	"Helgardh",	"Coroa do Faraó",	"Zephyrus",	"Elmo Angelical";
+									setarray @qtde[0],	10,			2,			2,					1,			1;
+									break;
+								case 107:
+									setarray @itens[0],	5019,		5094,				7088,				7082,				5152;
+									setarray @itens$[0],"Corsario",	"Elmo do Orc Heroi","Floco de Neve",	"Raiz da Montanha",	"Coroa Chinesa";
+									setarray @qtde[0],	2,			2,					1,					1,					1;
+									break;
+								case 108:
+									setarray @itens[0],	5016,		5059,				7077,					7080;
+									setarray @itens$[0],"Quepe",	"Chapeu de Ursinho","Ornamento de Prata",	"Passos de Gato";
+									setarray @qtde[0],	2,			2,					1,						1;
+									break;
+								case 109:
+									setarray @itens[0],	7078,					7089,						2630,			969;
+									setarray @itens$[0],"Furia das Valquirias",	"Pressagio da Tempestade",	"Brisingamen",	"Ouro";
+									setarray @qtde[0],	1,						1,							1,				200;
+									break;
+								case 110:
+									setarray @itens[0],	2629,			1530,		2511,				16509;
+									setarray @itens$[0],"Megingjard",	"Mjollnir",	"Skeleton Manteau",	"Asa Ying Yang";
+									setarray @qtde[0],	1,				1,			1,					1;
+									break;
+								default:
+									close;
+							}
+						}else if($serv==5){
+							switch(BaseLevel+1){
+								case 101:
+									setarray @itens[0],	4271,					4249,					4270,					4301;
+									setarray @itens$[0],"Carta Giant Hornet",	"Carta Ancient Worm",	"Carta Giant Spider",	"Carta Killer Mantis";
+									setarray @qtde[0],	90,						45,						40,						30;
+									break;
+								case 102:
+									setarray @itens[0],	1235,		7048,				1366,				1363;
+									setarray @itens$[0],"Azoth",	"Garra de Grifo",	"Cruz Impiedosa",	"Machado Sangrento";
+									setarray @qtde[0],	1,			20,					2,					2;
+									break;
+								case 103:
+									setarray @itens[0],	5002,				2413,		2334,					5254;
+									setarray @itens$[0],"Coroa Adornada",	"Coturnos",	"Vestimenta Arcana",	"Elmo de Deviling";
+									setarray @qtde[0],	1,					1,			3,						2;
+									break;
+								case 104:
+									setarray @itens[0],	16606,					9927,				7005;
+									setarray @itens$[0],"Elmo de Ossos Humanos","Crânio de Ouro",	"Crânio";
+									setarray @qtde[0],	1,						10,					1000;
+									break;
+								case 105:
+									setarray @itens[0],	5072,					5066,					7019,					616,						2246,			7025;
+									setarray @itens$[0],"Chifre de Incubus",	"Chifre de Succubus",	"Sussurros de Loki",	"Velho Album de Cartas",	"Peça Dourada",	"Lamento de Lúcifer";
+									setarray @qtde[0],	12,						12,						50,						100,						3,				15;
+									break;
+								case 106:
+									setarray @itens[0],	5143,					7308,				12103,					9928,			12085;
+									setarray @itens$[0],"Máscara de Kabuki",	"Tônico da Bruxa",	"Galhos Sangrentos",	"Espinafre",	"Cozido Imortal";
+									setarray @qtde[0],	1,						2,					50,						30,				30;
+									break;
+								case 107:
+									setarray @itens[0],	5179,				5149,				5257,				10006,					10018,				1963,				1913;
+									setarray @itens$[0],"Tiara Dourada",	"Tiara de Prata",	"Auréolas de Anjo",	"Ornamento da Rainha",	"Coroa de Macaco",	"Rosa Fustigante",	"Guitarra Eletrica";
+									setarray @qtde[0],	1,					1,					1,					5,						5,					1,					1;
+									break;
+								case 108:
+									setarray @itens[0],	9929,			969,	7444,				5152;
+									setarray @itens$[0],"Vale-Bilhão",	"Ouro",	"Arca de Tesouro",	"Coroa Chinesa";
+									setarray @qtde[0],	1,				30,		8,					1;
+									break;
+								case 109:
+									setarray @itens[0],	2111,				2629,			7025,					9931,				1413,		1470,		1468;
+									setarray @itens$[0],"Spiritus Sancti",	"Megingjard",	"Lamento de Lúcifer",	"Manto Abençoado",	"Gungnir",	"Brionac",	"Zéfiro";
+									setarray @qtde[0],	3,					1,				5,						2,					2,			2,			2;
+									break;
+								case 110:
+									setarray @itens[0],	9929,			16603,			7562,				2630,			607,					1230;
+									setarray @itens$[0],"Vale-Bilhão",	"Elmo Dourado",	"Escama de Gelo",	"Brisingamen",	"Fruto de Yggdrasil",	"Rondel";
+									setarray @qtde[0],	2,				1,				30,					1,				60,						3;
+									break;
+								default:
+									close;
+							}
+						}
+						//Para caso de erro no script
+						if(getarraysize(@itens)<3){
+							debugmes "getarraysize(@itens)="+getarraysize(@itens)+"! Script cancelado.";
+							close;
+						}
+						//Mostrando os itens necessários
+						mes "[^666699 Profissões~ ^000000]";
+						mes "Para que você se torne nível "+(BaseLevel+1)+" vou precisar de:";
+						for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+							mes "- "+@qtde[@i]+"x "+@itens$[@i];
+						mes "Você vai me trazer os itens?";
+						if(select("Não...:Depois eu trago:Já trouxe!")==3){
+							//Verificando os itens
+							next;
+							mes "[^666699 Profissões~ ^000000]";
+							set @ok,0;
+							for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+								if(countitem(@itens[@i]) < @qtde[@i])
+									mes "Você não tem "+@qtde[@i]+"x "+@itens$[@i]+"...";
+								else if(countitem(@itens[@i]) > @qtde[@i])
+									mes "Você tem "+countitem(@itens[@i])+"x "+@itens$[@i]+", e não "+@qtde[@i]+"!";
+								else
+									set @ok, @ok + 1;
+							if(@ok==getarraysize(@itens)){
+								mes "Tudo certo.. Parabéns!";
+								close2;
+								for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+									if(countitem(@itens[@i]) != @qtde[@i])
+										end;
+									else
+										delitem @itens[@i],@qtde[@i];
+								set BaseLevel,BaseLevel+1;
+								logmes "[Level] "+BaseLevel+": "+strcharinfo(0);
+								announce "[Profissões] "+(Sex==0?"A jogadora ":"O jogador ")+strcharinfo(0)+" acaba de chegar ao nível "+BaseLevel+", parabéns!!!",bc_all;
+								if(BaseLevel==110){
+									set Premio110,1;
+									sleep2 2000;
+									announce "[Profissões] Como prêmio, el"+((Sex==0)?"a":"e")+" ganhará um item com seu nome, refinado até +10!",bc_all;
+									sleep2 2000;
+									dispbottom "Para receber o prêmio do nível 110, equipe o item desejado e fale comigo!";
+								}
+							}else{
+								mes " ";
+								mes "Achou que poderia me enganar ¬¬'";
+							}
+						}
+					}else{
+						goto L_Sair;
+					}
+				}
+				close;
+			case 3:
+				mes "[^666699 Profissões~ ^000000]";
+				if(JobLevel<70){
+					mes "Somente classes que vão até o nível de classe 70 podem fazer as missões...";
+					mes "Sinto muito!";
+					next;
+					goto L_Sair;
+				}if(JobLevel>=75){
+					mes "Você já chegou ao nível de classe 75!";
+					mes "Eu não posso mais te ajudar...";
+				}else{
+					mes "Completando a missão, você poderá conseguir avançar para o nível "+(JobLevel+1)+".";
+					mes "O que acha?";
+					next;
+					if(select("Não me interessa:Qual a missão?")==2){
+						next;
+						deletearray @itens[0],getarraysize(@itens);
+						deletearray @qtde[0],getarraysize(@qtde);
+						if($serv==6 || $serv==-1){
+							switch(JobLevel+1){
+								case 71:
+									setarray @itens[0],	2624,	2622,		2621,	5007;
+									setarray @itens$[0],"Luva",	"Brinco",	"Anel",	"Coroa do Lider";
+									setarray @qtde[0],	2,		2,			2,		1;
+									break;
+								case 72:
+									setarray @itens[0],	7340,					7566,							5138,						5161;
+									setarray @itens$[0],"Desejo das Trevas",	"Desejo das Trevas Escarlate",	"Chapeu do Olho Magico",	"Chifres Pontudos";
+									setarray @qtde[0],	1,						1,								1,							1;
+									break;
+								case 73:
+									setarray @itens[0],	7308,				2615,				7441,				7440;
+									setarray @itens$[0],"Tonico da Bruxa",	"Anel de Defesa",	"Pena Vermelha",	"Pena Azul";
+									setarray @qtde[0],	2,					4,					250,				250;
+									break;
+								case 74:
+									setarray @itens[0],	2660,				2661,				2662,				2246;
+									setarray @itens$[0],"Vesper Core 02",	"Vesper Core 03",	"Vesper Core 04",	"Peca Dourada";
+									setarray @qtde[0],	3,					3,					3,					5;
+									break;
+								case 75:
+									setarray @itens[0],	1466,		7450,								7086;
+									setarray @itens$[0],"Foice",	"Pedaco de Armadura de Esqueleto",	"Simbolo do Deus Sol";
+									setarray @qtde[0],	1,			5,									3;
+									break;
+									default:
+										close;
+							}
+						}else if($serv==5){
+							switch(JobLevel+1){
+								case 71:
+									setarray @itens[0],	968,					7300,			7443,								1009;
+									setarray @itens$[0],"Insignia do Herói",	"Jewel Ore",	"Cabeça de Dragão de Três Cabeças",	"Mão Divina";
+									setarray @qtde[0],	60,						60,				60,									400;
+									break;
+								case 72:
+									setarray @itens[0],	7109,						1015,		7023,							679;
+									setarray @itens$[0],"Lâmina de Lança Colossal",	"Língua",	"Lamina Perdida das Trevas",	"Recall Pills";
+									setarray @qtde[0],	10,							500,		50,								30;
+									break;
+								case 73:
+									setarray @itens[0],	7169,		7113,				7211,				1029;
+									setarray @itens$[0],"Ba gua",	"Cetro do Faraó",	"Lasca de Pedra",	"Pele de Tigre";
+									setarray @qtde[0],	80,			60,					80,					100;
+									break;
+								case 74:
+									setarray @itens[0],	750,					751,					752,					753,				754;
+									setarray @itens$[0],"Bonecos de Bafomé",	"Bonecos de Osiris",	"Bonecos de Rocker",	"Bonecos de Yoyo",	"Bonecos de Fumacento";
+									setarray @qtde[0],	40,						50,						150,					350,				150;
+									break;
+								case 75:
+									setarray @itens[0],	12090,								1552,			2268,			7036,			10016,			2677;
+									setarray @itens$[0],"Escorpiões do Deserto ao Vapor",	"Tabula[2]",	"Cachimbo[2]",	"Presa de Hati","Sino de Ouro",	"Anel Espiritual";
+									setarray @qtde[0],	100,								7,				10,				2,				10,				1;
+									break;
+								default:
+									close;
+							}
+						}
+						//Para caso de erro no script
+						if(getarraysize(@itens)<3){
+							debugmes "getarraysize(@itens)="+getarraysize(@itens)+"! Script cancelado.";
+							close;
+						}
+						//Mostrando os itens necessários
+						mes "[^666699 Profissões~ ^000000]";
+						mes "Para que você se torne nível "+(JobLevel+1)+" vou precisar de:";
+						for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+							mes "- "+@qtde[@i]+"x "+@itens$[@i];
+						mes "Você vai me trazer os itens?";
+						if(select("Não...:Depois eu trago:Já trouxe!")==3){
+							//Verificando os itens
+							next;
+							mes "[^666699 Profissões~ ^000000]";
+							set @ok,0;
+							for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+								if(countitem(@itens[@i]) < @qtde[@i])
+									mes "Você não tem "+@qtde[@i]+"x "+@itens$[@i]+"...";
+								else if(countitem(@itens[@i]) > @qtde[@i])
+									mes "Você tem "+countitem(@itens[@i])+"x "+@itens$[@i]+", e não "+@qtde[@i]+"!";
+								else
+									set @ok, @ok + 1;
+							if(@ok==getarraysize(@itens)){
+								mes "Tudo certo.. Parabéns!";
+								close2;
+								for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+									if(countitem(@itens[@i]) != @qtde[@i])
+										end;
+									else
+										delitem @itens[@i],@qtde[@i];
+								set JobLevel,JobLevel+1;
+								logmes "[Level] "+JobLevel+": "+strcharinfo(0);
+								announce "[Profissões] "+(Sex==0?"A jogadora ":"O jogador ")+strcharinfo(0)+" acaba de chegar ao nível de classe "+JobLevel+", parabéns!!!",bc_all;
+							}else{
+								mes " ";
+								mes "Achou que poderia me enganar ¬¬'";
+							}
+						}
+					}
+				}
+				break;
+				
+			case 4:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tudo bem, irei lhe dar as habilidades especiais.";
+				next;
+				callfunc "platinum";
+				break;
+				
+			case 5:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Você não gosta da sua classe??";
+				next;
+				if(select("Claro que gosto!:Não, faz tempo..")==2){
+					mes "[^666699 Profissões~ ^000000]";
+					mes "Olha, eu tenho um tipo de magia negra, mas que não sei se funciona..";
+					mes "É bem arriscada, mas se eu conseguir, isso possibilitaria você mudar de classe.";
+					next;
+					mes "[^666699 Profissões~ ^000000]";
+					if(checkcart()){
+						mes "Mas primeiro, você precisará devolver seu carrinho!";
+						next;
+					}else{
+						if(ChangedClass==0){
+							mes "Claro que nada é de graça, e você terá que pagar por meus serviços.";
+							mes "Se você não gostar da sua nova classe, será mais caro na próxima.";
+						}else{
+							mes "Vejo que você já mudou de personagem "+(ChangedClass==1?"uma vez":ChangedClass+" vezes")+"!";
+							mes "O valor desta vez será portanto maior!";
+						}
+						next;
+						set @valor, (BaseLevel-100)*100*pow(2,ChangedClass); // Em milhões
+						set @valor$, (@valor/1000) + "." + (@valor%1000<100?(@valor%1000<10?"00":"0"):"") + (@valor%1000);
+						mes "[^666699 Profissões~ ^000000]";
+						mes "O valor para mudança de classe é: ^ff0000"+@valor$+".000.000z^000000";
+						if(@valor > Zeny/1000000 + countitem(9929) * 1000){
+							mes "Um valor destes não é possível de ser alcançado por um ^009900simples aventureiro^000000 como você !!";
+							next;
+						}else{
+							mes "Deseja gastar seu precioso zeny com sua preguiça?";
+							next;
+							if(select("Não, é besteira:Sim, não é quase nada")==2){
+								mes "[^666699 Profissões~ ^000000]";
+								mes "Tudo bem, você é o chefe.. LOL!!";
+								next;
+								switch(select("Cancelar:Algoz:Arquimago:Atirador de Elite:Criador:Desordeiro:Espiritualista:Gladiador Estelar:Gunslinger:Lorde:Menestrel/Cigana:Mestre:Mestre Ferreiro:Ninja:Paladino:Professor:Sumo-Sacerdote")){
+									case  2: set @class,4013; break;
+									case  3: set @class,4010; break;
+									case  4: set @class,4012; break;
+									case  5: set @class,4019; break;
+									case  6: set @class,4018; break;
+									case  7: set @class,4049; break;
+									case  8: set @class,4047; break;
+									case  9: set @class,  24; break;
+									case 10: set @class,4008; break;
+									case 11: set @class,4021-Sex; break;
+									case 12: set @class,4016; break;
+									case 13: set @class,4011; break;
+									case 14: set @class,  25; break;
+									case 15: set @class,4015; break;
+									case 16: set @class,4017; break;
+									case 17: set @class,4009; break;
+									default: set @class,   0; break;
+								}
+								if(@class>0 && @class!=Class){
+									mes "[^666699 Profissões~ ^000000]";
+									mes "Antiga classe: ^ff0000"+jobname(Class)+"^000000";
+									mes "Nova classe: ^0000ff"+jobname(@class)+"^000000";
+									mes "Valor: ^990099"+@valor$+".000.000z^000000";
+									if(ChangedClass)
+										mes "Mudança: ^009900"+(ChangedClass+1)+"ª vez^000000";
+									mes " - Níveis de base/classe mantidos";
+									mes " ";
+									mes " Confere...?";
+									next;
+									mes "[^666699 Profissões~ ^000000]";
+									mes "Valor: ^990099"+@valor$+".000.000z^000000";
+									mes "Nova classe: ^0000ff"+jobname(@class)+"^000000";
+									mes " ";
+									mes " Confere...?";
+									next;
+									if(select("Não, senhor:Sim, senhor")==2){
+										if(@valor > Zeny/1000000 + countitem(9929) * 1000) close; //verificando denovo por segurança
+										while(@valor > 1000 && countitem(9929)>0){
+											delitem 9929,1;
+											logmes "[Bilhao] Vale bilhão apagado";
+											set @valor,@valor-1000;
+										}
+										if(Zeny>=@valor*1000000){
+											query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+(@valor*1000000)+",'jobmaster')";
+											set Zeny, Zeny - @valor*1000000;
+										}else{
+											delitem 9929,1;
+											logmes "[Bilhao] Vale bilhão apagado";
+											query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',1000000000,'jobmaster')";
+											query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+(@valor*1000000)+",'jobmaster')";
+											set @valor,@valor*1000000-Zeny;
+											set Zeny,1000000000 - @valor;
+										}
+										
+										logmes "[Profissoes] Mudou de "+jobname(Class)+" para "+jobname(@class)+" - Mudança "+ChangedClass+" no nível "+BaseLevel;
+										if(@class==Job_Star_Gladiator ||  @class==Job_Soul_Linker){
+											setlook 7,0;
+										}
+										set @jobLevel,JobLevel;
+										set JobLevel,1;
+										set ChangedClass, ChangedClass+1;
+										jobchange @class;
+										set JobLevel, @jobLevel;
+										ResetSkill;
+										skill 1,9,0;
+										if(Class==Job_Gunslinger || Class==Job_Ninja)
+											set SkillPoint,@jobLevel-1;
+										else
+											set SkillPoint,@jobLevel+48;
+										if(Class==Job_Whitesmith){
+											skill 153,1,0;
+											skill 154,1,0;
+										}
+										
+										mes "[^666699 Profissões~ ^000000]";
+										mes "Obrigado pela utilização de meus serviços, meu caro "+jobname(@class)+"!";
+										next;
+									}
+								}
+							}
+						}
+					}
+				}
+				break;
+		}
+		goto L_Sair;
+		
+	L_SkillPoints:
+		if(Class==Job_Taekwon){
+			mes "Você tem alguns pontos de habilidade sobrando, favor utilizá-los antes de mudar de profissão";
+			menu "Ok...",L_Sair,"Quero jogar fora meus pontos",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você tem certeza que deseja apagar todos os seus pontos de habilidade?";
+			mes "Sabe que ao fazer isso poderá ficar sem habilidades até mudar de profissão?";
+			menu "Não",L_Sair,"Sim",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você tem certeza que deseja apagar todos os seus pontos de habilidade?";
+			mes "Sabe que ao fazer isso poderá ficar sem habilidades até mudar de profissão?";
+			menu "Tenho certeza",-,"Desisto!",L_Sair;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você tem certeza que deseja apagar todos os seus pontos de habilidade?";
+			mes "Sabe que ao fazer isso poderá ficar sem habilidades até mudar de profissão?";
+			menu "Ir embora!",L_Sair,"Confirmar",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você leu tudo, e tem mesmo certeza";
+			menu "Não, quero ir embora...",L_Sair,"Aceitar!!!",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Ok, aí vai.";
+			set SkillPoint,0;
+			next;
+		}else{
+			if(SkillPoint==1)
+				mes "Utilize seu ponto de habilidade antes de mudar de classe...";
+			else
+				mes "Utilize seus "+SkillPoint+" pontos de habilidade antes de mudar de classe...";
+			mes "Obrigado!";
+			next;
+			menu "Pronto, já usei!",-,"Não quero falar com você",L_Sair;
+		}
+		goto L_Start;
+	
+	L_Sair:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Quando precisar de meus serviços estarei à disposição!";
+		close;
+}
+
+function	script	platinum	{
+	switch(BaseClass){
+		case Job_SuperNovice:
+			skill 142,1,0;
+			break;
+			
+		case Job_Swordman:
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			if(Class==Job_Knight || Class==Job_Knight2
+					|| Class==Job_Baby_Knight || Class==Job_Baby_Knight2
+					|| Class==Job_Lord_Knight || Class==Job_Lord_Knight2)
+				skill 1001,1,0;
+			else if(Class==Job_Crusader || Class==Job_Crusader2
+					|| Class==Job_Baby_Crusader || Class==Job_Baby_Crusader2
+					|| Class==Job_Paladin || Class==Job_Paladin2)
+				skill 1002,1,0;
+			break;
+			
+		case Job_Mage:
+			skill 142,1,0;
+			skill 157,1,0;
+			if(Class==Job_Wizard || Class==Job_High_Wizard || Class==Job_Baby_Wizard)
+				skill 1006,1,0;
+			else if(Class==Job_Sage || Class==Job_Baby_Sage || Class==Job_Professor){
+				skill 1007,1,0;
+				skill 1008,1,0;
+				skill 1017,1,0;
+				skill 1018,1,0;
+				skill 1019,1,0;
+			}
+			break;
+			
+		case Job_Archer:
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			if(Class==Job_Hunter || Class==Job_Baby_Sage || Class==Job_Sniper)
+				skill 1009,1,0;
+			else
+			if(Class==Job_Bard || Class==Job_Baby_Bard || Class==Job_Clown)
+				skill 1010,1,0;
+			else
+			if(Class==Job_Dancer || Class==Job_Baby_Dancer || Class==Job_Gypsy)
+				skill 1011,1,0;
+			break;
+			
+		case Job_Acolyte:
+			skill 142,1,0;
+			skill 156,1,0;
+			if(Class==Job_Priest || Class==Job_Baby_Priest || Class==Job_High_Priest){
+				skill 363,10,0;
+				skill 1014,1,0;
+			}
+			else
+			if(Class==Job_Monk || Class==Job_Baby_Monk || Class==Job_Champion){
+				skill 1015,1,0;
+				skill 1016,10,0;
+			}
+			break;
+			
+		case Job_Merchant:
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			if(Class==Job_Blacksmith || Class==Job_Baby_Blacksmith || Class==Job_Whitesmith){
+				skill 1012,1,0;
+				skill 1013,1,0;
+			}
+			else
+			if(Class==Job_Alchem || Class==Job_Baby_Alchem || Class==Job_Creator){
+				if(alch_bock != 1){
+					getitem 7434,1; 
+					set alch_bock,1;
+				}
+				//Bioethics: skill 238,1,0;
+			}
+			break;
+			
+		case Job_Thief:
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			if(Class==Job_Assassin || Class==Job_Baby_Assassin || Class==Job_Assassin_Cross){
+				skill 1003,1,0;
+				skill 1004,1,0;
+			}
+			else if(Class==Job_Rogue || Class==Job_Baby_Rogue || Class==Job_Stalker)
+				skill 1005,1,0;
+			break;
+			
+		case Job_Taekwon:
+			if(Class==Job_Star_Gladiator || Class==Job_Star_Gladiator2)
+				skill 444,1,0;
+			break;
+			
+		default:
+			break;
+	}
+	return;
+}
+
+schg_cas03,57,53,4	script	Profissões	780,{
+	callfunc "jobmaster";
+	end;
+}
+
+schg_cas03,0,0,0	script	#LvUpEvent	-1,{
+	OnPCJobLvUpEvent:
+	if(NextJobExp==0) callfunc "jobmaster";
+	end;
+	
+	OnPCBaseLvUpEvent:
+	if(NextJobExp==0 && BaseLevel>=100-(getgmlevel()>0))
+		callfunc "jobmaster";
+	end;
+}

@@ -1,0 +1,48 @@
+pvp_n_1-5	mapflag	nowarp
+pvp_n_1-5	mapflag	nowarpto
+pvp_n_1-5	mapflag	noteleport
+pvp_n_1-5	mapflag	nosave	SavePoint
+pvp_n_1-5	mapflag	nomemo
+pvp_n_1-5	mapflag	nobranch
+
+pvp_n_1-3	mapflag	nowarp
+pvp_n_1-3	mapflag	nowarpto
+pvp_n_1-3	mapflag	noteleport
+pvp_n_1-3	mapflag	nosave	SavePoint
+pvp_n_1-3	mapflag	nomemo
+pvp_n_1-3	mapflag	nobranch
+pvp_n_1-3	mapflag restricted	7
+
+gonryun,179,122,5	script	PvP Master	 49,{
+	mes "^FF0000[ PvP Master ]^000066";
+	mes "Olá "+strcharinfo(0)+", o que deseja?";
+	next;
+	if(select("Entrar em uma arena:Nada")==2) close;
+	
+	mes "^FF0000[ PvP Master ]^000066";
+	mes "Escolha a arena que deseja.";
+	switch(select("Não quero ir para o PvP!:Arena 1 ["+getmapusers("pvp_n_1-5")+"]:Arena 2 ["+getmapusers("pvp_n_1-3")+"]")){
+		case 2:
+			set @map$,"pvp_n_1-5";
+			break;
+		case 3:
+			set @map$,"pvp_n_1-3";
+			break;
+		default:
+			close;
+	}
+	
+	mes "^FF0000[ PvP Master ]^000066";
+	if (getmapusers(@map$) < 2){
+		mes "^FF0000[ PvP Master ]^000066";
+		mes "Lets Go!!!";
+		close2;
+		warp @map$,133,99;
+		set @map$,"";
+		end;
+	}else{
+		mes "^FF0000[ PvP Master ]^000066";
+		mes "O mapa já tem pessoas lutando, quando um deles sair ou morrer você pode entrar!!!";
+		close;
+	}
+}

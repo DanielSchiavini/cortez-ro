@@ -1,0 +1,62 @@
+odin_tem03,278,234,5	script	Força Misteriosa	723,{
+	mes "^006611[ Força Misteriosa ]^333333";
+	if(countitem(7331)<1){
+		mes "Quase pisou em mim,vá embora.";
+		close;
+	}
+	mes "Ei cuidado comigo... Quase pisou em mim";
+	next;
+	menu "Conversar",-,"Cancelar",L_Fechar;
+	
+	mes "^006611[ Força Misteriosa ]^333333";
+	mes "Se você está procurando por Sleipnir eu posso fazer para você!";
+	mes "Mas... Eu vou cobrar caro por isso.";
+	next;
+	mes "^006611[ Força Misteriosa ]^333333";
+	mes "Me traga estes itens:";
+	mes "- 200x  Roda Desconhecida";
+	mes "- 200x  Hálito de Peixe";
+	mes "- 5x  Pena de Asas Angelicais";
+	mes "- 3x  Simbolo do Deus-Sol";
+	mes "- 3x  Salto alto";
+	mes "- 20x Ouros";
+	next;
+	mes "^006611[ Força Misteriosa ]^333333";
+	mes "Não vou esperar muito, traga logo...";
+	next;
+	menu "Estou com eles já!",L_DarItens,"Vish, to sem...",-;
+	
+	mes "^006611[ Força Misteriosa ]^333333";
+	mes "Não vou esperar até durarem minhas forças, então corra.";
+	close;
+	
+	L_DarItens:
+	mes "^006611[ Força Misteriosa ]^333333";
+	mes "Deixa eu ver...";
+	if (countitem(7076)<200 || countitem(7079)<5 ||
+		countitem(7083)<200 || countitem(7086)<3 ||
+		countitem(2409)<3 || countitem(969) <20){
+		mes "Pegue os itens para mim!";
+	}else{
+		mes "Muito Bem.";
+		next;
+		mes "^006611[ Força Misteriosa ]^333333";
+		mes "Use com atenção!";
+		next;
+		mes "^006611[ Força Misteriosa ]^333333";
+		mes "Pegue...";
+		next;
+		delitem 7076,200;
+		delitem 7079,5;
+		delitem 7083,200;
+		delitem 7086,3;
+		delitem 2409,3;
+		delitem 969,20;
+		
+		getitem 2410,1;
+	}
+	close;
+	
+	L_Fechar:
+		close;
+}

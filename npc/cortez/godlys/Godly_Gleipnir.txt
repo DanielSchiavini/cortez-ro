@@ -1,0 +1,53 @@
+yuno_fild08,171,233,5	script	Dvalin	704,{
+	mes "^006611[ Dvalin ]^333333";
+	if (countitem(7331)<1){
+		mes "Nem passe por aqui... Tenha um bom dia.";
+		close;
+	}
+	mes "Ei, você... Pare ai";
+	next;
+	menu "Conversar",-,"Cancelar",L_Fechar;
+	
+	mes "^006611[ Dvalin ]^333333";
+	mes "Está afim de fazer umas coisa bem especial? Se quiser, eu consigo...";
+	mes "Ela é muito boa e vale a pena ir atrás!";
+	next;
+	mes "^006611[ Dvalin ]^333333";
+	mes "Me traga estes itens:";
+	mes "- 150x Nervos de Urso";
+	mes "- 150x Barbas de Mulher";
+	mes "- 100x Saliva de Ave";
+	mes "- 4x Passos de Gato";
+	mes "- 4x Raiz de Montanha";
+	next;
+	mes "^006611[ Dvalin ]^333333";
+	mes "Seja esperto e traga logo...";
+	next;
+	menu "Aqui estão!",L_DarItens,"Vou tentar pegá-los.",-;
+	
+	mes "^006611[ Dvalin ]^333333";
+	mes "Traga para mim, eu preciso muito deles!!!";
+	close;
+
+	L_DarItens:
+	mes "^006611[ Dvalin ]^333333";
+	mes "Hummm...";
+	if(	countitem(7080)<4 || countitem(7081)<150 || countitem(7085)<150 ||
+		countitem(7082)<4 || countitem(7084)<100){
+		mes "Pegue os itens para mim!";
+	}else{
+		mes "Parabéns, você conseguiu!";
+		mes "Aqui está...";
+		next;
+		delitem 7080,4;
+		delitem 7081,150;
+		delitem 7082,4;
+		delitem 7084,100;
+		delitem 7085,150;
+		
+		getitem 7058,1;
+	}
+	
+	L_Fechar:
+		close;
+}

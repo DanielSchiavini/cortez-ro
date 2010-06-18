@@ -1,0 +1,130 @@
+//===== eAthena Script =======================================
+//= Dracula X Script
+//===== By: ==================================================
+//= valaris (1.0)
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena RC4+
+//===== Description: =========================================
+//= Custom Dracula X Event
+//============================================================
+
+
+mag_dun02,72,182,1	script	Dracula's Coffin::Dracula_Init	-1,{
+
+OnInit:
+	set $dracula_event,0;
+	break;
+
+OnKilled:
+	MapAnnounce "mag_dun02","A maldição do Drácula foi libertada!",17;
+	set $dracula_event,0;
+	initnpctimer;
+	break;
+
+OnTimer7200000:
+	if($dracula_event==0) 
+	stopnpctimer;
+	enablenpc "Dracula_Event";
+	break;
+}
+
+mag_dun02,72,182,1	script	Dracula's Coffin::Dracula_Event	801,{
+
+	if($dracula_event==1)
+	close;
+
+	set $dracula_event,1;
+	MapAnnounce "mag_dun02","Conde Drácula : Quem me acordou de meu sono???",17;
+	npcskilleffect 21,10,66,175;
+	initnpctimer;
+	break;
+
+OnTimer500:
+	npcskilleffect 21,10,74,187;
+	break;
+
+OnTimer1000:
+	npcskilleffect 21,10,80,180;
+	break;
+	
+OnTimer1500:
+	npcskilleffect 21,10,79,183;
+	break;
+
+OnTimer2000:
+	npcskilleffect 21,10,66,175;
+	break;
+
+OnTimer2500:
+	npcskilleffect 21,10,63,186;
+	break;
+
+OnTimer3000:
+	npcskilleffect 21,10,75,186;
+	break;
+
+OnTimer3500:
+	npcskilleffect 21,10,75,173;
+	break;
+
+OnTimer4000:
+	npcskilleffect 21,10,80,170;
+	break;
+
+OnTimer4500:
+	npcskilleffect 21,10,60,179;
+	break;
+
+OnTimer5000:
+	npcskilleffect 21,10,74,187;
+	break;
+
+OnTimer6000:
+	npcskilleffect 21,10,69,182;
+	break;
+
+OnTimer6500:
+	npcskilleffect 21,10,80,180;
+	break;
+
+OnTimer7000:
+	npcskilleffect 21,10,60,179;
+	break;
+
+OnTimer7500:
+	npcskilleffect 21,10,66,175;
+	break;
+
+OnTimer8000:
+	npcskilleffect 21,10,80,187;
+	break;
+
+OnTimer8500:
+	npcskilleffect 21,10,75,186;
+	break;
+
+OnTimer9000:
+	npcskilleffect 21,10,75,173;
+	break;
+
+OnTimer9500:
+	npcskilleffect 21,10,80,170;
+	break;
+
+OnTimer10000:
+	npcskilleffect 21,10,63,186;
+	break;
+
+OnTimer10500:
+	npcskilleffect 21,10,74,187;
+	break;
+
+OnTimer11000:
+	npcskilleffect 21,10,72,182;
+	monster "mag_dun02",72,182,"Conde Drácula",1389,1,"Dracula_Init::OnKilled";
+	stopnpctimer;
+	disablenpc "Dracula_Event";
+	break;
+}

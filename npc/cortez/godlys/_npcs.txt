@@ -1,0 +1,6 @@
+Megingjard Monk_test 319 140 NPC nº808 - Thor
+Gleipnir Yuno_fild02 88 204 NPC nº704 - Dvalin
+Brisingamen que_sign01 45 44 NPC nº730 - Loki
+Mjolnir mjolnir_03 195 212  NPC nº813 - Baldino
+Skeleton manteau que_sign01 196 195 NPC nº856 - Bellatriz Lestrange
+Sleipnir odin_tem03 278 234 NPC nº723 - Força Misteriosa

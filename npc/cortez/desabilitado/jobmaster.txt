@@ -1,0 +1,848 @@
+
+function	script	jobmaster	{
+	L_Start:
+	set @MinimumJB, 40; //Minimum job level for changing between 2nd and advance Class (Default : 40)
+	set @SupNovM, 45; //Base Level to change into Super Novice (Default : 45)
+	// Checking
+	if(reborn>12 && BaseLevel>=100) goto L_quests12;
+	if(BaseLevel>100) { set reborn, 13; goto L_quests12; }
+	if(SkillPoint) goto L_skillUsed;
+	if(Class==Job_Novice || Class==Job_Baby) goto L_novice;
+	if(JobLevel<@MinimumJB) goto L_notEn;
+	if(Class==Job_Swordman || Class==Job_Baby_Swordman) goto L_iSword;
+	if(Class==Job_Mage || Class==Job_Baby_Mage) goto L_iMage;
+	if(Class==Job_Archer || Class==Job_Baby_Archer) goto L_iArcher;
+	if(Class==Job_Acolyte || Class==Job_Baby_Acolyte) goto L_iAcolyte;
+	if(Class==Job_Merchant || Class==Job_Baby_Merchant) goto L_iMerchant;
+	if(Class==Job_Thief || Class==Job_Baby_Thief) goto L_iThief;
+	if(Class==Job_Taekwon) goto L_iTaekwon;
+	if(checkriding()) goto L_remove;
+	if(Class>=Job_Knight && Class<=Job_Dancer) goto L_rebirth;
+	if(
+		(Upper==1 && Class>=Job_Lord_Knight && Class<=Job_Gypsy)
+		 || Class==Job_SuperNovice || Class==Job_Super_Baby
+		 || Class==Job_Star_Gladiator || Class==Job_Star_Gladiator2 || Class==Job_Soul_Linker
+		 || Class==Job_Ninja || Class==Job_Gunslinger
+	)
+			goto L_rebirthTrans;
+	if(Class>=Job_Baby_Knight && Class<=Job_Baby_Dancer) goto L_rebirthTrans;
+	mes "Sua classe ("+Class+") não é suportada. Favor mandar uma screenshot com isso para o [GM] Baltazar. Obrigado.";
+	close;
+
+	// Novice
+	L_novice:
+		skill 142,1,0;
+		skill 143,1,0;
+		if(JobLevel<10) goto L_notEn;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		next;
+		if(Class==Job_Baby)
+			menu "Bebê Espadachim",L_sword,"Bebê Mago",L_mage,"Bebê Arqueiro",L_archer,"Bebê Noviço",L_acolyte,"Bebê Mercador",L_merchant,"Bebê Gatuno",L_thief,"Super Bebê",L_superN,"Continuar como Bebê",L_rebirthTrans;
+		else
+			menu "Espadachim",L_sword,"Mago",L_mage,"Arqueiro",L_archer,"Noviço",L_acolyte,"Mercador",L_merchant,"Gatuno",L_thief,"Taekwon",L_taekwon,"Justiceiro",L_gun,"Ninja",L_ninja,"Super Aprendiz",L_superN,"Continuar como aprendiz",L_rebirthTrans;
+	// Swordsman
+			L_sword:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um espadachim?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+1;
+				getitem 16701,1;
+				getitem 16701,1;
+				goto L_GivePlat;
+	// Mage
+			L_mage:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um mago?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+2;
+				getitem 16702,1;
+				getitem 16702,1;
+				goto L_GivePlat;
+	// Archer
+			L_archer:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um arqueiro?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+3;
+				getitem 16703,1;
+				getitem 16703,1;
+				goto L_GivePlat;
+	// Acolyte
+			L_acolyte:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um noviço?";
+				menu "Não",L_quit,"Sim",-;
+				getitem 1503,1;
+				jobchange Class+4;
+				getitem 16704,1;
+				getitem 16704,1;
+				goto L_GivePlat;
+	// Merchant
+			L_merchant:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um mercador?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+5;
+				getitem 16705,1;
+				getitem 16705,1;
+				goto L_GivePlat;
+	// Thief
+			L_thief:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um gatuno?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+6;
+				getitem 16706,1;
+				getitem 16706,1;
+				goto L_GivePlat;
+	// Super Novice
+			L_superN:
+				mes "[^666699 Profissões~ ^000000]";
+				if(BaseLevel<@SupNovM){
+					mes "Para se tornar um super-aprendiz, é necessário ter nível de classe "+@SupNovM+" ou mais...";
+					close;
+				}
+				mes "Tem certeza absoluta que deseja se tornar um super aprendiz?";
+				menu "Não",L_quit,"Sim",-;
+				if(Class==Job_Baby)
+					jobchange Job_Super_Baby;
+				else
+					jobchange Job_SuperNovice;
+				getitem 16710,1;
+				getitem 16710,1;
+				goto L_GivePlat;
+	// Taekwon
+			L_taekwon:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um taekwon?";
+				menu "Não",L_quit,"Sim",-;
+				setlook 7,0;
+				jobchange Job_Taekwon;
+				getitem 16707,1;
+				getitem 16707,1;
+				callfunc "F_ClearJobVar";
+				goto L_GivePlat;
+	// Gunslinger
+			L_gun:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um justiceiro?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Job_Gunslinger;
+				getitem 16709,1;
+				getitem 16709,1;
+				callfunc "F_ClearJobVar";
+				goto L_GivePlat;
+	// Ninja
+			L_ninja:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um ninja?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Job_Ninja;
+				getitem 16708,1;
+				getitem 16708,1;
+				callfunc "F_ClearJobVar";
+				goto L_GivePlat;
+
+	// Knight/Crusader
+	L_iSword:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		next;
+		menu "Cavaleiro",L_knight,"Templário",L_crusader,"Continuar nesta classe",L_rebirthTrans;
+			L_knight:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um cavaleiro?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+6;
+				goto L_GivePlat;
+			L_crusader:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um templário?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+13;
+				goto L_GivePlat;
+	// Wizard/Sage
+	L_iMage:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		menu "Bruxo",L_wizard,"Sábio",L_sage,"Continuar nesta classe",L_rebirthTrans;
+		next;
+			L_wizard:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um bruxo?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+7;
+				goto L_GivePlat;
+			L_sage:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um sábio?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+14;
+				goto L_GivePlat;
+	// Hunter/Bard/Dancer
+	L_iArcher:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		next;
+		menu "Caçador",L_hunter,"Bardo/Odalisca",L_bandd,"Continuar nesta classe",L_rebirthTrans;
+			L_hunter:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um caçador?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+8;
+				goto L_GivePlat;
+			L_bandd:
+				mes "[^666699 Profissões~ ^000000]";
+				if(sex==0) goto L_dancer;
+				if(sex==1) goto L_bard;
+				L_bard:
+					mes "Tem certeza absoluta que deseja se tornar um bardo?";
+					menu "Não",L_quit,"Sim",-;
+					jobchange Class+16;
+					goto L_GivePlat;
+				L_dancer:
+					mes "Tem certeza absoluta que deseja se tornar uma odalisca?";
+					menu "Não",L_quit,"Sim",-;
+					jobchange Class+17;
+					goto L_GivePlat;
+	// Priest/Monk
+	L_iAcolyte:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		next;
+		menu "Sacerdote",L_priest,"Monge",L_monk,"Continuar nesta classe",L_rebirthTrans;
+			L_priest:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um sacerdote?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+4;
+				goto L_GivePlat;
+			L_monk:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um monge?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+11;
+				goto L_GivePlat;
+	// Blacksmith/Alchemist
+	L_iMerchant:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		next;
+		menu "Ferreiro",L_blacksmith,"Alquimista",L_alchemist,"Continuar nesta classe",L_rebirthTrans;
+			L_blacksmith:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um ferreiro?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+5;
+				goto L_GivePlat;
+			L_alchemist:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um alquimista?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+13;
+				goto L_GivePlat;
+	// Assassin/Rogue
+	L_iThief:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		next;
+		menu "Assassino",L_assassin,"Arruaceiro",L_rogue,"Continuar nesta classe",L_rebirthTrans;
+			L_assassin:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um assassino?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+6;
+				goto L_GivePlat;
+			L_rogue:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um arruaceiro?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Class+11;
+				goto L_GivePlat;
+	// Star Gladiator/Soul Linker
+	L_iTaekwon:
+		if(JobLevel<@MinimumJB) goto L_notEn;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Seja bem vindo, por favor escolha a classe que deseja se tornar";
+		next;
+		menu "Gladiador Estelar",L_SG,"Espiritualista",L_SL,"Continuar nesta classe",L_rebirthTrans;
+			L_SG:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um gladiador estelar?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Job_Star_Gladiator;
+				callfunc "F_ClearJobVar";
+				ResetSkill;
+				skill 1,9,0;
+				set SkillPoint,49;
+				goto L_GivePlat;
+			L_SL:
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tem certeza absoluta que deseja se tornar um espiritualista?";
+				menu "Não",L_quit,"Sim",-;
+				jobchange Job_Soul_Linker;
+				callfunc "F_ClearJobVar";
+				ResetSkill;
+				skill 1,9,0;
+				set SkillPoint,49;
+				goto L_GivePlat;
+	// Rebirth
+	L_rebirth:
+		mes "";
+		if (getgmlevel()>0) goto L_ResetGM;
+		if (BaseLevel<100) goto L_cantCh;
+		if (JobLevel<50) goto L_notEn;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Deseja se tornar uma transclasse?";
+		next;
+		menu "Não por equanto",-,"Como assim?",L_Explica,"Quero sim!",L_ViraTrans;
+		next;
+		if(reborn>11){
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Antes de conseguir seu último reset, é preciso virar transclasse!";
+			menu "Virar transclasse",L_rebirth,"Habilidades Especiais",L_GivePlat,"Sair",-;
+			close;
+		}
+		
+	L_rebirthTrans:
+		if(getcharid(1)) goto L_LeaveParty;
+		if(getgmlevel()>0 || reborn>=12) goto L_ResetTransGM;
+		if(BaseLevel<100) goto L_cantCh;
+		if(JobLevel<50 || (JobLevel>50 && JobLevel<70)) goto L_notEn;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Já que atingiu o nível 100, você pode renascer e começar tudo denovo...";
+		mes "O que acha?";
+		menu "Não",L_acabou,"Sim",-;
+		next;
+		
+		if (reborn==0) set reborn, 1;
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Ok.";
+		mes "Esta é a " +reborn+ "ª vez que você renasce.";
+		set @rebornstatpts, 100*reborn;
+		mes "Você vai voltar ao nível 1 com a mesma classe, mas com " +@rebornstatpts+ " pontos de atributo.";
+		mes "Tem ceterteza ABSOLUTA?";
+		next;
+		menu "Não... Acho que não...",MR_NO,"Tenho!",-;
+		
+	MR_DOIT:
+		next;
+		ResetStatus;
+		set BaseLevel, 1;
+		set StatusPoint, 100*reborn;
+		set reborn, reborn+1;
+		query_sql "Update `char` Set resets="+escape_sql(reborn)+"-1 Where char_id="+escape_sql(getcharid(0));
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Parabéns, agora você renasceu!";
+		close;
+	
+	L_ViraTrans:
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Você já leu as explicações? Tenha certeza antes de fazer isso!";
+		mes "Tem certeza?";
+		menu "Quero saber mais...",L_Explica,"Não...acho que não...",MR_NO,"Tenho!",-;
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Parabéns, agora se tornou uma transclasse!";
+		jobchange Class+4001;
+		ResetStatus;
+		set BaseLevel, 1;
+		set StatusPoint, 100*reborn;
+		ResetSkill;
+		skill 1,9,0; if(SkillPoint<49) set SkillPoint,49; else set SkillPoint, SkillPoint-58;
+		if(reborn<12) set StatusPoint, StatusPoint+50;
+		goto L_GivePlat;
+	
+	L_ViraTransGM:
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Você já leu as explicações? Tenha certeza antes de fazer isso!";
+		mes "Tem certeza?";
+		menu "Quero saber mais...",L_Explica,"Não...acho que não...",MR_NO,"Tenho!",-;
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Parabéns, agora se tornou uma transclasse!";
+		jobchange Class+4001;
+		ResetStatus;
+		set BaseLevel, 1;
+		set StatusPoint, 120*reborn;
+		ResetSkill;
+		skill 1,9,0; if(SkillPoint<49) set SkillPoint,49; else set SkillPoint, SkillPoint-58;
+		if(reborn<12) set StatusPoint, StatusPoint+60;
+		goto L_GivePlat;
+	
+	L_Explica:
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Uma transclasse tem mais vida, mais habilidades e pode seguir até o nível de classe 70!";
+		mes "No entanto, demora mais para evoluir, e volta para o nível 1 sem contar nenhum reset a mais.";
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Depois, você ainda vai poder renascer denovo.";
+		mes "Lembrando que em breve o número de resets necessário para virar transclasse vai aumentar!";
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Se você não quiser virar uma transclass, pode renascer e continuar como classe normal como fazia antes.";
+		mes	"A escolha é sua!";
+		next;
+		goto L_rebirth;
+	
+	L_ResetGM:
+		if (BaseLevel < 99) goto L_cantCh;
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Deseja se tornar uma transclasse?";
+		next;
+		menu "Não por equanto",-,"Como assim?",L_Explica,"Quero sim!",L_ViraTrans;
+		next;
+		if(reborn>11){
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Antes de conseguir seu último reset, é preciso virar transclasse!";
+			menu "Virar transclasse",L_rebirth,"Habilidades Especiais",L_GivePlat,"Sair",-;
+			close;
+		}
+	
+	L_ResetTransGM:
+		if(getcharid(1)) goto L_LeaveParty;
+		if (BaseLevel<99 || JobLevel<50 || (JobLevel>50 && JobLevel<70)) goto L_cantCh;
+		mes "[^666699 Profissões~ ^000000]";
+		if(BaseLevel==99)
+			mes "Já que atingiu o nível 99 e é VIP, você pode renascer e começar tudo denovo...";
+		else
+			mes "Já que atingiu o nível necessário, você pode renascer e começar tudo denovo...";
+		mes "O que acha?";
+		menu "Não, obrigado!",L_acabou,"Boa idéia",-;
+		
+		if (reborn==0) set reborn, 1;
+		else if (reborn>12) goto L_quests;
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		if(getgmlevel()){
+			mes "Ok... Vejo que você é VIP, E que esta é a " +reborn+ "ª vez que você renasce.";
+		}else{
+			mes "Ok... Vejo que você não é VIP, mas já que esta é a 12ª vez que você renasce, irei fingir como se fosse.";
+			mes "Vou te dar pontos a mais ^^";
+			mes "Mas não conte pra ninguém hein? hehe";
+		}
+		set @rebornstatpts, 120*reborn;
+		mes "Você vai voltar ao nível 1 com a mesma classe, mas com " +@rebornstatpts+ " pontos de atributo.";
+		mes "Tem ceterteza ABSOLUTA?";
+		next;
+		menu "Não...acho que não...",MR_NO,"Tenho!",-;
+		
+	MR_DOITGM:
+		next;
+		ResetStatus;
+		set BaseLevel, 1;
+		set StatusPoint, 120*reborn;
+		set reborn, reborn+1;
+		query_sql "Update `char` Set resets="+escape_sql(reborn)+"-1 Where char_id="+escape_sql(getcharid(0));
+		if(reborn==12)
+			logmes "[Reset] Completados 12 resets no personagem";
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Parabéns, agora você renasceu!";
+		close;
+	
+	// Platinum Skills
+	L_GivePlat:
+		next;
+	OnGivePlat:
+		switch(BaseClass){
+		case Job_SuperNovice:
+			skill 142,1,0;
+			break;
+			
+		case Job_Swordman:
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			if(Class==Job_Knight || Class==Job_Knight2
+					|| Class==Job_Baby_Knight || Class==Job_Baby_Knight2
+					|| Class==Job_Lord_Knight || Class==Job_Lord_Knight2)
+				skill 1001,1,0;
+			else
+			if(Class==Job_Crusader || Class==Job_Crusader2
+					|| Class==Job_Baby_Crusader || Class==Job_Baby_Crusader2
+					|| Class==Job_Paladin || Class==Job_Paladin2)
+				skill 1002,1,0;
+			break;
+			
+		case Job_Mage:
+			skill 142,1,0;
+			skill 157,1,0;
+			if(Class==Job_Wizard || Class==Job_High_Wizard || Class==Job_Baby_Wizard)
+				skill 1006,1,0;
+			else
+			if(Class==Job_Sage || Class==Job_Baby_Sage || Class==Job_Professor){
+				skill 1007,1,0;
+				skill 1008,1,0;
+				skill 1017,1,0;
+				skill 1018,1,0;
+				skill 1019,1,0;
+			}
+			break;
+			
+		case Job_Archer:
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			if(Class==Job_Hunter || Class==Job_Baby_Sage || Class==Job_Sniper)
+				skill 1009,1,0;
+			else
+			if(Class==Job_Bard || Class==Job_Baby_Bard || Class==Job_Clown)
+				skill 1010,1,0;
+			else
+			if(Class==Job_Dancer || Class==Job_Baby_Dancer || Class==Job_Gypsy)
+				skill 1011,1,0;
+			break;
+			
+		case Job_Acolyte:
+			skill 142,1,0;
+			skill 156,1,0;
+			if(Class==Job_Priest || Class==Job_Baby_Priest || Class==Job_High_Priest){
+				skill 363,10,0;
+				skill 1014,1,0;
+			}
+			else
+			if(Class==Job_Monk || Class==Job_Baby_Monk || Class==Job_Champion){
+				skill 1015,1,0;
+				skill 1016,10,0;
+			}
+			break;
+			
+		case Job_Merchant:
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			if(Class==Job_Blacksmith || Class==Job_Baby_Blacksmith || Class==Job_Whitesmith){
+				skill 1012,1,0;
+				skill 1013,1,0;
+			}
+			else
+			if(Class==Job_Alchem || Class==Job_Baby_Alchem || Class==Job_Creator){
+				if(alch_bock != 1){
+					getitem 7434,1; 
+					set alch_bock,1;
+				}
+				//Bioethics: skill 238,1,0;
+			}
+			break;
+			
+		case Job_Thief:
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			if(Class==Job_Assassin || Class==Job_Baby_Assassin || Class==Job_Assassin_Cross){
+				skill 1003,1,0;
+				skill 1004,1,0;
+			}
+			else
+			if(Class==Job_Rogue || Class==Job_Baby_Rogue || Class==Job_Stalker)
+				skill 1005,1,0;
+			break;
+			
+		case Job_Taekwon:
+			if(Class==Job_Star_Gladiator || Class==Job_Star_Gladiator2)
+				skill 444,1,0;
+			
+		default:
+			//mes BaseClass;
+			goto L_quit;
+		}
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Parabéns, acabo de lhe dar as habilidades da sua classe!";
+		mes "Digite [alt+S] para ver suas habilidades novas";
+		mes "Obrigado e volte sempre!";
+	L_VerificaPontos:
+		if(SkillPoint>JobLevel+57){
+			ResetSkill;
+			if(Class!=Job_Novice)
+				skill 1,9,0;
+			if((Class>=Job_Swordman && Class<=Job_Thief)
+				|| (Class>=Job_Baby_Swordman && Class<=Job_Baby_Thief)
+				|| Class==Job_SuperNovice || Class==Job_Super_Baby
+				|| Class==Job_Gunslinger || Class==Job_Ninja
+				|| Class==Job_Super_Baby || Class==Job_Taekwon)
+				set SkillPoint, JobLevel-1;
+			else
+				set SkillPoint, JobLevel+48;
+		}
+		
+	MR_NO:
+	L_quit:
+		close;
+	
+	L_LeaveParty:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Por favor, saia do seu grupo, ou não poderei te ajudar...";
+		mes "Obrigado e volte sempre!";
+		close;
+		
+	L_cantCh:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Me desculpe mas você não atingiu os requerimentos para mudar de classe ou resetar...";
+		mes "Obrigado e volte sempre!";
+		close;
+	L_skillUsed:
+		mes "[^666699 Profissões~ ^000000]";
+		if(Class==Job_Taekwon){
+			mes "Você tem alguns pontos de habilidade sobrando, favor utilizá-los antes de mudar de profissão";
+			menu "Ok...",L_quit,"Quero jogar fora meus pontos",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você tem certeza que deseja apagar todos os seus pontos de habilidade, e sabe que ao fazer isso poderá ficar sem habilidades até mudar de profissão?";
+			menu "Não",L_quit,"Sim",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você tem certeza que deseja apagar todos os seus pontos de habilidade, e sabe que ao fazer isso poderá ficar sem habilidades até mudar de profissão?";
+			menu "Tenho certeza",-,"Desisto!",L_quit;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você tem certeza que deseja apagar todos os seus pontos de habilidade, e sabe que ao fazer isso poderá ficar sem habilidades até mudar de profissão?";
+			menu "Ir embora!",L_quit,"Confirmar",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Você leu tudo, e tem mesmo certeza";
+			menu "Não, quero ir embora...",L_quit,"Aceitar!!!",-;
+			next;
+			mes "[^666699 Profissões~ ^000000]";
+			mes "Ok, aí vai.";
+			set SkillPoint,0;
+		}else{
+			if(SkillPoint==1)
+				mes "Utilize seu ponto de habilidade antes de mudar de classe...";
+			else
+				mes "Utilize seus "+SkillPoint+" pontos de habilidade antes de mudar de classe...";
+			mes "Obrigado!";
+			menu "Pronto, já usei!",-,"Não quero falar com você",L_quit;
+		}
+		next;
+		goto L_Start;
+	L_notEn:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Me desculpe mas você não tem nível de classe suficiente";
+		mes "Obrigado e volte sempre!";
+		close;
+	L_notSup:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Me desculpe mas você não tem nível de base suficiente";
+		mes "Obrigado e volte sempre!";
+		close;
+	L_remove:
+		mes "[^666699 Profissões~ ^000000]";
+		mes "Por favor, desça do seu peco-peco antes de mudar de classe.";
+		mes "Obrigado e volte sempre!";
+		close;
+	L_acabou:
+		if(Premio110==1) goto L_quests;
+		next;
+		mes "[^666699 Profissões~ ^000000]";
+		if(BaseLevel>=110){
+			mes "Parabéns, você já chegou ao 110!";
+			mes "Eu não posso mais te ajudar...";
+		}else{
+			mes "Não tenho mais como te ajudar a evoluir!";
+			mes "Obrigado e parabéns!";
+		}
+		menu "Fechar",-,"Habilidades especiais",L_GivePlat;
+		close;
+	L_quests:
+		if(BaseLevel < 100 || reborn<=12) close;
+		next;
+	L_quests12:
+		mes "[^666699 Profissões~ ^000000]";
+		if(BaseLevel>=110){
+			mes "Parabéns, você já chegou ao 110!";
+			if(Premio110==1){
+				mes "Deseja retirar seu prêmio, um item refinado até +10 com seu nome mas com slots removidos?";
+				mes "Ele deve estar equipado no seu personagem.";
+				if(select("Não, obrigado:Sim, eu gostaria")==2){
+					next;
+					mes "[^666699 Profissões~ ^000000]";
+					mes "Legal! Qual dos seus itens eu devo ver?";
+					set @equip,select("Mudei de idéia...",getequipname(1),getequipname(2),getequipname(3),getequipname(4),getequipname(5),getequipname(6),getequipname(7),getequipname(8),getequipname(9),getequipname(10))-1;
+					if(@equip>0){
+						next;
+						mes "[^666699 Profissões~ ^000000]";
+						if(getequipcardcnt(@equip)>0){
+							mes "O item precisa estar sem cartas, pois os slots serão removidos...";
+						}else{
+							set @item,getequipid(@equip);
+							if(countitem(@item)!=1){
+								mes "Você tem "+countitem(@item)+" "+getequipname(@equip);
+								mes "Por favor, volte com um.";
+							}else{
+								logmes "[Prêmio 110] Item "+getequipname(@equip)+" refinado até +10!";
+								set Premio110, 0;
+								delitem @item, 1;
+								getitem2 @item,1,1,10,0,255,0,getcharid(0) & 0xFFFF,(getcharid(0)-(getcharid(0)&0xFFFF))>>0x10;
+								mes "Pronto, item entregue...";
+								mes "Meus parabéns!";
+								close;
+							}
+						}
+					}
+				}
+			}
+			mes "Eu não posso mais te ajudar...";
+			menu "Fechar",-,"Habilidades especiais",L_GivePlat;
+		}else{
+			mes "Você já atingiu o máximo de 12 resets... Mas eu tenho uma missão para você!";
+			mes "Completando a missão, você poderá conseguir avançar para o nível "+(BaseLevel+1)+".";
+			mes "O que acha?";
+			if(select("Não me interessa:Qual a missão?")==2){
+				next;
+				deletearray @itens[0],getarraysize(@itens);
+				deletearray @qtde[0],getarraysize(@qtde);
+				switch(BaseLevel){
+					case 100:
+						setarray @itens[0],	4271,					4249,					4270,					4301;
+						setarray @itens$[0],"Carta Giant Hornet",	"Carta Ancient Worm",	"Carta Giant Spider",	"Carta Killer Mantis";
+						setarray @qtde[0],	90,						45,						40,						30;
+						break;
+					case 101:
+						setarray @itens[0],	1235,		7048,				1366,				1363;
+						setarray @itens$[0],"Azoth",	"Garra de Grifo",	"Cruz Impiedosa",	"Machado Sangrento";
+						setarray @qtde[0],	1,			20,					2,					2;
+						break;
+					case 102:
+						setarray @itens[0],	5002,				2413,		2334,					5254;
+						setarray @itens$[0],"Coroa Adornada",	"Coturnos",	"Vestimenta Arcana",	"Elmo de Deviling";
+						setarray @qtde[0],	1,					1,			3,						2;
+						break;
+					case 103:
+						setarray @itens[0],	16606,					9927,				7005;
+						setarray @itens$[0],"Elmo de Ossos Humanos","Crânio de Ouro",	"Crânio";
+						setarray @qtde[0],	1,						10,					1000;
+						break;
+					case 104:
+						setarray @itens[0],	5072,					5066,					7019,					616;
+						setarray @itens$[0],"Chifre de Incubus",	"Chifre de Succubus",	"Sussurros de Loki",	"Velho Album de Cartas";
+						setarray @qtde[0],	12,						12,						50,						100;
+						break;
+					case 105:
+						setarray @itens[0],	5143,					7308,				12103,					9928,			12085;
+						setarray @itens$[0],"Máscara de Kabuki",	"Tônico da Bruxa",	"Galhos Sangrentos",	"Espinafre",	"Cozido Imortal";
+						setarray @qtde[0],	1,						2,					50,						30,				30;
+						break;
+					case 106:
+						setarray @itens[0],	5179,				5149,				5257,				10006,					10018;
+						setarray @itens$[0],"Tiara Dourada",	"Tiara de Prata",	"Auréolas de Anjo",	"Ornamento da Rainha",	"Coroa de Macaco";
+						setarray @qtde[0],	1,					1,					1,					5,						5;
+						break;
+					case 107:
+						setarray @itens[0],	9929,			969,	7444,				5152;
+						setarray @itens$[0],"Vale-Bilhão",	"Ouro",	"Arca de Tesouro",	"Coroa Chinesa";
+						setarray @qtde[0],	1,				30,		8,					1;
+						break;
+					case 108:
+						setarray @itens[0],	2111,				2629,			7025,					9931,				1413,		1470,		1468;
+						setarray @itens$[0],"Spiritus Sancti",	"Megingjard",	"Lamento de Lúcifer",	"Manto Abençoado",	"Gungnir",	"Brionac",	"Zéfiro";
+						setarray @qtde[0],	3,					1,				5,						2,					2,			2,			2;
+						break;
+					case 109:
+						setarray @itens[0],	9929,			16603,			7562,				2630,			607,					1230;
+						setarray @itens$[0],"Vale-Bilhão",	"Elmo Dourado",	"Escama de Gelo",	"Brisingamen",	"Fruto de Yggdrasil",	"Rondel";
+						setarray @qtde[0],	2,				1,				30,					1,				60,						3;
+						break;
+					default:
+						close;
+				}
+				//Para caso de erro no script
+				if(getarraysize(@itens)<3){
+					debugmes "getarraysize(@itens)="+getarraysize(@itens)+"! Script cancelado.";
+					close;
+				}
+				//Mostrando os itens necessários
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Para que você se torne nível "+(BaseLevel+1)+" vou precisar de:";
+				for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+					mes "- "+@qtde[@i]+"x "+@itens$[@i];
+				mes "Você vai me trazer os itens?";
+				if(select("Não...:Depois eu trago:Já trouxe!")==3){
+					//Verificando os itens
+					next;
+					mes "[^666699 Profissões~ ^000000]";
+					set @ok,0;
+					for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+						if(countitem(@itens[@i]) < @qtde[@i])
+							mes "Você não tem "+@qtde[@i]+"x "+@itens$[@i]+"...";
+						else if(countitem(@itens[@i]) > @qtde[@i])
+							mes "Você tem "+countitem(@itens[@i])+"x "+@itens$[@i]+", e não "+@qtde[@i]+"!";
+						else
+							set @ok, @ok + 1;
+					if(@ok==getarraysize(@itens)){
+						mes "Tudo certo.. Parabéns!";
+						close2;
+						for(set @i, 0; @i<getarraysize(@itens); set @i, @i+1)
+							if(countitem(@itens[@i]) != @qtde[@i])
+								end;
+							else
+								delitem @itens[@i],@qtde[@i];
+						set BaseLevel,BaseLevel+1;
+						logmes "[Level] "+BaseLevel+": "+strcharinfo(0);
+						announce "[Profissões] "+(Sex==0?"A jogadora ":"O jogador ")+strcharinfo(0)+" acaba de chegar ao nível "+BaseLevel+", parabéns!!!",bc_all;
+						if(BaseLevel==110){
+							set Premio110,1;
+							sleep2 2000;
+							announce "[Profissões] Como prêmio, el"+((Sex==0)?"a":"e")+" ganhará um item com seu nome, refinado até +10!",bc_all;
+							sleep2 2000;
+							dispbottom "Para receber o prêmio do nível 110, equipe o item desejado e fale comigo!";
+						}
+					}else{
+						mes " ";
+						mes "Achou que poderia me enganar ¬¬'";
+					}
+				}
+			}else{
+				next;
+				mes "[^666699 Profissões~ ^000000]";
+				mes "Tudo bem.. Boa sorte!";
+				menu "Fechar",-,"Habilidades especiais",L_GivePlat;
+			}
+		}
+		close;
+	return;
+}
+
+prontera,127,194,6	script	Profissões	743,{
+	callfunc "jobmaster";
+}
+
+prontera,0,0,0	script	#LvUpEvent	-1,{
+	OnPCJobLvUpEvent:
+	switch(JobLevel){
+		case 10:
+			if(Class==Job_Novice || Class==Job_Baby)
+				callfunc "jobmaster";
+			break;
+		
+		case 50:
+			if((Class>=Job_Swordman && Class<=Job_Thief)
+				|| (Class>=Job_Knight && Class<=Job_Dancer && BaseLevel>=100-(getgmlevel()>0))
+				|| (Class>=Job_Baby_Swordman && Class<=Job_Baby_Thief)
+				|| (Class>=Job_Baby_Knight && Class<=Job_Baby_Dancer && BaseLevel>=100-(getgmlevel()>0) && reborn<=12)
+				|| (Class==Job_Taekwon))
+				callfunc "jobmaster";
+			break;
+		
+		case 70:
+			if(BaseLevel>=100-(getgmlevel()>0) && reborn<=12)
+				callfunc "jobmaster";
+			break;
+	}
+	end;
+	
+	OnPCBaseLvUpEvent:
+	if(BaseLevel>=100-(getgmlevel()>0))
+		//if(reborn<12)
+			if(JobLevel==50 || JobLevel==70)
+				callfunc "jobmaster";
+	end;
+}

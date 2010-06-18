@@ -1,0 +1,105 @@
+//auction_01,184,76,5	script	 Anfitrião do jogo#hj1	911,{
+schg_cas03,86,93,5	script	 Anfitrião do jogo#hj1	911,{
+	callfunc "F_Anfitrião do jogo";
+	close;
+}
+
+function	script	F_Anfitrião do jogo	{
+	cutin "god_kukur02",2;
+	mes "^BF0073[Anfitrião do Jogo]^000000";
+	mes "Olá, eu posso informar sobre o Poring ball.";
+	mes "e posso enviar você para a sala de espera.";
+
+OnMenu:
+	next;
+	menu "Quero Jogar poring ball", OnPoringBall,"Cancelar",-;
+	close2;
+	cutin "",255;
+	end;
+
+OnPoringBall:
+	cutin "",255;
+	cutin "god_kukur01",2;
+	mes "^BF0073[Anfitrião do Jogo]^000000";
+
+	if ($@state_match>=2)
+		mes "Um jogo está em progresso. ["+getmapusers("ball2")+" Players]";
+	else
+		mes "Não há jogos em progresso.";
+	mes "Temos "+getareausers("quiz_02",321,333,378,394)+" jogadores na sala de espera.";
+	next;
+
+	set @accessPoring, 1;
+
+	if (@accessPoring==1) {
+		menu "Jogar Poring Ball",-,"Cancelar",OnCancel;
+		cutin "",255;
+		cutin "god_kukur02",2;
+		mes "^BF0073[Anfitrião do Jogo]^000000";
+		mes "Para jogar você precisa inscrever seu grupo antes, fale com os assistentes na sala de espera.";
+		close2;
+		cutin "",255;
+		warp "quiz_02",350,374;
+	} else  {
+		mes "^BF0073[Anfitrião do Jogo]^000000";
+		mes "Poring ball não é aberto a todos.";
+		goto OnMenu;
+	}
+	close;
+
+OnCancel:
+	cutin "",255;
+	cutin "god_kukur02",2;
+	mes "^BF0073[Anfitrião do Jogo]^000000";
+	mes "Vejo você mais tarde!";
+	close2;
+	cutin "",255;
+	end;
+}
+
+
+quiz_02,335,384,5	script	 Anfitrião do Jogo#hjPb1	69,{
+
+	cutin "god_kukur01",2;
+	mes "^BF0073[Anfitrião do Jogo]^000000";
+	mes "Você gostaria de ir ou ficar na sala?";
+	next;
+	set @palette, getlook(7);
+	menu "Quero minhas roupas de volta.",OnReturnShirt, "Sim,quero voltar.",OnLeaveRoom,"Não, quero ficar.",-;
+	close2;
+	cutin "",255;
+	end;
+
+OnReturnShirt:
+	cutin "",255;
+	cutin "god_kukur03",2;
+	mes "^BF0073[Anfitrião do Jogo]^000000";
+
+	if ((@palette == $paletteRed) ||(@palette == $paletteBlue)) {
+		mes "Aqui estã suas roupas!";
+		setlook 7, savePalette;
+	} else {
+		mes "Você não está jogando poring ball, está querendo roubar algumas roupas!?";
+		mes "Saia da minha frente ! SAIA !!!";
+		emotion e_omg;
+	}
+	close2;
+	cutin "",255;
+	end;
+
+OnLeaveRoom:
+	cutin "",255;
+
+	if ((@palette == $paletteRed) ||(@palette == $paletteBlue)) {
+		cutin "god_kukur03",2;
+		mes "^BF0073[Anfitrião do Jogo]^000000";
+		mes "Antes de sair, tome suas roupas!";
+		setlook 7, savePalette;
+		next;
+		cutin "",255;
+	}
+
+	savepoint "schg_cas03",48,48;
+	warp "SavePoint",0,0;
+	end;
+}

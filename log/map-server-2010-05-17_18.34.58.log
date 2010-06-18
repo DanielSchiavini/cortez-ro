@@ -1,0 +1,24 @@
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 3' to "pvp_y_room",52,24 failed.
+[1;36m[Debug][0m: Source (NPC): CdC at schg_cas03 (38,48)
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not kafra (id=110000838).
+[1;33m[Warning][0m: npc_scriptcont: failed npc_checknear test.
+[1;36m[Debug][0m: npc_scriptcont: Super Kafra#cortez (sd->npc_id=110011218) is not Salas de Chat (id=110000213).
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not kafra (id=110036883).
+[1;31m[Error][0m: npc_event: event not found [Cursed Soul::OnMyMob]
+[1;31m[Error][0m: npc_event: event not found [Cursed Soul::OnMyMob]
+[1;31m[Error][0m: npc_event: event not found [Cursed Soul::OnMyMob]
+[1;31m[Error][0m: npc_event: event not found [Cursed Soul::OnMyMob]
+[1;31m[Error][0m: npc_event: event not found [Cursed Soul::OnMyMob]
+[1;31m[Error][0m: npc_event: event not found [Cursed Soul::OnMyMob]
+[1;31m[Error][0m: npc_event: event not found [Cursed Soul::OnMyMob]
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: npc_scriptcont: failed npc_checknear test.
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 6' to "pvp_y_room",52,24 failed.
+[1;36m[Debug][0m: Source (NPC): CdC at schg_cas03 (38,48)
+[1;33m[Warning][0m: clif_process_message: Player 'Jotinha ~ Own' sent an unterminated name!

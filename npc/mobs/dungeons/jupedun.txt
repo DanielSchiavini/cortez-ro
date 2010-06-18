@@ -1,0 +1,53 @@
+//===== eAthena Script =======================================
+//= Juperos Mystical Dungeon - Monster Spawn Locations
+//===== By: ==================================================
+// »» The Prometheus Project ««
+// Copyright (c) 2004,2005
+// Licensed under GPL
+// http://prometheus.fnae.net/
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= Any Athena/Freya Version
+//===== Additional Comments: =================================
+//= 08/24/05 : Added 1st version. [Muad_Dib]
+//= 01/29/05 : Updated the spawns according to current info [MasterOfMuppets]
+//= 04/12/06 : Updated the spawns according to own info from iRO [MasterOfMuppets]
+//= 04/15/06 : More exact numbers thanks to Tharis [Playtester]
+//============================================================
+
+//========================================================================================
+// - Juperos 01
+//========================================================================================
+
+juperos_01,0,0,0,0	monster	Venatu	1676,80,0,0,0
+juperos_01,0,0,0,0	monster	Venatu	1677,80,0,0,0
+juperos_01,0,0,0,0	monster	Venatu	1678,80,0,0,0
+juperos_01,0,0,0,0	monster	Venatu	1679,60,0,0,0
+
+//========================================================================================
+// - Juperos 02
+//========================================================================================
+
+juperos_02,75,91,200,212	monster	Venatu	1676,40,0,0,0
+juperos_02,75,91,200,212	monster	Venatu	1677,40,0,0,0
+juperos_02,75,91,200,212	monster	Venatu	1678,40,0,0,0
+juperos_02,75,91,200,212	monster	Venatu	1679,30,0,0,0
+juperos_02,0,0,0,0	monster	Venatu	1676,25,0,0,0
+juperos_02,0,0,0,0	monster	Venatu	1677,25,0,0,0
+juperos_02,0,0,0,0	monster	Venatu	1678,25,0,0,0
+juperos_02,0,0,0,0	monster	Venatu	1679,20,0,0,0
+juperos_02,0,0,0,0	monster	Apocalypse	1365,70,0,0,0
+
+//========================================================================================
+// - Juperos Core
+//========================================================================================
+
+jupe_core,0,0,0,0	monster	Archdam	1668,40,0,0,0
+jupe_core,0,0,0,0	monster	Dimik	1670,40,0,0,0
+jupe_core,0,0,0,0	monster	Dimik	1671,40,0,0,0
+jupe_core,0,0,0,0	monster	Dimik	1672,40,0,0,0
+jupe_core,0,0,0,0	monster	Dimik	1673,40,0,0,0
+jupe_core,0,0,0,0	monster	Venatu	1676,25,0,0,0
+jupe_core,0,0,0,0	monster	Venatu	1677,25,0,0,0
+jupe_core,0,0,0,0	monster	Venatu	1678,25,0,0,0

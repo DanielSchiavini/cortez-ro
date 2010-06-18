@@ -1,0 +1,43 @@
+
+guild_vs1	mapflag	pvp		//PvP experientes
+guild_vs1	mapflag	restricted	4
+guild_vs1	mapflag	pvp_noguild
+guild_vs1	mapflag	nobranch
+guild_vs1	mapflag	nogo
+guild_vs1	mapflag	nowarp
+guild_vs1	mapflag	nodrop
+guild_vs1	mapflag	nopenalty
+guild_vs1	mapflag	noreturn
+guild_vs1	mapflag	nocommand	10
+
+guild_vs1,1,1,0	script	PvpAdvanced_MvpRespawn	-1,{
+	OnInit:
+		deletearray $MVPs[0],getarraysize($MVPs);
+		setarray $MVPs[0],1038,1039,1046,1059,1086,1087,1096,1112,1115,1120,1147,1150,1157,1159,1190,1251,1252,1272,1312,1373,1388,1389,1418,1492,1511,1518,1582,1583,1623,1658,1685,1688,1734,1768,2250,2251;
+		
+	while(1){
+		callfunc "F_UseBloodyBranch",1,"guild_vs1",50,50,"PvpAdvanced_MvpRespawn::OnMyMvpDead";
+		callfunc "F_UseDeadBranch",10,"guild_vs1",50,50,"PvpAdvanced_MvpRespawn::OnDbDead";
+		end;
+		
+		OnMyMvpDead:
+			initnpctimer;
+			setnpctimer 0;
+			if(playerattached())
+				getitem 12103,1;
+			end;
+		//DB's a cada 5min (qdo o mvp estiver morto)
+		OnTimer300000:
+		OnTimer900000:
+		OnTimer600000:
+			killmonsterall "guild_vs1";
+			callfunc "F_UseDeadBranch",15,"guild_vs1",50,50,"PvpAdvanced_MvpRespawn::OnDbDead";
+			end;
+		//Mvp a cada 30min
+		OnTimer1800000:
+			stopnpctimer;
+	}
+	
+	OnDbDead:
+		end;
+}

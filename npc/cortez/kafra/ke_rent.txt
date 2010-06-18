@@ -1,0 +1,102 @@
+//===== eAthena Script ======================================= 
+//= Kafra Express - Rental Module
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 1.8
+//===== Compatible With: ===================================== 
+//= eAthena SVN R3424+
+//===== Description: ========================================= 
+//= Part of the Kafra Express Script Package.
+//= Rents PecoPecos, Falcons, Carts 
+//===== Additional Comments: ================================= 
+//= See config.txt for configuration.
+//============================================================ 
+
+-	script	keInit_rent	-1,{
+OnInit:	//Load Config
+	donpcevent "keConfig::OnLoadRent";
+	end;
+}
+
+function	script	F_keRent	{
+	set @cartCost,callfunc("F_keCost",$@kert_cartCost,100);
+	if(@kert_cartOnly) {
+		set @kmenu, 2;
+	} else {
+		set @falconCost,callfunc("F_keCost",$@kert_falconCost,100);
+		set @pecoCost,callfunc("F_keCost",$@kert_pecoCost,100);
+		if (getgmlevel() >= 5){
+			set @kmenu, select (
+				"- Voltar",
+				"- Alugar um carrinho (VIP)",
+				"- Alugar um falcão (VIP)",
+				"- Alugar um peco-peco (VIP)"
+			);
+		} else {
+			set @kmenu, select (
+				"- Voltar",
+				"- Alugar um carrinho ("+@cartCost+"z)",
+				"- Alugar um falcão ("+@falconCost+"z)",
+				"- Alugar um peco-peco ("+@pecoCost+"z)"
+			);
+		}
+	}
+	switch (@kmenu) {
+	case 2: //Cart
+		if (getskilllv(39)==0) {
+			callfunc "F_keIntro", -1, "Desculpe, somente quem tem a habilidade 'Usar carrinho' pode ter um carrinho.";
+		} else if (checkcart()) {
+			callfunc "F_keIntro", -1, "Você já está equipado.";
+		} else if (getgmlevel() >= 5) {
+			mes "["+@name$+"]";
+			mes "Você é VIP!! Portanto, não pagará nada por este serviço!";
+			mes "Boa diversão!";
+			setcart;
+			emotion e_ok;
+		} else if (!(callfunc("F_keCharge",$@kert_cartCost,100,1)) && getgmlevel() < 5) {
+			callfunc "F_keIntro", e_an, "Você não tem grana!";
+		} else {
+			setcart;
+			emotion e_ok;
+		}
+		break;
+	case 3: //Falcon
+		if (getskilllv(127)==0) {
+			callfunc "F_keIntro", -1, "Desculpe, somente quem tem a habilidade 'Adestrar Falcão' podem alugar um falcão.";
+		} else if (checkfalcon()) {
+			callfunc "F_keIntro", -1, "Você já está equipado.";
+		} else if (getgmlevel() >= 5) {
+			mes "["+@name$+"]";
+			mes "Você é VIP!! Portanto, não pagará nada por este serviço!";
+			mes "Boa diversão!";
+			setfalcon;
+			emotion e_ok;
+		} else if (!(callfunc("F_keCharge",$@kert_falconCost,100,1))) {
+			callfunc "F_keIntro", e_an, "Quem disse que você tinha grana pra isso?";
+		} else {
+			setfalcon;
+			emotion e_ok;
+		}
+		break;
+	case 4: //pecopeco
+		if (getskilllv(63)==0) {
+			callfunc "F_keIntro", -1, "Desculpe, somente quem tem a habilidade 'Montaria' podem alugar um peco-peco.";
+		} else if (checkriding()) {
+			callfunc "F_keIntro", -1, "Você já tem um Peco.";
+		} else if (getgmlevel() >= 5) {
+			mes "["+@name$+"]";
+			mes "Você é VIP!! Portanto, não pagará nada por este serviço!";
+			mes "Boa diversão!";
+			setriding;
+			emotion e_ok;
+		} else if (!(callfunc("F_keCharge",$@kert_pecoCost,100,1))) {
+			callfunc "F_keIntro", e_an, "Meu chapa, vai ganhar uma grana antes disso!";
+		} else {
+			setriding;
+			emotion e_ok;
+		}
+		break;
+	}
+	return;
+}

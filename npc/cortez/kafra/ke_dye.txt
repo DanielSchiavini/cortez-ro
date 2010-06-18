@@ -1,0 +1,146 @@
+//===== eAthena Script =======================================
+//= Kafra Express - Stylist Module
+//===== By: ==================================================
+//= Skotlex
+//===== Current Version: =====================================
+//= 1.9
+//===== Compatible With: =====================================
+//= eAthena SVN 3424+
+//===== Description: =========================================
+//= Part of the Kafra Express Script Package.
+//= Offers dying of hair, clothes and hair-style adjusts
+//===== Additional Comments: =================================
+//= See config.txt for configuration.
+//============================================================
+
+-	script	keInit_dye	-1,{
+OnInit:	//Load Config
+	donpcevent "keConfig::OnLoadDye";
+	end;
+}
+
+function	script	F_keStylist	{
+
+	function SF_inputpalette;
+	function SF_wheelpalette;
+
+	set @jobClass,callfunc("GF_getJobLevel",class);
+	set @maxCDye,0;
+	set @minCDye,0;
+	
+	switch (@jobClass) {
+	case 0:
+		set @maxCDye, $@kedy_clothJN;
+		break;
+	case 1:
+		set @maxCDye, $@kedy_clothJ1ST;
+		break;
+	case 2:
+		set @maxCDye, $@kedy_clothJ2ND;
+		break;
+	case 3:	
+		set @maxCDye, $@kedy_clothJSN;
+		break;
+	case 4:
+		set @maxCDye, $@kedy_clothJWED;
+		break;
+	case 5:
+		set @minCDye, $@kedy_clothJTAESTART;
+		set @maxCDye, $@kedy_clothJTAE;
+		break;
+	}
+	do {
+		if ($@kedy_enableHairstyle) {
+			set @kmenu, select(
+				"- Voltar",
+				"- Mudar estilo do cabelo (atual é "+getlook(1)+"/máximo é "+$@kedy_styles+")",
+				"- Mudar estilo do cabelo (vendo cada um)",
+				"- Pintar cabelo (atual é "+getlook(6)+"/máximo é "+$@kedy_hair+")",
+				"- Pintar cabelo (vendo cada um)",
+				"- Pintar roupas (atual é "+getlook(7)+"/máximo é "+@maxCDye+")",
+				"- Pintar roupas (vendo cada um)"
+			);
+		} else {
+			set @kmenu, select(
+				"- Voltar",
+				"- Pintar cabelo (atual é "+getlook(6)+"/máximo é "+$@kedy_hair+")",
+				"- Pintar cabelo (vendo cada um)",
+				"- Pintar roupas (atual é "+getlook(7)+"/máximo é "+@maxCDye+")",
+				"- Pintar roupas (vendo cada um)"
+			);
+			if (@kmenu > 1)
+				set @kmenu, @kmenu+2;
+		}
+		switch (@kmenu) {
+		case 2:	//Hair Style Input
+			SF_inputpalette 1,$@kedy_styles;
+			break;
+		case 3:	//Hair Style Wheel
+			SF_wheelpalette 1,$@kedy_styles;
+			break;
+		case 4:	//Hair Dye Input
+			SF_inputpalette 6,$@kedy_hair;
+			break;
+		case 5:	//Hair Dye Wheel
+			SF_wheelpalette 6,$@kedy_hair;
+			break;
+		case 6:	//Clothes Input
+			SF_inputpalette 7,@maxCDye,@minCDye;
+			break;
+		case 7:	//Clothes Wheel
+			SF_wheelpalette 7,@maxCDye,@minCDye;
+			break;
+		}
+	} while (@kmenu > 1);
+	return;
+	
+//Subfunction: SF_inputpalette(int part, int maxPalette, int minPalette=0)
+//Sets a palette from the user's request.
+function	SF_inputpalette {
+	set @min, getarg(2,0);
+	input @pal;
+	if (@pal < @min || @pal > getarg(1)) {
+		callfunc "F_keIntro", e_swt2, "Desculpe, esta roupa não está disponível.";
+		return;
+	}
+	setlook getarg(0),@pal;
+	emotion e_lv;
+}	//SF_ end
+
+//Subfunction: SF_wheelpalette(int part, int maxPalette, int minPalette=0)
+//Sets a palette through browsing.
+function	SF_wheelpalette {
+	set @loc, getarg(0);
+	set @max, getarg(1);
+	set @min, getarg(2,0);
+	set @pal, getlook(@loc);
+	set @dir, 1;
+	do {
+		if (@dir > 0)
+			set @submenu, select(
+				"Próximo",
+				"Anterior",
+				"Pronto (atual é "+@pal+")"
+			);
+		else
+			set @submenu, select(
+				"Próximo",
+				"Anterior",
+				"Pronto (atual é "+@pal+")"
+			);
+		switch (@submenu) {
+		case 2: //Swap direction
+			set @dir, @dir*-1;
+		case 1:
+			set @pal, @pal+@dir;
+			if (@pal < @min)
+				set @pal, @max;
+			else if (@pal > @max)
+				set @pal, 0;
+			setlook @loc,@pal;
+		}
+	} while (@submenu != 3);
+	emotion e_lv2;
+}	//SF_ end
+
+}

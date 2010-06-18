@@ -1,0 +1,146 @@
+//===== eAthena Script ======================================= 
+//= Kafra Express - Pvp Warping Module
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 1.7
+//===== Compatible With: ===================================== 
+//= eAthena SVN R3424+
+//===== Description: ========================================= 
+//= Part of the Kafra Express Script Package.
+//= Offers warping to the PvP arenas.
+//===== Additional Comments: ================================= 
+//= See config.txt for configuration.
+//============================================================ 
+
+-	script	keInit_warpPvp	-1,{
+OnInit:	//Load Config
+	donpcevent "keConfig::OnLoadWarpPvp";
+	end;
+}
+
+function	script	F_keWarpPvp	{
+	set @cost,callfunc("F_keCost",$@kewp_cost,0);
+	set @submenu, select(
+		"- Voltar",
+		"- PvP ("+getmapusers("sec_in02")+" "+$@ked_users$+")",
+		"- PvP p/ iniciantes - Máx. "+getmapusers("guild_vs1")+" "+$@ked_users$,
+		"- PvP Individual - Máx. 2 "+$@ked_users$,
+		"- GvG ("+getmapusers("pvp_2vs2")+" "+$@ked_users$+")",
+		"- Mini Boss 1 ("+getmapusers("force_1-1")+" "+$@ked_users$+")",
+		"- Mini Boss 2 ("+getmapusers("pay_fild05")+" "+$@ked_users$+")",
+		"- Sala do Galho Seco/SGS (30000z, "+getmapusers("guild_vs2")+" "+$@ked_users$+")",
+		"- Outras salas para galho seco"
+	);
+	
+	if(@submenu==4){
+		if(getmapusers("sec_in02") <= getmapusers("guild_vs3")){
+			mes "["+@name$+"]";
+			mes "O PVP de iniciantes está cheio demais. Iremos lhe levar para o PVP normal.";
+			set @submenu, 2;
+		}
+	}
+	switch (@submenu) {
+		case 1:
+			return;
+		case 2:
+			switch(rand(1,5)){
+				case 1:
+					callfunc "F_keWarp",@cost,0,e_com,"sec_in02",115,79;
+					break;
+				case 2:
+					callfunc "F_keWarp",@cost,0,e_com,"sec_in02",182,81;
+					break;
+				case 3:
+					callfunc "F_keWarp",@cost,0,e_com,"sec_in02",126,19;
+					break;
+				case 4:
+					callfunc "F_keWarp",@cost,0,e_com,"sec_in02",100,47;
+					break;
+				case 5:
+					callfunc "F_keWarp",@cost,0,e_com,"sec_in02",131,46;
+					break;
+			}
+			break;
+		case 3:
+			if(BaseLevel>100 || (JobLevel>70 && JobLevel<=75 && !NextJobExp)){
+				if(getgmlevel()>=10){
+					callfunc "F_keIntro", e_sry, "Você não é iniciante, mas como é GM poderá entrar!";
+				}else{
+					callfunc "F_keIntro", e_sry, "Desculpe, você não é iniciante!";
+				}
+			}else{
+				callfunc "F_keWarp",@cost,0,e_com,"guild_vs3",-1,-1;
+			}
+			break;
+		case 4: //1x1
+				if (getmapusers("pvp_n_1-5") < 2){
+					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_1-5",-1,-1;
+				}else{
+					callfunc "F_keIntro", e_sry, "O mapa já tem pessoas lutando, quando um deles sair ou morrer você pode entrar!!!";
+				}
+			break;
+		case 5:
+				switch(rand(1,4)){
+					case 1: set @x,40; set @y,60; break;
+					case 2: set @x,20; set @y,40; break;
+					case 3: set @x,40; set @y,20; break;
+					case 4: set @x,60; set @y,40; break;
+				}
+				callfunc "F_keWarp",@cost,0,e_com,"pvp_2vs2",@x,@y;
+			break;
+		case 6:
+			if($eventomb==0)
+				callfunc "F_keWarp",@cost,0,e_com,"force_1-1",100,100;
+			else
+				callfunc "F_keIntro", e_sry, "Desculpe, mas um evento está acontecendo agora. Procure o NPC no centro da cidade.";
+			break;
+		case 7:
+			callfunc "F_keWarp",@cost,0,e_com,"pay_fild05",90,90;
+			break;
+		case 8:
+			set @cost,30000;
+			if(getmapmobs("guild_vs2")>200) killmonsterall("guild_vs2");
+			callfunc "F_keWarp",@cost,0,e_com,"guild_vs2",-1,-1;
+			break;
+		case 9:
+			set @cost,30000;
+			set @submenu, select(
+				"- Voltar",
+				"- Sala do Galho Seco",
+				"- Jawaii",
+				"- Comodo",
+				"- Esfinge",
+				"- Pirâmide",
+				"- Natal"
+			);
+			switch(@submenu){
+				case 2:
+					if(getmapmobs("guild_vs2")>200) killmonsterall("guild_vs2");
+					callfunc "F_keWarp",@cost,0,e_com,"guild_vs2",-1,-1;
+					break;
+				case 3:
+					if(getmapmobs("jawaii")>200) killmonsterall("jawaii");
+					callfunc "F_keWarp",@cost,0,e_com,"jawaii",-1,-1;
+					break;
+				case 4:
+					if(getmapmobs("comodo")>200) killmonsterall("comodo");
+					callfunc "F_keWarp",@cost,0,e_com,"comodo",-1,-1;
+					break;
+				case 5:
+					if(getmapmobs("moc_fild19")>200) killmonsterall("moc_fild19");
+					callfunc "F_keWarp",@cost,0,e_com,"moc_fild19",-1,-1;
+					break;
+				case 6:
+					if(getmapmobs("moc_ruins")>200) killmonsterall("moc_ruins");
+					callfunc "F_keWarp",@cost,0,e_com,"moc_ruins",-1,-1;
+					break;
+				case 7:
+					if(getmapmobs("xmas_fild01")>200) killmonsterall("xmas_fild01");
+					callfunc "F_keWarp",@cost,0,e_com,"xmas_fild01",-1,-1;
+					break;
+			}
+			break;
+	}
+	return;
+}

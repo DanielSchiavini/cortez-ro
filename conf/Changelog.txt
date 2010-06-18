@@ -1,0 +1,341 @@
+Date	Added
+2008/08/10
+	* Removed duplicate gef_cas mapflags [Yommy]
+2008/06/23
+	* Added: new maps in maps_athena.conf
+2008/06/14
+	* Added auction_feeperhour and auction_maximumprice to misc.conf.
+2008/03/11
+	* Changed the default format for @me and @main to avoid client crashes
+2008/03/05
+	* Merged fixes to job_knt mapflags (r12017 and r12066)
+	* Merged WoE:SE, Battlefields and Quest Dungeons mapflags (r12273)
+	* Merged Izlude Battle Arena mapflags (r11622)
+	* Merged Aldebaran Turbo Track mapflags (r11546 and r11758)
+	* Merged Moscovia mapflags (r10719)
+	* Merged new, client-friendly format strings for @me and @main (r12293)
+	* Merged msg_athena.conf corrections (r11245, r11325, r11627)
+	* Removed some redundant message displaying options (r11520)
+	* Re-added deleted conf setting 'ban_hack_trade' (removed in r11097)
+	* Merged formatting update for configuration files (r10756)
+	* Merged the battle config files cleaning (r10545)
+	* Added packet_conf.txt import file (r10513)
+	* Removed mail db configuration options from inter_athena.conf
+2008/02/16
+	* Removed @whozeny command
+2008/01/30
+	* Changes due to the new mapcache system
+	- map_cache_file path is now db/map_cache.dat
+	- removed read_map_from_cache option, added use_grf option
+2008/01/15
+	* Added 'hide debug messages' for setting 'console_silent' [ultramage]
+2007/12/16
+	* Removed atcommand 'refreshonline' as it is no longer needed [ultramage]
+2007/11/17
+	* Merged config option guild_skill_relog_delay
+	* Merged hom_setting&2 to ignore skill ranges for hom skills. [Skotlex]
+2007/11/06
+	* Added 'quest_exp_rate', adjusts exp gained by 'getexp' in scripts
+2007/11/05
+	* Updated atcommands and charcommands list (new added, useless removed)
+	- char- atcommands were converted to their #-command versions
+	- added many new charcommands that were missing up till now
+	- new: feelreset, misceffect, various new aliases for existing commands
+	- removed: *_id2 commands, petid
+	* Removed config setting firewall_hits_on_undead [ultramage]
+2007/10/16
+	* Renamed the config default_skill_delay to default_walk_delay as that is
+	  the only thing it does now.
+2007/10/13
+	* Added back log_chat's "1 - log everything" (revert from r10850)
+	- don't forget to adjust your config file ... again.
+2007/10/12
+	* Merged maps_athena.conf [Playtester]
+	- removed .gat ending (hope this doesn't cause problems)
+	- added Moscovia and 12.1 maps
+2007/10/11
+	* Removed nomemo and noteleport mapflags from Veins [Playtester]
+2007/09/09
+	* Added 'nomemo' mapflags to some Cursed Abbey maps [Playtester]
+2007/08/30
+	* Removed option "ban_hack_trade" [Playtester]
+2007/08/09
+	* Fixed 'read_map_from_cache' config setting, now 2 is the default
+2007/08/07
+	* Temporarily moved the refine_posword setting to the source code
+	* Adjusted motd.txt to not crash new clients
+	* Removed backup_txt config option since it's not needed anymore
+2007/07/23
+	* Adjusted client.conf's packetver table (latest now uses new value)
+	* Added option 'char_rename' to char config (does not do renaming yet)
+2007/07/23
+	* Added delay_dependon_agi, both options are available now
+2007/06/14
+	* Enhanced log_athena.conf with global/main chat support
+	- readjust the logging setting because the values have changed!
+	* Reverted delay_dependon_agi -> dex [ultramage]
+2007/06/04
+	* Merged all mapflags [Playtester]
+2007/06/03
+	* Rev. 10670 updated map flags for Rachel quests. [L0ne_W0lf]
+2007/05/04
+	* emergency_call is by default usable only on WoE maps [ultramage]
+2007/04/27
+	* Updated Kiel and Juperos mapflags [Playtester]
+2007/04/26
+	* Added monster_ai&0x400. It disables the feature where all mob skills have
+	  a fixed range of 9 (and makes normal skill range criteria apply).
+	  [Skotlex]
+2007/04/24
+	* Merged typo fixes to msg_athena.conf [ultramage]
+2007/04/22
+	* pc_max_status_def and mob_max_status_def (status.conf) are now capped to
+	  100 for 100% (rather than 10000) [Skotlex]
+2007/04/13
+	* Added some Kiel Hyre quest related mapflags [Playtester]	
+2007/04/12
+	* Merged maps and mapflags [Playtester]
+2007/04/11
+	* Added hom_setting&0x40 to reset the re-use delay when vaporizing a
+	  homunculus (homunc.conf)
+	* Changed the default of "debuff_on_logout" to only remove negative buffs
+	  (status.conf) [Skotlex]
+2007/04/08
+	* Set default vending tax to 2% [Playtester]
+2007/04/05
+	* Updates to login_athena.conf: date_format can be specified directly,
+	  removed check_ip_flag, reorganized the names of the
+	  dynamic_pass_failure_ban.
+2007/04/02
+	* Merged config setting "vending_tax" to specify a server tax on all
+	  vending transactions (see items.conf for details)
+2007/03/29
+	* Set the default display_skill_fail setting to 2 (Disable skill-failed
+	  messages due to can-act delays)
+2007/03/27
+	* Removed check_ip_flag from char_athena.conf as it's now always done.
+	  [Skotlex]
+2007/03/14
+	* Removed socket config settings packet_len and mode_neg since these are
+	  hardcoded now.
+	* Updated the description of the enable_logs setting. Added support for
+	  logging storage/guild storage transactions. [Skotlex]
+2007/03/06
+	* Added the two new packet versions to battle/client.conf [Zephiris]
+2007/02/28
+	* Removed the connection_ping_interval setting as it's now automatically handled
+	  by the server.
+2007/02/21
+	* Collapsed config settings "sg_miracle_skill_min_duration" and
+	  "sg_miracle_skill_max_duration" into "sg_miracle_skill_duration", which 
+	  defaults to an hour (skill.conf).
+2007/02/11
+	* Merged removal of config settings produce_item_name_input,
+	  produce_potion_name_input, making_arrow_name_input, holywater_name_input
+	  and cdp_name_input. These are all handled now through bitmasks using
+	  produce_item_name_input instead (items.conf).
+2007/01/31
+	* Updated arrow_decrement setting to specify if skills should "auto-guess"
+	  if they require ammo or not based on currently used weapon. By default
+	  arrows are consumed and no skill-ammo-requirement guessing is done
+	  (battle/battle.conf).
+	* Added hom_rename setting to enable renaming your homunculus multiple
+	  times (homun.conf).
+2007/01/26
+	* Updated the gvg damage adjustments. Non-skill ranged damage adjustment is
+	  -20% instead of -25%, and Magic-skill adjustment is -40% instead of -50%
+2007/01/22
+	* New @commands (related to homunculus): hominfo, homstats, homtalk,
+	  homlvup, homevolution, makehomun, homfriendly, homhungry, homshuffle
+	* Added config settings related to homunculus: hom_setting,
+	  homunculus_friendly_rate, hvan_explosion_intimate, homunculus_show_growth
+	  (battle/homunc.txt)
+	* enable_baseatk now includes homuncs [Skotlex]
+2007/01/07
+	* merged parts of trunk's config files [ultramage]
+	- added missing config setting for @reset and desc for #reset
+	- added new setting, guild_aura (controls when it works and whom it affects)
+	- monster_class_change_full_recover and friend_auto_add set to yes (official)
+	- improved the desc for attack_attr_none and pc_max_status_def
+	- replaced two outdated message strings
+2006/12/19
+	* floor item lifetime is now an int instead of ushort, meaning the max
+	  value is now 2kM ms instead of 65k ms (drops.conf). [Skotlex]
+2006/12/20
+	* Fixed the meaning of stdout_with_ansisequence and changed the default 
+	  value to no. [FlavioJS]
+2006/12/13
+	* Merged setting stdout_with_ansisequence ([login/char/map]_athena.conf)
+	  which can enable/disable console colors.
+2006/11/29
+	* Merged the updates to slaves_inherit_mode and slaves_inherit_speed so you
+	  can decide under which types of masters does the slave's speed/mode is
+	  changed (see battle/monster.conf). [Skotlex]
+	* Merged mapflags from trunk [Playtester]
+2006/11/22
+	* Merged monster_ai&0x200, which makes monster skills apply their mob-delay
+	  to ALL skills of the same ID in their repertoire instead of just the used
+	  entry.
+2006/11/17
+	* Merged updated behaviour of skill_max_tries where 0 means unlimited, and
+	  any other value is the amount of steal tries. The default is 0. [Skotlex]
+2006/11/15
+	* New config settings in packet_athena.txt:
+	  frame_size, if for some reason you want to use packets less than 1024
+	  bytes in length
+	  mode_neg, with which you can disable the Nagel Algorythm (the default is
+	  yes), you may try turning it off to compare which one yields better
+	  performance
+2006/11/08
+	* Merged official GS skill ranges (from Aegis login packet) [Skotlex]
+	* Merged Ganbantein's delay being 2 secs. [Skotlex]
+	* Merged cast time of 0.5 secs to Bulls Eye [Skotlex]
+	* Merged cast time of 2 secs for Ground Drift [Skotlex]
+2006/11/07
+	* Added nosave mapflag for Guild Dungeons [KarLaeda]
+2006/11/06
+	* The config settings player_cloak_checl_type and monster_cloak_check_type
+	  are updated (skill.conf) to give more fine-grained control:
+	- &1 means to check for walls
+	- &2 makes cloaking not end when using normal attacks 
+	- &4 makes it not end when using skills.
+	  Note that mobs by default will not uncloak now when using skills.
+	* Added config settings exp_bonus_attacker and exp_bonus_max_attacker
+	  (exp.conf) to specify how the exp bonus per attacker (and limit) should
+	  be calculated. Default is +25% exp per attacker, capped to 12 attackers.
+	  [Skotlex]
+	* Behaviour change of party_even_share_bonus (party.conf), defaults to 0 as
+	  there really is no even share bonus for parties, and when set, it's a
+	  lineal bonus per party-member involved. [Skotlex]
+2006/11/05
+	* Added maplags for PowerNPC quest. [KarLaeda]
+2006/11/01
+	* Fixed start map name, according to the recent changes [KarLaeda]
+2006/10/25
+	* Merged config setting summon_flora_setting (skill.conf) which specifies
+	  restrictions on the skill such as letting other people hit the floras, or
+	  preventing more than one type of flora being summoned at a time. [Skotlex]
+2006/10/20
+	* Added &16 to the default emergency_call (skill.conf) setting. This means
+	  that Emergency Call fails in "no warp to" maps (mainly, maps like Lhz3)
+	  [Skotlex]
+	* Merged the commented out monster_noteleport mapflags for the GvG castles,
+	  in case someone wants to disable MVPs warping around when rude-attacked in
+	  said maps, just uncomment their mapflags in mapflags/gvg.txt [Skotlex]
+2006/10/11
+	* Removed useless inter_athena settings (they were doing absolutely
+	  nothing): read_gm_interval, gm_db, gm_db_level, gm_db_account_id,
+	  use_new_sql_db [Skotlex]
+	* Renamed delay_dependon_dex to delay_dependon_agi, made agi now reduce
+	  aftercast delay instead of dex if so specified (skill.conf) [Skotlex]
+	* Added the config setting sg_angel_skill_ratio (skill.conf) [Skotlex]
+	* status_cast_cancel is now a type 4 setting instead of yes/no
+	  (status.conf) [Skotlex]
+	* Removed gm_all_skill_add_abra as it does nothing (gm.conf) [Skotlex]
+2006/09/28
+	* Removed config setting sg_miracle_skill_duration, replaced it with
+	  sg_miracle_skill_min_duration and sg_miracle_skill_max_duration
+	  (skill.conf) [Skotlex]
+	* Merged monster_ai&256 (pick random starting position when using skills),
+	  since now mobs by default will always check their skill list from the
+	  beginning. [Skotlex]
+2006/09/25
+	* Removed the whole "alert hack on global message" thing, thus
+	  ban_spoof_namer is no more. [Skotlex]
+	* Also removed config setting allow_atcommand_when_mute as it's no longer
+	  used (see manner_system in misc.conf for it's replacement) [Skotlex]
+2006/09/14
+	* Merged the change of show_mob_hp to show_mob_info. Now you can choose to
+	  display a mob's Lv, and/or HP (Hp has two different display formats as
+	  well, see battle/monster.conf for details) [Skotlex]
+2006/09/11
+	* Corrected name of config settings pc_luk_status_def, mob_luk_status_def
+	  (status.conf) [Skotlex]
+	* Changed the default of enable_baseatk to 9 (player + homun) [Skotlex]
+	* Changed the default of enable_perfect_flee to 1 (players only) [Skotlex]
+2006/09/09
+	* Removed noteleport flags from Geffenia maps [Playtester]
+2006/09/07
+	* Changed gvg_short_attack_damage_rate to 80, as leaked X.2 [Vicious]
+2006/09/01
+	* Merged config setting 'partial_name_scan' (gm.conf). When set to yes
+	  (default = no), you can use @ commands which require a player, and it will
+	  do a partial name match, when set to no, input name must match exactly
+	  [Skotlex]
+	* Merged config setting 'attack_walk_delay' (battle.conf). Defaults to 0.
+	  When set, it makes it so a character cannot move inmediately after
+	  attacking, on Aegis the default is 0, but this leads to sprite desyncs
+	  pretty easily; see conf file for more info. [Skotlex]
+2006/08/31
+	* Merged config setting clear_skills_on_warp (skill.conf), specifies
+	  whether ground-skills should be removed when the caster warps to another
+	  map (defaults to all) [Skotlex]
+	* Made the default for clear_skills_on_death 0. [Skotlex]
+	* Removed trap_settings&2 as it's no longer required [Skotlex]
+	* Corrected battle config name max_walk_rate, it should be named
+	  max_walk_speed. [Skotlex]
+2006/08/28
+	* Merged atcommands @jailfor, @jailtime, @charjailtime (atcommand_conf)
+	  [Skotlex]
+	* New manner/muting system. Where muting is always allowed, but
+	  you use manner_system to specify what does being muted blocks (misc.conf)
+	  [Skotlex]
+	* Removed setting muting_players as it's always enabled now. [Skotlex]
+	* pk_mode setting update so you can enable/disable the manner penalty when
+	  killing other players (misc.conf) [Skotlex]
+	* Added config setting "duel_only_on_same_map" (misc.conf) [Skotlex]
+2006/08/24
+	* Merged command @charspeed [Skotlex]
+	* Merged the expanded use of the enable_logs setting. [Skotlex]
+	- enable_logs is not a 0/1 setting now, but it can be used to specify which
+	  types of events are to be logged. logpick has been removed, or more
+	  specifically, it has been renamed to log_filter. Using both together you
+	  can get more specific rules of which stuff to log (log_athena.conf)
+2006/08/23
+	* Made the default for sql ping interval 7 hours rather than disabled.
+	  (inter_athena) [Skotlex]
+2006/08/22
+	* Removed useless atcommands @itemcheck and @rain [Skotlex]
+	* Merged config setting minsave_interval which specifies minimum time
+	  between saves, useful to prevent hammering the char-server with character
+	  saves on high population maps. Defaults to 100ms (map_athena.txt) [Skotlex]
+2006/08/17
+	* Merged the force_random_spawn battle option (monster.conf) [Skotlex]
+	* Merged the updated config option for emergency_call (skill.conf)
+	  [Skotlex]
+2006/08/14
+	* Merged attack_attr_none now applying only to neutral-type attacks,
+	  removed setting mob_ghostring_fix as it's no longer needed (battle.conf)
+	  [Skotlex]
+	* Removed settings display_delay_skill_fail and
+	  display_snatcher_skill_fail, replaced them by display_skill_fail
+	  (skill.conf) [Skotlex]
+2006/08/11
+	* Merged maps_athena.conf from TRUNK [Lupus]
+2006/08/08
+	* Removed setting enemy_critical_rate, added settings enable_critical
+	  (defaults to players only), mob_critical_rate and critical_rate
+	  (battle/battle.conf) [Skotlex]
+	* Removed settings mob_warpportal and mob_npc_warp, replaced with mob_warp
+	  (battle/monster.conf) [Skotlex]
+	* Corrected skill.conf having the old skill_limit config instead of the
+	  current ones. [Skotlex]
+2006/08/07
+	* Merged updated debuff_on_logout setting which enables you to determine
+	  whether negative/positive/both status changes get cleared on logout.
+	  [Skotlex]
+2006/07/28
+	* Battle config settings: Removed enemy_str/enemy_perfect_flee, added
+	  enable_baseatk, enable_perfect_flee (battle.conf)
+2006/07/28
+	* Merged config setting party_hp_mode so you can specify how party-hp bars
+	  are updated. Defaults to Aegis style (instant update) [Skotlex]
+	* Merged config setting party_update_interval which determine rate at which
+	  mini-dots are updated. (defaults to 1sec)
+	* Merged config setting update to party_share_type so you can use it to
+	  specify that party share loot should only trigger on mob drops. [Skotlex]
+2006/07/26
+	* Merged battle config settings agi_penalty_target/vit_penalty_target
+	  (battle.conf) [Skotlex]
+	* Merged use_weapon_skill_range change to type 4 setting. Default is
+	  non-players. [Skotlex]

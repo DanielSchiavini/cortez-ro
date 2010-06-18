@@ -1,0 +1,60 @@
+
+lighthalzen,222,190,4	script	Pamella Bebê	716,{
+	//if(getgmlevel()<60) end;
+	mes "^336699[ Pamella Bebê ]^333333";
+	mes "Waaaaaa, que bom que você chegou!";
+	mes "Meus pais vieram procurar uma chupeta de bebê para mim nesta cidade e acabamos nos perdendo.";
+	next;
+	mes "^336699[ Pamella Bebê ]^333333";
+	mes "E agora, por quanto tempo ficarei nesta cidade?";
+	mes "Será que ao me encontrarem ainda estarei pequenininha?";
+	next;
+	mes "^336699[ Pamella Bebê ]^333333";
+	if(Class==Job_Novice){
+		mes "Enquanto eles não me encontram, traga alguns presentes para eu me destrair, ou então eu farei pirraça:";
+		mes "Waaaaaa! Mamãaaae, Papaaaiii!";
+		npctalk "Waaaaaa! Mamãaaae, Papaaaiii !";
+		next;
+		switch(select("Não vou lhe dar nada !:Vou buscar os itens !:Pegue seus presentes !")){
+			case 2:
+				mes "^336699[ Pamella Bebê ]^333333";
+				mes "Os itens que eu quero são:";
+				mes "10x Chupeta";
+				mes "8x Leite";
+				mes "5x Baby Bottle";
+				mes "3x Baby Bib";
+				mes "Vá rápido! Não me deixe ficar de cabelos brancos como aquele senhor ali em baixo!";
+				break;
+			case 3:
+				mes "^336699[ Pamella Bebê ]^333333";
+				if(countitem(10004)>=10 && countitem(519)>=8 && countitem(7270)>=5 && countitem(7269)>=3){
+					mes "Oba ! Que bom que vc trouxe rápido.";
+					mes "Como agradecimento vou lhe deixar tão pequenininho quanto eu !";
+					mes "Você vai se tornar um bebê como eu... =)";
+					if(select("Ok...:Não quero!")==1){
+						delitem 10004,10;
+						delitem 519,8;
+						delitem 7270,5;
+						delitem 7269,3;
+						resetskill;
+						set JobLevel,1;
+						set SkillPoint,0;
+						jobchange Job_Baby;
+					}
+				}else{
+					mes "Epaaa! Calma ai, grandão! Sou pequena, mas sou bem esperta.";
+					mes "Porque você não trouxe tudo que eu lhe pedi? Vá buscar logo!";
+				}
+				break;
+			default:
+				mes "^336699[ Pamella Bebê ]^333333";
+				mes "Então escute minha pirraça, grandão: Yaaaaaaaaa, Uoooooow, Babababa, Mamãaaaaaae!";
+				npctalk "Yaaaaaaaaa, Uoooooow, Babababa, Mamãaaaaaae !";
+		}
+	}else{
+		mes "Enquanto eles não me encontram, traga algum aprendiz para eu me destrair, ou então eu farei pirraça:";
+		mes "Waaaaaa! Mamãaaae, Papaaaiii!";
+		npctalk "Waaaaaa ! Mamãaaae, Papaaaiii !";
+	}
+	close;
+}

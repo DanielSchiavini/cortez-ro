@@ -1,0 +1,203 @@
+/////////////////////////////////////////////////////////////////////////////////////////////
+//	Criado por Chernevinho
+//	Quest alternativa para a skill Bioética, caso for usar certifique-se que 
+//	os npcs da outra quest não estão ativados
+//-------------------------------------------------------------------------------------------
+//--------- Versões -------------------------------------------------------------------------
+//	Chernevinho		Versão 1.0, em fases de teste
+//	Baltazar		Versão 1.1, uma série de erros corrigidos
+//	Baltazar		Versão 1.2, quase todos os labels removidos, comentários adicionados
+//-------------------------------------------------------------------------------------------
+
+lhz_in01,35,225,4	script	Instrutor de Bioética	750,{
+	if(getskilllv(238)==1){
+		mes "[^666699Instrutor de Bioética^000000]";
+		mes "É sempre bom rever um velho aluno...";
+		close;
+	}
+	if(Class!=Job_Creator && Class!=Job_Alchem && Class!=Job_Baby_Alchem){
+		mes "[^666699Instrutor de Bioética^000000]";
+		mes "Desculpe, mas estou aqui para ensinar Bioética apenas para os alquimistas e criadores.";
+		close;
+	}
+	
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Olá, eu sou o Instrutor de Bioética.";
+	mes "Vejo que você é um alquimista, gostaria de aprender a habilidade Bioética?";
+	next;
+	menu "Sim",-, "Não",L_Fim;
+	
+	//Falando as condições
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Eu farei um total de 15 perguntas diversificadas sobre os homunculus";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Caso você erre, perderá todo o seu progresso e terá que recomeçar, então pense bem antes de responder!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Você está pronto?";
+	next;
+	menu "Sim",-, "Não",L_Fim;
+	
+	//Pergunta 1:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Ok, vamos lá!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 1: Quantos itens são necessários para fazer um embrião, tirando a vasilha de mistura e o manual?";
+	next;
+	menu "1",L_Errou,"3",-, "5",L_Errou;
+
+	//Pergunta 2:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 2!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 2: Qual é o manual necessário para se criar um embrião?";
+	next;
+	menu "Manual de Criação Vol.1",-, "Manual de Criação Vol.4",L_Errou,"Manual de Criação Vol.8",L_Errou;
+
+	//Pergunta 3:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 3!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 3: Quantos tipos de homunculus existem?";
+	next;
+	menu "1 tipo",L_Errou,"3 tipos",L_Errou,"4 tipos",-;
+
+	//Pergunta 4:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 4!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 4: Qual o item necessário para fazer o homunculu passar da sua fase inicial para a fase desenvolvida?";
+	next;
+	menu "Pedra do Sábio",-,"Pedra da Lua",L_Errou,"Pedra Dura",L_Errou,"Sangue Escarlate",L_Errou;
+
+	//Pergunta 5:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 5!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 5: Qual é o alimento do homunculu Amistr?";
+	next;
+	menu "Zargônio",-, "Galerta",L_Errou,"Scell",L_Errou;
+
+	//Pergunta 6:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 6!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 6: Qual é o alimento do humunculu Filir?";
+	next;
+	menu "Ração para bixinho",L_Errou,"Garleta",-, "Scell",L_Errou;
+
+	//Pergunta 7:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 7!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 7: Qual é o alimento do homunculu Lif?";
+	next;
+	menu "Zargônio",L_Errou,"Scell",L_Errou,"Ração para bixinho",-;
+
+	//Pergunta 8:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 8!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 8: Qual é o alimento do homunculu Vanilmirth?";
+	next;
+	menu "Scell",-, "Zargônio",L_Errou,"Garleta",L_Errou;
+
+	//Pergunta 9:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 9!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 9: Para a habilidade 'Cura Pelas Mãos' de Lif funcionar, qual item é gasto?";
+	next;
+	menu "Nenhum",L_Errou,"Poção Branca",L_Errou,"Poção Vermelha Compacta",-;
+
+	//Pergunta 10:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 10!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 10: De quantos em quantos níveis o homunculu ganha um ponto de habilidade?";
+	next;
+	menu "1",L_Errou,"3",-, "5",L_Errou;
+
+	//Pergunta 11:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 11!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 11: É possível ter mais de um homunculu?";
+	next;
+	menu "Sim",L_Errou,"Não",-;
+
+	//Pergunta 12:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 12!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 12: A única skill que cura um homunculu é:";
+	next;
+	menu "Curar",L_Errou,"Arremessar Poção",-, "Arremessar Poção Compacta",L_Errou;
+
+	//Pergunta 13:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 13!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 13: Homunculus podem receber buffs, como benção, agi up e etc?";
+	next;
+	menu "Sim",L_Errou,"Não",-;
+
+	//Pergunta 14:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos para a pergunta número 14!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 14: Quantas habilidades por enquanto cada homunculu tem?";
+	next;
+	menu "2",L_Errou,"3",L_Errou,"4",-;
+
+	//Pergunta 15:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Certo, você respondeu corretamente, vamos agora para a última pergunta!!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pergunta 15: Quando é possível ter a quarta habilidade do homunculu?";
+	next;
+	menu "Desde sua forma inicial",L_Errou,"Na sua forma evoluída",-;
+
+	//Acertou todas:
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Meus parabéns, você respondeu todas as perguntas corretamente!!";
+	mes "Agora você já está pronto para ter o seu homunculu!";
+	skill 238, 1, 0;
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Pronto, agora você já tem a habilidade Bioética!";
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Cuide bem do seu homunculu, ele é o melhor amigo de um criador!";
+	close;
+	
+	
+	//Mensagens de Erro
+	L_Errou:
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Desculpe, mas você respondeu errado.";
+	close;
+	
+	L_Fim:
+	next;
+	mes "[^666699Instrutor de Bioética^000000]";
+	mes "Ok, volte quando você estiver preparado.";
+	close;
+}

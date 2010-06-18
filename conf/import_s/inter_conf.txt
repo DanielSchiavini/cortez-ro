@@ -1,0 +1,14 @@
+char_server_db: ros
+char_server_id: cortez
+char_server_pw: ph9dr7vadRatStus9AmuXeJe
+char_server_port: 1306
+
+map_server_db: ros
+map_server_id: cortez
+map_server_pw: ph9dr7vadRatStus9AmuXeJe
+map_server_port: 1306
+
+log_db: logs
+log_db_id: cortez
+log_db_pw: ph9dr7vadRatStus9AmuXeJe
+log_db_port: 1306

@@ -1,0 +1,111 @@
+//new_zone01,65,123,5	script	Garota Carnaval	845,{
+//	if(getgmlevel()<10) close;
+gonryun,160,116,5	script	Garota Carnaval	845,{
+	if(gettime(8)>60) { //até 1 de março de 2009
+		disablenpc "Garota Carnaval";
+		debugmes "Garota Carnaval precisa ser retirada do jogo!";
+		end;
+	}
+	mes "[Garota Carnaval]";
+	mes "Olá "+strcharinfo(0)+"!";
+	mes "O que acha de fazer uma missão de carnaval?";
+	mes "Para ficar no estilo do Carnaval CortezRO!";
+	next;
+	if(select("Nah, não interessa:Parece legal!")==1) goto L_Cancelar;
+	
+	mes "[Garota Carnaval]";
+	mes "Minha indicação especial para você, "+strcharinfo(0)+", é de usar a...";
+	switch(BaseClass){
+		case Job_Taekwon: //str
+		case Job_Merchant:
+		case Job_Thief:
+			mes "^0000FFPeruca Carnavalesca Brilhante!^000000";
+			break;
+		
+		case Job_Swordman: //vit
+		case Job_SuperNovice:
+		case Job_Novice:
+		case Job_Acolyte:
+			mes "^0000FFPeruca Carnavalesca Fantástica!^000000";
+			break;
+		
+		case Job_Ninja: //int
+		case Job_Mage:
+			mes "^0000FFPeruca Carnavalesca Chamativa!^000000";
+			break;
+		
+		case Job_Archer: //dex
+		case Job_Gunslinger:
+			mes "^0000FFPeruca Carnavalesca Feliz!^000000";
+			break;
+		
+		default:
+			mes "^0000FFPeruca Carnavalesca^000000 que achar mais bonita!";
+	}
+	next;
+	
+	switch(select("Peruca Brilhante:Peruca Chamativa:Peruca Fantástica:Peruca Feliz:Não, obrigado")){
+		case 1:
+			mes "[Garota Carnaval]";
+			mes "Para a missão da ^0000FFPeruca Carnavalesca Brilhante ^000000 você vai precisar de^0000FF 100^000000 Cascas Brilhantes.";
+			mes "Vai querer fazer a missão?";
+			if(select("Não, obrigado:Sim, por favor")==1) goto L_Cancelar;
+			if(countitem(7009) < 100) goto L_SemItem;
+			delitem 7009,100;
+			getitem 5274,1;
+			break;
+		case 2:
+			mes "[Garota Carnaval]";
+			mes "Para a missão da ^0000FFPeruca Carnavalesca Chamativa ^000000 você vái precisar de^0000FF 100^000000 Jellopy.";
+			mes "Vai querer fazer a missão?";
+			if(select("Não, obrigado:Sim, por favor")==1) goto L_Cancelar;
+			if(countitem(909) < 100) goto L_SemItem;
+			delitem 909,100;
+			getitem 5275,1;
+			break;
+		case 3:
+			mes "[Garota Carnaval]";
+			mes "Para a missão da ^0000FFPeruca Carnavalesca Fantástica ^000000 você vái precisar de^0000FF 100^000000 Peles de Anolian.";
+			mes "Vai querer fazer a missão?";
+			if(select("Não, obrigado:Sim, por favor")==1) goto L_Cancelar;
+			if(countitem(7003) < 100) goto L_SemItem;
+			delitem 7003,100;
+			getitem 5276,1;
+			break;
+		case 4:
+			mes "[Garota Carnaval]";
+			mes "Para a missão da ^0000FFPeruca Carnavalesca Feliz^000000 você vái precisar de^0000FF 100^000000 Felpas.";
+			mes "Vai querer fazer a missão?";
+			if(select("Não, obrigado:Sim, por favor")==1) goto L_Cancelar;
+			if(countitem(914) < 100) goto L_SemItem;
+			delitem 914,100;
+			getitem 5273,1;
+			break;
+		default:
+			goto L_Cancelar;
+	}
+	next;
+	mes "[Garota Carnaval]";
+	mes "Parabens! Você completou a missão!";
+	mes "Volte aqui sempre que quiser fazer outra!";
+	close;
+	
+	L_SemItem:
+		mes "[Garota Carnaval]";
+		mes "Desculpe, mas voce não tem os itens necessários para a missão.";
+		mes "Junte todos eles e volte aqui para pegar o seu prêmio.";
+		mes "Boa sorte!";
+		close;
+	
+	L_Cancelar:
+		mes "[Garota Carnaval]";
+		mes "Ok... volte aqui quando precisar dos meus serviços...";
+		close;
+	
+	OnInit:
+		if(gettime(8)>60){ //até 1 de março de 2009
+			disablenpc "Garota Carnaval";
+			debugmes "Garota Carnaval precisa ser retirada do jogo!";
+		}
+		end;
+}

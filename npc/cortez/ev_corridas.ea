@@ -1,0 +1,116 @@
+
+new_zone01,50,133,4	script	Corrida	70,1,1,{
+	if(getgmlevel()<10) end;
+	mes "[Corrida]";
+	mes "Me mande uma PM!";
+	close2;
+	dispbottom "Envie uma mensagem pessoal para 'npc:Corrida'";
+	end;
+	
+	OnWhisperGlobal:
+	if(getgmlevel()<10) end;
+	mes "[Corrida]";
+	mes "Oi..!";
+	mes "Deseja cuidar de qual portal?";
+	switch(select("Nenhum:GH:alde_tt02")){
+		case 2:
+			mes "Portal: Escada de GH";
+			switch(select("Cancelar:Ativar:Desativar:Ir para o local")){
+				case 2:
+					mes "Não esqueça de desativar depois!";
+					close2;
+					enablenpc "corridagh";
+					break;
+				case 3:
+					mes "Ok.. Farei o que você pediu!";
+					close2;
+					disablenpc "corridagh";
+					break;
+				case 4:
+					mes "Ok, estou te teleportando..!";
+					close2;
+					warp "glast_01",54,108;
+					break;
+				default:
+					mes "Sem problemas, até a próxima!";
+			}
+			break;
+		case 3:
+			mes "Portal: alde_tt02";
+			switch(select("Cancelar:Ativar:Desativar:Ir para o local")){
+				case 2:
+					mes "Não esqueça de desativar depois!";
+					close2;
+					enablenpc "corrida_alde";
+					break;
+				case 3:
+					mes "Ok.. Farei o que você pediu!";
+					close2;
+					disablenpc "corrida_alde";
+					break;
+				case 4:
+					mes "Ok, estou te teleportando..!";
+					close2;
+					warp "schg_cas03",48,48;
+					break;
+				default:
+					mes "Sem problemas, até a próxima!";
+			}
+			break;
+	}
+	close;
+	OnInit:
+		disablenpc "corrida_alde";
+		disablenpc "corridagh";
+}
+
+//Labirinto de Aldebaran
+alde_tt02	mapflag	restricted	1
+alde_tt02	mapflag	nocommand	50
+alde_tt02	mapflag	nowarp
+alde_tt02	mapflag	noicewall
+alde_tt02	mapflag	noteleport
+alde_tt02	mapflag	nomemo
+alde_tt02	mapflag	nosave	alde_tt02,24,186
+
+schg_cas03,55,38,4	script	corrida_alde	45,1,1,{
+	callfunc("tirabuff_corrida");
+	warp "alde_tt02",24,186;
+	end;
+}
+
+//GH Staircase
+gl_step	mapflag	restricted	1
+gl_step	mapflag	nocommand	50
+gl_step	mapflag	nowarp
+gl_step	mapflag	noicewall
+gl_step	mapflag	noteleport
+gl_step	mapflag	nomemo
+gl_step	mapflag	nosave	glast_01,54,108
+
+glast_01,51,108,4	script	corridagh	45,1,1,{
+	callfunc("tirabuff_corrida");
+	warp "gl_step",12,7;
+	end;
+}
+gl_step,120,124,0	script	ev_corridagh1	45,1,1,{
+	warp "SavePoint",0,0;
+}
+gl_step,8,7,0	warp	ev_corridagh2	1,1,glast_01,54,108
+
+// Função
+function	script	tirabuff_corrida	{
+	setcart 0;
+	setriding 0;
+	sc_end SC_INCREASEAGI;
+	sc_end SC_INCAGI;
+	sc_end SC_DECREASEAGI;
+	sc_end SC_BERSERK;
+	sc_end SC_WINDWALK;
+	sc_end SC_CARTBOOST;
+	sc_end SG_FUSION;
+	sc_end SC_SPIRIT;
+	sc_end SC_SKA;
+	sc_end SC_AVOID;
+	return;
+}

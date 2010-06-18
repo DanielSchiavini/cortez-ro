@@ -1,0 +1,265 @@
+force_2-1	mapflag	noicewall
+force_2-1	mapflag	noteleport
+force_2-1	mapflag	nomemo
+force_2-1	mapflag	nopenalty
+force_2-1	mapflag	nosave	SavePoint
+force_2-1	mapflag	restricted	4
+
+gonryun,159,116,4	script	Invasão no Mini Boss	871,{
+	if($eventomb==0){
+		disablenpc "Invasão no Mini Boss";
+		set $eventomb,0;
+		close;
+	}
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "Olá, hoje estamos tendo um evento!";
+	next;
+	menu "Saber Mais",-,"Ir para o mapa",L_Evento,"Sair",L_Fim;
+	
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "Funciona assim, temos 1 hora para matar todos os monstros num certo mapa que foi invadido";
+	next;
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "Se conseguirmos, todos do servidor irão ganhar drops de MVPs maiores por um tempo";
+	next;
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "Acontece que será necessário a união de todos para vencer as dificuldades";
+	next;
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "E só teremos uma hora, e uma chance: Das 21h às 22h.";
+	next;
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "Quem não gostaria de drops maiores?";
+	next;
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "Então chame TODOS! Vamos juntos lutar para defender nosso CortezRO Family!";
+	next;
+	menu "Ir para o mapa",-,"Não quero ajudar",L_Fim;
+	
+	L_Evento:
+	warp "force_2-1",100,100;
+	close;
+	
+	L_Fim:
+	mes "[^336699 Eventos CortezRO ^333333]";
+	mes "Boa sorte então...";
+	close;
+}
+
+//force_2-1,100,100,4	script	Evento Mini Boss	110,{
+//new_zone01,49,121,4	script	Evento Mini Boss	110,{
+force_2-1,106,126,4	script	Evento Mini Boss	111,{
+	if(getgmlevel()<59) close;
+	if(getgmlevel()<90){
+		mes "[Evento Mini Boss]";
+		mes "Oi gm, o que devo fazer?";
+		next;
+		menu "Nada",-,"Ativar Evento",L_Iniciar,"Anunciar Evento",L_AnunciaEvento,"Cancelar/Finalizar",L_FimEvento;
+		close;
+	}
+	mes "[Evento Mini Boss]";
+	mes "Olá admin, que devo fazer?";
+	next;
+	menu "Nada",-,"Ativar Evento",L_Iniciar,"Anunciar",L_AnunciaEvento,"Antecipar Evento",L_CriaMobs,"Finalizar",L_FimEvento,"Morreu um monstro",L_MonstroMorreu;
+	close;
+	end;
+	
+	L_Iniciar:
+		mes "[Evento Mini Boss]";
+		if(gettime(3)>20 && gettime(3)<22 && $eventomb==0){
+			mes "Tarde demais para iniciar o evento! Tente depois das 22h!";
+		}else{
+			if($eventomb){
+				mes "Evento já iniciado";
+			}else{
+				mes "Iniciando evento";
+				logmes "[Evento MiniBoss] Agendado para às 21h";
+			}
+			if(gettime(3)<21)
+				announce "[Evento] Haverá um evento hoje, às 21h! Todos precisam vir!",0;
+			else
+				announce "[Evento] Haverá um evento amanhã, às 21h! Todos precisam vir!",0;
+			set $eventomb,1;
+		}
+		close;
+		end;
+	
+	OnInit:
+		disablenpc "Invasão no Mini Boss";
+		set $eventomb,0;
+		end;
+	
+	L_AnunciaEvento: close2;
+	OnClock1230:
+	OnClock1530:
+	OnClock1830:
+	OnClock1950:
+	OnClock2050:
+		if($eventomb==0) end;
+		announce "[Evento] Olá galera, que tal um evento hoje?!?",0;
+		sleep 5000;
+		announce "[Evento] Às 21h de hoje teremos uma grande invasão",0;
+		sleep 5000;
+		announce "[Evento] Será um evento que precisará da união de todos os jogadores do servidor",0;
+		sleep 5000;
+		announce "[Evento] Venha fazer parte do evento conosco!",0;
+		end;
+	
+	L_CriaMobs: close2;
+	OnClock2059:
+		if($eventomb==0) end;
+		killmonsterall "force_2-1";
+		
+		announce "[Evento] Olá para todos, o evento de invasão começa agora",0;
+		sleep 5000;
+		announce "[Evento] Funciona assim, temos 1h para matar todos os MVPs no mapa que foi invadido",0;
+		sleep 5000;
+		announce "[Evento] Se conseguirmos, todos do servidor irão ganhar drops de MVPs maiores por um tempo",0;
+		sleep 5000;
+		announce "[Evento] Acontece que será necessário a união de todos para vencer as dificuldades",0;
+		sleep 5000;
+		announce "[Evento] E só teremos uma hora, e uma chance",0;
+		sleep 5000;
+		announce "[Evento] Se até as 22h não conseguirmos, só na próxima oportunidade!",0;
+		sleep 5000;
+		announce "[Evento] Quem não gostaria de drops maiores nos MVPs?",0;
+		sleep 5000;
+		announce "[Evento] Então chame TODOS! Vamos juntos lutar para defender nosso CortezRO Family!",0;
+		sleep 5000;
+		announce "[Evento] Para ir para o evento, procure-me no centro da cidade!",0;
+		
+		monster "force_2-1",100, 84,"Detale",1719,1,"Evento Mini Boss::OnMobDead";	//Centro
+		
+		monster "force_2-1",134, 25,"Phreeoni",1159,1,"Evento Mini Boss::OnMobDead";	//Sul (direita)
+		monster "force_2-1", 67, 25,"Bacsojin", 1518,1,"Evento Mini Boss::OnMobDead";	//Sul (esquerda)
+		
+		monster "force_2-1",190, 10,"Kiel D-01",1734,1,"Evento Mini Boss::OnMobDead";	//Sudeste
+		monster "force_2-1", 10, 10,"Stormy Knight",1251,1,"Evento Mini Boss::OnMobDead";	//Sudoeste
+		
+		monster "force_2-1",174, 78,"Garm",1252,1,"Evento Mini Boss::OnMobDead";	//Leste (baixo)
+		monster "force_2-1", 25, 78,"Vesper",1685,1,"Evento Mini Boss::OnMobDead";	//Oeste (baixo)
+		
+		monster "force_2-1",174,131,"Baphomet",1039,1,"Evento Mini Boss::OnMobDead";	//Leste (cima)
+		monster "force_2-1", 25,131,"RSX-0806",1623,1,"Evento Mini Boss::OnMobDead";	//Oeste (cima)
+		
+		monster "force_2-1",190,190,"T.Roz",2106,1,"Evento Mini Boss::OnMobDead";	//Nordeste
+		monster "force_2-1", 10,190,"Meteoro",2102,1,"Evento Mini Boss::OnMobDead";	//Noroeste
+		
+		monster "force_2-1",123,174,"Lord Of Death",1373,1,"Evento Mini Boss::OnMobDead";	//Norte (Direita)
+		monster "force_2-1", 76,174,"Valkyrie Randgris",1751,1,"Evento Mini Boss::OnMobDead";	//Norte (Esquerda)
+		
+		enablenpc "Invasão no Mini Boss";
+		end;
+	
+	L_FimEvento:
+		if(gettime(3)<21){
+			mes "O evento ainda não começou..!";
+			mes "Irei cancelar o futuro evento...";
+			announce "[Evento] O evento foi cancelado!",0;
+			set $eventomb,1;
+			logmes "[Evento MiniBoss] Cancelado!";
+		}else{
+			mes "O evento já começou..!";
+			mes "Agora irei ter que terminar...";
+		}
+		close2;
+	L_AcabouEvento:
+	OnClock2159:
+		if($eventomb==0) end;
+		disablenpc "Invasão no Mini Boss";
+		set $@eventoMobs, mobcount("force_2-1","Evento Mini Boss::OnMobDead")-1;
+		
+		set $eventomb,0;
+		set $eventomb_ganhou$,"";
+		if($@eventoMobs>0){
+			announce "[Evento] Perdemos o evento.. Faltaram "+$@eventoMobs+" MVPs!",0;
+			killmonsterall "force_2-1";
+			sleep 5000;
+			announce "[Evento] Vamos deixar pra próxima =[",0;
+			logmes "[Evento MiniBoss] Perdido!";
+		}else{
+			announce "[Evento] Ganhamos o evento em "+gettime(2)+" minutos!",0;
+			killmonsterall "force_2-1";
+			sleep 5000;
+			announce "[Evento] Parabéns à todos que ajudaram!",0;
+			sleep 5000;
+			announce "[Evento] A partir de AGORA, os MVPs irão deixar cair itens mais facilmente!",0;
+			setbattleflag("item_rate_common_boss",(getbattleflag("item_rate_common_boss")*3)/2);
+			setbattleflag("item_rate_heal_boss",(getbattleflag("item_rate_heal_boss")*3)/2);
+			setbattleflag("item_rate_use_boss",(getbattleflag("item_rate_use_boss")*3)/2);
+			setbattleflag("item_rate_equip_boss",(getbattleflag("item_rate_equip_boss")*3)/2);
+			setbattleflag("item_rate_card_boss",(getbattleflag("item_rate_card_boss")*3)/2);
+			//set $eventomb_ganhou$,gettimestr("%Y-%m-%d %H:%M:%S",21);
+			logmes "[Evento MiniBoss] Vencido / Rates Aumentadas!";
+		}
+		
+		sleep 5000;
+		mapwarp "force_2-1","force_1-1",0,0;
+		sleep 5000;
+		mapannounce "force_1-1","A paz foi restaurada em rune-midgard",bc_blue;
+		end;
+	
+	L_MonstroMorreu: close2;
+	OnMobDead:
+	OnMyMobDead:
+		set $@eventoMobs, mobcount("force_2-1","Evento Mini Boss::OnMobDead")-1;
+		if($@eventoMobs>0){
+			if($@eventoMobs==1){
+				announce "[Evento] Um MVP foi morto!!! Falta um único MVP! Temos ainda "+(60-gettime(2))+"min para conseguir matá-lo!",0;
+			}else{
+				announce "[Evento] Um MVP foi morto!!! Faltam "+$@eventoMobs+" MVPs, e temos "+(60-gettime(2))+"min para matá-los!",0;
+			}
+			set @vezes, 15;
+			while(@vezes>0){
+				specialeffect2 234;
+				set @vezes,@vezes-1;
+				sleep2 1000;
+			}
+		}else{
+			specialeffect2 234;
+			goto L_AcabouEvento;
+		}
+		end;
+}
+
+force_2-1,25,44,0	warp	fc401	1,1,force_2-1,25,69
+force_2-1,25,65,0	warp	fc401-1	1,1,force_2-1,25,40
+force_2-1,25,134,0	warp	fc402	1,1,force_2-1,25,159
+force_2-1,25,155,0	warp	fc402-1	1,1,force_2-1,25,130
+force_2-1,44,26,0	warp	fc403	1,1,force_2-1,66,26
+force_2-1,62,26,0	warp	fc403-1	1,1,force_2-1,40,26
+force_2-1,44,174,0	warp	fc404	1,1,force_2-1,69,174
+force_2-1,65,174,0	warp	fc404-1	1,1,force_2-1,40,174
+force_2-1,99,54,0	warp	fc405	1,1,force_2-1,96,82
+force_2-1,100,81,0	warp	fc405-1	1,1,force_2-1,99,51
+force_2-1,134,174,0	warp	fc406	1,1,force_2-1,159,174
+force_2-1,155,174,0	warp	fc406-1	1,1,force_2-1,130,174
+force_2-1,137,26,0	warp	fc407	1,1,force_2-1,159,26
+force_2-1,155,26,0	warp	fc407-1	1,1,force_2-1,132,26
+force_2-1,174,44,0	warp	fc408	1,1,force_2-1,174,69
+force_2-1,174,65,0	warp	fc408-1	1,1,force_2-1,174,40
+force_2-1,174,134,0	warp	fc409	1,1,force_2-1,174,159
+force_2-1,174,155,0	warp	fc409-1	1,1,force_2-1,174,130
+
+
+// Mobs //
+force_2-1,0,0,0,0	monster	Seyren Windsor	1634,5,5000,5000,0
+force_2-1,0,0,0,0	monster	Eremes Guile	1635,5,5000,5000,0
+force_2-1,0,0,0,0	monster	Howard Alt-Eisen	1636,5,5000,5000,0
+force_2-1,0,0,0,0	monster	Margaretha Solin	1637,5,5000,5000,0
+force_2-1,0,0,0,0	monster	Cecil Damon	1638,5,5000,5000,0
+force_2-1,0,0,0,0	monster	Kathryne Keyron	1639,5,5000,5000,0
+
+// Mobs especiais
+force_2-1,0,0,0,0	monster	Wander Man	1490,50,5000,5000,2
+force_2-1,0,0,0,0	monster	Joker	1437,50,5000,5000,2
+force_2-1,0,0,0,0	monster	Raydric	1467,50,5000,5000,4
+force_2-1,0,0,0,0	monster	Raydric Archer	1453,75,5000,5000,4
+
+// Mobs normais
+force_2-1,0,0,0,0	monster	Maya Purple	1289,3,60000,60000,0
+
+force_2-1,0,0,0,0	monster	Giant Hornet	1303,5,5000,5000,4
+force_2-1,0,0,0,0	monster	Alma Penada	1291,5,5000,5000,4
+force_2-1,0,0,0,0	monster	General Esqueleto	1290,5,5000,5000,4
+force_2-1,0,0,0,0	monster	Leib Olmai	1306,5,5000,5000,4

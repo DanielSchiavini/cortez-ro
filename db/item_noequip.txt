@@ -1,0 +1,213 @@
+// The equipment/items/cards restriction file here you define which items may not be used at PvP / GvG
+//
+// format: <item id>,<mode>
+// mode
+// 1- restricted in PVP
+// 2- restricted in GVG
+// 3- restricted in both PvP and GvG
+// Restricted zones - they're configured by 'restricted <number>' mapflag
+// 4   - restricted in zone 1 - Corridas
+// 8   - restricted in zone 2 - Jail / MVPs Humanos
+// 16  - restricted in zone 3 - Cidade
+// 32  - restricted in zone 4 - 
+// 64 -  restricted in zone 5 - Mapas de alguns MVPs
+// 128 - restricted in zone 6 - 
+// 256 - restricted in zone 7 - Itens avançados
+
+//Examples:
+//1201,1 you can't use KNIFE(ID 1201) on PvP and GvG
+//608,3 you can't use Yggdrasil Seed(ID 608) on both PvP & GvG & WoE Castles
+//4174,3 Forbid Deviling Card in every PVP or GVG map, and during woes.
+//501,4 you can't use Red Potion on map marked as 'restricted zone 1'
+//502,8 you can't use Orange Potion on map marked as 'restricted zone 2'
+//503,16 you can't use Yellow Potion on map marked as 'restricted zone 3'
+// you can even mix modes
+//519,41 (32+8+1) you can't use Milk on PVP, and maps marked as 'restricted zone 2' and 'restricted zone 4'
+
+//Zone 5 - Mapa dos MvPs Dr.Pimpolho / Sola / Baltazar / Yuufa / Brunim
+4045,64	//Horn
+4177,64	//Dryad
+4128,320	//Golden_Thief_Bug
+4174,320	//Deviling
+
+602,1	//Butterfly_Wing
+
+//Zone 1 - Aldebaran Turbo Track
+506,4 //Green Potion
+525,4 //Panacea
+601,4 //Fly Wing
+662,4 //Authoritative_Badge
+1261,4 //Infiltrator
+1363,4 //Bloody_Axe
+1372,4 //Right_Epsilon_C
+1373,4 //Brood_Axe_C
+//2410,4 //Sleipnir - item avançado
+2515,4 //Eagle_Wing
+//4131,4 //Moonlight_Flower - item avançado
+4161,4 //Grand_Peco
+4290,4 //Cat_O'_Nine_Tails
+4352,4 //B_Ygnizem
+5150,4 //Joker_Jester_
+5203,4 //Raspberry_Mask
+//5269,4 //Flying_Angel_
+5273,4 //Happy_Wig
+5274,4 //Shiny_Wig
+5275,4 //Marvelous_Wig
+5276,4 //Fantastic_Wig
+5286,4 //Pecopeco_Hairband
+12016,4 //Speed_Potion
+12028,4 //Box_of_Thunder
+16757,4	//Chocolate_Quente
+
+//Zone 2 - Jail / MVPs Humanos
+12212,8 //Giant Fly Wing 
+14582,8 
+14583,8 
+14584,8 
+14585,8 
+
+//Zona 3 + GVG
+9925,18 //Necromancer
+
+//Zona 3 (Cidade)
+9922,16 //Evil clone
+603,16	//obb
+616,16	//oca
+617,16	//ovb
+644,16	//gift box
+664,16	// ``
+665,16	// ``
+666,16	// ``
+667,16	// ``
+12023,16	//Wrapped Box
+12035,16	//Ball box 1
+12036,16	//Ball box 2
+12037,16	//Ball box 3
+12038,16	//Ball box 4
+12039,16	//Ball box 5
+12104,16	//Random Quiver
+12105,16	//Taming Item
+12106,16	//Jewel Box
+12107,16	//Wrapped Box
+12108,16	//Bundle of spells
+12110,16	//First Aid Box
+12111,16	//Wrapped Food
+12130,16	//Cookie Bag
+12136,16	//Women's Bundle
+12144,16	//
+12145,16	//
+12146,16	//
+12147,16	//
+12148,16	//
+12149,16	//
+12150,16	//
+12151,16	//
+9933,16		//
+16770,16	//Alligator_Card_Pack
+16771,16	//Dragon_Fly_Card_Pack
+16772,16	//Vocal_Card_Pack
+16773,16	//Tengu_Card_Pack
+16774,16	//Ancient_Mummy_Card_Pack
+16775,16	//Sea_Otter_Card_Pack
+16776,16	//Shoes_Card_Pack1
+16777,16	//Shoes_Card_Pack2
+16778,16	//Harpy_Combo_Card_Pack
+
+// Itens avançados - Zone 7
+4131,260	//Moonlight_Flower
+2410,260	//Sleipnir
+
+1530,256	//Mjolnir
+1565,256	//Death_Note
+2511,256	//Skeleton_Manteau
+2629,256	//Megingjard
+2630,256	//Brisingamen
+4047,256	//Ghostring
+4054,256	//Angeling
+4121,256	//Phreeoni
+4123,256	//Eddga
+4132,256	//Mistress
+4134,256	//Dracula
+4135,256	//Orc_Lord
+4137,256	//Drake
+4138,256	//Anubis
+4142,256	//Doppelganger
+4143,256	//Orc_Hero
+4144,256	//Osiris
+4145,256	//Berzebub
+4146,256	//Maya
+4147,256	//Baphomet
+4148,256	//Pharaoh
+4168,256	//Dark_Lord
+4198,256	//Maya Macho
+4236,256	//Amon_Ra
+4241,256	//Arc_Angeling
+4263,256	//Incantation_Samurai
+4276,256	//Lord_of_Death
+4302,256	//Tao_Gunka
+4305,256	//Turtle_General
+4318,256	//Stormy_Knight
+4324,256	//Garm
+4330,256	//Evil_Snake_Lord
+4342,256	//RSX_0806
+4357,256	//Lord_Knight
+4359,256	//Assassin Cross
+4361,256	//Whitesmith
+4363,256	//High Priest
+4365,256	//High Wizard
+4367,256	//Sniper
+4372,256	//Bacsojin
+4374,256	//Vesper
+4376,256	//Lady_Tanee
+4386,256	//Detale
+4399,256	//Thanatos
+4403,256	//Kiel
+4407,256	//Randgris
+4408,256	//Gloom_Under_Night
+4419,256	//Ktullanux
+4425,256	//Atroce
+4426,256	//Byorgue
+4427,256	//Sword Guardian
+4428,256	//Bow Guardian
+4430,256	//Ifrit
+4441,256	//Fallen_Bishop_Hibram
+5013,256	//Lord_Kaho`s_Horn
+5132,256	//Angeling_Hat
+5179,256	//Golden_Tiara
+16120,256	//Turok
+16121,256	//Yuri
+16122,256	//Meteoro
+16123,256	//T.Roz
+16124,256	//Baltazar
+16125,256	//Sola
+16126,256	//Yuufa
+16127,256	//Dr.Pimpolho
+16128,256	//Brunim
+16129,256	//Elfo
+16130,256	//Hermes
+16131,256	//Bola
+16132,256	//Gleen
+16134,256	//Taekwon
+16135,256	//Gladiador Estelar
+16136,256	//Espiritualista
+16137,256	//Spok
+16201,256	//Giant Khalitzburg
+16202,256	//Giant Deviling
+16501,256	//Asa de Deviling
+16502,256	//Asa do Ártico
+16503,256	//Asa de Borboleta
+16504,256	//Asa do Mestre
+16505,256	//Asa de Fada
+16506,256	//Asa Brilhante
+16507,256	//Asa do Demônio
+16508,256	//Asa de Fênix
+16509,256	//Asa Ying Yang
+16511,256	//Asa de Angeling
+16512,256	//Asa de Gárgula
+16513,256	//Asa da Retaliação
+16601,256	//Elmo_Negro
+16602,256	//Elmo_de_Dragao
+16603,256	//Elmo_Dourado
+16604,256	//Elmo_do_Baal
+16605,256	//Elmo_de_Valquiria
+16606,256	//Elmo_de_Ossos_Humanos

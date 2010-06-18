@@ -1,0 +1,357 @@
+//===== eAthena Script ======================================= 
+//= Super Kafra - NPC definitions
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 1.9
+//===== Compatible With: ===================================== 
+//= Any eAthena Version with function support; RO Episode 8+ (LightHalzen)
+//===== Description: ========================================= 
+//= Part of the Super Kafra Script Package.
+//= Here is where the npcs are defined.
+//===== Additional Comments: ================================= 
+//= To define your own Kafra, keep in mind the order and meaning
+//= of the arguments for the main function.
+//============================================================ 
+
+////This is the model for the call: Type is 0 for towns, 1 for dungeons (2 for both)
+//callfunc "F_KafraExpress","NPC Name","Image File", type, "Save Map", Save X, Save Y;
+//
+//ayothaya,210,192,4	script	Super Kafra	720,{//839,{
+//	callfunc "F_KafraExpress","Super Kafra","",0,"ayothaya",208,187;
+//}
+
+//guild_vs2,46,53,4	script	Super Kafra	116,{
+//	callfunc "F_KafraExpress","Super Kafra","",1,"prontera",49,46;
+//}
+
+//if(@whispervar0$==".")
+//	callfunc "F_KafraExpress","Kafra Especial","",2,"prontera",142,199;
+//else if(@whispervar0$=="cidade")
+//	callfunc "F_keWarpTown";
+//else if(@whispervar0$=="caverna")
+//	callfunc "F_keDungeonWarps", "prontera";
+//else if(@whispervar0$=="gde" || @whispervar0$=="woe")
+//	callfunc "F_keWarpWOE";
+//else if(@whispervar0$=="pvp")
+//	callfunc "F_keWarpPvp";
+//else if(@whispervar0$=="banco")
+//	callfunc "F_keBank";
+//else if(@whispervar0$=="msg")
+//	callfunc "F_keBroadcast", "prontera";
+//else if(@whispervar0$=="refinar")
+//	callfunc "F_keRefine";
+//else{
+//	dispbottom "Uso da Super-Kafra especial:";
+//	dispbottom " Envie mensagem para npc:kafra, escrevendo uma das opções:";
+//	dispbottom "  .           - Menu principal";
+//	dispbottom "  cidade   - Teleporte para cidades";
+//	dispbottom "  caverna - Teleporte para cavernas";
+//	dispbottom "  gde       - Teleporte para Guerra do Emperium";
+//	dispbottom "  pvp       - Teleporte para mapas PVP";
+//	dispbottom "  banco    - Acessa o banco da Kafra";
+//	dispbottom "  msg      - Envia mensagens para todos";
+//	dispbottom "  refinar   - Acessa o sistema de refinamento";
+//	end;
+//}
+//callfunc "F_KafraExpress","Kafra Especial","",2,"prontera",142,199;
+//close;
+
+schg_cas03,54,47,4	script	Super Kafra#cortez	116,{
+	callfunc "F_KafraExpress","Super Kafra","",2,"schg_cas03",48,48;
+}
+
+prontera,76,62,4	script	Super Kafra#prontera1	116,{
+	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
+}
+
+prontera,82,45,4	script	Super Kafra#prontera2	720,{
+	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
+}
+
+prontera,146,93,4	script	Super Kafra#prontera3	116,{
+	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",118,69;
+}
+
+//pvp_n_1-1,109,71,4	script	Super Kafra	116,{
+//	callfunc "F_KafraExpress","Super Kafra","",0,"pvp_n_1-1",105,79;
+//}
+
+//Town Kafras
+alberta,113,53,7	script	Super Kafra#alberta	116,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"alberta",116,57;
+}
+
+aldebaran,133,124,5	script	Super Kafra#aldebaran	115,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_03",0,"aldebaran",139,131;
+}
+
+amatsu,201,80,8	script	Super Kafra#amatsu	114,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_04",1,"amatsu",197,81;
+}
+
+//ayothaya,195,160,8	script	Super Kafra	112,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_06",0,"ayothaya",194,173;
+//}
+
+//comodo,190,153,5	script	Super Kafra	721,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_07",0,"comodo",189,166;
+//}
+
+geffen,121,62,8	script	Super Kafra#geffen	113,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"geffen",119,56;
+}
+
+rachel,129,132,4	script	Super Kafra#rachel	117,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_01",1,"rachel",134,137;
+}
+
+gonryun,169,188,2	script	Super Kafra	117,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_01",2,"gonryun",168,199;
+}
+
+//einbech,182,124,3	script	Super Kafra	117,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_01",0,"einbech",182,133;
+//}
+
+//einbroch,58,207,4	script	Super Kafra	115,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_03",0,"einbroch",64,184;
+//}
+
+izlude,136,94,2	script	Super Kafra#izlude	115,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_03",0,"izlude",147,99;
+}
+
+//jawaii,208,217,7	script	Super Kafra#jawaii	721,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_07",0,"jawaii",213,209;
+//}
+
+//lighthalzen,165,106,3	script	Super Kafra	114,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_04",0,"lighthalzen",152,106;
+//}
+
+louyang,220,123,3	script	Super Kafra#lou1	117,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_01",1,"louyang",221,128;
+}
+
+//xmas,148,126,4	script	Super Kafra#xmas	112,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_06",1,"xmas",149,117;
+//}
+
+//morocc,156,97,3	script	Super Kafra	721,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_07",1,"morocc",156,91;
+//}
+
+niflheim,196,192,3	script	Super Kafra#niflheim	791,{
+	callfunc "F_KafraExpress","Super Kafra","",1,"niflheim",194,185;
+}
+
+payon,152,181,5	script	Super Kafra#payon	114,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_04",1,"payon",162,182;
+}
+
+umbala,89,159,4	script	Super Kafra#umb1	112,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_06",1,"umbala",91,159;
+}
+
+yuno,159,87,5	script	Super Kafra#yuno	113,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"yuno",159,52;
+}
+
+//Dungeon Kafras
+//Abyss Lake
+//hu_fild05,170,305,7	script	Super Kafra	721,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_07",1,"hu_fild05",160,302;
+//}
+
+//Amatsu D
+ama_in02,115,184,6	script	Super Kafra#ama_in02	117,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_01",1,"ama_in02",118,184;
+}
+
+//AntHell North
+//moc_fild04,231,332,5	script	Super Kafra	114,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_04",0,"moc_fild04",232,322;
+//}
+
+//AntHell South
+//moc_fild15,251,243,3	script	Super Kafra	114,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_04",0,"moc_fild15",246,251;
+//}
+
+//Ayothaya Dungeon
+//ayo_fild02,289,144,3	script	Super Kafra	116,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"ayo_fild02",289,155;
+//}
+
+//Byalan Island
+izlu2dun,101,82,7	script	Super Kafra#izlu2dun	112,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_06",1,"izlu2dun",112,84;
+}
+
+//Comodo East Cave
+//cmd_fild01,33,321,4	script	Super Kafra#cmd_fild01	721,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_07",1,"cmd_fild01",34,325;
+//}
+
+//Comodo West Cave
+//comodo,31,218,4	script	Super Kafra#cmd1	721,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_07",1,"comodo",32,209;
+//}
+
+//Comodo North Cave
+//comodo,182,347,2	script	Super Kafra#cmd2	721,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_07",1,"comodo",180,352;
+//}
+
+//Coal Mines
+mjolnir_02,85,365,4	script	Super Kafra#mjolnir_02	114,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_04",1,"mjolnir_02",89,358;
+}
+
+//Culvert
+prt_fild05,275,219,5	script	Super Kafra#prt_fild05	112,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_06",1,"prt_fild05",274,208;
+}
+
+//Einbroch Station
+//einbech,182,124,3	script	Super Kafra	117,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_01",1,"einbech",182,133;
+//}
+
+//Gefenia
+gefenia01,56,171,6	script	Super Kafra#gefenia	116,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"gefenia01",59,169;
+}
+
+//Geffen Dungeon
+gef_tower,156,33,3	script	Super Kafra#gef_tower	113,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"gef_tower",147,35;
+}
+
+//GH: Church
+//glast_01,193,136,5	script	Super Kafra	791,{
+//	callfunc "F_KafraExpress","Super Kafra","",1,"glast_01",206,136;
+//}
+
+//GH: Castle
+//glast_01,200,350,4	script	Super Kafra	791,{
+//	callfunc "F_KafraExpress","Super Kafra","",1,"glast_01",200,347;
+//}
+
+//GH: Staircase
+//glast_01,58,103,7	script	Super Kafra	791,{
+//	callfunc "F_KafraExpress","Super Kafra","",1,"glast_01",62,107;
+//}
+
+//GH: Chivalry
+//glast_01,62,198,6	script	Super Kafra	791,{
+//	callfunc "F_KafraExpress","Super Kafra","",1,"glast_01",69,193;
+//}
+
+//LightHalzen Rekkenber
+//lighthalzen,69,57,7	script	Super Kafra	113,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"lighthalzen",78,57;
+//}
+
+//Juperos
+//jupe_cave,45,55,5	script	Super Kafra	115,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_03",1,"jupe_cave",45,48;
+//}
+
+//Laberynth
+//prt_fild01,143,365,3	script	Super Kafra	112,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_06",1,"prt_fild01",136,361;
+//}
+
+//LouYang D
+louyang,35,276,6	script	Super Kafra#lou2	117,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_01",1,"louyang",41,267;
+}
+
+//Magma D
+yuno_fild03,34,143,5	script	Super Kafra#magma	115,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_03",1,"yuno_fild03",35,135;
+}
+
+//Orc D North
+in_orcs01,24,165,5	script	Super Kafra#orcsN	116,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"in_orcs01",34,165;
+}
+
+//Orc D South
+in_orcs01,103,99,5	script	Super Kafra#orcsS	116,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"in_orcs01",112,99;
+}
+
+//Payon D 
+pay_arche,38,138,6	script	Super Kafra#PayonD	112,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_06",1,"pay_arche",41,133;
+}
+
+//Pyramids D 
+//moc_ruins,60,166,5	script	Super Kafra	115,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_03",1,"moc_ruins",62,162;
+//}
+
+//Sphinx D
+//moc_fild19,106,97,8	script	Super Kafra	115,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_03",1,"moc_fild19",107,100;
+//}
+
+//Sunken Ship
+alb2trea,75,101,5	script	Super Kafra#Sunken	114,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_04",1,"alb2trea",87,103;
+}
+
+//Thanatos Tower
+//tha_t01,155,33,4	script	Super Kafra	113,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"tha_t01",144,33;
+//}
+
+//Toy Factory
+xmas,138,307,6	script	Super Kafra#Toys	116,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"xmas",144,306;
+}
+
+//Turtle Cave Entrance
+tur_dun01,147,237,6	script	Super Kafra#turtle1	113,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"tur_dun01",155,234;
+}
+
+//Turtle Island Entrance
+tur_dun01,148,54,6	script	Super Kafra#turtle2	113,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"tur_dun01",153,47;
+}
+
+//Umbala D
+umbala,120,284,3	script	Super Kafra#umb2	117,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_01",1,"umbala",113,282;
+}
+
+//Guild War Kafras: Disabled by Default!
+
+//Al De Baran Guild Grounds
+//alde_gld,145,91,3	script	Super Kafra	116,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"alde_gld",156,157;
+//}
+
+//Geffen Guild Grounds
+//gef_fild13,237,182,6	script	Super Kafra	113,{
+prt_gld,155,102,3	script	Super Kafra#gld1	117,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"prt_gld",  159, 97;
+}
+
+aru_gld,76,192,4	script	Super Kafra#gld2	113,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_05",1,"aru_gld",97,193;
+}
+
+//Payon Guild Grounds
+//pay_gld,243,172,6	script	Super Kafra	117,{
+//	callfunc "F_KafraExpress","Super Kafra","",1,"pay_gld",243,178;
+//}
+
+//Prontera Guild Grounds
+//prt_gld,155,101,5	script	Super Kafra	115,{
+//	callfunc "F_KafraExpress","Super Kafra","kafra_03",1,"prt_gld",160,99;
+//}

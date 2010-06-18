@@ -1,0 +1,129 @@
+prt_in,235,26,2	script	Poring Event	750,{
+if (getgmlevel(0) <50) goto L_Yawn;
+npctalk "What can I do for you?";
+L_Main:
+if ($PoringsAlive <= 0) menu "Add Porings",L_Addporings;
+if ($PoringsAlive > 0) menu "Add Porings",L_Addporings,"Reset Prize Info",L_Resetprize,"Kill All Porings",L_Killoff;
+
+OnInit:
+set $PoringsAlive,0;
+end;
+
+L_Addporings:
+if ($PoringsAlive >= 750) goto L_Mightlag;
+L_Addporings2:
+if ($PoringsAlive <= 0) set $BackToAdd,1;
+if ($PoringsAlive <= 0) goto L_Resetprize;
+L_Addporings3:
+set $BackToAdd,0;
+npctalk "How many porings would you like to add?";
+menu "50",L_Add50,"100",L_Add100,"250",L_Add250,"500",L_Add500,"Canecl",L_Main;
+
+L_Add50:
+set $PoringAddNum,50;
+set $PoringsAlive,$PoringsAlive + 50;
+goto L_Spawn;
+L_Add100:
+set $PoringAddNum,100;
+set $PoringsAlive,$PoringsAlive + 100;
+goto L_Spawn;
+L_Add250:
+set $PoringAddNum,250;
+set $PoringsAlive,$PoringsAlive + 250;
+goto L_Spawn;
+L_Add500:
+set $PoringAddNum,500;
+set $PoringsAlive,$PoringsAlive + 500;
+goto L_Spawn;
+
+L_Spawn:
+areamonster "prontera",0,0,500,500,"Event Poring",1002,1,"PORINGDEAD::OnMobDead";
+if ($PoringAddNum == 1) goto L_Spawnbreak;
+set $PoringAddNum,$PoringAddNum - 1;
+goto L_Spawn;
+
+L_Spawnbreak:
+set $Prize,rand(1,$PoringsAlive);
+npctalk "Display warning to players?";
+menu "Yes",L_Warn,"No",L_Main;
+
+L_Warn:
+initnpctimer;
+npctalk "Warning is being sent.";
+announce "Porings have invaded  prontera.",0;
+goto L_Main;
+end;
+
+OnTimer5000:
+announce "They have a ton of zeny in them.",0;
+end;
+
+OnTimer10000:
+announce "One of the porings has extremly rare items in it.",0;
+end;
+
+OnTimer15000:
+announce "Hurry before they're gone.",0;
+npctalk "Warning has been sent.";
+stopnpctimer;
+setnpctimer 0;
+end;
+
+L_Resetprize:
+npctalk "Enter minimum prize zeny amount.";
+input $PoringMinPrize;
+npctalk "Enter maximum prize zeny amount.";
+input $PoringMaxPrize;
+npctalk "Enter prize item ID number.";
+input $PoringIDNum;
+npctalk "Enter amount of prize items given (minimum is 2).";
+input $PoringNum;
+if ($PoringMinPrize <= 0 && $PoringMaxPrize > 100) npctalk "Invalid minimum prize zeny amount. Amount set to 100.";
+if ($PoringMinPrize <= 0 && $PoringMaxPrize > 100) set $PoringMinPrize,100;
+if ($PoringMinPrize <= 0 && $PoringMaxPrize <= 100 && $PoringMaxPrize > 2) npctalk "Invalid minimum prize zeny amount. Amount set to " + ($PoringMaxPrize - 1) + ".";
+if ($PoringMinPrize <= 0 && $PoringMaxPrize <= 100 && $PoringMaxPrize > 2) set $PoringMinPrize,$PoringMaxPrize - 1;
+if ($PoringMinPrize <= 0 && $PoringMaxPrize <= 2) npctalk "Invalid prize zeny amounts. Please reset.";
+if ($PoringMinPrize <= 0 && $PoringMaxPrize <= 2) goto L_Resetprize;
+if ($PoringMaxPrize <= 0 && $PoringMinPrize < 100000) npctalk "Invalid maximum prize zeny amount. Amount set to 100000.";
+if ($PoringMaxPrize <= 0 && $PoringMinPrize < 100000) set $PoringMaxPrize,100000;
+if ($PoringMaxPrize <= 0 && $PoringMinPrize >= 100000) npctalk "Invalid maximum prize zeny amount. Amount set to " + ($PoringMinPrize + 1000) + ".";
+if ($PoringMaxPrize <= 0 && $PoringMinPrize >= 100000) set $PoringMaxPrize,$PoringMinPrize + 1000;
+if ($PoringMaxPrize <= $PoringMinPrize) npctalk "Invalid maximum prize zeny amount. Amount set to " + ($PoringMinPrize + 1000) + ".";
+if ($PoringMaxPrize <= $PoringMinPrize) set $PoringMaxPrize,$PoringMinPrize + 1000;
+if ($PoringNum <= 1) npctalk "Invalid amount of items given. Amount set to 2.";
+if ($PoringNum <= 1) set $PoringNum,2;
+if ($BackToAdd == 1) goto L_Addporings3;
+npctalk "Prize info reset.";
+goto L_Main;
+
+L_Killoff:
+killmonster "prontera","All";
+set $PoringsAlive,0;
+npctalk "All event porings have been killed.";
+goto L_Main;
+
+L_Mightlag:
+npctalk "Any more porings might cause the server to lag.";
+menu "Do it anyway",L_Addporings2,"Cancel",L_Main;
+
+L_Yawn:
+emotion 45;
+end;
+}
+
+-	script	PORINGDEAD	-1,{
+OnMobDead:
+if ($PoringsAlive <= 0) end;
+set zeny,zeny+rand($PoringMinPrize,$PoringMaxPrize);
+if ($PoringsAlive == $Prize) getitem $PoringIDNum,$PoringNum;
+if ($PoringsAlive == $Prize) message strcharinfo(0),"Congratulations!!! You killed the poring with the rare items in it!!!";
+if ($PoringsAlive == $Prize) announce strcharinfo(0)+" has found the poring with the rare items in it!!! But there are still more porings.",0;
+set $PoringsAlive,$PoringsAlive - 1;
+if ($PoringsAlive<=0) goto L_Nomore;
+announce "Another poring dead. There are "+$PoringsAlive+" porings still alive.",0;
+end;
+
+L_Nomore:
+announce "All the porings are dead.",0;
+end;
+}

@@ -1,0 +1,62 @@
+// ID,Name,Name,Type,Price,Sell,Weight,ATK,DEF,Range,Slot,Job,Upper,Gender,Loc,wLV,eLV,Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
+
+// ****** PREÇOS MODIFICADOS ****** \\
+//Poções
+503,Yellow_Potion,Yellow Potion,0,440,22,65,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(250,300),0; },{},{}
+504,White_Potion,White Potion,0,840,400,75,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(350,400),0; },{},{}
+509,White_Herb,White Herb,0,840,6,70,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(75,114),0; },{},{}
+510,Blue_Herb,Blue Herb,0,800,150,70,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 0,rand(15,25); },{},{}
+522,Mastela_Fruit,Mastela Fruit,0,2100,,75,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(450,500),0; },{},{}
+547,Condensed_White_Potion,Condensed White Potion,0,7000,800,30,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(500,550),0; },{},{}
+
+//Utilidades
+715,Yellow_Gemstone,Yellow Gemstone,3,2400,300,30,,,,,,,,,,,,,{},{},{}
+716,Red_Gemstone,Red Gemstone,3,2400,300,30,,,,,,,,,,,,,{},{},{}
+717,Blue_Gemstone,Blue Gemstone,3,700,300,30,,,,,,,,,,,,,{},{},{}
+
+911,Scell,Scell,3,2400,80,10,,,,,,,,,,,,,{},{},{}
+1061,Witched_Starsand,Witched Starsand,3,,193,10,,,,,,,,,,,,,{},{},{}
+1092,Empty_Test_Tube,Empty Test Tube,3,800,200,20,,,,,,,,,,,,,{},{},{}
+1093,Empty_Potion_Bottle,Empty Potion Bottle,3,360,75,10,,,,,,,,,,,,,{},{},{}
+
+7135,Bottle_Grenade,Fire Bottle,3,720,150,10,,,,,,,,,,,,,{},{},{}
+7139,Glistening_Coat,Glistening Coat,3,800,50,10,,,,,,,,,,,,,{},{},{}
+
+// Munições
+7524,Fang_,Fang,3,600,150,20,,,,,,7,2,,,,,,{},{},{}
+13255,Kunai_of_Frozen_Icicle,Kunai of Frozen Icicle,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus bAtkEle,Ele_Water; },{},{}
+13256,Kunai_of_Black_Earth,Kunai of Black Earth,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus bAtkEle,Ele_Earth; },{},{}
+13257,Kunai_of_Violent_Winds,Kunai of Violent Winds,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus bAtkEle,Ele_Wind; },{},{}
+13258,Kunai_of_Fierce_Heat,Kunai of Fierce Heat,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus bAtkEle,Ele_Fire; },{},{}
+13259,Kunai_of_Deadly_Poison,Kunai of Deadly Poison,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus2 bAddEff,Eff_Poison,50; },{},{}
+
+//Sistema de Teleporte
+//Cavernas: -50% do teleporte que estiver acima de 250 z
+//Woe: Reduzir -50% do teleporte, menos mapa dos mvps
+//
+//Storage e gstorage: 500 z passar para 350 z
+//
+//Resetar atributos / habilidades: 5,000 z por level (diminuir 50%) = 2,500 z
+//Resetar atributos E habilidades: 4,000 z por level (diminuir 50%) = 2,000 z
+//
+//Aluguel:
+//Carrinho - 800 z (diminuir 50%) = 400 z
+//Falcão e Peco - 5,000 z (diminuir em 50%) = 2,500 z
+//
+//Refinar equipamento:
+//Com elunium - 4,000 z (diminuir em 30%) = 2,800 z
+//Com oridecon - 40,000 z (diminuir em 50%) = 20,000 z
+//
+//Reparar equipamento: 100,000 z (diminuir em 30%) = 70,000z
+//
+//Broadcast:
+//Chamar grupo e recrutar clã: 320,000 z (diminuir em 60%) = 128,000 z
+//Anúncio de compra, venda, troca e procurar jogadores: 400,000 z (diminuir em 60%) = 240,000 z
+//Chamar pvp: 40,000 z (diminuir em 50%) = 20,000 z
+//__________________________________________________________________________________________
+//
+//NPC
+//Velha Esperta:
+//
+//Trocar carta do diário pra bota TK: 300,000 z  (diminuir em 50%) = 150,000 z
+//Remover cartas: 20,000 z pelo serviço (diminuir em 50%) = 10,000 z e 10,000 z por carta (diminuir 50%) = 5,000 z

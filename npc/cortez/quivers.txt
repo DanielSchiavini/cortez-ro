@@ -1,0 +1,174 @@
+//===== eAthena Script ========================================
+//= Arrow Quiver Event
+//===== By: ==================================================
+//= Muad_Dib (Prometheus Project)
+//===== Current Version: =====================================
+//= 1.0b
+//===== Compatible With: =====================================
+//= eAthena 1.0+
+//===== Description: =========================================
+//= Turns arrows into Arrow Quivers.
+//===== Additional Comments: =================================
+//= 07/06/05 : Added 1st Version. [Muad_Dib]
+//= Converted to eAthena format by Dr.Evil
+//= added prize to quest - 500 Zeny
+//= Fixed a few spelling errors. [Nexon]
+//============================================================
+
+schg_cas03,94,76,4	script	Jaax	832,{		//852
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Meu nome é Jaax.";
+	mes "Sem exagerar, eu posso dizer que talvez eu seja o ^996600maior inventor dos nossos tempos.^333333";
+	next;
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Desta vez, eu criei uma coisa realmente extraordinária.";
+	mes "Eu chamo de...";
+	mes "^996600Coldres mágicos^333333 !!";
+	mes "Eles vão ser lembrados pela história como uma revolução nas munições!";
+	next;
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Eu estudei mágica e coldres por anos, trabalhando noite e dia até que finalmente eu percebi como as munições podem ser compactas através de mágica!";
+	mes "Com coldres mágicos, você pode carregar mais munição, com menos peso!";
+	next;
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Gostaria de tentar usar um dos meus coldres? Não tenho dúvidas que alguém como você pode apreciar minha genialidade!";
+	next;
+
+	if(Class==Job_Hunter || Class==Job_Baby_Hunter || Class==Job_Sniper){
+		L_Coldre:
+		switch(select("Eu não quero nada!:Coldre de Flechas:Coldre de Flechas de Ferro:Coldre de Flechas de Aço:Coldre de Flechas de Oridecon:"+
+					"Coldre de Flechas de Fogo:Coldre de Flechas de Prata:Coldre de Flechas de Vento:Coldre de Flechas de Pedra:"+
+					"Coldre de Flechas de Cristal:Coldre de Flechas Sombrias:Coldre de Flechas Imateriais:Coldre de Flechas Enferrujadas:")){
+			case 2:	callsub sF_Make, 1750,250,12004, "Coldre de Flechas";				break;
+			case 3:	callsub sF_Make, 1770,750,12005, "Coldre de Flechas de Ferro";		break;
+			case 4:	callsub sF_Make, 1753,750,12006, "Coldre de Flechas de Aço";		break;
+			case 5:	callsub sF_Make, 1765,750,12007, "Coldre de Flechas de Oridecon";	break;
+			case 6:	callsub sF_Make, 1752,750,12008, "Coldre de Flechas de Fogo";		break;
+			case 7:	callsub sF_Make, 1751,750,12009, "Coldre de Flechas de Prata";		break;
+			case 8:	callsub sF_Make, 1755,750,12010, "Coldre de Flechas de Vento";		break;
+			case 9:	callsub sF_Make, 1756,750,12011, "Coldre de Flechas de Pedra";		break;
+			case 10:callsub sF_Make, 1754,750,12012, "Coldre de Flechas de Cristal";	break;
+			case 11:callsub sF_Make, 1767,750,12013, "Coldre de Flechas Sombrias";		break;
+			case 12:callsub sF_Make, 1757,750,12014, "Coldre de Flechas Imateriais";	break;
+			case 13:callsub sF_Make, 1762,750,12015, "Coldre de Flechas Enferrujadas";	break;
+			default: break;
+		}
+		goto M_End;
+	}else if(Class==Job_Gunslinger){
+		switch(select("Eu não quero nada!:Pacote de Esferas de Relâmpago:Pacote de Esferas Cegantes:Pacote de Esferas Venenosas:"+
+						"Pacote de Esferas Congelantes:Pacote de Esferas de Chamas:Carregador:Carregador de Prata:"+
+						"Carregador Sanguinário:Eu não uso flechas!")){
+			case 2: callsub sF_Make, 13204, 50000, 12144, "Pacote de Esferas de Relâmpago";break;
+			case 3: callsub sF_Make, 13206, 50000, 12145, "Pacote de Esferas Cegantes";	break;
+			case 4: callsub sF_Make, 13205, 50000, 12146, "Pacote de Esferas Venenosas";	break;
+			case 5: callsub sF_Make, 13207, 50000, 12147, "Pacote de Esferas Congelantes";	break;
+			case 6: callsub sF_Make, 13203, 50000, 12148, "Pacote de Esferas de Chamas";	break;
+			case 7: callsub sF_Make, 13200,   250, 12149, "Carregador";					break;
+			case 8: callsub sF_Make, 13201,  3750, 12151, "Carregador de Prata";			break;
+			case 9: callsub sF_Make, 13202,  7500, 12150, "Carregador Sanguinário";		break;
+			case 10:goto L_Falcon;	break;
+			default: break;
+		}
+		goto M_End;
+	}else{
+		if(select("Não interessa..:Acho legal")==1) goto M_End;
+	}
+	
+L_Falcon:
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Mas... Você não usa flechas?";
+	next;
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "O que está fazendo aqui então?";
+	next;
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Ahh, você quer um falcão!";
+	next;
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Mas.... eu não vou te dar nenhum.";
+	mes "A não ser que você traga 10 coldres de cada tipo de flecha!";
+	next;
+	if(countitem(12004)>=10 && countitem(12005)>=10 && countitem(12006)>=10 && countitem(12007)>=10 && countitem(12008)>=10 && countitem(12009)>=10 && countitem(12010)>=10 && countitem(12011)>=10 && countitem(12012)>=10 && countitem(12013)>=10 && countitem(12014)>=10 && countitem(12015)>=10){
+		mes "^666699[ Jaax, O inventor~ ]^333333";
+		mes "Até que enfim poderei lucrar mais vendendo isso!";
+		next;
+		menu "Dar os coldres",-,"Não",M_End;
+		delitem 12004,10;
+		delitem 12005,10;
+		delitem 12006,10;
+		delitem 12007,10;
+		delitem 12008,10;
+		delitem 12009,10;
+		delitem 12010,10;
+		delitem 12011,10;
+		delitem 12012,10;
+		delitem 12013,10;
+		delitem 12014,10;
+		delitem 12015,10;
+		atcommand "@option 0 0 16";
+		logmes "[Quivers] "+strcharinfo(0)+" pegou um falcão";
+	}else goto L_Coldre;
+	goto M_End;
+	
+// Subfunction for making quivers
+//================================
+sF_Make:
+	set @arrownum,500;
+	set @arrowid, getarg(0);
+	set @cost, getarg(1);
+	if(countitem(@arrowid) < @arrownum) goto L_NdArrows;
+	if(Zeny < @cost) goto L_NdZeny;
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "O que você quer que eu faça??";
+	next;
+	menu "Me dê quantos puder.",-, "Vou dizer quantos eu quero",sM_0b, "Esquece",M_End;
+
+		set @amount,100;
+		if(zeny/@cost < @amount) set @amount, zeny/@cost;
+		if(countitem(@arrowid)/@arrownum < @amount) set @amount, countitem(@arrowid)/@arrownum;
+		if(@amount > 0) goto L_End;
+		mes "^666699[ Jaax, O inventor~ ]^333333";
+		mes "Eiii... Você não tem os itens certos!!";
+		close;
+		
+	sM_0b:
+		input @amount;
+		if(@amount<1 || @amount>100) goto L_BadAmnt;
+		if(countitem(@arrowid)/@arrownum < @amount) goto L_NdArrows;
+		if(Zeny < (@cost*@amount)) goto L_NdZeny;
+
+	L_End:
+		query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+(@cost*@amount)+",'quivers')";
+		set Zeny, Zeny - (@cost*@amount);
+		delitem @arrowid, (@amount*@arrownum);
+		getitem getarg(2), @amount;
+		mes "^666699[ Jaax, O inventor~ ]^333333";
+		mes "Aqui vai~!";
+		mes "Aqui estão os seus itens.";
+		close;
+
+	L_NdArrows:
+		mes "^666699[ Jaax, O inventor~ ]^333333";
+		mes "Desculpe, mas você vai precisar de 500 munições e "+@cost+" zeny para fazer um coldre.";
+		close;
+		
+	L_NdZeny:
+		mes "^666699[ Jaax, O inventor~ ]^333333";
+		mes "Você não tem zeny para fazer tantos.";
+		close;
+
+	L_BadAmnt:
+		mes "^666699[ Jaax, O inventor~ ]^333333";
+		mes "Por favor escolha um número entre 1 e 100.";	
+		close;
+
+L_Come:
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Por favor, volte sempre que desejar.";
+	close;
+M_End:
+	mes "^666699[ Jaax, O inventor~ ]^333333";
+	mes "Tudo bem, sem problema.";
+	mes "Volte sempre.";
+	close;
+}

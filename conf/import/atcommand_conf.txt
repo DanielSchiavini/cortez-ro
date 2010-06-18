@@ -1,0 +1,356 @@
+command_symbol: @
+
+// 0: Comandos Básicos
+commands: 0
+uptime: 0
+showdelay: 0
+exp: 0
+refresh: 0
+party: 0
+main: 10
+jailtime: 0
+changeleader: 0
+
+showexp: 0
+showzeny: 0
+
+time: 0
+date: 0
+
+duel: 0
+invite: 0
+accept: 0
+reject: 0
+leave: 0
+
+autotrade: 0
+at: 0
+
+// 0/5: Comandos VIP no Memories
+autoloot: 5
+storage: 5
+gstorage: 5
+
+whosell: 5
+whosells: 5
+
+mail: 5
+
+// 5: Comandos VIP
+mobinfo: 4
+monsterinfo: 4
+mi: 4
+whodrops: 4
+petrename: 4
+noask: 4
+mobsearch: 4
+showmobs: 4
+go: 4
+changegm: 4
+changesex: 5
+
+iteminfo: 4
+ii: 4
+
+away: 4
+aw: 4
+
+hominfo: 4
+alootid: 4
+
+mountpeco: 4
+
+return: 4
+load: 4
+
+// 10: Organizadores de Eventos
+noks: 10
+localbroadcast: 10
+hide: 10
+broadcast: 10
+
+mapmove: 10
+rura: 10
+warp: 10
+
+speed: 10
+
+jailfor: 10
+unjail: 10
+discharge: 10
+
+disguise: 10
+undisguise: 10
+
+reset: 10
+size: 10
+
+mute: 10
+unmute: 10
+
+// 20: Comandos proibidos
+die: 20
+version: 20
+email: 20
+where: 20
+partyoption: 20
+pettalk: 20
+homtalk: 20
+
+whereis: 20
+feelreset: 20
+rates: 20
+
+// 30: Commandos de Moderador
+gmotd: 30
+follow: 30
+request: 30
+model: 30
+
+help: 30
+h: 30
+help2: 30
+h2: 30
+
+jumpto: 30
+goto: 30
+warpto: 30
+
+who: 30
+whois: 30
+who2: 30
+who3: 30
+whomap: 30
+whomap2: 30
+whomap3: 30
+whogm: 30
+
+me: 30
+fakename: 30
+npctalk: 30
+
+// 40: Sub-GM
+allowks: 40
+auction: 40
+heal: 40
+jump: 40
+memo: 40
+option: 40
+petfriendly: 40
+pethungry: 40
+spiritball: 40
+itemreset: 40
+users: 40
+cleanmap: 40
+killmonster2: 40
+save: 40
+effect: 40
+misceffect: 40
+dropall: 40
+storeall: 40
+killable: 40
+skillid: 40
+useskill: 40
+skilltree: 40
+sound: 40
+
+kami: 40
+kamib: 40
+
+gvgon: 40
+gpvpon: 40
+gvgoff: 40
+gpvpoff: 40
+
+job: 40
+jobchange: 40
+
+pvpoff: 40
+pvpon: 40
+
+dye: 40
+ccolor: 40
+
+hairstyle: 40
+hstyle: 40
+
+haircolor: 40
+hcolor: 40
+
+// 50: Sub-GM+
+summon: 50
+
+loadnpc: 50
+reloadgmdb: 50
+reloaditemdb: 50
+reloadmobdb: 50
+reloadskilldb: 50
+reloadatcommand: 50
+reloadbattleconf: 50
+reloadstatusdb: 50
+reloadpcdb: 50
+reloadmotd: 50
+reloadscript: 50
+
+clone: 50
+slaveclone: 50
+evilclone: 50
+
+marry: 50
+divorce: 50
+
+
+// 60: GM - Comandos do próprio char e comandos super básicos de players
+battleignore: 60
+alive: 60
+idsearch: 60
+item: 60
+item2: 60
+makeegg: 60
+hatch: 60
+killer: 60
+produce: 60
+refine: 60
+repairall: 60
+stpoint: 60
+skpoint: 60
+zeny: 60
+
+hidenpc: 60
+shownpc: 60
+
+blvl: 60
+lvup: 60
+blevel: 60
+baselvl: 60
+baselvup: 60
+baselevel: 60
+baselvlup: 60
+
+jlvl: 60
+jlevel: 60
+joblvl: 60
+joblvup: 60
+joblevel: 60
+joblvlup: 60
+
+kill: 60
+
+str: 60
+agi: 60
+vit: 60
+int: 60
+dex: 60
+luk: 60
+
+allskill: 60
+allskills: 60
+skillall: 60
+skillsall: 60
+
+statall: 60
+statsall: 60
+allstats: 60
+allstat: 60
+
+block: 15
+charblock: 15
+
+ban: 15
+banish: 15
+charban: 15
+charbanish: 15
+
+homlvup: 60
+homevolution: 60
+makehomun: 60
+homfriendly: 60
+homhungry: 60
+
+raisemap: 60
+raise: 60
+
+kick: 60
+doommap: 60
+
+skillon: 60
+skilloff: 60
+
+// 70: Super GM - Comandos básicos de player e monstros
+nuke: 70
+guildspy: 70
+partyspy: 70
+mapexit: 70
+
+monster: 70
+monstersmall: 70
+monsterbig: 70
+
+agitstart: 80
+agitend: 70
+
+day: 70
+night: 70
+
+snow: 70
+clouds: 70
+clouds2: 70
+fog: 70
+fireworks: 70
+sakura: 70
+leaves: 70
+clearweather: 70
+
+// 80: GM Chefe - Comandos avançados de player
+cash: 80
+points: 80
+spawn: 80
+
+doom: 80
+recallall: 80
+kickall: 80
+mapinfo: 80
+guildlvup: 80
+guildlvlup: 80
+guildrecall: 80
+partyrecall: 80
+addwarp: 80
+
+disguiseall: 80
+undisguiseall: 80
+
+mutearea: 80
+stfu: 80
+
+unblock: 80
+charunblock: 80
+unban: 80
+unbanish: 80
+charunban: 80
+charunbanish: 80
+
+recall: 80
+
+monsterignore: 80
+
+jail: 80
+
+// 90: GM Máximo
+mapflag: 90
+killmonster: 90
+
+unloadnpc: 90
+npcmove: 90
+
+setbattleflag: 90
+
+// 99: Administrador
+send: 99
+gat: 99
+displaystatus: 99
+displayskill: 99
+
+// 100: Desabilitado
+adjgmlvl: 100
+adjcmdlvl: 100
+guild: 100

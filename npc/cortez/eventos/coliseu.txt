@@ -1,0 +1,578 @@
+//===== eAthena Script ===============================================//
+//= TheBusinesS
+//===== Current Version: =============================================//
+//= 1.0
+//===== Description: =================================================//
+//= PvP Assistido c/ Apostas
+//===== Cometários Extras ============================================//
+//= Idéia por TheBusinesS, Dex e Shaitan 
+//====================================================================//
+// Váriaveis
+//====================================================================//
+// $npcligado
+// $colisseum
+// $nc$
+// $@a
+// $@inscrito$
+// inscrição
+// $@rand
+// $@b
+// $@indiceescolhido1
+// $@indiceescolhido2
+// $@apostas
+// $@apostastotais
+// $@apostasc1
+// $@apostasc2
+// aposta1
+// aposta2
+// $@eventoon
+// $gla$
+// $@round
+// valoraposta
+// $@retirarcancelado
+// $@vencedor$
+// $@apostadoresc1
+// $@apostadoresc2
+// $@combatentes
+//===== O que precisa ser feito ======================================//
+// Testar, Testar, Testar e Testar....
+////////////////////////////////////////////////////////////////////////
+
+// NPC QUE CONTROLA O INICIO DO EVENTO
+
+prontera,0,0,0	script	flutua	-1,{
+
+OnInit:
+
+	set $npcligado,0;
+	set $colisseum,0;
+	set $@a,0;
+	cleararray $@incrito$[0],"NULL",127;
+	set $@rand,0;
+	set $@b,0;
+	set $@indiceescolhido1,0;
+	set $@indiceescolhido2,0;
+	set $@apostas,0;
+	set $@apostastotais,0;
+	set $@apostasc1,0;
+	set $@apostasc2,0;
+	set $@eventoon,0;
+	set $@round,0;
+	set $@retirarcancelado,0;
+	set $@vencedor$,"null";
+	set $@apostadoresc1,0;
+	set $@apostadoresc2,0;
+	set $@Combatentes,0;
+	disablenpc "Ares";
+	disablenpc "Gladiador";
+	disablenpc "Saida";
+	end;
+	
+
+OnHour2000:
+
+	if(gettime(4)!=5) end;
+	enablenpc "Ares";
+	set $npcligado,1;
+	initnpctimer;
+	announce "Está aberta as inscrições para o Colisseum!",0;	
+	end;
+
+
+OnTimer8000:
+
+	announce "O NPC estará em Morocc esperando por suas inscrições.",0;
+	end;
+
+
+OnTimer1600:
+
+	announce "Vocês tem 15 minutos para se inscreverem",0;
+	stopnpctimer;
+	end;
+
+}
+
+
+
+// NPC QUE CONTROLA APOSTAS, INSCRIÇÕES, ETC...
+
+
+morocc,159,115,4	script	Ares	796,{
+	if(($@indiceescolhido1==inscrição) || ($@indiceescolhido2==inscrição)) goto Combatentes;
+
+	OnInit:
+		if($npcligado==1) goto Inicio;
+		set $nc$,"[Ares]";
+		end;
+	
+	Inicio:
+		set $colisseum,1;
+		mes $nc$;
+		mes "Olá, o que você deseja, meu caro?";
+		menu "Me inscrever para o evento.",Inscrever,
+			"Apostar em um dos Jogadores Ou retirar dinheiro.",Apostar,
+			"Ir para o local do combate.",Ir,
+			"Não gostaria de nada.",-;
+		next;
+		mes $nc$;
+		mes "Certo, volte quando achar necessário.";
+		close;
+
+	// Inscrever-se no EVENTO
+	Inscrever:
+		next;
+		mes $nc$;
+		mes "Você gostaria de se inscrever no colisseum?";
+		menu "Sim, eu quero.",Sim,"Não, me enganei.",-;
+		next;
+		mes $nc$;
+		mes "Certo, volte quando achar necessário.";
+		close;
+
+	Sim:
+		if($@a>=128) {
+			mes $nc$;
+			mes "O número máximo de players cadastrados já foi alcançado.";
+			close;
+		}
+		mes $nc$;
+		mes "Então vamos lá....";
+		set $@inscrito$[$@a],strcharinfo(0);
+		set inscrição,$@a;
+		set $@a,$@a+1;
+		next;
+		mes $nc$;
+		mes "Pronto, você já está cadastrado, seu número de inscrição é "+inscrição+", ok?";
+		close;
+		
+		// Ir para o local do Duelo
+		Ir:
+		warp "poring_c01",0,0;
+		close;
+	
+	Apostar:
+		// RETIRAR APOSTA VITORIOSA NO JOGADOR 1
+		next;
+		if(($@vencedor==1) && (aposta1==1)){
+			mes $nc$;
+			mes "Vou te dar seu dinheiro";
+			set zeny, zeny+$@premiofinal+valoraposta;
+			set valoraposta,0;
+			set aposta1,0;
+			next;
+			mes $nc$;
+			mes "Pronto, você apostou e ganhou bem, parabens!";
+			close;
+		}
+		
+		// RETIRAR APOSTA VITORIOSA NO JOGADOR 2
+		next;
+		if(($@vencedor==2) && (aposta2==1)){
+			mes $nc$;
+			mes "Vou te dar seu dinheiro";
+			set zeny, zeny+$@premiofinal+valoraposta;
+			set valoraposta,0;
+			set aposta2,0;
+			next;
+			mes $nc$;
+			mes "Pronto, você apostou e ganhou bem, parabens!";
+			close;
+		}
+
+		// RETIRAR DINHEIRO EM CASO DE CANCELAMENTO
+		if($@retirarcancelado==1) {
+			next;
+			mes $nc$;
+			mes "Vou devolver seu dinheiro";
+			set zeny,zeny+valoraposta;
+			set valoraposta,0;
+			set aposta1,0;
+			set aposta2,0;
+			next;
+			mes $nc$;
+			mes "pronto, dinheiro devolvido.";
+			close;
+		}
+
+		// NÃO ESTÁ HABILITADA AS APOSTAS AINDA
+		if($@apostas!=1) {
+			mes $nc$;
+			mes "As apostas só estarão habilitadas quando os 2 jogadores falarem com o NPC para confirmar sua presença.";
+			close;
+		}
+
+		// APOSTAR
+		mes $nc$;
+		mes "O que você gostaria?";
+		menu "Apostar no "+$@inscrito$[$@indiceescolhido1]+".",C1,
+			"Apostar no "+$@inscrito$[$@indiceescolhido2]+".",C2,
+			"Ver valor total de apostas.",VT,
+			"Ver valor de apostas em cada combatente.",VC,
+			"Não quero nada.",-;
+		next;
+		mes $nc$;
+		mes "Certo, volte quando quizer apostar.";
+		close;
+		
+	// APOSTAR NO JOGADOR 1 
+	C1:
+		if((aposta2!=0) || (aposta1!=0)) {
+			next;
+			mes $nc$;
+			mes "Você já apostou no outro jogador, nada de apostar nos 2... ¬¬";
+			close;
+		}
+		mes $nc$;
+		mes "Você gostaria de apostar no jogador "+$@inscrito$[$@indiceescolhido1]+" não é?";
+		mes "Quanto você quer apostar?";
+		mes "Lembre-se que você só podera apostar 1 vez!";
+		input @aposta;
+		if(zeny<@aposta) {
+			next;
+			mes $nc$;
+			mes "Você não tem a quantidade que quer apostar, volte quando quizer realmente apostar...";
+			close;
+		}
+		set zeny,zeny-@aposta;
+		set aposta1,1;
+		set valoraposta,@aposta;
+		set $@apostastotais,$@apostastotais+@aposta;
+		set $@apostasc1,$@apostasc1+@aposta;
+		set $@apostadoresc1,$@apostadoresc1+1;
+		next;
+		mes $nc$;
+		mes "Apostas feitas, o que o senhor gostaria agora?";
+		menu "Ver valor total de apostas.",VT,
+		"Ver valor de apostas em cada combatente.",VC,
+		"Não quero nada, obrigado.",-;
+		next;
+		mes $nc$;
+		mes "Volte sempre";
+		close;
+	
+	// APOSTAR NO JOGADOR 2
+	C2:
+		if((aposta2!=0) || (aposta1!=0)) {
+			next;
+			mes $nc$;
+			mes "Você já apostou no outro jogador, nada de apostar nos 2... ¬¬";
+			close;
+		}
+		mes $nc$;
+		mes "Você gostaria de apostar no jogador "+$@inscrito$[$@indiceescolhido2]+" não é?";
+		mes "Quanto você quer apostar?";
+		mes "Lembre-se que você só podera apostar 1 vez!";
+		input @aposta;
+		if(zeny<@aposta) {
+			next;
+			mes $nc$;
+			mes "Você não tem a quantidade que quer apostar, volte quando quizer realmente apostar...";
+			close;
+		}
+		set zeny,zeny-@aposta;
+		set aposta2,1;
+		set valoraposta,@aposta;
+		set $@apostastotais,$@apostastotais+@aposta;
+		set $@apostasc2,$@apostasc2+@aposta;
+		set $@apostadoresc2,$@apostadoresc2+1;
+		next;
+		mes $nc$;
+		mes "Apostas feitas, o que o senhor gostaria agora?";
+		menu "Ver valor total de apostas.",VT,
+			"Ver valor de apostas em cada combatente.",VC,
+			"Não quero nada, obrigado.",-;
+		next;
+		mes $nc$;
+		mes "Volte sempre";
+		close;
+		
+	// MOSTRAR VALOR TOTAL DAS APOSTAS
+	VT:
+		next;
+		mes $nc$;
+		mes "O valor total de apostas é de: "+$@apostastotais+".";
+		next;
+		mes $nc$;
+		mes "O senhor gostaria de mais alguma coisa?";
+		menu "Ver valor total de apostas.",VT,
+			"Ver valor de apostas em cada combatente.",VC,
+			"Não quero nada, obrigado.",-;
+		next;
+		mes $nc$;
+		mes "Volte sempre";
+		close;
+
+	// MOSTRAR VALOR DE APOSTAS EM CADA COMBATENTE
+	VC:
+		next;
+		mes $nc$;
+		mes "O valor de apostas em cada jogador é de:";
+		mes $@inscrito$[$@indiceescolhido1]+":"+$@apostasc1;
+		mes $@inscrito$[$@indiceescolhido2]+":"+$@apostasc2;
+		next;
+		mes $nc$;
+		mes "O senhor gostaria de mais alguma coisa?";
+		menu "Ver valor total de apostas.",VT,
+			"Ver valor de apostas em cada combatente.",VC,
+			"Não quero nada, obrigado.",-;
+		next;
+		mes $nc$;
+		mes "Volte sempre";
+		close;
+		
+	// DEFININDO PARTICIPANTES!!!
+	OnHour2015:
+		if($@a<=1) goto cancelado;
+		announce "Está na hora de definir os dois combatentes.",0;
+	Teste:
+		if($@inscrito$[$@b]==NULL) {
+			set $@rand,$@b-1;
+			goto Sorteia;
+		}
+		set $@rand,$@rand+1;
+		goto Teste;
+	
+	Sorteia:
+		set $@indiceescolhido1,rand(0,$@b);
+		set $@indiceescolhido2,rand(0,$@b);
+		if($@indiceescolhido1==$@indiceescolhido2) goto Sorteia;
+		initnpctimer;
+		end;
+	
+	OnTimer5000:
+		announce "Por favor, "+$@inscrito$[$@indiceescolhido1]+" e "+$@inscrito$[$@indiceescolhido2]+" falem com o "+$nc$+".",0;
+		end;
+	
+	OnTimer10000:
+		announce "Vocês foram os escolhidos para lutar, e tem 10 minutos para confirmar a presença.",0;
+		end;
+	
+	Ontimer610000:
+		if($@combatentes!=2) goto cancelado;
+		set $@apostas,0;
+		enablenpc "Gladiador";
+		set $@duelo,1;
+		announce "Apostas encerradas, todos para a arena!!!",0;
+		stopnpctimer;
+		end;
+	
+	Combatentes:
+		if($@Combatentes!=2) {
+			message strcharinfo(0),"Espere na arena de duelo por seu oponente";
+			set PCDieEvent,1;
+			set PCKillEvent,1;
+			savepoint "poring_c01",100,100;
+			warp "poring_c01",100,100;
+			close;
+		}
+		set $@combatentes,$@combatentes+1;
+		set PCDieEvent,1;
+		set PCKillEvent,1;
+		savepoint "poring_c01",100,100;
+		warp "poring_c01",100,100;
+		announce "Vocês tem 10 minutos para apostar em algum dos players! E os combatentes esperem na arena.",0;
+		set $@apostas,1;
+		close;
+	
+	// Evento Cancelado 
+	OnHour2055:
+		if($@Combatentes!=2) end;
+	
+	cancelado:
+		announce "Evento cancelado, retirem suas apostas com Ares.",0;
+		set $@retirarcancelado,1;
+		set $@apostas,0;
+		set $@apostastotais,0;
+		set $@apostasc1,0;
+		set $@apostasc2,0;
+		set $npcligado,0;
+		set $colisseum,0;
+		cleararray $@incrito$[0],NULL,127;
+		set $@a,0;
+		set $@indiceescolhido1,0;
+		set $@indiceescolhido2,0;
+		set $@Combatentes,0;
+		end;
+}
+
+// NPC DA ARENA
+poring_c01,103,98,4	script	Gladiador	843,{
+	// INICIAR PORRADARIA
+	if(($@eventoon==1) && ($@inscrito$[$@indiceescolhido1]==strcharinfo(0)) || ($@eventoon==1) && ($@inscrito$[$@indiceescolhido2]==strcharinfo(0))){
+		mes $gla$;
+		mes "Vamos começar o Evento?";
+		menu "Sim.",-,"Não",cancel;
+		next;
+		mes $gla$;
+		mes "Então vamos lá...";
+		
+		Porrada:
+			if(isloggedin(getcharid(0,$@inscrito$[$@indiceescolhido1]))!=1) goto cancelado;
+			if(isloggedin(getcharid(0,$@inscrito$[$@indiceescolhido2]))!=1) goto cancelado;
+
+			// CONDIÇÃO DE VITORIA PARA O JOGADOR 1
+			if(($@round==9) && ($@vitoria1>$@vitoria2)) {
+				set $@vencedor$,$@inscrito$[$@indiceescolhido1];
+				set $@vencedor,1;
+				set $@premiofinal,$@apostastotais/$@apostadoresc1;
+				announce "O evento acabou, "+$@inscrito$[$@indiceescolhido1]+" ganhou!!! Vocês tem até as 12:00 para retirar o prêmio.",0;
+				enablenpc "Saida";
+				disablenpc "Gladiador";
+				end;
+			}
+			
+			// CONDIÇÃO DE VITORIA PARA O JOGADOR 2
+			if(($@round==9) && ($@vitoria1<$@vitoria2)){
+				set $@vencedor$,$@inscrito$[$@indiceescolhido1];
+				set $@vencedor,2;
+				set $@premiofinal,$@apostastotais/$@apostadoresc2;
+				announce "O evento acabou, "+$@inscrito$[$@indiceescolhido2]+" ganhou!!! Vocês tem até as 12:00 para retirar o prêmio.",0;
+				enablenpc "Saida";
+				disablenpc "Gladiador";
+				end;
+			}
+			
+			// INICIANDO DUEL PELO JOGADOR 1
+			if($@inscrito$[$@indiceescolhido1]==strcharinfo(0)){
+				atcommand strcharinfo(0)+":@duel "+$@inscrito$[$@indiceescolhido2];
+				announce "Que comecem a batalha!!!",0;
+				close;
+			}
+			
+			// INICIANDO DUEL PELO JOGADOR 2
+			if($@inscrito$[$@indiceescolhido2]==strcharinfo(0)) {
+				atcommand strcharinfo(0)+":@duel "+$@inscrito$[$@indiceescolhido1];
+				announce "Que comecem a batalha!!!",0;
+				close;
+			}
+			end;
+	}else{
+		mes $gla$;
+		mes "Você não é um dos candidatos, ou não terminaram as explicações";
+		close;
+	}
+	
+	OnPCKillEvent:
+		if(getmapxy(@mapa$,@mapx,@mapy,0,strcharinfo(0))!=0) end;
+		if(@mapa$=="poring_c01") {
+			set $@round,$@round+1;
+			if($@inscrito$[$@indiceescolhido1]==strcharinfo(0)) set $@vitoria1,$@vitoria1+1;
+			if($@inscrito$[$@indiceescolhido2]==strcharinfo(0)) set $@vitoria2,$@vitoria2+1;
+			percentheal 100,100;
+			goto Porrada;
+		}
+		end;
+	
+	OnPCDieEvent:
+		if($@inscrito$[$@indiceescolhido2]==strcharinfo(0)) {
+			atcommand strcharinfo(0)+":@alive "+$@inscrito$[$@indiceescolhido2];
+			end;
+		}
+		if($@inscrito$[$@indiceescolhido1]==strcharinfo(0)) {
+			atcommand strcharinfo(0)+":@alive "+$@inscrito$[$@indiceescolhido1];
+			end;
+		}
+	
+	// EVENTO CANCELADO
+	OnHour0930:
+		if($@vencedor$!=null) end;
+	
+	cancelado:
+		announce "Evento cancelado, retirem suas apostas com Ares.",0;
+		set $@retirarcancelado,1;
+		set $@apostas,0;
+		set $@apostastotais,0;
+		set $@apostasc1,0;
+		set $@apostasc2,0;
+		set $npcligado,0;
+		set $colisseum,0;
+		cleararray $@incrito$[0],"NULL",127;
+		set $@a,0;
+		set $@indiceescolhido1,0;
+		set $@indiceescolhido2,0;
+		set $@Combatentes,0;
+		disablenpc "Gladiador";
+		end;
+	
+	// QUANDO O NPC FOR ATIVADO PELO SENHOR DO COLISSEUM
+	OnHour2033:
+		set $gla$,"[Gladiador]";
+		if($@duelo!=1) {
+			disablenpc "Gladiator";
+			end;
+		}
+		initnpctimer;
+		end;
+	
+	OnTimer8000:
+		announce "Vou explicar o evento para todos:",0;
+		end;
+
+	OnTimer12000:
+		announce "Nesse momento as apostas nos 2 jogadores já estão encerradas, quem quizer assistir vá ao NPC que está em Morocc",0;
+		end;
+		
+	OnTimer20000:
+		announce "Os dois combatentes já estão na arena, eles farão uam melhor de 5, quem ganhar mais vezes é o vencedor.",0;
+		end;
+
+	OnTimer28000:
+		announce "Com o vencedor anunciado, os apostadores poderão retirar seus prêmios, certo?",0;
+		end;
+
+	Ontimer36000:
+		announce "Vamos começar, por favor, preciso que os dois combatentes falem comigo... ",0;
+		message $@inscrito$[$@indiceescolhido1],"Fale com o NPC da arena!";
+		message $@inscrito$[$@indiceescolhido2],"Fale com o NPC da arena!";
+		set $@round,1;
+		set $@eventoon,1;
+		end;
+	cancel:
+		next;
+		mes $gla$;
+		mes "Certo, lembre-se que você tem um limite de tempo para iniciar o evento...";
+		close;
+}
+
+// SAIDA DO EVENTO E ANTIBUG
+poring_c01,104,110,4	script	Saida	858,{
+savepoint "morocc",156,93;
+warp "morocc",156,93;
+close;	
+
+
+OnHour0001:
+
+set $npcligado,0;
+set $colisseum,0;
+set $@a,0;
+cleararray $@incrito$[0],"NULL",127;
+set $@rand,0;
+set $@b,0;
+set $@indiceescolhido1,0;
+set $@indiceescolhido2,0;
+set $@apostas,0;
+set $@apostastotais,0;
+set $@apostasc1,0;
+set $@apostasc2,0;
+set $@eventoon,0;
+set $@round,0;
+set $@retirarcancelado,0;
+set $@vencedor$,"null";
+set $@apostadoresc1,0;
+set $@apostadoresc2,0;
+set $@Combatentes,0;
+disablenpc "Ares";
+disablenpc "Gladiador";
+disablenpc "Saida";
+end;
+
+}
+
+poring_c01	mapflag	nowarp
+poring_c01	mapflag	nogo
+poring_c01	mapflag	noteleport
+poring_c01	mapflag	nocommand
+poring_c01	mapflag	nomemo
+poring_c01	mapflag	pvp_noparty

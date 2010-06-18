@@ -1,0 +1,89 @@
+pvp_n_1-1	mapflag	nodrop
+//pvp_n_1-1	mapflag	gvg_dungeon
+
+pvp_n_1-1,0,0,0,0	monster	Ghostring		1120,1,3600000,7200000
+pvp_n_1-1,0,0,0,0	monster	Tower Keeper	1270,5,60000,60000
+pvp_n_1-1,0,0,0,0	monster	Green Plant		1080,60,60000,60000,0
+pvp_n_1-1,0,0,0,0	monster	Red Plant		1078,40,60000,60000,0
+pvp_n_1-1,0,0,0,0	monster	Yellow Plant	1081,20,600000,1200000,0
+pvp_n_1-1,0,0,0,0	monster	Blue Plant		1079,10,600000,3600000,0
+pvp_n_1-1,0,0,0,0	monster	Shining Plant	1083,5,3600000,7200000,0
+
+//MvPs Novos
+pvp_n_1-1,086,071,3	script	Baltazar	2101,{warp "pay_fild10",0,	0;}
+pvp_n_1-1,085,071,4	script	Krool		2146,{warp "pay_fild10",0,	0;}
+pvp_n_1-1,102,171,4	script	T.Roz		2106,{warp "cmd_fild07",0,	0;}
+pvp_n_1-1,094,182,4	script	Meteoro		2102,{warp "moc_fild16",0,	0;}
+pvp_n_1-1,061,059,5	script	Dr.Pimpolho	2099,{warp "pvp_y_5-5",	0,	0;}
+pvp_n_1-1,107,144,5	script	Yuri		2103,{warp "hu_fild05",	0,	0;}
+pvp_n_1-1,120,071,3	script	Yuufa		2157,{warp "beach_dun",	0,	0;}
+pvp_n_1-1,083,159,4	script	Sola		2108,{warp "beach_dun",	0,	0;}
+
+pvp_n_1-1,114,044,3	script	Bola		2098,{warp "prt_monk",	0,	0;}
+pvp_n_1-1,112,044,5	script	Gleen		2104,{warp "prt_monk",	0,	0;}
+pvp_n_1-1,103,055,3	script	Turok		2097,{warp "prt_fild10",0,	0;}
+//pvp_n_1-1,100,055,5	script	Chii~	2142,{warp "prt_fild10",0,	0;}
+pvp_n_1-1,074,163,3	script	Hermes		2107,{warp "c_tower1",	0,	0;}
+//pvp_n_1-1,071,163,5	script	Dimasi	2152,{warp "c_tower1",	0,	0;}
+
+pvp_n_1-1,093,027,4	script	Brunim		2105,{warp "yuno_fild04",0,	0;}
+pvp_n_1-1,088,049,4	script	Spok		2089,{warp "gef_dun03",	0,	0;}
+pvp_n_1-1,078,182,4	script	Elfo		2100,{warp "pay_fild03",0,	0;}
+
+//MvPs Normais
+pvp_n_1-1,086,169,4	script	Amon Ra				1511,{warp "moc_pryd06",0,	0;}
+pvp_n_1-1,126,181,4	script	Bacsojin			1518,{warp "lou_dun03",	0,	0;}
+pvp_n_1-1,068,069,4	script	Baphomet			1039,{warp "gl_cas02",	0,	0;}
+pvp_n_1-1,111,023,4	script	Beelzebub			1874,{warp "abbey03",	0,	0;}
+pvp_n_1-1,084,142,4	script	Bishop Hibram		1871,{warp "abbey02",	0,	0;}
+pvp_n_1-1,090,035,4	script	Dark Lord			1272,{warp "gl_chyard",	0,	0;}
+pvp_n_1-1,089,150,4	script	Detale				1719,{warp "abyss_03",	0,	0;}
+pvp_n_1-1,110,182,4	script	Doppelganger		1046,{warp "gef_dun02",	0,	0;}
+pvp_n_1-1,157,115,4	script	Dracula				1389,{warp "gef_dun01",	0,	0;}
+pvp_n_1-1,085,018,4	script	Drake				1112,{warp "treasure02",0,	0;}
+pvp_n_1-1,105,153,4	script	Eddga				1115,{warp "pay_fild11",0,	0;}
+pvp_n_1-1,070,031,4	script	Evil Snake Lord		1418,{warp "gon_dun03",	0,	0;}
+pvp_n_1-1,095,161,4	script	Garm				1252,{warp "iz_dun04",	0,	0;}
+pvp_n_1-1,109,036,4	script	Gloom Under Night	1768,{warp "ra_san05",	0,	0;}
+pvp_n_1-1,091,127,4	script	Golden Thief Bug	1086,{warp "prt_sewb4",	0,	0;}
+pvp_n_1-1,076,147,4	script	Incantation Samurai	1492,{warp "ama_dun03",	0,	0;}
+pvp_n_1-1,102,017,4	script	Kiel D-01			1734,{warp "kh_dun02",	0,	0;}
+pvp_n_1-1,106,163,4	script	Ktullanux			1779,{warp "ice_dun03",	0,	0;}
+pvp_n_1-1,068,047,4	script	Lady Tanee			1688,{warp "ayo_dun02",	0,	0;}
+pvp_n_1-1,057,154,4	script	Lord Of Death		1373,{warp "niflheim",	0,	0;}
+pvp_n_1-1,117,140,4	script	Maya				1147,{warp "anthell02",	0,	0;}
+pvp_n_1-1,130,128,4	script	Mistress			1059,{warp "mjolnir_04",0,	0;}
+pvp_n_1-1,103,030,4	script	Moonlight Flower	1150,{warp "pay_dun04",	0,	0;}
+pvp_n_1-1,119,015,4	script	Orc Hero			1087,{warp "gef_fild14",0,	0;}
+pvp_n_1-1,076,054,4	script	Orc Lord			1190,{warp "orcsdun02",	0,	0;}
+pvp_n_1-1,094,140,4	script	Osiris				1038,{warp "moc_pryd04",0,	0;}
+pvp_n_1-1,058,140,4	script	Pharaoh				1157,{warp "in_sphinx5",0,	0;}
+pvp_n_1-1,067,174,4	script	Phreeoni			1159,{warp "moc_fild15",0,	0;}
+pvp_n_1-1,074,131,4	script	RSX-0806			1623,{warp "ein_dun02",	0,	0;}
+pvp_n_1-1,115,165,4	script	Stormy Knight		1251,{warp "xmas_dun02",0,	0;}
+pvp_n_1-1,137,064,4	script	Tao Gunka			1583,{warp "beach_dun",	0,	0;}
+pvp_n_1-1,120,033,4	script	Turtle General		1312,{warp "tur_dun04",	0,	0;}
+pvp_n_1-1,103,045,4	script	Valkyrie Randgris	1751,{warp "odin_tem03",0,	0;}
+pvp_n_1-1,114,127,4	script	Vesper				1685,{warp "jupe_core",	0,	0;}
+pvp_n_1-1,126,058,4	script	Zmey Gorynych		1885,{warp "mosk_dun03",0,	0;}
+
+
+pvp_n_1-1,105,107,5	script	Thanatos	1708,{
+	mes "[Thanatos]";
+	mes "Para lutar contra mim, você precisará atravessar 12 andares de muito perigo.";
+	mes " ";
+	mes "Deseja mesmo tentar?";
+	menu "Não",-,"Sim",L_Warp;
+	close;
+	
+	L_Warp:
+	warp "tha_scene01",131,224;
+}
+
+//Lighthalzen
+pvp_n_1-1,122,152,5	script	*Lorde Seyren					1646,{warp "lhz_dun03",	0,	0;}
+pvp_n_1-1,122,150,5	script	*Algoz Eremes					1647,{warp "lhz_dun03",	0,	0;}
+pvp_n_1-1,121,149,4	script	*Mestre Ferreiro Horward		1648,{warp "lhz_dun03",	0,	0;}
+pvp_n_1-1,121,151,4	script	*Sacerdotiza Margaretha			1649,{warp "lhz_dun03",	0,	0;}
+pvp_n_1-1,120,150,3	script	*Atirador Cecil					1650,{warp "lhz_dun03",	0,	0;}
+pvp_n_1-1,120,152,3	script	*Arquimaga Kathryne				1651,{warp "lhz_dun03",	0,	0;}

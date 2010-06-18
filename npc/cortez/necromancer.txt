@@ -1,0 +1,177 @@
+-	script	necromancer	 	795,{		//750
+	if(countitem(9925)<1) goto none;
+	
+	mes "[Necromancer]";
+	mes "O pagamento é feito em crânios humanos. Uma vez que você comprou um certo tipo de monstro, poderá criá-lo quantas vezes quiser.";
+	mes "Formato: (Nome)(Crânios)";
+	mes "Deseja estudar a criação de qual monstro?";
+	next;
+	set @skulls,(countitem(7420) + (countitem(9927)*100));
+	menu "Básico(100)",Basic,"Soldado(300)",Soldier,"Arqueiro(350)",Archer,"Orc(400)",Orc,"Pirata(450)",Pirate,"Operário(500)",Worker,"Prisioneiro(600)",Prisoner,"General(750)",General,"Múmia(1000)",Mummy,"Chefe(5000)",AM,"No",L_Leave;
+	
+	Basic:
+		if(@skulls<100) goto naotem;
+		if(countitem(9927)>=1)
+			delitem 9927,1;
+		else
+			delitem 7420,100;
+		set necromancer,1076;
+		close;
+	
+	Soldier:
+		if(@skulls<300) goto naotem;
+		set @skullsfalta,300;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1028;
+		close;
+	
+	Archer:
+		if(@skulls<350) goto naotem;
+		set @skullsfalta,350;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1016;
+		close;
+	
+	Pirate:
+		if(@skulls<450) goto naotem;
+		set @skullsfalta,450;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1071;
+		close;
+	
+	Orc:
+		if(@skulls<400) goto naotem;
+		set @skullsfalta,400;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1152;
+		close;
+	
+	Worker:
+		if(@skulls<500) goto naotem;
+		set @skullsfalta,500;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1169;
+		close;
+	
+	Prisoner:
+		if(@skulls<600) goto naotem;
+		set @skullsfalta,600;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1196;
+		close;
+	
+	General:
+		if(@skulls<750) goto naotem;
+		set @skullsfalta,750;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1290;
+		close;
+	
+	Mummy:
+		if(@skulls<1000) goto naotem;
+		set @skullsfalta,1000;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1297;
+		close;
+	
+	AM:
+		if(@skulls<5000) goto naotem;
+		set @skullsfalta,5000;
+		while(@skullsfalta>0){
+			if(countitem(9927)>=1 && @skullsfalta>=100){
+				delitem 9927,1;
+				set @skullsfalta,@skullsfalta-100;
+			}else{
+				delitem 7420,@skullsfalta;
+				set @skullsfalta,0;
+			}
+		}
+		set necromancer,1999;
+		close;
+	
+	none:
+		mes "[Necromancer]";
+		mes "Você não tem um pergaminho... Deseja um que nunca acabe???";
+		menu "Claro",yesir,"Não",-;
+		close;
+	
+	naotem:
+		mes "[Necromancer]";
+		mes "Você não tem caveiras suficientes. Lembrando que são caveiras humanas!";
+		close;
+	
+	yesir:
+		getitem 9925,1;
+		mes "[Necromancer]";
+		mes "Aqui vai, agora você pode criar seu monstro! Se ainda não escolheu é só falar comigo denovo!";
+		close;
+	
+	L_Leave:
+		close;
+}
+
+schg_cas03,19,55,4	duplicate(necromancer)	Necromancer	 	735

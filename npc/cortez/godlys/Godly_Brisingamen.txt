@@ -1,0 +1,75 @@
+que_sign01,45,44,4	script	Loki	730,{
+	mes "^006611[ Loki ]^333333";
+	if (countitem(7331)<1){
+		mes "Você nem sabe por onde anda, vá embora.";
+		close;
+	}
+	mes "O que fezes aqui?";
+	next;
+	menu "Continuar a conversa",-,"Cancelar",L_Fechar;
+	
+	mes "^006611[ Loki ]^333333";
+	mes "Se está atrás de Brisingamen você esta perto de se aproximar dele.";
+	next;
+	mes "^006611[ Loki ]^333333";
+	mes "Mais para tê-lo vai ter que me dar varios itens em troca!";
+	mes "São muito difíceis de conseguir...";
+	next;
+	mes "^006611[ Loki ]^333333";
+	mes "São estes itens:";
+	mes "- 150x Pedra Encantada Azul";
+	mes "- 150x Pedra Encantada Amarela";
+	mes "- 150x Pedra Encantada Vermelha";
+	mes "- 150x Pedra Encantada Verde";
+	mes "- 150x Lagrímas de Freyja";
+	mes "- 150x Murmúrio";
+	mes "- 150x Ar Silencioso ";
+	mes "- 6x Ornamento de Prata";
+	mes "- 6x Floco de Neve";
+	mes "- 20x Ouros";
+	next;
+	mes "^006611[ Loki ]^333333";
+	mes "Vai rápido que eu não tenho paciência.";
+	next;
+	menu "Ja está aqui.",L_DarItens,"Vou tentar pegá-los.",-;
+	
+	mes "^006611[ Loki ]^333333";
+	mes "Se trouxer todos irá gostar muito dele.";
+	close;
+
+	L_DarItens:
+	mes "^006611[ Loki ]^333333";
+	mes "OK, vamos ver...";
+	next;
+	mes "^006611[ Loki ]^333333";
+	if(	countitem(7073)<150 || countitem(7090)<150 ||
+		countitem(7092)<150 || countitem(7428)<150 ||
+		countitem(7427)<150 || countitem(7426)<150 ||
+		countitem(7429)<150 || countitem(7077)<6   ||
+		countitem(7088)<6	|| countitem(969)<20){
+		mes "Está sem os itens, pegue-os para mim...";
+	}else{
+		mes "Perfeito.";
+		next;
+		mes "^006611[ Loki ]^333333";
+		mes "Agora sai daqui logo...";
+		mes "^006611[ Loki ]^333333";
+		mes "Aqui está!";
+		next;
+		delitem 7073,150;
+		delitem 7090,150;
+		delitem 7092,150;
+		delitem 7429,150;
+		delitem 7428,150;
+		delitem 7427,150;
+		delitem 7426,150;
+		delitem 7077,6;
+		delitem 7088,6;
+		delitem 969,20;
+		
+		getitem 2630,1;
+	}
+	
+	L_Fechar:
+		close;
+}

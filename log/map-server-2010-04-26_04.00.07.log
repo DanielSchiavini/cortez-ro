@@ -1,0 +1,231 @@
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "force_1-1",100,100 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "pay_fild05",90,90 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "moc_fild04",232,322 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 3' to "izlu2dun",114,84 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 3' to "prontera",156,175 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6023324/675248 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=force_1-1 (users=0). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 3' to "force_1-1",100,100 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "abyss_03",116,29 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "force_1-1",100,100 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "abyss_02",272,270 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "pvp_y_room",52,24 failed.
+[1;36m[Debug][0m: Source (NPC): CdC at schg_cas03 (38,48)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "pvp_y_room",52,24 failed.
+[1;36m[Debug][0m: Source (NPC): CdC at schg_cas03 (38,48)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "pvp_y_room",52,24 failed.
+[1;36m[Debug][0m: Source (NPC): CdC at schg_cas03 (38,48)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "abyss_03",116,29 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 3' to "force_1-1",100,100 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: clif_process_message: Player 'Kenrick' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Kenrick' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Kenrick' sent an unterminated name!
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: clif_process_message: Player 'Banju WS' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Banju WS' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Banju WS' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Banju WS' sent an unterminated name!
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;36m[Debug][0m: script debug : 0 110000124 : Base gefg_cas02 sem woe. prtg_cas01/prtg_cas02
+[1;36m[Debug][0m: script debug : 0 110000003 : Base  sem woe. prtg_cas01/prtg_cas02
+[1;36m[Debug][0m: script debug : 0 110000124 : Sem woe no gefg_cas02 (prtg_cas01/prtg_cas02)
+[1;36m[Debug][0m: script debug : 0 110000003 : Sem woe no  (prtg_cas01/prtg_cas02)
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:3012876/602228 (active=1 connect_new=0 rewarp=0 changemap=1 debug_remove_map=1) from map=gld_dun02 (users=0). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 6013660 data: 112
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not Horn#flag_Cortez (id=110000179).
+[1;33m[Warning][0m: clif_process_message: Player 'Gol~FoX' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Gol~FoX' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Gol~FoX' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'gui gui' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'gui gui' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'gui gui' sent an unterminated name!
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: clif_process_message: Player 'Ragnarok 00' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Ragnarok 00' sent an unterminated name!
+[1;31m[Error][0m: npc_event: event not found [Kafra::OnWhisperGlobal]
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "force_1-1",100,100 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "ordeal_1-1",151,132 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "moc_fild04",232,322 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not Choco (id=110000256).
+[1;31m[Error][0m: npc_event: event not found [Kafra::OnWhisperGlobal]
+[1;31m[Error][0m: npc_event: event not found [Kafra::OnWhisperGlobal]
+[1;36m[Debug][0m: script debug : 0 110000124 : Base gefg_cas02 sem woe. prtg_cas01/prtg_cas02
+[1;36m[Debug][0m: script debug : 0 110000003 : Base  sem woe. prtg_cas01/prtg_cas02
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:4004706/623623 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=prtg_cas02 (users=1). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 6023745 data: 112
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6016332/659972 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=prtg_cas02 (users=3). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:4004706/623623 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=prtg_cas02 (users=3). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;31m[Error][0m: party_member_added: party 196458 not found.
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6019107/683210 (active=1 connect_new=0 rewarp=0 changemap=1 debug_remove_map=1) from map=prtg_cas02 (users=29). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:2002754/686328 (active=1 connect_new=0 rewarp=0 changemap=1 debug_remove_map=1) from map=prt_gld (users=2). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not Choco (id=110000256).
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:2002754/686328 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=prtg_cas02 (users=4). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6018959/684785 (active=1 connect_new=0 rewarp=0 changemap=1 debug_remove_map=1) from map=prt_gld (users=11). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:2013979/671937 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=prtg_cas02 (users=15). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;31m[Error][0m: mob_spawn_guardian: Attempted to spawn guardian in position 0 which already has a guardian (castle map prtg_cas02)
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6002137/613291 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=prtg_cas02 (users=0). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 4001632 data: 112
+[1;36m[Debug][0m: script debug : 0 110000124 : Sem woe no gefg_cas02 (prtg_cas01/prtg_cas02)
+[1;36m[Debug][0m: script debug : 0 110000003 : Sem woe no  (prtg_cas01/prtg_cas02)
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;31m[Error][0m: get_percentage(): divison by zero! (A=0,B=0)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "pvp_y_room",52,24 failed.
+[1;36m[Debug][0m: Source (NPC): CdC at schg_cas03 (38,48)
+[1;33m[Warning][0m: clif_process_message: Player 'Zanmato' sent an unterminated name!
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 6015386 data: 112
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not kafra (id=110000838).
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 6016040 data: 112
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 6010337 data: 112
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "pvp_y_room",52,24 failed.
+[1;36m[Debug][0m: Source (NPC): CdC at schg_cas03 (38,48)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 3' to "moc_fild04",232,322 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "moc_fild04",232,322 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: get_percentage(): divison by zero! (A=36630323,B=0)
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;31m[Error][0m: get_percentage(): divison by zero! (A=36630323,B=0)
+[1;31m[Error][0m: get_percentage(): divison by zero! (A=36630323,B=0)
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: clif_process_message: Player 'Killer.Mantis' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Killer.Mantis' sent an unterminated name!
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_scriptcont: failed npc_checknear test.
+[1;36m[Debug][0m: script debug : 0 110000085 : Base prtg_cas02 sem woe. arug_cas03/
+[1;36m[Debug][0m: script debug : 0 110000124 : Base gefg_cas02 sem woe. arug_cas03/
+[1;36m[Debug][0m: script debug : 0 110000046 : Base prtg_cas01 sem woe. arug_cas03/
+[1;33m[Warning][0m: clif_process_message: Player 'Yokona' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Yokona' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Yokona' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Yokona' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Yokona' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Yokona' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Yokona' sent an unterminated name!
+[1;36m[Debug][0m: script debug : 0 110000124 : Sem woe no gefg_cas02 (arug_cas03/)
+[1;36m[Debug][0m: script debug : 0 110000085 : Sem woe no prtg_cas02 (arug_cas03/)
+[1;36m[Debug][0m: script debug : 0 110000046 : Sem woe no prtg_cas01 (arug_cas03/)
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 6015386 data: 112
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "yuno_fild03",35,135 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 2' to "moc_fild04",232,322 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+[1;31m[Error][0m: chrif_accountban failed - player not online.
+[1;31m[Error][0m: chrif_accountban failed - player not online.
+[1;31m[Error][0m: mob_skill: Non existant Mob id 1956 at mob_skill_db.txt, line 4832
+[1;31m[Error][0m: chrif_accountban failed - player not online.
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: clif_process_message: Player 'Hadukken' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Hadukken' sent an unterminated name!
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;36m[Debug][0m: script debug : 0 110000085 : Base prtg_cas02 sem woe. arug_cas03/
+[1;36m[Debug][0m: script debug : 0 110000124 : Base gefg_cas02 sem woe. arug_cas03/
+[1;36m[Debug][0m: script debug : 0 110000046 : Base prtg_cas01 sem woe. arug_cas03/
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;36m[Debug][0m: script debug : 0 110000124 : Sem woe no gefg_cas02 (arug_cas03/)
+[1;36m[Debug][0m: script debug : 0 110000085 : Sem woe no prtg_cas02 (arug_cas03/)
+[1;36m[Debug][0m: script debug : 0 110000046 : Sem woe no prtg_cas01 (arug_cas03/)
+[1;36m[Debug][0m: mapindex_name2id: Map "mijolnir_02" not found in index list!
+[1;36m[Debug][0m: mapindex_name2id: Map "hu_fld07" not found in index list!
+[1;36m[Debug][0m: mapindex_name2id: Map "hu_fld07" not found in index list!
+[1;36m[Debug][0m: mapindex_name2id: Map "hu_fld07" not found in index list!
+[1;36m[Debug][0m: mapindex_name2id: Map "hu_fld07" not found in index list!
+[1;36m[Debug][0m: mapindex_name2id: Map "mijolnir_02" not found in index list!
+[1;33m[Warning][0m: npc_scriptcont: failed npc_checknear test.
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not Horn#flag_Cortez (id=110000179).
+[1;36m[Debug][0m: script debug : 0 110000085 : Base prtg_cas02 sem woe. gefg_cas02/
+[1;36m[Debug][0m: script debug : 0 110000046 : Base prtg_cas01 sem woe. gefg_cas02/
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6023280/675024 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=2). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 6003810 data: 112
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;36m[Debug][0m: script debug : 0 110000085 : Sem woe no prtg_cas02 (gefg_cas02/)
+[1;36m[Debug][0m: script debug : 0 110000046 : Sem woe no prtg_cas01 (gefg_cas02/)
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;33m[Warning][0m: npc_event: player's event queue is full, can't add event '#LvUpEvent::OnPCBaseLvUpEvent' !
+[1;36m[Debug][0m: script debug : 0 110000085 : Base prtg_cas02 sem woe. gefg_cas02/
+[1;36m[Debug][0m: script debug : 0 110000046 : Base prtg_cas01 sem woe. gefg_cas02/
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6002137/613291 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=31). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:2013979/671937 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=20). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6002137/613291 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=37). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6002137/613291 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=38). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:2013979/671937 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=27). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:4051263/402872 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=34). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:2013979/671937 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=27). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: unit_remove_map: unexpected state when removing player AID/CID:6023642/686019 (active=1 connect_new=0 rewarp=0 changemap=0 debug_remove_map=1) from map=gefg_cas02 (users=24). Previous call from c:\server\easvn\src\map\unit.c:1798(), current call from c:\server\easvn\src\map\unit.c:1798(). Please report this!!!
+[1;36m[Debug][0m: script debug : 0 110000085 : Sem woe no prtg_cas02 (gefg_cas02/)
+[1;36m[Debug][0m: script debug : 0 110000046 : Sem woe no prtg_cas01 (gefg_cas02/)
+[1;33m[Warning][0m: clif_process_message: Player 'Sarutobi Creator' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Sarutobi Creator' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Sarutobi Creator' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Sarutobi Creator' sent an unterminated name!
+[1;31m[Error][0m: buildin_warp: moving player 'HaKuNa 3' to "moc_fild04",232,322 failed.
+[1;36m[Debug][0m: Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)

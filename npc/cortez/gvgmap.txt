@@ -1,0 +1,61 @@
+//pvp_2vs2	mapflag	gvg
+//pvp_2vs2	mapflag	gvg_dungeon
+//pvp_2vs2	mapflag	gvg_noparty
+pvp_2vs2	mapflag	nopenalty
+pvp_2vs2	mapflag	nogo
+pvp_2vs2	mapflag	nowarp
+pvp_2vs2	mapflag	nobranch
+pvp_2vs2	mapflag	nosave	SavePoint
+pvp_2vs2,0,0,0,0	monster	Antonio	1247,1,0,0
+
+-	script	EmperiumTraining	-1,{
+	OnEmperiumBroke:
+		if(playerattached()){
+			if(getcharid(2)){
+				set $GuildEmperiumGVG,getcharid(2);
+				MapAnnounce "pvp_2vs2", "Emperium destruído por "+strcharinfo(0), 17;
+				detachrid;
+				sleep 2000;
+				MapAnnounce "pvp_2vs2", "Mapa GvG dominado pelo clã [" + GetGuildName($GuildEmperiumGVG) + "]!", bc_map;
+				doevent "GvG#gvg_flag::OnChangeFlag";
+				sleep getbattleflag("gvg_eliminate_time");
+				
+				//MapAnnounce "pvp_2vs2","Respawn...!", bc_map;
+				MapRespawnGuildID "pvp_2vs2", $GuildEmperiumGVG, 6;
+				sleep 6333 - getbattleflag("gvg_eliminate_time");
+			}
+		}
+	
+	OnInit:
+		if(GetGuildName($GuildEmperiumGVG)=="null") set $GuildEmperiumGVG, 1;
+		monster "pvp_2vs2",40,33,($GuildEmperiumGVG?GetGuildName($GuildEmperiumGVG):"Emperium"),2301,1,"EmperiumTraining::OnEmperiumBroke";
+		end;
+}
+
+pvp_2vs2,39,39,4	script	GvG#gvg_flag	722,{
+	if(GetGuildName($GuildEmperiumGVG)=="null") set $GuildEmperiumGVG, 0;
+	mes "[ Leis do Divino Reino de Rune Midgard Cortez ]";
+	if($GuildEmperiumGVG){
+		mes "1. De acordo com as leis do Reino Cortez de Rune Midgard, o mapa GVG pertence ao clã ^ff0000" + GetGuildName($GuildEmperiumGVG) + "^000000.";
+		mes " ";
+		mes "2. O Líder do clã ^ff0000" + GetGuildName($GuildEmperiumGVG) + "^000000 é ^0000FF" + GetGuildMaster($GuildEmperiumGVG) + "^000000.";
+		mes "Se alguém é contra isto, levante a sua espada para sua própria honra.";
+	}else{
+		mes "1. De acordo com as leis do Reino Cortez de Rune Midgard, o mapa GVG não foi tomado por nenhum clã";
+		mes " ";
+		mes "2. Para conquistar o mapa, é necessário eliminar o emperium";
+	}
+	close;
+	
+	OnInit:
+	OnChangeFlag:
+		FlagEmblem $GuildEmperiumGVG;
+		end;
+}
+
+pvp_2vs2,24,40,0,0	monster	1ª Runa Guardiã	1907,1,60,60
+pvp_2vs2,55,39,0,0	monster	2ª Runa Guardiã	1908,1,60,60
+pvp_2vs2,28,60,0,0	monster	Barricada	1905,1,300,300
+pvp_2vs2,37,60,0,0	monster	Barricada	1905,1,300,300
+pvp_2vs2,47,60,0,0	monster	Barricada	1905,1,300,300
+pvp_2vs2,56,60,0,0	monster	Barricada	1905,1,300,300

@@ -1,0 +1,229 @@
+//===== eAthena Script =======================================
+//= War of Emperium Guild Event AgitStart/AgitBreak Functions
+//===== By: ==================================================
+//= jAthena - kalen (1.0)
+//= 1.1 by Akaru, ho|yAnge|X, and Valaris
+//===== Current Version: =====================================
+//= 1.3
+//===== Compatible With: =====================================
+//= eAthena 0.1+; RO Episode 4+
+//===== Description: =========================================
+//= F_AgitStart is in charge of spawning Emperium and mobs in castles
+//=   when WoE is started.
+//= F_AgitBreak resets guild castle data when a castle has been taken over.
+//=   It then sets the data for the new guild master if there is one.
+//=======================================
+//= Break down of arguments used in F_AgitStart:
+//=   arg(0): name of specific guild castle.
+//=   arg(1): name of specific agit castle script.
+//=   arg(2): x1 for Emperium and monster spawn
+//=   arg(3): y1 for Emperium and monster spawn
+//= Break down of arguments used in F_AgitBreak:
+//=   arg(0): name of specific guild castle.
+//=   arg(1): name of specific OnRevCastle label.
+//===== Additional Comments: =================================
+//= v1.2: All OnAgitStart and OnAgitBreak calls will use these functions.[kobra_k88]
+//= v1.2a: Added OnAgitEnd function.[kobra_k88]
+//= 1.3 Added code for abandoning captured castles on /breakguild [Lupus]
+//============================================================
+
+
+-	script	WoE_Timer	-1,{
+	OnInit:
+	OnAgit:
+	while($woe_timer>=0){
+		sleep 1000;
+		set $woe_timer,$woe_timer+1;
+	}
+	set $woe_timer,0;
+}
+
+-	script	WoE_TimerSetter	-1,{
+	OnInit:
+		if(!agitcheck()) set $woe_timer,-10;
+		end;
+	
+	OnAgitStart:
+		set $woe_timer,0;
+		donpcevent "WoE_Timer::OnAgit";
+		end;
+	
+	OnAgitEnd:
+		if($woe>0){
+			set .@GID, getcastledata($castleMap$,1);
+			if(.@GID){
+				if($woe_timer>60*58)
+					announce getguildname(.@GID)+" não perdeu o castelo nessa guerra!",0;
+				else if($woe_timer>120)
+					announce getguildname(.@GID)+" ficou com o castelo durante "+($woe_timer/60)+" minutos!",0;
+				else
+					announce getguildname(.@GID)+" ficou com o castelo durante "+$woe_timer+" segundos!",0;
+				debugmes getguildname(.@GID)+" - castelo durante "+$woe_timer+" segundos!";
+				query_sql "Update guild set tempo=coalesce(tempo,0)+"+escape_sql($woe_timer)+" Where guild_id="+escape_sql(.@GID);
+			}else{
+				announce "Não há dono no castelo "+$woe,0;
+			}
+		}else{
+			announce "Não é horário de guerra!",0;
+		}
+		set $woe_timer,-10;
+		set $woe,0;
+		set $castleName$,"";
+		set $castleMap$,"";
+		end;
+}
+
+// Function for OnAgitStart =========================================
+function	script	F_AgitStart	{
+
+	MapRespawnGuildID getarg(0),GetCastleData(getarg(0),1),2;
+	Monster getarg(0),getarg(2),getarg(3),"Emperium",1288,1,"Agit_"+getarg(1)+"::OnAgitBreak";
+	GvgOn getarg(0);
+	if (GetCastleData(getarg(0),1) != 0) return;
+	if(getarg(0) == "aldeg_cas01" || getarg(0) == "aldeg_cas02" || getarg(0) == "aldeg_cas03" || getarg(0) == "aldeg_cas04" || getarg(0) == "aldeg_cas05" || getarg(0) == "nguild_alde") goto L_AldegCas;
+	if(getarg(0) == "gefg_cas01" || getarg(0) == "gefg_cas02" || getarg(0) == "gefg_cas03" || getarg(0) == "gefg_cas04" || getarg(0) == "gefg_cas05" || getarg(0) == "nguild_gef") goto L_GefgCas;
+	if(getarg(0) == "payg_cas01" || getarg(0) == "payg_cas02" || getarg(0) == "payg_cas03" || getarg(0) == "payg_cas04" || getarg(0) == "payg_cas05" || getarg(0) == "nguild_pay") goto L_PaygCas;
+	if(getarg(0) == "prtg_cas01" || getarg(0) == "prtg_cas02" || getarg(0) == "prtg_cas03" || getarg(0) == "prtg_cas04" || getarg(0) == "prtg_cas05" || getarg(0) == "nguild_prt") goto L_PrtgCas;
+
+L_AldegCas:
+	areamonster getarg(0),0,0,300,300,"--ja--",1117,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1132,4;
+	areamonster getarg(0),0,0,300,300,"--ja--",1219,2;
+	areamonster getarg(0),0,0,300,300,"--ja--",1205,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1216,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1193,17;
+	areamonster getarg(0),0,0,300,300,"--ja--",1269,9;
+	areamonster getarg(0),0,0,300,300,"--ja--",1276,7;
+	areamonster getarg(0),0,0,300,300,"--ja--",1208,3;
+	areamonster getarg(0),0,0,300,300,"--ja--",1275,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1268,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1272,1;
+	monster getarg(0),(getarg(2)+1),getarg(3),"--ja--",1272,1;
+	monster getarg(0),(getarg(2)-1),getarg(3),"--ja--",1270,4;
+	monster getarg(0),getarg(2),(getarg(3)+1),"--ja--",1268,1;
+	monster getarg(0),getarg(2),(getarg(3)-1),"--ja--",1219,1;
+	monster getarg(0),getarg(2),getarg(3),"--ja--",1276,5;
+	return;
+L_GefgCas:
+	areamonster getarg(0),0,0,300,300,"--ja--",1117,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1263,11;
+	areamonster getarg(0),0,0,300,300,"--ja--",1102,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1130,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1140,20;
+	areamonster getarg(0),0,0,300,300,"--ja--",1163,9;
+	areamonster getarg(0),0,0,300,300,"--ja--",1275,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1219,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1150,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1159,1;
+	monster getarg(0),(getarg(2)+1),getarg(3),"--ja--",1203,1;
+	monster getarg(0),(getarg(2)-1),getarg(3),"--ja--",1087,1;
+	monster getarg(0),getarg(2),(getarg(3)+1),"--ja--",1213,7;
+	monster getarg(0),getarg(2),(getarg(3)-1),"--ja--",1189,7;
+	return;
+L_PaygCas:
+	areamonster getarg(0),0,0,300,300,"--ja--",1277,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1208,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1262,5;
+	areamonster getarg(0),0,0,300,300,"--ja--",1102,5;
+	areamonster getarg(0),0,0,300,300,"--ja--",1150,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1115,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1129,11;
+	areamonster getarg(0),0,0,300,300,"--ja--",1276,5;
+	areamonster getarg(0),0,0,300,300,"--ja--",1282,4;
+	areamonster getarg(0),0,0,300,300,"--ja--",1253,5;
+	monster getarg(0),getarg(2),getarg(3),"--ja--",1150,1;
+	monster getarg(0),getarg(2),getarg(3),"--ja--",1115,1;
+	monster getarg(0),getarg(2),(getarg(3)+1),"--ja--",1208,6;
+	monster getarg(0),getarg(2),(getarg(3)-1),"--ja--",1276,5;
+	return;
+L_PrtgCas:
+	areamonster getarg(0),0,0,300,300,"--ja--",1163,15;
+	areamonster getarg(0),0,0,300,300,"--ja--",1132,10;
+	areamonster getarg(0),0,0,300,300,"--ja--",1219,5;
+	areamonster getarg(0),0,0,300,300,"--ja--",1268,5;
+	areamonster getarg(0),0,0,300,300,"--ja--",1251,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1252,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1276,5;
+	areamonster getarg(0),0,0,300,300,"--ja--",1259,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1283,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1275,1;
+	areamonster getarg(0),0,0,300,300,"--ja--",1200,1;
+	monster getarg(0),(getarg(2)+1),getarg(3),"--ja--",1268,1;
+	monster getarg(0),(getarg(2)-1),getarg(3),"--ja--",1251,1;
+	monster getarg(0),getarg(2),(getarg(3)+1),"--ja--",1252,1;
+	monster getarg(0),getarg(2),(getarg(3)-1),"--ja--",1219,2;
+	monster getarg(0),getarg(2),getarg(3),"--ja--",1276,5;
+	return;
+}
+
+// Function for OnGuildBreak ======================================
+function	script	F_GuildBreak	{
+	killmonsterall getarg(0);
+
+	Announce "O castelo [" + GetCastleName(getarg(0)) + "] foi abandonado.",0;
+	disablenpc "Serviço Kafra#"+getarg(1);
+	set $woe_timer,0;
+
+	SetCastleData getarg(0),0,0;
+	return;
+}
+
+// Function for OnAgitBreak ======================================
+function	script	F_AgitBreak	{
+	set .@map$, getarg(0);
+	set .@castle$, getarg(1);
+	set .@GID,getcharid(2);
+	if (.@GID <= 0) return;
+	
+	set @Economy,GetCastleData(.@map$,2);
+	if(@Economy<5) set @Economy,5;
+	SetCastleData .@map$,2, @Economy-5;
+	
+	set @Defence,GetCastleData(.@map$,3);
+	if(@Defence<5) set @Defence,5;
+	SetCastleData .@map$,3, @Defence-5;
+	
+	set @GA,GetCastleData(.@map$,1);
+	SetCastleData .@map$, 1, .@GID;
+	MapAnnounce .@map$,"Emperium destruído por "+strcharinfo(0),17;
+	GetCastleData .@map$,0,"::OnRecvCastle"+.@castle$;
+	
+	disablenpc "Serviço Kafra#"+.@castle$;
+	
+	if($woe_timer>120)
+		announce "O castelo [" + GetCastleName(.@map$) + "] foi dominado pelo clã [" + GetGuildName(.@GID) + "] depois de "+($woe_timer/60)+" minutos de guerra!",0;
+	else
+		announce "O castelo [" + GetCastleName(.@map$) + "] foi dominado pelo clã [" + GetGuildName(.@GID) + "] depois de "+$woe_timer+" segundos de guerra!",0;
+	debugmes GetCastleName(.@map$) + " dominado pelo clã " + GetGuildName(.@GID) + " depois de "+$woe_timer+" segundos!";
+	query_sql "Update guild set tempo=coalesce(tempo,0)+"+escape_sql($woe_timer)+" Where guild_id="+escape_sql(@GA);
+	set $woe_timer,0;
+	
+	// remove investment data and kafra
+	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
+		SetCastleData .@map$, .@i, 0;
+
+	// if the new guild doesn't have Guardian Research, erase guardians
+	if( getgdskilllv(.@GID,10002) == 0 )
+		for( set .@i, 10; .@i <= 17; set .@i, .@i+1 )
+			SetCastleData .@map$, .@i, 0;
+	
+	specialeffect2 377; sleep2 50;
+	specialeffect2 381; sleep2 50;
+	specialeffect2 572; sleep2 50;
+	specialeffect2 573; sleep2 50;
+	specialeffect2 581; sleep2 50;
+	specialeffect2 254; sleep2 50;
+	getitem 12103,1;
+	
+	return;
+}
+
+
+// Function for OnAgitEnd ======================================
+function	script	F_AgitEnd	{
+	GvgOff getarg(0);
+//	if (GetCastleData(getarg(0),1) == 0) return;	//enable this line to allow take over of non captured castles after woe ends
+	MapRespawnGuildID getarg(0),GetCastleData(getarg(0),1),4;
+	KillMonster getarg(0),"Agit_"+getarg(1)+"::OnAgitBreak";
+	end;
+}

@@ -1,0 +1,109 @@
+geffen	mapflag	restricted	7
+geffen	mapflag	loadevent
+izlude	mapflag	restricted	7
+izlude	mapflag	loadevent
+
+new_zone01,49,130,4	script	Invasão de Cidades	888,{
+	OnClick:
+	mes "^FF0000[ Invasão ]^000066";
+	if(getgmlevel()<10){
+		mes "Sinto muito, não falo com meros mortais..";
+	}else if($invasao >= gettime(8)-1){
+		if($invasao > gettime(8)+7){
+			mes "O último evento foi realizado ano passado.. Certo???";
+			set $invasao, 0;
+			next;
+			goto OnClick;
+		}else{
+			mes "Sinto muito, um evento destes já aconteceu "+($invasao == gettime(8) ? "hoje" : "ontem")+"...";
+			if(.map$!=""){
+				mes "Há "+mobcount(.map$,"PvpAdvanced_MvpRespawn::OnDbDead")+"/"+.nr_mobs+" monstros e "+mobcount(.map$,"Invasão de Cidades::OnMvpDead")+"/"+.nr_mvps+" MVPs vivos em "+.cidade$+".";
+			}
+		}
+	}else{
+		mes "Estarei fazendo um evento de invasão em uma cidade, o que acha?";
+		next;
+		if(select("Não, obrigado:Gostei da idéia")==2){
+			mes "^FF0000[ Invasão ]^000066";
+			mes "Qual cidade deve ser invadida?";
+			next;
+			switch(select("Prontera:Geffen (Iniciantes):Izlude (Iniciantes):Alberta:Morroc:Payon")){
+				case 1:
+					set .map$, "prontera";
+					set .cidade$, "Prontera";
+					break;
+				case 2:
+					set .map$, "geffen";
+					set .cidade$, "Geffen";
+					break;
+				case 3:
+					set .map$, "izlude";
+					set .cidade$, "Izlude";
+					break;
+				case 4:
+					set .map$, "alberta";
+					set .cidade$, "Alberta";
+					break;
+				case 5:
+					set .map$, "morocc";
+					set .cidade$, "Morroc";
+					break;
+				case 6:
+					set .map$, "payon";
+					set .cidade$, "Payon";
+					break;
+			}
+		
+			mes "^FF0000[ Invasão ]^000066";
+			mes "Certo, e por quantos MVPs?";
+			mes "(número de 1 a 15)";
+			next;
+			set .nr_mvps, 0;
+			while(.nr_mvps<1 || .nr_mvps>15)
+				input .nr_mvps;
+			
+		
+			mes "^FF0000[ Invasão ]^000066";
+			mes "Hmmm... "+.nr_mvps+" MVPs, e quantos monstros normais?";
+			mes "(número de 1 a 200)";
+			next;
+			set .nr_mobs, 0;
+			while(.nr_mobs<1 || .nr_mobs>200)
+				input .nr_mobs;
+			
+			mes "^FF0000[ Invasão ]^000066";
+			mes "Certo... Vamos começar o evento em "+.cidade$+" com "+.nr_mvps+" MVPs e "+.nr_mobs+" monstros?";
+			next;
+			if(select("Sim, podemos começar!:Não, cancele tudo!")==1){
+				mes "^FF0000[ Invasão ]^000066";
+				mes "Pronto, seu evento começou!";
+				close2;
+				logmes "[Invasao] Invasão de "+.cidade$+" com "+.nr_mvps+" MVPs e "+.nr_mobs+" monstros";
+				set $invasao, gettime(8);
+				
+				callfunc "F_UseBloodyBranch",.nr_mvps,.map$,0,0,"Invasão de Cidades::OnMvpDead";
+				callfunc "F_UseDeadBranch",.nr_mobs,.map$,0,0,"Invasão de Cidades::OnMobDead";
+				announce "[Invasao] "+.cidade$+" foi invadida por monstros!",bc_all;
+				sleep 3000;
+				announce "[Invasao] Venha nos ajudar a libertar "+.cidade$+" agora mesmo...",bc_all;
+				end;
+			}
+		}
+	}
+	close;
+	
+	OnMvpDead:
+		set .nr_mvps, .nr_mvps-1;
+		if(.nr_mvps<=0){
+			killmonsterall .map$;
+			announce "[Invasao] "+.cidade$+" foi finalmente libertada das assombrações",bc_all;
+			sleep 3000;
+			announce "[Invasao] Obrigado a todos os jogadores que nos ajudaram",bc_all;
+		}else{
+			mapannounce .map$,"[Invasao] Um chefe invasor de "+.cidade$+" acaba de ser morto!",bc_map;
+		}
+		end;
+	
+	OnMobDead:
+		end;
+}

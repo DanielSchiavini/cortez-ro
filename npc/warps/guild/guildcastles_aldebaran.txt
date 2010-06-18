@@ -1,0 +1,43 @@
+//Al de Baran Guild Castles Map Connection
+aldebaran,35,140,0	warp	aldg001	1,1,alde_gld,280,160
+alde_gld,284,160,0	warp	aldg002	1,1,aldebaran,39,140
+
+//Al de Baran Guild Castles Map
+alde_gld,48,79,0	warp	aldg01	1,1,aldeg_cas01,34,248
+aldeg_cas01,34,252,0	warp	aldg01-1	1,1,alde_gld,48,83
+
+alde_gld,95,253,0	warp	aldg02	1,1,aldeg_cas02,88,163
+aldeg_cas02,88,159,0	warp	aldg02-1	1,1,alde_gld,95,249
+
+//Al de Baran Guild Castles
+aldeg_cas01,50,222,0	warp	aldg101	1,1,aldeg_cas01,104,108
+aldeg_cas01,104,112,0	warp	aldg101-1	1,1,aldeg_cas01,45,224
+aldeg_cas01,66,191,0	warp	aldg102	1,1,aldeg_cas01,122,61
+aldeg_cas01,126,61,0	warp	aldg102-1	1,1,aldeg_cas01,62,191
+aldeg_cas01,54,27,0	warp	aldg102-2	1,1,aldeg_cas01,62,191
+aldeg_cas01,26,188,0	warp	aldg103	1,1,aldeg_cas01,50,70
+aldeg_cas01,46,70,0	warp	aldg103-1	1,1,aldeg_cas01,24,188
+aldeg_cas01,70,112,0	warp	aldg104	1,1,aldeg_cas01,42,225
+aldeg_cas01,39,222,0	warp	aldg104-1	1,1,aldeg_cas01,70,108
+aldeg_cas01,89,23,0	warp	aldg105	1,1,aldeg_cas01,207,132
+aldeg_cas01,207,128,0	warp	aldg105-1	1,1,aldeg_cas01,89,27
+aldeg_cas01,206,188,0	warp	aldg106	1,1,aldeg_cas01,216,50
+aldeg_cas01,216,54,0	warp	aldg106-1	1,1,aldeg_cas01,206,184
+aldeg_cas01,232,186,0	warp	aldg107	1,1,aldeg_cas01,42,197
+aldeg_cas01,46,197,0	warp	aldg107-1	1,1,aldeg_cas01,232,182
+aldeg_cas01,171,175,0	warp	aldg108	1,1,aldeg_cas01,35,197
+aldeg_cas01,31,197,0	warp	aldg108-1	1,1,aldeg_cas01,175,175
+
+aldeg_cas02,84,208,0	warp	aldg201	1,1,aldeg_cas02,105,84
+aldeg_cas02,105,88,0	warp	aldg201-1	1,1,aldeg_cas02,79,208
+aldeg_cas02,45,39,0	warp	aldg201-2	1,1,aldeg_cas02,79,208
+aldeg_cas02,50,185,0	warp	aldg202	1,1,aldeg_cas02,192,192
+aldeg_cas02,192,196,0	warp	aldg202-1	1,1,aldeg_cas02,50,180
+aldeg_cas02,33,174,0	warp	aldg203	1,1,aldeg_cas02,126,61
+aldeg_cas02,130,61,0	warp	aldg203-1	1,1,aldeg_cas02,33,179
+aldeg_cas02,22,193,0	warp	aldg204	1,1,aldeg_cas02,88,11
+aldeg_cas02,88,8,0	warp	aldg204-1	1,1,aldeg_cas02,22,190
+aldeg_cas02,121,88,0	warp	aldg205	1,1,aldeg_cas02,177,135
+aldeg_cas02,177,131,0	warp	aldg205-1	1,1,aldeg_cas02,121,84
+aldeg_cas02,206,196,0	warp	aldg206	1,1,aldeg_cas02,197,13
+aldeg_cas02,197,9,0	warp	aldg206-1	1,1,aldeg_cas02,206,192

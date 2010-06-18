@@ -1,0 +1,151 @@
+//===== eAthena Script =======================================
+//= War of Emperium (Geffen)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Geffen Guild Castle 2
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//============================================================
+
+gefg_cas02	mapflag	gvg_castle
+gefg_cas02	mapflag	monster_noteleport
+gefg_cas02	mapflag	noicewall
+gefg_cas02	mapflag	nomemo
+gefg_cas02	mapflag	nosave	SavePoint
+gefg_cas02	mapflag	noteleport
+gefg_cas02	mapflag	nowarp
+gefg_cas02	mapflag	nowarpto
+gefg_cas02	mapflag	noreturn
+gefg_cas02	mapflag	nogo
+gefg_cas02	mapflag	nocommand	10
+
+gef_fild13,308,244,0	warp	gefg03	1,1,gefg_cas02,70,143
+gefg_cas02,70,147,0	warp	gefg03-1	1,1,gef_fild13,308,240
+
+gefg_cas02,148,18,0	warp	gefg205-1	1,1,gefg_cas02,35,150
+gefg_cas02,150,36,0	warp	gefg208	1,1,gefg_cas02,152,186
+gefg_cas02,152,190,0	warp	gefg208-1	1,1,gefg_cas02,150,41
+gefg_cas02,174,11,0	warp	gefg207-1	1,1,gefg_cas02,21,13
+gefg_cas02,184,36,0	warp	gefg204-1	1,1,gefg_cas02,48,155
+gefg_cas02,185,18,0	warp	gefg206-1	1,1,gefg_cas02,53,136
+gefg_cas02,22,160,0	warp	gefg203	1,1,gefg_cas02,34,17
+gefg_cas02,25,13,0	warp	gefg207	1,1,gefg_cas02,170,11
+gefg_cas02,34,13,0	warp	gefg203-1	1,1,gefg_cas02,22,156
+gefg_cas02,34,152,0	warp	gefg205	1,1,gefg_cas02,153,18
+gefg_cas02,34,68,0	warp	gefg202-1	1,1,gefg_cas02,50,175
+gefg_cas02,35,173,0	warp	gefg201	1,1,gefg_cas02,76,42
+gefg_cas02,46,175,0	warp	gefg202	1,1,gefg_cas02,34,64
+gefg_cas02,48,159,0	warp	gefg204	1,1,gefg_cas02,184,41
+gefg_cas02,57,136,0	warp	gefg206	1,1,gefg_cas02,180,18
+gefg_cas02,80,42,0	warp	gefg201-1	1,1,gefg_cas02,39,173
+
+// Guild Flag (Town)
+//============================================================
+geffen,113,130,1	script	Trapesac#g2-1::Trapesac	974,{
+	end;
+
+OnRecvCastleG02:
+	//FlagEmblem GetCastleData("gefg_cas02",1);
+	end;
+}
+
+// Guild Flag (Outside Castle)
+//============================================================
+gef_fild13,303,243,4	script	Trapesac#g2-2::Trapesac2	974,{
+	set .@GID, GetCastleData("gefg_cas02",1);
+	if (.@GID == 0) {
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
+		mes " ";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo aventureiro...";
+			mes "Deseja voltar ao seu local de glória e honra?";
+			next;
+			if (select("Voltar:Quit.") == 1) {
+				if (getcharid(2) == GetCastleData("gefg_cas02",1)) {
+					warp "gefg_cas02",23,66;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastleG02:
+	//FlagEmblem GetCastleData("gefg_cas02",1);
+	end;
+}
+
+schg_cas03,53,17,4	duplicate(Trapesac2)	Trapesac#ctz	974
+gef_fild13,312,243,4	duplicate(Trapesac2)	Trapesac#g2-3	974
+gef_fild13,290,243,4	duplicate(Trapesac2)	Trapesac#g2-4	974
+gef_fild13,324,243,4	duplicate(Trapesac2)	Trapesac#g2-5	974
+
+gefg_cas02,65,130,5	duplicate(Trapesac2)	Trapesac#g2-6	974
+gefg_cas02,30,123,5	duplicate(Trapesac2)	Trapesac#g2-7	974
+gefg_cas02,65,139,6	duplicate(Trapesac2)	Trapesac#g2-8	974
+gefg_cas02,37,177,6	duplicate(Trapesac2)	Trapesac#g2-9	974
+gefg_cas02,37,168,6	duplicate(Trapesac2)	Trapesac#g2-10	974
+gefg_cas02,68,47,2	duplicate(Trapesac2)	Trapesac#g2-11	974
+gefg_cas02,68,36,2	duplicate(Trapesac2)	Trapesac#g2-12	974
+
+// AGIT Manager
+//============================================================
+gefg_cas02,176,178,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas02	-1
+
+// Steward
+//============================================================
+gefg_cas02,12,66,5	duplicate(Gld_Mngr_Template)	Esmarehk#gefg_cas02	55
+
+// Guardians
+//============================================================
+gefg_cas02,12,66,5	duplicate(Gld_Guard_Template)	Guardian#gefg_cas02	-1
+
+// Kafra Staff
+//============================================================
+gefg_cas02,23,66,3	duplicate(Gld_Kafra_Template)	Kafra#gefg_cas02	117
+
+// Master's Room Exit
+//============================================================
+gefg_cas02,145,115,0	script	#switch_G02	111,{
+	mes " ";
+	mes "Há um pequeno interruptor. Deseja apertá-lo?";
+	next;
+	switch(select("Apertar:Não")) {
+	case 1:
+		warp "gefg_cas02",12,67;
+		break;
+	case 2:
+		break;
+	}
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+gefg_cas02,140,116,0	duplicate(Gld_Trea_Protect)	ban_warp#gefg_cas02	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+gefg_cas02,140,116,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas02	-1
+
+// Guild Dungeon Switch
+//============================================================
+gefg_cas02,167,40,0	duplicate(Gld_Dun_Template)	#gefg_cas02	111

@@ -1,0 +1,90 @@
+- script Eventos -1,{
+	OnInit:
+	if(gettime(4)!=5 || gettime(3)<19 || gettime(3)>=21){
+		disablenpc "Deus da Guerra";
+		end;
+	}
+	
+	OnClock1900:
+	OnClock2100:
+
+	if(gettime(4)==5 && gettime(3)==19) goto L_Inicio;
+	if(gettime(4)==5 && gettime(3)==21) goto L_Fim;
+	if(gettime(4)==6 && gettime(3)==19 && $evento==1) goto L_Sumir;
+
+	L_Sumir:
+		Announce "O tempo para pegar os prêmios do evento acabou...",8;
+		set $premios,3;
+		disablenpc "Deus da Guerra";
+		end;
+
+	L_Inicio:
+		set $evento,$evento+1;
+		if($evento==5) set $evento,1;
+		
+		switch($evento){
+		case 1:	//Seven
+			Announce "Uma nova guerra começou, entre nessa batalha!",8;
+			set $Ndawn,0;
+			set $Ndusk,0;
+			set $varica,$varica+1;
+			set $varicas,$varicas+1;
+			enablenpc "Sacerdote dos Anjos";
+			enablenpc "Sacerdote dos Demônios";
+			break;
+			
+			
+			
+		case 2:
+			break;
+			
+			
+			
+		case 3:
+			break;
+			
+			
+			
+		case 4:
+			break;
+		}
+		end;
+	
+	
+	
+
+	L_Fim:
+		switch($evento){
+		case 1:	//Seven
+			Announce "As guerras entre as forças dos Anjos e dos Demônios acabou!",8;
+			if($Ndawn > $Ndusk){
+				set $premios,1;
+		        Announce "Os Anjos ganharam a guerra!!! Eles têm um dia para retirar os prêmios!",8;
+			}
+			if($Ndawn < $Ndusk){
+				set $premios,2;
+				Announce "Os Demônios ganharam a guerra!!! Eles têm um dia para retirar os prêmios!",8;
+			}
+			enablenpc "Deus da Guerra";
+			break;
+			
+			
+			
+		case 2:
+			break;
+			
+			
+			
+		case 3:
+			break;
+			
+			
+			
+		case 4:
+			break;
+		}
+		end;
+	
+	
+	
+}

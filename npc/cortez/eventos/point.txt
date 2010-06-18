@@ -1,0 +1,963 @@
+prt_in,236,25,4	script	Point Master	106,{
+if (getgmlevel() < 60) goto L_Yawn;
+npctalk "How may I help you?";
+L_Main:
+menu "Check your points",L_Reader,"Open point shop",L_Shop,"Point Monster Event",L_Event,"Get Points",L_Get;
+
+OnInit:
+set $item1name$,"ITEM ONE";	// set item 1 display name
+set $item1id,502;		// set item 1 id number
+set $item1cost,10000;		// set item 1 point cost
+set $item2name$,"ITEM Two";	// set item 2 display name
+set $item2id,502;		// set item 2 id number
+set $item2cost,30000;		// set item 2 point cost
+set $item3name$,"ITEM Three";	// set item 3 display name
+set $item3id,502;		// set item 3 id number
+set $item3cost,50000;		// set item 3 point cost
+set $item4name$,"ITEM Four";	// set item 4 display name
+set $item4id,502;		// set item 4 id number
+set $item4cost,70000;		// set item 4 point cost
+set $item5name$,"ITEM Five";	// set item 5 display name
+set $item5id,502;		// set item 5 id number
+set $item5cost,100000;		// set item 5 point cost
+set $item6name$,"ITEM Six";	// set item 6 display name
+set $item6id,502;		// set item 6 id number
+set $item6cost,300000;		// set item 6 point cost
+set $item7name$,"ITEM Seven";	// set item 7 display name
+set $item7id,502;		// set item 7 id number
+set $item7cost,500000;		// set item 7 point cost
+set $item8name$,"ITEM Eight";	// set item 8 display name
+set $item8id,502;		// set item 8 id number
+set $item8cost,700000;		// set item 8 point cost
+set $item9name$,"ITEM Nine";	// set item 9 display name
+set $item9id,502;		// set item 9 id number
+set $item9cost,2500000;		// set item 9 point cost
+set $item10name$,"ITEM Ten";	// set item 10 display name
+set $item10id,502;		// set item 10 id number
+set $item10cost,10000000;	// set item 10 point cost
+end;
+
+L_Reader:
+npctalk "Point Reader function opened.";
+mes "[Point Master]";
+mes "Hello.";
+mes "You have "+Points+" points.";
+mes "You have earnd "+PointsEarnd+" points.";
+mes "You have used "+PointsUsed+" points.";
+close2;
+goto L_Main;
+
+L_Shop:
+npctalk "Point Shop function opened.";
+mes "[Shop Keeper]";
+mes "Hello and welcome to the Point Master Point Shop.";
+L_Mains:
+mes "What can I do for you?";
+menu "See point histery.",L_PointHist,"Buy Something",L_BuyList,"Leave",L_End;
+
+L_PointHist:
+mes "[Shop Keeper]";
+mes "You have "+Points+" points.";
+mes "You have earnd "+PointsEarnd+" points.";
+mes "You have used "+PointsUsed+" points.";
+next;
+goto L_Mains;
+
+L_BuyList:
+if(Points>=$item1cost) mes "^7CFC00Price List:^000000";
+if(Points<$item1cost) mes "^FF0000Price List:^000000";
+if(Points>=$item1cost) mes "^7CFC00"+$item1name$+" = "+$item1cost+"^000000";
+if(Points>=$item2cost) mes "^7CFC00"+$item2name$+" = "+$item2cost+"^000000";
+if(Points>=$item3cost) mes "^7CFC00"+$item3name$+" = "+$item3cost+"^000000";
+if(Points>=$item4cost) mes "^7CFC00"+$item4name$+" = "+$item4cost+"^000000";
+if(Points>=$item5cost) mes "^7CFC00"+$item5name$+" = "+$item5cost+"^000000";
+if(Points>=$item6cost) mes "^7CFC00"+$item6name$+" = "+$item6cost+"^000000";
+if(Points>=$item7cost) mes "^7CFC00"+$item7name$+" = "+$item7cost+"^000000";
+if(Points>=$item8cost) mes "^7CFC00"+$item8name$+" = "+$item8cost+"^000000";
+if(Points>=$item9cost) mes "^7CFC00"+$item9name$+" = "+$item9cost+"^000000";
+if(Points>=$item10cost) mes "^7CFC00"+$item10name$+" = "+$item10cost+"^000000";
+if(Points<$item1cost) mes "^FF0000"+$item1name$+" = "+$item1cost+"^000000";
+if(Points<$item2cost) mes "^FF0000"+$item2name$+" = "+$item2cost+"^000000";
+if(Points<$item3cost) mes "^FF0000"+$item3name$+" = "+$item3cost+"^000000";
+if(Points<$item4cost) mes "^FF0000"+$item4name$+" = "+$item4cost+"^000000";
+if(Points<$item5cost) mes "^FF0000"+$item5name$+" = "+$item5cost+"^000000";
+if(Points<$item6cost) mes "^FF0000"+$item6name$+" = "+$item6cost+"^000000";
+if(Points<$item7cost) mes "^FF0000"+$item7name$+" = "+$item7cost+"^000000";
+if(Points<$item8cost) mes "^FF0000"+$item8name$+" = "+$item8cost+"0^000000";
+if(Points<$item9cost) mes "^FF0000"+$item9name$+" = "+$item9cost+"^000000";
+if(Points<$item10ost) mes "^FF0000"+$item10name$+" = "+$item10cost+"^000000";
+if(Points<$item1cost) mes "^FF0000You do not have enough points to buy anything.^000000";
+next;
+if(Points<$item1cost) goto L_Mains;
+menu ""+$item1name$+"",L_Item1,""+$item2name$+"",L_Item2,""+$item3name$+"",L_Item3,""+$item4name$+"",L_Item4,""+$item5name$+"",L_Item5,""+$item6name$+"",L_Item6,""+$item7name$+"",L_Item7,""+$item8name$+"",L_Item8,""+$item9name$+"",L_Item9,""+$item10name$+"",L_Item10,"Nothing",L_Mains;
+
+L_Item1:
+if(Points<$item1cost) goto L_NotEnough;
+set Points,Points-$item1cost;
+set PointsUsed,PointsUsed+$item1cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item2:
+if(Points<$item2cost) goto L_NotEnough;
+set Points,Points-$item2cost;
+set PointsUsed,PointsUsed+$item2cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item3:
+if(Points<$item3cost) goto L_NotEnough;
+set Points,Points-$item3cost;
+set PointsUsed,PointsUsed+$item3cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item4:
+if(Points<$item4cost) goto L_NotEnough;
+set Points,Points-$item4cost;
+set PointsUsed,PointsUsed+$item4cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item5:
+if(Points<$item5cost) goto L_NotEnough;
+set Points,Points-$item5cost;
+set PointsUsed,PointsUsed+$item5cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item6:
+if(Points<$item6cost) goto L_NotEnough;
+set Points,Points-$item6cost;
+set PointsUsed,PointsUsed+$item6cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item7:
+if(Points<$item7cost) goto L_NotEnough;
+set Points,Points-$item7cost;
+set PointsUsed,PointsUsed+$item7cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item8:
+if(Points<$item8cost) goto L_NotEnough;
+set Points,Points-$item8cost;
+set PointsUsed,PointsUsed+$item8cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item9:
+if(Points<$item9cost) goto L_NotEnough;
+set Points,Points-$item9cost;
+set PointsUsed,PointsUsed+$item9cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item10:
+if(Points<$item10cost) goto L_NotEnough;
+set Points,Points-$item10cost;
+set PointsUsed,PointsUsed+$item10cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_NotEnough:
+mes "[Shop Keeper]";
+mes "You do not have enough points.";
+mes "You can only buy something that is ^7CFC00green^000000 not ^ff0000red^000000.";
+next;
+goto L_BuyList;
+
+L_ItemBought:
+mes "[Shop Keeper]";
+mes "Item Bought.";
+next;
+goto L_Mains;
+
+L_End:
+close2;
+goto L_Main;
+
+L_Get:
+npctalk "How many point would you like?";
+input @Addpoints;
+set Points,Points + @Addpoints;
+set PointsEarnd,PointsEarnd + @Addpoints;
+npctalk "Points added.";
+goto L_Main;
+
+L_Event:
+npctalk "Set amount of points per monster.";
+input $PointEvent;
+npctalk "What monster would you like to use for the event?";
+menu "Poring",L_EventM1,"Rocker",L_EventM2,"Orc Warrior",L_EventM3,"Smokie",L_EventM4,"Santa Poring",L_EventM5,"Eggyra",L_EventM6,"Kobold",L_EventM7,"Assassin",L_EventM8,"Cencel",L_Main;
+
+L_EventM1:
+set @PMob,1;
+goto L_Event2;
+
+L_EventM2:
+set @PMob,2;
+goto L_Event2;
+
+L_EventM3:
+set @PMob,3;
+goto L_Event2;
+
+L_EventM4:
+set @PMob,4;
+goto L_Event2;
+
+L_EventM5:
+set @PMob,5;
+goto L_Event2;
+
+L_EventM6:
+set @PMob,6;
+goto L_Event2;
+
+L_EventM7:
+set @PMob,7;
+goto L_Event2;
+
+L_EventM8:
+set @PMob,8;
+goto L_Event2;
+
+L_Event2:
+npctalk "How many would you like to spawn?";
+menu "1",L_EventN1,"5",L_EventN5,"10",L_EventN10,"25",L_EventM25,"50",L_EventN50,"100",L_EventN100,"250",L_EventN250,"500",L_EventN500,"Cancel",L_Main;
+
+L_EventN1:
+set @PNum,1;
+goto L_Event3;
+
+L_EventN5:
+set @PNum,5;
+goto L_Event3;
+
+L_EventN10:
+set @PNum,10;
+goto L_Event3;
+
+L_EventN25:
+set @PNum,25;
+goto L_Event3;
+
+L_EventN50:
+set @PNum,50;
+goto L_Event3;
+
+L_EventN100:
+set @PNum,100;
+goto L_Event3;
+
+L_EventN250:
+set @PNum,250;
+goto L_Event3;
+
+L_EventN500:
+set @PNum,500;
+goto L_Event3;
+
+L_Event3:
+npctalk "Witch town would you like the event to be in?";
+menu "Prontera",L_EventS1,"Morroc",L_EventS2,"Payon",L_EventS3,"Izlude",L_EventS4,"Geffen",L_EventS5,"Aldebaran",L_EventS6,"Cancel",L_Main;
+
+L_EventS1:
+set @PMap,1;
+goto L_Event4;
+
+L_EventS2:
+set @PMap,2;
+goto L_Event4;
+
+L_EventS3:
+set @PMap,3;
+goto L_Event4;
+
+L_EventS4:
+set @PMap,4;
+goto L_Event4;
+
+L_EventS5:
+set @PMap,5;
+goto L_Event4;
+
+L_EventS6:
+set @PMap,6;
+goto L_Event4;
+
+L_Event4:
+if (@PNum == 1) npctalk "Spawn in center of town or in a random place?";
+if (@PNum != 1) npctalk "Spawn in center of town or random places?";
+if (@PNum == 1) menu "Center of town.",L_SpawnA1,"Random place.",L_SpawnA2,"Cancel",L_Main;
+if (@PNum != 1) menu "Center of town.",L_SpawnA1,"Random places.",L_SpawnA2,"Cancel",L_Main;
+
+L_SpawnA1:
+if (@PMap == 1) goto L_SpawnA1S1;
+if (@PMap == 2) goto L_SpawnA1S2;
+if (@PMap == 3) goto L_SpawnA1S3;
+if (@PMap == 4) goto L_SpawnA1S4;
+if (@PMap == 5) goto L_SpawnA1S5;
+if (@PMap == 6) goto L_SpawnA1S6;
+
+L_SpawnA2:
+if (@PMap == 1) goto L_SpawnA2S1;
+if (@PMap == 2) goto L_SpawnA2S2;
+if (@PMap == 3) goto L_SpawnA2S3;
+if (@PMap == 4) goto L_SpawnA2S4;
+if (@PMap == 5) goto L_SpawnA2S5;
+if (@PMap == 6) goto L_SpawnA2S6;
+
+L_SpawnA1S1:
+if (@PNum == 1) goto L_SpawnA1S1N1;
+if (@PNum == 5) goto L_SpawnA1S1N5;
+if (@PNum == 10) goto L_SpawnA1S1N10;
+if (@PNum == 25) goto L_SpawnA1S1N25;
+if (@PNum == 50) goto L_SpawnA1S1N50;
+if (@PNum == 100) goto L_SpawnA1S1N100;
+if (@PNum == 250) goto L_SpawnA1S1N250;
+if (@PNum == 500) goto L_SpawnA1S1N500;
+
+L_SpawnA1S2:
+if (@PNum == 1) goto L_SpawnA1S2N1;
+if (@PNum == 5) goto L_SpawnA1S2N5;
+if (@PNum == 10) goto L_SpawnA1S2N10;
+if (@PNum == 25) goto L_SpawnA1S2N25;
+if (@PNum == 50) goto L_SpawnA1S2N50;
+if (@PNum == 100) goto L_SpawnA1S2N100;
+if (@PNum == 250) goto L_SpawnA1S2N250;
+if (@PNum == 500) goto L_SpawnA1S2N500;
+
+L_SpawnA1S3:
+if (@PNum == 1) goto L_SpawnA1S3N1;
+if (@PNum == 5) goto L_SpawnA1S3N5;
+if (@PNum == 10) goto L_SpawnA1S3N10;
+if (@PNum == 25) goto L_SpawnA1S3N25;
+if (@PNum == 50) goto L_SpawnA1S3N50;
+if (@PNum == 100) goto L_SpawnA1S3N100;
+if (@PNum == 250) goto L_SpawnA1S3N250;
+if (@PNum == 500) goto L_SpawnA1S3N500;
+
+L_SpawnA1S4:
+if (@PNum == 1) goto L_SpawnA1S4N1;
+if (@PNum == 5) goto L_SpawnA1S4N5;
+if (@PNum == 10) goto L_SpawnA1S4N10;
+if (@PNum == 25) goto L_SpawnA1S4N25;
+if (@PNum == 50) goto L_SpawnA1S4N50;
+if (@PNum == 100) goto L_SpawnA1S4N100;
+if (@PNum == 250) goto L_SpawnA1S4N250;
+if (@PNum == 500) goto L_SpawnA1S4N500;
+
+L_SpawnA1S5:
+if (@PNum == 1) goto L_SpawnA1S5N1;
+if (@PNum == 5) goto L_SpawnA1S5N5;
+if (@PNum == 10) goto L_SpawnA1S5N10;
+if (@PNum == 25) goto L_SpawnA1S5N25;
+if (@PNum == 50) goto L_SpawnA1S5N50;
+if (@PNum == 100) goto L_SpawnA1S5N100;
+if (@PNum == 250) goto L_SpawnA1S5N250;
+if (@PNum == 500) goto L_SpawnA1S5N500;
+
+L_SpawnA1S6:
+if (@PNum == 1) goto L_SpawnA1S6N1;
+if (@PNum == 5) goto L_SpawnA1S6N5;
+if (@PNum == 10) goto L_SpawnA1S6N10;
+if (@PNum == 25) goto L_SpawnA1S6N25;
+if (@PNum == 50) goto L_SpawnA1S6N50;
+if (@PNum == 100) goto L_SpawnA1S6N100;
+if (@PNum == 250) goto L_SpawnA1S6N250;
+if (@PNum == 500) goto L_SpawnA1S6N500;
+
+L_SpawnA2S1:
+if (@PNum == 1) goto L_SpawnA2S1N1;
+if (@PNum == 5) goto L_SpawnA2S1N5;
+if (@PNum == 10) goto L_SpawnA2S1N10;
+if (@PNum == 25) goto L_SpawnA2S1N25;
+if (@PNum == 50) goto L_SpawnA2S1N50;
+if (@PNum == 100) goto L_SpawnA2S1N100;
+if (@PNum == 250) goto L_SpawnA2S1N250;
+if (@PNum == 500) goto L_SpawnA2S1N500;
+
+L_SpawnA2S2:
+if (@PNum == 1) goto L_SpawnA2S2N1;
+if (@PNum == 5) goto L_SpawnA2S2N5;
+if (@PNum == 10) goto L_SpawnA2S2N10;
+if (@PNum == 25) goto L_SpawnA2S2N25;
+if (@PNum == 50) goto L_SpawnA2S2N50;
+if (@PNum == 100) goto L_SpawnA2S2N100;
+if (@PNum == 250) goto L_SpawnA2S2N250;
+if (@PNum == 500) goto L_SpawnA2S2N500;
+
+L_SpawnA2S3:
+if (@PNum == 1) goto L_SpawnA2S3N1;
+if (@PNum == 5) goto L_SpawnA2S3N5;
+if (@PNum == 10) goto L_SpawnA2S3N10;
+if (@PNum == 25) goto L_SpawnA2S3N25;
+if (@PNum == 50) goto L_SpawnA2S3N50;
+if (@PNum == 100) goto L_SpawnA2S3N100;
+if (@PNum == 250) goto L_SpawnA2S3N250;
+if (@PNum == 500) goto L_SpawnA2S3N500;
+
+L_SpawnA2S4:
+if (@PNum == 1) goto L_SpawnA2S4N1;
+if (@PNum == 5) goto L_SpawnA2S4N5;
+if (@PNum == 10) goto L_SpawnA2S4N10;
+if (@PNum == 25) goto L_SpawnA2S4N25;
+if (@PNum == 50) goto L_SpawnA2S4N50;
+if (@PNum == 100) goto L_SpawnA2S4N100;
+if (@PNum == 250) goto L_SpawnA2S4N250;
+if (@PNum == 500) goto L_SpawnA2S4N500;
+
+L_SpawnA2S5:
+if (@PNum == 1) goto L_SpawnA2S5N1;
+if (@PNum == 5) goto L_SpawnA2S5N5;
+if (@PNum == 10) goto L_SpawnA2S5N10;
+if (@PNum == 25) goto L_SpawnA2S5N25;
+if (@PNum == 50) goto L_SpawnA2S5N50;
+if (@PNum == 100) goto L_SpawnA2S5N100;
+if (@PNum == 250) goto L_SpawnA2S5N250;
+if (@PNum == 500) goto L_SpawnA2S5N500;
+
+L_SpawnA2S6:
+if (@PNum == 1) goto L_SpawnA2S6N1;
+if (@PNum == 5) goto L_SpawnA2S6N5;
+if (@PNum == 10) goto L_SpawnA2S6N10;
+if (@PNum == 25) goto L_SpawnA2S6N25;
+if (@PNum == 50) goto L_SpawnA2S6N50;
+if (@PNum == 100) goto L_SpawnA2S6N100;
+if (@PNum == 250) goto L_SpawnA2S6N250;
+if (@PNum == 500) goto L_SpawnA2S6N500;
+
+L_SpawnA1S1N1:
+L_SpawnA1S1N5:
+L_SpawnA1S1N10:
+L_SpawnA1S1N25:
+L_SpawnA1S1N50:
+L_SpawnA1S1N100:
+L_SpawnA1S1N250:
+L_SpawnA1S1N500:
+L_SpawnA1S2N1:
+L_SpawnA1S2N5:
+L_SpawnA1S2N10:
+L_SpawnA1S2N25:
+L_SpawnA1S2N50:
+L_SpawnA1S2N100:
+L_SpawnA1S2N250:
+L_SpawnA1S2N500:
+L_SpawnA1S3N1:
+L_SpawnA1S3N5:
+L_SpawnA1S3N10:
+L_SpawnA1S3N25:
+L_SpawnA1S3N50:
+L_SpawnA1S3N100:
+L_SpawnA1S3N250:
+L_SpawnA1S3N500:
+L_SpawnA1S4N1:
+L_SpawnA1S4N5:
+L_SpawnA1S4N10:
+L_SpawnA1S4N25:
+L_SpawnA1S4N50:
+L_SpawnA1S4N100:
+L_SpawnA1S4N250:
+L_SpawnA1S4N500:
+L_SpawnA1S5N1:
+L_SpawnA1S5N5:
+L_SpawnA1S5N10:
+L_SpawnA1S5N25:
+L_SpawnA1S5N50:
+L_SpawnA1S5N100:
+L_SpawnA1S5N250:
+L_SpawnA1S5N500:
+L_SpawnA1S6N1:
+L_SpawnA1S6N5:
+L_SpawnA1S6N10:
+L_SpawnA1S6N25:
+L_SpawnA1S6N50:
+L_SpawnA1S6N100:
+L_SpawnA1S6N250:
+L_SpawnA1S6N500:
+L_SpawnA2S1N1:
+L_SpawnA2S1N5:
+L_SpawnA2S1N10:
+L_SpawnA2S1N25:
+L_SpawnA2S1N50:
+L_SpawnA2S1N100:
+L_SpawnA2S1N250:
+L_SpawnA2S1N500:
+L_SpawnA2S2N1:
+L_SpawnA2S2N5:
+L_SpawnA2S2N10:
+L_SpawnA2S2N25:
+L_SpawnA2S2N50:
+L_SpawnA2S2N100:
+L_SpawnA2S2N250:
+L_SpawnA2S2N500:
+L_SpawnA2S3N1:
+L_SpawnA2S3N5:
+L_SpawnA2S3N10:
+L_SpawnA2S3N25:
+L_SpawnA2S3N50:
+L_SpawnA2S3N100:
+L_SpawnA2S3N250:
+L_SpawnA2S3N500:
+L_SpawnA2S4N1:
+L_SpawnA2S4N5:
+L_SpawnA2S4N10:
+L_SpawnA2S4N25:
+L_SpawnA2S4N50:
+L_SpawnA2S4N100:
+L_SpawnA2S4N250:
+L_SpawnA2S4N500:
+L_SpawnA2S5N1:
+L_SpawnA2S5N5:
+L_SpawnA2S5N10:
+L_SpawnA2S5N25:
+L_SpawnA2S5N50:
+L_SpawnA2S5N100:
+L_SpawnA2S5N250:
+L_SpawnA2S5N500:
+L_SpawnA2S6N1:
+L_SpawnA2S6N5:
+L_SpawnA2S6N10:
+L_SpawnA2S6N25:
+L_SpawnA2S6N50:
+L_SpawnA2S6N100:
+L_SpawnA2S6N250:
+L_SpawnA2S6N500:
+npctalk "Event part of this script has yet to be added.";
+close;
+
+
+
+
+
+
+
+
+
+
+
+
+L_Yawn:
+emotion 45;
+end;
+}
+
+function	script	SumonMob1	{
+set $@RandMob,rand(1,5);
+if($@RandMob==1) goto Mob1;
+if($@RandMob==2) goto Mob2;
+if($@RandMob==3) goto Mob3;
+if($@RabdMob==4) goto Mob4;
+if($@RabdMob==5) goto Mob5;
+
+Mob1:
+set $@MobSumon,1002;
+set $@MobName$,"Poring";
+goto RandMap;
+
+Mob2:
+set $@MobSumon,1007;
+set $@MobName$,"Fabre";
+goto RandMap;
+
+Mob3:
+set $@MobSumon,1175;
+set $@MobName$,"Tarou";
+goto RandMap;
+
+Mob4:
+set $@MobSumon,1014;
+set $@MobName$,"Spore";
+goto RandMap;
+
+Mob5:
+set $@MobSumon,1055;
+set $@MobName$,"Muke";
+goto RandMap;
+
+RandMap:
+set $@RandMap,rand(1,5);
+if($@RandMap==1) areamonster "prontera",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead1";
+if($@RandMap==2) areamonster "geffen",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead1";
+if($@RandMap==3) areamonster "payon",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead1";
+if($@RandMap==4) areamonster "morocc",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead1";
+if($@RandMap==5) areamonster "aldebaran",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead1";
+return;
+}
+
+function	script	SumonMob2	{
+set $@RandMob,rand(1,5);
+if($@RandMob==1) goto Mob1;
+if($@RandMob==2) goto Mob2;
+if($@RandMob==3) goto Mob3;
+if($@RabdMob==4) goto Mob4;
+if($@RabdMob==5) goto Mob5;
+
+Mob1:
+set $@MobSumon,1055;
+set $@MobName$,"Muka";
+goto RandMap;
+
+Mob2:
+set $@MobSumon,1047;
+set $@MobName$,"PecoPecoEgg";
+goto RandMap;
+
+Mob3:
+set $@MobSumon,1019;
+set $@MobName$,"PecoPeco";
+goto RandMap;
+
+Mob4:
+set $@MobSumon,1165;
+set $@MobName$,"Sandman";
+goto RandMap;
+
+Mob5:
+set $@MobSumon,1001;
+set $@MobName$,"Scorpion";
+goto RandMap;
+
+RandMap:
+set $@RandMap,rand(1,5);
+if($@RandMap==1) areamonster "moc_fild16",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead2";
+if($@RandMap==2) areamonster "moc_fild05",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead2";
+if($@RandMap==3) areamonster "moc_fild07",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead2";
+if($@RandMap==4) areamonster "moc_fild12",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead2";
+if($@RandMap==5) areamonster "moc_fild11",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead2";
+return;
+}
+
+function	script	SumonMob3	{
+set $@RandMob,rand(1,5);
+if($@RandMob==1) goto Mob1;
+if($@RandMob==2) goto Mob2;
+if($@RandMob==3) goto Mob3;
+if($@RabdMob==4) goto Mob4;
+if($@RabdMob==5) goto Mob5;
+
+Mob1:
+set $@MobSumon,1002;
+set $@MobName$,"Poring";
+goto RandMap;
+
+Mob2:
+set $@MobSumon,1008;
+set $@MobName$,"Pupa";
+goto RandMap;
+
+Mob3:
+set $@MobSumon,1033;
+set $@MobName$,"Elder_Willow";
+goto RandMap;
+
+Mob4:
+set $@MobSumon,1079;
+set $@MobName$,"Blue_Plant";
+goto RandMap;
+
+Mob5:
+set $@MobSumon,1113;
+set $@MobName$,"Drops";
+goto RandMap;
+
+RandMap:
+set $@RandMap,rand(1,5);
+if($@RandMap==1) areamonster "moc_fild03",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead3";
+if($@RandMap==2) areamonster "pay_fild05",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead3";
+if($@RandMap==3) areamonster "pay_fild09",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead3";
+if($@RandMap==4) areamonster "pay_fild03",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead3";
+if($@RandMap==5) areamonster "pay_fild11",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead3";
+return;
+}
+
+function	script	SumonMob4	{
+set $@RandMob,rand(1,5);
+if($@RandMob==1) goto Mob1;
+if($@RandMob==2) goto Mob2;
+if($@RandMob==3) goto Mob3;
+if($@RabdMob==4) goto Mob4;
+if($@RabdMob==5) goto Mob5;
+
+Mob1:
+set $@MobSumon,1063;
+set $@MobName$,"Lunatic";
+goto RandMap;
+
+Mob2:
+set $@MobSumon,1128;
+set $@MobName$,"Horn";
+goto RandMap;
+
+Mob3:
+set $@MobSumon,1020;
+set $@MobName$,"Mandragora";
+goto RandMap;
+
+Mob4:
+set $@MobSumon,1167;
+set $@MobName$,"Savage Babe";
+goto RandMap;
+
+Mob5:
+set $@MobSumon,1013;
+set $@MobName$,"Wolf";
+goto RandMap;
+
+RandMap:
+set $@RandMap,rand(1,5);
+if($@RandMap==1) areamonster "mjolnir_08",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead4";
+if($@RandMap==2) areamonster "mjolnir_09",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead4";
+if($@RandMap==3) areamonster "prt_fild01",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead4";
+if($@RandMap==4) areamonster "prt_fild03",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead4";
+if($@RandMap==5) areamonster "prt_fild10",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead4";
+return;
+}
+
+function	script	SumonMob5	{
+set $@RandMob,rand(1,5);
+if($@RandMob==1) goto Mob1;
+if($@RandMob==2) goto Mob2;
+if($@RandMob==3) goto Mob3;
+if($@RabdMob==4) goto Mob4;
+if($@RabdMob==5) goto Mob5;
+
+Mob1:
+set $@MobSumon,1023;
+set $@MobName$,"Orc_Warrior";
+goto RandMap;
+
+Mob2:
+set $@MobSumon,1133;
+set $@MobName$,"Kobold 1";
+goto RandMap;
+
+Mob3:
+set $@MobSumon,1007;
+set $@MobName$,"Fabre";
+goto RandMap;
+
+Mob4:
+set $@MobSumon,1011;
+set $@MobName$,"ChonChon";
+goto RandMap;
+
+Mob5:
+set $@MobSumon,1012;
+set $@MobName$,"Roda_Frog";
+goto RandMap;
+
+RandMap:
+set $@RandMap,rand(1,5);
+if($@RandMap==1) areamonster "gef_fild08",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead5";
+if($@RandMap==2) areamonster "gef_fild10",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead5";
+if($@RandMap==3) areamonster "gef_fild05",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead5";
+if($@RandMap==4) areamonster "gef_fild00",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead5";
+if($@RandMap==5) areamonster "gef_fild12",0,0,500,500,$@MobName$,$@MobSumon,1,"Pointgov::MobDead5";
+return;
+}
+
+-	script	Pointgov	-1,{
+OnInit:
+callfunc "SumonMob1";
+callfunc "SumonMob1";
+callfunc "SumonMob1";
+callfunc "SumonMob2";
+callfunc "SumonMob2";
+callfunc "SumonMob2";
+callfunc "SumonMob3";
+callfunc "SumonMob3";
+callfunc "SumonMob3";
+callfunc "SumonMob4";
+callfunc "SumonMob4";
+callfunc "SumonMob4";
+callfunc "SumonMob5";
+callfunc "SumonMob5";
+callfunc "SumonMob5";
+end;
+
+MobDead1:
+set Points,Points+10;
+set PointsEarnd,PointsEarnd + 10;
+callfunc "SumonMob1";
+message strcharinfo(0),"You got 10 points.";
+end;
+
+MobDead2:
+set Points,Points+10;
+set PointsEarnd,PointsEarnd + 10;
+callfunc "SumonMob2";
+message strcharinfo(0),"You got 10 points.";
+end;
+
+MobDead3:
+set Points,Points+10;
+set PointsEarnd,PointsEarnd + 10;
+callfunc "SumonMob3";
+message strcharinfo(0),"You got 10 points.";
+end;
+
+MobDead4:
+set Points,Points+10;
+set PointsEarnd,PointsEarnd + 10;
+callfunc "SumonMob4";
+message strcharinfo(0),"You got 10 points.";
+end;
+
+MobDead5:
+set Points,Points+10;
+set PointsEarnd,PointsEarnd + 10;
+callfunc "SumonMob5";
+message strcharinfo(0),"You got 10 points.";
+end;
+
+MobDead6:
+if ($PointEvent <= 0) set $PointEvent,50;
+set Points,Points + $PointEvent;
+set PointsEarnd,PointsEarnd + $PointEvent;
+message strcharinfo(0),"You got " + $PointEvent + " points.";
+end;
+}
+
+prontera,165,174,3	script	Point Reader	86,{
+mes "[Pront Point Reader]";
+mes "Hello.";
+mes "You have "+Points+" points.";
+mes "You have earnd "+PointsEarnd+" points.";
+mes "You have used "+PointsUsed+" points.";
+close;
+}
+
+prt_in,36,115,4	script	Point Shop	97,{
+mes "[Shop Keeper]";
+mes "Hello and welcome to the Point Shop.";
+L_Mains:
+mes "What can I do for you?";
+menu "See point histery.",L_PointHist,"Buy Something",L_BuyList,"Leave",L_End;
+
+L_PointHist:
+mes "[Shop Keeper]";
+mes "You have "+Points+" points.";
+mes "You have earnd "+PointsEarnd+" points.";
+mes "You have used "+PointsUsed+" points.";
+next;
+goto L_Mains;
+
+L_BuyList:
+if(Points>=$item1cost) mes "^7CFC00Price List:^000000";
+if(Points<$item1cost) mes "^FF0000Price List:^000000";
+if(Points>=$item1cost) mes "^7CFC00"+$item1name$+" = "+$item1cost+"^000000";
+if(Points>=$item2cost) mes "^7CFC00"+$item2name$+" = "+$item2cost+"^000000";
+if(Points>=$item3cost) mes "^7CFC00"+$item3name$+" = "+$item3cost+"^000000";
+if(Points>=$item4cost) mes "^7CFC00"+$item4name$+" = "+$item4cost+"^000000";
+if(Points>=$item5cost) mes "^7CFC00"+$item5name$+" = "+$item5cost+"^000000";
+if(Points>=$item6cost) mes "^7CFC00"+$item6name$+" = "+$item6cost+"^000000";
+if(Points>=$item7cost) mes "^7CFC00"+$item7name$+" = "+$item7cost+"^000000";
+if(Points>=$item8cost) mes "^7CFC00"+$item8name$+" = "+$item8cost+"^000000";
+if(Points>=$item9cost) mes "^7CFC00"+$item9name$+" = "+$item9cost+"^000000";
+if(Points>=$item10cost) mes "^7CFC00"+$item10name$+" = "+$item10cost+"^000000";
+if(Points<$item1cost) mes "^FF0000"+$item1name$+" = "+$item1cost+"^000000";
+if(Points<$item2cost) mes "^FF0000"+$item2name$+" = "+$item2cost+"^000000";
+if(Points<$item3cost) mes "^FF0000"+$item3name$+" = "+$item3cost+"^000000";
+if(Points<$item4cost) mes "^FF0000"+$item4name$+" = "+$item4cost+"^000000";
+if(Points<$item5cost) mes "^FF0000"+$item5name$+" = "+$item5cost+"^000000";
+if(Points<$item6cost) mes "^FF0000"+$item6name$+" = "+$item6cost+"^000000";
+if(Points<$item7cost) mes "^FF0000"+$item7name$+" = "+$item7cost+"^000000";
+if(Points<$item8cost) mes "^FF0000"+$item8name$+" = "+$item8cost+"0^000000";
+if(Points<$item9cost) mes "^FF0000"+$item9name$+" = "+$item9cost+"^000000";
+if(Points<$item10ost) mes "^FF0000"+$item10name$+" = "+$item10cost+"^000000";
+if(Points<$item1cost) mes "^FF0000You do not have enough points to buy anything.^000000";
+next;
+if(Points<$item1cost) goto L_Mains;
+menu ""+$item1name$+"",L_Item1,""+$item2name$+"",L_Item2,""+$item3name$+"",L_Item3,""+$item4name$+"",L_Item4,""+$item5name$+"",L_Item5,""+$item6name$+"",L_Item6,""+$item7name$+"",L_Item7,""+$item8name$+"",L_Item8,""+$item9name$+"",L_Item9,""+$item10name$+"",L_Item10,"Nothing",L_Mains;
+
+L_Item1:
+if(Points<$item1cost) goto L_NotEnough;
+set Points,Points-$item1cost;
+set PointsUsed,PointsUsed+$item1cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item2:
+if(Points<$item2cost) goto L_NotEnough;
+set Points,Points-$item2cost;
+set PointsUsed,PointsUsed+$item2cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item3:
+if(Points<$item3cost) goto L_NotEnough;
+set Points,Points-$item3cost;
+set PointsUsed,PointsUsed+$item3cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item4:
+if(Points<$item4cost) goto L_NotEnough;
+set Points,Points-$item4cost;
+set PointsUsed,PointsUsed+$item4cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item5:
+if(Points<$item5cost) goto L_NotEnough;
+set Points,Points-$item5cost;
+set PointsUsed,PointsUsed+$item5cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item6:
+if(Points<$item6cost) goto L_NotEnough;
+set Points,Points-$item6cost;
+set PointsUsed,PointsUsed+$item6cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item7:
+if(Points<$item7cost) goto L_NotEnough;
+set Points,Points-$item7cost;
+set PointsUsed,PointsUsed+$item7cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item8:
+if(Points<$item8cost) goto L_NotEnough;
+set Points,Points-$item8cost;
+set PointsUsed,PointsUsed+$item8cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item9:
+if(Points<$item9cost) goto L_NotEnough;
+set Points,Points-$item9cost;
+set PointsUsed,PointsUsed+$item9cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_Item10:
+if(Points<$item10cost) goto L_NotEnough;
+set Points,Points-$item10cost;
+set PointsUsed,PointsUsed+$item10cost;
+getitem 502,1;
+goto L_ItemBought;
+
+L_NotEnough:
+mes "[Shop Keeper]";
+mes "You do not have enough points.";
+mes "You can only buy something that is ^7CFC00green^000000 not ^ff0000red^000000.";
+next;
+goto L_BuyList;
+
+L_ItemBought:
+mes "[Shop Keeper]";
+mes "Item Bought.";
+next;
+goto L_Mains;
+
+L_End:
+mes "Have a good day.";
+close;
+}

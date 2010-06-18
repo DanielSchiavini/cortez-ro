@@ -1,0 +1,69 @@
+//======================================================================
+//= Zoo Keeper Script
+//===== By: ============================================================ 
+//= Kakashi AKA Mike
+//======================================================================
+sec_in02,133,171,5	script	Sachis Petting Zoo	700,{
+	if (NPCStatus == 0) goto L_aclosed;
+	if (getgmlevel() >= 40) goto L_gmmenu;
+	mes "[Zoo Keeper]";
+	mes "Hello there " + strcharinfo(0);
+	mes "I am the keeper of Sachi's petting zoo ^^,";
+	mes "to check if the zoo is open you simply have to look around here at the cages";
+	next;
+	mes "Take your time and enjoy the wildlife ^^";
+	if (getgmlevel() >= 40) goto L_gmmenu;
+	menu "-Alright thanks",L_exit,"-Exit",L_exit;
+L_aclosed:
+	if (getgmlevel() >= 40) goto L_gmmenu;
+	mes "[Zoo Keeper]";
+	mes "I'm sorry but the zoo is closed for animal birthing";
+	mes "Please come back later";
+	close;
+L_zoo:
+	mes "[Zoo Keeper]";
+	mes "Alright " + strcharinfo(0) + " I will now bring the animals to their desired places";
+	monster "sec_in02",156,164,"Sea Horses",1043,4;
+	monster "sec_in02",155,157,"Marc",1045,3;
+	monster "sec_in02",155,159,"Obeaune",1044,2;
+	monster "sec_in02",181,183,"Ryu",1500,1;
+	monster "sec_in02",149,183,"Orochi",1502,1;
+	monster "sec_in02",169,144,"Megaman",1517,1;
+	monster "sec_in02",181,153,"Igniz",1587,1;
+	monster "sec_in02",181,174,"Son Goku",1027,1;
+	monster "sec_in02",162,183,"Felicia",1503,1;
+	close;
+L_close:
+	killmonsterall "sec_in02";
+	mes "[Zoo Keeper]";
+	mes " The zoo is now shut, all monsters er...animals are dead er...sleeping ^^";
+	mes "Thanks for viewing ^^";
+	next;
+	close;
+L_exit:
+	close;
+L_gmmenu:
+	menu "-GM Disable NPC",L_GMdis,"-GM Enable NPC",L_GMena,"-Open the zoo",L_zoo,"-Close the zoo",L_close,"-Exit",L_exit;
+L_GMdis:
+	mes "[Zoo Keeper]";
+	mes "Are you sure?";
+	next;
+	menu "-Yes",-,"-Exit",L_exit;
+	set NPCStatus, 0;
+	next;
+	mes "[Zoo Keeper]";
+	mes "The NPC is now disabled.";
+	next;
+	close;
+L_GMena:
+	mes "[Zoo Keeper]";
+	mes "Are you sure?";
+	next;
+	menu "-Yes",-,"-Exit",L_exit;
+	set NPCStatus, 1;
+	next;
+	mes "[Zoo Keeper]";
+	mes "The NPC is now enabled.";
+	next;
+	close;
+}

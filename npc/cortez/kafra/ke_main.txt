@@ -1,0 +1,509 @@
+//===== eAthena Script ======================================= 
+//= Kafra Express - Main Module
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 5.4
+//===== Compatible With: ===================================== 
+//= eAthena SVN R3424+
+//===== Description: ========================================= 
+//= Part of the Kafra Express Script Package.
+//= This module contains the main menu, plus the healing and 
+//= storage services.
+//===== Additional Comments: ================================= 
+//= See <http://www.eathena.deltaanime.net/board/index.php?showtopic=20290>
+//= for indepth explanation of the Kafra Express Script Package.
+//= Services available: comment/uncomment what you want (lines 37-104)
+//= See config.txt for per-module configuration.
+//============================================================ 
+
+// F_KafraExpress (String "Nome da Kafra", String "Imagem da Kafra",
+//int location (0 = Town Kafra, 1 = Dungeon Kafra, 2 = Both),
+//String "save map", int save x, int save y)
+function	script	F_KafraExpress	{
+	set @name$,getarg(0);
+	set @ke_type,getarg(2);
+	if ($@kekp_reset)
+		set @kafraPass,0;
+	callfunc "F_keIntro",-1,"";
+
+M_INIT:
+	set @discount, callfunc("F_keCost",100,100);
+	
+	if (@ke_type == 1) goto MD_INIT;
+	menu
+		"- Sair",L_END,
+		//"- Sistema de cura ("+($@keh_hpCost*@discount)+"z/10HP - "+($@keh_spCost*@discount)+"z/10SP)",L_HEAL,
+		"- Sistema de teleporte",M_WARP,
+		"- Usar Armazém ("+((Zeny>$@kes_cost*@discount*10/100)? ($@kes_cost*@discount/100) : "0" )+"z)",L_STORAGE,
+		"- Usar Armazém do clã ("+($@kegs_cost*@discount/100)+"z)",L_GUILD_STORAGE,
+		"- Usar Correio ("+($@kegs_cost*@discount/100)+"z)",L_MAIL,
+		"- Serviços de Job",M_JOB,
+		"- Outros serviços",M_OTHER,
+		"- Salvar",L_SAVE;
+
+MD_INIT:
+	menu
+		"- Sair",L_END,
+		//"- Sistema de cura ("+($@keh_hpCost*@discount)+"z/10HP - "+($@keh_spCost*@discount)+"z/10SP)",L_HEAL,
+		"- Sistema de teleporte",M_WARP,
+		"- Usar Armazém ("+($@kes_cost*@discount/100)+"z)",L_STORAGE,
+		"- Usar Armazém do clã ("+($@kegs_cost*@discount/100)+"z)",L_GUILD_STORAGE,
+		"- Usar Correio ("+($@kegs_cost*@discount/100)+"z)",L_MAIL,
+		"- Serviços de Job",M_JOB,
+		"- Outros serviços",M_OTHER;
+		//"- Salvar",L_SAVE;
+
+M_WARP:
+	if (@ke_type == 3 && nif_q_done != 1)
+		goto L_DENIED;
+	if (@ke_type == 1)
+		goto MD_WARP;
+	menu
+		"- Voltar",M_INIT,
+		"- Cavernas",L_DUNGEON,
+		"- Outros Mapas",L_PVP,
+		"- WoE",L_GUILD_DUNGEON,
+		"- Cidades",L_TOWN;
+	
+MD_WARP:
+	menu
+		"- Voltar",M_INIT,
+		"- Cavernas",L_DUNGEON,
+		"- Outros Mapas",L_PVP,
+		"- WoE",L_GUILD_DUNGEON,
+		"- Cidades",L_TOWN;
+
+M_JOB:
+	if (@ke_type == 1) goto MD_JOB;
+	menu
+		"- Voltar", M_INIT,
+//		"- Mudar de job",L_JOB_CHANGE,
+//		"- Trocar de job",L_JOB_SWAP,
+		"- Serviços de Stat/Skill",L_STATS,
+//		"- Stat/Skill Mercado",L_STAT_MARKET,
+		"- Aluguel",L_RENT;
+
+MD_JOB:
+	menu
+		"- Voltar", M_INIT,
+//		"- Mudar de job",L_JOB_CHANGE,
+//		"- Trocar de job",L_JOB_SWAP,
+		"- Serviços de Stat/Skill",L_STATS,
+//		"- Stat/Skill Merdaco",L_STAT_MARKET,
+		"- Aluguel",L_RENT;
+
+M_OTHER:
+	if (@ke_type == 1) goto MD_OTHER;
+	menu
+		"- Voltar",M_INIT,
+		"- Banco",L_BANK,
+		"- Vale-Bilhão",L_BILLION,
+		"- Utilidades",L_SHOP,
+		"- Broadcast",L_BROADCAST,
+		"- Serviços para refinar",L_REFINE,
+//		"- Serviço de retirar carta",L_UNCARD,
+		"- Mudar de estilo",L_STYLE,
+		"- Ver Jogadores Online ("+(getgmlevel()?"VIP":$@keplayerlist)+")",L_USERS,
+		"- Usar Passe Kafra",L_PASS;
+
+MD_OTHER:
+	menu
+		"- Voltar",M_INIT,
+		"- Banco",L_BANK,
+		"- Vale-Bilhão",L_BILLION,
+		"- Utilidades",L_SHOP,
+		"- Broascast",L_BROADCAST,
+		"- Serviço para refinar",L_REFINE,
+//		"- Serviço de retirar carta",L_UNCARD,
+		"- Mudar de estilo",L_STYLE,
+		"- Ver Jogadores Online ("+(getgmlevel()?"VIP":$@keplayerlist)+")",L_USERS,
+		"- Usar Passe Kafra",L_PASS;
+
+L_USERS:
+	if(!getgmlevel()){
+		if (!(callfunc("F_keCharge",$@keplayerlist,$@kebc_discount,1))) {
+			callfunc "F_keIntro", e_pif, "Você não tem o dinheiro suficiente...";
+			return;
+		}
+	}
+	mes "["+@name$+"]";
+	mes "Esta é a lista de jogadores online:";
+	getusersname;
+	close;
+	
+L_BILLION:
+	if(Zeny==1000000000) goto L_BuyBillion;
+	else if(!Zeny && countitem(9929)) goto L_SellBillion;
+	mes "[ "+@name$+" ]";
+	mes "No Cortez Online, as vendas de itens entre jogadores pode passar da casa dos bilhões";
+	next;
+	mes "[ "+@name$+" ]";
+	mes "Por isso, temos um item chamado 'Vale-Bilhão' que pode ser comprado ou vendido aqui, sempre por 1 bilhão";
+	next;
+	mes "[ "+@name$+" ]";
+	mes "O que deseja fazer?";
+	next;
+	menu "- Voltar",M_INIT,"- Vender",L_SellBillion,"- Comprar",L_BuyBillion;
+	close;
+	L_SellBillion:
+		mes "[ "+@name$+" ]";
+		if(countitem(9929)>0){
+			if(Zeny>0){
+				mes "Você precisa estar sem nenhum zeny para poder vender seu vale!";
+			}else{
+				delitem 9929,1;
+				query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',1000000000,'ke_main')";
+				set Zeny,1000000000;
+				logmes "[Bilhao] Vale bilhão apagado";
+				mes "Aqui está seu zeny!";
+			}
+		}else{
+			mes "Você não tem um vale-bilhão...";
+		}
+		close;
+	
+	L_BuyBillion:
+		mes "[ "+@name$+" ]";
+		if(Zeny>=1000000000){
+			if(!checkweight(9929,1)){
+				mes "Você está carregando peso demais!";
+			}else{
+				query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-1000000000,'ke_main')";
+				set Zeny,Zeny-1000000000;
+				getitem 9929,1;
+				logmes "[Bilhao] Vale bilhão recebido";
+				mes "Aqui está seu vale!";
+			}
+		}else{
+			mes "Você precisa ter 1 bilhão de zeny para comprar um vale.";
+		}
+		close;
+	
+L_HEAL:
+	callfunc "F_keHeal";
+	goto M_INIT;
+
+L_TOWN:
+	callfunc "F_keWarpTown";
+	goto M_WARP;
+	
+L_DUNGEON:
+	callfunc "F_keDungeonWarps", getarg(3);
+	goto M_WARP;
+	
+L_GUILD_DUNGEON:
+	callfunc "F_keWarpWOE";
+	goto M_WARP;
+	
+L_PVP:
+	callfunc "F_keWarpPvp";
+	goto M_WARP;
+
+L_STORAGE:
+	callfunc "F_keStorage", getarg(1);
+	goto M_INIT;
+
+L_GUILD_STORAGE:
+	callfunc "F_keGuildStorage", getarg(1);
+	goto M_INIT;
+L_MAIL:
+	callfunc "F_keMail", getarg(1);
+	goto M_INIT;
+	
+L_BANK:
+	callfunc "F_keBank";
+	goto M_OTHER;
+	
+L_SHOP:
+	callfunc "F_keShop",@ke_type, getarg(1);
+	goto M_OTHER;
+	
+L_BROADCAST:
+	callfunc "F_keBroadcast",getarg(3);
+	goto M_OTHER;
+
+L_PASS:
+	callfunc "F_kePass";
+	goto M_OTHER;
+
+L_REFINE:
+	callfunc "F_keRefine";
+	goto M_OTHER;
+
+L_UNCARD:
+	callfunc "F_keUncard";
+	goto M_OTHER;
+	
+L_STYLE:
+	callfunc "F_keStylist";
+	goto M_OTHER;
+
+L_JOB_CHANGE:
+	callfunc "F_keJobChange";
+	goto M_JOB;
+
+L_JOB_SWAP:
+	callfunc "F_keJobSwap";
+	goto M_JOB;
+
+L_STATS:
+	callfunc "F_keStats";
+	goto M_JOB;
+
+L_STAT_MARKET:
+	callfunc "F_keStatMarket";
+	goto M_JOB;
+
+L_RENT:
+	callfunc "F_keRent";
+	goto M_JOB;
+
+L_SAVE:
+	if (@ke_type == 3 && nif_q_done != 1)
+		goto L_DENIED;
+	if ($@kewt_travel && @ke_type != 1) {
+		callfunc "F_keAddTravelTown", getarg(3);
+	}
+	if ($@kewd_travel && @ke_type != 0) {
+		callfunc "F_keAddTravelDungeon", getarg(3);
+	}
+	if ($@ke_saveOnSpot) {
+		getmapxy @map$,@x,@y,0;
+		if((@map$!="schg_cas03" && mobcount(@map$,"")>1) || @map$=="pvp_2vs2"){ // cidade principal liberado / mapa gvg bloqueado
+			callfunc "F_keIntro", e_gg, "Este mapa tem monstros demais..";
+		}else{
+			savepoint @map$,@x,@y;
+		}
+	} else {
+		savepoint getarg(3),getarg(4),getarg(5);
+	}
+	emotion e_scissors;
+	goto M_INIT;
+
+L_DENIED:
+	callfunc "F_keIntro", e_gg, "...não.";
+	goto M_INIT;
+
+L_END:
+	mes "Obrigado por usar o sistema Kafra.";
+	close2;
+//	cutin getarg(1), 255;
+	end;
+}
+
+//Function F_keIntro (emotion, message)
+//Displays a message followed by an emotion, then a next button, and finally
+//shows the intro message.
+function	script	F_keIntro	{
+	if (getarg(0) >= 0)
+		emotion getarg(0);
+	if (getarg(1) != "") {
+		mes getarg(1);
+		next;
+	}
+	mes "["+@name$+"]";
+	mes "Bem vindo a Corporação Kafra, sempre com você!";
+	if(@kafraPass) mes "Sua senha Kafra está ativa,";
+	mes "Como posso lhe ajudar?";
+	next;
+	return;
+}
+
+//Function Heal, offers the heal subsystem.
+function	script	F_keHeal	{
+	set @qtyHP,MaxHp-Hp;
+	set @qtySP,MaxSp-Sp;
+	set @costHP, $@keh_hpCost*(MaxHp-Hp)/10;
+	set @costSP, $@keh_spCost*(MaxSp-Sp)/10;
+	set @costHPSP, @costHP+@costSP;
+	set @discount, callfunc("F_keCost",1,100);
+	
+	if (@qtyHP + @qtySP == 0) {
+		callfunc "F_keIntro", -1, "...você não precisa ser curado.";
+		return;
+	}
+	if (@qtyHP == 0) goto M_NO_HP;
+	if (@qtySP == 0) goto M_NO_SP;
+	menu "- Voltar",-,
+	"- Curar HP ("+(@costHP*@discount)+"z)",L_HEAL_HP,
+	"- Curar SP ("+(@costSP*@discount)+"z)",L_HEAL_SP,
+	"- Curar Ambos ("+(@costHPSP*@discount)+"z)",L_HEAL_ALL;
+	return;
+	
+M_NO_HP:
+	menu "- Voltar",-,
+	"- Curar SP ("+(@costSP*@discount)+"z)",L_HEAL_SP;
+	return;
+	
+M_NO_SP:
+	menu "- Voltar",-,
+	"- Curar HP ("+(@costHP*@discount)+"z)",L_HEAL_HP;
+	return;
+
+L_HEAL_HP:
+	if (!(callfunc("F_keCharge",@costHP,100,0))) {
+		callfunc "F_keIntro", e_sry, "Desculpe, mas você não tem dinheiro suficiente.";
+		return;
+	}
+	emotion e_no1;
+	heal @qtyHP,0;
+	return;
+	
+L_HEAL_SP:
+	if (!(callfunc("F_keCharge",@costSP,100,0))) {
+		callfunc "F_keIntro", e_sry, "Desculpe, mas você não tem dinheiro suficiente.";
+		return;
+	}
+	emotion e_no1;
+	heal 0,@qtySP;
+	return;
+
+L_HEAL_ALL:
+	if (!(callfunc("F_keCharge",@costHPSP,100,0))) {
+		callfunc "F_keIntro", e_sry, "Desculpe, mas você não tem dinheiro suficiente.";
+		return; 
+	}
+	emotion e_no1;
+	heal @qtyHP,@qtySP;
+	return;
+}
+
+//Function mail: Usa o @mail (mesmo preço do gstorage)
+//The sent argument is the displaying image, so we can clear it afterwards.
+function	script	F_keMail	{
+	if(basicskillcheck() > 0 && getskilllv(1) < 6) {
+		callfunc "F_keIntro", -1, "Desculpe, mas você precisa de no minimo nível de classe 6 para usar o correio";
+		return;
+	}
+	if (!(callfunc("F_keCharge",$@kegs_cost,100,1))) {
+		callfunc "F_keIntro", e_an, "Desculpe, mas você não tem dinheiro suficiente.";
+		return;
+	}else{
+		mes "Obrigado por usar os serviços Kafra.";
+	}
+	emotion e_thx;
+	close2;
+	openmail;
+	end;
+}
+//Function storage: allows access to the storage facility
+//The sent argument is the displaying image, so we can clear it afterwards.
+function	script	F_keStorage	{
+	if(basicskillcheck() > 0 && getskilllv(1) < 6) {
+		callfunc "F_keIntro", -1, "Desculpe, mas você precisa de no minimo nível de classe 6 para usar o armazém";
+		return;
+	}
+	if (!(callfunc("F_keCharge",$@kes_cost,100,1))) {
+		//callfunc "F_keIntro", e_an, "Desculpe, mas você não tem dinheiro suficiente.";
+		//return;
+		mes "Você não tem zeny suficiente, mas deixarei você usar o armazém...";
+	}else{
+		mes "Obrigado por usar os serviços Kafra.";
+	}
+	emotion e_thx;
+	close2;
+	openstorage;
+//	cutin getarg(0), 255;
+	end;
+}
+
+//Function G Storage: Allows access to the Guild Storage
+function	script	F_keGuildStorage	{
+	if(basicskillcheck() > 0 && getskilllv(1) < 6) {
+		callfunc "F_keIntro", -1, "Desculpe, mas você precisa de no minimo nível 6 para usar o Storage.";
+		return;
+	}
+	if(getcharid(2) < 1) {
+		callfunc "F_keIntro", e_swt, "Você nao pode usar o armazém do clã se você não tem clã!";
+		return;
+	}
+	if (callfunc("F_keCost",$@kegs_cost,100) > Zeny) {
+		callfunc "F_keIntro", e_an, "Desculpe, mas você não tem dinheiro suficiente.";
+		return;
+	}
+	if (guildopenstorage(0) == 1) {
+		callfunc "F_keIntro", -1, "Desculpe, o armazém do clã está sendo usado! Tente mais tarde.";
+		return;
+	}
+	callfunc "F_keCharge",$@kegs_cost,100,1;
+	mes "Obrigado por usar os serviços Kafra.";
+	emotion e_thx;
+	close2;
+//	cutin getarg(0), 255;
+	end;
+}
+
+function	script	F_kePass	{
+	if (@kafraPass) {
+		callfunc "F_keIntro", -1, "Você já está usando o passe Kafra";
+		return;
+	}
+	if (countitem(1084)<1) {
+		callfunc "F_keIntro", -1, "Você obviamente precisa de um Passe Kafra para ultilizá-lo!";
+		return;
+	}
+	delitem 1084,1;
+	set @kafraPass,1;
+	callfunc "F_keIntro", e_lv, "Seu passe Kafra foi ativado!";
+	return;
+}
+
+//F_keCost(int cost, int discount%)
+//Returns what would be the cost of a service considering the KafraPass.
+//The discount value should be between 0 and 100
+function	script	F_keCost	{
+	set @ke_cost, getarg(0);
+	if($serv==6 || $serv==-1){
+		set @ke_cost, 70*@ke_cost/100;
+	}
+	if (@kafraPass) {
+		set @ke_cost, @ke_cost*(100-getarg(1))/100;
+	}
+	//dispbottom "Cost - Serv. "+$serv + " Cost " + getarg(0) + " aqui " + @ke_cost;
+	return @ke_cost;
+}
+
+//F_keCharge(int cost, int discount%, bool appliesKP)
+//Charges for a service, using the KafraPass state and discount value.
+//appliesKP marks if the cost savings apply for stocking Kafra Reserve Points
+//Function returns 1 if successful, 0 if there's not enough zeny.
+function	script	F_keCharge	{
+	if (!getarg(0)) return 1;
+	set @ke_cost, getarg(0);
+	if($serv==6 || $serv==-1){
+		set @ke_cost, 70*@ke_cost/100;
+	}
+	set @savings, 0;
+	if (@kafraPass)
+		set @savings, @ke_cost*getarg(1)/100;
+	set @cost, @ke_cost-@savings;
+	//dispbottom "Charge - Serv. "+$serv + " Cost " + getarg(0) + " aqui " + @cost + " ke " + @ke_cost;
+	if (@cost > Zeny || @cost < 0) return 0;
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+@cost+",'ke_main')";
+	set Zeny, Zeny-@cost;
+	
+	if (getarg(2) && @savings > 0 && $@kekp_reserveCost > 0) {
+		set @savings, @savings/$@kekp_reserveCost;
+		if (@savings < $@kekp_minReserve)
+			set @savings, $@kekp_minReserve;
+		if (@savings > $@kekp_maxReserve)
+			set @savings, $@kekp_maxReserve;
+
+		set RESRVPTS, RESRVPTS + @savings;
+	}
+	return 1;
+}
+
+//Function F_keWarp (int cost, int discount, int emotion, String map, int x, int y)
+function	script	F_keWarp	{
+	if (!(callfunc("F_keCharge",getarg(0),getarg(1),1))) {
+		callfunc "F_keIntro", e_an, "Você não tem zeny suficiente...";
+		return;
+	}
+	set .@x, getarg(4); if(.@x<0) set .@x, 0;
+	set .@y, getarg(5); if(.@y<0) set .@y, 0;
+	emotion getarg(2);
+	warp getarg(3),.@x,.@y;
+	end;
+}

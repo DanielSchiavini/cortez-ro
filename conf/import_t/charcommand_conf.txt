@@ -1,0 +1,123 @@
+// Ajuda - Menor nível possível
+help: 50
+
+// 50: Sub-GM+ - somente visualização
+exp: 50
+jailtime: 50
+
+// 60: GM - Super básicos e não permanentes
+fakename: 60
+effect: 60
+storagelist: 90
+questskill: 60
+lostskill: 60
+streset: 60
+skreset: 60
+reset: 60
+load: 60
+
+dye: 60
+hatch: 60
+hcolor: 60
+haircolor: 60
+hstyle: 60
+hairstyle: 60
+mount: 60
+mountpeco: 60
+size: 60
+
+killer: 60
+killable: 60
+
+// 60 - Liberado pra testes
+zeny: 60
+item: 60
+
+// 70 - Não importantes
+refresh: 70
+petrename: 70
+model: 70
+save: 70
+option: 70
+
+disguise: 70
+undisguise: 70
+
+// 80 - Comandos perigosos e permanentes
+cash: 80
+points: 80
+
+allskill: 80
+allskills: 80
+skillall: 80
+skillsall: 80
+
+allstat: 80
+allstats: 80
+statall: 80
+statsall: 80
+
+str: 80
+agi: 80
+vit: 80
+int: 80
+dex: 80
+luk: 80
+
+heal: 80
+hide: 80
+pethungry: 80
+produce: 80
+speed: 80
+alive: 80
+revive: 80
+petfriendly: 80
+spiritball: 80
+stpoint: 80
+skpoint: 80
+warp: 80
+rura: 80
+rura+: 80
+feelreset: 80
+
+job: 80
+jobchange: 80
+
+blvl: 80
+blevel: 80
+baselvl: 80
+baselevel: 80
+
+jlvl: 80
+joblvl: 80
+jlevel: 80
+joblevel: 80
+
+hlvl: 80
+hlevel: 80
+homlvl: 80
+homlevel: 80
+homevolve: 80
+homevolution: 80
+homfriendly: 80
+homhungry: 80
+hominfo: 80
+
+glvl: 80
+glevel: 80
+guildlvl: 80
+guildlevel: 80
+gstorage: 80
+
+cartlist: 80
+stats: 80
+storage: 80
+itemlist: 80
+changesex: 80
+
+// 99: Administrador - Potencialmente muito prejudiciais
+refine: 90
+monsterignore: 90
+item2: 90
+delitem: 100
+itemreset: 100

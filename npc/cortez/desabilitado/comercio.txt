@@ -1,0 +1,89 @@
+pvp_y_1-2	mapflag	nodrop
+pvp_y_1-2	mapflag	restricted	3
+pvp_y_1-2	mapflag	autotrade
+force_1-1	mapflag	nomemo
+force_1-1	mapflag	nosave	SavePoint
+
+gonryun,147,103,4	script	CdC	726,{		//701,{
+	mes "Deseja ir para a cidade do comércio (CdC)?";
+	menu "Sim",MIr,"Não",-;
+	close;
+	
+	MIr:
+	mes "Seja bem-vindo!!!";
+	close2;
+	warp "pvp_y_1-2",127,110;
+	end;
+	
+	OnInit:
+	waitingroom "CdC ~ Visite-nos!",0;
+	end;
+}
+
+pvp_y_1-2,128,120,4	script	Cidade Principal	726,{
+	mes "Quer sair da CdC (cidade do comércio)?";
+	menu "Sim",MIr,"Não",-;
+	close;
+	
+	MIr:
+	mes "Obrigado!!!";
+	close2;
+	warp "gonryun",158,119;
+	end;
+}
+
+pvp_y_1-2,137,88,4	script	Armazém#2	112,{
+	M_Start:
+	mes "[Kafra]";
+	mes "Bom dia!";
+	mes "O que deseja?";
+	menu "Abrir meu armazém",-,"Abrir o armazém do clã",M_Guild,"Banco",M_Bank,"Nada...",M_Fim;
+	
+	callfunc "F_KafStor",0;
+	close;
+	
+	M_Bank:
+		callfunc "F_keBank";
+		close;
+	
+	M_Guild:
+	next;
+	mes "[Kafra]";
+	if ($@kewg_check && getcharid(2) <= 0) {
+		mes "Desculpe mas esta função está disponível apenas pra quem tem um clã.";
+		close;
+	}
+	mes "Feche esta janela para abrir o armazém.";
+	mes "Esperamos poder vê-lo novamente em breve!";
+	close2;
+	callfunc "F_KafStor",1;
+	
+	M_Fim:
+	close;
+}
+
+pvp_n_1-1,105,79,5	script	Armazém#1	112,{
+	mes "[Kafra]";
+	mes "Bom dia!";
+	mes "O que deseja?";
+	menu "Abrir meu armazém",-,"Abrir o armazém do clã",M_Guild,"Nada...",M_Fim;
+	next;
+	
+	callfunc "F_KafStor",0;
+	close;
+	
+	M_Guild:
+	next;
+	mes "[Kafra]";
+	if ($@kewg_check && getcharid(2) <= 0) {
+		mes "Desculpe mas esta função está disponível apenas pra quem tem um clã.";
+		close;
+	}
+	mes "Feche esta janela para abrir o armazém.";
+	mes "Esperamos poder vê-lo novamente em breve!";
+	close2;
+	callfunc "F_KafStor",1;
+	
+	M_Fim:
+	close;
+}

@@ -1,0 +1,92 @@
+function	script	questnivel	{
+	if(BaseLevel < @nivel || reborn<=12){
+		mes "[^336699 "+@nome$+"~ ^333333]";
+		mes @msg$;
+		close;
+	} else {
+		if(BaseLevel == @nivel){
+			mes "[^336699 "+@nome$+"~ ^333333]";
+			if(@nivel==109 && zeny < 300000000) set @itemqtde1,1000;
+			if(@item1_==0){
+				set @item1_,@item1;
+				set @itemqtde1_,@itemqtde1;
+			}
+			if((countitem(@item1)==@itemqtde1 || countitem(@item1_)==@itemqtde1_) && countitem(@item2)==@itemqtde2 && countitem(@item3)==@itemqtde3){
+				mes @msg2$;
+				close2;
+				
+				if(@nivel==109){
+					query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-300000000,'quest_lv')";
+					set zeny,zeny-300000000;
+				}
+				if(countitem(@item1)==@itemqtde1)
+					delitem @item1,@itemqtde1;
+				else
+					delitem @item1_,@itemqtde1_;
+				delitem @item2,@itemqtde2;
+				delitem @item3,@itemqtde3;
+				
+				set BaseLevel,BaseLevel+1;
+				logmes "[Level] "+strcharinfo(0)+" - lvl "+@nivel+" para "+(@nivel+1);
+				announce "O jogador "+strcharinfo(0)+" acaba de chegar ao nível "+(@nivel+1)+", parabéns!!!",0;
+				if(@nivel==109) announce "Como prêmio, ele ganhará um de seus itens com seu nome e refinado até +10 (slots removidos)!",0;
+				end;
+			} else {
+				mes "Eu vou querer:";
+				if(@item1_ != @item1){
+					mes "- "+@itemqtde1_+"x "+@itemnome1_$;//+" (Tem "+countitem(@item1)+")";
+					mes "Você temporariamente ainda pode trazer "+@itemqtde1+"x "+@itemnome1$+" no lugar de "+@itemqtde1_+"x "+@itemnome1_$;
+				}else{
+					mes "- "+@itemqtde1+"x "+@itemnome1$;//+" (Tem "+countitem(@item1)+")";
+				}
+				mes "- "+@itemqtde2+"x "+@itemnome2$;//+" (Tem "+countitem(@item2)+")";
+				mes "- "+@itemqtde3+"x "+@itemnome3$;//+" (Tem "+countitem(@item3)+")";
+				if(@nivel==109) mes "- 300 milhões de zeny";
+				mes "Traga o número exato de itens que eu pedi, pois se você trouxer mais do que isso eu não irei aceitar!";
+				mes " ";
+				mes @msg3$;
+				close;
+			}
+		} else {
+			mes "[^336699 "+@nome$+"~ ^333333]";
+			mes @msg4$;
+			close;
+		}
+	}
+}
+
+function	script	questjob	{
+	if((JobLevel < @job)||(reborn<@resets-1)){
+		mes "[^336699 "+@nome$+"~ ^333333]";
+		mes @msg$;
+		close;
+	} else {
+		if(JobLevel == @job){
+			mes "[^336699 "+@nome$+"~ ^333333]";
+			if(countitem(@item1)==@itemqtde1 && countitem(@item2)==@itemqtde2 && countitem(@item3)==@itemqtde3){
+				delitem @item1,@itemqtde1;
+				delitem @item2,@itemqtde2;
+				delitem @item3,@itemqtde3;
+				mes @msg2$;
+				close2;
+				set JobLevel,JobLevel+1;
+				logmes "[Job] "+strcharinfo(0)+" - job "+@job+" para "+(@job+1);
+				announce "O jogador "+strcharinfo(0)+" acaba de chegar ao nível de classe "+(@job+1)+", parabéns!!!",0;
+				end;
+			} else {
+				mes "Eu vou querer:";
+				mes "- "+@itemqtde1+"x "+@itemnome1$;//+" (Tem "+countitem(@item1)+")";
+				mes "- "+@itemqtde2+"x "+@itemnome2$;//+" (Tem "+countitem(@item2)+")";
+				mes "- "+@itemqtde3+"x "+@itemnome3$;//+" (Tem "+countitem(@item3)+")";
+				mes "Traga o número exato de itens que eu pedi, pois se você trouxer mais do que isso eu não irei aceitar!";
+				mes " ";
+				mes @msg3$;
+				close;
+			}
+		} else {
+			mes "[^336699 "+@nome$+"~ ^333333]";
+			mes @msg4$;
+			close;
+		}
+	}
+}

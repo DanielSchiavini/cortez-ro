@@ -1,0 +1,445 @@
+//Create Table leiloes (idLeilao int primary key auto_increment, idItem int, intMinimo int, intVendido int, nmJogador varchar(30), nomeItem varchar(30), dtIni datetime, intDias int, intStatus int default 1) ENGINE=MyISAM;
+//Insert Into leiloes (idItem,nomeItem,intMinimo,dtIni,intDias) Values (16501,'Asa de Deviling',1,now(),7)
+// intStatus: 0=desativo 1=aguardando 2=ativo 3=esperando jogador 4=jogador pegou 5=jogador nao pegou 6=jogador nao pegou e foi punido //
+
+schg_cas03,0,0,0	script	leilaoautomatico	-1,{
+	OnClock2256:
+	//OnInit:
+	//debugmes "$leilao="+$leilao;
+	
+	if ($leilao == 0){	//Sem leilão
+		query_sql "Select ifnull(min(idLeilao),0) From leiloes Where dtIni<=now() and intStatus in(1,2)", $@idLeilao;
+		if($@idLeilao){
+			query_sql "Update leiloes set intStatus=2 Where idLeilao="+$@idLeilao;
+			query_sql "Select idItem,nomeItem,intMinimo From leiloes Where idLeilao="+$@idLeilao, $leilaoid, $leilaonomeitem$, $leilaolance;
+			//set $leilaoid, $leilaoid[0];
+			//set $leilaonomeitem$, $leilaonomeitem$[0];
+			//set $leilaolance, $leilaolance[0];
+			//announce "$@idLeilao="+$@idLeilao+" $leilaonomeitem$="+$leilaonomeitem$+" $leilaonomeitem$[0]="+$leilaonomeitem$[0],bc_all;
+			//debugmes "item '"+$leilaonomeitem$+"' "+$leilaoid+" min "+$leilaolance+"kk";
+			announce "[Leilão] Foi iniciado o leilão do item '"+$leilaonomeitem$+"'",bc_all;
+			sleep 2000;
+			announce "[Leilão] O preço mínimo é de "+$leilaolance+" milhões de zeny!",bc_all;
+			sleep 3000;
+			announce "[Leilão] Procure o Agente de Leilão mais próximo e dê seu lance!",bc_all;
+			set $leilao,1;
+		}
+		
+	}else if ($leilao == 1){	//Leilão ativo
+		query_sql "Select ifnull(min(idLeilao),0) From leiloes Where dtIni+interval intDias day<=now() and intStatus=2", $@idLeilao;
+		if($@idLeilao){
+			if($leilaolances){
+				query_sql "Update leiloes set intStatus=3,intVendido='"+$leilaolance+"',nmJogador='"+$leilaonomejogador$+"' Where idLeilao="+$@idLeilao;
+				set $leilao,2;
+				//debugmes "Jogador "+$leilaonomejogador$+" pagara "+$leilaolance+"kk pelo item "+$leilaonomeitem$+"";
+				announce "[Leilão] O leilão do item "+$leilaonomeitem$+" terminou!",bc_all;
+				sleep 3000;
+				announce "[Leilão] O campeão foi o jogador "+$leilaonomejogador$+" com o lance de "+$leilaolance+" milhões de zeny",bc_all;
+				sleep 3000;
+				announce "[Leilão] Favor dirigir-se ao Agente de Leilão mais próximo para retirar seu premio!",bc_all;
+			}else{
+				query_sql "Update leiloes set intStatus=5,intVendido=0 Where idLeilao="+$@idLeilao;
+				set $leilao,0;
+				//debugmes "Item "+$leilaonomeitem$+" terminou sem ganhador";
+				announce "[Leilão] O leilão do item "+$leilaonomeitem$+" terminou sem nenhum ganhador!",0;
+			}
+		}else{
+			query_sql "Select idItem,nomeItem From leiloes Where dtIni<=now() and intStatus=2 Order by idLeilao Limit 1", $leilaoid, $leilaonomeitem$;
+			query_sql "Update leiloes Set intVendido='"+$leilaolance+"', nmJogador='"+$leilaonomejogador$+"' Where intStatus=2 Limit 1";
+		}
+		
+	}else if ($leilao == 2){	//Aguardando vencedor pegar
+		query_sql "Select ifnull(min(idLeilao),0) From leiloes Where dtIni+interval intDias+3 day<=now() and intStatus=3", $@idLeilao;
+		if($@idLeilao){	//se o cara nao veio pegar
+			//announce "Leilão cancelado. O jogador não veio receber o item.",bc_all;
+			query_sql "Update leiloes set intStatus=5 Where idLeilao="+$@idLeilao;
+			set $leilao,0;
+		}else{
+			announce "[Leilão] Estamos aguardando que o vencedor venha buscar seu prêmio ("+$leilaonomeitem$+")!",bc_all;
+			sleep 4000;
+			announce "[Leilão] "+$leilaonomejogador$+", favor dirigir-se ao Agente de Leilão mais próximo...",bc_all;
+			sleep 4000;
+			announce "[Leilão] Se em um período de 3 dias o jogador não pegar o item, ele perderá o dinheiro e ficará sem o item",bc_all;
+		}
+	}
+}
+
+function	script	leiloeiro	{
+
+	if(getgmlevel() < 90)
+		goto L_JogadorNormal;
+
+// ============================================
+// ==            Funções Para GMs            ==
+// ============================================
+	
+	
+	mes "[^6699CC "+@name$+" ^000000]";
+	mes "Menu de GM";
+	next;
+	menu "Menu Normal",L_JogadorNormal,"Atualizar leilão",-,"Menu Antigo",L_MenuAntigo;
+	close2;
+	sleep 1;
+	donpcevent "leilaoautomatico::OnClock2256";
+	end;
+	
+	L_MenuAntigo:
+	mes "[^6699CC "+@name$+" ^000000]";
+	if (@sexx == 1) mes "Ola GM! Sou o Agente de Leilão de "+ @cidade$ +"!";
+	if ($leilao == 0) mes "Não há nenhum leilão em andamento...";
+	if ($leilao == 1) mes "Há um leilão em andamento: ^FF0000"+$leilaonomeitem$+"^000000 por ^FF9900"+$leilaolance+" milhões de zeny^000000 (^0000FF"+$leilaonomejogador$+"^000000)";
+	if ($leilao == 2) mes "Estamos aguardando o ^0000FF"+$leilaonomejogador$+"^000000 vir buscar seu prêmio (^FF0000"+$leilaonomeitem$+"^000000)...";
+	next;
+	mes "[^6699CC "+@name$+" ^000000]";
+	mes "O que você deseja fazer?";
+	if ($leilao == 0) menu "- Iniciar um leilão",L_ComecarLeilao,"- Sair",L_Cancelar;
+	if ($leilao == 1) menu "- Anunciar leilão novamente",L_Anuncia,"- Ver leilão atual",L_VerLeilao,"- Encerrar o leilão",L_EncerrarLeilao,"- Anular o leilão",L_AnularLeilao,"- Testar o NPC",L_JogadorNormal,"- Sair",L_Cancelar;
+	if ($leilao == 2) menu "- Anunciar novamente o ganhador",L_Warn,"- Anular a entrega do prêmio",L_AnularLeilao,"- Testar o NPC",L_JogadorNormal,"- Sair",L_Cancelar;
+	next;
+		L_ComecarLeilao:
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Por favor, digite o ID do item que deseja leiloar...";
+		input $leilaoid;
+		if ($leilaoid <= 0) goto L_Cancelar;
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "ID "+$leilaoid+" = ^FF0000"+getitemname($leilaoid)+"^000000";
+		mes " ";
+		mes "Está certo?";
+		menu "Sim",-,"Não, usarei outro ID",L_ComecarLeilao,"Cancelar",L_Cancelar;
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Agora digite o nome completo do item... (Verificação)";
+		mes "Favor digitar o nome do item correspondente ao ID que você escolheu...";
+		input $leilaonomeitem$;
+		if (getitemname($leilaoid) != $leilaonomeitem$) goto L_ItemErrado;
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Agora digite o nome que vai aparecer para os jogadores";
+		input $leilaonomeitem$;
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Agora digite o valor mínimo do item (MILHÕES DE ZENY!)...";
+		input $leilaolance;
+		//if ($leilaolance <= 0) goto L_Cancelar;
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Obrigado, seu leilão foi configurado com sucesso!";
+		mes "Volte aqui quando quiser finalizar o leilão...";
+		set $leilao,1;
+		logmes "[Leilão] Iniciado o leilão de '"+$leilaonomeitem$+"' por "+$leilaolance+"kk";
+		announce "[Leilão] Foi iniciado o leilão do item '"+$leilaonomeitem$+"' pelo preço mínimo de "+$leilaolance+" milhões de zeny!",bc_all;
+		announce "[Leilão] Procure o Agente de Leilão mais próximo e dê seu lance!",bc_all;
+		set $leilaonomejogador$,"";
+		set $leilaolances,0;
+		close;
+		
+		L_ItemErrado:
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "O nome do item é incompatível com o ID do item...";
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Deseja tentar novamente?";
+		menu "Sim",L_ComecarLeilao,"Não",-;
+		set $leilao,0;
+		set $leilaonomejogador$,0;
+		set $leilaolance,0;
+		set $leilaoid,0;
+		set $leilaonomeitem$,0;
+		close;
+
+		L_Anuncia:
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Leilão anunciado!";
+		announce "[Leilão] O leilão do item "+$leilaonomeitem$+" está no preço de "+$leilaolance+" milhões de zeny",bc_all;
+		close;
+
+		L_Warn:
+		if (getmapxy(@map$,@x,@y,0,""+$leilaonomejogador$+"") != 0) goto L_Off;
+		goto L_Avisar;
+
+		L_Off:
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "O jogador ^0000FF"+$leilaonomejogador$+"^000000 está Off-Line...";
+		mes "Deseja avisar assim mesmo?";
+		menu "Sim",L_Avisar,"Não...",L_Cancelar;
+		
+		L_Avisar:
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Certo... Vamos anunciar o ganhador novamente!";
+		next;
+		announce "[Leilão] Estamos aguardando que o vencedor venha buscar seu prêmio ("+$leilaonomeitem$+")!",0;
+		announce "[Leilão] "+$leilaonomejogador$+", favor dirigir-se ao Agente de Leilão mais próximo...",0;
+		close;
+
+		L_EncerrarLeilao:
+		next;
+		if ($leilao == 2) goto leilaoAGUARDANDO;
+		if ($leilaolances == 0) goto L_AnularLeilao;
+		mes "[^6699CC "+@name$+" ^000000]";
+		if($leilaolance==1)
+			mes "O lance atual do item ^FF0000"+$leilaonomeitem$+"^000000 é de ^FF99001 milhão de zeny^000000.";
+		else
+			mes "O lance atual do item ^FF0000"+$leilaonomeitem$+"^000000 é de ^FF9900"+$leilaolance+" milhões^000000.";
+		if($leilaonomejogador$=="")
+			mes "Esse é o lance inicial!";
+		else
+			mes "Esse lance foi dado pelo jogador ^0000FF"+$leilaonomejogador$+"^000000";
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Deseja finalizar esse leilão agora e entregar o premio ao jogador?";
+		next;
+		menu "Sim",L_EncerrarLeilaoSIM,"Não",L_Cancelar;
+
+			L_EncerrarLeilaoSIM:
+			next;
+			mes "[^6699CC "+@name$+" ^000000]";
+			mes "O leilão foi finalizado e o prêmio está a espera do jogador vencedor.";
+			next;
+			mes "Você só poderá iniciar outro leilão quando o campeão deste leilão vier retirar seu prêmio.";
+			announce "[Leilão] O leilão do item "+$leilaonomeitem$+" terminou!",0;
+			announce "[Leilão] O campeão foi o jogador "+$leilaonomejogador$+" com o lance de "+$leilaolance+" milhões de zeny",0;
+			announce "[Leilão] Favor dirigir-se ao Agente de Leilão mais próximo para retirar seu premio!",0;
+			set $leilao,2;
+			close;
+			
+			leilaoAGUARDANDO:
+			mes "[^6699CC "+@name$+" ^000000]";
+			mes "Um leilão foi finalizado mas o jogador campeão não veio retirar seu prêmio.";
+			next;
+			mes "[^6699CC "+@name$+" ^000000]";
+			mes "Você só pode iniciar outro leilão quando o jogador campeão vier retirar seu premio...";
+			close;
+
+		L_VerLeilao:
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "O item atualmente leiloado é o ^FF0000"+$leilaonomeitem$+"^000000.";
+		if($leilaolance==1)
+			mes "O jogador ^0000FF"+$leilaonomejogador$+"^000000 é o atual campeão com um lance de ^FF9900"+$leilaolance+" milhão de zeny^000000";
+		else
+			mes "O jogador ^0000FF"+$leilaonomejogador$+"^000000 é o atual campeão com um lance de ^FF9900"+$leilaolance+" milhões de zeny^000000";
+		close;
+
+		L_AnularLeilao:
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Tem certeza que deseja anular o leilão atual???";
+		next;
+		menu "Sim",-,"Não",L_Cancelar;
+		
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Pronto, o leilão foi anulado.";
+		announce "[Leilão] O leilão do item "+$leilaonomeitem$+" acaba de ser anulado",0;
+		set $leilao,0;
+		set $leilaonomejogador$,0;
+		set $leilaolance,0;
+		set $leilaoid,0;
+		set $leilaonomeitem$,0;
+		close;
+
+// ============================================
+// ==     Funções Para Jogadores Normais     ==
+// ============================================
+
+L_JogadorNormal:
+	mes "[^6699CC "+@name$+" ^000000]";
+	if ((@sexx == 1) && (@outro == 1)) mes "Ola! Sou o Agente de Leilão de "+ @cidade$ +"!";
+	if ((@sexx == 2) && (@outro == 1)) mes "Ola! Sou a Agente de Leilão de "+ @cidade$ +"!";
+	if (@outro != 1) mes "Ola "+strcharinfo(0)+"!";
+	next;
+	mes "[^6699CC "+@name$+" ^000000]";
+	if (@outro == 1){
+		mes "A Central dos Leilões fica em Cortez, com o nosso chefe, Agron...";
+		next;
+	}else{
+		if(sex)
+			mes "Seja bem vindo à Central de Leilões! Eu sou "+@name$+"...";
+		else
+			mes "Seja bem vinda à Central de Leilões! Eu sou "+@name$+"...";
+		next;
+		//mes "[^6699CC "+@name$+" ^000000]";
+	}
+	//if (@outro != 1) mes "Nós temos agentes espalhados por várias cidades!";
+	//next;
+
+	if ($leilao == 0) goto L_EmLeilao;
+	else if ($leilao == 1) goto L_DarLance;
+	else if ($leilao == 2) goto L_PegarPremio;
+
+	L_EmLeilao:
+	mes "[^6699CC "+@name$+" ^000000]";
+	mes "Atualmente não existe nenhum leilão acontecendo...";
+	close;
+
+	L_DarLance:
+	mes "[^6699CC "+@name$+" ^000000]";
+	mes "Atualmente está acontecendo o leilão do item ^FF0000"+$leilaonomeitem$+"^000000";
+	if($leilaolance==1)
+		mes "O lance atual é de: ^FF99001 milhão de zeny^000000";
+	else
+		mes "O lance atual é de: ^FF9900"+$leilaolance+" milhões^000000";
+	mes "Este lance foi dado pelo jogador: ^0000FF"+$leilaonomejogador$+"^000000";
+	next;
+	mes "[^6699CC "+@name$+" ^000000]";
+	mes "Deseja dar um lance maior pelo item?";
+	next;
+	menu "Sim",L_DarLance2,"Não",L_Cancelar;
+	
+		L_DarLance2:
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "O lance mínimo deve ser igual ao valor do lance anterior adicionando 10%... ("+($leilaolance + ($leilaolance/10) + 1)+" ou mais milhões)";
+		next;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Qual o valor do lance ^990000(EM MILHÕES DE ZENY)^000000 que deseja dar?";
+		mes "^990000LEMBRE-SE:^000000 Se você vencer o leilão e não retirar o item num certo tempo perderá o item E o dinheiro!";
+		input @lance;
+		next;
+		
+		mes "[^6699CC "+@name$+" ^000000]";
+		if(@lance <= $leilaolance + $leilaolance/10 || @lance > zeny/1000000 + countitem(9929) * 1000){
+			mes "[^6699CC "+@name$+" ^000000]";
+			if(@lance > zeny/1000000 + countitem(9929) * 1000)
+				mes "Você precisa ter o dinheiro pra pagar o seu lance de "+@lance+" milhões!";
+			else
+				mes "O lance mínimo deve ser igual ao valor do lance anterior adicionando 10%... ("+($leilaolance + ($leilaolance/10) + 1)+" ou mais milhões)";
+		}else{
+			mes "Deseja confirmar seu lance de "+@lance+" milhões de zeny pelo item "+$leilaonomeitem$+"?";
+			menu "Cancelar",L_Cancelar,"Confirmar",-;
+			
+			next;
+			mes "[^6699CC "+@name$+" ^000000]";
+			mes "Obrigado, seu lance de "+@lance+" milhões de zeny foi registrado. Boa sorte!";
+			set $leilaolance,@lance;
+			set $leilaonomejogador$,strcharinfo(0);
+			query_sql "Update leiloes set intVendido='"+$leilaolance+"',nmJogador='"+$leilaonomejogador$+"' Where intStatus=2 Order by idLeilao Desc Limit 1";
+			announce "[Leilão] O jogador "+$leilaonomejogador$+" acaba de dar um lance de "+$leilaolance+" milhões de zeny para o item "+$leilaonomeitem$+"!",bc_all;
+			logmes "[Leilão] Lance de "+$leilaolance+"kk para o item "+$leilaonomeitem$;
+			set $leilaolances,1;
+		}
+		close;
+		
+		L_PegarPremio:
+		set @nome$,strcharinfo(0);
+		if (@nome$ == $leilaonomejogador$) goto L_Vencedor;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "O vencedor deste ultimo leilão foi o jogador ^0000FF"+$leilaonomejogador$+"^000000 com um lance de ^FF9900"+$leilaolance+" milhões de zeny^000000";
+		mes "Estamos aguardando que ele venha buscar seu premio...";
+		close;
+
+		L_Vencedor:
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Me parece que você foi o ganhador deste leilão...";
+		mes "Vou lhe entregar seu premio!";
+		next;
+		if($leilaolance > Zeny/1000000 + countitem(9929) * 1000) goto L_SemGrana;
+		logmes "[Leilão] Retirou prêmio "+$leilaonomeitem$+" por "+$leilaolance;
+		while($leilaolance > 1000 && countitem(9929)>0){
+			delitem 9929,1;
+			logmes "[Bilhao] Vale bilhão apagado";
+			set $leilaolance,$leilaolance-1000;
+			mes " ";
+		}
+		if(Zeny>=$leilaolance*1000000){
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+($leilaolance*1000000)+",'leilao')";
+			set Zeny, Zeny - $leilaolance*1000000;
+		}else{
+			delitem 9929,1;
+			logmes "[Bilhao] Vale bilhão apagado";
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',1000000000,'leilao')";
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+($leilaolance*1000000)+",'leilao')";
+			set $leilaolance,$leilaolance*1000000-Zeny;
+			set Zeny,1000000000 - $leilaolance;
+		}
+		getitem $leilaoid,1;
+		query_sql "Update leiloes set intStatus=4 Where intStatus=3 Limit 1";
+		announce "[Leilão] O ganhador do leilão acaba de retirar seu premio!",0;
+		announce "[Leilão] Aguardem novos leiloes!",0;
+		set $leilao,0;
+		set $leilaonomejogador$,0;
+		set $leilaolance,0;
+		set $leilaoid,0;
+		set $leilaonomeitem$,0;
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Meus parabens amigo! Espero vê-lo de novo no próximo leilão!";
+		close;
+
+		L_SemGrana:
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Você esta brincando comigo??";
+		mes "Como tem a coragem de dar um lance que não pode pagar???";
+		mes "Junte o dinheiro e volte aqui!";
+		close;
+
+		L_Cancelar:
+		mes "[^6699CC "+@name$+" ^000000]";
+		mes "Certo, volte aqui se mudar de idéia!";
+		close;
+}
+
+// ===========================================
+// ==   Duplicações dos Agentes de Leilão   ==
+// ===========================================
+schg_cas03,27,74,3	script	Agente de Leilão	56,{
+	set @outro,0;
+	set @name$, "Agron";       // <-- Nome do Agente de Leilão
+	set @sexx,1;               // <-- Sexo do Agente (1 = M / 2 = F)
+	set @cidade$, "Cortez";  // <-- Cidade do Agente
+	callfunc "leiloeiro";
+}
+
+//guild_vs2,46,49,3	script	Agente de Leilão	807,{
+//	set @outro,0;
+//	set @name$, "Agron";       // <-- Nome do Agente de Leilão
+//	set @sexx,1;               // <-- Sexo do Agente (1 = M / 2 = F)
+//	set @cidade$, "Cortez";  // <-- Cidade do Agente
+//	callfunc "leiloeiro";
+//}
+//
+//ayothaya,195,179,3	script	Agente de Leilão	843,{
+//	set @outro,0;
+//	set @name$, "Agron";       // <-- Nome do Agente de Leilão
+//	set @sexx,1;               // <-- Sexo do Agente (1 = M / 2 = F)
+//	set @cidade$, "Ayothaya";  // <-- Cidade do Agente
+//	callfunc "leiloeiro";
+//}
+//
+//morocc,167,81,1	script	Agente de Leilão	809,{
+//	set @outro,1;
+//	set @name$, "Lucius";
+//	set @sexx,1;
+//	set @cidade$, "Morroc";
+//	callfunc "leiloeiro";
+//	close;
+//}
+//
+//alberta,54,251,3	script	Agente de Leilão	109,{
+//	set @outro,1;
+//	set @name$, "Julius";
+//	set @sexx,1;
+//	set @cidade$, "Alberta";
+//	callfunc "leiloeiro";
+//	close;
+//}
+//
+//geffen,103,56,5	script	Agente de Leilão	68,{
+//	set @outro,1;
+//	set @name$, "Lisa";
+//	set @sexx,2;
+//	set @cidade$, "Geffen";
+//	callfunc "leiloeiro";
+//	close;
+//}
+//
+//payon,201,107,3	script	Agente de Leilão	744,{
+//	set @outro,1;
+//	set @name$, "Moly";
+//	set @sexx,2;
+//	set @cidade$, "Payon";
+//	callfunc "leiloeiro";
+//	close;
+//}

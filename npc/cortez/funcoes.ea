@@ -1,0 +1,107 @@
+//if(callfunc("tem_milhoes",@valor))
+function	script	tem_milhoes	{
+	set @varmilhoes, getarg(0); //valor em milhões
+	if(@varmilhoes > Zeny/1000000 + countitem(9929) * 1000){
+		//debugmes "Jogador não tem "+@varmilhoes+"kk, mas somente "+(Zeny/1000000 + countitem(9929) * 1000)+"kk";
+		//dispbottom "Jogador não tem "+@varmilhoes+"kk, mas somente "+(Zeny/1000000 + countitem(9929) * 1000)+"kk";
+		return 0;
+	}else{
+		//dispbottom "Você tem "+@varmilhoes+"kk, e um total de "+(Zeny/1000000 + countitem(9929) * 1000)+"kk";
+		return 1;
+	}
+}
+
+//callfunc("dar_milhoes",@valor,"npc_name");
+function	script	dar_milhoes	{
+	set @varmilhoes, getarg(0); //valor em milhões
+	
+	if(@varmilhoes > 1000){
+		getitem 9929,@varmilhoes/1000;
+		logmes "[Bilhao] Vale bilhão recebido ("+(@varmilhoes/1000)+"x)";
+		set @varmilhoes, @varmilhoes%1000;
+	}
+	if(@varmilhoes!=0){
+		set @varmilhoes, @varmilhoes*1000000;
+		if(Zeny + @varmilhoes > 1000000000){
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',"+@varmilhoes+"-1000000000,'"+escape_sql(getarg(1,"dar_milhoes"))+"')";
+			set @varmilhoes, Zeny - 1000000000 + @varmilhoes;
+			set Zeny,@varmilhoes;
+			getitem 9929,1;
+			logmes "[Bilhao] Vale bilhão recebido";
+		}else{
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',"+@varmilhoes+",'"+escape_sql(getarg(1,"dar_milhoes"))+"')";
+			set Zeny,Zeny+@varmilhoes;
+		}
+	}
+	set @varmilhoes,0;
+	return 1;
+}
+
+//callfunc("tira_milhoes",@valor,"npc_name");
+function	script	tira_milhoes	{
+	set @varmilhoes, getarg(0); //valor em milhões
+	//dispbottom "tirando "+@varmilhoes;
+
+	if(@varmilhoes > 1000){
+		if(@varmilhoes%1000==0 && Zeny>=1000000000 && countitem(9929)+1==@varmilhoes/1000) set @varmilhoes, @varmilhoes-1;
+		delitem 9929,@varmilhoes/1000;
+		logmes "[Bilhao] Vale bilhão apagado ("+(@varmilhoes/1000)+"x)";
+		set @varmilhoes, @varmilhoes%1000;
+	}
+	if(@varmilhoes!=0){
+		if(Zeny>=@varmilhoes*1000000){
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+(@varmilhoes*1000000)+",'"+escape_sql(getarg(1,"tira_kks"))+"')";
+			set Zeny, Zeny - @varmilhoes*1000000;
+		}else{
+			delitem 9929,1;
+			logmes "[Bilhao] Vale bilhão apagado";
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',1000000000,'"+escape_sql(getarg(1,"tira_milhoes"))+"')";
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+(@varmilhoes*1000000)+",'"+escape_sql(getarg(1,"tira_kks"))+"')";
+			set @varmilhoes,@varmilhoes*1000000-Zeny;
+			set Zeny,1000000000 - @varmilhoes;
+		}
+	}
+	set @varmilhoes, 0;
+	return 1;
+}
+
+//set @x$, callfunc("formata_milhoes",1000);
+function	script	formata_milhoes	{
+	set .@varmilhoes, getarg(0); //valor em milhões
+	if(.@varmilhoes>1000){
+		set .@return$, .@varmilhoes/1000;
+		set .@varmilhoes, .@varmilhoes%1000;
+		if(.@varmilhoes>0){
+			set .@return$, .@return$ + "," + (.@varmilhoes<100?(.@varmilhoes<10?"00":"0"):"") + (.@varmilhoes%100==0?.@varmilhoes/100:(.@varmilhoes%10==0?.@varmilhoes/10:.@varmilhoes)) + "bi";
+		}
+	}else{
+		set .@return$, .@varmilhoes+"mi";
+	}
+	set .@varmilhoes,0;
+	return .@return$;
+}
+
+//callfunc("log_mes","mes","Char/NPC name","map","acc_id=1","char_id=150000");
+function	script	log_mes	{
+	query_logsql "INSERT INTO npclog (npc_date,account_id,char_id,char_name,map,mes) Values (now(),"+escape_sql(getarg(3,"1"))+","+escape_sql(getarg(4,"150000"))+",'"+escape_sql(getarg(1))+"','"+escape_sql(getarg(2))+"','"+escape_sql(getarg(0))+"')";
+	return;
+}
+
+//callfunc("send_mail",0=dest_id,1=dest_name,2=send_id(0),3=send_name(Server),4=title,5=message,6=zeny,7=nameid,8=amount);
+function	script	send_mail	{
+	set .@zeny,getarg(6,0);
+	set .@nameid, getarg(7,0);
+	set .@amount, getarg(8,0);
+	if(.@zeny>1000000000){
+		if(.@nameid==0){
+			set .@nameid,9929; //vale-bilhões
+			set .@amount, .@zeny/1000000000; //quantos bilhões
+			set .@zeny, .@zeny%1000000000; //resto em zeny
+		}else{
+			debugmes "function send_mail executada com zeny="+.@zeny+" e nameid="+.@zeny+". dest_id="+getarg(0);
+			return 0;
+		}
+	}
+	query_sql "INSERT INTO mail(send_name,send_id,dest_name,dest_id,title,message,time,status,zeny,nameid,amount,identify)VALUES('"+escape_sql(getarg(3,"Server"))+"',"+escape_sql(getarg(2,"0"))+",'"+escape_sql(getarg(1))+"',"+escape_sql(getarg(0))+",'"+escape_sql(getarg(4,"Mensagem"))+"',Replace('"+escape_sql(getarg(5,""))+"','\n','\n\r '),unix_timestamp(),0,"+.@zeny+","+.@nameid+","+.@amount+",1);";
+	return 1;
+}

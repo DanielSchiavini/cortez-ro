@@ -1,0 +1,9 @@
+// 0/5: Comandos VIP no Memories
+autoloot: 0
+storage: 0
+gstorage: 0
+
+whosell: 0
+whosells: 0
+
+mail: 0

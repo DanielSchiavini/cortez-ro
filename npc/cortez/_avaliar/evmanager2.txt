@@ -1,0 +1,25 @@
+-       script  PCLoginEvent    -1,{
+        set @login,gettimetick(0)/1000;
+        if (@login<0)   set @login,-@login;
+        set @logintemp,@login - 600;
+        if ((!LoginAnnounce)) goto L_NotAnnounced;
+	if (( (PC_LASTLOGIN < (@login -600)) && (PC_LASTLOGIN < @login) ) || ((PC_LASTLOGIN > (@login + 600)) && (PC_LASTLOGIN > @login) )) announce strcharinfo(0)+ " is just arrived!",16;
+L_NotAnnounced:
+        if (agitcheck(0)) dispbottom "Guild Wars are running, hurry UP!";
+        set PC_LASTLOGIN,@login;
+        set @jcount,0;
+L_Cycle_Start:
+        if ($@cityvalue[@jcount]) dispbottom "Active Event in "+$@city$[@jcount]+ " since "+ $@citytime$[@jcount];
+        set @jcount,@jcount+1;
+        if (@jcount <= 5) goto L_Cycle_Start;
+        end;
+}
+
+-       script  PCLogoutEvent   -1,{
+        set @logout,gettimetick(0)/1000;
+        if (@logout<0)  set @logout,-@logout;
+        set @diff,@login-@logout;
+        if (@diff<0)    set @diff,-@diff;
+        set PC_ONLINE_TIME,PC_ONLINE_TIME + @diff;
+        end;
+}

@@ -1,0 +1,183 @@
+//===== eAthena Script ======================================= 
+//= Kafra Express - Bank Module
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 2.7
+//===== Compatible With: ===================================== 
+//= eAthena SVN R3524+
+//===== Description: ========================================= 
+//= Part of the Kafra Express Script Package.
+//= Offers banking services with daily interests, and 
+//= withdrawal/deposit fees.
+//===== Additional Comments: ================================= 
+//= See config.txt for configuration.
+//============================================================ 
+
+-	script	keInit_bank	-1,{
+OnInit:	//Load Config
+	donpcevent "keConfig::OnLoadBank";
+	end;
+}
+
+function	script	F_keBank	{
+
+	function	SF_calcInterest;
+	SF_calcInterest();
+	
+	do {
+		set @feeD,callfunc("F_keCost",$@kebk_depositCost,100);
+		set @maxDep,Zeny;
+		if (@maxDep > $@kebk_maxTransact)
+			set @maxDep,$@kebk_maxTransact;
+		if (@maxDep > $@kebk_capacity - #ke_bank)
+			set @maxDep,$@kebk_capacity-#ke_bank;
+
+		set @feeW,callfunc("F_keCost",$@kebk_withdrawCost,100);
+		set @maxWith,#ke_bank-((#ke_bank/100)*@feeW);
+		if (@maxWith > $@kebk_maxTransact)
+			set @maxWith,$@kebk_maxTransact;
+		
+		if (@maxDep/1000>0) {
+			if(@maxWith/1000>0){
+				set @kmenu, select(
+					"- Voltar (saldo é "+#ke_bank+"z)",
+					"- Depositar (até "+(@maxDep/1000)+"000z"+(@feeD?" - imposto de "+@feeD+"%":"")+")",
+					"- Sacar (até "+(@maxWith/1000)+"000z"+(@feeD?" + imposto de "+@feeD+"%":"")+")"
+				);
+			}else{
+				set @kmenu, select(
+					"- Voltar (saldo é "+#ke_bank+"z)",
+					"- Depositar (até "+(@maxDep/1000)+"000z"+(@feeD?" - imposto de "+@feeD+"%":"")+")"
+				);
+			}
+		} else {
+			set @kmenu, select(
+				"- Voltar (saldo é "+#ke_bank+"z)",
+				"- Sacar (até "+(@maxWith/1000)+"000z"+(@feeD?" + imposto de "+@feeD+"%":"")+")"
+			);
+			if (@kmenu > 1)
+				set @kmenu, @kmenu+1;
+		}
+		switch (@kmenu) {
+		case 2:	//Deposit
+			mes "["+@name$+"]";
+			mes "Os valores digitados no banco são em milhares de zeny.";
+			set @amount,0;
+			while(@amount<=0 || @amount>1000000) input @amount;
+			set @amount, @amount*1000;
+			if (@amount < $@kebk_minTransact) {
+				callfunc "F_keIntro", -1, "Desculpe, o valor mínimo é " + $@kebk_minTransact + "z. Você tentou depositar " + @amount + "z";
+				break;
+			}
+			if (@amount > @maxDep) {
+				callfunc "F_keIntro", e_an, "Você não pode depositar essa quantidade! O seu máximo de depósito é " + @mapDep + "z. Você tentou depositar " + @amount + "z";
+				break;
+			}
+			//mes "Valor disponível = "+#ke_bank+"+"+(@amount/1000000)+".000.000-(("+(@amount/100000)+".000*)*"+@feeD+")";
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+@amount+",'ke_bank')";
+			set Zeny,Zeny-@amount;
+			set #ke_bank,#ke_bank+@amount-((@amount/100)*@feeD);
+			if ($@kebk_useGlobalBank)
+				set $ke_globalbank, $ke_globalbank +(@amount/100)*@feeD;
+			emotion e_cash;
+			break;
+
+		case 3:	//Withdraw
+			mes "["+@name$+"]";
+			mes "Os valores digitados no banco são em milhares de zeny.";
+			set @amount,0;
+			while(@amount<=0 || @amount>1000000) input @amount;
+			set @amount, @amount*1000;
+			if (@amount < $@kebk_minTransact) {
+				callfunc "F_keIntro", -1, "Desculpe, o valor mínimo é "+$@kebk_minTransact+"z. Você tentou sacar " + @amount + "z";
+				break;
+			}
+			if (@amount > @maxWith) {
+				callfunc "F_keIntro", e_X, "Você não pode sacar essa quantidade! O seu saque máximo é " + @mapDep + "z. Você tentou sacar " + @amount + "z";
+				break;
+			}
+			if(Zeny + @amount > 1000000000 && !checkweight(9929,1)){
+				callfunc "F_keIntro", e_X, "Você não pode sacar essa quantidade. Guarde seus itens e tente novamente!";
+				break;
+			}
+			set #ke_bank,#ke_bank-@amount-((@amount/100)*@feeW);
+			if ($@kebk_useGlobalBank)
+				set $ke_globalbank, $ke_globalbank +(@amount/100)*@feeW;
+			if(Zeny + @amount > 1000000000){
+				query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',"+(@amount - 1000000000)+",'ke_bank')";
+				set @amount, Zeny + @amount - 1000000000;
+				set Zeny,@amount;
+				getitem 9929,1;
+				logmes "[Bilhao] Vale bilhão recebido";
+			}else{
+				query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',"+@amount+",'ke_bank')";
+				set Zeny,Zeny+@amount;
+			}
+			emotion e_oh;
+			break;
+		}
+	} while (@kmenu > 1);
+	query_sql "Update ro.Login Set banco"+$serv+"="+escape_sql(#ke_bank)+" Where account_id="+escape_sql(getcharid(3));
+return;
+
+//Subfunction: SF_calcInterest
+//Calculates the interests gained on the account. Uses 30-day months
+function	SF_calcInterest {
+	set @day,gettime(5);
+	if (@day>30)
+		set @day,30; //Use 30 day-months
+	set @month,gettime(6);
+	if (#ke_banktick == 0) { //Init bank.
+		set #ke_banktick,gettime(6)*30+@day;
+		if ($@kebk_monMaintenance < 1) return;
+		set #ke_bankmtick,@month;
+		return;
+	}
+	set @banktick,gettime(6)*30+@day;
+	if (@banktick == #ke_banktick) return;
+	if (@banktick < #ke_banktick) { //Year change.
+		do {
+			set #ke_banktick,#ke_banktick-360;
+			if ($@kebk_monMaintenance > 0) set #ke_bankmtick,#ke_bankmtick-12;
+		} while (@banktick < #ke_banktick);
+	}
+	if ($@kebk_monMaintenance > 0 && #ke_bankmtick < @month){	//Month change
+		set @qty,0;
+		do {
+			if (#ke_bank < $@kebk_monMaintenance) {
+				if (@qty>0)
+					mes "Você foi cobrado de "+@qty+"z pela manutenção da conta, mas não foi suficiente.";
+				if ($@kebk_useGlobalBank)
+					set $ke_globalbank, $ke_globalbank + @qty;
+				mes "Você deve ao banco "+($@kebk_monMaintenance*(#ke_bankmtick-@month))+"z pelos custos de manutenção. Até que você pague não vai ganhar nada...";
+				return;
+			}
+			set @qty, @qty+$@kebk_monMaintenance;
+			set #ke_bankmtick,#ke_bankmtick+1;
+			set #ke_bank, #ke_bank-$@kebk_monMaintenance;
+		} while (#ke_bankmtick < @month);
+		mes "Você foi cobrado de "+@qty+"z pela manutenção da conta.";
+		if ($@kebk_useGlobalBank)
+			set $ke_globalbank, $ke_globalbank + @qty;
+	}
+	set @qty,0;
+	if (#ke_bank > $@kebk_monMaintenance && #ke_bank < $@kebk_capacity)
+		set @qty,(#ke_bank/10000)*$@kebk_dayInterest*(@banktick-#ke_banktick);
+	set #ke_banktick,@banktick;
+	if (@qty == 0) return;
+	if (@qty < 0) {
+		callfunc "F_keIntro", -1, "Desculpe, seus ganhos foram cancelados por serem grandes demais.";
+		return;
+	}
+	if (#ke_bank + @qty > $@kebk_capacity)
+		set #ke_bank, $@kebk_capacity;
+	else
+		set #ke_bank,#ke_bank+@qty;
+	query_sql "Update ro.Login Set banco"+$serv+"="+escape_sql(#ke_bank)+" Where account_id="+escape_sql(getcharid(3));
+
+	callfunc "F_keIntro", -1, "Desde a sua última visita, você ganhou "+@qty+"z!";
+}	//SF end
+
+}
+

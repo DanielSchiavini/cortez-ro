@@ -1,0 +1,172 @@
+//===== eAthena Script =======================================
+//= Thanatos Tower Monster Spawn Script
+//===== By: ==================================================
+//= Athena (1.0)
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Additional Comments: =================================
+//= 1.0 Real spawns by Poki#3 [Nexon]
+//============================================================
+
+//==================================================
+// tha_t01 - Thanatos Tower F1
+//==================================================
+tha_t01,0,0,0,0	monster	Mimic	1191,45,0,0,0
+tha_t01,0,0,0,0	monster	Rideword	1195,30,0,0,0
+tha_t01,0,0,0,0	monster	Plasma	1695,15,0,0,0
+tha_t01,0,0,0,0	monster	Solace	1703,15,0,0,0
+tha_t01,0,0,0,0	monster	Alice	1275,1,0,0,0
+
+//==================================================
+// tha_t02 - Thanatos Tower F2
+//==================================================
+tha_t02,0,0,0,0	monster	Rideword	1195,30,0,0,0
+tha_t02,0,0,0,0	monster	Deathword	1698,30,0,0,0
+tha_t02,0,0,0,0	monster	Mimic	1191,45,0,0,0
+tha_t02,0,0,0,0	monster	Ancient Mimic	1699,30,0,0,0
+tha_t02,0,0,0,0	monster	Plasma	1697,15,0,0,0
+tha_t02,0,0,0,0	monster	Retribution	1702,15,0,0,0
+tha_t02,0,0,0,0	monster	Alice	1275,1,0,0,0
+
+//==================================================
+// tha_t03 - Thanatos Tower F3
+//==================================================
+tha_t03,0,0,0,0	monster	Rideword	1195,30,0,0,0
+tha_t03,0,0,0,0	monster	Deathword	1698,30,0,0,0
+tha_t03,0,0,0,0	monster	Mimic	1191,45,0,0,0
+tha_t03,0,0,0,0	monster	Plasma	1696,15,0,0,0
+tha_t03,0,0,0,0	monster	Shelter	1701,15,0,0,0
+tha_t03,0,0,0,0	monster	Ancient Mimic	1699,30,0,0,0
+tha_t03,0,0,0,0	monster	Owl Duke	1320,15,0,0,0
+tha_t03,0,0,0,0	monster	Elder	1377,15,0,0,0
+
+//==================================================
+// tha_t04 - Thanatos Tower F4
+//==================================================
+tha_t04,0,0,0,0	monster	Rideword	1195,30,0,0,0
+tha_t04,0,0,0,0	monster	Deathword	1698,30,0,0,0
+tha_t04,0,0,0,0	monster	Mimic	1191,45,0,0,0
+tha_t04,0,0,0,0	monster	Ancient Mimic	1699,30,0,0,0
+tha_t04,0,0,0,0	monster	Plasma	1694,15,0,0,0
+tha_t04,0,0,0,0	monster	Owl Duke	1320,15,0,0,0
+tha_t04,0,0,0,0	monster	Owl Baron	1295,15,0,0,0
+tha_t04,0,0,0,0	monster	Elder	1377,15,0,0,0
+tha_t04,0,0,0,0	monster	Observation	1700,15,0,0,0
+
+tha_t04,140,138,5,5	monster	Deviling	2251,1,3600000,3600000,4
+
+//==================================================
+// tha_t05 - Thanatos Tower F5
+//==================================================
+tha_t05,0,0,0,0	monster	Rideword	1195,30,0,0,0
+tha_t05,0,0,0,0	monster	Deathword	1698,30,0,0,0
+tha_t05,0,0,0,0	monster	Mimic	1191,30,0,0,0
+tha_t05,0,0,0,0	monster	Ancient Mimic	1699,23,0,0,0
+tha_t05,0,0,0,0	monster	Plasma	1694,8,0,0,0
+tha_t05,0,0,0,0	monster	Plasma	1697,8,0,0,0
+tha_t05,0,0,0,0	monster	Plasma	1695,7,0,0,0
+tha_t05,0,0,0,0	monster	Plasma	1696,7,0,0,0
+tha_t05,0,0,0,0	monster	Owl Duke	1320,15,0,0,0
+tha_t05,0,0,0,0	monster	Elder	1377,15,0,0,0
+tha_t05,0,0,0,0	monster	Thanatos Dolor	1707,15,0,0,0
+
+//==================================================
+// tha_t06 - Thanatos Tower F6
+//==================================================
+tha_t06,0,0,0,0	monster	Rideword	1195,30,0,0,0
+tha_t06,0,0,0,0	monster	Deathword	1698,30,0,0,0
+tha_t06,0,0,0,0	monster	Mimic	1191,30,0,0,0
+tha_t06,0,0,0,0	monster	Ancient Mimic	1699,30,0,0,0
+tha_t06,0,0,0,0	monster	Plasma	1694,7,0,0,0
+tha_t06,0,0,0,0	monster	Plasma	1697,7,0,0,0
+tha_t06,0,0,0,0	monster	Plasma	1695,8,0,0,0
+tha_t06,0,0,0,0	monster	Plasma	1696,8,0,0,0
+tha_t06,0,0,0,0	monster	Owl Duke	1320,15,0,0,0
+tha_t06,0,0,0,0	monster	Elder	1377,23,0,0,0
+tha_t06,0,0,0,0	monster	Thanatos Maero	1706,3,0,0,0
+tha_t06,0,0,0,0	monster	Thanatos Dolor	1707,15,0,0,0
+
+//==================================================
+// tha_t07 - Thanatos Tower F7
+//==================================================
+tha_t07,0,0,0,0	monster	Rideword	1195,15,0,0,0
+tha_t07,0,0,0,0	monster	Deathword	1698,30,0,0,0
+tha_t07,0,0,0,0	monster	Mimic	1191,15,0,0,0
+tha_t07,0,0,0,0	monster	Ancient Mimic	1699,30,0,0,0
+tha_t07,0,0,0,0	monster	Observation	1700,15,0,0,0
+tha_t07,0,0,0,0	monster	Retribution	1702,30,0,0,0
+tha_t07,0,0,0,0	monster	Elder	1377,30,0,0,0
+tha_t07,0,0,0,0	monster	Shelter	1701,15,0,0,0
+tha_t07,0,0,0,0	monster	Thanatos Odium	1704,3,0,0,0
+
+//==================================================
+// tha_t08 - Thanatos Tower F8
+//==================================================
+tha_t08,0,0,0,0	monster	Rideword	1195,30,0,0,0
+tha_t08,0,0,0,0	monster	Deathword	1698,30,0,0,0
+tha_t08,0,0,0,0	monster	Mimic	1191,30,0,0,0
+tha_t08,0,0,0,0	monster	Ancient Mimic	1699,15,0,0,0
+tha_t08,0,0,0,0	monster	Observation	1700,15,0,0,0
+tha_t08,0,0,0,0	monster	Retribution	1702,15,0,0,0
+tha_t08,0,0,0,0	monster	Elder	1377,15,0,0,0
+tha_t08,0,0,0,0	monster	Shelter	1701,15,0,0,0
+tha_t08,0,0,0,0	monster	Thanatos Odium	1704,8,1800000,0,0
+
+//==================================================
+// tha_t09 - Thanatos Tower F9
+//==================================================
+tha_t09,0,0,0,0	monster	Observation	1700,15,0,0,0
+tha_t09,0,0,0,0	monster	Retribution	1702,30,0,0,0
+tha_t09,0,0,0,0	monster	Plasma	1694,15,0,0,0
+tha_t09,0,0,0,0	monster	Elder	1377,30,0,0,0
+tha_t09,0,0,0,0	monster	Shelter	1701,15,0,0,0
+tha_t09,0,0,0,0	monster	Thanatos Dolor	1707,8,0,0,0
+
+//==================================================
+// tha_t10 - Thanatos Tower F10
+//==================================================
+tha_t10,0,0,0,0	monster	Observation	1700,15,0,0,0
+tha_t10,0,0,0,0	monster	Retribution	1702,15,0,0,0
+tha_t10,0,0,0,0	monster	Plasma	1697,8,0,0,0
+tha_t10,0,0,0,0	monster	Elder	1377,30,0,0,0
+tha_t10,0,0,0,0	monster	Shelter	1701,15,0,0,0
+tha_t10,0,0,0,0	monster	Thanatos Dolor	1707,8,0,0,0
+
+//==================================================
+// tha_t11 - Thanatos Tower F11
+//==================================================
+tha_t11,0,0,0,0	monster	Observation	1700,30,0,0,0
+tha_t11,0,0,0,0	monster	Retribution	1702,30,0,0,0
+tha_t11,0,0,0,0	monster	Plasma	1695,15,0,0,0
+tha_t11,0,0,0,0	monster	Elder	1377,30,0,0,0
+tha_t11,0,0,0,0	monster	Shelter	1701,30,0,0,0
+tha_t11,0,0,0,0	monster	Thanatos Odium	1704,3,0,0,0
+tha_t11,0,0,0,0	monster	Thanatos Despero	1705,8,1800000,0,0
+
+//==================================================
+// tha_t12 - Thanatos Tower F12
+//==================================================
+tha_t12,0,0,0,0	monster	Observation	1700,15,0,0,0
+tha_t12,0,0,0,0	monster	Retribution	1702,45,0,0,0
+tha_t12,0,0,0,0	monster	Shelter	1701,15,0,0,0
+tha_t12,0,0,0,0	monster	Plasma	1693,15,0,0,0
+tha_t12,0,0,0,0	monster	Elder	1377,30,0,0,0
+tha_t12,0,0,0,0	monster	Thanatos Odium	1704,3,0,0,0
+tha_t12,0,0,0,0	monster	Thanatos Despero	1705,3,0,0,0
+tha_t12,0,0,0,0	monster	Thanatos Maero	1706,3,0,0,0
+tha_t12,0,0,0,0	monster	Thanatos Dolor	1707,7,0,0,0
+
+
+thana_step,0,0,0,0	monster	Drainliar	1111,50,0,0,0
+//==================================================
+// thana_boss - Top of Thanatos Tower
+//==================================================
+// Note - Thanatos spawn should be removed later.
+// He should be summoned by finishing the Thanatos Tower Quest (At least from the info I have ^^; )
+thana_boss,0,0,0,0	monster	Observation	1700,10,0,0,0
+thana_boss,0,0,0,0	monster	Thanatos Odium	1704,10,0,0,0
+thana_boss,0,0,0,0	monster	Thanatos Despero	1705,10,0,0,0
+thana_boss,0,0,0,0	monster	Thanatos Maero	1706,10,0,0,0
+thana_boss,0,0,0,0	monster	Thanatos Dolor	1707,10,0,0,0

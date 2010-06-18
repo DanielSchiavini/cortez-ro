@@ -1,0 +1,56 @@
+que_sign01,196,195,4	script	Bellatriz Lestrange	856,{
+	mes "^006611[ Bellatriz Lestrange ]^333333";
+	if (countitem(7331)<1){
+		mes "Sai daqui... Agora!!!";
+		close;
+	}
+	mes "Como você entrou aqui?";
+	next;
+	menu "Conversar",-,"Correr.",L_Fechar;
+	
+	mes "^006611[ Bellatriz Lestrange ]^333333";
+	mes "Agora que entrou eu já sei porquê....";
+	next;
+	mes "^006611[ Bellatriz Lestrange ]^333333";
+	mes "Queres os Skeleton Manteau, e ele é difil de conseguir.";
+	mes "Se deseja realmente fazer preciso que traga mais alguns itens.";
+	next;
+	mes "^006611[ Bellatriz Lestrange ]^333333";
+	mes "Os itens necessários são:";
+	mes "- 200x Pedra do pesadelo";
+	mes "- 150x Tinta Mágica";
+	mes "- 3x Desejo das Trevas";
+	mes "- 1x Capa do Marquês";
+	next;
+	mes "^006611[ Bellatriz Lestrange ]^333333";
+	mes "Estarei esperando você, mais vai rápido.";
+	next;
+	menu "Já tenho os itens",L_DarItens,"To sem os itens agora.",-;
+	
+	mes "Volte quando tiver com eles";
+	close;
+	
+	L_DarItens:
+	mes "^006611[ Bellatriz Lestrange ]^333333";
+	mes "Deixe-me ver se você tem todos os itens...";
+	if (countitem(7102)<200 || countitem(7340)<3 ||
+		countitem(7045)<150 || countitem(2507)<1){
+		mes "Você não trouxe todos os necessários!";
+	}else{
+		mes "Muito Bem!!!";
+		next;
+		mes "^006611[ Bellatriz Lestrange ]^333333";
+		mes "Irei te dar a Capa conforme combinado.";
+		mes "Aqui está, faça bom proveito";
+		next;
+		delitem 7102,200;
+		delitem 7340,3;
+		delitem 7045,150;
+		delitem 2507,1;
+		
+		getitem 2511,1;
+	}
+	
+	L_Fechar:
+		close;
+}

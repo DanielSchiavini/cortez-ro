@@ -1,0 +1,167 @@
+//===== eAthena Script =======================================
+//= War of Emperium (Prontera)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Prontera Guild Castle 1
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//============================================================
+
+prtg_cas02	mapflag	gvg_castle
+prtg_cas02	mapflag	monster_noteleport
+prtg_cas02	mapflag	noicewall
+prtg_cas02	mapflag	nomemo
+prtg_cas02	mapflag	nosave	SavePoint
+prtg_cas02	mapflag	noteleport
+prtg_cas02	mapflag	nowarp
+prtg_cas02	mapflag	nowarpto
+prtg_cas02	mapflag	noreturn
+prtg_cas02	mapflag	nogo
+prtg_cas02	mapflag	nocommand	10
+
+prt_gld,240,124,0	warp	prtg02	1,1,prtg_cas02,43,229
+
+prtg_cas02,157,135,0	warp	prtg206-1	1,1,prtg_cas02,184,40
+prtg_cas02,161,41,0	warp	prtg202-1	1,1,prtg_cas02,57,202
+prtg_cas02,184,44,0	warp	prtg206	1,1,prtg_cas02,157,140
+prtg_cas02,203,21,0	warp	prtg205-1	1,1,prtg_cas02,45,25
+prtg_cas02,210,41,0	warp	prtg201-1	1,1,prtg_cas02,84,215
+prtg_cas02,35,183,0	warp	prtg204	1,1,prtg_cas02,71,82
+prtg_cas02,43,233,0	warp	prtg02-1	1,1,prt_gld,240,128
+prtg_cas02,45,21,0	warp	prtg205	1,1,prtg_cas02,203,25
+prtg_cas02,53,202,0	warp	prtg202	1,1,prtg_cas02,165,41
+prtg_cas02,64,164,0	warp	prtg203	1,1,prtg_cas02,98,25
+prtg_cas02,71,86,0	warp	prtg204-1	1,1,prtg_cas02,35,187
+prtg_cas02,88,215,0	warp	prtg201	1,1,prtg_cas02,206,41
+prtg_cas02,98,21,0	warp	prtg203-1	1,1,prtg_cas02,64,168
+
+// Guild Flag (Outside Castle)
+//============================================================
+prt_gld,244,126,8	script	Hrist#p2-2::Hrist2	973,{
+	set .@GID, GetCastleData("prtg_cas02",1);
+	if (.@GID == 0) {
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
+		mes " ";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo aventureiro...";
+			mes "Deseja voltar ao seu local de glória e honra?";
+			next;
+			if (select("Voltar:Quit.") == 1) {
+				if (getcharid(2) == GetCastleData("prtg_cas02",1)) {
+					warp "prtg_cas02",71,36;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastlePt02:
+	//FlagEmblem 1; //GetCastleData("prtg_cas02",1);
+	end;
+}
+
+schg_cas03,67,19,4	duplicate(Hrist2)	Hrist#ctz	973
+prt_gld,244,128,8	duplicate(Hrist2)	Hrist#p2-3	973
+prt_gld,236,126,8	duplicate(Hrist2)	Hrist#p2-4	973
+prt_gld,236,128,8	duplicate(Hrist2)	Hrist#p2-5	973
+
+// Guild Flag (Inside Castle)
+//============================================================
+prtg_cas02,40,227,4	script	Hrist#p2-6::Hrist3	973,{
+	set .@GID, GetCastleData("prtg_cas02",1);
+	if (.@GID == 0) {
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
+		mes " ";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
+	}
+	else {
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastlePt02:
+	//FlagEmblem 1; //GetCastleData("prtg_cas02",1);
+	end;
+}
+
+prtg_cas02,46,227,4	duplicate(Hrist3)	Hrist#p2-7	973
+prtg_cas02,11,219,4	duplicate(Hrist3)	Hrist#p2-8	973
+prtg_cas02,11,214,4	duplicate(Hrist3)	Hrist#p2-9	973
+prtg_cas02,20,219,4	duplicate(Hrist3)	Hrist#p2-10	973
+prtg_cas02,20,214,4	duplicate(Hrist3)	Hrist#p2-11	973
+prtg_cas02,79,227,8	duplicate(Hrist3)	Hrist#p2-12	973
+prtg_cas02,70,227,8	duplicate(Hrist3)	Hrist#p2-13	973
+prtg_cas02,38,189,8	duplicate(Hrist3)	Hrist#p2-14	973
+prtg_cas02,34,189,8	duplicate(Hrist3)	Hrist#p2-15	973
+prtg_cas02,153,161,4	duplicate(Hrist3)	Hrist#p2-16	973
+prtg_cas02,162,161,4	duplicate(Hrist3)	Hrist#p2-17	973
+
+// AGIT Manager
+//============================================================
+prtg_cas02,158,174,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas02	-1
+
+// Steward
+//============================================================
+prtg_cas02,94,61,4	duplicate(Gld_Mngr_Template)	Roy#prtg_cas02	55
+
+// Guardians
+//============================================================
+prtg_cas02,94,61,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas02	-1
+
+// Kafra Staff
+//============================================================
+prtg_cas02,71,36,4	duplicate(Gld_Kafra_Template)	Kafra Staff#prtg_cas02	117
+
+// Master's Room Exit
+//============================================================
+prtg_cas02,207,228,0	script	#switch_Pt02	111,{
+	mes " ";
+	mes "Há um pequeno interruptor. Deseja apertá-lo?";
+	next;
+	switch(select("Apertar:Não")) {
+	case 1:
+		warp "prtg_cas02",94,62;
+		break;
+	case 2:
+		break;
+	}
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+prtg_cas02,202,228,0	duplicate(Gld_Trea_Protect)	ban_warp#prtg_cas02	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+prtg_cas02,202,228,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas02	-1
+
+// Guild Dungeon Switch
+//============================================================
+prtg_cas02,84,72,0	duplicate(Gld_Dun_Template)	#prtg_cas02	111

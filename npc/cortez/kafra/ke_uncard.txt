@@ -1,0 +1,186 @@
+//===== eAthena Script ======================================= 
+//= Kafra Express - Uncarder Module
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 1.5
+//===== Compatible With: ===================================== 
+//= eAthena SVN R3424+
+//===== Description: ========================================= 
+//= Part of the Kafra Express Script Package.
+//= Offers uncarding services.
+//===== Additional Comments: ================================= 
+//= See config.txt for configuration.
+//============================================================ 
+
+-	script	keInit_uncard	-1,{
+OnInit:	//Load Config
+	donpcevent "keConfig::OnLoadUncard";
+	end;
+}
+
+function	script	F_keUncard	{
+
+function SF_uncard;
+	
+	if (MaxWeight*40/100 < Weight) {
+		mes "["+@name$+"]^ff0000";
+		if (MaxWeight*90/100 < Weight)
+			mes "Você está com mais de 90% de peso, por favor guarde alguns itens antes de continuar pois eles poderiam cair no chão!";
+		else
+			if (MaxWeight*50/100 < Weight)
+				mes "Você está com mais de 50% de peso, por favor guarde alguns itens antes de continuar pois eles poderiam cair no chão!";
+			else
+				mes "Você está próximo do seu limite de peso, por favor guarde alguns itens antes de continuar pois eles poderiam cair no chão!";
+		close2;
+		if(basicskillcheck()==0 || getskilllv(1) >= 6) openstorage;
+		end;
+	}
+	
+	if (MaxWeight*30/100 < Weight) {
+		mes "["+@name$+"]";
+		mes "^ff0000ATENÇÃO: Continuar pode fazer com que você perca itens pois você está próximo do seu limite de peso";
+		mes "Se não quiser correr riscos, guarde itens antes de continuar. Caso você ultrapasse o limite de peso, seus itens não serão devolvidos.";
+	}
+	
+	do {
+		set @kmenu, select(
+			"- Voltar",
+			"- Ver especificação dos preços",
+			"- "+getequipname(1),
+			"- "+getequipname(2),
+			"- "+getequipname(3),
+			"- "+getequipname(4),
+			"- "+getequipname(5),
+			"- "+getequipname(6),
+			"- "+getequipname(7),
+			"- "+getequipname(8),
+			"- "+getequipname(9),
+			"- "+getequipname(10)
+		);
+		if (@kmenu == 1)
+			return;
+		if (@kmenu == 2) {	//Details
+			mes "Okay, veja só...";
+			next;
+			mes "["+@name$+"]";
+			if ($@keuc_BaseCost)
+				mes "O custo base é "+$@keuc_BaseCost+"z.";
+			mes "Cada carta a mais tem um custo de +"+$@keuc_CardCost+"z.";
+			mes "O nível do equipamento pode causar um preço adicional:";
+			mes "Armaduras: "+$@keuc_UpgradeCostA+"z por nível.";
+			mes "Armas nv 1: "+$@keuc_UpgradeCostW1+"z por nível.";
+			mes "Armas nv 2: "+$@keuc_UpgradeCostW2+"z por nível.";
+			mes "Armas nv 3: "+$@keuc_UpgradeCostW3+"z por nível.";
+			mes "Armas nv 4: "+$@keuc_UpgradeCostW4+"z por nível.";
+
+			if ($@keuc_Mat1 && $@keuc_Qty1) {
+				mes "Os materiais necessários são:";
+				mes "- "+$@keuc_Qty1+" "+getitemname($@keuc_Mat1)+".";
+			}
+			if ($@keuc_Mat2 && $@keuc_Qty2)
+				mes "- "+$@keuc_Qty2+" "+getitemname($@keuc_Mat2)+".";
+			
+			if ($@keuc_Fail1Chance || $@keuc_Fail2Chance)
+				mes "Há uma chance de falhar e você perder os itens.";
+
+			next;
+			callfunc "F_keIntro", -1, "";
+		} else {
+			if (SF_uncard(@kmenu-2))
+				return;
+		}
+	} while (@kmenu >1);
+	return;
+
+//Subfunction SF_uncard (equipment-position)
+//Attempts to uncard the equipment.
+function SF_uncard {
+	set @part, getarg(0);
+	if(getequipcardcnt(@part) == 0) {
+		callfunc "F_keIntro", e_ag, "Não há cartas nesse item!";
+		return 0;
+	}
+	set @cost, $@keuc_BaseCost;
+	set @cost, @cost + $@keuc_CardCost*getequipcardcnt(@part);
+
+	switch (getequipweaponlv(@part)) {
+	case 0: //Armor
+		set @upgradeCost, $@keuc_UpgradeCostA;
+		break;
+	case 1: //Lv1 Weapons
+		set @upgradeCost, $@keuc_UpgradeCostW1;
+		break;
+	case 2: //Lv2 Weapons
+		set @upgradeCost, $@keuc_UpgradeCostW2;
+		break;
+	case 3: //Lv3 Weapons
+		set @upgradeCost, $@keuc_UpgradeCostW3;
+		break;
+	default: //Lv4 Weapons
+		set @upgradeCost, $@keuc_UpgradeCostW4;
+	}
+	
+	set @cost, @cost + @upgradeCost*getequiprefinerycnt(@part);
+
+	set @price, callfunc("F_keCost",@cost,$@keuc_discount);
+	
+	if ($@keuc_Fail1Chance) {
+		set @failsave, select(
+			"- Voltar",
+			"- Remover cartas ("+@price+"z, prioridade para o item)",
+			"- Remover cartas ("+@price+"z, prioridade para as cartas)"
+		);
+	} else {
+		set @failsave, select(
+			"- Voltar",
+			"- Remover cartas ("+@price+"z)"
+		);
+	}
+	if (@failsave == 1)
+		return 0;
+	set @failsave, @failsave-1;	//1: Save item, 2: Save Card
+
+	if (($@keuc_Mat1 && countitem($@keuc_Mat1) < $@keuc_Qty1)
+		|| ($@keuc_Mat2 && countitem($@keuc_Mat2) < $@keuc_Qty2)) {
+		callfunc "F_keIntro", e_pif, "Você não tem todos os itens que eu preciso...";
+		return 0;
+	}
+	
+	if (!(callfunc("F_keCharge",@cost,$@keuc_discount,1))) {
+		callfunc "F_keIntro", e_ag, "Vai arranjar zeny seu pé de chinelo.";
+		return 0;
+	}
+	
+	if ($@keuc_Mat1 && $@keuc_Qty1)
+		delitem $@keuc_Mat1, $@keuc_Qty1;
+	if ($@keuc_Mat2 && $@keuc_Qty2)
+		delitem $@keuc_Mat2, $@keuc_Qty2;
+	
+	set @failtype,-1;
+	//Recycling cost...
+	//set @cost, rand(1000);
+	set @cost, 1000;
+	if (@cost < $@keuc_Fail2Chance)	//Total Failure
+		set @failtype, 0;
+	else if (@cost < $@keuc_Fail1Chance)	//Partial Failure
+		set @failtype, @failsave;
+	else if (@cost < $@keuc_Fail0Chance)	//Harmless Failure
+		set @failtype, 3;
+	else {	//Success
+		successremovecards @part;
+		emotion e_ho;
+		return 1;
+	}
+	failedremovecards @part,@failtype;
+	if (@failtype == 1)
+		mes "As cartas foram perdidas...";
+	if (@failtype == 2)
+		mes "O item foi perdido...";
+	if (@failtype == 0)
+		mes "O item e as cartas foram perdidos...";
+	callfunc "F_keIntro", e_swt, "...oops.";
+	return 1;
+}
+
+}

@@ -1,0 +1,53 @@
+//===== Athena Script ========================================
+//= Lou Yang Warp Script
+//===== By: ==================================================
+//= Nana (1.0)
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= Any Athena Version 6.0+
+//===== Description: =========================================
+//= Warp Points for Lou Yang
+//===== Additional Comments: =================================
+//= 1.1 Added 2 escapes from 2 mountains 018,019 [Lupus]
+//=     Some players used to stuck there after warps
+//= 1.2 Added a few missing warps [MasterOfMuppets]
+//= 1.3 Fixed a few warp-back [erKURITA]
+//============================================================
+
+//= Louyang Town ============================================
+louyang,217,22,0	warp	louwarp001	1,1,lou_fild01,232,353
+louyang,37,270,0	warp	louwarp002	1,1,lou_dun01,218,196
+louyang,218,253,0	warp	louwarp005	1,1,lou_in01,101,122
+louyang,279,168,0	warp	louwarp006	1,1,lou_in02,57,174
+louyang,309,80,0	warp	louwarp007	1,1,lou_in02,189,78
+louyang,124,121,0	warp	louwarp009	1,1,lou_in02,197,162
+louyang,129,121,0	warp	louwarp009a	1,1,lou_in02,203,162
+louyang,145,175,0	warp	louwarp010	1,1,lou_in02,125,168
+louyang,135,96,0	warp	louwarp011	1,1,lou_in02,248,172
+louyang,317,177,0	warp	louwarp014	1,1,lou_in02,118,34
+louyang,130,63,0	warp	louwarp015	1,1,lou_in02,71,32
+louyang,263,93,0	warp	louwarp018	1,1,lou_in02,246,58
+louyang,90,253,0	warp	louwarp019	1,1,louyang,94,268
+lou_in01,125,141,0	warp	louwarp016	1,1,lou_in01,156,141
+lou_in01,152,141,0	warp	louwarp016a	1,1,lou_in01,120,141
+lou_in01,78,141,0	warp	louwarp017	1,1,lou_in01,47,141
+lou_in01,51,141,0	warp	louwarp017a	1,1,lou_in01,82,141
+lou_in01,101,118,0	warp	louwarp005a	1,1,louyang,218,249
+lou_in02,57,170,0	warp	louwarp006a	1,1,louyang,279,164
+lou_in02,200,93,0	warp	louwarp008	1,1,lou_in02,170,46
+lou_in02,174,46,0	warp	louwarp008a	1,1,lou_in02,206,94
+lou_in02,197,158,0	warp	louwarp009b	1,1,louyang,124,117
+lou_in02,203,158,0	warp	louwarp009c	1,1,louyang,129,117
+lou_in02,125,164,0	warp	louwarp010a	1,1,louyang,145,171
+lou_in02,251,175,0	warp	louwarp011a	1,1,louyang,140,101
+lou_in02,242,59,0	warp	louwarp018a	1,1,louyang,259,93
+lou_in02,80,190,0	warp	louwarp012	1,1,lou_in02,75,140
+lou_in02,71,140,0	warp	louwarp012a	1,1,lou_in02,76,190
+lou_in02,35,190,0	warp	louwarp013	1,1,lou_in02,37,138
+lou_in02,43,138,0	warp	louwarp013a	1,1,lou_in02,39,190
+lou_in02,121,32,0	warp	louwarp014a	1,1,louyang,317,173
+lou_in02,71,28,0	warp	louwarp015a	1,1,louyang,130,57
+lou_in02,189,74,0	warp	louwarp007a	1,1,louyang,309,76
+lou_fild01,232,357,0	warp	louwarp001a	1,1,louyang,217,26
+

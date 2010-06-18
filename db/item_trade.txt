@@ -1,0 +1,467 @@
+//Item Trading Restrictions File
+//Specify here special rules for item trading.
+//Item ID, TradeMask, GM-Level Override
+//Trading mask values:
+//1		0x01	Item can't be drop
+//2		0x02	Item can't be traded (nor vended)
+//4		0x04	Wedded partner can override restriction 2.
+//8		0x08	Item can't be sold to npcs
+//16	0x10	Item can't be placed in the cart
+//32	0x20	Item can't be placed in the storage
+//64	0x40	Item can't be placed in the guild storage
+
+//27	0x1B	Não pode sair do char (Não pode ser vendido pro npc / pode colocar no cart ou Guild Storage)
+//75	0x4B	Não pode sair da conta (Não pode ser vendido pro npc, pode colocar no cart)
+//83	0x53	Não pode sair da conta (Pode ser vendido pro npc, não pode colocar no cart)
+//91	0x5B	Não pode sair do char (Não pode ser vendido pro npc / pode colocar no cart)
+//99	0x63	Não pode sair do char (Pode ser vendido pro npc / pode colocar no cart)
+//107	0x6B	Não pode sair do char (Não pode vender no NPC / pode colocar no cart)
+//111	0x6F	Não pode sair do char nem vender pro NPC pode colocar no Cart, pode dar pro casal
+//115	0x73	Não pode sair do char (Pode ser vendido pro npc / não pode colocar no cart)
+//122	0x7A	Não pode sair do char nem vender pro NPC nem colocar no Cart, mas pode dropar
+//123	0x7B	Não pode sair do char nem vender pro NPC nem colocar no Cart nem dropar
+//127	0x7F	Não pode sair do char nem vender pro NPC nem colocar no Cart, pode dar pro casal
+
+7539,75,100	//Moeda Cortez
+569,115,70	//Novice_Potion
+//Example:
+//1161,67,50 //Balmung: No drop, No trade, No Guild Store (1+2+64 =67),
+7420,83,90	//Skull_
+7331,83,100	//Heaven_Flower
+5130,83,90	//Lion_Mask
+9925,115,60	//Necromancer_Scroll
+
+9929,73,90 //Bilhao - não consegue vender no npc nem dropar, não colocavel no guild storage
+
+//Casais - Pode ser colocado no cart e trocado entre o casal
+2634,111,100	//Wedding_Ring_M
+2635,111,100	//Wedding_Ring_F
+
+//Quests de liberação de godlys
+7178,115,60	//Gema de Luz Estelar
+7307,115,60	//Sussurros Espirituais
+7042,115,60	//Alforje de Couro do Infinito
+
+2651,115,60	//Pingente de Morrigane
+7341,115,60	//Pingente Velho
+7305,115,60	//Simbolo dos Nove Reinos
+7314,115,60	//O sinal
+
+//The Sign Quest related items
+//7177,123,100	// ?? ?????
+//7178,123,100	// ?? ???
+//7304,123,100	// ??????
+//7305,123,100	// ???????
+//7306,123,100	// ?????
+//7307,123,100	// ??????
+//7308,123,100	// ?????
+//7309,123,100	// ??????
+//2642,123,100	// ??????
+//2644,123,100	// ??? armor
+//7314,123,100	// ??? event
+//7025,27,100	// ??? ??
+//7527,122,100	// ????? ???
+//12142,122,100	// ????? ???
+//2647,123,100	// ????
+//Eye of Hellion quest related items
+//7332,123,100	// ??
+//7333,123,100	// ????_1
+//7334,123,100	// ????_2
+//7335,123,100	// ????_3
+//7336,123,100	// ????_4
+//7339,123,100	// ??????_
+//5132,123,100	// ?????
+//Leather Pouch (part of Cooking Quest)
+//7432,123,100
+// Keys (Thanatos Tower Quest)
+7421,115,100
+7422,115,100
+7423,115,100
+7424,115,100
+7425,115,100
+// Magical Stones (Thanatos Tower Quest)
+//7426,123,100
+//7427,123,100
+//7428,123,100
+//7429,123,100
+//7430,123,100
+// Kiel Hyre Quest Items
+//7487,123,100	//Pub_Liquor
+//7488,123,100	//Delivery_Box
+//7489,123,100	//Outhouse_Spare_Key
+//7490,123,100	//Letter_to_Elie
+//7491,123,100	//Iron_Box
+//7492,123,100	//Yellow_Keycard
+//7493,123,100	//Golden_Key
+//7494,123,100	//Exquisite_Button
+//7495,123,100	//Blue_Keycard
+//7496,123,100	//Red_Keycard
+//7497,123,100	//Piece_of_Metal
+//7498,123,100	//Losimier's_House_Key
+//7499,123,100	//Portrait_of_a_Family
+//7500,123,100	//Portrait_of_a_Lady
+//7501,123,100	//K.H's_Letter
+//7502,123,100	//James's_Memo
+//7503,123,100	//Portrait_of_a_Guy
+//7504,123,100	//Power_Source
+//7505,123,100	//Toy_Key
+//7506,115,100	//Black_Keycard
+//7508,123,100	//Elisia's_Ring
+//7509,91,100	//Gorgeous_Keycard
+//7516,123,100	//Green Keycard
+
+
+
+
+
+//Itens que não podem ser dropados, nem vendidos para NPC (cartas de mvp)
+4047,9,100
+4054,9,100
+4121,9,100
+4123,9,100
+4128,9,100
+4131,9,100
+4132,9,100
+4134,9,100
+4135,9,100
+4137,9,100
+4142,9,100
+4143,9,100
+4144,9,100
+4145,9,100
+4146,9,100
+4147,9,100
+4148,9,100
+4168,9,100
+4236,9,100
+4263,9,100
+4276,9,100
+4302,9,100
+4305,9,100
+4318,9,100
+4324,9,100
+4330,9,100
+4342,9,100
+4357,9,100
+4359,9,100
+4361,9,100
+4363,9,100
+4365,9,100
+4367,9,100
+4372,9,100
+4376,9,100
+4386,9,100
+4399,9,100
+4403,9,100
+4407,9,100
+16120,9,100
+16121,9,100
+16122,9,100
+16123,9,100
+16124,9,100
+16125,9,100
+16126,9,100
+16127,9,100
+16128,9,100
+16129,9,100
+16130,9,100
+16131,9,100
+16132,9,100
+16133,9,100
+16134,9,100
+16135,9,100
+16136,9,100
+
+4374,9,100   // Carta Vesper
+4419,9,100   // Carta Ktullanux
+16201,9,100   // Carta Giant Khalitzburg
+16202,9,100   // Carta Giant Deviling
+4430,9,100   // Carta Ifrit
+4441,9,100   // Carta Fallen Bishop Hibram
+4408,9,100   // Carta Gloom Under Night 
+
+//Armas
+1530,9,100	//Mjollnir [2]
+
+//EQUIPAMENTOS E CARTAS
+2345,9,100	//Couraça da Fúria Flamejante [4]
+2347,9,100	//Couraça da Submissão Oceânica [4]
+2349,9,100	//Couraça da Liberdade Celestial [4]
+2351,9,100	//Couraça da Perseverança Continental [4]
+2410,9,100	//Sleipnir [2]
+2511,9,100	//Skeleton Manteau [3]
+2629,9,100	//Megingjard [3]
+2630,9,100	//Brisingamen [3]
+4054,9,100	//Carta Angeling
+4174,9,100	//Carta Deviling
+4241,9,100	//Carta Archangeling
+5013,9,100	//Chifre de Lord Kaho [2]
+5132,9,100	//Chapéu de Angeling [2]
+5179,9,100	//Tiara Dourada [2]
+5255,9,100	//Família Poring [2]
+
+//ITENS QUEST GODLY
+7058,9,100	//Gleipnir
+7077,9,100	//Ornamento de Prata
+7078,9,100	//Fúria das Valquírias
+7080,9,100	//Passos de Gato
+7082,9,100	//Raiz de Montanha
+7086,9,100	//Símbolo do Deus-Sol
+7088,9,100	//Floco de Neve
+7089,9,100	//Presságio de Tempestade
+7091,9,100	//Tsunami
+7340,9,100	//Desejo das Trevas
+
+//ASAS MVP
+16501,9,100	//Asa de Deviling
+16502,9,100	//Asa do Ártico
+16503,9,100	//Asa de Borboleta
+16504,9,100	//Asa do Mestre
+16505,9,100	//Asa de Fada
+16506,9,100	//Asa Brilhante
+16507,9,100	//Asa do Demônio
+16508,9,100	//Asa de Fênix
+16509,9,100	//Asa Ying Yang
+16510,9,100	//Asa do Aprendiz
+16511,9,100	//Asa de Angeling
+16512,9,100	//Asa de Gárgula
+16513,9,100	//Asa da Retaliação
+
+//ELMOS MVP
+16601,9,100	//Elmo Negro [2]
+16602,9,100	//Elmo de Dragão [2]
+16603,9,100	//Elmo Dourado [2]
+16604,9,100	//Elmo do Baal [2]
+16605,9,100	//Elmo de Valkyrie [2]
+16606,9,100	//Elmo de Ossos Humanos [2]
+
+
+// Atualização do eAthena
+7621,91,100 // Token_Of_Siegfried 
+5227,91,100 // Red_Deviruchi_Cap 
+5228,91,100 // White_Deviruchi_Cap 
+5229,91,100 // Gray_Deviruchi_Cap 
+5230,91,100 // White_Drooping_Kitty 
+5231,91,100 // Gray_Drooping_Kitty 
+5232,91,100 // Pink_Drooping_Kitty 
+5233,91,100 // Blue_Drooping_Kitty 
+5234,91,100 // Yellow_Drooping_Kitty 
+5235,91,100 // Gray_Fur_Hat 
+5236,91,100 // Blue_Fur_Hat 
+5237,91,100 // Pink_Fur_Hat 
+5238,91,100 // Red_Wizardry_Hat 
+5239,91,100 // White_Wizardry_Hat 
+5240,91,100 // Gray_Wizardry_Hat 
+5241,91,100 // Blue_Wizardry_Hat 
+5242,91,100 // Yellow_Wizardry_Hat 
+12983,73,100    // Pet_Egg_Scroll_Box6 
+12984,73,100    // Pet_Egg_Scroll_Box7 
+12985,73,100    // Pet_Egg_Scroll_Box8 
+12986,73,100    // Pet_Egg_Scroll_Box9 
+12987,73,100    // Pet_Egg_Scroll_Box10 
+12988,73,100    // Pet_Egg_Scroll_Box11 
+12989,91,100    // Pet_Egg_Scroll6 
+12990,91,100    // Pet_Egg_Scroll7 
+12991,91,100    // Pet_Egg_Scroll8 
+12992,91,100    // Pet_Egg_Scroll9 
+12993,91,100    // Pet_Egg_Scroll10 
+12994,91,100    // Pet_Egg_Scroll11 
+12923,73,100    // Pet_Egg_Scroll_Box1 
+12924,73,100    // Pet_Egg_Scroll_Box2 
+12925,91,100    // Pet_Egg_Scroll1 
+12926,91,100    // Pet_Egg_Scroll2 
+12929,73,100    // Pet_Egg_Scroll_Box3 
+12930,73,100    // Pet_Egg_Scroll_Box4 
+12931,73,100    // Pet_Egg_Scroll_Box5 
+12932,91,100    // Pet_Egg_Scroll3 
+12933,91,100    // Pet_Egg_Scroll4 
+12934,91,100    // Pet_Egg_Scroll5 
+12935,89,100    // Infiltrator_Box 
+12936,89,100    // Muramasa_Box 
+12940,89,100    // Kaiser_Knuckle_Box 
+12941,89,100    // Pole_Axe_Box 
+12942,89,100    // Mighty_Staff_Box 
+12943,89,100    // Right_Epsilon_Box 
+12944,89,100    // Balistar_Box 
+12945,89,100    // Diary_Of_Great_Sage_Box 
+12951,89,100    // Elven_Ears_Box 
+12952,89,100    // Steel_Flower_Box 
+12953,89,100    // Critical_Ring_Box 
+12954,89,100    // Earring_Box 
+12955,89,100    // Ring_Box 
+12956,89,100    // Necklace_Box 
+12957,89,100    // Glove_Box 
+2686,123,100    // Elven_Ears_C 
+2687,123,100    // Steel_Flower_C 
+2688,123,100    // Critical_Ring_C 
+2689,123,100    // Earring_C 
+2690,123,100    // Ring_C 
+2691,123,100    // Necklace_C 
+2692,123,100    // Glove_C 
+1173,123,100    // Muramasa_C 
+1267,123,100    // Infiltrator_C 
+1372,123,100    // Right_Epsilon_C 
+1419,123,100    // Pole_Axe_C 
+1563,123,100    // Diary_Of_Great_Sage_C 
+1623,123,100    // Mighty_Staff_C 
+1728,123,100    // Balistar_C 
+1817,123,100    // Kaiser_Knuckle_C 
+ 
+// Mercenary scrolls 
+12153,115,100   // Bow_Mercenary_Scroll1 
+12154,115,100   // Bow_Mercenary_Scroll2 
+12155,115,100   // Bow_Mercenary_Scroll3 
+12156,115,100   // Bow_Mercenary_Scroll4 
+12157,115,100   // Bow_Mercenary_Scroll5 
+12158,115,100   // Bow_Mercenary_Scroll6 
+12159,115,100   // Bow_Mercenary_Scroll7 
+12160,115,100   // Bow_Mercenary_Scroll8 
+12161,115,100   // Bow_Mercenary_Scroll9 
+12162,115,100   // Bow_Mercenary_Scroll10 
+12163,115,100   // SwordMercenary_Scroll1 
+12164,115,100   // SwordMercenary_Scroll2 
+12165,115,100   // SwordMercenary_Scroll3 
+12166,115,100   // SwordMercenary_Scroll4 
+12167,115,100   // SwordMercenary_Scroll5 
+12168,115,100   // SwordMercenary_Scroll6 
+12169,115,100   // SwordMercenary_Scroll7 
+12170,115,100   // SwordMercenary_Scroll8 
+12171,115,100   // SwordMercenary_Scroll9 
+12172,115,100   // SwordMercenary_Scroll10 
+12173,115,100   // SpearMercenary_Scroll1 
+12174,115,100   // SpearMercenary_Scroll2 
+12175,115,100   // SpearMercenary_Scroll3 
+12176,115,100   // SpearMercenary_Scroll4 
+12177,115,100   // SpearMercenary_Scroll5 
+12178,115,100   // SpearMercenary_Scroll6 
+12179,115,100   // SpearMercenary_Scroll7 
+12180,115,100   // SpearMercenary_Scroll8 
+12181,115,100   // SpearMercenary_Scroll9 
+12182,115,100   // SpearMercenary_Scroll10 
+ 
+// Indonesian ??? 
+5368,91,100 // White_Wing 
+5369,91,100 // Dark_Wing 
+ 
+// Indonesian ??? 
+//5812,123,100  // ??? 
+ 
+// Indonesia 4 Annual Events 
+2368,83,100 // Golden_Armor 
+2427,83,100 // Golden_Shoes 
+2704,83,100 // Golden_Accessory 
+2705,83,100 // Golden_Accessory2 
+5295,83,100 // Golden_Bandana 
+7863,83,100 // GOLD_ID4 
+ 
+// Thailand Event-Environment Day Items 
+7865,115,100    // Gold_Pouch 
+7866,115,100    // Certificate 
+ 
+// "11.2 Quest items" 
+// * "Thor Volcano Base" items 
+7759,123,100    // Geology_Report 
+ 
+// USA 4th Anniversary Event Items 
+7875,83,100 // Pirate_Box 
+5305,91,100 // Pirate_Dagger 
+ 
+// Battle Badge 
+7773,115,100    // War_Badge 
+ 
+// Moscovia Quest Items ----- 
+7876,115,100    // Gold_Key 
+7877,115,100    // Red_Ring 
+7878,115,100    // Lusalka_Hair 
+7879,115,100    // Golden_Thread 
+7880,115,100    // Babayaga_Silver_Spoon 
+7881,115,100    // Book_Of_Magic 
+7882,115,100    // Pointed_Branch 
+7883,115,100    // Reed_Pipe 
+2429,115,100    // Iron_Shoes_01 
+2430,115,100    // Iron_Shoes_02 
+ 
+// Indonesian Red Bandana Hair Band 
+5320,91,100 // Champion_Wreath 
+ 
+// Malaysia/Singapore Event Items 
+7884,91,100 // Jade_Plate 
+7885,91,100 // Sacred_Arrow 
+5805,91,100 // Victorious_Coronet 
+2708,91,100 // Chinese_Handicraft 
+12704,91,100    // Elixir_Of_Life 
+12705,91,100    // Noble_Nameplate 
+ 
+// Compensation Items Coupon 
+7784,91,100 // Fawner_Coupon_1 
+7785,91,100 // Fawner_Coupon_2 
+7786,91,100 // Fawner_Coupon_3 
+7787,91,100 // Fawner_Coupon_4 
+7788,91,100 // Fawner_Coupon_5 
+7789,91,100 // Fawner_Coupon_6 
+7790,91,100 // Fawner_Coupon_7 
+7791,91,100 // Fawner_Coupon_8 
+ 
+// Fate Crow Quest Items 
+7794,91,100 // Fate_Of_Crow 
+ 
+// Russian Golden Apple Event Items 
+7793,91,100 // Golden_Apple 
+7800,91,100 // Golden_Apple_ 
+5322,91,100 // Scarf 
+ 
+// Taiwan Medicine of Fantasy 
+12259,123,100   // Miracle_Medicine 
+12261,123,100   // Secret_Medicine 
+ 
+// 2007 Summer Event Items 
+7801,115,100    // Girl_Fan_Letter 
+7802,115,100    // Autograph_Book 
+ 
+// Sakray Test items 
+5323,91,100 // Misstrance_Crown 
+2370,91,100 // Used_Mage_Coat 
+2127,91,100 // Secular_Mission 
+2534,91,100 // Ruffler 
+2431,91,100 // Valley_Shoes 
+13029,91,100    // Prinsense_Knife 
+13406,91,100    // Edger 
+1536,91,100 // Good_Morning_Star 
+1423,91,100 // Pole_XO 
+1921,91,100 // Gun_Moon_Gom 
+1975,91,100 // Queen_Is_Whip 
+1566,91,100 // Diary_Of_Great_Basil 
+1627,91,100 // Staffy 
+1177,91,100 // Muramasn 
+1272,91,100 // Scratcher 
+1735,91,100 // Kkakkung 
+ 
+// Taiwan ??? 
+13765,123,100   // Certificate_TW_Box 
+//2713,123,100  // Accomplishment_Certificate 
+ 
+// Satan Morroc 
+7820,123,100    // Morroc_Skin 
+ 
+// Vietnam Independence Day 
+5806,91,100 // Poem_Natalie_Hat 
+ 
+// PC-Cafe Authoritative Badge 
+12262,123,100   // Inspector_Certificate_ 
+ 
+12263,91,100    // Comp_Battle_Manual 
+12264,91,100    // Comp_Bubble_Gum 
+12265,91,100    // Comp_Insurance 
+ 
+// Morocc Continental Guard Certificate 
+7826,123,100    // Continental_Guard_Paper 
+ 
+// Harvest Moon Day PC Items 
+12266,123,100   // Sesame_Pastry_ 
+12267,123,100   // Honey_Pastry_ 
+12268,123,100   // Rainbow_Cake_ 
+ 
+// Satan Morocc (Episode 12) 
+2730,83,100 // Morroc_Seal 
+2731,83,100 // Morroc_Charm_Stone 
+2732,83,100 // Morroc_Ring 

@@ -1,0 +1,807 @@
+//===== eAthena Script ======================================================================
+//= All Purpouse NPC
+//===== Original By =========================================================================
+//= Lordalfa
+//===== Helped By ===========================================================================
+//= No one!
+//===== Current Version: ====================================================================
+//= 1.0 (Beta) (testing)
+//===== Compatible With: ====================================================================
+//= 3800+ Athena (I am using some recently added stuffs)
+//===== Description: ========================================================================
+//= Lets GM set an Event in one of the Listed Cities, with a seleceted set of Mobs
+//= Lets people know various stuffs, like Events in place, their current event point
+//= and lets them choose a prize when they reach the stated amount of Event points.
+//= Lets people know who's online, and how long they've been online.
+//===== Comments and Credits ===========================================================
+//= Report any bugs asap on the Eathena forum.
+//= For Italian people, there's also a traslated version of this on, on request.
+//= This work costed me some hard time,so please, if you reuse, at least credit me ^_^
+//===========================================================================================
+- script Ev_Init -1,{
+OnInit:
+//------------------------------------------------------------------------------------------------//
+// CUSTOM SPOT 1: Change values HERE with the names of the MAPS you want Events to be Held in    //
+//----------------------------------------------------------------------------------------------//
+setarray $@city$[0],"prontera","geffen","alberta","aldebaran","comodo","payon";
+//---------------------------------------------------------------------------------------------//
+setarray $@cityvalue[0],6,5,4,3,2,1;
+setarray $@citytime$[0],"1","2","3","4","5","6";
+setarray $@cityMobSet$[0],"Mortos","Insetos","Demônios","Egípcios","Aquáticos!","Dourados!";
+//----------------------------------------------------------------------------------------------------------//
+// CUSTOM SPOT 2: Change values HERE with the NUMBER of mobs per Event Size [SMALL,MEDIUM,LARGE] number    //
+//--------------------------------------------------------------------------------------------------------//
+setarray $@Mob_Number[0],10,25,50;
+//--------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------//
+// CUSTOM SPOT 3: Change values HERE with the IDs of mobs per Event Type.                                  //
+// There will be $ consecutive Spawns per Event[COLUMNS], there's 6 types of Event [ROWS]                 //
+// $@Mob_ID4 is the ROW of MVPs, so for Event type 1 the last spawn is THE $@Mob_ID4[0]                  //
+// Spawns from $@Mob_ID1 to $@Mob_ID3 will be in the number choosen in  CUSTOM SPOT 2 for each Event size//
+// The MVP Spawn will be Single for each event. Spawns will be subsequent to elimination of the previous//
+// monsters, so it will be weakies --> medium --> strong --> 1 MVP                                      //
+//------------------------------------------------------------------------------------------------------//
+setarray $@Mob_ID1[0],1196,1321,1382,1154,1515,1507;  //Weakies
+setarray $@Mob_ID2[0],1297,1305,1301,1259,1319,1306;  //Medium monsters
+setarray $@Mob_ID3[0],1291,1300,1374,1310,1208,1320;  //Strong monsters
+setarray $@Mob_ID4[0],1038,1147,1046,1157,1252,1086;  //MVP row
+//------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------//
+// CUSTOM SPOT 4: Change values HERE with the NAMES of monster SETS per Event                              //
+//--------------------------------------------------------------------------------------------------------//
+setarray $@MobSet$[0],"Mortos","Insetos","Demônios","Egípcios","Aquáticos!","Dourados!";
+//--------------------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------------------------//
+// CUSTOM SPOT 5: Change values HERE with the NAMES[1st Array],Quantity[2nd Array],IDs[3rd Array] of each set of 4//
+// of the Level 1,2,3,4 prizes you want to set. 4th Array is the NUMBER of prizes for that set.CHANGE only if you//
+// Increase or Decrease the number of prizes from the Default one.
+//--------------------------------------------------------------------------------------------------------------//
+setarray $@Lv1Prize$[0],"Poções Azuis","Poções Brancas","Poções Amarelas";
+setarray $@Lv1PrizeQty[0],10,20,40;
+setarray $@Lv1PrizeID[0],505,504,503;
+set $@Lv1PrizeSize,3; //Dimensione arrray premi Lv1
+
+setarray $@Lv2Prize$[0],"Amuletos Orc","Caveiras Humanas","Poções Azuis";
+setarray $@Lv2PrizeQty[0],100,50,50;
+setarray $@Lv2PrizeID[0],931,7420,505;
+set $@Lv2PrizeSize,3; //Dimensione arrray premi Lv2
+
+setarray $@Lv3Prize$[0],"Caixa Azul Velha","Velha Caixa Roxa","Durian";
+setarray $@Lv3PrizeQty[0],20,15,5;
+setarray $@Lv3PrizeID[0],603,617,684;
+set $@Lv3PrizeSize,3; //Dimensione arrray premi Lv3
+
+setarray $@Lv4Prize$[0],"Velho Album de Cartas","Erva Misteriosa","Vinho";
+setarray $@Lv4PrizeQty[0],2,20,20;
+setarray $@Lv4PrizeID[0],616,682,683;
+set $@Lv4PrizeSize,3; //Dimensione arrray premi Lv4
+//--------------------------------------------------------------------------------------------------------------//
+end;
+}
+
+prontera,151,187,4 script Helper#1::Helper 721,{
+	set $ASS_NPC_USED,$ASS_NPC_USED +1;
+	if (getgmlevel()==99) goto L_GMMenu;
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "";
+	mes "Hello ^5533FF"+strcharinfo(0)+"^000000!";
+	mes "I am here to Serve you, but please, beware of those ugly Kafras!";
+	next;
+	L_Start:
+	if (PC_ONLINE_TIME) mes "-Online => ^5533FF"+PC_ONLINE_TIME/3600 +"^000000Hrs. ^5533FF"+(PC_ONLINE_TIME/60)%60 +"^000000Min. ^5533FF"+PC_ONLINE_TIME%60 +"^000000Sec. ";
+	mes "-Event Points => ^5533FF"+P_Ev_Points +"^000000 ";
+	mes "-Points to Use => ^FF5533"+(P_Ev_Points-P_Ev_Used) +"^000000 ";
+	if (LoginAnnounce == 1) goto L_Menu2;
+	mes "-Login Announcement => ^5533FFDisabled^000000";
+	next;
+	menu "^5533FFWho's Online?^000000",L_Online,"Event Menu",L_Events,"Enable Login Announcement",L_LoginEnable,"Exit",L_Exit;
+	L_Menu2:
+	mes "-Login Announcement => ^5533FFEnabled^000000";
+	next;
+	menu "^5533FFWho's Online?^000000",L_Online,"Event Menu",L_Events,"Disable Login Announcement",L_LoginDisable,"Exit",L_Exit;
+	L_LoginEnable:
+	set LoginAnnounce,1;
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "";
+	mes "Now you'll be announced at every Login!";
+	mes "2 Logins in 10 minutes won't be announced.";
+	next;
+	     goto L_Start;
+	L_LoginDisable:
+	set LoginAnnounce,0;
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "";
+	mes "Now your Login Announcement is Disabled.";
+	next;
+	     goto L_Start;
+	L_Events:
+	if $@cityvalue[0] == 1 mes "1. ^5533FF"+$@city$[0]+ "-Running"+ " -"+ $@citytime$[0]+ "^000000";
+	if $@cityvalue[0] == 0 mes "1. ^D2A200"+$@city$[0]+ "^000000 --- None";
+	if $@cityvalue[1] == 1 mes "2. ^5533FF"+$@city$[1]+ "-Running"+ " -"+ $@citytime$[1]+ "^000000";
+	if $@cityvalue[1] == 0 mes "2. ^D2A200"+$@city$[1]+ "^000000 --- None";
+	if $@cityvalue[2] == 1 mes "3. ^5533FF"+$@city$[2]+ "-Running"+ " -"+ $@citytime$[2]+ "^000000";
+	if $@cityvalue[2] == 0 mes "3. ^D2A200"+$@city$[2]+ "^000000 --- None";
+	if $@cityvalue[3] == 1 mes "4. ^5533FF"+$@city$[3]+ "-Running"+ " -"+ $@citytime$[3]+ "^000000";
+	if $@cityvalue[3] == 0 mes "4. ^D2A200"+$@city$[3]+ "^000000 --- None";
+	if $@cityvalue[4] == 1 mes "5. ^5533FF"+$@city$[4]+ "-Running"+ " -"+ $@citytime$[4]+ "^000000";
+	if $@cityvalue[4] == 0 mes "5. ^D2A200"+$@city$[4]+ "^000000 --- None";
+	if $@cityvalue[5] == 1 mes "6. ^5533FF"+$@city$[5]+ "-Running"+ " -"+ $@citytime$[5]+ "^000000";
+	if $@cityvalue[5] == 0 mes "6. ^D2A200"+$@city$[5]+ "^000000 --- None";
+	next;
+	menu "Back to Main",L_Start,"^5533FFLadder",L_Class,"^FF5533Prizes^000000",L_Prize,"Exit",L_Exit;
+	L_Prize:
+	   mes "-Event Points => ^5533FF"+P_Ev_Points +"^000000 ";
+	mes "-Points to Use => ^FF5533"+(P_Ev_Points-P_Ev_Used) +"^000000 ";
+	mes " ------------------------- ";
+	mes "1. "+((P_Ev_Points-P_Ev_Used)/300) +" prizes in ^FF5533Lv.1^5533FF(300 pts)^000000";
+	mes "2. "+((P_Ev_Points-P_Ev_Used)/1500) +" prizes in ^FF5533Lv.2^5533FF(1500 pts)^000000";
+	mes "3. "+((P_Ev_Points-P_Ev_Used)/4500) +" prizes in ^FF5533Lv.3^5533FF(4500 pts)^000000";
+	mes "4. "+((P_Ev_Points-P_Ev_Used)/15000) +" prizes in ^FF5533Lv.4^5533FF(15000 pts)^000000";
+	menu "Lv.1 PrizeList",L_lv1Prize,"Lv.2 PrizeList",L_lv2Prize,"Lv.3 PrizeList",L_lv3Prize,"Lv.4 PrizeList",L_lv4Prize,"Back",L_Events;
+	//---------------------
+	//  PREMI Liv 1 2 3 4
+	//---------------------
+	L_lv1Prize:
+	next;
+	set @i,0;
+	mes "Prize|||Quantity|||^5533FF(0=Exit)^000000";
+	L_Cycle_Prlv1:
+	if (@i >= $@Lv1PrizeSize) goto L_ChooseLv1;
+	mes (@i+1)+"- ^FF5533"+ $@Lv1PrizeQty[@i]+ " ^5533FF" +$@Lv1Prize$[@i] +"^000000";
+	set @i,@i+1;
+	goto L_Cycle_Prlv1;
+	L_lv2Prize:
+	next;
+	set @i,0;
+	mes "Prize|||Quantity|||^5533FF(0=Exit)^000000";
+	L_Cycle_Prlv2:
+	if (@i >= $@Lv2PrizeSize) goto L_ChooseLv2;
+	mes (@i+1)+"- ^FF5533"+ $@Lv2PrizeQty[@i]+ " ^5533FF" +$@Lv2Prize$[@i] +"^000000";
+	set @i,@i+1;
+	goto L_Cycle_Prlv2;
+	L_lv3Prize:
+	next;
+	set @i,0;
+	mes "Prize|||Quantity|||^5533FF(0=Exit)^000000";
+	L_Cycle_Prlv3:
+	if (@i >= $@Lv3PrizeSize) goto L_ChooseLv3;
+	mes (@i+1)+"- ^FF5533"+ $@Lv3PrizeQty[@i]+ " ^5533FF" +$@Lv3Prize$[@i] +"^000000";
+	set @i,@i+1;
+	goto L_Cycle_Prlv3;
+	L_lv4Prize:
+	next;
+	set @i,0;
+	mes "Prize|||Quantity|||^5533FF(0=Exit)^000000";
+	L_Cycle_Prlv4:
+	if (@i >= $@Lv4PrizeSize) goto L_ChooseLv4;
+	mes (@i+1)+"- ^FF5533"+ $@Lv4PrizeQty[@i]+ " ^5533FF" +$@Lv4Prize$[@i] +"^000000";
+	set @i,@i+1;
+	goto L_Cycle_Prlv4;
+	L_ChooseLv1:
+	next;
+	if ((P_Ev_Points-P_Ev_Used) < 300) goto L_Prize;
+	input @choiche;
+	if (@choiche == 0) goto L_Prize;
+	if (@choiche > $@Lv1PrizeSize || @choiche < 1) goto L1_Error;
+	getitem $@Lv1PrizeID[@choiche-1],$@Lv1PrizeQty[@choiche-1];
+	set P_Ev_Used,P_Ev_Used+300;
+	goto L_Start;
+	L1_Error:
+	mes "Choose a Qty from 1 to " +$@Lv1PrizeSize;
+	goto L_lv1Prize;
+	L_ChooseLv2:
+	next;
+	if ((P_Ev_Points-P_Ev_Used) < 1500) goto L_Prize;
+	input @choiche;
+	if (@choiche == 0) goto L_Prize;
+	if (@choiche > $@Lv2PrizeSize || @choiche < 1) goto L2_Error;
+	getitem $@Lv2PrizeID[@choiche-1],$@Lv2PrizeQty[@choiche-1];
+	set P_Ev_Used,P_Ev_Used+1500;
+	goto L_Start;
+	L2_Error:
+	mes "Choose a Qty from 1 to " +$@Lv2PrizeSize;
+	goto L_lv2Prize;
+	L_ChooseLv3:
+	next;
+	if ((P_Ev_Points-P_Ev_Used) < 4500) goto L_Prize;
+	input @choiche;
+	if (@choiche == 0) goto L_Prize;
+	if (@choiche > $@Lv3PrizeSize || @choiche < 1) goto L3_Error;
+	getitem $@Lv3PrizeID[@choiche-1],$@Lv3PrizeQty[@choiche-1];
+	set P_Ev_Used,P_Ev_Used+4500;
+	goto L_Start;
+	L3_Error:
+	mes "Choose a Qty from 1 to " +$@Lv3PrizeSize;
+	goto L_lv3Prize;
+	L_ChooseLv4:
+	next;
+	if ((P_Ev_Points-P_Ev_Used) < 15000) goto L_Prize;
+	input @choiche;
+	if (@choiche == 0) goto L_Prize;
+	if (@choiche > $@Lv4PrizeSize || @choiche < 1) goto L4_Error;
+	getitem $@Lv4PrizeID[@choiche-1],$@Lv4PrizeQty[@choiche-1];
+	set P_Ev_Used,P_Ev_Used+15000;
+	goto L_Start;
+	L4_Error:
+	mes "Choose a Qty from 1 to " +$@Lv4PrizeSize;
+	goto L_lv4Prize;
+	//---------------------
+	//---------------------
+	L_Online:
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "Users Online:";
+	getusersname;
+	next;
+	     goto L_Start;
+	L_Exit:
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "";
+	mes "Farewell!";
+	close;
+	L_GMMenu:
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "This NPC has been Used ^FF5533" +$ASS_NPC_USED+ "^000000 times";
+	next;
+	menu "^D2A200Manage Events",L_ListEvent,"^009500Create Event",L_CreateEvent,"^5533FFPlayer Options",L_Start,"^000000Exit",L_Exit;
+	L_ListEvent:
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "You can change an event's State from here, every MANUALLY started event must be MANUALLY ended";
+	L_ListEvent2:
+	next;
+	if $@cityvalue[0] == 1 mes "1. ^5533FF"+$@city$[0]+ "-Running"+ "-"+ $@citytime$[0]+ "- "+$@cityMobSet$[0]+"^000000";
+	if $@cityvalue[0] == 0 mes "1. ^D2A200"+$@city$[0]+ "^000000 --- None";
+	if $@cityvalue[1] == 1 mes "2. ^5533FF"+$@city$[1]+ "-Running"+ "-"+ $@citytime$[1]+ "- "+$@cityMobSet$[1]+ "^000000";
+	if $@cityvalue[1] == 0 mes "2. ^D2A200"+$@city$[1]+ "^000000 --- None";
+	if $@cityvalue[2] == 1 mes "3. ^5533FF"+$@city$[2]+ "-Running"+ "-"+ $@citytime$[2]+ "- "+$@cityMobSet$[2]+  "^000000";
+	if $@cityvalue[2] == 0 mes "3. ^D2A200"+$@city$[2]+ "^000000 --- None";
+	if $@cityvalue[3] == 1 mes "4. ^5533FF"+$@city$[3]+ "-Running"+ "-"+ $@citytime$[3]+ "- "+$@cityMobSet$[3]+  "^000000";
+	if $@cityvalue[3] == 0 mes "4. ^D2A200"+$@city$[3]+ "^000000 --- None";
+	if $@cityvalue[4] == 1 mes "5. ^5533FF"+$@city$[4]+ "-Running"+ "-"+ $@citytime$[4]+ "- "+$@cityMobSet$[4]+  "^000000";
+	if $@cityvalue[4] == 0 mes "5. ^D2A200"+$@city$[4]+ "^000000 --- None";
+	if $@cityvalue[5] == 1 mes "6. ^5533FF"+$@city$[5]+ "-Running"+ "-"+ $@citytime$[5]+ "- "+$@cityMobSet$[5]+  "^000000";
+	if $@cityvalue[5] == 0 mes "6. ^D2A200"+$@city$[5]+ "^000000 --- None";
+	next;
+	menu "Change State",L_Change,"Back",L_GMMenu,"Exit",L_Exit;
+	L_CreateEvent:
+	mes "Select the City where to start an Event.";
+	next;
+	if $@cityvalue[0] == 1 mes "1. ^5533FF"+$@city$[0]+ "-Running"+ "-"+ $@citytime$[0]+ "- "+$@cityMobSet$[0]+"^000000";
+	if $@cityvalue[0] == 0 mes "1. ^D2A200"+$@city$[0]+ "^000000 --- None";
+	if $@cityvalue[1] == 1 mes "2. ^5533FF"+$@city$[1]+ "-Running"+ "-"+ $@citytime$[1]+ "- "+$@cityMobSet$[1]+ "^000000";
+	if $@cityvalue[1] == 0 mes "2. ^D2A200"+$@city$[1]+ "^000000 --- None";
+	if $@cityvalue[2] == 1 mes "3. ^5533FF"+$@city$[2]+ "-Running"+ "-"+ $@citytime$[2]+ "- "+$@cityMobSet$[2]+  "^000000";
+	if $@cityvalue[2] == 0 mes "3. ^D2A200"+$@city$[2]+ "^000000 --- None";
+	if $@cityvalue[3] == 1 mes "4. ^5533FF"+$@city$[3]+ "-Running"+ "-"+ $@citytime$[3]+ "- "+$@cityMobSet$[3]+  "^000000";
+	if $@cityvalue[3] == 0 mes "4. ^D2A200"+$@city$[3]+ "^000000 --- None";
+	if $@cityvalue[4] == 1 mes "5. ^5533FF"+$@city$[4]+ "-Running"+ "-"+ $@citytime$[4]+ "- "+$@cityMobSet$[4]+  "^000000";
+	if $@cityvalue[4] == 0 mes "5. ^D2A200"+$@city$[4]+ "^000000 --- None";
+	if $@cityvalue[5] == 1 mes "6. ^5533FF"+$@city$[5]+ "-Running"+ "-"+ $@citytime$[5]+ "- "+$@cityMobSet$[5]+  "^000000";
+	if $@cityvalue[5] == 0 mes "6. ^D2A200"+$@city$[5]+ "^000000 --- None";
+
+	input @city;
+	if ((@city > 6) || (@city < 1)) goto L_Error3;
+	next;
+	set @city,@city-1;
+	if ($@cityvalue[@city]) goto L_Error2;
+	mes strcharinfo(0)+"^000000's Helper]";
+	mes "Hai selezionato "+ $@city$[@city];
+	mes "Select a Monster Set:";
+	next;
+	menu "^D2A200"+$@MobSet$[0],L_Mset1,"^5533FF"+$@MobSet$[1],L_Mset2,"^009500"+$@MobSet$[2],L_Mset3,"^D2A200"+$@MobSet$[3],L_Mset4,"^5533FF"+$@MobSet$[4],L_Mset5,"^009500"+$@MobSet$[5],L_Mset6,"^5533FFA Random",L_Mset7,"^000000Back",L_CreateEvent;
+	L_Mset1:
+	set @mobset,0;
+	goto L_MobNumber;
+	L_Mset2:
+	set @mobset,1;
+	goto L_MobNumber;
+	L_Mset3:
+	set @mobset,2;
+	goto L_MobNumber;
+	L_Mset4:
+	set @mobset,3;
+	goto L_MobNumber;
+	L_Mset5:
+	set @mobset,4;
+	goto L_MobNumber;
+	L_Mset6:
+	set @mobset,5;
+	goto L_MobNumber;
+	L_Mset7:
+	set @mobset,rand(6);
+	L_MobNumber:
+	menu "^D2A200Low Qty",L_Mob0,"^5533FFMedium Qty",L_Mob1,"^009500Large Qty",L_Mob2,"^000000Back",L_CreateEvent;
+	L_Mob0:
+	close2;
+	callfunc "spawnage",$@city$[@city], @mobset ,$@Mob_Number[0],@city;
+	end;
+	L_Mob1:
+	close2;
+	callfunc "spawnage",$@city$[@city],@mobset,$@Mob_Number[1],@city;
+	end;
+	L_Mob2:
+	close2;
+	callfunc "spawnage",$@city$[@city],@mobset,$@Mob_Number[2],@city;
+	end;
+	L_Change:
+	mes "Which Event do you want to change? [Number 1:6]";
+	input @number;
+	if ((@number>6) || (@number < 1)) goto L_Error;
+	set @number,@number-1;
+	if ($@cityvalue[@number]) goto L_Change2;
+	set $@cityvalue[@number],1;
+	set $@citytime$[@number],gettime(3)+ ":" + gettime(2);
+	goto L_ListEvent2;
+	L_Change2:
+	callfunc "terminate",@number,1;
+	goto L_ListEvent2;
+	L_Error:
+	mes "Insert a Number between 1 and 6!";
+	next;
+	goto L_ListEvent2;
+	L_Error2:
+	mes "End the Current Events First!";
+	next;
+	goto L_CreateEvent;
+	L_Error3:
+	mes "Insert a Number between 1 and 6!";
+	next;
+	goto L_CreateEvent;
+	L_Class:
+	mes "^5533FFTop 10 Event Players^FF5533 - Pos 1-5^000000";
+	mes "1 - ^5533FF"+ $Top10EvNames$[0]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[0] +"^000000";
+	mes "2 - ^5533FF"+ $Top10EvNames$[1]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[1] +"^000000";
+	mes "3 - ^5533FF"+ $Top10EvNames$[2]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[2] +"^000000";
+	mes "4 - ^5533FF"+ $Top10EvNames$[3]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[3] +"^000000";
+	mes "5 - ^5533FF"+ $Top10EvNames$[4]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[4] +"^000000";
+	next;
+	mes "^5533FFTop 10 Event Players^FF5533 - Pos 6-10^000000";
+	mes "6 - ^5533FF"+ $Top10EvNames$[5]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[5] +"^000000";
+	mes "7 - ^5533FF"+ $Top10EvNames$[6]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[6] +"^000000";
+	mes "8 - ^5533FF"+ $Top10EvNames$[7]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[7] +"^000000";
+	mes "9 - ^5533FF"+ $Top10EvNames$[8]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[8] +"^000000";
+	mes "10- ^5533FF"+ $Top10EvNames$[9]+ "^000000 Pts. ^FF5533" + $Top10EvPoints[9] +"^000000";
+	next;
+	goto L_Start;
+	//----------------------------------------------------------------------------------------------------------//
+	// CUSTOM SPOT 6: Timed EVENTS - Change/Comment/Uncomment/Add/Remove the OnClockXXXX values at will        //
+	//--------------------------------------------------------------------------------------------------------//
+	OnClock1500:
+	OnClock2230:
+	if ($@Event_Active) end;
+	set $@city,rand(6);
+	set $@mobset,rand(6);
+	set $@mobnumber,rand(3);
+	callfunc "spawnage",$@city$[$@city], $@mobset ,$@Mob_Number[$@mobnumber],$@city;
+	end;
+}
+
+//----------------------------//
+//   List of OnDead Events    //
+//----------------------------//
+prontera,0,0,0 script Ev_pronteraLow -1,{
+	end;
+	OnDied:
+	set $@Ev0_Mobs,(mobcount("prontera","Ev_pronteraLow::OnDied")-1);
+	callfunc "resolvedead",0, $@Ev0_Mobs ,1;
+	if ($@Ev0_Mobs <= 0) goto L_Respawn02;
+	end;
+	L_Respawn02:
+	callfunc "spawnage2",$@city$[0],$@mobset0,$@number0,0;
+	end;
+}
+
+prontera,0,0,0 script Ev_pronteraMed -1,{
+	end;
+	OnDied:
+	set $@Ev0_Mobs,(mobcount("prontera","Ev_pronteraMed::OnDied")-1);
+	callfunc "resolvedead",0,$@Ev0_Mobs,2;
+	if ($@Ev0_Mobs <= 0) goto L_Respawn03;
+	end;
+	L_Respawn03:
+	callfunc "spawnage3",$@city$[0],$@mobset0,$@number0,0;
+	end;
+}
+
+prontera,0,0,0 script Ev_pronteraHig -1,{
+	end;
+	OnDied:
+	set $@Ev0_Mobs,(mobcount("prontera","Ev_pronteraHig::OnDied")-1);
+	callfunc "resolvedead",0,$@Ev0_Mobs,4;
+	if ($@Ev0_Mobs <= 0) goto L_Respawn04;
+	end;
+	L_Respawn04:
+	callfunc "spawnage4",$@city$[0],$@mobset0,1,0;
+	end;
+}
+
+prontera,0,0,0 script Ev_pronteraMVP -1,{
+	end;
+	OnDied:
+	callfunc "resolvedead",0,0,10;
+	callfunc "terminate",0,0;
+	end;
+}
+
+geffen,0,0,0 script Ev_geffenLow -1,{
+	end;
+	OnDied:
+	set $@Ev1_Mobs,(mobcount("geffen","Ev_geffenLow::OnDied")-1);
+	callfunc "resolvedead",1,$@Ev1_Mobs,1;
+	if ($@Ev1_Mobs <= 0) goto L_Respawn12;
+	end;
+	L_Respawn12:
+	callfunc "spawnage2",$@city$[1],$@mobset1,$@number1,1;
+	end;
+}
+
+geffen,0,0,0 script Ev_geffenMed -1,{
+	end;
+	OnDied:
+	set $@Ev1_Mobs,(mobcount("geffen","Ev_geffenMed::OnDied")-1);
+	callfunc "resolvedead",1,$@Ev1_Mobs,2;
+	if ($@Ev1_Mobs <= 0) goto L_Respawn13;
+	end;
+	L_Respawn13:
+	callfunc "spawnage3",$@city$[1],$@mobset1,$@number1,1;
+	end;
+}
+
+geffen,0,0,0 script Ev_geffenHig -1,{
+	end;
+	OnDied:
+	set $@Ev1_Mobs,(mobcount("geffen","Ev_geffenHig::OnDied")-1);
+	callfunc "resolvedead",1,$@Ev1_Mobs,4;
+	if ($@Ev1_Mobs <= 0) goto L_Respawn14;
+	end;
+	L_Respawn14:
+	callfunc "spawnage4",$@city$[1],$@mobset1,1,1;
+	end;
+}
+
+geffen,0,0,0 script Ev_geffenMVP -1,{
+	end;
+	OnDied:
+	callfunc "resolvedead",1,0,10;
+	callfunc "terminate",1,0;
+	end;
+}
+
+alberta,0,0,0 script Ev_albertaLow -1,{
+	end;
+	OnDied:
+	set $@Ev2_Mobs,(mobcount("alberta","Ev_albertaLow::OnDied")-1);
+	callfunc "resolvedead",2,$@Ev2_Mobs,1;
+	if ($@Ev2_Mobs <= 0) goto L_Respawn22;
+	end;
+	L_Respawn22:
+	callfunc "spawnage2",$@city$[2],$@mobset2,$@number2,2;
+	end;
+}
+
+alberta,0,0,0 script Ev_albertaMed -1,{
+	end;
+	OnDied:
+	set $@Ev2_Mobs,(mobcount("alberta","Ev_albertaMed::OnDied")-1);
+	callfunc "resolvedead",2,$@Ev2_Mobs,2;
+	if ($@Ev2_Mobs <= 0) goto L_Respawn23;
+	end;
+	L_Respawn23:
+	callfunc "spawnage3",$@city$[2],$@mobset2,$@number2,2;
+	end;
+}
+
+alberta,0,0,0 script Ev_albertaHig -1,{
+	end;
+	OnDied:
+	set $@Ev2_Mobs,(mobcount("alberta","Ev_albertaHig::OnDied")-1);
+	callfunc "resolvedead",2,$@Ev2_Mobs,4;
+	if ($@Ev2_Mobs <= 0) goto L_Respawn24;
+	end;
+	L_Respawn24:
+	callfunc "spawnage4",$@city$[2],$@mobset2,1,2;
+	end;
+}
+
+alberta,0,0,0 script Ev_albertaMVP -1,{
+	end;
+	OnDied:
+	callfunc "resolvedead",2,0,10;
+	callfunc "terminate",2,0;
+	end;
+}
+
+aldebaran,0,0,0 script Ev_aldebaranLow -1,{
+	end;
+	OnDied:
+	set $@Ev3_Mobs,(mobcount("aldebaran","Ev_aldebaranLow::OnDied")-1);
+	callfunc "resolvedead",3,$@Ev3_Mobs,1;
+	if ($@Ev3_Mobs <= 0) goto L_Respawn32;
+	end;
+	L_Respawn32:
+	callfunc "spawnage2",$@city$[3],$@mobset3,$@number3,3;
+	end;
+}
+
+aldebaran,0,0,0 script Ev_aldebaranMed -1,{
+	end;
+	OnDied:
+	set $@Ev3_Mobs,(mobcount("aldebaran","Ev_aldebaranMed::OnDied")-1);
+	callfunc "resolvedead",3,$@Ev3_Mobs,2;
+	if ($@Ev3_Mobs <= 0) goto L_Respawn33;
+	end;
+	L_Respawn33:
+	callfunc "spawnage3",$@city$[3],$@mobset3,$@number3,3;
+	end;
+}
+
+aldebaran,0,0,0 script Ev_aldebaranHig -1,{
+	end;
+	OnDied:
+	set $@Ev3_Mobs,(mobcount("aldebaran","Ev_aldebaranHig::OnDied")-1);
+	callfunc "resolvedead",3,$@Ev3_Mobs,4;
+	if ($@Ev3_Mobs <= 0) goto L_Respawn34;
+	end;
+	L_Respawn34:
+	callfunc "spawnage4",$@city$[3],$@mobset3,1,3;
+	end;
+}
+
+aldebaran,0,0,0 script Ev_aldebaranMVP -1,{
+	end;
+	OnDied:
+	callfunc "resolvedead",3,0,10;
+	callfunc "terminate",3,0;
+	end;
+}
+
+comodo,0,0,0 script Ev_comodoLow -1,{
+	end;
+	OnDied:
+	set $@Ev4_Mobs,(mobcount("comodo","Ev_comodoLow::OnDied")-1);
+	callfunc "resolvedead",4,$@Ev4_Mobs,1;
+	if ($@Ev4_Mobs <= 0) goto L_Respawn42;
+	end;
+	L_Respawn42:
+	callfunc "spawnage2",$@city$[4],$@mobset4,$@number4,4;
+	end;
+}
+
+comodo,0,0,0 script Ev_comodoMed -1,{
+	end;
+	OnDied:
+	set $@Ev4_Mobs,(mobcount("comodo","Ev_comodoMed::OnDied")-1);
+	callfunc "resolvedead",4,$@Ev4_Mobs,2;
+	if ($@Ev4_Mobs <= 0) goto L_Respawn43;
+	end;
+	L_Respawn43:
+	callfunc "spawnage3",$@city$[4],$@mobset4,$@number4,4;
+	end;
+}
+
+comodo,0,0,0 script Ev_comodoHig -1,{
+	end;
+	OnDied:
+	set $@Ev4_Mobs,(mobcount("comodo","Ev_comodoHig::OnDied")-1);
+	callfunc "resolvedead",4,$@Ev4_Mobs,4;
+	if ($@Ev4_Mobs <= 0) goto L_Respawn44;
+	end;
+	L_Respawn44:
+	callfunc "spawnage4",$@city$[4],$@mobset4,1,4;
+	end;
+}
+
+comodo,0,0,0 script Ev_comodoMVP -1,{
+	end;
+	OnDied:
+	callfunc "resolvedead",4,0,10;
+	callfunc "terminate",4,0;
+	end;
+}
+
+payon,0,0,0 script Ev_payonLow -1,{
+	end;
+	OnDied:
+	set $@Ev5_Mobs,(mobcount("payon","Ev_payonLow::OnDied")-1);
+	callfunc "resolvedead",5,$@Ev5_Mobs,1;
+	if ($@Ev5_Mobs <= 0) goto L_Respawn52;
+	end;
+	L_Respawn52:
+	callfunc "spawnage2",$@city$[5],$@mobset5,$@number5,5;
+	end;
+}
+
+payon,0,0,0 script Ev_payonMed -1,{
+	end;
+	OnDied:
+	set $@Ev5_Mobs,(mobcount("payon","Ev_payonMed::OnDied")-1);
+	callfunc "resolvedead",5,$@Ev5_Mobs,2;
+	if ($@Ev5_Mobs <= 0) goto L_Respawn53;
+	end;
+	L_Respawn53:
+	callfunc "spawnage3",$@city$[5],$@mobset5,$@number5,5;
+	end;
+}
+
+payon,0,0,0 script Ev_payonHig -1,{
+	end;
+	OnDied:
+	set $@Ev5_Mobs,(mobcount("payon","Ev_payonHig::OnDied")-1);
+	callfunc "resolvedead",5,$@Ev5_Mobs,4;
+	if ($@Ev5_Mobs <= 0) goto L_Respawn54;
+	end;
+	L_Respawn54:
+	callfunc "spawnage4",$@city$[5],$@mobset5,1,5;
+	end;
+}
+
+payon,0,0,0 script Ev_payonMVP -1,{
+	end;
+	OnDied:
+	callfunc "resolvedead",5,0,10;
+	callfunc "terminate",5,0;
+	end;
+}
+
+geffen,124,66,4 duplicate(Helper) Helper#2 721
+aldebaran,135,122,4 duplicate(Helper) Helper#3 721
+payon,177,112,4 duplicate(Helper) Helper#4 721
+morocc,160,97,4 duplicate(Helper) Helper#5 721
+
+
+//--------------------------------------------------------------//
+// getarg(0) = Map Name where to Spawn
+// getarg(1) = Mobset
+// getarg(2) = MobNumber
+// getarg(3) = City Number
+//--------------------------------------------------------------//
+function script spawnage {
+	areamonster getarg(0)+"",0,0,255,255,getarg(0)+ " Minion",$@Mob_ID1[getarg(1)],getarg(2),"Ev_"+getarg(0)+"Low::OnDied";
+	set $@Event_Active,1; // Sets a global var to check if at least 1 event is already Active
+	if (getarg(3) == 0) goto L_Ev0;  
+	if (getarg(3) == 1)  goto L_Ev1;
+	if (getarg(3) == 2)  goto L_Ev2;
+	if (getarg(3) == 3) goto L_Ev3;  
+	if (getarg(3) == 4) goto L_Ev4;  
+	if (getarg(3) == 5) goto L_Ev5;  
+	L_Ev0:
+	//set $@Ev0_Mobs,getarg(2);
+	set $@mobset0,getarg(1);
+	set $@number0,getarg(2);
+	goto L_Announcement;
+	L_Ev1:
+	//set $@Ev1_Mobs,getarg(2);
+	set $@mobset1,getarg(1);
+	set $@number1,getarg(2);
+	goto L_Announcement;
+	L_Ev2:
+	//set $@Ev2_Mobs,getarg(2);
+	set $@mobset2,getarg(1);
+	set $@number2,getarg(2);
+	goto L_Announcement;
+	L_Ev3:
+	//set $@Ev3_Mobs,getarg(2);
+	set $@mobset3,getarg(1);
+	set $@number3,getarg(2);
+	goto L_Announcement;
+	L_Ev4:
+	//set $@Ev4_Mobs,getarg(2);
+	set $@mobset4,getarg(1);
+	set $@number4,getarg(2);
+	goto L_Announcement;
+	L_Ev5:
+	//set $@Ev5_Mobs,getarg(2);
+	set $@mobset5,getarg(1);
+	set $@number5,getarg(2);
+	goto L_Announcement;
+	L_Announcement:
+	set $@cityvalue[getarg(3)],1;
+	set $@citytime$[getarg(3)],gettime(3)+ ":" + gettime(2);
+	set $@cityMobSet$[getarg(3)],$@MobSet$[getarg(1)];
+	announce "Oh Noes! Monsters invaded "+$@city$[getarg(3)],16;
+	return;
+}
+
+function script spawnage2 {
+	areamonster getarg(0)+"",0,0,255,255,getarg(0)+ " Slayer",$@Mob_ID2[getarg(1)],getarg(2),"Ev_"+getarg(0)+"Med::OnDied";
+	if (getarg(3) == 0) set $@Ev0_Mobs,getarg(2);
+	if (getarg(3) == 1) set $@Ev1_Mobs,getarg(2);
+	if (getarg(3) == 2) set $@Ev2_Mobs,getarg(2);
+	if (getarg(3) == 3) set $@Ev3_Mobs,getarg(2);
+	if (getarg(3) == 4) set $@Ev4_Mobs,getarg(2);
+	if (getarg(3) == 5) set $@Ev5_Mobs,getarg(2);
+	announce "Help! More monsters in "+$@city$[getarg(3)],16;
+	return;
+}
+
+function script spawnage3 {
+	areamonster getarg(0)+"",0,0,255,255,getarg(0)+ " Ravager",$@Mob_ID3[getarg(1)],getarg(2),"Ev_"+getarg(0)+"Hig::OnDied";
+	if (getarg(3) == 0) set $@Ev0_Mobs,getarg(2);
+	if (getarg(3) == 1) set $@Ev1_Mobs,getarg(2);
+	if (getarg(3) == 2) set $@Ev2_Mobs,getarg(2);
+	if (getarg(3) == 3) set $@Ev3_Mobs,getarg(2);
+	if (getarg(3) == 4) set $@Ev4_Mobs,getarg(2);
+	if (getarg(3) == 5) set $@Ev5_Mobs,getarg(2);
+	announce "Gather! There are very Strong monsters in "+$@city$[getarg(3)],16;
+	return;
+}
+
+function script spawnage4 {
+	areamonster getarg(0)+"",0,0,255,255,getarg(0)+ " Leader",$@Mob_ID4[getarg(1)],1,"Ev_"+getarg(0)+"MVP::OnDied";
+	announce "WTF!!! A Boss spawned into "+$@city$[getarg(3)],16;
+	return;
+}
+
+function script resolvedead {
+	set P_Ev_Points,P_Ev_Points + getarg(2);
+	dispbottom "You gained "+ getarg(2) + " Event Points!";
+	dispbottom "Now you have a TOTAL of "+P_Ev_Points+" Event Points!";
+	if (getarg(1)) announce "More "+ getarg(1) + " invaders in "+ $@city$[getarg(0)],17;
+	callfunc "EvArrayCheck",P_Ev_Points,strcharinfo(0);
+	callfunc "EvCopyArray";
+	return;
+}
+
+function script terminate {
+	set @temp2,getarg(1);
+	killmonster $@city$[getarg(0)]+"","Ev_"+$@city$[getarg(0)]+"Low::OnDied";
+	killmonster $@city$[getarg(0)]+"","Ev_"+$@city$[getarg(0)]+"Med::OnDied";
+	killmonster $@city$[getarg(0)]+"","Ev_"+$@city$[getarg(0)]+"Hig::OnDied";
+	killmonster $@city$[getarg(0)]+"","Ev_"+$@city$[getarg(0)]+"MVP::OnDied";
+	if @temp2 announce "Invasion of "+$@city$[getarg(0)]+" has been terminated by a Godly Hand!",16;
+	if !@temp2 announce "Invasion of "+$@city$[getarg(0)]+" has been terminated by "+strcharinfo(0),16;
+	set $@cityvalue[getarg(0)],0;
+	// Checks if another event is on, if not it inform the global variable madee for this
+	if (($@cityvalue[0] == 0)&&($@cityvalue[1] == 0)&&($@cityvalue[2] == 0)&&($@cityvalue[3] == 0)&&($@cityvalue[4] == 0)&&($@cityvalue[5] == 0))  set $@Event_Active,0;
+	return;
+}
+
+function script ArrayWriteLine {
+	set $@Array1$[getarg(0)],getarg(1);
+	set $@Array2[getarg(0)],getarg(2);
+	return;
+}
+
+function script EvCopyArray {
+	set @i,0;
+	L_Start_Copy:
+	if (@i > 9) return;
+	set $Top10EvNames$[@i],$@Array1$[@i];
+	set $Top10EvPoints[@i],$@Array2[@i];
+	set @i,@i+1;
+	goto L_Start_Copy;
+	return;
+}
+
+function script EvArrayCheck {
+	set @ListPoints,getarg(0);
+	set @ListName$,getarg(1);
+	if (@ListPoints <= $Top10EvPoints[9] ) return;
+	set @i,0;
+	set @j,0;
+	L_Cycle_Pos:
+	if (@i > 9) return;
+	if (@ListPoints >= $Top10EvPoints[@j]) goto L_Write;
+	callfunc "ArrayWriteLine",@i,$Top10EvNames$[@j],$Top10EvPoints[@j];
+	set @i,@i+1;
+	set @j,@j+1;
+	goto L_Cycle_Pos;
+	L_Write:
+	if (@ListName$ != $Top10EvNames$[@j]) goto L_Write2;
+	callfunc "ArrayWriteLine",@i,@ListName$,@ListPoints;
+	set @i,@i+1;
+	set @j,@j+1;
+	goto L_Cycle_Pos2;
+	L_Write2:
+	callfunc "ArrayWriteLine",@i,@ListName$,@ListPoints;
+	set @i,@i+1;
+	goto L_Cycle_Pos2;
+	L_Cycle_Pos2:
+	if (@i > 9) return;
+	if ($Top10EvNames$[@j] == strcharinfo(0)) goto L_Cycle_2Jump;
+	callfunc "ArrayWriteLine",@i,$Top10EvNames$[@j],$Top10EvPoints[@j];
+	set @i,@i+1;
+	L_Cycle_2Jump:
+	set @j,@j+1;
+	goto L_Cycle_Pos2;
+	return;
+}

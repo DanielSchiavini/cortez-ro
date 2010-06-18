@@ -1,0 +1,117 @@
+//===== eAthena Script =======================================
+//= War of Emperium - gefg_cas guardians script
+//===== By: ==================================================
+//= holyAngelX (1.0)
+//===== Current Version: =====================================
+//= 1.2a
+//===== Compatible With: =====================================
+//= eAthena 0.1+; RO Episode 4+
+//===== Description: =========================================
+//= Re-spawns guardians on server start if they have been
+//= purchased.  Also announces when a guardian dies.
+//===== Additional Comments: =================================
+//= 1.1 by joedukk
+//= 1.2 by Akaru and Valaris
+//= 1.2a Guardians for all gefg castles are now in this file.
+//= Minor optimizations.[kobra_k88]
+//============================================================
+
+
+//gefg_cas01,198,182,0	script	Guardian_G01	-1,{
+//OnAgitInit:
+//	if (GetCastleData("gefg_cas01",10) == 1) guardian "gefg_cas01",30,178,"Guardião Soldado",1287,1,"Guardian_G01::OnGuardianDied",0;
+//	if (GetCastleData("gefg_cas01",11) == 1) guardian "gefg_cas01",64,180,"Guardião Soldado",1287,1,"Guardian_G01::OnGuardianDied",1;
+//	if (GetCastleData("gefg_cas01",12) == 1) guardian "gefg_cas01",61,25,"Guardião Soldado",1287,1,"Guardian_G01::OnGuardianDied",2;
+//	if (GetCastleData("gefg_cas01",13) == 1) guardian "gefg_cas01",61,44,"Guardião Arqueiro",1285,1,"Guardian_G01::OnGuardianDied",3;
+//	if (GetCastleData("gefg_cas01",14) == 1) guardian "gefg_cas01",189,43,"Guardião Arqueiro",1285,1,"Guardian_G01::OnGuardianDied",4;
+//	if (GetCastleData("gefg_cas01",15) == 1) guardian "gefg_cas01",51,192,"Guardião Cavaleiro",1286,1,"Guardian_G01::OnGuardianDied",5;
+//	if (GetCastleData("gefg_cas01",16) == 1) guardian "gefg_cas01",49,67,"Guardião Cavaleiro",1286,1,"Guardian_G01::OnGuardianDied",6;
+//	if (GetCastleData("gefg_cas01",17) == 1) guardian "gefg_cas01",181,14,"Guardião Cavaleiro",1286,1,"Guardian_G01::OnGuardianDied",7;
+//	end;
+//
+//OnGuardianDied:
+//	// Event when Guardian dies
+//	MapAnnounce "gefg_cas01","Um guardião acaba de cair",17;
+//	end;
+//}
+////------------------------------------------------------------------------------
+//gefg_cas02,176,178,0	script	Guardian_G02	-1,{
+//OnAgitInit:
+//	if (GetCastleData("gefg_cas02",10) == 1) guardian "gefg_cas02",22,135,"Guardião Soldado",1287,1,"Guardian_G02::OnGuardianDied",0;
+//	if (GetCastleData("gefg_cas02",11) == 1) guardian "gefg_cas02",33,40,"Guardião Soldado",1287,1,"Guardian_G02::OnGuardianDied",1;
+//	if (GetCastleData("gefg_cas02",12) == 1) guardian "gefg_cas02",158,11,"Guardião Soldado",1287,1,"Guardian_G02::OnGuardianDied",2;
+//	if (GetCastleData("gefg_cas02",13) == 1) guardian "gefg_cas02",64,140,"Guardião Arqueiro",1285,1,"Guardian_G02::OnGuardianDied",3;
+//	if (GetCastleData("gefg_cas02",14) == 1) guardian "gefg_cas02",36,140,"Guardião Arqueiro",1285,1,"Guardian_G02::OnGuardianDied",4;
+//	if (GetCastleData("gefg_cas02",15) == 1) guardian "gefg_cas02",166,45,"Guardião Cavaleiro",1286,1,"Guardian_G02::OnGuardianDied",5;
+//	if (GetCastleData("gefg_cas02",16) == 1) guardian "gefg_cas02",10,39,"Guardião Cavaleiro",1286,1,"Guardian_G02::OnGuardianDied",6;
+//	if (GetCastleData("gefg_cas02",17) == 1) guardian "gefg_cas02",166,35,"Guardião Cavaleiro",1286,1,"Guardian_G02::OnGuardianDied",7;
+//	end;
+//
+//OnGuardianDied:
+//	// Event when Guardian dies
+//	MapAnnounce "gefg_cas02","Um guardião acaba de cair",17;
+//	end;
+//}
+//------------------------------------------------------------------------------
+//gefg_cas03,245,167,0	script	Guardian_G03	-1,{
+//OnAgitInit:
+//	if (GetCastleData("gefg_cas03",10) == 1) guardian "gefg_cas03",101,53,"Guardião Soldado",1287,1,"Guardian_G03::OnGuardianDied",0;
+//	if (GetCastleData("gefg_cas03",11) == 1) guardian "gefg_cas03",158,40,"Guardião Soldado",1287,1,"Guardian_G03::OnGuardianDied",1;
+//	if (GetCastleData("gefg_cas03",12) == 1) guardian "gefg_cas03",158,67,"Guardião Soldado",1287,1,"Guardian_G03::OnGuardianDied",2;
+//	if (GetCastleData("gefg_cas03",13) == 1) guardian "gefg_cas03",229,53,"Guardião Arqueiro",1285,1,"Guardian_G03::OnGuardianDied",3;
+//	if (GetCastleData("gefg_cas03",14) == 1) guardian "gefg_cas03",248,53,"Guardião Arqueiro",1285,1,"Guardian_G03::OnGuardianDied",4;
+//	if (GetCastleData("gefg_cas03",15) == 1) guardian "gefg_cas03",122,53,"Guardião Cavaleiro",1286,1,"Guardian_G03::OnGuardianDied",5;
+//	if (GetCastleData("gefg_cas03",16) == 1) guardian "gefg_cas03",243,35,"Guardião Cavaleiro",1286,1,"Guardian_G03::OnGuardianDied",6;
+//	if (GetCastleData("gefg_cas03",17) == 1) guardian "gefg_cas03",234,33,"Guardião Cavaleiro",1286,1,"Guardian_G03::OnGuardianDied",7;
+//	end;
+//
+//OnGuardianDied:
+//	// Event when Guardian dies
+//	MapAnnounce "gefg_cas03","Um guardião acaba de cair",17;
+//	end;
+//}
+//------------------------------------------------------------------------------
+gefg_cas04,174,178,0	script	Guardian_G04	-1,{
+OnAgitInit:
+	if (GetCastleData("gefg_cas04",10) == 1) guardian "gefg_cas04",49,203,"Guardião Soldado",1287,"Guardian_G04::OnGuardianDied",0;
+	if (GetCastleData("gefg_cas04",11) == 1) guardian "gefg_cas04",148,50,"Guardião Soldado",1287,"Guardian_G04::OnGuardianDied",1;
+	if (GetCastleData("gefg_cas04",12) == 1) guardian "gefg_cas04",57,20,"Guardião Soldado",1287,"Guardian_G04::OnGuardianDied",2;
+	if (GetCastleData("gefg_cas04",13) == 1) guardian "gefg_cas04",34,218,"Guardião Arqueiro",1285,"Guardian_G04::OnGuardianDied",3;
+	if (GetCastleData("gefg_cas04",14) == 1) guardian "gefg_cas04",167,42,"Guardião Arqueiro",1285,"Guardian_G04::OnGuardianDied",4;
+	if (GetCastleData("gefg_cas04",15) == 1) guardian "gefg_cas04",18,52,"Guardião Cavaleiro",1286,"Guardian_G04::OnGuardianDied",5;
+	if (GetCastleData("gefg_cas04",16) == 1) guardian "gefg_cas04",50,48,"Guardião Cavaleiro",1286,"Guardian_G04::OnGuardianDied",6;
+	if (GetCastleData("gefg_cas04",17) == 1) guardian "gefg_cas04",160,66,"Guardião Cavaleiro",1286,"Guardian_G04::OnGuardianDied",7;
+
+//	if (GetCastleData("gefg_cas04",10) == 1) guardian "gefg_cas04",49,203,"Guardião Soldado",1287,1,"Guardian_G04::OnGuardianDied",0;
+//	if (GetCastleData("gefg_cas04",11) == 1) guardian "gefg_cas04",148,50,"Guardião Soldado",1287,1,"Guardian_G04::OnGuardianDied",1;
+//	if (GetCastleData("gefg_cas04",12) == 1) guardian "gefg_cas04",57,20,"Guardião Soldado",1287,1,"Guardian_G04::OnGuardianDied",2;
+//	if (GetCastleData("gefg_cas04",13) == 1) guardian "gefg_cas04",34,218,"Guardião Arqueiro",1285,1,"Guardian_G04::OnGuardianDied",3;
+//	if (GetCastleData("gefg_cas04",14) == 1) guardian "gefg_cas04",167,42,"Guardião Arqueiro",1285,1,"Guardian_G04::OnGuardianDied",4;
+//	if (GetCastleData("gefg_cas04",15) == 1) guardian "gefg_cas04",18,52,"Guardião Cavaleiro",1286,1,"Guardian_G04::OnGuardianDied",5;
+//	if (GetCastleData("gefg_cas04",16) == 1) guardian "gefg_cas04",50,48,"Guardião Cavaleiro",1286,1,"Guardian_G04::OnGuardianDied",6;
+//	if (GetCastleData("gefg_cas04",17) == 1) guardian "gefg_cas04",160,66,"Guardião Cavaleiro",1286,1,"Guardian_G04::OnGuardianDied",7;
+	end;
+
+OnGuardianDied:
+	// Event when Guardian dies
+	MapAnnounce "gefg_cas04","Um guardião acaba de cair",17;
+	end;
+}
+//------------------------------------------------------------------------------
+gefg_cas05,194,184,0	script	Guardian_G05	-1,{
+OnAgitInit:
+	if (GetCastleData("gefg_cas05",10) == 1) guardian "gefg_cas05",54,149,"Guardião Soldado",1287,"Guardian_G05::OnGuardianDied",0;
+	if (GetCastleData("gefg_cas05",11) == 1) guardian "gefg_cas05",80,31,"Guardião Soldado",1287,"Guardian_G05::OnGuardianDied",1;
+	if (GetCastleData("gefg_cas05",12) == 1) guardian "gefg_cas05",52,32,"Guardião Soldado",1287,"Guardian_G05::OnGuardianDied",2;
+	if (GetCastleData("gefg_cas05",13) == 1) guardian "gefg_cas05",77,149,"Guardião Arqueiro",1285,"Guardian_G05::OnGuardianDied",3;
+	if (GetCastleData("gefg_cas05",14) == 1) guardian "gefg_cas05",65,18,"Guardião Arqueiro",1285,"Guardian_G05::OnGuardianDied",4;
+	if (GetCastleData("gefg_cas05",15) == 1) guardian "gefg_cas05",66,54,"Guardião Cavaleiro",1286,"Guardian_G05::OnGuardianDied",5;
+	if (GetCastleData("gefg_cas05",16) == 1) guardian "gefg_cas05",187,43,"Guardião Cavaleiro",1286,"Guardian_G05::OnGuardianDied",6;
+	if (GetCastleData("gefg_cas05",17) == 1) guardian "gefg_cas05",167,43,"Guardião Cavaleiro",1286,"Guardian_G05::OnGuardianDied",7;
+	end;
+
+OnGuardianDied:
+	// Event when Guardian dies
+	MapAnnounce "gefg_cas05","Um guardião acaba de cair",17;
+	end;
+}

@@ -1,0 +1,186 @@
+// Card removal NPC by TyrNemesis^
+// DANGEROUS! TODO: Think.. think 8) [Lupus]
+
+
+schg_cas03,85,19,2	script	Velhinha Esperta	78,{
+
+	//mes "[Velhinha Esperta]";
+	//mes "Olá meu jovem.";
+	//mes "Sinto muito, mas não posso lhe ajudar hoje..";
+	//close;
+	
+	if(isequipped(9932)){
+		mes "[Velhinha Esperta]";
+		mes "Muito bom meu querido Taekwon. Vejo que você usa minhas botas preferidas.";
+		mes "Eu posso colocar as cartas do seu armamento nesta bota. O que acha?";
+		next;
+		menu "Quero fazer isso",-,
+			 "Desequipar minhas cartas",REMOVEMENU,
+			 "Não, obrigado.",CLOSEOUT;
+		
+		mes "[Velhinha Esperta]";
+		if(getequipcardcnt(EQI_SHOES)!=0 || countitem(9932)!=1){
+			mes "Meu jovem, não posso te ajudar desta forma. Você precisa:";
+			mes " - Ter somente um par de Botas do Taekwon em seu inventário";
+			mes " - Este par não pode ter nenhuma carta";
+		}else{
+			mes "Legal. O valor por serviço é de 300.000z.";
+			next;
+			if(select("Ok, eu pago:Esquece!")==2) goto CLOSEOUT;
+			mes "[Velhinha Esperta]";
+			if(Zeny<300000){
+				mes "Você não tem os 300.000z necessários.";
+			}else if(getequipcardcnt(EQI_HAND_R)==0){
+				mes "Você precisa colocar as cartas desejadas em um armamento equipado!";
+			}else if(countitem(getequipid(EQI_HAND_R))!=1){
+				mes "Você tem mais de um armamento igual à este que está na sua mão...";
+				mes "Não posso aceitar isso!";
+			}else if(!checkweight(1101,6)){
+				mes "Você não aguenta muito peso.. Tente liberar mais peso, por favor.";
+			}else{
+				mes "Hmm... Parece que está tudo certo. Vamos começar!";
+				next;
+				query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-300000,'velha')";
+				set Zeny, Zeny - 300000;
+				set @refine,getequiprefinerycnt(EQI_SHOES);
+				set @card0, getequipcardid(EQI_HAND_R,0);
+				set @card1, getequipcardid(EQI_HAND_R,1);
+				set @card2, getequipcardid(EQI_HAND_R,2);
+				set @card3, 0; //getequipcardid(EQI_HAND_R,3);
+				
+				successremovecards EQI_HAND_R;
+				if(!countitem(@card0)) goto CARTACHAO;
+				if(@card1){
+					if(!countitem(@card1)) goto CARTACHAO;
+					if(@card2){
+						if(!countitem(@card2)) goto CARTACHAO;
+						if(@card3){
+							if(!countitem(@card3)) goto CARTACHAO;
+						}
+					}
+				}
+				delitem 9932,1;
+				delitem @card0,1;
+				if(@card1){
+					delitem @card1,1;
+					if(@card2){
+						delitem @card2,1;
+						if(@card3){
+							delitem @card3,1;
+						}
+					}
+				}
+				getitem2 9932,1,1,@refine,0,@card0,@card1,@card2,@card3;
+				mes "[Velhinha Esperta]";
+				mes "Parabéns, seu par de botas está prontinho!";
+			}
+		}
+		close;
+	}
+
+	mes "[Velhinha Esperta]";
+	mes "Bom dia, meu jovem. Eu tenho o poder de remover cartas que você colocou no seu equipamento. Essa idéia te agrada?";
+	next;
+	menu "Sim, agrada!",REMOVEMENU,
+	     "Quanto você cobra por isso?",-,
+	     "Não, obrigado.",CLOSEOUT;
+
+	mes "[Velhinha Esperta]";
+	mes "Eu cobro uma base de 20.000z, mais 10.000z para cada carta que eu remover do item. Além disso, eu precisarei de um Fragmento Estelar, uma gema amarela e 20 amuletos dos orcs para que eu faça minha mágica.";
+	next;
+	menu "Muito bom. Vamos fazer!",-,
+	     "Não... Obrigado!",CLOSEOUT;
+
+REMOVEMENU:
+	mes "[Velhinha Esperta]";
+	if(!checkweight(1101,6)){
+		mes "Você está acima do peso!";
+		close;
+	}
+	mes "Legal! Qual dos seus itens eu devo examinar?";
+	next;
+	set @part, select("Mudei de idéia...:"+getequipname(1)+":"+getequipname(2)+":"+getequipname(3)+":"+getequipname(4)+":"+getequipname(5)+":"+getequipname(6)+":"+getequipname(7)+":"+getequipname(8)+":"+getequipname(9)+":"+getequipname(10))-1;
+	
+	if(getequipcardcnt(@part) == 0) goto DENYCARDCOUNT;
+	mes "[Velhinha Esperta]";
+	
+	set @cardcount,getequipcardcnt(@part);
+	if(@cardcount == 1){
+		mes "Este item tem uma carta equipada.";
+	} else {
+		mes "Este item tem " + @cardcount + " cartas equipadas.";
+	}
+	
+	set @payment, getgmlevel()<5;
+	if(@payment == 0){
+		mes "Mas, como você é VIP, vou utilizar meus equipamentos para retirar a carta para você.";
+		mes "Tudo isso sem nenhum custo =)";
+	}else if(@payment == 1){
+		//somente 1 hora antes da woe
+		if((gettime(4)==2 && gettime(3)==19) || (gettime(4)==6 && gettime(3)==14) || (gettime(4)==0 && gettime(3)==19)){
+			set @payment, -1;
+			mes "Mas, como é quase hora da guerra, vou utilizar meus equipamentos para retirar a carta para você.";
+			mes "Tudo isso sem nenhum custo =)";
+		}else{
+			mes "Para fazer minha mágica, irei precisar de:";
+			mes "" + (20000+(@cardcount * 10000)) + " zeny";
+			mes "1 ^0000FFFragmento Estelar^000000";
+			mes "1 ^0000FFGema Amarela^000000";
+			mes "20 ^0000FFAmuletos dos Orcs^000000.";
+		}
+	}else{
+		close;
+	}
+	
+	next;
+	menu "Tudo bem, pode fazer.",-,
+	     "Desencana...",CLOSEOUT;
+
+	mes "[Velhinha Esperta]";
+	mes "Antes de eu começar, eu preciso te avisar-- Eu posso errar. Se eu errar, seu dinheiro será perdido!";
+	next;
+	set @failtype,1;
+	
+	mes "[Velhinha Esperta]";
+	mes "Muito bem. Irei começar.";
+	next;
+	if(@payment==1){
+		if((zeny < (20000+(@cardcount * 10000))) || (countitem(1000) < 1) || (countitem(715) < 1) || (countitem(931) < 20)) goto DENYMATERIAL;
+		query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+(20000+(@cardcount * 10000))+",'velha')";
+		set zeny,zeny - (20000+(@cardcount * 10000));
+		//delitem 1000,1;
+		delitem 715,1;
+		delitem 931,rand(5,20);
+	}
+
+// Replace the constants in the next 3 lines with failure chance values defined in refine_db.txt
+// First value = Total failure chance (item and cards destroyed)
+// Second value = Partial failure chance (one or the other is destroyed, player decides which one is safe)
+// Third value = Harmless failure chance (all that's lost is your investment)
+
+	set @failchance,rand(100);
+	successremovecards @part;
+	mes "[Velhinha Esperta]";
+	mes "O processo foi um sucesso. Aqui estão sua cartas e seu item. Aliás, nem precisei de todos os itens. Pode ficar com o resto! Boa sorte!";
+	close;
+
+DENYCARDCOUNT:
+	mes "[Velhinha Esperta]";
+	mes "Meu jovem... Não tem cartas equipadas neste item. Sinto que não posso fazer nada com ele.";
+	close;
+
+DENYMATERIAL:
+	mes "[Velhinha Esperta]";
+	mes "Meu jovem, você não tem os itens ou zeny que eu pedi. Volte se consegui-los!";
+	close;
+
+CARTACHAO:
+	mes "[Velhinha Esperta]";
+	mes "Você ficou acima do peso! Pegue sua carta do chão imediatamente!!";
+	close;
+	
+CLOSEOUT:
+	mes "[Velhinha Esperta]";
+	mes "Muito bem. Volte quando precisar dos meus serviços.";
+	close;
+}

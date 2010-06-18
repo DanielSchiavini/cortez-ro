@@ -1,0 +1,57 @@
+monk_test,319,140,4	script	Thor	808,{
+	mes "^006611[ Thor ]^333333";
+	if (countitem(7331)<1){
+		mes "O que você esta fazendo aqui? Vá embora!!!";
+		close;
+	}
+	mes "Como você me axou??";
+	next;
+	menu "Conversar",-,"Sei lá, Tchau!",L_Fechar;
+	
+	mes "^006611[ Thor ]^333333";
+	mes "Fiquei impressionado... Como você me axou? Bom, isso não importa agora...";
+	next;
+	mes "^006611[ Thor ]^333333";
+	mes "Eu tenho um cinto que deixa você muito mais forte e resistente...";
+	next;
+	mes "^006611[ Thor ]^333333";
+	mes "Se deseja fazer preciso que traga mais alguns itens.";
+	next;
+	mes "^006611[ Thor ]^333333";
+	mes "Os itens necessários são:";
+	mes "- 1x  Gleipnir";
+	mes "- 50x Pedra Encantada Preta";
+	mes "- 20x Ouros";
+	mes "- 4x  Cinto de Morrigane";
+	next;
+	mes "^006611[ Thor ]^333333";
+	mes "Estarei esperando você aqui mesmo, mas vá rápido!";
+	next;
+	menu "Já tenho os itens",L_DarItens,"To sem os itens agora.",-;
+
+	mes "Volte quando tiver com eles";
+	close;
+
+	L_DarItens:
+	mes "^006611[ Thor ]^333333";
+	mes "Então, deixe-me verificar se você tem todos os itens...";
+	if (countitem(7058)<1 || countitem(969)<20 ||
+		countitem(7430)<50 || countitem(2650)<4){
+		mes "Você não trouxe tudo que é necessário...";
+	}else{
+		mes "Nossa que maravilha!!";
+		next;
+		mes "^006611[ Thor ]^333333";
+		mes "Você fica muito forte apartir de agora";
+		mes "Tome aqui seu cinto.";
+		next;
+		delitem 7058,1;
+		delitem 969,20;
+		delitem 7430,50;
+		delitem 2650,4;
+		
+		getitem 2629,1;
+	}
+	L_Fechar:
+		close;
+}

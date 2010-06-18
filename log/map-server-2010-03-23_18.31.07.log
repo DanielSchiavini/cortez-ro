@@ -1,0 +1,25 @@
+[1;33m[Warning][0m: clif_process_message: Player 'FlasH.' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'FlasH.' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'FlasH.' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'FlasH.' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Asking Alexandria' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Asking Alexandria' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Asking Alexandria' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Asking Alexandria' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Asking Alexandria' sent an unterminated name!
+[1;33m[Warning][0m: clif_process_message: Player 'Asking Alexandria' sent an unterminated name!
+[1;31m[Error][0m: script_rid2sd: fatal error ! player not attached!
+[1;36m[Debug][0m: Source (NPC): ranking_pvp at ordeal_1-1 (0,0)
+[1;31m[Error][0m: chrif_accountban failed - player not online.
+[1;31m[Error][0m: chrif_accountban failed - player not online.
+[1;31m[Error][0m: chrif_accountban failed - player not online.
+[1;33m[Warning][0m: npc_scriptcont: failed npc_checknear test.
+[1;31m[Error][0m: npc_event: event not found [Munições::OnWhisperGlobal]
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;36m[Debug][0m: npc_scriptcont: 'Unknown NPC' (sd->npc_id=0) is not Armazém#2 (id=110000225).
+[1;33m[Warning][0m: pc_bonus: unknown type 0 2 !
+[1;31m[Error][0m: party_member_added: party 192136 not found.
+[1;31m[Error][0m: status_change_timer: Unexpected NULL status change id: 2000463 data: 112

@@ -1,0 +1,91 @@
+1262	npc/mobs/fields/comodo.txt	Mutant Dragonoid
+1259	npc/mobs/fields/comodo.txt	Gryphon
+1087	npc/mobs/fields/geffen.txt	Orc Hero
+1262	npc/mobs/fields/hugel.txt	Mutant Dragonoid
+1059	npc/mobs/fields/mjolnir.txt	Mistress
+1159	npc/mobs/fields/morocc.txt	Phreeoni
+1373	npc/mobs/fields/niflheim.txt	Lord of Death
+1751	npc/mobs/fields/odin.txt	Valkyrie Randgris
+1096	npc/mobs/fields/payon.txt	Angeling
+1120	npc/mobs/fields/payon.txt	Ghostring
+1582	npc/mobs/fields/payon.txt	Deviling
+1115	npc/mobs/fields/payon.txt	Eddga
+1785	npc/mobs/fields/rachel.txt	Atroce
+1785	npc/mobs/fields/rachel.txt	Atroce
+1785	npc/mobs/fields/rachel.txt	Atroce
+1259	npc/mobs/fields/umbala.txt	Gryphon
+1388	npc/mobs/fields/yuno.txt	Arc Angeling
+1388	npc/mobs/fields/yuno.txt	Arc Angeling
+
+1871	npc/mobs/dungeons/abbey.txt	Fallen Bishop Hibram
+1873	npc/mobs/dungeons/abbey.txt	Beelzebub
+1719	npc/mobs/dungeons/abyss.txt	Detale
+1492	npc/mobs/dungeons/amatdun.txt	Incantation Samurai
+1289	npc/mobs/dungeons/anthell.txt	Maya Purple
+1147	npc/mobs/dungeons/anthell.txt	Maya
+1688	npc/mobs/dungeons/ayodun.txt	Lady Tanee
+1583	npc/mobs/dungeons/beachdun.txt	Tao Gunka
+1252	npc/mobs/dungeons/byalan.txt	Garm
+1204	npc/mobs/dungeons/clocktower.txt	Tyrfing
+1203	npc/mobs/dungeons/clocktower.txt	Mysteltainn
+1205	npc/mobs/dungeons/clocktower.txt	Executioner
+1205	npc/mobs/dungeons/clocktower.txt	Executioner
+1623	npc/mobs/dungeons/eindun.txt	RSX 0806
+1204	npc/mobs/dungeons/gefenia.txt	Tyrfing
+1203	npc/mobs/dungeons/gefenia.txt	Mysteltainn
+1205	npc/mobs/dungeons/gefenia.txt	Executioner
+1204	npc/mobs/dungeons/gefenia.txt	Tyrfing
+1203	npc/mobs/dungeons/gefenia.txt	Mysteltainn
+1205	npc/mobs/dungeons/gefenia.txt	Executioner
+1204	npc/mobs/dungeons/gefenia.txt	Tyrfing
+1203	npc/mobs/dungeons/gefenia.txt	Mysteltainn
+1205	npc/mobs/dungeons/gefenia.txt	Executioner
+1204	npc/mobs/dungeons/gefenia.txt	Tyrfing
+1203	npc/mobs/dungeons/gefenia.txt	Mysteltainn
+1205	npc/mobs/dungeons/gefenia.txt	Executioner
+1204	npc/mobs/dungeons/geftower.txt	Tyrfing
+1389	npc/mobs/dungeons/geftower.txt	Dracula
+1046	npc/mobs/dungeons/geftower.txt	Doppelganger
+//1204	npc/mobs/dungeons/glastheim.txt	Tyrfing
+//1203	npc/mobs/dungeons/glastheim.txt	Mysteltainn
+//1204	npc/mobs/dungeons/glastheim.txt	Tyrfing
+//1283	npc/mobs/dungeons/glastheim.txt	Chimera
+1039	npc/mobs/dungeons/glastheim.txt	Baphomet
+1302	npc/mobs/dungeons/glastheim.txt	Dark Illusion
+1272	npc/mobs/dungeons/glastheim.txt	Dark Lord
+//1203	npc/mobs/dungeons/glastheim.txt	Mysteltainn
+2250	npc/mobs/dungeons/glastheim.txt	Giant Khalitzburg
+1418	npc/mobs/dungeons/gondun.txt	Evil Snake Lord
+1307	npc/mobs/dungeons/guilddun.txt	Cat o' Nine Tails
+1115	npc/mobs/dungeons/guilddun.txt	Eddga
+1046	npc/mobs/dungeons/guilddun.txt	Doppelganger
+1147	npc/mobs/dungeons/guilddun.txt	Maya
+1289	npc/mobs/dungeons/guilddun.txt	Maya Purple
+1302	npc/mobs/dungeons/guilddun.txt	Dark Illusion
+1120	npc/mobs/dungeons/guilddun.txt	Ghostring
+1272	npc/mobs/dungeons/guilddun.txt	Dark Lord
+1779	npc/mobs/dungeons/icedun.txt	Ktullanux
+1685	npc/mobs/dungeons/jupedun.txt	Vesper
+1734	npc/mobs/dungeons/kiel.txt	Kiel D-01
+//1681	npc/mobs/dungeons/lhzdun.txt	Gemini-S58
+//1681	npc/mobs/dungeons/lhzdun.txt	Gemini-S58
+//1658	npc/mobs/dungeons/lhzdun.txt	Egnigem Cenia
+xxxx	npc/mobs/dungeons/lhzdun.txt	Random
+1518	npc/mobs/dungeons/louydun.txt	Bacsojin
+1038	npc/mobs/dungeons/moc_pyramid.txt	Osiris
+1511	npc/mobs/dungeons/moc_pyramid.txt	Amon Ra
+1157	npc/mobs/dungeons/moc_sphinx.txt	Pharaoh
+1885	npc/mobs/dungeons/mosk_dun.txt	Zmey Gorynych
+1190	npc/mobs/dungeons/orcdun.txt	Orc Lord
+1150	npc/mobs/dungeons/payoncave.txt	Moonlight Flower
+//1307	npc/mobs/dungeons/payoncave.txt	Cat o' Nine Tails
+//1120	npc/mobs/dungeons/pront_maze.txt	Ghostring
+1086	npc/mobs/dungeons/pront_sewers.txt	Golden Thief Bug
+1768	npc/mobs/dungeons/racheldun.txt	Gloom Under Night
+//1120	npc/mobs/dungeons/sunkenship.txt	Ghostring
+1112	npc/mobs/dungeons/sunkenship.txt	Drake
+//2251	npc/mobs/dungeons/thanatos.txt	Deviling
+1708	npc/mobs/dungeons/thanatos.txt	Thanatos
+//1096	npc/mobs/dungeons/toyfactory.txt	Angeling
+1251	npc/mobs/dungeons/toyfactory.txt	Stormy Knight
+1312	npc/mobs/dungeons/turtleisland.txt	Turtle General

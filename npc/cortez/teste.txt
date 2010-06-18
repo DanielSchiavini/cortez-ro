@@ -1,0 +1,13 @@
+//@loadnpc npc/cortez/teste.txt
+//@unloadnpc Testando
+new_zone01,41,109,5	script	Testando	720,{
+	if(getgmlevel()<90) end;
+	set .charId,getcharid(0);
+	set .charName$,strcharinfo(0);
+	set @item$,"aaa";
+	input .kks;
+	if(.kks>0){
+		callfunc("send_mail",.charId,.charName$,0,"[NPC] Wilbis","Leilão - " + @item$,"Olá "+.charName$+"\n\nSeu lance para o item \""+@item$+"\" foi superado.\nPortanto, estou lhe enviando seu zeny de volta.\n\nAtenciosamente,\nWilbis",(.kks*1000000));
+		dispbottom "E-mail enviado. Relogue para verificar!";
+	}
+}

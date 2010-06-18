@@ -1,0 +1,293 @@
+// Forbidden Skills Database
+//
+// Structure of Database:
+// SkillID,Flag
+//
+// Legend for 'Flag' field (bitmask):
+//  1 = Cannot be used in normal maps
+//  2 = Cannot be used in PvP maps
+//  4 = Cannot be used in GvG maps
+//  8 = Cannot be used when WoE is on
+//  16 = Cannot be used in PK Mode maps
+//  Restricted zones - they're configured by 'restricted <number>' mapflag
+//  32 = Cannot be used in zone 1 maps
+//  64 = Cannot be used in zone 2 maps
+//  128 = Cannot be used in zone 3 maps
+//  256 = Cannot be used in zone 4 maps
+//  512 = Cannot be used in zone 5 maps
+//  1024 = Cannot be used in zone 6 maps
+//  2048 = Cannot be used in zone 7 maps
+
+//
+// Example:
+// 8,6 = Endure cannot be used in PvP and GvG maps (2+4)
+//GVG + WoE
+26,14	//	AL_TELEPORT
+27,14	//	AL_WARP
+87,164	//	WZ_ICEWALL / 4+128+32
+150,44	//	TF_BACKSLIDING/Back Sliding/Recuar
+//361,4	//	HP_ASSUMPTIO
+362,12	//	HP_BASILICA
+//395,4	//CG_MOONLIT
+426,8	//TK_HIGHJUMP/Taekwon Jump/Salto
+
+//Proibido teleporte (2+256+32 pois é proibido nos eventos e corridas)
+10013,290	//GD_EMERGENCYCALL#Rally Guild#
+336,290	//WE_CALLPARTNER#I miss You#
+409,290	//WE_CALLPARENT#Call Parent#
+
+//mixed
+488,19	//CG_HERMODE
+491,0x84	//CR_CULTIVATION
+
+//Zone 1 - Aldebaran Turbo Track
+219,160	//Snatch	32
+26,32	//Teleport
+27,32	//Warp portal
+51,32	//Hiding
+135,32	//Cloaking
+389,32	//Stealth
+35,32	//Cure
+//87,32 //Ice Wall
+359,32	//Berserk (Frenzy)
+362,32	//Basilica
+395,32	//Sheltering Bliss
+357,32	//Spear Dynamo (Concentration)
+411,32	//TK_RUN#Running#
+426,32	//TK_HIGHJUMP#Taekwon Jump#
+421,32	//TK_JUMPKICK#Flying Side Kick#
+529,32	//NJ_SHADOWJUMP#NJ_SHADOWJUMP#
+29,32	//AL_INCAGI
+30,32	//AL_DECAGI
+328,32	//DC_DONTFORGETME
+383,32	//SN_WINDWALK
+257,32	//CR_DEFENDER
+268,32	//MO_STEELBODY
+387,32	//WS_CARTBOOST
+444,32	//SG_FUSION
+455,32	//SL_BARDDANCER
+456,32	//SL_ROGUE
+472,32	//SL_SKA
+8002,32	//HLIF_AVOID
+264,32	//MO_BODYRELOCATION/Snap
+
+//Zone 2 (Jail / MVPs Humanos)
+421,64	//TK_JUMPKICK#Flying Side Kick#
+426,64	//TK_HIGHJUMP#Taekwon Jump#
+
+//Zone 4 (Eventos)
+//41,256	//MC_VENDING#Vending#
+143,256	//NV_TRICKDEAD#Act Dead#
+389,256	//ST_CHASEWALK#Stealth#
+54,258	//ALL_RESURRECTION#Resurrection# + PVP
+
+//Zone 4 (Eventos) e Zone 2 (Jail / MVPs Humanos)
+362,320	//HP_BASILICA#Basilica#
+
+//Zone 5 - Mapa do MvP Baltazar / Sola / Yuufa e também Dr.Pimpolho / HotGuy
+25,512 //AL_PNEUMA#Pneuma#
+257,512 //CR_DEFENDER#Defending Aura#
+288,512 //SA_LANDPROTECTOR#Magnetic Earth#
+
+//Zone 6 - WoE:SE 
+264,1024 //Snap
+426,1024 //TK_HIGHJUMP#Taekwon Jump#
+
+//Zone 7
+
+
+//Zone 3 - Cidades
+5,128//		SM_BASH#Bash#
+6,128//		SM_PROVOKE#Provoke#
+7,128//		SM_MAGNUM#Magnum Break#
+8,128//		SM_ENDURE#Endure#
+10,128//	MG_SIGHT#Sight#
+12,128//	MG_SAFETYWALL#Safety Wall#
+13,128//	MG_SOULSTRIKE#Soul Strike#
+14,128//	MG_COLDBOLT#Cold Bolt#
+15,128//	MG_FROSTDIVER#Frost Diver#
+18,128//	MG_FIREWALL#Fire Wall#
+19,128//	MG_FIREBOLT#Fire Bolt#
+20,128//	MG_LIGHTNINGBOLT#Lightning Bolt#
+21,128//	MG_THUNDERSTORM#Thunderstorm#
+25,128//	AL_PNEUMA#Pneuma#
+47,128//	AC_SHOWER#Arrow Shower#
+57,128//	KN_BRANDISHSPEAR#Brandish Spear#
+79,128//	PR_MAGNUS#Magnus Exorcismus#
+80,128//	WZ_FIREPILLAR#Fire Pillar#
+81,128//	WZ_SIGHTRASHER#Sightrasher#
+83,128//	WZ_METEOR#Meteor Storm#
+84,128//	WZ_JUPITEL#Jupiter Thunder#
+85,128//	WZ_VERMILION#Lord of Vermilion#
+89,128//	WZ_STORMGUST#Storm Gust#
+90,128//	WZ_EARTHSPIKE#Earth Spike#
+91,128//	WZ_HEAVENDRIVE#Heaven's Drive#
+92,128//	WZ_QUAGMIRE#Quagmire#
+93,128//	WZ_ESTIMATION#Sense#
+129,128//	HT_BLITZBEAT#Blitz Beat#
+136,128//	AS_SONICBLOW#Sonic Blow#
+137,128//	AS_GRIMTOOTH#Grimtooth#
+148,128//	AC_CHARGEARROW#Arrow Repel#
+211,128//	RG_STEALCOIN#Mug#
+212,128//	RG_BACKSTAP#Back Stab#
+214,128//	RG_RAID#Sightless Raid#
+229,128//	AM_DEMONSTRATION#Bomb#
+232,128//	AM_CANNIBALIZE#Summon Flora#
+233,128//	AM_SPHEREMINE#Summon Marine Sphere#
+251,128//	CR_SHIELDBOOMERANG#Shield Boomerang#
+254,128//	CR_GRANDCROSS#Grand Cross#
+271,128//	MO_EXTREMITYFIST#Asura Strike#
+286,128//	SA_DELUGE#Deluge#
+287,128//	SA_VIOLENTGALE#Whirlwind#
+288,128//	SA_LANDPROTECTOR#Magnetic Earth#
+290,128//	SA_ABRACADABRA#Hocus-pocus#
+306,128//	BD_LULLABY#Lullaby#
+307,128//	BD_RICHMANKIM#Mental Sensing#
+308,128//	BD_ETERNALCHAOS#Down Tempo#
+309,128//	BD_DRUMBATTLEFIELD#Battle Theme#
+310,128//	BD_RINGNIBELUNGEN#Harmonic Lick#
+311,128//	BD_ROKISWEIL#Classical Pluck#
+312,128//	BD_INTOABYSS#Power Chord#
+313,128//	BD_SIEGFRIED#Acoustic Rhythm#
+315,128//	BA_MUSICALLESSON#Music Lesson#
+318,128//	BA_FROSTJOKE#Unbarring Octave#
+319,128//	BA_WHISTLE#Perfect Tablature#
+320,128//	BA_ASSASSINCROSS#Impressive Riff#
+321,128//	BA_POEMBRAGI#Magic Strings#
+322,128//	BA_APPLEIDUN#Song of Lutie#
+325,128//	DC_UGLYDANCE#Hip Shaker#
+326,128//	DC_SCREAM#Dazzler#
+327,128//	DC_HUMMING#Focus Ballet#
+328,128//	DC_DONTFORGETME#Slow Grace#
+329,128//	DC_FORTUNEKISS#Lady Luck#
+330,128//	DC_SERVICEFORYOU#Gypsy's Kiss#
+334,128//	WE_MALE#I Will Protect You#
+335,128//	WE_FEMALE#I Look up to You#
+336,128//	WE_CALLPARTNER#I miss You#
+369,128//	PA_GOSPEL#Battle Chant#
+370,128//	CH_PALMSTRIKE#Raging Palm Strike#
+371,128//	CH_TIGERFIST#Glacier Fist#
+372,128//	CH_CHAINCRUSH#Chain Crush Combo#
+378,128//	ASC_EDP#Deadly Poison Enchantment#
+406,128//	ASC_METEORASSAULT#Meteor Assault#
+
+
+411,128	//TK_RUN#Running#
+413,128	//TK_STORMKICK#Whirlwind Kick#
+415,128	//TK_DOWNKICK#Axe Kick#
+417,128	//TK_TURNKICK#Round Kick#
+419,128	//TK_COUNTER#Counter Kick#
+420,128	//TK_DODGE#Break Fall#
+421,128	//TK_JUMPKICK#Flying Side Kick#
+424,128	//TK_POWER#Fighting Chant#
+425,128	//TK_SEVENWIND#Mild Wind#
+426,128	//TK_HIGHJUMP#Taekwon Jump#
+427,128	//SG_FEEL#Feeling the Sun Moon and Stars#
+428,128	//SG_SUN_WARM#Warmth of the Sun#
+429,128	//SG_MOON_WARM#Warmth of the Moon#
+430,128	//SG_STAR_WARM#Warmth of the Star#
+431,128	//SG_SUN_COMFORT#Comfort of the Sun#
+432,128	//SG_MOON_COMFORT#Comfort of the Moon#
+433,128	//SG_STAR_COMFORT#Comfort of the Star#
+434,128	//SG_HATE#Hatred of the Sun Moon and Stars#
+435,128	//SG_SUN_ANGER#Sun's Wrath#
+436,128	//SG_MOON_ANGER#Moon's Wrath#
+437,128	//SG_STAR_ANGER#Stars's Wrath#
+438,128	//SG_SUN_BLESS#Blessing of the Sun#
+439,128	//SG_MOON_BLESS#Blessing of the Moon#
+440,128	//SG_STAR_BLESS#Blessing of the Star#
+441,128	//SG_DEVIL#Demon of the Sun Moon and Stars#
+442,128	//SG_FRIEND#Friend of the Sun Moon and Stars#
+443,128	//SG_KNOWLEDGE#Knowledge of the Sun Moon and Stars#
+444,128	//SG_FUSION#Union of the Sun Moon and Stars#
+462,128	//SL_KAIZEL#Kaizel#
+463,128	//SL_KAAHI#Kahai#
+464,128	//SL_KAUPE#Kauf#
+465,128	//SL_KAITE#Kaite#
+466,128	//SL_KAINA#Kaina#
+467,128	//SL_STIN#Estin#
+468,128	//SL_STUN#Estern#
+469,128	//SL_SMA#Esma#
+470,128	//SL_SWOO#Esu#
+471,128	//SL_SKE#Esk#
+472,128	//SL_SKA#Eska#
+473,128	//SM_SELFPROVOKE##
+483,128	//HW_GANBANTEIN#Ganbantein#
+484,128	//HW_GRAVITATION#Gravity Field#
+485,128	//WS_CARTTERMINATION#Cart Termination#
+486,128	//WS_OVERTHRUSTMAX#Maximum Power Thrust#
+487,128	//CG_LONGINGFREEDOM#Longing for Freedom#
+488,128	//CG_HERMODE#Wand of Hermod#
+489,128	//CG_TAROTCARD#Tarot Card of Fate#
+490,128	//CR_ACIDDEMONSTRATION#Acid Demonstration#
+491,128	//CR_CULTIVATION#Cultivation#
+494,128	//SL_HIGH#Spirit of Rebirth#
+496,128	//AM_TWILIGHT1#Twilight Alchemy 1#
+497,128	//AM_TWILIGHT2#Twilight Alchemy 2#
+498,128	//AM_TWILIGHT3#Twilight Alchemy 3#
+499,128	//HT_POWER#Beast Strafing#
+500,128	//GS_GLITTERING#Flip the Coin#
+501,128	//GS_FLING#Fling#
+502,128	//GS_TRIPLEACTION#Triple Action#
+503,128	//GS_BULLSEYE#Bulls Eye#
+504,128	//GS_MADNESSCANCEL#Madness Canceler#
+505,128	//GS_ADJUSTMENT#AdJustment#
+506,128	//GS_INCREASING#Increasing Accuracy#
+507,128	//GS_MAGICALBULLET#Magical Bullet#
+508,128	//GS_CRACKER#Cracker#
+509,128	//GS_SINGLEACTION#Single Action#
+510,128	//GS_SNAKEEYE#Snake Eye#
+511,128	//GS_CHAINACTION#Chain Action#
+512,128	//GS_TRACKING#Tracking#
+513,128	//GS_DISARM#Disarm#
+514,128	//GS_PIERCINGSHOT#Piercing Shot#
+515,128	//GS_RAPIDSHOWER#Rapid Shower#
+516,128	//GS_DESPERADO#Desperado#
+517,128	//GS_GATLINGFEVER#Gatling Fever#
+518,128	//GS_DUST#Dust#
+519,128	//GS_FULLBUSTER#Full Buster#
+520,128	//GS_SPREADATTACK#Spread Attack#
+521,128	//GS_GROUNDDRIFT#Ground Drift#
+522,128	//NJ_TOBIDOUGU#NJ_TOBIDOUGU#
+523,128	//NJ_SYURIKEN#NJ_SYURIKEN#
+524,128	//NJ_KUNAI#NJ_KUNAI#
+525,128	//NJ_HUUMA#NJ_HUUMA#
+526,128	//NJ_ZENYNAGE#NJ_ZENYNAGE#
+527,128	//NJ_TATAMIGAESHI#NJ_TATAMIGAESHI#
+528,128	//NJ_KASUMIKIRI#NJ_KASUMIKIRI#
+529,128	//NJ_SHADOWJUMP#NJ_SHADOWJUMP#
+530,128	//NJ_KIRIKAGE#NJ_KIRIKAGE#
+531,128	//NJ_UTSUSEMI#NJ_UTSUSEMI#
+532,128	//NJ_BUNSINJYUTSU#NJ_BUNSINJYUTSU#
+533,128	//NJ_NINPOU#NJ_NINPOU#
+534,128	//NJ_KOUENKA#NJ_KOUENKA#
+535,128	//NJ_KAENSIN#NJ_KAENSIN#
+536,128	//NJ_BAKUENRYU#NJ_BAKUENRYU#
+537,128	//NJ_HYOUSENSOU#NJ_HYOUSENSOU#
+538,128	//NJ_SUITON#NJ_SUITON#
+539,128	//NJ_HYOUSYOURAKU#NJ_HYOUSYOURAKU#
+540,128	//NJ_HUUJIN#NJ_HUUJIN#
+541,128	//NJ_RAIGEKISAI#NJ_RAIGEKISAI#
+542,128	//NJ_KAMAITACHI#NJ_KAMAITACHI#
+543,128	//NJ_NEN#NJ_NEN#
+544,128	//NJ_ISSEN#NJ_ISSEN#
+
+1001,128	//KN_CHARGEATK#Charge Attack#
+1002,128	//CR_SHRINK#Shrink#
+1003,128	//AS_SONICACCEL#Sonic Acceleration#
+1004,128	//AS_VENOMKNIFE#Throw Venom Knive#
+1005,128	//RG_CLOSECONFINE#Close Confine#
+1006,128	//WZ_SIGHTBLASTER#Sight Blaster#
+1007,128	//SA_CREATECON#Create Converter#
+1008,128	//SA_ELEMENTWATER#Elemental Change Water#
+1009,128	//HT_PHANTASMIC#Phantasmic Arrow#
+1010,128	//BA_PANGVOICE#Pang Voice#
+1011,128	//DC_WINKCHARM#Wink of Charm#
+1012,128	//BS_UNFAIRLYTRICK#Unfair Trick#
+1013,128	//BS_GREED#Greed#
+1014,128	//PR_REDEMPTIO#Redemptio#
+1015,128	//MO_KITRANSLATION#Ki Translation#
+1016,128	//MO_BALKYOUNG#Ki Explosion#
+1017,128	//SA_ELEMENTGROUND#Elemental Change Earth#
+1018,128	//SA_ELEMENTFIRE#Elemental Change Fire#
+1019,128	//SA_ELEMENTWIND#Elemental Change Wind#

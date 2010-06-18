@@ -1,0 +1,67 @@
+//===== Athena Script ================================================
+//= Cientista NPC
+//===== By ===========================================================
+//= Pikx & Loki
+//===== Version ======================================================
+//= 1.1
+//===== Compatible With ==============================================
+//= Any eAthena
+//===== Description ==================================================
+//= NPC que faz os 3 tipos diferentes de clone; Neutro, Escravo e Mau
+//===== Comments =====================================================
+//= 1.0 = Criado por Pikx
+//= 1.1 = Revisado e Corrigido por Loki
+//= Criado especialmente para o FullMetalRO
+//====================================================================
+//= Por favor, se for distribuir, não retire os créditos...
+//= A recompensa pelo nosso trabalho é o reconhecimento ^^
+//====================================================================
+
+guild_vs2,92,49,5	script	Cientista	735,{
+set @preco,150000;
+mes "[cientista]";
+mes "Olá, eu cuido desses clones idiotas... Quer um clone seu?";
+mes "Mas eu vou cobrar "+@preco+"z, você quer?";
+next;
+menu "Clone Escravo",-,"Clone Neutro",l_CN,"Não quero",l_NQ;
+//"Clone Mau",l_CM,
+if(zeny >=150000) goto F_1;
+next;
+mes "[cientista]";
+mes "Você tá louco? quer enganar quem?? Estou vendo que você não tem dinheiro!";
+next;
+atcommand strcharinfo(0)+":@die";
+close;
+
+F_1:
+    set zeny,zeny-150000;
+    atcommand strcharinfo(0)+":@slaveclone "+getcharid(0);
+close;
+
+l_CM:
+    if(zeny >=150000) goto F_2;
+next;
+    mes "Você nao tem dinheiro!";
+close;
+
+F_2:
+    set zeny,zeny-150000;
+    atcommand strcharinfo(0)+":@evilclone "+getcharid(0);
+close;
+
+l_CN:
+    if(zeny >=15000) goto F_3;
+next;
+    mes "Você nao tem dinheiro!";
+close;
+
+F_3:
+   set zeny,zeny-150000;
+  atcommand strcharinfo(0)+":@clone "+getcharid(0);
+close;
+
+l_NQ:
+   mes "[Cientista]";
+   mes "Tudo bem, eu te perdoo dessa vez!!!";
+close;
+}}

@@ -1,0 +1,197 @@
+//Create Table loteria(aposta_id int primary key auto_increment,account_id int,loteria_id int,char_name varchar(30),valor int);
+//- Variáveis globais:
+//	$lot_id	- ano/semana do sorteio
+//	$lot_tot - valor do prêmio atual
+//	$lot_acc - account_id que ganhou o ultimo sorteio
+//	$lot_ultimo - valor do ultimo prêmio
+
+schg_cas03,23,74,5	script	Loteria	73,{
+	mes "[^666699 Loteria ^000000]";
+	mes "Oi caro viajante!";
+	
+	if(getgmlevel()>=10){
+		if(getgmlevel()>=90){
+			switch(select("Continuar:Sortear:Zerar")){
+				case 2:
+					close2;
+					debugmes "Testando loteria";
+					goto OnTeste;
+					break;
+				case 3:
+					set $lot_id, 0;
+					set $lot_tot, 0;
+					set $lot_acc, 0;
+					set $lot_ultimo, 0;
+					debugmes "Valores da loteria resetados!";
+					break;
+				default:
+					break;
+			}
+		}else{
+			mes "Por favor, volte com seu personagem normal..";
+		}
+	}
+	if($lot_id){
+		if($lot_acc==getcharid(3)){
+			mes "Você ganhou a última loteria, meus parabéns.";
+			if(!checkweight(9929,($lot_ultimo/1000)+1)){
+				mes "Só tire este peso do seu corpo, para que eu possa lhe pagar.";
+			}else{
+				mes "Estou lhe entregando o seu prêmio de "+$lot_ultimo+"kk agora mesmo!";
+				callfunc("dar_milhoes",$lot_ultimo,"loteria");
+				logmes "[Loteria] "+($lot_id-1)+": Prêmio de "+$lot_ultimo+"kk recebido";
+				set $lot_ultimo,0;
+				set $lot_acc,0;
+			}
+		}else{
+			mes "O prêmio esta semana é de " + ($lot_tot-$lot_tot/10) + " milhões.";
+			if(gettime(4)==6 && gettime(3)>=22 || gettime(4)==7 && gettime(3)<2){ // fechado das 22h às 2h
+				mes " ";
+				mes "A loteria está fechada para o sorteio, que acontece toda semana, às 0h de domingo.";
+			}else{
+				set @name$, "";
+				set @valor, 0;
+				query_sql "Select char_name, valor From loteria Where account_id="+escape_sql(getcharid(3))+" And loteria_id="+escape_sql($lot_id), @name$, @valor;
+				if(@name$==""){
+					mes "Você ainda não apostou nada esta semana.. Deseja apostar?";
+				}else{
+					mes "Você já apostou "+@valor+"kk. Deseja apostar algo mais?";
+				}
+				next;
+				if(select("Claro!:Não, obrigado")==1){
+					mes "[^666699 Loteria ^000000]";
+					mes "Quantos ^FF0000milhões^000000 quer apostar?";
+					mes "Quanto maior sua aposta, maior a chance de ganhar.";
+					if(#cred_loteria>0)
+						mes "Você ainda tem "+#cred_loteria+" milhões em créditos de outros NPCs.";
+					next;
+					input @aposta;
+					
+					if(@aposta>0){
+						if(@aposta<#cred_loteria && #cred_loteria>0)
+							set @aposta, #cred_loteria;
+						mes "[^666699 Loteria ^000000]";
+						if(callfunc("tem_milhoes",(@aposta-#cred_loteria))==1){
+							mes "Deseja confirmar seu lance de "+@aposta+" milhões de Zeny na loteria desta semana?";
+							if(@valor>0)
+								mes "O total apostado será "+(@valor+@aposta)+"kk.";
+							if(#cred_loteria>0){
+								if(#cred_loteria<@aposta)
+									mes "Mas você só precisará pagar mais "+(@aposta-#cred_loteria)+"kk.";
+								else
+									mes "Mas você não precisará pagar pois tem créditos suficientes.";
+							}
+							next;
+							if(select("Confirmar:Cancelar")==1){
+								callfunc("tira_milhoes",(@aposta-#cred_loteria),"loteria");
+								if(@name$==""){
+									query_sql "insert into loteria(account_id,loteria_id,char_name,valor)values("+getcharid(3)+","+$lot_id+",'"+escape_sql(strcharinfo(0))+"',"+@aposta+")";
+								}else{
+									query_sql "update loteria set char_name='"+escape_sql(strcharinfo(0))+"',valor=valor+"+@aposta+" where account_id="+getcharid(3)+" and loteria_id="+$lot_id;
+								}
+								logmes "[Loteria] "+$lot_id+": Aposta de "+@aposta+"kk"+(#cred_loteria>0?" pagas com "+#cred_loteria+" créditos":"");
+								set #cred_loteria,0;
+								set $lot_tot, $lot_tot + @aposta;
+								
+								mes "[^666699 Loteria ^000000]";
+								mes "Obrigado, sua aposta de "+@aposta+" milhões de Zeny foi registrada.";
+								mes "O sorteio acontecerá às 0h de domingo, e o prêmio por enquanto é de "+($lot_tot-$lot_tot/10)+" milhões.";
+								mes "^00AA00Boa sorte !!^000000";
+							}
+						}else{
+							mes "Você precisa ter o dinheiro pra pagar "+(@aposta-#cred_loteria)+" milhões!";
+						}
+					}
+				}else{
+					mes "[^666699 Loteria ^000000]";
+					mes "Certo, você tem até às 22h de sábado para apostar.";
+					mes "O sorteio acontecerá às 0h de domingo.";
+				}
+			}
+		}
+	}else{
+		mes "Por enquanto não temos nenhuma loteria.";
+		mes "Os sorteios começam no próximo domingo. Desculpe pelo incômodo.";
+	}
+	close;
+	
+	OnSun0000:
+	OnTeste:
+		if($serv==5){
+			set $lot_start, 400;
+		}else{
+			set $lot_start, 5;
+		}
+		if($lot_id){
+			announce "[Loteria] Olá queridos jogadores!",bc_all;
+			sleep 2000;
+			//Verificando se o ultimo vencedor retirou prêmio
+			if($lot_acc>0){
+				announce "[Loteria] Tenho ótimas notícias para vocês!!",bc_all;
+				sleep 2000;
+				announce "[Loteria] O vencedor da última loteria não apareceu!",bc_all;
+				sleep 2000;
+				announce "[Loteria] Portanto, o prêmio dele será adicionado à loteria desta semana.",bc_all;
+				sleep 2000;
+				callfunc("log_mes","[Loteria] "+$lot_id+": Vencedor "+$lot_acc+" não pegou prêmio "+$lot_ultimo,"loteria","schg_cas03",$lot_acc);
+				set $lot_ultimo, $lot_ultimo-$lot_start;
+				set $lot_tot, $lot_tot + $lot_ultimo;
+				set $lot_acc, 0;
+			}else if($lot_ultimo<$lot_start || $lot_tot<$lot_ultimo){
+				set $lot_ultimo,$lot_start;
+			}
+			// Sorteando
+			set .@premio$, callfunc("formata_milhoes",($lot_tot-$lot_tot/10));
+			announce "[Loteria] O prêmio de "+.@premio$+" desta semana será sorteado agora!",bc_all;
+			
+			query_sql "Select account_id, valor From loteria Where loteria_id="+escape_sql($lot_id)+" and valor>0 order by valor desc,account_id", .@acc, .@valor;
+			set .@vencedor, rand($lot_tot-$lot_ultimo+$lot_ultimo/5);
+			callfunc("log_mes","[Loteria] "+$lot_id+": *Resultado do Sorteio de "+$lot_tot+"-"+$lot_ultimo+"+"+($lot_ultimo/5)+": "+.@vencedor,"loteria","schg_cas03");
+			set $lot_ultimo,0;
+			set .@i,-1;
+			while(.@vencedor > 0 && .@valor[.@i+1] > 0){
+				set .@i, .@i+1;
+				set .@vencedor, .@vencedor - .@valor[.@i];
+			}
+			sleep 2000;
+			// Fazendo suspense
+			announce "[Loteria] E o vencedor do prêmio de "+.@premio$+" é...",bc_all;
+			if(.@vencedor<=0){
+				set $lot_acc, .@acc[.@i];
+				query_sql "Select char_name From loteria Where loteria_id="+escape_sql($lot_id)+" and account_id="+escape_sql($lot_acc), .@char$;
+				callfunc("log_mes","[Loteria] "+$lot_id+": *Vencedor nr."+.@vencedor+", "+.@premio$+", pos."+.@i,.@char$,"schg_cas03",$lot_acc);
+				set $lot_ultimo, $lot_tot - $lot_tot/10;
+				query_sql "Replace into site.vars (str,dt,valor,valorstr) values ('Loteria"+$serv+"',now(),"+$lot_ultimo+",'"+escape_sql(.@char$)+"')";
+				set $lot_tot, $lot_start;
+				set $lot_id, $lot_id+1;
+			}else{
+				set $lot_tot, $lot_tot + $lot_tot/9 + 1;
+				callfunc("log_mes","[Loteria] "+$lot_id+": *Acumulou! Vencedor nr."+.@vencedor+" posicao "+.@i+" $lot_tot="+$lot_tot,"loteria","schg_cas03");
+				set $lot_ultimo, $lot_tot;
+				query_sql "Replace into site.vars (str,dt,valor,valorstr) values ('Loteria"+$serv+"',now(),"+$lot_tot+",null)";
+			}
+			deletearray .@acc[0],getarraysize(.@acc);
+			deletearray .@valor[0],getarraysize(.@valor);
+			sleep 3000;
+			// Anunciando vencedor
+			if(.@vencedor>0){
+				announce "[Loteria] Não houve vencedor..!",bc_all;
+				sleep 1000;
+				announce "[Loteria] O prêmio de "+.@premio$+" acumulou para a semana que vem!",bc_all;
+			}else{
+				announce "[Loteria] "+.@char$+" ganhou a loteria! Parabéns!",bc_all;
+				sleep 10000;
+				announce "[Loteria] "+.@char$+" vai ficar com o prêmio de "+.@premio$+" desta semana.",bc_all;
+			}
+		}else{
+			announce "[Loteria] A loteria acaba de ser iniciada! Boa sorte à todos!",bc_all;
+			set $lot_tot, $lot_start;
+		}
+		//Criando nova loteria
+		query_sql "Select ifNull(max(loteria_id),0)+1 from loteria", .@lot_id;
+		if(.@lot_id>0)
+			set $lot_id, .@lot_id;
+		else
+			set $lot_id, rand(999)+1;
+		set .@lot_id,0;
+}

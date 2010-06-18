@@ -1,0 +1,467 @@
+//////////////////////////////////////////////////////////
+//			Script adoção -  CortezRO					//
+//////////////////////////////////////////////////////////
+//=====Traduzido e editado por===================================
+// Boris Murilo Rocha - Smarf
+
+prt_church,115,122,0	warp	prtch03	1,2,prt_church,164,171
+prt_church,162,171,0	warp	prtch01-3	1,2,prt_church,113,122
+
+prt_church,166,176,3	script	Oliver	61,{
+
+	if( getgmlevel()<50 ) goto L_SKIP;
+	mes "[GM Menu]";
+	mes "Você quer reiniciar a adoção em andamento?";
+	next;
+	menu "Sim",-,"Não",L_SKIP;
+	callfunc "AdoptReset","GM reiniciou o processo";
+	close;
+
+L_SKIP:
+	if($@AdoptionActive == 1) goto A_Cannot;
+	mes "[Oliver]";
+	if (Upper==2) goto A_YouBaby;
+	if (getchildid()>0 && getskilllv(410)<=0) goto A_GetSkill;
+	if (getchildid()>0) goto A_Already;
+	mes "Você gostaria de adotar alguém?";
+	next;
+	menu "Sim",A_Yes,"Não",A_No;
+A_No:
+	mes "[Oliver]";
+	mes "Eu sinto muito por ouvir isso, por favor volte quando você achar que está pronto.";
+	close;
+A_Cannot:
+	mes "[Oliver]";
+	mes "Uma adoção está em andamento, volte quando ela acabar.";
+	close;
+A_Yes:
+	mes "[Oliver]";
+	mes "Bom ouvir isso!";
+	mes "Mas você tem os pré-requisitos para uma adoção?";
+	next;
+	mes "[Oliver]";
+	mes "Nós não podemos simplesmente sair dando bebês por aí.";
+	mes "Antes de nós deixarmos você sair daqui com um bebê, nós temos que saber se você é forte o suficiente pra cuidar dele.";
+	next;
+	mes "[Oliver]";
+	mes "E nós também precisamos saber se você é casado.";
+	mes "Nós não vamos dar um bebê para um casal que não é casado.";
+	next;
+	mes "[Oliver]";
+	mes "Você acha que está dentro desses critérios?";
+	next;
+	menu "Sim, Eu estouw",-,"Não, Eu acho que não",A_No;
+	mes "[Oliver]";
+	mes "Bom, você parece ter certeza disso.";
+	next;
+	deltimer "timeadopt::OnTimerTimeout";
+	addtimer 300000,"timeadopt::OnTimerTimeout";
+	if ($@AdoptionActive == 1) goto A_Cannot;
+	set $@AdoptionActive,1;
+	set @AdoptionReady,1;
+	mes "[Oliver]";
+	mes "Eu vou encaminhar você para o minha colega Vilma.";
+	close;
+
+A_GetSkill:
+	mes "Você acabou de adotar um bebê. Eu vou te ensinar uma habilidade muito útil chamada Vem cá, Filhote!";
+	next;
+	emotion 46;
+	skill 410,1,0;
+	mes "[Oliver]";
+	mes "Pronto! Agora fale para sua parceira falar comigo.";
+	mes "Nossas crianças são o nosso futuro!";
+	close;
+A_Already:
+	emotion 1;
+	mes "Como está o seu bebê?";
+	close;
+A_YouBaby:
+	emotion 2;
+	mes "Diga Oi para os seus pais! Seja legal!";
+	if (getskilllv(408)<=0 || getskilllv(409)<=0) mes "Falando nisso, nosso professor está esperando para ver você.";
+	close;
+}
+
+prt_church,172,177,3	script	Inanna	103,{
+	if (Upper==2) goto A_YouBaby;
+	if (getchildid()>0 && getskilllv(410)<=0) goto A_GetSkill;
+	if (getchildid()>0) goto A_Already;
+	if ($@FinalQuestion==1 && $@ParentOne$==strcharinfo(0)) goto 
+A_ParentOneEnd;
+	if ($@FinalQuestion==1 && $@ParentTwo$==strcharinfo(0)) goto 
+A_ParentTwoEnd;
+	if ($@FinalQuestion==1 && $@Baby$==strcharinfo(0)) goto A_BabyEnd;
+	if (strcharinfo(0)==$@Baby$) goto A_FinalTest;
+	if (strcharinfo(0)==$@ParentTwo$) goto A_SecondReg;
+	if (@AdoptionReady==0 || $@AdoptionActive==0) goto A_SeeFriend;
+	mes "[Inanna]";
+	deltimer "timeadopt::OnTimerTimeout";
+	addtimer 120000,"timeadopt::OnTimerTimeout";
+	mes "Então você acha que se encaixa nos nossos requerimentos?";
+	mes "Vamos ver, você é nível 70 ou maior?";
+	next;
+	menu "Sim, eu sou nível 70 ou maior",A_lvl,"Não, desculpe por te aborrece",-;
+	if(BaseLevel >= 70){
+		mes "[Inanna]";
+		mes "Eu não somente falhei em não ver que você é um nível alto, mas você também mentiu para mim.";
+		next;
+	}
+	mes "[Inanna]";
+	mes "Que pena ouvir isso, por favor volte quando você se encaixar nesses requerimentos.";
+	callfunc "AdoptReset","Os pais não satisfaziam os níveis necessários";
+	close;
+A_SeeFriend:
+	mes "[Inanna]";
+	mes "Vejo que você não falou com o meu amigo aqui.";
+	mes "Ele vai te encaminhar a mim, quando ele achar que você está pronto.";
+	close;
+A_lvl:
+	if(BaseLevel >= 70) goto A_lvlpassed;
+	mes "[Inanna]";
+	mes "Eu não somente falhei em não ver que você é um nível baixo, mas você também mentiu para mim.";
+	next;
+	mes "[Inanna]";
+	mes "Eu não posso dar um bebê a você";
+	callfunc "AdoptReset","Os pais não satisfaziam os níveis necessários";
+	close;
+A_lvlpassed:
+	mes "[Inanna]";
+	mes "WOW, Você passou no teste de força.";
+	next;
+	mes "[Inanna]";
+	mes "Mas vamos ver se você tem um bom casamento.";
+	mes "Para isso eu vou precisar ver seus aneis de casamento.";
+	next;
+	mes "[Inanna]";
+	mes "Você está com o seu anel de casamento equipado?";
+	next;
+	menu "Sim, eles estão aqui",A_Wedring,"Não, eles não estão",A_Noring,"Eu não sou casado",-;
+	mes "[Inanna]";
+	mes "Bem, como meu amigo alí disse, nós não vamos dar um bebê a uma família que não é casada";
+	callfunc "AdoptReset","Os pais não são casados";
+	close;
+A_Noring:
+	mes "[Inanna]";
+	mes "Eu não posso acreditar que vocês estão em um bom casamento quando você não está com o seu anel o tempo todo!!!";
+	next;
+	mes "[Inanna]";
+	mes "Eu não acho que você merece um bebê.";
+	callfunc "AdoptReset","Os pais não estão com seus anéis de casamento como prova do seu casamento.";
+	close;
+A_Wedring:
+	if ( countitem(2634)>0 || countitem(2635)>0 ) goto A_Wedringpassed;
+	goto A_Noring;
+A_Wedringpassed:
+	mes "[Inanna]";
+	mes "Ahhhh, você está com seu anel, você provavelmente deve amar seu parceiro.";
+	next;
+	if (getchildid()>0) goto A_AlreadyHaveBaby;
+	mes "[Inanna]";
+	mes "Eu preciso ver eles, por favor me fale o nome.";
+	next;
+	input $@ParentTwo$;
+	set $@ParentOne$, strcharinfo(0);
+	mes "[Inanna]";
+	mes "Sua parceira agora tem 2 minutos para falar comigo antes da adoção ser cancelada.";
+	next;
+	deltimer "timeadopt::OnTimerTimeout";
+	addtimer 120000,"timeadopt::OnTimerTimeout";
+	areaannounce "prt_church",0,0,350,350,"Por favor, posso falar com "+$@ParentTwo$+"? ",0;
+	mes "[Inanna]";
+	mes "Agora você poderia esperar até eu chamar você novamente? Obrigado.";
+	close;
+A_AlreadyHaveBaby:
+	mes "Agora vamos ver as incrições nos seus anéis, oh.. parece que vocês já tem um bebê!";
+	next;
+	mes "[Inanna]";
+	mes "Desculpe, você só pode adotar uma vez.";
+	mes "Por favor tome conta de seu bebê.";
+	callfunc "AdoptReset","Os pais já adotaram um bebê";
+	close;
+A_SecondReg:
+	deltimer "timeadopt::OnTimerTimeout";
+	addtimer 120000,"timeadopt::OnTimerTimeout";
+	mes "[Inanna]";
+	mes "Você deve ser "+$@ParentTwo$+", Eu acabei de falar com seu parceiro "+$@ParentOne$+", ele falo que vocês gostariam de adotar um bebê.";
+	next;
+	mes "[Inanna]";
+	mes "Você concorda com "+$@ParentOne$+", você quer adotar um bebê?";
+	next;
+	menu "Sim, eu concordo",A_agree,"Não, eu não concordo",-;
+	mes "[Inanna]";
+	mes "Essa é uma má notícia, desculpe por ouvir isso.";
+	callfunc "AdoptReset","O segundo parceiro não quis adotar";
+	close;
+A_agree:
+	mes "[Inanna]";
+	mes "Agora, eu vou fazer com você a mesma coisa do que fiz com seu parceiro.";
+	next;
+	if(BaseLevel >= 70) goto A_lvltwo;
+	mes "[Inanna]";
+	mes "Desculpe, você não é nível maior que 70.";
+	callfunc "AdoptReset","O segundo parceiro não satisfaz o nível requerido";
+	close;
+A_lvltwo:
+	if ( countitem(2634)>0 || countitem(2635)>0 ) goto A_Wedringtwo;
+	mes "[Inanna]";
+	mes "Desculpe, mas você não tem um anel de casamento como prova de estar casado.";
+	callfunc "AdoptReset","O segundo parceiro não tem o anel de casamento para provar o seu casamento";
+	close;
+A_Wedringtwo:
+	if (getchildid()>0) goto A_AlreadyHaveBaby;
+	mes "[Inanna]";
+	mes "Nós checamos tudo, e você passou pelos requesitos.";
+	mes "Tudo que você precisa agora é um aprendiz para ser adotado.";
+	next;
+	mes "[Inanna]";
+	mes "Você tem um aprendiz para ser adotado?";
+	next;
+	menu "Sim, Aqui comigo",A_YesBaby,"Não, Desculpe",-;
+	mes "[Inanna]";
+	mes "Eu sugiro a você achar um, lembre-se de conversar com meus amigos antes quando você voltar.";
+	callfunc "AdoptReset","Não há um aprendiz para ser adotado";
+	close;
+A_YesBaby:
+	mes "[Inanna]";
+	mes "Eu posso saber o nome dele?";
+	next;
+	input $@Baby$;
+	mes "[Inanna]";
+	mes "O aprendiz tem 2 minutos para falar comigo, ou a adoção será cancelada.";
+	next;
+	deltimer "timeadopt::OnTimerTimeout";
+	addtimer 120000,"timeadopt::OnTimerTimeout";
+	mes "[Inanna]";
+	mes "Obrigado, agora por favor, espere chamado novamente.";
+	areaannounce "prt_church",0,0,350,350,"Eu poderia falar com "+$@Baby$+", por favor?",0;
+	close;
+A_FinalTest:
+	deltimer "timeadopt::OnTimerTimeout";
+	addtimer 120000,"timeadopt::OnTimerTimeout";
+	if(Upper==2) goto A_AlreadyAdopted;
+	if(baseClass == Job_Taekwon) goto A_CantBeAdopted;
+	mes "[Inanna]";
+	mes "Você deve ser "+$@Baby$+", prazer em te conhecer.";
+	mes "Algumas pessoas legais, "+$@ParentOne$+" e "+$@ParentTwo$+", pediram para adotar você.";
+	next;
+	if(sex!=0) set $@GenderBaby$,"boy";
+	if(sex==0) set $@GenderBaby$,"girl";
+
+	mes "[Inanna]";
+	mes "Agora, você gostaria de ir com essas pessoas?";
+	next;
+	menu "Sim, eu amaria",A_BabyYes,"Nããããããããoooo!!!",-;
+	mes "[Inanna]";
+	mes "Por favor se acalme.";
+	mes "Eu vou tentar achar melhores pais para você da próxima vez.";
+	callfunc "AdoptReset","O aprendiz não quis ser adotado";
+	close;
+A_BabyYes:
+	mes "[Inanna]";
+	mes "Aaaaah, que legal, é bom ouvir isso.";
+	mes "Agora vamos ver...";
+	next;
+	mes "[Inanna]";
+	mes "Eu preciso checar o seu nível para ver se você realmente é um aprendiz.";
+	next;
+	if (BaseLevel == 1 && JobLevel == 1) goto A_Ready;
+	mes "[Inanna]";
+	mes "Desculpe, mas você é nível maior que 1, e por isso você não pode ser adotado.";
+	callfunc "AdoptReset","O aprendiz é maior que nível 1";
+	close;
+A_Ready:
+	mes "[Inanna]";
+	mes "Você é tão doce e inocente que nem no dia em que o senhor te criou.";
+	next;
+	mes "[Inanna]";
+	mes "Eu não tenho nenhuma objeção quanto a você ser adotado.";
+	mes "Antes de você ser adotado, eu preciso ver seus pais e você mais uma vez.";
+	set $@FinalQuestion,1;
+	areaannounce "prt_church",0,0,350,350,"Eu poderia falar com todas as pessoas envolvidas nessa adoção por favor?",0;
+	deltimer "timeadopt::OnTimerTimeout";
+	addtimer 120000,"timeadopt::OnTimerTimeout";
+	close;
+A_AlreadyAdopted:
+	mes "[Inanna]";
+	mes "Oh! Você já foi adotado, então você não pode ser adotado de novo.";
+	callfunc "AdoptReset","A pessoa que seria adotada já foi adotada antes";
+	close;
+A_CantBeAdopted:
+	mes "[Inanna]";
+	mes "Desculpe, mas sua classe não deixa você ser adotado.";
+	callfunc "AdoptReset","A pessoa que seria adotado tem uma classe que não permite a adoção";
+	close;
+A_ParentOneEnd:
+	if (@regged>1) goto AlreadyReged;
+	if ($@ParentOne$==$@ParentTwo$) goto A_SameFail;
+	mes "[Inanna]";
+	mes "É bom falar com você de novo "+$@ParentOne$;
+	mes "Essa é a sua última chance para desistir";
+	next;
+	mes "[Inanna]";
+	mes "Você só pode adotar uma vez, então se você adotar "+$@Baby$+", você nunca poderá adotar ninguém mais";
+	next;
+	mes "[Inanna]";
+	mes "Você tem certeza de que quer proceder?";
+	next;
+	menu "Sim",A_FinalYesP,"Não",-;
+	mes "[Inanna]";
+	mes "Eu não posso acreditar que você foi tão longe para falar não!";
+	mes "Você tem certeza que quer parar agora?";
+	next;
+	menu "Sim, eu não quero adotar",-,"Não, eu cometi um erro",A_ParentOneEnd;
+A_Failend:
+	mes "[Inanna]";
+	mes "Bem, se você tem certeza";
+	callfunc "AdoptReset","Um dos pais desistiu";
+	close;
+A_FinalYesP:
+	mes "[Inanna]";
+	mes "Ok, tudo está pronto para a adoção";
+	mes "Eu vou anunciar para todos quando estiver pronto";
+	set @regged,1;
+	set $@checkall,$@checkall+1;
+	if ($@checkall==3) goto THEEND;
+	close;
+A_ParentTwoEnd:
+	if (@regged>1) goto AlreadyReged;
+	mes "[Inanna]";
+	mes "Legal falar com você de novo "+$@ParentTwo$;
+	mes "Essa é a sua última chance de desistir";
+	next;
+	mes "[Inanna]";
+	mes "Você só pode adotar uma vez, então se você adotar "+$@Baby$+", você nunca poderá adotar ninguém mais";
+	next;
+	mes "[Inanna]";
+	mes "Você tem certeza que quer proceder?";
+	next;
+	menu "Sim",A_FinalYesP,"Não",-;
+	mes "[Inanna]";
+	mes "Eu não posso acreditar que você foi tão longe para falar não!";
+	mes "Você tem certeza que quer parar agora?";
+	next;
+	menu "Sim, eu não quero adotar",A_Failend,"Não, eu cometi um erro",A_ParentTwoEnd;
+A_AlreadyReged:
+	mes "[Inanna]";
+	mes "Por favor espere até os outros falarem comigo";
+	close;
+A_BabyEnd:
+	if (@regged>1) goto AlreadyReged;
+	mes "[Inanna]";
+	mes "Legal falar com você de novo "+$@Baby$;
+	mes "Essa é a sua última chance de desistir";
+	next;
+	mes "[Inanna]";
+	mes "Você só pode ser adotado uma vez, então se você for adotado por "+$@ParentOne$+" e "+$@ParentTwo$+", você nunca mais poderá ser adotado";
+	next;
+	mes "[Inanna]";
+	mes "Você tem certeza que quer proceder?";
+	next;
+	menu "Sim",A_FinalYesB,"Não",-;
+	mes "[Inanna]";
+	mes "Eu não posso acreditar que você foi tão longe para falar não!";
+	mes "Você tem certeza que quer para agora?";
+	next;
+	menu "Sim, eu não quero ser adotado",A_Failend,"Não, eu cometi um erro",A_BabyEnd;
+A_FinalYesB:
+	mes "[Inanna]";
+	mes "Ok, tudo está pronto para a adoção começar";
+	mes "Eu vou anunciar para todos quando estiver pronto";
+	set @regged,1;
+	set $@checkall,$@checkall+1;
+	if ($@checkall==3) goto THEEND;
+	close;
+A_SameFail:
+	mes "[Inanna]";
+	mes "Desculpe, mas parece que seus pais são a mesma pessoa, e isso não é permitido";
+	callfunc "AdoptReset","Ambos os pais são a mesma pessoa";
+	close;
+
+A_GetSkill:
+	emotion 20;
+	mes "[Inanna]";
+	mes "Você não pode ver seu bebê freqüentemente? Eu vou te ensinar uma habilidade... Onde está meu manual de habilidades?";
+	next;
+	mes "[Oliver]";
+	mes "Ei, Inanna! Esse é o meu trabalho. Passe-os para mim!";
+	close;
+A_Already:
+	mes "[Inanna]";
+	emotion 21;
+	mes "Como está o seu bebê?";
+	close;
+A_YouBaby:
+	mes "[Inanna]";
+	emotion 30;
+	mes "Fale para seu pai que ele é um bom pai!";
+	if (getskilllv(408)<=0 || getskilllv(409)<=0) mes "Você deveria falar com o nosso professor.";
+	close;
+
+THEEND:
+	logmes "[Adoção] "+$@Baby$+" foi adotado por "+$@ParentOne$+" e "+$@ParentTwo$+".";
+	adopt $@ParentOne$,$@ParentTwo$,$@Baby$;
+	announce $@ParentOne$+" e "+$@ParentTwo$+" acabaram de ter um novo bebê chamado "+$@Baby$,5;
+	deltimer "timeadopt::OnTimerTimeout";
+	set $@AdoptionActive, 0;
+	set $@ParentOne$, null;
+	set $@ParentTwo$, null;
+	set $@Baby$, null;
+	set $@GenderBaby$, null;
+	set $@FinalQuestion, 0;
+	set $@CheckAll, 0;
+	close;
+	end;
+}
+
+prt_church,165,175,0	script	timeadopt	-1,{
+	OnTimerTimeout:
+	callfunc "AdoptReset","Muito tempo passou entre os passos para a adoção";
+	end;
+}
+function	script	AdoptReset	{
+	deltimer "timeadopt::OnTimerTimeout";
+	set $@AdoptionActive, 0;
+	set $@ParentOne$, null;
+	set $@ParentTwo$, null;
+	set $@Baby$, null;
+	set $@GenderBaby$, null;
+	set $@FinalQuestion, 0;
+	set $@CheckAll, 0;
+	areaannounce "prt_church",0,0,350,350,"A adoção foi cancelada", bc_area&bc_npc;
+	end;
+}
+
+prt_church,165,166,6	script	Professor	97,{
+	mes "[Mario]";
+	if (Upper==2 && (getskilllv(408)<=0 || getskilllv(409)<=0)) goto L_Teach;
+	if (Upper==2) mes "Olá bebê! Como você está?";
+	if (Upper!=2) mes "Como você está?";
+	next;
+	menu "Bem!",-,"Legal.",-,"Mais ou menos...",-,"Me dê um tiro, por favor.",-,"Tchau",L_Cancel;
+	mes "[Mario]";
+	mes "Legal!";
+	emotion rand(19,21);
+	close;
+
+L_Teach:
+	mes "Agora você conhecer duas habilidades muito úteis!";
+	next;
+	mes "1. Pai, Mãe, cadê vocês? (quando você estiver em perigo).";
+	mes "2. Proteja a expêriencia dos seus pais com seu amor!";
+	next;
+	mes "Esta pronto?";
+	menu "Sim estou",-,"Não quero saber de nada!",L_Cancel;
+	skill 408,1,0;
+	skill 409,1,0;
+	emotion 41;
+	next;
+	mes "[Mario]";
+	mes "Quando você ver um bebê fale para ele me visitar.";
+	close;
+
+L_Cancel:
+	mes "[Mario]";
+	mes "Tchauzinho!";
+	close;
+}

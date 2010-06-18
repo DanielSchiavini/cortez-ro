@@ -1,0 +1,541 @@
+// eAthena msg_athena.conf
+// Message Configuration
+// For translation, just change msg here (second line), no need to modify source code,
+// or alternatively, use conf/import/msg_conf.txt
+// Format:
+// // English message
+// msg_number: translated message
+
+//   0-499: reserved for GM commands
+// 500-999 reserved for others
+
+// Messages of GM commands
+// -----------------------
+
+0: Teleportado. 
+1: Mapa não encontrado.
+2: Coordenadas inválidas, usando uma coordenada aleatória.
+3: Personagem não encontrado.
+4: Pulo para %s
+5: Pulo para %d %d
+6: Local de retorno do personagem salvo. 
+7: Teleportando para o local de retorno. 
+8: Velocidade modificada.
+9: Opções modificadas.
+10: Invisível: Desligado
+11: Invisível: Ligado
+12: Sua classe foi modificada.
+13: Você morreu.
+14: Personagem Morto. 
+15: Personagem teleportado (mensagem enviada ao jogador). 
+16: Você foi ressucitado!
+17: HP e SP recuperados.
+18: Item criado.
+19: ID ou nome do item inválido.
+20: Todos os seus itens foram removidos.
+21: Nível de base aumentado.
+22: Nível de base diminuído. 
+23: Nível de classe não pode ser maior que isso.
+24: Nível de classe aumentado.
+25: Nível de classe diminuído.
+26: Comandos de ajuda:
+27: Arquivo help.txt não localizado.
+28: Nenhum jogador localizado.
+29: 1 jogador localizado.
+30: %d jogadores localizados.
+31: PvP: Off.
+32: PvP: On.
+33: GvG: Off.
+34: GvG: On.
+35: Você não pode usar esse comando com essa classe. 
+36: Aparência mudada.
+37: Um número inválido foi especificado. 
+38: Invalid location number or name.
+39: Monstros Criados!
+40: ID ou nome de monstro inválido.
+41: Impossível diminuir o valor.
+42: Atributos modificados. 
+43: Você não está em um clã.
+44: Você não é o dono de seu clã. 
+45: Tentativa de mudar o nível do clã falhou.
+46: Chamando %s...
+47: Nível de base não pode ser maiorr.
+48: Classe do personagem mudada.
+49: Inválido ID de classe. 
+50: Você já tem alguns poderes de GM.
+51: Personagem revivido.
+52: Essa opção não pode ser usada no modo PK.
+53: '%s' status:
+54: Nenhum jogador localizado no mapa '%s'.
+55: 1 jogador localizado no mapa '%s'.
+56: %d jogadores localizados no mapa '%s'.
+57: Lugar de respawn do personagem mudado. 
+58: Opções do personagem mudadas.
+59: Modo noturno ativado.
+60: Modo diurno ativado.
+61: O sagrado mensageiro deu o julgamento. 
+62: Julgamento foi feito.
+63: Misericórdia foi mostrada.
+64: Misericódia foi concedida. 
+65: O nível base do personagem foi aumentado.
+66: O nível base do personagem foi diminuído.
+67: O nível base do personagem não pode ser maior.
+68: O nível de classe do personagem foi aumentado. 
+69: O nível de classe do personagem foi diminuído.
+70: Você aprendeu a habilidade. 
+71: Você perdeu a habilidade.
+72: Guerra entre clãs começou!
+73: A guerra entre clãs já começou.
+74: Guerra entre clãs terminou! 
+75: Guerra entre clãs ainda nao começou.
+76: Você recebeu todas as habilidades. 
+77: A referência do resultado de '%s' é (name: id):
+78: %s: %d
+79: It is %d affair above.
+80: Give a display name and monster name/id please. 
+81: Seu nível de GM não autoriza a você fazer isso com aquele jogador. 
+82: Por favor, use um desses números/nomes:
+83: Não pode gerar emperium.
+84: Todos os status foram mudados!
+85: Tempo inválido para comando de ban.
+86: Desculpe, mas o nome de um personagem tem no mínimo 4 letras. 
+87: Desculpe, mas o nome de um personagem tem no máximo 23 letras. 
+88: Nome do personagem mandado para o char-server para confirmar.
+89: Desculpe, já é noite. Impossível executar o comando.
+90: Desculpe, já é dia. Impossível executar o comando.
+91: Nível base do personagem não pode ser mais elevado.
+92: Todos os personagens foram chamados!
+93: Todos os personagens online do clã %s estão perto de você.
+94: Nome/ID incorretos, ou nenhum jogador do clã está online.
+95: Todos os personagem online do grupo %s estão perto de você. 
+96: Nome ou ID incorreto, ou nenhum dos jogadores do grupo estão online. 
+97: Database de Itens recarregado.
+98: Database de Monstros recarregado.
+99: Database de habilidades recarregado.
+100: Scripts recarregados.
+101: Login-server pediu para recarregar as contas de GM e os níveis delas. 
+102: Montado em Peco.
+103: Você não está mais espiando o clã %s. 
+104: Espiando o clã %s.
+105: Você não está mais espiando o grupo %s.
+106: Espiando o grupo %s.
+107: Todos os itens foram reparados.
+108: Nenhum item precisa de reparo. 
+109: Jogador foi nukado!
+110: Npc Habilitado. 
+111: Esse NPC não existe.
+112: Npc Desabilitado.
+113: %d item(s) foram removidos por um GM.
+114: %d item(s) removidos do jogaodr.
+115: %d item(s) removidos. Jogador tinha somente %d no %d itens. 
+116: O personagem não tem o item. 
+117: GM enviou você para a cadeia.
+118: Jogador enviado para a cadeia.
+119: Esse jogador não está na cadeia.
+120: GM tirou você da cadeia.
+121: Jogador enviado para Prontera.
+122: Disfarce aplicado. 
+123: Monstro/NPC nome/id não foi encontrado. 
+124: Disfarce retirado.
+125: Você não está disfarçado.
+//Clone Messages
+126: Não foi possível criar um clone do jogador que tenha um nível de GM maior que você.
+127: Você atingiu o limite de clones escravos. 
+128: Clone Mau criado.
+129: Impossível criar clone mau.
+130: Clone criado.
+131: Impossível criar clone.
+132: Clone escravo criado.
+133: Impossível criar clone escravo.
+//Messages 134-139 are no longer used, available for future reuse (preferrable for more variations of @clone) 
+140: Disfarce aplicado no jogador.
+141: Disfarce foi retirado do jogador.
+142: O personagem não está disfarçado.
+143: Comandos estão desabilitados nesse mapa.
+144: E-mail atual inválido. Se você não tiver modificado seu e-mail, ele é a@a.com.
+145: Novo e-mail inválido. Por favor digite um e-mail de verdade.
+146: Novo e-mail deve ser um e-mail verdadeiro.
+147: Novo e-mail deve ser diferente do atual e-mail. 
+148: Informação enviada para o login-server via char-server.
+149: Impossível aumentar o número/valor.
+150: Nenhum GM encontrado.
+151: 1 GM encontrado.
+152: %d GMs encontrados. 
+153: %s é um comando desconhecido.
+154: %s falhou. 
+155: Impossível mudar sua classe.
+156: HP e/ou SP modificados.
+157: HP e SP já estão em um bom valor.
+158: Nível de Base não pode se tornar menor.
+159: Nível de Classe não pode se tornar menor. 
+160: PvP já está Off. 
+161: PvP já está On.
+162: GvG já está Off.
+163: GvG já está On.
+164: Seu ponto de memorização #%d não existe.
+165: Todos os monstros foram mortos!
+166: Nenhum item foi refinado!
+167: 1 item foi refinado! 
+168: %d itens foram refinados!
+169: Esse item (%d: '%s') não é um equipamento.
+170: Esse item não é um equipamento.
+171: %d - nulo
+172: Você substituiu a antiga posição de memorização %d - %s (%d,%d). 
+173: Nota: você não tem a habilidade 'Portal' no nível necessário para usá-la. 
+174: Número de pontos de status mudados!
+175: Número de pontos de habilidades mudados!
+176: Número de zenys mudado!
+177: Impossível diminuir um status.
+178: Impossível aumentar um status.
+179: Nível do clã modificado.
+180: O monstro/ovo nome/id não existe.
+181: Você já tem um bichinho de estimação.
+182: Valor de confiança do bichinho de estimação mudado!
+183: Valor de confiança do bichinho de estimação já está como confiável. 
+184: Desculpe, mas você não tem um bichinho de estimação.
+185: Fome do bichinho de estimação mudada! 
+186: Fome do bichinho de estimação já foi saciada.
+187: Você pode agora renomear o nome do seu bichinho de estimação.
+188: Você pode renomar de novo seu bichinho de estimação.
+189: O jogador pode agora renomear o nome de seu bichinho de estimação. 
+190: This player can already rename his/her pet. 
+191: Desculpe, mas o jogador não tem um bichinho de estimação.
+192: Impossível mudar a classe do personagem.
+193: Nível Base do personagem não pode ser menor.
+194: Nível de Classe do personagem não pode ser menor. 
+195: Todos os jogadores foram kickados! 
+196: Você já tem essa habilidade de quest.
+197: Esse número da habilidade não existe ou não é uma habilidade de quest.
+198: Esse número de habilidade não existe.
+199: Esse jogador aprendeu a habilidade. 
+200: Esse jogador já tem essa habilidade de quest. 
+201: Você não tem essa habilidade de quest.
+202: O jogador perdeu a habilidade.
+203: Esse jogador não tem essa habilidade de quest.
+204: AVISO: mais de 1000 esferas espirituais pode derrubar seu server e/ou cliente!
+//204: WARNING: more than 1000 spiritballs can CRASH your server and/or client!
+//Comentário do Cher: GO BALTA!1!!11!1 1k DE SPIRITBALLS!11!11!! GOGO!11!!1 
+205: Você já tem esse número de esferas espirituais.
+206: '%s' pontos de habilidade resetado!
+207: '%s' pontos de status resetado!
+208: '%s' skill and stats points reseted!
+209: Número de pontos de habilidade do personagem foi mudado!
+210: Número de pontos de status do personagem foi mudado!
+211: Número de zeny do personagem foi mudado
+212: Impossível montar em um Peco enquanto estiver disfarçado.
+213: Você não pode montar em um Peco com sua classe.
+214: Desmontou do Peco.
+215: Esse jogador não pode montar em um Peco enquanto estiver disfarçado.
+216: Agora, esse jogador está montado em um Peco.
+217: O jogador não pode ter um peco com esta classe.
+218: Agora, o jogador não tem mais um peco.
+219: %d dia
+220: %d dias
+221: %s %d hora
+222: %s %d horas
+223: %s %d minuto 
+224: %s %d minutos
+225: %s e %d segundo
+226: %s e %d segundos
+227: Você não pode se transformar com um peco.
+228: O jogador não pode se transformar com um peco.
+229: Seu efeito mudou.
+230: Tempo do servidor (tempo normal): %A, %B %d %Y %X. 
+231: Tempo: O servidor ficará em dia permanente
+232: Tempo: O servidor ficará em dia permanente
+233: Tempo: O servidor ficará de noite por %s.
+234: Tempo: Depois, o servidor ficará em dia permanente
+235: Tempo: O servidor ficará de dia por %s. 
+236: Tempo: Depois, o servidor ficará em noite permanente
+237: Tempo: O servidor ficará em noite por %s.
+238: Tempo: Um ciclo de um dia tem a duração de %s.
+239: Tempo: Depois, o servidor ficará de dia por %s. 
+240: %d monstro(s) criado!
+241: Agora você pode matar quem quiser
+242: Agora você pode ser atingido
+243: Habilidades no mapa desabilitatas
+244: Habilidades no mapa habilitatas
+245: Tempo online: %ld days, %ld hours, %ld minutes, %ld seconds. 
+246: Seu nível de GM não permite fazer isso.
+247: Você não está autorizado a teleportar para esse mapa.
+248: Você não está autorizado a teleportar a partir desse mapa.
+249: Você não está autorizado a voltar ao local no qual salvou. 
+250: Você já abriu o armazém. Feche-o primeiro.
+251: Você já abriu o armazém do clã. Feche-o primeiro.
+252: Você não está em um clã.
+253: Você não é autorizado a salvar nesse mapa.
+254: Configuração dos comandos de GM recarregados. 
+255: Configuração de batalha recarregada.
+256: Banco de dados de status recarregado.
+257: Banco de dados de jogadores recarregado.
+258: Pacote enviado 0x%x (%d)
+259: Pacote inválido
+260: Este item não pode ser trocado. 
+261: Script não pôde ser carregado.
+262: Script carregado.
+263: Este item não pode ser jogado.
+264: Este item não pode ser guardado.
+265: %s comprou seu(s) item(ns).
+266: Alguns dos seus itens não podem ser vendidos e foram retirados da sua venda. 
+267: '%s' designated maps reseted!
+268: Mensagem do dia recarregada
+269: Mostrando os primeiros %d de um total de %d
+//@me output format
+//270: *%s %s*
+270: * :%s %s: *
+271: Você não pode jogar itens no chão nesse mapa
+272: Você não pode trocar nesse mapa
+273: Comandos possíveis:
+274: %d comandos localizados.
+275: Nenhum comando localizado.
+276: Você não pode abrir uma venda aqui
+277: Uso: @request <Pedido/Mensagem para os GMs>.
+278: (@request): %s
+279: Mensagem enviada com o @request.
+280: Nome inválido.
+281: Você não pode criar salas de chat neste local.
+//Party-related
+282: Você precisa ser o líder do grupo para usar este comando.
+283: Personagem alvo precisa estar online e no seu grupo.
+284: Liderança transferida.
+285: Você se tornou o líder do grup.
+286: As opções não foram modificadas.
+//Missing stuff for @killer related commands.
+287: Você não pode mais matar qualquer um
+288: Ninguém mais poderá te atacar
+289: Agora qualquer um pode atacar o jogador
+290: O jogador não pode mais ser atacado por qualquer um
+291: Os efeitos vão desaparecer ao atualizar/teleportar
+// Guild Castles Number
+// --------------------
+299: ?? Castelos
+300: Nenhum castelo 
+301: Um castelo
+302: Tá tudo dominado!
+303: Três castelos
+304: Quatro castelos
+305: Cinco castelos
+306: Seis Castelos
+307: Sete Castelos
+308: Oito Castelos
+309: Nove Castelos
+310: Dez Castelos
+311: Onze Castelos
+312: Doze Castelos
+313: Treze Castelos
+314: Quatorze Castelos
+315: Quinze Castelos
+316: Dezesseis Castelos
+317: Dezessete Cstelos
+318: Dezoito Castelos
+319: Dezenove Castelos
+320: Vinte Castelos 
+321: Vinte e um Castelos
+322: Vinte e dois Castelos
+323: Vinte e três Castelos
+324: Dominação TOTAL!
+//alternative
+//324: Twenty Four Castles
+
+// Players Titles (for @who, etc commands, check battle_athena.conf for titles level setting)
+// Useful note: you may remove ':%d' from the line, then you will see only player title, w/o his level
+325: Super jogador: %d
+326: Super jogador+: %d
+327: Moderador: %d
+328: Sub-GM: %d
+329: Sub-GM+: %d
+330: GM: %d
+331: GM Chefe: %d
+332: Administrador: %d
+// Templates for @who output
+333: Nome: %s
+334: (%s)
+335: | Grupo: '%s'
+336: | Clã: '%s'
+//You may ommit the last %s, then you won't see players job name
+337: | L:%d/%d | Classe: %s
+//You may ommit 2 last %d, then you won't see players coords, just map name
+338: | Local: %s %d %d
+
+// @duel (part 1)
+350: Duelo: Você não pode usar @invite. Você não pode duelar.
+351: Duelo: O limite de jogadores foi alcançado.
+352: Duelo: Jogador não encontrado.
+353: Duelo: O jogador já está duelando.
+354: Duelo: Convite do duelo foi enviado.
+355: Duelo: Você não pode usar @duel sem @reject.
+356: Duelo: Você só pode entrar em outro duelo uma vez a cada %d minutos.
+357: Duelo: Valor inválido.
+358: Duelo: Você não pode usar @leave. Você não pode duelar.
+359: Duelo: Você deixou de duelar.
+360: Duelo: Você não pode usar @accept sem um convite de duelo.
+361: Duelo: O convite de duelo acaba de ser aceito.
+362: Duelo: Você não pode usar @reject sem um convite de duelo.
+363: Duelo: O convite do duelo foi rejeitado.
+// @duel (part 2)
+370:  -- Duelos: %d/%d, Jogadores: %d/%d, Máximo: %d --
+371:  -- Duelos: %d/%d, Jogadores: %d/%d --
+372:  -- Duelo criado (Use @invite/@leave) --
+373:  -- Jogador %s te convidou %s para um duelo --
+374: Blue -- Jogador %s te convida para um duelo de pvp (Use @accept/@reject) --
+375:  <- O jogador %s saiu do duelo --
+376:  -> O jogador %s aceitou o duelo --
+377:  -- O jogador %s rejeitou o duelo --
+// Main chat
+380: Main chat foi ativado.
+381: Main chat já ativado.
+382: Main chat  foi desativado.
+383: Main chat já desativado.
+384: Main chat está habilitado. Uso: @main <on|off|mensagem>.
+385: Main chat está desabilitado. Usage: @main <on|off|mensagem>.
+386: Main@%s: %s
+387: Você não pode usar Main chat enquanto está mudo.
+388: Você deve habilitar main chat com o comando "@main on".
+//NoAsk
+390: Modo rejeição ativado.
+391: Modo rejeição desativado.
+392: Seu pedido foi rejeitado pela opção modo rejeição.
+
+// Messages of others (not for GM commands)
+// ----------------------------------------
+
+500: Já é noite!
+501: O limite de tempo da sua conta é: %d-%m-%Y %H:%M:%S.
+502: Modo diurno ativado
+503: Modo noturno ativado
+
+//Supernovice's Guardian Angel
+//actually.. new client msgtxt file contains these 3 lines... [Lupus]
+//----------------------------
+//504: Guardian Angel, can you hear my voice? ^^;
+//505: My name is %s, and I'm a Super Novice~
+//506: Please help me~ T.T
+504: Anjo da Guarda, você pode me ouvir? ^^
+505: Meu nome é %s, e eu sou um Eterno Aprendiz~
+506: Eu preciso da sua ajuda, por favor~ T.T
+
+// Trade Spoof Messages
+507: Este jogador foi banido por %d minuto(s).
+508: Este jogador não foi banido (Opção de Ban desabilitado).
+//509 Available....
+
+//mail system
+//----------------------
+510: Você não tem mensagens.
+511: %d - From : %s (New - Priority)
+512: %d - From : %s (New)
+513: %d - From : %s
+514: Você tem %d novas mensagens.
+515: Você tem %d mensgens não lidas.
+516: Você não tem mensagens.
+517: Mensagem não encontrada.
+518: Ler mensagens de %s.
+519: Não deletar mensagens não lidas.
+520: Você recebeu um novo e-mail, use @listmail antes de deleta-lo.
+521: Mensagem deletada.
+522: Você deve esperar 10 minutos antes de mandar outra mensagem.
+523: Acesso negado.
+524: Personagem não existe.
+525: E-mail foi enviado.
+526: Você tem um novo e-mail.
+
+// Bot detect messages (currently unused)
+535: Uso possível de BOT (99% de chances) ou cliente modificado por '%s' (conta: %d, id: %d). Este jogador perguntou seu nome quando você estava escondido.
+
+536: Personagem '%s' (conta: %d) tentou usar um bot (tentou detectar um falso jogador).
+537: Personagem '%s' (conta: %d) tentou usar um bot (tentou detectar um falso monstro).
+// Trade Spoof Messages
+538: Hack na troca: personagem '%s' (conta: %d) tentou trocar mais itens do que ele tem.
+539: O jogador tem %d de um tipo de item (id: %d), e tentou trocar %d deles.
+540: Este jogador foi bloqueado definitivamente.
+// Rare Items Drop/Steal announce
+541: '%s' matou %s e achou %s (chance: %0.02f%%)
+542: '%s' matou %s e roubou %s (chance: %0.02f%%)
+// @Away message bits
+543: (Mensagem automática enviada)
+544: Ausente[at]: "%s"
+545: Ausente: "%s"
+546: Mensagem de ausência habilitada.
+547: Mensagem de ausência desabilitada.
+548: Uso: @away,@aw <mensagem>. Deixe a mensagem vazia para desabilitar.
+// @Autotrade
+549: Você precisa estar com uma venda aberta para usar @autotrade.
+
+//550 -> 650: Job Names
+550: Aprendiz
+551: Espadachim
+552: Mago
+553: Arqueiro
+554: Noviço
+555: Mercador
+556: Gatuno
+557: Cavaleiro
+558: Sacerdote
+559: Bruxo
+560: Ferreiro
+561: Caçador
+562: Assassino
+563: Templário
+564: Monge
+565: Sábio
+566: Arruaceiro
+567: Alquimista
+568: Bardo
+569: Odalisca
+570: Noivos
+571: Super-Aprendiz
+572: Gunslinger
+573: Ninja
+574: Natal
+575: Noviço T.
+576: Espadachim T.
+577: Mago T.
+578: Arqueiro T.
+579: Noviço T.
+580: Mercador T.
+581: Gatuno T.
+582: Lorde
+583: Sumo-Sacerdote
+584: Arquimago
+585: Mestre Ferreiro
+//585: Mastersmith //IRO name
+586: Atirador de Elite
+587: Algoz
+588: Paladino
+589: Mestre
+590: Professor
+//590: Scholar //IRO name
+591: Stalker
+592: Criador
+//592: Biochemist //IRO Name
+593: Menestrel
+//593: Minstrel //IRO Name
+594: Cigana
+595: Bebê Aprendiz
+596: Bebê Espadachim
+597: Bebê Mago
+598: Bebê Arqueiro
+599: Bebê Noviço
+600: Bebê Mercador
+601: Bebê Gatuno
+602: Bebê Cavaleiro
+603: Bebê Sacerdote
+604: Bebê Bruxo
+605: Bebê Ferreiro
+606: Bebê Caçador
+607: Bebê Assassino
+608: Bebê Templário
+609: Bebê Monge
+610: Bebê Sábio
+611: Bebê Arruaceiro
+612: Bebê Alquimista
+613: Bebê Bardo
+614: Bebê Odalisca
+615: Super Bebê
+616: Taekwon
+617: Gladiador Estelar
+618: Espiritualista
+619: Gunslinger
+620: Ninja
+//...
+650: Classe desconhecida

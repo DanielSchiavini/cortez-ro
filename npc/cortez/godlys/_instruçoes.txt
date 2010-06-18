@@ -1,0 +1,9 @@
+Bom tem um arquivo que se chama "Itens" que estão os drops que tem que ser implementados tambem.
+O item 7331 tem que ser um item intransferivel e apenas colocar no Storage.
+Os primeiros 3 NPCs serão os que iram dar o preperatório nos jogadores para que possam fazer as quests.
+
+- Faltou dica de onde fica o NPC do skeleton manteau
+
+- O NPC Witch teleportando para que_sign01 197 220
+- Um Portal que_sign01 197 177 telepotando para Nifflhein (pode ser aleatório)
+- Um Portal em nif_fild01 236 225 para que_sign01 45 15

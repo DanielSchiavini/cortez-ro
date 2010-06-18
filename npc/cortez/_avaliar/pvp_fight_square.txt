@@ -1,0 +1,161 @@
+//===== eAthena Script ======================================= 
+//= Original Pvp Fight Square
+//===== By: ================================================== 
+//= Majora (Chris Mccully)
+//===== Current Version: ===================================== 
+//= 2.0
+//===== Compatible With: ===================================== 
+//= Any eAthena Version
+//===== Description: ========================================= 
+//= Lets Player Fight In Square 
+//===== Additional Comments: ================================= 
+//= You can change the maximum player when going in.
+//= Fully Tested (Working)
+//= Added Jecth's Song more nicer!!
+//= Please put these in your mapflag pvp
+//=guild_vs1	mapflag	pvp
+//=guild_vs2	mapflag	pvp
+//=guild_vs3	mapflag	pvp
+//=guild_vs4	mapflag	pvp
+//=guild_vs5	mapflag	pvp
+//============================================================ 
+prontera,150,151,1	script	Pvp Fight Square	833,{
+	mes "[Speed-RO Assistance]";
+	mes "Welcome to the Speed-RO Original Fight Square.";
+	next;
+	mes "[Speed-RO Assistance]";
+	mes "Do you want to go in to that Pvp Fight Square?";
+	menu "Yes Please...",yes,"No Iam Not Ready Yet...",Lcancel;
+yes:
+	mes "[Speed-RO Assistance]";
+	mes "Ok here we go Please Choose you arena.";
+	menu "Pvp Arena 1 [" + getmapusers("guild_vs1") + " / 100]",Lgu1,
+	"Pvp Arena 2 [" + getmapusers("guild_vs2") + " / 100]",Lgu2,
+	"Pvp Arena 3 [" + getmapusers("guild_vs3") + " / 100]",Lgu3,
+	"Pvp Arena 4 [" + getmapusers("guild_vs4") + " / 100]",Lgu4,
+	"Pvp Arena 5 [" + getmapusers("guild_vs5") + " / 100]",Lgu5,
+	"Quit",Lcancel;
+Lgu1:
+	next;
+	mes "[Speed-RO Assistance]";
+	mes "Are you Ready??";
+	next;
+	if(getmapusers("guild_vs1") >= 100 ) goto LError;
+	warp "guild_vs1",0,0;
+	end;
+Lgu2:
+	next;
+	mes "[Speed-RO Assistance]";
+	mes "Are you Ready??";
+	next;
+	if(getmapusers("guild_vs2") >= 100 ) goto LError;
+	warp "guild_vs2",0,0;
+	end;
+Lgu3:
+	next;
+	mes "[Speed-RO Assistance]";
+	mes "Are you Ready??";
+	next;
+	if(getmapusers("guild_vs3") >= 100 ) goto LError;
+	warp "guild_vs3",0,0;
+	end;
+Lgu4:
+	next;
+	mes "[Speed-RO Assistance]";
+	mes "Are you Ready??";
+	next;
+	if(getmapusers("guild_vs4") >= 100 ) goto LError;
+	warp "guild_vs4",0,0;
+	end;
+Lgu5:
+	next;
+	mes "[Speed-RO Assistance]";
+	mes "Are you Ready??";
+	next;
+	if(getmapusers("guild_vs5") >= 100 ) goto LError;
+	warp "guild_vs5",0,0;
+	end;
+Lcancel:
+	mes "[Speed-RO Assistance]";
+	mes "Ok Please come back anytime when your ready";
+	close;
+LError:
+	mes "[Speed-RO Assistance]";
+	mes "Sorry, this arena is currently full";
+	close;
+}
+
+guild_vs1,50,92,4	script	Pvp Fight Square	116,{
+	mes "[Speed-RO Assistance]";
+	mes "Done Killing Players?";
+	menu "Yeah",home,"No Not Yet",close;
+home:
+	mes "[Speed-RO Assistance]";
+	mes "Bye!!";
+	next;
+	warp "prontera",156,191;
+close:
+	mes "[Speed-RO Assistance]";
+	mes "Ok!";
+	close;
+}
+
+guild_vs2,50,91,4	script	Pvp Fight Square	116,{
+	mes "[Speed-RO Assistance]";
+	mes "Done Killing Players?";
+	menu "Yeah",home,"No Not Yet",close;
+home:
+	mes "[Speed-RO Assistance]";
+	mes "Bye!!";
+	next;
+	warp "prontera",156,191;
+close:
+	mes "[Speed-RO Assistance]";
+	mes "Ok!";
+	close;
+}
+
+guild_vs3,50,86,4	script	Pvp Fight Square	116,{
+	mes "[Speed-RO Assistance]";
+	mes "Done Killing Players?";
+	menu "Yeah",home,"No Not Yet",close;
+home:
+	mes "[Speed-RO Assistance]";
+	mes "Bye!!";
+	next;
+	warp "prontera",156,191;
+close:
+	mes "[Speed-RO Assistance]";
+	mes "Ok!";
+	close;
+}
+
+guild_vs4,50,91,4	script	Pvp Fight Square	116,{
+	mes "[Speed-RO Assistance]";
+	mes "Done Killing Players?";
+	menu "Yeah",home,"No Not Yet",close;
+home:
+	mes "[Speed-RO Assistance]";
+	mes "Bye!!";
+	next;
+	warp "prontera",156,191;
+close:
+	mes "[Speed-RO Assistance]";
+	mes "Ok!";
+	close;
+}
+
+guild_vs5,50,91,4	script	Pvp Fight Square	116,{
+	mes "[Speed-RO Assistance]";
+	mes "Done Killing Players?";
+	menu "Yeah",home,"No Not Yet",close;
+home:
+	mes "[Speed-RO Assistance]";
+	mes "Bye!!";
+	next;
+	warp "prontera",156,191;
+close:
+	mes "[Speed-RO Assistance]";
+	mes "Ok!";
+	close;
+}

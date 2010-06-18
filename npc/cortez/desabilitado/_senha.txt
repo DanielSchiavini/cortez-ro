@@ -1,0 +1,187 @@
+//	OPÇÕES DO CHAR (variável #opt)
+//	1	flag de que já usou
+//	2	usou o script como VIP
+//	4	main on
+//	8	showexp on
+//	16	showzeny off
+//
+//	Variável #autoloot ()
+//		Define a % de autoloot da conta (0 = off)
+//
+
+
+gonryun,160,101,5	script	CortezRO Serviços	108,{
+	
+L_Ini:
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Eu não presto mais serviços ao CortezRO.";
+	mes "Se quiser trocar seu e-mail, senha, apagar ou salvar personagens (entre outras coisas), utilize o painel de controle.";
+	mes "O endereço é:";
+	mes "www.cortezro.com.br/cp.php";
+	next;
+	close;
+	mes "Oi, tudo bom?";
+	mes "Estou aqui para te ajudar com algumas coisas!";
+	mes "O que deseja hoje?";
+	next;
+	menu "^336699Nada...^333333",L_Sair,"^333333Trocar Senha^333333",L_Senha,"^333333Trocar Email^333333",L_Email;
+
+L_Ranking:
+	mes "^336699[Serviços Cortez]^333333";
+	query_sql "Select `Value` From Global_Reg_Value Where Str='ranking';",@atualizado$;
+	mes "Rankings atualizados em :";
+	mes "     ^CC6666"+@atualizado$+"^333333";
+	mes "Qual Ranking você quer ver?";
+	next;
+	
+	menu "^336699Nenhum",L_Ini,"^333333Por Nível",L_RankingLevel,"^333333Por Zeny",L_RankingZeny,"^333333Ranking de Clãs",L_RankingGuild;
+
+L_RankingLevel:
+	mes "^336699[Serviços Cortez]^333333";
+	mes "-Ranking Por Level:";
+	query_sql "Select Nome From RankingLevel Order by Pos Limit 10;", @nomes$;
+	query_sql "Select Resets From RankingLevel Order by Pos Limit 10;", @reset$;
+	for(set @i, 0; @i < getarraysize(@nomes$); set @i, @i + 1){
+		mes "("+(@i+1)+") "+@nomes$[@i]+": "+@reset$[@i]+" resets";
+	}
+	next;
+	goto L_Ranking;
+
+L_RankingZeny:
+	mes "^336699[Serviços Cortez]^333333";
+	mes "-Ranking Por Zeny:";
+	query_sql "Select Nome From RankingZeny Order by Pos Limit 10;", @nomes$;
+	query_sql "Select Zeny From RankingZeny Order by Pos Limit 10;", @zenys$;
+	for(set @i, 0; @i < getarraysize(@nomes$); set @i, @i + 1){
+		mes "("+(@i+1)+") "+@nomes$[@i]+": "+@zenys$[@i];
+	}
+	next;
+	goto L_Ranking;
+
+L_RankingGuild:
+	mes "^336699[Serviços Cortez]^333333";
+	mes "-Ranking Por Guild:";
+	query_sql "Select Nome From RankingGuild Order by Pos Limit 10;", @nomes$;
+	for(set @i, 0; @i < getarraysize(@nomes$); set @i, @i + 1){
+		mes "("+(@i+1)+") "+@nomes$[@i];
+	}
+	next;
+	goto L_Ranking;
+
+L_Senha:
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Para modificar sua senha, entre no painel de controle do CortezRO.";
+	mes "O endereço é ^996633cortezro.com.br/cp^333333";
+	mes "Boa diversão!";
+	close;
+	
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Quer mesmo mudar sua senha?";
+	next;
+	
+	menu "Não, desisti...",L_Ini,"Quero sim, certeza!",-;
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Primeiro, digite seu e-mail...";
+	mes "Lembre-se de mudar o e-mail, pois quando a conta é criada é a@a.com";
+	next;
+	
+	input $@email_dig$;
+	next;
+	
+	if($@email_dig$ == "a@a.com"){
+		mes "^336699[Serviços Cortez]^333333";
+		mes "Você precisa trocar o e-mail da sua conta antes de mudar a senha.";
+		mes "Para isso, use o comando:";
+		mes "  @email a@a.com seu_email";
+		mes "Boa diversão...";
+		close;
+		
+	}
+	
+	query_sql "SELECT `email` FROM `login` WHERE `account_id` = "+escape_sql(getcharid(3))+"", @email_certo$;
+	if($@email_dig$ != @email_certo$){
+		mes "^336699[Serviços Cortez]^333333";
+		mes "Seu e-mail foi digitado incorretamente...";
+		mes "   >_<   ";
+		next;
+		goto L_Ini;
+	}
+	
+	mes "^336699[Serviços Cortez]^333333";
+	mes "E-mail aceito!";
+	mes "Agora, digite sua senha atual...";
+	next;
+	
+	input $@s_atual$;
+	next;
+	
+	query_sql "SELECT `user_pass` FROM `login` WHERE `account_id` = "+escape_sql(getcharid(3))+"", @senha$;
+	if(@senha$ != $@s_atual$){
+		mes "^336699[Serviços Cortez]^333333";
+		mes "Senha Incorreta! Que absurdo!";
+		mes "   >_<   ";
+		next;
+		goto L_Ini;
+	}
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Senha correta... digite a nova senha!";
+	next;
+	
+	input $@s_nova$;
+	next;
+	
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Digite novamente para confirmar...";
+	next;
+	
+	input $@s_nova2$;
+	next;
+	
+	mes "^336699[Serviços Cortez]^333333";
+	if($@s_nova$==$@s_nova2$){
+		if($@s_nova$!=$@s_atual$){
+			query_sql "Update `login` set `user_pass`='"+escape_sql($@s_nova$)+"' where `account_id`="+escape_sql(getcharid(3));
+			query_sql "Insert Into `login_senhas`(tempo,account_id,pass_ant,pass_novo) values (now(),"+escape_sql(getcharid(3))+",'"+escape_sql($@s_atual$)+"','"+escape_sql($@s_nova$)+"');";
+		}
+		mes "Senha modificada com sucesso. Você já pode acessar sua conta com a nova senha!";
+		next;
+		goto L_Ini;
+	} else {
+		mes "Confirmação de senha incorreta!";
+		next;
+		goto L_Senha;
+	}
+	
+L_Email:
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Para trocar seu e-mail, digite o seguinte comando:";
+	mes "^FF0000@email email_antigo email_novo^333333";
+	next;
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Por exemplo:";
+	mes "^FF0000@email antigo@mail.com novo@email.com.br^333333";
+	next;
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Se você nunca escolheu um e-mail, o seu antigo é a@a.com";
+	mes "Vamos supor que seu e-mail é cortez@hotmail.com e você nunca colocou um e-mail";
+	mes "Digite então:";
+	mes "^FF0000@email a@a.com cortez@hotmail.com^333333";
+	next;
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Se depois quiser trocar denovo, para ragnarok@cortez.com, escreva assim:";
+	mes "^FF0000@email cortez@hotmail.com ragnarok@cortez.com^333333";
+	next;
+	mes "^336699[Serviços Cortez]^333333";
+	mes "É muito importante manter sua conta em segurança, trocando seu e-mail e senha sempre";
+	mes "E não passando sua senha pra ninguém!";
+	mes "Boa diversão...";
+	close;
+	
+L_Sair:
+	mes "^336699[Serviços Cortez]^333333";
+	mes "Boa sorte, e boa diversão no servidor.";
+	mes "Se puder, doe para nos ajudar e se divertir mais ainda!";
+	mes "Obrigado...";
+	close;
+
+}

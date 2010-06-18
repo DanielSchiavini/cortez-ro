@@ -1,0 +1,13 @@
+char_server_db: rot
+char_server_id: cortezro
+char_server_pw: hLeNoaB5aTo0vlEm9U4h
+
+map_server_db: rot
+map_server_id: cortezro
+map_server_pw: hLeNoaB5aTo0vlEm9U4h
+
+log_db: log
+log_db_id: cortezro
+log_db_pw: hLeNoaB5aTo0vlEm9U4h
+
+//GRANT SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON *.* TO 'cortezro'@'localhost' IDENTIFIED BY 'hLeNoaB5aTo0vlEm9U4h' WITH MAX_USER_CONNECTIONS 4;

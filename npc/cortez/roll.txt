@@ -1,0 +1,282 @@
+prt_in,47,29,0	warp	prt10-1	2,1,schg_cas03,48,48
+
+schg_cas03,77,93,5	script	Jogos	715,{		//712
+	mes "^ff0000[Velhinho Rico~]^000000";
+	mes "Deseja se divertir?";
+	menu "Agora não...",-,"Pode ser!",L_vai;
+	close;
+	
+	L_vai:
+	next;
+	mes "^ff0000[Velhinho Rico~]^000000";
+	mes "Eu vou cobrar 10.000z por isso! Tem certeza?";
+	menu "Não vou pagar isso!",-,"Ok, eu pago!",L_foi;
+	close;
+	
+	L_foi:
+	if(zeny>=100000){
+		query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-10000,'roll')";
+		set zeny,zeny-10000;
+	}
+	close2;
+	warp "prt_in",44,29;
+	end;
+}
+
+//==========================================================
+//Roll a Dice  NPC
+//==========================================================
+//Made by birkiczd
+//==========================================================
+//This game lets you and the Dicer throw 3 dices.
+//Whoever get's a higher number (the player or dealer) wins.
+//==========================================================
+//Version:1.0 - made script public
+//        1.1 - fixed a few bugs,added dice emos =)
+//        1.2 - made variables for the amount of zenys for 
+//	          each bet so it is easy for people to costumize 
+//              the script
+//	    1.3 - added more emoticons,made an Info menu 
+//		    option which contains explanations and rules,
+//		    added the amount of lost/won zeny on the end 
+//		    of each game,added more colors
+//	    1.4 - some small code optimization thanks to Myzter             
+//==========================================================
+
+
+//cmd_in02,181,98,2	script	Roleta	57,{
+prt_in,20,28,2	script	Caco	57,{
+
+//These variables allow you to set the amount of zeny people can bet
+set @betzeny1,1000; //500 zeny
+set @betzeny2,5000; //1000 zeny
+set @betzeny3,20000; //2000 zeny
+set @betzeny4,100000; //10000 zeny
+
+//Variable for the number guess zeny bet
+set @betnum, 1000; //1000 Zeny
+
+	mes "[^0000FFCaco^000000]";
+	mes "Bem-Vindo ao jogo revolucionário dos dados! Deseja tentar a sorte com eles? Lembre-se que eu sou experiente nisso, e raramente alguém conseguiu ganhar de mim!";
+	next;
+	mes "[^0000FFCaco^000000]";
+	mes "O que você gostaria de fazer?";
+	next;
+	menu "Jogar",L_play,"Mais informações",L_info,"Ir embora",L_go;
+
+L_go:
+	mes "[^0000FFCaco^000000]";
+	mes "Então venha quando estiver pronto!";
+	close;
+
+L_info:
+	mes "[^0000FFCaco^000000]";
+	mes "Por favor escolha uma das seguintes opções para saber mais:";
+	next;
+	menu "Regras gerais",L_main,"Apostas e ganhos",L_bet,"Outros Jogos",L_extra,"Ir embora",L_go;
+
+L_main:
+	mes "[^0000FFCaco^000000]";
+	mes "O ^0080FFjogo dos dados^000000 é um jogo muito simples!";
+	mes "É permitido que eu e você joguemos 3 dados.";
+	mes "Quem conseguir mais pontos somando os valores, ganha.";
+	next;
+	goto L_info;
+
+L_bet:
+	mes "[^0000FFCaco^000000]";
+	mes "Você tem 4 quantias em zeny para escolher para apostar.";
+	mes "Se escolher a maior aposta, você ganhará mais também - simples assim.";
+	mes "Há também uma opção para aumentar seus ganhos!";
+	next;
+	mes "[^0000FFCaco^000000]";
+	mes "Por exemplo:";
+	mes "^0080FFAposta^000000         ^0080FFGanho^000000";
+	mes "1000       2000";
+	mes "5000     10000";
+	mes "20000     40000";
+	mes "100000   200000";
+	next;
+	goto L_info;
+
+L_extra:
+	mes "[^0000FFCaco^000000]";
+	mes "Você também pode tentar aumentar seus ganhos tentando acertar o seu total depois de jogar.";
+	mes "Isto vai custar um zeny extra de investimento, mas se você acertar, vai ganhar o tripo!";
+	next;
+	goto L_info;
+	  
+L_play:
+	mes "[^0000FFCaco^000000]";
+	mes "Ok, por favor escolha quanto zeny você quer apostar:";
+	next;
+	menu ""+@betzeny1+" Zeny",L_zeny1,""+@betzeny2+" Zeny",L_zeny2,""+@betzeny3+" Zeny",L_zeny3,""+@betzeny4+" Zeny",L_zeny4,"Isso está caro demais...",L_go;
+
+	L_zeny1:
+		if(Zeny < @betzeny1) goto L_nzeny;
+		set @bet, @betzeny1;
+		goto L_gamea;
+	L_zeny2:
+		if(Zeny < @betzeny2) goto L_nzeny;
+		set @bet, @betzeny2;
+		goto L_gamea;
+	L_zeny3:
+		if(Zeny < @betzeny3) goto L_nzeny;
+		set @bet, @betzeny3;
+		goto L_gamea;
+	L_zeny4:
+		if(Zeny < @betzeny4) goto L_nzeny;
+		set @bet, @betzeny4;
+		goto L_gamea;
+
+L_nzeny:
+	mes "[^0000FFCaco^000000]";
+	emotion 20;
+	mes "Desculpe, mas parece que você não tem zeny!";
+      close;
+
+L_gamea:
+	mes "[^0000FFCaco^000000]";
+	mes "Quer tentar aumentar seus ganhos tentando acertar o número que você vai pegar?";
+	mes "Iria te custar mais ^0080FF"+@betnum+"^000000 zeny.";
+	next;
+	menu "Sim",L_gamec,"Não",L_gameb;
+
+L_gamec:
+	if(Zeny < @betnum + @bet) goto L_nzeny;
+	mes "[^0000FFCaco^000000]";
+	mes "Por favor digite o total que você vai tirar (3-18).";
+	input @numg;
+	if(@numg<3) message strcharinfo(0),"O número é baixo demais, digite novamente.";
+	if(@numg>18) message strcharinfo(0),"O número é alto demais, digite novamente.";
+	if(@numg<3||@numg>18) goto L_gamec;
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+@betnum+",'roll')";
+	set Zeny, Zeny - @betnum;
+	next;
+	goto L_gameb;
+
+L_gameb:
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+@bet+",'roll')";
+	set Zeny, Zeny - @bet;
+	set @dea1, rand(1,6);
+	set @dea2, rand(1,6);
+	set @dea3, rand(1,6);
+	set @pla1, rand(1,6);
+	set @pla2, rand(1,6);
+	set @pla3, rand(1,6);
+	if(@dea1<@pla1) set @dea1, rand(3,6);
+	set @deatot, @dea1+@dea2+@dea3;
+	set @platot, @pla1+@pla2+@pla3;
+
+	mes "[^0000FFCaco^000000]";
+	mes "Eu vou ser o primeiro a jogar os dados, e depois disso você irá jogar.";
+	mes "Estou com sorte hoje, então é melhor sair de perto antes de eu pegar toda a sua grana!";
+	next;
+	mes "[^0080FF1º Turno do Caco^000000]";
+	mes "Jogando o primeiro dado!";
+	mes ".....rolando.....rolando....rolando....";
+	emotion 58;
+	mes " ";
+	mes "Primeira jogada: ^0080FF"+@dea1+" ^000000";
+	next;
+	mes "[^0080FF2º Turno do Caco^000000]";
+	mes "Jogando o segundo dado!";
+	emotion 58;
+	mes ".....rolando.....rolando....rolando....";
+	mes " ";
+	mes "Segunda jogada: ^0080FF"+@dea2+" ^000000";
+	next;
+	mes "[^0080FF3º Turno do Caco^000000]";
+	mes "Jogando o último dado!";
+	emotion 58;
+	mes ".....rolando.....rolando....rolando....";
+	mes " ";
+	mes "Terceira jogada: ^0080FF"+@dea3+" ^000000";
+	next;
+	mes "[^0000FFCaco^000000]";
+	mes "Agora é a sua vez de jogar os dados.";
+	mes "Aposto que não vai conseguir chegar nem perto de mim.";
+	next;
+	mes "[^0080FFSeu 1º Turno^000000]";
+	mes "Jogando o primeiro dado!";
+	mes ".....rolando.....rolando....rolando....";
+	emotion 58;
+	mes " ";
+	mes "Primeira jogada: ^0080FF"+@pla1+" ^000000";
+	next;
+	mes "[^0080FFSeu 2º Turno^000000]";
+	mes "Jogando o segundo dado!";
+	emotion 58;
+	mes ".....rolando.....rolando....rolando....";
+	mes " ";
+	mes "Segunda jogada: ^0080FF"+@pla2+" ^000000";
+	next;
+	mes "[^0080FFSeu 3º Turno^000000]";
+	mes "Jogando o terceiro dado!";
+	emotion 58;
+	mes ".....rolando.....rolando....rolando....";
+	mes " ";
+	mes "Terceira jogada: ^0080FF"+@pla3+" ^000000";
+	next;
+      mes "[^0000FFCaco^000000]";
+	mes "Vamos olhar para os nossos totais:";
+	mes " ";
+	mes "Total do Caco: ^0080FF"+@deatot+" ^000000.";
+	mes "Seu total: ^0080FF"+@platot+" ^000000.";
+	next;
+ 	if (@platot < @deatot) goto L_lose;
+	if (@platot == @deatot) goto L_again;
+	if (@platot > @deatot && @platot == @numg) goto L_win2;
+	if (@platot > @deatot) goto L_win1;
+
+L_lose:
+	mes "[^0000FFCaco^000000]";
+	emotion 39;
+	mes "Eu ganheeei! Tirei números maiores!!!";
+	mes "Tá vendo, eu falei que ninguém ganha de mim!";
+	mes " ";
+	mes "Você perdeu ^0080FF"+@bet+"^000000 Zeny.";
+	next;
+	goto L_againa;
+	
+L_again:
+	mes "[^0000FFCaco^000000]";
+	emotion 54;
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',"+@bet+",'roll')";
+	set Zeny, Zeny + @bet;
+	mes "Parece que foi um empate, vamos jogar denovo.";
+	next;
+	goto L_play;
+
+L_win1:
+	mes "[^0000FFCaco^000000]";
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',"+(@bet*2)+",'roll')";
+	set Zeny, Zeny + @bet*2;
+	set @wona, @bet*2;
+	emotion 36;
+	mes "Não acredito que eu perdi.";
+	mes "Toma, fique com o zeny.";
+	mes " ";
+	mes "Você ganhou ^0080FF"+@wona+"^000000 Zeny.";
+	next;
+	goto L_againa;
+
+L_win2:
+	mes "[^0000FFCaco^000000]";
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',"+(@bet*3)+",'roll')";
+	set Zeny, Zeny + @bet*3;
+	set @wonb, @bet*3;
+	emotion 36;
+	mes "E além disso acertou o total...";
+	mes "Não acredito que perdi. Pegue seu zeny logo.";
+	mes " ";
+	mes "Você ganhou ^0080FF"+@wonb+"^000000 Zeny.";
+	next;
+	goto L_againa;
+
+L_againa:
+	mes "[^0000FFCaco^000000]";
+	mes "Deseja jogar comigo denovo?";
+	next;
+	menu "Quero sim",L_play,"Agora não...",L_go;
+}

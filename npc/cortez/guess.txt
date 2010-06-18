@@ -1,0 +1,56 @@
+//===== eAthena Script ===========================================
+//= Game NPC
+//===== By: ======================================================
+//= Banana#3
+//===== Current Version: =========================================
+//= 1.0
+//===== Compatible With: =========================================
+//= Any eAthena version
+//===== Description: =============================================
+//= A Gambling Game
+//===== Additional Comments: =====================================
+//= It's so good so good
+//================================================================
+
+prt_in,25,41,4	script	???	854,{
+	mes "[???]";
+	mes "Você quer jogar uma rodada de adivinhação?";
+	next;
+	menu "Vamos lá",yes,"Não, eu não gosto de jogos de azar",no;
+	
+	yes:
+	mes "[???]";
+	mes "Custa 100k para jogar, e se você ganhar, irá garantir 1 milhão!";
+	if (zeny<100000) goto no_money;
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-100000,'guess')";
+	set Zeny, Zeny - 100000;
+	mes "Vamos lá.";
+	next;
+	
+	mes "[???]";
+	mes "Os números ficam entre 1 e 10";
+	next;
+	set @number,rand(1,10);
+	input @guess;
+	if(@guess == @number && rand(1,10)<=8) set @number, rand(1,10);
+	
+	mes "[???]";
+	if(@guess == @number){
+		mes "Acertou... Pegue a grana e saia daqui.";
+		query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',1000000,'guess')";
+		set Zeny, Zeny + 1000000;
+	}else{
+		mes "VOCÊ PERDEU, sai daqui ou vou te chutar pra fora! O número era "+@number+"...";
+	}
+	close;
+	
+	no:
+	mes "[???]";
+	mes "Saia daqui agora ou vou chamar o segurança para que ele te jogue pra fora!!!";
+	close;
+	
+	no_money:
+	mes "[???]";
+	mes "Você está tentando me roubar? Tá querendo morrer? Vai arranjar dinheiro!!!!";
+	close;
+}

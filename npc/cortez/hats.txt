@@ -1,0 +1,401 @@
+// NPC: Yuuko - Bruxa das Dimensões
+// Projeto e Criação: Brunim
+// Versão para Teste
+// Desenvolvido para: CortezRO
+/////////////////////////////////////////////////
+
+// Nome do NPC: Yuuko
+
+schg_cas03,83,54,5	script	Yuuko	859,{
+	//if(getgmlevel()<50) close;
+	set .qtdeQuests, 7;
+	if($questAtual==0) set $questAtual, rand(1,.qtdeQuests);
+	
+	set @name$, "Yuuko";
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Se você está falando comigo, é porque tem um desejo. Estou certa?";
+	menu "Sim, é isso mesmo!",-,"Não, eu não desejo nada.",L_exit;
+	
+	if(getgmlevel()>=60){
+		next;
+		mes	"[^660066 "+@name$+" ^000000]";
+		mes "A quest de hoje é a quest " + $questAtual;
+		mes "Mas como você é GM, pode escolher:";
+		menu "Continuar",-,"1-Menestrel", L_Menestrel, "2-Donzela", L_Donzela, "3-Elefante", L_Elefante, "4-Coelhinho", L_Coelhinho, "5-Bone", L_Bone, "6-Prata", L_Prata, "7-Aureolas", L_Aureola;
+	}
+	switch($questAtual){
+		case 1: goto L_Menestrel;
+		case 2: goto L_Donzela;
+		case 3: goto L_Elefante;
+		case 4: goto L_Coelhinho;
+		case 5: goto L_Bone;
+		case 6: goto L_Prata;
+		case 7: goto L_Aureola;
+	}
+	close;
+	
+L_Menestrel:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, permita-me me apresentar.";
+	mes "Me chamo Yuuko, sou uma feiticeira capaz de realizar qualquer desejo, desde que você pague um preço equivalente.";
+	mes "Posso te oferecer relíquias que eu coletei em outros mundos, se você me trouxer o que eu estou buscando aqui.";
+	mes "Estaria disposto a me ajudar?";
+	menu "Pagarei o preço justo!",-,"Não confio na sua proposta.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "A relíquia que busco hoje é conhecida por vocês como ^9900FFChapéu de Plumas^000000.";
+	mes "Você conseguiria um para mim? Em troca te darei um ^0066FFChapéu de Menestrel^000000.";
+	menu "Acordo fechado!",-,"Desculpe, não posso conseguir este item para você.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Mas como eu falei, o preço tem que ser equivalente.";
+	mes "Você precisará me trazer mais alguns itens. Tudo bem?";
+	menu "Sem problema algum!",-,"Porque não explicou antes? Eu desisto!",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, além do Chapéu de Plumas, me traga:";
+	mes "1x Tintura Verde";
+	mes "1x Granada";
+	mes "100x Pena Macia";
+	mes "100x Leaf Cloth";
+	mes "50x Couro de Animal";
+	menu "Tudo bem, buscarei tudo o que você precisa!",L_aguardar,"Está tudo aqui!",-;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Deixe-me conferir tudo";
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	if (countitem(5018)==1 && countitem(979)==1 && countitem(718)==1 && countitem(7063)==100 && countitem(7298)==100 && countitem(919)==50) {
+		mes "Você cumpriu sua parte, então cumprirei a minha também";
+		delitem 5018,1;
+		delitem 979,1;
+		delitem 718,1;
+		delitem 7063,100;
+		delitem 7298,100;
+		delitem 919,50;
+		getitem 5188,1;
+	}else{
+		mes "Parece que você está esquecendo de algo. Lembre-se de não ter itens em excesso também!";
+	}
+	close;
+	
+L_Donzela:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, permita-me me apresentar.";
+	mes "Me chamo Yuuko, sou uma feiticeira capaz de realizar qualquer desejo, desde que você pague um preço equivalente.";
+	mes "Posso te oferecer relíquias que eu coletei em outros mundos, se você me trouxer o que eu estou buscando aqui.";
+	mes "Estaria disposto a me ajudar?";
+	menu "Pagarei o preço justo!",-,"Não confio na sua proposta.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "A relíquia que busco hoje é conhecida por vocês como ^9900FFChifres Pontudos^000000.";
+	mes "Você conseguiria um para mim? Em troca te darei um ^0066FFChapéu de Donzela^000000.";
+	menu "Acordo fechado!",-,"Desculpe, não posso conseguir este item para você.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Mas como eu falei, o preço tem que ser equivalente.";
+	mes "Você precisará me trazer mais alguns itens. Tudo bem?";
+	menu "Sem problema algum!",-,"Porque não explicou antes? Eu desisto!",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, além dos Chifres Pontudos, me traga:";
+	mes "1x Cartola";
+	mes "1x Ametista";
+	mes "1x Flor das Ilusões";
+	mes "1x Laço de Seda";
+	mes "100x Novelo";
+	menu "Tudo bem, buscarei tudo o que você precisa!",L_aguardar,"Está tudo aqui!",-;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Deixe-me conferir tudo";
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	if (countitem(2258)==1 && countitem(719)==1 && countitem(5045)==1 && countitem(710)==1 && countitem(10007)==1 && countitem(7038)==100) {
+		mes "Você cumpriu sua parte, então cumprirei a minha também";
+		delitem 2258,1;
+		delitem 5045,1;
+		delitem 719,1;
+		delitem 710,1;
+		delitem 10007,1;
+		delitem 7038,100;
+		getitem 5211,1;
+	}else{
+		mes "Parece que você está esquecendo de algo. Lembre-se de não ter itens em excesso também!";
+	}
+	close;
+	
+L_Elefante:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, permita-me me apresentar.";
+	mes "Me chamo Yuuko, sou uma feiticeira capaz de realizar qualquer desejo, desde que você pague um preço equivalente.";
+	mes "Posso te oferecer relíquias que eu coletei em outros mundos, se você me trouxer o que eu estou buscando aqui.";
+	mes "Estaria disposto a me ajudar?";
+	menu "Pagarei o preço justo!",-,"Não confio na sua proposta.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "A relíquia que busco hoje é conhecida por vocês como ^9900FFElmo de Osso^000000.";
+	mes "Você conseguiria um para mim? Em troca te darei um ^0066FFChapéu de Elefante^000000.";
+	menu "Acordo fechado!",-,"Desculpe, não posso conseguir este item para você.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Mas como eu falei, o preço tem que ser equivalente.";
+	mes "Você precisará me trazer mais alguns itens. Tudo bem?";
+	menu "Sem problema algum!",-,"Porque não explicou antes? Eu desisto!",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, além do Elmo de Osso, me traga:";
+	mes "1x Tintura Azul";
+	mes "1x Aquamarina";
+	mes "1x Pele de Tigre";
+	mes "100x Pele de Lontra";
+	mes "1x Presa de Hati";
+	menu "Tudo bem, buscarei tudo o que você precisa!",L_aguardar,"Está tudo aqui!",-;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Deixe-me conferir tudo";
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	if (countitem(5017)==1 && countitem(978)==1 && countitem(720)==1 && countitem(1029)==1 && countitem(7065)==100 && countitem(7036)==1) {
+		mes "Você cumpriu sua parte, então cumprirei a minha também";
+		delitem 5017,1;
+		delitem 978,1;
+		delitem 720,1;
+		delitem 1029,1;
+		delitem 7065,100;
+		delitem 7036,1;
+		getitem 5146,1;
+	}else{
+		mes "Parece que você está esquecendo de algo. Lembre-se de não ter itens em excesso também!";
+	}
+	close;
+	
+L_Coelhinho:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, permita-me me apresentar.";
+	mes "Me chamo Yuuko, sou uma feiticeira capaz de realizar qualquer desejo, desde que você pague um preço equivalente.";
+	mes "Posso te oferecer relíquias que eu coletei em outros mundos, se você me trouxer o que eu estou buscando aqui.";
+	mes "Estaria disposto a me ajudar?";
+	menu "Pagarei o preço justo!",-,"Não confio na sua proposta.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "A relíquia que busco hoje é conhecida por vocês como ^9900FFChapéu de Gatinho Dorminhoco^000000.";
+	mes "Você conseguiria um para mim? Em troca te darei um ^0066FFChapéu de Coelhinho^000000.";
+	menu "Acordo fechado!",-,"Desculpe, não posso conseguir este item para você.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Mas como eu falei, o preço tem que ser equivalente.";
+	mes "Você precisará me trazer mais alguns itens. Tudo bem?";
+	menu "Sem problema algum!",-,"Porque não explicou antes? Eu desisto!",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, além do Chapéu de Gatinho Dorminhoco, me traga:";
+	mes "1x Tintura Amarela";
+	mes "1x Pérola";
+	mes "400x Pluma";
+	menu "Tudo bem, buscarei tudo o que você precisa!",L_aguardar,"Está tudo aqui!",-;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Deixe-me conferir tudo";
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	if (countitem(5058)==1 && countitem(976)==1 && countitem(722)==1 && countitem(949)==400) {
+		mes "Você cumpriu sua parte, então cumprirei a minha também";
+		delitem 5058,1;
+		delitem 976,1;
+		delitem 722,1;
+		delitem 949,400;
+		getitem 5198,1;
+	}else{
+		mes "Parece que você está esquecendo de algo. Lembre-se de não ter itens em excesso também!";
+	}
+	close;
+	
+L_Bone:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, permita-me me apresentar.";
+	mes "Me chamo Yuuko, sou uma feiticeira capaz de realizar qualquer desejo, desde que você pague um preço equivalente.";
+	mes "Posso te oferecer relíquias que eu coletei em outros mundos, se você me trouxer o que eu estou buscando aqui.";
+	mes "Estaria disposto a me ajudar?";
+	menu "Pagarei o preço justo!",-,"Não confio na sua proposta.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "A relíquia que busco hoje é conhecida por vocês como ^9900FFQuepe^000000.";
+	mes "Você conseguiria um para mim? Em troca te darei um ^0066FFBoné^000000.";
+	menu "Acordo fechado!",-,"Desculpe, não posso conseguir este item para você.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Mas como eu falei, o preço tem que ser equivalente.";
+	mes "Você precisará me trazer mais alguns itens. Tudo bem?";
+	menu "Sem problema algum!",-,"Porque não explicou antes? Eu desisto!",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, além do Quepe, me traga:";
+	mes "1x Tintura Verde";
+	mes "1x Tintura Branca";
+	mes "1x Esmeralda";
+	mes "1x Presilha";
+	mes "100x Felpa";
+	menu "Tudo bem, buscarei tudo o que você precisa!",L_aguardar,"Está tudo aqui!",-;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Deixe-me conferir tudo";
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	if (countitem(5016)==1 && countitem(979)==1 && countitem(982)==1 && countitem(721)==1 && countitem(2607)==1 && countitem(914)==100) {
+		mes "Você cumpriu sua parte, então cumprirei a minha também";
+		delitem 5016,1;
+		delitem 979,1;
+		delitem 982,1;
+		delitem 721,1;
+		delitem 2607,1;
+		delitem 914,100;
+		getitem 5147,1;
+	}else{
+		mes "Parece que você está esquecendo de algo. Lembre-se de não ter itens em excesso também!";
+	}
+	close;
+	
+L_Prata:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, permita-me me apresentar.";
+	mes "Me chamo Yuuko, sou uma feiticeira capaz de realizar qualquer desejo, desde que você pague um preço equivalente.";
+	mes "Posso te oferecer relíquias que eu coletei em outros mundos, se você me trouxer o que eu estou buscando aqui.";
+	mes "Estaria disposto a me ajudar?";
+	menu "Pagarei o preço justo!",-,"Não confio na sua proposta.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "A relíquia que busco hoje é conhecida por vocês como ^9900FFCoroa da Abelha Rainha^000000.";
+	mes "Você conseguiria um para mim? Em troca te darei uma ^0066FFTiara de Prata^000000.";
+	menu "Acordo fechado!",-,"Desculpe, não posso conseguir este item para você.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Mas como eu falei, o preço tem que ser equivalente.";
+	mes "Você precisará me trazer mais alguns itens. Tudo bem?";
+	menu "Sem problema algum!",-,"Porque não explicou antes? Eu desisto!",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, além da Coroa da Abelha Rainha, me traga:";
+	mes "1x Tintura Violeta	";
+	mes "1x Peridoto";
+	mes "50x Fragmento Estelar";
+	mes "50x Fragmento de Cristal";
+	mes "20x Anel de Prata";
+	menu "Tudo bem, buscarei tudo o que você precisa!",L_aguardar,"Está tudo aqui!",-;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Deixe-me conferir tudo";
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	if (countitem(5081)==1 && countitem(981)==1 && countitem(725)==1 && countitem(1000)==50 && countitem(7321)==50 && countitem(2611)==20) {
+		mes "Você cumpriu sua parte, então cumprirei a minha também";
+		delitem 5081,1;
+		delitem 981,1;
+		delitem 725,1;
+		delitem 1000,50;
+		delitem 7321,50;
+		delitem 2611,20;
+		getitem 5149,1;
+	}else{
+		mes "Parece que você está esquecendo de algo. Lembre-se de não ter itens em excesso também!";
+	}
+	close;
+	
+L_Aureola:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, permita-me me apresentar.";
+	mes "Me chamo Yuuko, sou uma feiticeira capaz de realizar qualquer desejo, desde que você pague um preço equivalente.";
+	mes "Posso te oferecer relíquias que eu coletei em outros mundos, se você me trouxer o que eu estou buscando aqui.";
+	mes "Estaria disposto a me ajudar?";
+	menu "Pagarei o preço justo!",-,"Não confio na sua proposta.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "A relíquia que busco hoje é conhecida por vocês como ^9900FFChapéu do Olho Mágico^000000.";
+	mes "Você conseguiria um para mim? Em troca te darei ^0066FFAuréolas de Anjo^000000.";
+	menu "Acordo fechado!",-,"Desculpe, não posso conseguir este item para você.",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Mas como eu falei, o preço tem que ser equivalente.";
+	mes "Você precisará me trazer mais alguns itens. Tudo bem?";
+	menu "Sem problema algum!",-,"Porque não explicou antes? Eu desisto!",L_exit;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Então, além do Chapéu do Olho Mágico, me traga:";
+	mes "1x Auréola";
+	mes "1x Safira";
+	mes "1x Pena de Asas Angelicais";
+	mes "100x Auréola Fajuta";
+	mes "20x Anel de Ouro";
+	menu "Tudo bem, buscarei tudo o que você precisa!",L_aguardar,"Está tudo aqui!",-;
+	
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Deixe-me conferir tudo";
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	if (countitem(5138)==1 && countitem(2282)==1 && countitem(726)==1 && countitem(7079)==1 && countitem(7105)==100 && countitem(2610)==20) {
+		mes "Você cumpriu sua parte, então cumprirei a minha também";
+		delitem 5138,1;
+		delitem 2282,1;
+		delitem 726,1;
+		delitem 7079,1;
+		delitem 7105,100;
+		delitem 2610,20;
+		getitem 5257,1;
+	}else{
+		mes "Parece que você está esquecendo de algo. Lembre-se de não ter itens em excesso também!";
+	}
+	close;
+	
+L_aguardar:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Aguardarei seu retorno";
+	mes "Tenha uma boa jornada";
+	close;
+	
+L_exit:
+	next;
+	mes	"[^660066 "+@name$+" ^000000]";
+	mes "Sei que me procurará, quando precisar de mim. Adeus.";
+	close;
+	
+OnClock0400:
+	if($questAtual >= .qtdeQuests)
+		set $questAtual,1;
+	else
+		set $questAtual, $questAtual + 1;;
+}

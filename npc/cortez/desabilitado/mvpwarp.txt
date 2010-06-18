@@ -1,0 +1,26 @@
+//lado esquerdo 44,(33-63)
+valkyrie,44,33,4	script	Golden Thief Bug	1086,{warp "prt_sewb4",	0,	0;}
+valkyrie,44,36,4	script	Doppelganger	1046,{warp "gef_dun02",	0,	0;}
+valkyrie,44,39,4	script	Drake	1112,{warp "treasure02",	0,	0;}
+valkyrie,44,42,4	script	Amon Ra	1511,{warp "moc_pryd06",	0,	0;}
+valkyrie,44,45,4	script	Baphomet	1039,{warp "gl_cas02",	0,	0;}
+valkyrie,44,48,4	script	Dark Lord	1272,{warp "gl_chyard",	0,	0;}
+valkyrie,44,51,4	script	Dracula	1389,{warp "gef_dun01",	0,	0;}
+valkyrie,44,54,4	script	Eddga	1115,{warp "pay_fild11",	0,	0;}
+valkyrie,44,57,4	script	Garm	1252,{warp "iz_dun04",	0,	0;}
+valkyrie,44,60,4	script	Evil Snake Lord	1418,{warp "gon_dun03",	0,	0;}
+valkyrie,44,63,4	script	Incantation Samurai	1492,{warp "ama_dun03",	0,	0;}
+
+
+//lado direito 53,(33-63)
+valkyrie,53,33,4	script	Mistress	1059,{warp "mjolnir_04",	217,	259;}
+valkyrie,53,36,4	script	Osiris	1038,{warp "moc_pryd04",	0,	0;}
+valkyrie,53,39,4	script	Moonlight Flower	1150,{warp "pay_dun04",	0,	0;}
+valkyrie,53,42,4	script	Orc Hero	1087,{warp "gef_fild14",	0,	0;}
+valkyrie,53,45,4	script	Maya	1147,{warp "anthell02",	0,	0;}
+valkyrie,53,48,4	script	Turtle General	1312,{warp "tur_dun04",	0,	0;}
+valkyrie,53,51,4	script	Orc Lord	1190,{warp "orcsdun02",	0,	0;}
+valkyrie,53,54,4	script	Pharaoh	1157,{warp "in_sphinx5",	0,	0;}
+valkyrie,53,57,4	script	Phreeoni	1159,{warp "moc_fild15",	0,	0;}
+valkyrie,53,60,4	script	Stormy Knight	1251,{warp "xmas_dun02",	0,	0;}
+valkyrie,53,63,4	script	Lord Of Death	1373,{warp "niflheim",	0,	0;}

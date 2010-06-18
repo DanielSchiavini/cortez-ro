@@ -1,0 +1,333 @@
+//===== eAthena Script ======================================= 
+//= Global functions
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 1.5
+//===== Compatible With: ===================================== 
+//= eAthena SVN R3424+, RO Ep6+
+//===== Description: ========================================= 
+//= Global Functions
+//= 
+//===== Additional Comments: ================================= 
+//= GF_getJobName= function for getting a job's name
+//= GF_getJobName2= gets a jobs name modified by Type (see below)
+//= GF_getJobId=  gets a jobs number modified by Type (see below)
+//= GF_getJobLevel= identifies novices/1st/2nd among classes
+//= GF_getJobType= identifies normal/advanced/babies classes
+//= - GF_getJobClass= identifies job class (swordie, mage, etc)
+//============================================================ 
+
+function	script	GF_getJobName	{
+
+	switch (getarg(0)) {
+
+	case Job_Novice:
+		return "aprendiz";
+	case Job_Acolyte:
+		return "noviço";
+	case Job_Archer:
+		return "arqueiro";
+	case Job_Mage:
+		return "mago";
+	case Job_Merchant:
+		return "mercador";
+	case Job_Swordman:
+		return "espadachim";
+	case Job_Thief:
+		return "gatuno";
+	case Job_Taekwon:
+		return "lutador taekwon";
+	case Job_SuperNovice:
+		return "super aprendiz";
+		
+	case Job_Hunter:
+		return "caçador";
+	case Job_Dancer:
+		return "odalisca";
+	case Job_Bard:
+		return "bardo";
+	case Job_Priest:
+		return "sacerdote";
+	case Job_Monk:
+		return "monge";
+	case Job_Wizard:
+		return "bruxo";
+	case Job_Sage:
+		return "sábio";
+	case Job_BlackSmith:
+		return "ferreiro";
+	case Job_Alchem:
+		return "alquimista";
+	case Job_Knight:
+	case Job_Knight2:
+		return "cavaleiro";
+	case Job_Crusader:
+	case Job_Crusader2:
+		return "templário";
+	case Job_Assassin:
+		return "assassino";
+	case Job_Rogue:
+		return "arruaceiro";
+	case Job_Star_Gladiator:
+	case Job_Star_Gladiator2:
+		return "gladiator estelar";
+	case Job_Soul_Linker:
+		return "espiritualista";
+		
+	case Job_Novice_High:
+		return "aprendiz t";
+	case Job_Acolyte_High:
+		return "noviço t";
+	case Job_Archer_High:
+		return "arqueiro t";
+	case Job_Mage_High:
+		return "mago t";
+	case Job_Merchant_High:
+		return "mercador t";
+	case Job_Swordman_High:
+		return "espadachim t";
+	case Job_Thief_High:
+		return "gatuno t";
+		
+	case Job_Assassin_Cross:
+		return "algoz";
+	case Job_Champion:
+		return "mestre";
+	case Job_Clown:
+		return "menestrel";
+	case Job_Creator:
+		return "criador";
+	case Job_Gypsy:
+		return "cigana";
+	case Job_High_Priest:
+		return "sumo sacerdote";
+	case Job_High_Wizard:
+		return "arquimago";
+	case Job_Lord_Knight:
+	case Job_Lord_Knight2:
+		return "lorde";
+	case Job_Paladin:
+	case Job_Paladin2:
+		return "paladino";
+	case Job_Professor:
+		return "professor";
+	case Job_Sniper:
+		return "atirador de elite";
+	case Job_Stalker:
+		return "desordeiro";
+	case Job_Whitesmith:
+		return "mestre ferreiro";
+
+	case Job_Baby:
+		return "bebê";
+	case Job_Baby_Acolyte:
+		return "bebê noviço";
+	case Job_Baby_Archer:
+		return "bebê arqueiro";
+	case Job_Baby_Mage:
+		return "bebê mago";
+	case Job_Baby_Merchant:
+		return "bebê mercador";
+	case Job_Baby_Swordman:
+		return "bebê espadachim";
+	case Job_Baby_Thief:
+		return "bebê gatuno";
+	case Job_Super_Baby:
+		return "super bebê";
+
+	case Job_Baby_Hunter:
+		return "bebê caçador";
+	case Job_Baby_Dancer:
+		return "bebê odalisca";
+	case Job_Baby_Bard:
+		return "bebê bardo";
+	case Job_Baby_Priest:
+		return "bebê sacerdote";
+	case Job_Baby_Monk:
+		return "bebê monge";
+	case Job_Baby_Wizard:
+		return "bebê bruxo";
+	case Job_Baby_Sage:
+		return "bebê sábio";
+	case Job_Baby_BlackSmith:
+		return "bebê ferreiro";
+	case Job_Baby_Alchem:
+		return "bebê alquimista";
+	case Job_Baby_Knight:
+	case Job_Baby_Knight2:
+		return "bebê cavaleiro";
+	case Job_Baby_Crusader:
+	case Job_Baby_Crusader2:
+		return "bebê templário";
+	case Job_Baby_Assassin:
+		return "bebê assassino";
+	case Job_Baby_Rogue:
+		return "bebê arruaceiro";
+	default:
+		return "unknown";
+	}
+
+}
+
+//Returns job name using two params: JobId and Type
+function	script	GF_getJobName2	{
+	set @classId, callfunc("GF_getJobId", getarg(0), getarg(1));
+	return callfunc("GF_getJobName", @classId);
+}
+
+//Returns a Job's ID modified by their Type
+function	script	GF_getJobId	{
+	set @classId, getarg(0);
+	set @type, getarg(1,0);
+
+	if (@classId == Job_SuperNovice || @classId == Job_Super_Baby) {
+		switch (@type) {
+		case 0:
+			return Job_SuperNovice;
+		case 2:
+			return Job_Super_Baby;
+		default:
+			return @classId;
+		}
+	}
+	if (@classId >= Job_Taekwon && @classId <= Job_Soul_Linker) {
+		//Currently has no alternates.
+		return @classId;	
+	}
+	if (@classId >= Job_Novice_High && @classId <= Job_Paladin2)
+		set @classId, @classId -Job_Novice_High;
+	else 	
+	if (@classId >= Job_Baby && @classId <= Job_Super_Baby)
+		set @classId, @classId -Job_Baby;
+		
+	if (@type == 1)
+		set @classId, @classId +Job_Novice_High;
+		
+	if (@type == 2)
+		set @classId, @classId +Job_Baby;
+
+	return @classId;
+}
+
+//Returns the type of class:
+//0= Novice, 1= First Class, 2= Second Class, 3= Super Novice 4=wedding 5=Taekwon
+//4= Wedding
+function	script	GF_getJobLevel	{
+
+	set @classId, getarg(0);
+	
+	if (@classId >= Job_Novice_High && @classId <= Job_Paladin2)
+		set @classId, @classId -Job_Novice_High;
+
+	if (@classId >= Job_Baby && @classId <= Job_Baby_Crusader2)
+		set @classId, @classId -Job_Baby;
+	
+	if(@classId == Job_Novice) {
+		return 0;
+	}
+	if((@classId >= Job_Swordman && @classId <= Job_Thief)
+		|| @classId == Job_Gunslinger || @classId == Job_Ninja) {
+		return 1;
+	}
+	if ((@classId >= Job_Knight && @classId <= Job_Crusader2)) {
+		return 2;
+	}
+	
+	if(@classId == Job_SuperNovice || @classId == Job_Super_Baby) {
+		return 3;
+	}
+	if(@classId == 22) {
+		return 4;
+	}
+	if(@classId >= Job_Taekwon && @classId <= Job_Soul_Linker)
+			return 5;
+	return -1;
+}
+
+//Returns the type of class, based on path:
+//0= Normal Jobs, 1= Upper Jobs, 2= Baby Jobs
+//Works the same as Upper, except you can pass any job id to get it's upper value
+function	script	GF_getJobType	{
+	set @classId, getarg(0);
+	
+	if ((@classId >= Job_Novice && @classId <= Job_SuperNovice) 
+		|| (@classId >= Job_Taekwon && @classId <= Job_Soul_Linker)) {
+		return 0;
+	}
+	if (@classId >= Job_Novice_High && @classId <= Job_Paladin2) {
+		return 1;
+	}
+	if (@classId >= Job_Baby && @classId <= Job_Super_Baby) {
+		return 2;
+	}
+	return -1;
+}
+//Returns the base class of the given job, return values are:
+//Job_Novice (Novice, Baby Novice, Super Novice
+//Job_Acolyte (Aco, Priest, Monk +High/Baby variations)
+//Job_Archer (Archer, Sniper, Bard, Dancer +High/Baby variations)
+//Job_Mage (Mage, Wizard, Sage +High/Baby variations)
+//Job_Swordman (Swordsman, Knight, Crusader +High/Baby variations)
+//Job_Thief (Thief, Assassin, Rogue +High/Baby variations)
+//-1 : others (when wearing Tux/Wedding dress, for example)
+//Works the same as baseClass, except you pass the class which you want
+//examined.
+function	script	GF_getJobClass	{
+	set @classId, getarg(0);
+	
+	if (@classId >= Job_Novice_High && @classId <= Job_Paladin2)
+		set @classId, @classId -Job_Novice_High;
+
+	if (@classId >= Job_Baby && @classId <= Job_Baby_Crusader2)
+		set @classId, @classId -Job_Baby;
+	
+	switch (@classId) {
+	case Job_Novice:
+	case Job_SuperNovice:
+	case Job_Super_Baby:
+		return Job_Novice;
+		
+	case Job_Acolyte:
+	case Job_Priest:
+	case Job_Monk:
+		return Job_Acolyte;
+		
+	case Job_Archer:
+	case Job_Hunter:
+	case Job_Bard:
+	case Job_Dancer:
+		return Job_Archer;
+	
+	case Job_Mage:
+	case Job_Wizard:
+	case Job_Sage:
+		return Job_Mage;
+
+	case Job_Merchant:
+	case Job_BlackSmith:
+	case Job_Alchem:
+		return Job_Merchant;
+	
+	case Job_Swordman:
+	case Job_Knight:
+	case Job_Knight2:
+	case Job_Paladin:
+	case Job_Paladin2:
+		return Job_Swordman;
+		
+	case Job_Thief:
+	case Job_Assassin:
+	case Job_Rogue:
+		return Job_Thief;
+
+	case Job_Taekwon:
+	case Job_Star_Gladiator:
+	case Job_Star_Gladiator2:
+	case Job_Soul_Linker:
+		return Job_Taekwon;
+
+	default:
+		return -1;
+	}
+}

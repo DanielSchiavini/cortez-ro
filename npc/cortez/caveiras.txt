@@ -1,0 +1,121 @@
+schg_cas03,22,41,5	script	Canibal	796,{		//792
+	mes "[Canibal]";
+	mes "Olá, que tal me dar algo pra me alimentar?";
+	mes "Que tal você, aspira?";
+	menu "Tudo bem",-,"Pegue estes galhos aqui",L_galho,"Quer alguns pergaminhos?",L_Perga,"Não!",L_sair;
+	
+	next;
+	set @skulls,countitem(7420);
+	if(@skulls>0){
+		mes "[Canibal]";
+		mes "Hmmm, oba!";
+		delitem 7420,@skulls;
+		next;
+		mes "[Canibal]";
+		mes "CAVEIRA, CAPITÃO!!!";
+		next;
+		set @skull_ouro,0;
+		while(@skulls>0){
+			if(@skulls>=100){
+				set @skull_ouro,@skull_ouro+1;
+				set @skulls,@skulls-100;
+			}else{
+				getitem 7420,@skulls;
+				set @skulls,0;
+			}
+		}
+		if(@skull_ouro>0) getitem 9927,@skull_ouro;
+	} else {
+		mes "[Canibal]";
+		mes "Você não tem o que eu gosto...";
+		mes "Você é muleque... Tira essa farda preta!";
+	}
+	close;
+	
+	L_galho:
+		next;
+		mes "[Canibal]";
+		mes "Ah.. Gosto de galhos, mas só em quantidades grandes!";
+		mes "Uns.... 150!";
+		next;
+		if(countitem(604)<150) goto L_sair;
+		menu "Dar para ela",-,"Ir embora",L_sair;
+		mes "[Canibal]";
+		mes "Hmm...";
+		next;
+		mes "[Canibal]";
+		mes "Delícia!";
+		next;
+		mes "[Canibal]";
+		mes "(lambe os dedos)";
+		next;
+		mes "[Canibal]";
+		mes "Obrigado ;)";
+		delitem 604,150;
+		getitem 12103,1;
+		close;
+	
+	L_Perga:
+		next;
+		mes "[Canibal]";
+		mes "O que me diria de uns 70 pergaminhos antigos...?";
+		if(countitem(7099)<70){
+			mes "Pena que você não tem tudo isso!";
+			mes "20 anos de curso e você me aparece sem pergaminho!";
+		}else{
+			mes "Ou uns.... 150?";
+			next;
+			if(countitem(7099)<150)
+				menu "Sair daqui",-,"Dar 70 pergaminhos",L_Perga_Mau;
+			else
+				menu "Sair daqui",-,"Dar 70 pergaminhos",L_Perga_Mau,"Dar 150 pergaminhos",L_Perga_Bom;
+		}
+		close;
+		
+		L_Perga_Mau:
+			if(countitem(7099)<70) goto L_sair;
+			menu "Dar para ela",-,"Ir embora",L_sair;
+			mes "[Canibal]";
+			mes "Hmm...";
+			next;
+			mes "[Canibal]";
+			mes "Delícia!";
+			next;
+			mes "[Canibal]";
+			mes "(lambe os dedos)";
+			next;
+			mes "[Canibal]";
+			mes "Obrigado ;)";
+			if(countitem(7099)<70) goto L_sair;
+			delitem 7099,70;
+			getitem 9922,1;
+			close;
+		
+		L_Perga_Bom:
+			if(countitem(7099)<150) goto L_sair;
+			menu "Dar para ela",-,"Ir embora",L_sair;
+			mes "[Canibal]";
+			mes "Hmm...";
+			next;
+			mes "[Canibal]";
+			mes "Delícia!";
+			next;
+			mes "[Canibal]";
+			mes "(lambe os dedos)";
+			next;
+			mes "[Canibal]";
+			mes "Obrigado ;)";
+			if(countitem(7099)<150) goto L_sair;
+			delitem 7099,150;
+			getitem 9921,1;
+			close;
+	
+	L_sair:
+		next;
+		mes "[Canibal]";
+		mes "Sai daqui, desiste 01! Você é fraco!!!";
+		mes "F - R - A - C - O !!!";
+		close;
+}
+
+//sprite 835 p/ msg board

@@ -1,0 +1,174 @@
+//===== eAthena Script =======================================
+//= War of Emperium (Prontera)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Prontera Guild Castle 1
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Corrected flag-in spawn point. [L0ne_W0lf]
+//= 1.2 Corrected treasure room switch coordinates. [L0ne_W0lf]
+//============================================================
+
+prtg_cas01	mapflag	gvg_castle
+prtg_cas01	mapflag	monster_noteleport
+prtg_cas01	mapflag	noicewall
+prtg_cas01	mapflag	nomemo
+prtg_cas01	mapflag	nosave	SavePoint
+prtg_cas01	mapflag	noteleport
+prtg_cas01	mapflag	nowarp
+prtg_cas01	mapflag	nowarpto
+prtg_cas01	mapflag	noreturn
+prtg_cas01	mapflag	nogo
+prtg_cas01	mapflag	nocommand	10
+
+prt_gld,159,25,0	warp	prtg002	6,2,prt_castle,102,178
+prt_gld,159,298,0	warp	prtg001	1,1,prt_fild01,199,30
+
+prt_gld,129,65,0	warp	prtg01	1,1,prtg_cas01,99,32
+
+prtg_cas01,103,32,0	warp	prtg01-1	1,1,prt_gld,134,65
+prtg_cas01,109,163,0	warp	prtg107	1,1,prtg_cas01,202,183
+prtg_cas01,147,120,0	warp	prtg106	1,1,prtg_cas01,75,187
+prtg_cas01,196,119,0	warp	prtg103-1	1,1,prtg_cas01,40,54
+prtg_cas01,196,65,0	warp	prtg104-1	1,1,prtg_cas01,75,54
+prtg_cas01,206,183,0	warp	prtg107-1	1,1,prtg_cas01,113,163
+prtg_cas01,206,92,0	warp	prtg105-1	1,1,prtg_cas01,55,70
+prtg_cas01,37,47,0	warp	prtg102-1	1,1,prtg_cas01,45,34
+prtg_cas01,37,54,0	warp	prtg103	1,1,prtg_cas01,192,119
+prtg_cas01,41,34,0	warp	prtg102	1,1,prtg_cas01,40,47
+prtg_cas01,51,70,0	warp	prtg105	1,1,prtg_cas01,202,92
+prtg_cas01,57,19,0	warp	prtg101	1,1,prtg_cas01,80,49
+prtg_cas01,62,34,0	warp	prtg108	1,1,prtg_cas01,192,119
+prtg_cas01,71,54,0	warp	prtg104	1,1,prtg_cas01,192,65
+prtg_cas01,75,183,0	warp	prtg106-1	1,1,prtg_cas01,147,116
+prtg_cas01,84,19,0	warp	prtg109	1,1,prtg_cas01,192,65
+prtg_cas01,84,49,0	warp	prtg101-1	1,1,prtg_cas01,61,19
+
+// Guild Flag (Outside Castle)
+//============================================================
+prt_gld,131,60,6	script	Kriemhild#p1-2::Kriemhild2	973,{
+	set .@GID, GetCastleData("prtg_cas01",1);
+	if (.@GID == 0) {
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
+		mes " ";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo aventureiro...";
+			mes "Deseja voltar ao seu local de glória e honra?";
+			next;
+			if (select("Voltar:Quit.") == 1) {
+				if (getcharid(2) == GetCastleData("prtg_cas01",1)) {
+					warp "prtg_cas01",96,173;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastlePt01:
+	//FlagEmblem 1; //GetCastleData("prtg_cas01",1);
+	end;
+}
+
+schg_cas03,49,19,4	duplicate(Kriemhild2)	Kriemhild#ctz	973
+prt_gld,138,68,6	duplicate(Kriemhild2)	Kriemhild#p1-3	973
+prt_gld,138,60,6	duplicate(Kriemhild2)	Kriemhild#p1-4	973
+prt_gld,135,60,6	duplicate(Kriemhild2)	Kriemhild#p1-5	973
+
+// Guild Flag (Inside Castle)
+//============================================================
+prtg_cas01,58,56,4	script	Kriemhild#p1-4::Kriemhild3	973,{
+	set .@GID, GetCastleData("prtg_cas01",1);
+	if (.@GID == 0) {
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
+		mes " ";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
+	}
+	else {
+		mes "[Edital do Reino das Valquírias]";
+		mes " ";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastlePt01:
+	//FlagEmblem 1; //GetCastleData("prtg_cas01",1);
+	end;
+}
+
+prtg_cas01,64,56,4	duplicate(Kriemhild3)	Kriemhild#p1-7	973
+prtg_cas01,76,32,4	duplicate(Kriemhild3)	Kriemhild#p1-8	973
+prtg_cas01,84,32,4	duplicate(Kriemhild3)	Kriemhild#p1-9	973
+prtg_cas01,94,39,4	duplicate(Kriemhild3)	Kriemhild#p1-10	973
+prtg_cas01,94,24,4	duplicate(Kriemhild3)	Kriemhild#p1-11	973
+prtg_cas01,73,14,4	duplicate(Kriemhild3)	Kriemhild#p1-12	973
+prtg_cas01,73,6,4	duplicate(Kriemhild3)	Kriemhild#p1-13	973
+prtg_cas01,55,46,4	duplicate(Kriemhild3)	Kriemhild#p1-14	973
+prtg_cas01,45,46,4	duplicate(Kriemhild3)	Kriemhild#p1-15	973
+
+// AGIT Manager
+//============================================================
+prtg_cas01,197,197,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas01	-1
+
+// Steward
+//============================================================
+prtg_cas01,112,181,0	duplicate(Gld_Mngr_Template)	Ahvray#prtg_cas01	55
+
+// Guardians
+//============================================================
+prtg_cas01,112,181,0	duplicate(Gld_Guard_Template)	Guardian#prtg_cas01	-1
+
+// Kafra Staff
+//============================================================
+prtg_cas01,96,173,0	duplicate(Gld_Kafra_Template)	Kafra Staff#prtg_cas01	117
+
+// Master's Room Exit
+//============================================================
+prtg_cas01,15,209,0	script	#switch_Pt01	111,{
+	mes " ";
+	mes "Há um pequeno interruptor. Deseja apertá-lo?";
+	next;
+	switch(select("Apertar:Não")) {
+	case 1:
+		warp "prtg_cas01",112,183;
+		break;
+	case 2:
+		break;
+	}
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+prtg_cas01,11,208,0	duplicate(Gld_Trea_Protect)	ban_warp#prtg_cas01	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+prtg_cas01,11,208,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas01	-1
+
+// Guild Dungeon Switch
+//============================================================
+prtg_cas01,94,200,0	duplicate(Gld_Dun_Template)	#prtg_cas01	111

@@ -1,0 +1,83 @@
+//===== eAthena Script ======================================= 
+//= Kafra Express - WoE Warping Module
+//===== By: ================================================== 
+//= Skotlex 
+//===== Current Version: ===================================== 
+//= 1.7
+//===== Compatible With: ===================================== 
+//= eAthena SVN R3424+, RO Episode 4.1+ (War of Emperium)
+//===== Description: ========================================= 
+//= Part of the Kafra Express Script Package.
+//= Offers warping to the War of Emperium grounds.
+//===== Additional Comments: ================================= 
+//= See config.txt for configuration.
+//= Remove the comment on lines 52,53 and 63 to enable direct G. Dungeon warping
+//============================================================ 
+
+-	script	keInit_warpWoe	-1,{
+OnInit:	//Load Config
+	donpcevent "keConfig::OnLoadWarpWoe";
+	end;
+}
+
+function	script	F_keWarpWOE	{
+	if ($@kewg_check && getcharid(2) <= 0) {
+		if(getgmlevel()<=50){
+			callfunc "F_keIntro", e_srt, "Desculpe mas estes portais estão disponíveis apenas pra quem tem um clã.";
+			return;
+		}else{
+			mes "Vejo que você não tem um clã... Mas já que é GM, tudo bem.";
+			next;
+		}
+	}
+	
+	set @cost, BaseLevel * reborn * 100 + (BaseLevel-100) * 1000;
+	if($serv==6){
+		set @cost, @cost/3;
+	}
+	if(@cost<=0) set @cost,1;
+	menu "Voltar",-,
+		"Super-Party Dungeon (" + (@cost*4) + "z, " + getmapusers("gld_dun02")+" "+$@ked_users$ + ")",gdun2,
+		"Level 1 - Payon (" + (@cost) + ", " + getmapusers("gld_dun01")+" "+$@ked_users$ + ")",gdun1,
+		"Level 2 - Geffen (" + (@cost*2) + ", " + getmapusers("gld_dun04")+" "+$@ked_users$ + ")",gdun4,
+		"Mapa dos MvPs (" + (@cost/5) + "z, " + getmapusers("pvp_n_1-1")+" "+$@ked_users$ + ")",wvalk,
+		"Treinamento com MVPs (" + getmapusers("guild_vs2-2")+" "+$@ked_users$ + ")",wmvproom,
+		"GdE - Valfreyja (" + getmapusers("aru_gld")+" "+$@ked_users$ + " + " + getmapusers("arug_cas03") + ")",woe1,
+		"GdE - Prontera (" + getmapusers("prt_gld") + " + " + getmapusers("prtg_cas01") + "/" + getmapusers("prtg_cas02")+" "+$@ked_users$ + ")",woe2,
+		"GdE - Geffen (" + getmapusers("gef_fild13") + " + " + getmapusers("gefg_cas02") +" "+$@ked_users$ + ")",woe3;
+		//,"Level 2 - Prontera (" + getmapusers("gld_dun03") + ")",gdun3
+	return;
+
+	woe1:
+		set @cost,0;
+		callfunc "F_keWarp",@cost,0,e_com,"aru_gld",  97,193;
+		return;
+	woe2:
+		set @cost,0;
+		callfunc "F_keWarp",@cost,0,e_com,"prt_gld",  159, 97;
+		return;
+	woe3:
+		set @cost,0;
+		callfunc "F_keWarp",@cost,0,e_com,"gef_fild13",310,232;
+		return;
+	gdun1:
+		//set @cost,@cost;
+		callfunc "F_keWarp",@cost,0,e_com,"gld_dun01",119, 17;
+		return;
+	gdun2:
+		set @cost,@cost*4;
+		callfunc "F_keWarp",@cost,0,e_com,"gld_dun02", 80, 29;
+		return;
+	gdun4:
+		set @cost,@cost*2;
+		callfunc "F_keWarp",@cost,0,e_com,"gld_dun04", 99, 99;
+		return;
+	wvalk:
+		set @cost,@cost/5;
+		callfunc "F_keWarp",@cost,0,e_com,"pvp_n_1-1",106,100;
+		return;
+	wmvproom:
+		set @cost,0;
+		callfunc "F_keWarp",@cost,0,e_com,"guild_vs2-2",50,50;
+		return;
+}

@@ -1,0 +1,9 @@
+// 0/5: Comandos VIP no Supreme
+autoloot: 0
+storage: 5
+gstorage: 5
+
+whosell: 5
+whosells: 5
+
+mail: 5

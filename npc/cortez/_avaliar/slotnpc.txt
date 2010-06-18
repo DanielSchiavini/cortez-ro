@@ -1,0 +1,121 @@
+//SLOT NPC
+//By Mistral of AngelRO (#angelro on irc.DeltaAnime.net)
+//Assistante from Mr.Nybbles and Cold on fixing various bugs.
+ayo_in01,149,174,3	script	Slot Guy	709,{
+	//ITEM UP INFO
+	//607 - Ygg berry
+	//4142 - Dopple
+	//4147 - Bapho
+	//5006 - Machoman's Glasses
+	//9024 - Bapho JR egg
+	//9023 - Deviruchi egg
+	//1238 - Zeny Knife
+	//5024 - Cake Hat
+	//5030 - Panda hat
+	
+	//VARIABLES
+	set @zeny, 1000000;
+
+	//BEGIN
+	L_slot:
+	mes "[Slot Guy]";
+	mes "Would you be interested in playing the slot game?";
+	menu "The what?",L_q,"Yes!",L_yep,"No.",L_nope, "What are the prizes?",L_prizes;
+
+	L_q:
+	mes "The Slot Game! Programmed by Mistral, it's a gambling game where you give me one million Zeny, and get a chance for a prize!";
+	next;
+	mes "The prizes are of all values, from super valuable to common. So be ware!";
+	next;
+	goto L_slot;
+
+
+	L_nope:
+	mes "Maybe another time?";
+	close;
+
+	L_prizes:
+	mes "That, is a secret! ;)";
+	close;
+
+	L_yep:
+	if(Zeny < 1000000) goto L_NoZeny;
+	set Zeny, Zeny - 1000000;
+	mes "Good deal, lets begin..";
+	set slot_random,rand(1,19);
+	mes "Lets see what we have here..";
+	next;
+	if (slot_random == 1) goto L_RAN_1;
+	if (slot_random == 2) goto L_RAN_1;
+	if (slot_random == 3) goto L_RAN_1;
+	if (slot_random == 4) goto L_RAN_1;
+	if (slot_random == 5) goto L_RAN_1;
+	if (slot_random == 6) goto L_RAN_1;
+	if (slot_random == 7) goto L_RAN_1;
+	if (slot_random == 8) goto L_RAN_1;
+	if (slot_random == 9) goto L_RAN_1;
+	if (slot_random == 10) goto L_RAN_1;
+	if (slot_random == 11) goto L_RAN_2;
+	if (slot_random == 12) goto L_RAN_4;
+	if (slot_random == 13) goto L_RAN_3;
+	if (slot_random == 14) goto L_RAN_5;
+	if (slot_random == 15) goto L_RAN_6;
+	if (slot_random == 16) goto L_RAN_7;
+	if (slot_random == 17) goto L_RAN_8;
+	if (slot_random == 18) goto L_RAN_9;
+	if (slot_random == 19) goto L_RAN_19;
+
+	L_RAN_1:
+	mes "Ooh, sorry, it appears that you've lost. Try again if you'd like.";
+	close;
+
+	L_RAN_2:
+	mes "You won a Yggrasidl berry! Enjoy!";
+	getitem 607,1;
+	close;
+
+	L_RAN_3:
+	mes "You won!.. Lets see.. A doppleganger card!";
+	getitem 4142,1;
+	close;
+
+	L_RAN_4:
+	mes "You won a Baphomet card! Go you!";
+	getitem 4147,1;
+	close;
+
+	L_RAN_5:
+	mes "You won a pair of Macho Man's glasses. Enjoy!";
+	getitem 5006,1;
+	close;
+
+	L_RAN_6:
+	mes "You won a baphomet junior egg!";
+	getitem 9024,1;
+	close;
+
+	L_RAN_7:
+	mes "A Deviruchi egg! Enjoy it.";
+	getitem 9023,1;
+	close;
+
+	L_RAN_8:
+	mes "You've got a Zeny Knife!";
+	getitem 1238,1;
+	close;
+
+	L_RAN_9:
+	mes "A cake hat, wear it well!";
+	getitem 5024,1;
+	close;
+
+	L_RAN_19:
+	mes "You've gotten a panda hat, enjoy!";
+	getitem 5030,1;
+	close;
+
+
+	L_NoZeny:
+	mes "Don't try to cheat me! You've got no money!";
+	close;
+}

@@ -1,0 +1,208 @@
+//battle.conf
+enable_baseatk: 11
+enable_critical: 3
+mob_critical_rate: 1
+min_hitrate: 5
+max_hitrate: 99
+agi_penalty_type: 1
+agi_penalty_target: 15
+agi_penalty_count: 3
+agi_penalty_num: 15
+equip_self_break_rate: 40
+equip_skill_break_rate: 15
+
+//client.conf
+packet_ver_flag: 0x2000
+min_chat_delay: 200
+display_version: 0
+min_chat_delay: 500
+hide_woe_damage: 0
+max_lv: 110
+aura_lv: 110
+display_hallucination: 0
+wedding_ignorepalette: 1
+wedding_modifydisplay: 1
+xmas_ignorepalette: 1
+summer_ignorepalette: 1
+max_cloth_color: 77
+display_status_timers: 0
+
+//Drops.conf
+item_rate_common: 2000 //inicio 2x
+item_rate_heal: 2000
+item_rate_use: 4000
+item_rate_equip: 2000
+item_rate_card: 10000
+
+item_rate_common_boss: 2000
+item_rate_heal_boss: 2000
+item_rate_use_boss: 2000
+item_rate_equip_boss: 400
+item_rate_card_boss: 2000
+
+item_rate_mvp: 2000
+item_rate_adddrop: 0
+item_rate_treasure: 500
+rare_drop_announce: 20
+
+item_first_get_time: 10000 // Não muda em 2x
+item_second_get_time: 10000
+item_third_get_time: 2000
+
+//exp.conf
+base_exp_rate: 10000
+job_exp_rate: 10000
+mvp_exp_rate: 10000
+quest_exp_rate: 5000 // fim 2x
+
+multi_level_up: yes
+max_exp_gain_rate: 1500
+heal_exp: 1
+resurrection_exp: 50
+shop_exp: 1
+death_penalty_base: 300
+death_penalty_job: 300
+disp_zeny: yes
+use_statpoint_table: yes
+
+//gm.conf
+atcommand_slave_clone_limit: 1
+disp_hpmeter: 60
+gm_all_skill: 100
+gm_all_equipment: 90
+gm_skill_unconditional: 60
+gm_join_chat: 60
+gm_kick_chat: 60
+ban_hack_trade: 60
+hack_info_GM_level: 5
+gm_cant_drop_min_lv: 10
+gm_cant_drop_max_lv: 98
+
+//guild.conf
+require_glory_guild: 0
+guild_skill_relog_delay: 1
+guild_max_castles: 2
+castle_defense_rate: 25
+gvg_short_attack_damage_rate: 50
+gvg_long_attack_damage_rate: 40
+gvg_weapon_attack_damage_rate: 30
+gvg_magic_attack_damage_rate: 25
+gvg_misc_attack_damage_rate: 30
+
+//homunc.conf
+homunculus_friendly_rate: 200
+hom_rename: no
+hvan_explosion_intimate: 45000
+homunculus_show_growth: 1
+homunculus_autoloot: 0
+
+//items.conf
+vending_over_max: no
+buyer_name: yes
+weapon_produce_rate: 150
+potion_produce_rate: 50
+produce_item_name_input: 0x9F
+dead_branch_active: yes
+random_monster_checklv: no
+item_use_interval: 100
+gtb_sc_immunity: 50
+vending_tax: 0
+
+//misc.conf
+at_mapflag: yes
+pk_mode: 0
+pk_min_level: 80
+pk_level_range: 5
+pk_short_attack_damage_rate: 80
+pk_long_attack_damage_rate: 70
+pk_weapon_attack_damage_rate: 60
+pk_magic_attack_damage_rate: 60
+pk_misc_attack_damage_rate: 60
+day_duration: 21600000
+night_duration: 21600000
+duel_time_interval: 1
+auction_feeperhour: 12000
+auction_maximumprice: 1000000000
+
+//monster.conf
+monster_max_aspd: 190
+mvp_hp_rate: 125
+override_mob_names: 0
+monster_damage_delay_rate: 50
+mob_skill_rate: 100
+mob_skill_delay: 50
+no_spawn_on_player: 0
+boss_spawn_delay: 100
+retaliate_to_master: 1
+
+//party.conf
+show_steal_in_same_party: 1
+show_party_share_picker: 1
+idle_no_share: no
+party_even_share_bonus: 40
+
+//pet.conf
+pet_catch_rate: 100
+pet_friendly_rate: 150
+pet_hungry_delay_rate: 75
+pet_hungry_friendly_decrease: 5
+pet_equip_required: 1
+pet_attack_support: 0
+pet_damage_support: 0
+pet_support_min_friendly: 900
+pet_status_support: 1
+pet_support_rate: 100
+pet_max_atk1: 500
+pet_max_atk2: 1000
+pet_attack_exp_to_master: 1
+pet_max_stats: 99
+pet_disable_in_gvg: 0
+
+//player.conf
+idle_no_autoloot: 60000
+hp_rate: 130
+sp_rate: 100
+player_skillfree: 0
+max_hp: 1000000
+max_sp: 1000000
+max_parameter: 120
+max_baby_parameter: 100
+max_def: 90
+over_def_bonus: 1
+max_cart_weight: 8000
+prevent_logout: 10000
+bone_drop: 1
+character_size: 3
+
+//skill.conf
+casting_rate: 100
+delay_rate: 100
+combo_delay_rate: 200
+delay_dependon_dex: no
+min_skill_delay_limit: 150
+no_skill_delay: 2
+castrate_dex_scale: 150
+gvg_traps_target_all: 0
+display_skill_fail: 15
+sense_type: 1
+backstab_bow_penalty: 1
+skill_steal_max_tries: 15
+copyskill_restrict: 1
+emergency_call: 31
+max_heal: 22222
+max_heal_lv: 11
+berserk_cancels_buffs: no
+allow_es_magic_player: 1
+allow_es_magic_player2: 0
+
+//status.conf
+status_cast_cancel: no
+debuff_on_logout: 0
+pc_status_def_rate: 30
+mob_status_def_rate: 75
+pc_luk_status_def: 300
+mob_luk_status_def: 300
+pc_max_status_def: 90
+mob_max_status_def: 90
+
+//import: conf/import/battle_conf_2x.txt

@@ -1,0 +1,278 @@
+// Created By ShimmyShine
+// Aided by Torgga
+// This is only v1.2 i will be making better as i go on!
+// Fixed Errors and added few stuff in.!
+// DO NOT EDIT IN ANY WAY!
+turbo_room,99,120,5	script	Tournament Runner	874,{
+
+// IGNORE THIS
+disablenpc "Tournament Warper";
+disablenpc "Tournament Warper2";
+disablenpc "PCDieEvent";
+
+mes "[Trunner]";
+mes "What can i do for you?";
+next;
+menu "Info",L_info,"Rules",L_rules,"Gm Menu",L_gmmenu;
+close;
+
+L_gmmenu:
+if (getgmlevel()<60) goto L_notgm;	
+	mes "[Trunner]";
+	mes "Ok now what can i do for you master " + strcharinfo(0) + "?";
+	next;
+	menu "Start Tournament",L_st,"Stop Tournament",L_st2,"Set Rules",L_rules2,"Reset Everything!",L_reset;
+	close;
+
+L_reset:
+	mes "[Trunner]";
+	mes "Ok Everything is reset!";
+	mes "If you want to reset the rules just rewrite over them!";
+	set $signup,0;
+	close;
+
+L_st:
+	mes "[Trunner]";
+		mes "Ok how many people can join?!";
+		mes "Please only put higher than 1 and lower than 8 and it has to be an EVEN number!";
+input people;
+if (people <= 1) goto L_notenough;
+if (people >= 9) goto L_toomuch;
+if (people == 3) goto L_oddnumber;
+if (people == 5) goto L_oddnumber;
+if (people == 7) goto L_oddnumber;
+	next;
+		mes "So " + people + " can join right?";
+	next;
+		menu "Yes",L_yes1,"No",L_redo;
+	close;
+
+L_yes1:
+enablenpc "Tournament Warper";
+enablenpc "Tournament Warper2";
+	mes "[Trunner]";
+		mes "ok let me get it organized then!";
+if (people == 2) goto L_PPL_2;
+if (people == 4) goto L_PPL_4;
+if (people == 6) goto L_PPL_6;
+if (people == 8) goto L_PPL_8;
+	close;
+
+L_PPL_8:
+	mes "[Trunner]";
+		mes "Ok so only 8 people are in this tournament!";
+	next;
+		mes "Tell me who they are!";
+input @password1111$;
+input @password2222$;
+input @password333$;
+input @password444$;
+input @password55$;
+input @password66$;
+input @password7$;
+input @password8$;
+	next;
+		mes "So the names are "+@password1111$+","+@password2222$+","+@password333$+","+@password444$+","+@password55$+","+@password66$+","+@password7$+",and "+@password8$+"?";
+	next;
+		menu "Yes",L_yes5,"No",L_redo;
+	close;
+
+L_yes5:
+	mes "[Trunner]";
+		mes "Great then lets begin!";
+enablenpc "PCDieEvent";
+announce "Tournament Runner : Go to prontera the warp is there!!",1;
+	next;
+		npctalk ""+@password1111$+" is fighting "+@password2222$+" in the first round!";
+		npctalk ""+@password333$+" is fighting "+@password444$+" in the second round!";
+		npctalk ""+@password55$+" is fighting "+@password66$+" in the third round!";
+		npctalk ""+@password7$+" is fighting "+@password8$+" in the fourth round!";
+		npctalk "the winner of the first two fight will have to fight eachother and the winner of the last two fights will fight eachother!";
+		npctalk "Then the winner of those two fights will fight eachother in the FINAL ROUND!";
+	close;
+
+L_PPL_6:
+	mes "[Trunner]";
+		mes "Ok so only 6 people are in this tournament!";
+	next;
+		mes "Tell me who they are!";
+input @password111$;
+input @password222$;
+input @password33$;
+input @password44$;
+input @password5$;
+input @password6$;
+	next;
+		mes "So the names are "+@password111$+","+@password222$+","+@password33$+","+@password44$+","+@password5$+",and "+@password6$+"?";
+	next;
+		menu "Yes",L_yes4,"No",L_redo;
+	close;
+
+L_yes4:
+	mes "[Trunner]";
+		mes "Great then lets begin!";
+enablenpc "PCDieEvent";
+announce "Tournament Runner : Go to prontera the warp is there!!",1;
+	next;
+		npctalk ""+@password111$+" is fighting "+@password222$+" in the first round!";
+		npctalk ""+@password33$+" is fighting "+@password44$+" in the second round!";
+		npctalk ""+@password5$+" is fighting "+@password6$+" in the third round!";
+		npctalk "the winner of the first two fight will have to fight eachother and the third fight winner will get a bye to the third round!";
+enablenpc "Tournament Warper";
+	close;
+
+L_PPL_4:
+	mes "[Trunner]";
+		mes "Ok So only 4 people are in this tournament!";
+	next;
+		mes "Tell me who they are!";
+input @password11$;
+input @password22$;
+input @password3$;
+input @password4$;
+	next;
+		mes "So the names are "+@password11$+","+@password22$+","+@password3$+",and "+@password4$+"?";
+	next;
+		menu "Yes",L_yes3,"No",L_redo;
+	close;
+
+L_yes3:
+	mes "[Trunner]";
+enablenpc "PCDieEvent";
+		mes "Great then lets begin!";
+announce "Tournament Runner : Go to prontera the warp is there!!",1;
+	next;
+		npctalk ""+@password11$+" is fighting "+@password22$+" in the first round!";
+		npctalk ""+@password3$+" is fighting "+@password4$+" in the second round!";
+		npctalk "The winner of each round will fight eachother in the final round!";
+enablenpc "Tournament Warper";
+	close;
+
+L_PPL_2:
+	mes "[Trunner]";
+		mes "Ok so only 2 people are in this tournament!";
+	next;
+		mes "Tell me who they are!";
+input @password1$;
+input @password2$;
+	next;
+		mes "So "+@password1$+" is fighting "+@password2$+"?";
+	next;
+		menu "Yes",L_yes2,"No",L_redo;
+	close;
+
+L_yes2:
+	mes "[Trunner]";
+		mes "Great then it begins!";
+enablenpc "PCDieEvent";
+announce "Tournament Runner : "+@password1$+" is fighting "+@password2$+"! if you would like to watch it go to prontera to the warp!!",1;
+	close;
+
+L_st2:
+	mes "[Trunner]";
+		mes "Are you sure you would like to stop it?";
+	next;
+		menu "Yes",L_yes1234,"No",L_goon;
+	close;
+
+L_yes1234:
+	mes "[Trunner]";
+		mes "Your name please?";
+input @name1234$;
+	next;
+		mes "Reason please";
+input @reason$;
+	next;
+announce "PvP Tournament Runner : "+@name1234$+" has stopped the tournament reason : "+@reason$+"",1;
+announce "PvP Tournament Runner : All people in tournament please exit right away.!",8;
+		mes "Ok done!";
+enablenpc "Tournament Warper2";
+initnpctimer;
+	close;
+
+OnTimer60000:
+stopnpctimer;
+disablenpc "Tournament Warper2";
+announce "PvP Tournament Warper : Too late should have left earlier.!",8;
+	close;
+
+L_goon:
+	mes "[Trunner]";
+		mes "Ok nvm then..!";
+	close;
+
+L_oddnumber:
+	mes "[Trunner]";
+		mes "Sorry but thats an odd number do an even one now!";
+	close;
+
+L_redo:
+	mes "[Trunner]";
+		mes "Well you better redo it then!";
+	close;
+
+L_notgm:
+	mes "[Trunner]";
+		mes "Sorry but your not a gm!";
+	close;
+
+L_rules2:
+	mes "[Trunner]";
+		mes "Please tell me what rule 1 is!";
+input $rule1$;
+	next;
+		mes "Please tell me what rule 2 is!";
+input $rule2$;
+	next;
+		mes "Please tell me what rule 3 is!";
+input $rule3$;
+	next;
+		mes "Thats all thankyou!";
+	close;
+
+L_rules:
+	mes "[Trunner]";
+		mes "Rule 1 : "+$rule1$+"!";
+		mes "Rule 2 : "+$rule2$+"!";
+		mes "Rule 3 : "+$rule3$+"!";
+		mes "Thats all enjoy!";
+	close;
+
+L_info:
+	mes "[Trunner]";
+		mes "Info : well what you do is fight in a tournament and the winner! of course wins prizes!";
+		mes "thats all enjoy!";
+	close;
+
+L_notenough:
+	mes "[Trunner]";
+		mes "Sorry not enough people remember higher than 1 lower than 8 and an even number!";
+	close;
+
+L_toomuch:
+	mes "[Trunner]";
+		mes "Sorry too much people remember higher than 1 lower than 8 and an even number!";
+	close;
+}
+prontera,156,183,5	script	Tournament Warper	802,{
+warp "turbo_room",99,115;
+}
+turbo_room,106,117,5	script	Tournament Warper2	802,{
+warp "prontera",156,190;
+}
+-	script	PCDieEvent	-1,{
+
+	// Mobs do not count as logged in
+	if (isloggedin(killerrid)==0) goto L_NoKill;
+	
+	set PK_Deaths,PK_Deaths+1;		// Increment number of deaths for victim
+	set $@victim_name$,strcharinfo(0);	// Collect victims name
+
+	attachrid(killerrid);			// Attach to the killer
+	set PK_Kills,PK_Kills+1;		// Increment number of kills for killer
+
+	mapannounce "turbo_room","Player kill : "+strcharinfo(0)+" killed "+$@victim_name$,1;
+
+L_NoKill:
+	end;
+}
