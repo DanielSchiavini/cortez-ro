@@ -1,0 +1,4 @@
+login_server_db: ro
+login_server_id: cortezro
+login_server_pw: hLeNoaB5aTo0vlEm9U4h
+login_server_port: 3306
