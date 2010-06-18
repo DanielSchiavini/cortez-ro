@@ -19,7 +19,7 @@ OnSun1600:
 OnInit:
 
 OnAgitStart:
-	if($serv$=="Supreme"){
+	if($serv==5 || $serv==-1){
 		set $@dia1,3;	// Dia da WOE 1.0 com 2 castelos. 3 = Quarta
 		set $@hor1,20;	// Horário de início
 		
@@ -48,7 +48,7 @@ OnAgitStart:
 			Announce "A Guerra do Emperium começou!",bc_npc;
 			if($@dia==$@dia1){ //WOE 1.0, 2 castelos
 				set $castleMap1$,"prtg_cas01";
-				set $castleMap2$,"prtg_cas02";
+				set $castleMap2$,""; // prtg_cas02
 			}else if($@dia==$@dia2){	//WOE 2.0
 				set $castleMap1$,"arug_cas03";
 				set $castleMap2$,"";
