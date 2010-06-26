@@ -50,6 +50,7 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 			set .@nomePremio$, .@qtde[0]+" Moedas Cortez";
 		else
 			set .@nomePremio$, .@qtde[0]+" Moedas Cortez";
+		setarray .@id[0], 7539;
 		goto L_ENTREGA;
 
 	L_Dado:
