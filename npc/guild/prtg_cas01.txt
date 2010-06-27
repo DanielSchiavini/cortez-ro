@@ -88,7 +88,7 @@ OnRecvCastlePt01:
 	end;
 }
 
-schg_cas03,49,19,4	duplicate(Kriemhild2)	Kriemhild#ctz	973
+schg_cas03,58,26,4	duplicate(Kriemhild2)	Kriemhild#ctz	973
 prt_gld,138,68,6	duplicate(Kriemhild2)	Kriemhild#p1-3	973
 prt_gld,138,60,6	duplicate(Kriemhild2)	Kriemhild#p1-4	973
 prt_gld,135,60,6	duplicate(Kriemhild2)	Kriemhild#p1-5	973
