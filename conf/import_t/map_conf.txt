@@ -1,8 +1,8 @@
 userid: testserver
 passwd: FI5yoejOAsp6u2lacRoa
 
-char_ip: 192.168.1.99
-map_ip: test.cortezro.com.br
+//char_ip: 192.168.1.99
+//map_ip: test.cortezro.com.br
 char_port: 6905
 map_port: 6906
 
