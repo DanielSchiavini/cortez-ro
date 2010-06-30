@@ -3,9 +3,9 @@ n_castle	mapflag	nopenalty
 //n_castle	mapflag	nodrop
 n_castle	mapflag	nomemo
 //n_castle	mapflag	monster_noteleport
-//n_castle	mapflag	nocommand	50
+n_castle	mapflag	nocommand	50
 n_castle	mapflag	nosave	SavePoint
-//n_castle	mapflag	restricted	4
+n_castle	mapflag	restricted	4
 
 //Quinta/Domingo às 20h
 //Preço: 100k, revertidos para loteria
