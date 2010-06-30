@@ -88,7 +88,7 @@ function	script	F_WoeBreak	{ //string map
 	specialeffect2 573; sleep2 100;
 	specialeffect2 581; sleep2 100;
 	specialeffect2 254; sleep2 100;
-	getitem 12103,1;
+	getitem 604,1;
 	
 	sleep 2000;
 	
