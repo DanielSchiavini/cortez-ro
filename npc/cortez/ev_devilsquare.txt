@@ -19,8 +19,8 @@ n_castle	mapflag	nosave	SavePoint
 
 n_castle,0,0,0	script	#ev_devilsquare	-1,{
 	
-	OnThu2055:
-	OnSun1455:
+	//OnThu2055:
+	//OnSun1455:
 	OnStartEvent:
 		if(!playerattached())
 			query_logsql "INSERT INTO npclog (npc_date,account_id,char_id,char_name,map,mes) Values (now(),1,150000,'ev_devilsquare','n_castle','[DS] Evento Iniciado Automaticamente')";
