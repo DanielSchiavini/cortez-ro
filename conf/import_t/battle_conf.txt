@@ -187,7 +187,7 @@ display_skill_fail: 15
 sense_type: 1
 backstab_bow_penalty: 1
 skill_steal_max_tries: 15
-copyskill_restrict: 1
+copyskill_restrict: 2
 emergency_call: 31
 max_heal: 22222
 max_heal_lv: 11
