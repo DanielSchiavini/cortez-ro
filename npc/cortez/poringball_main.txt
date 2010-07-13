@@ -915,7 +915,7 @@ OnLeave:
 // map football field
 ball2	mapflag	noicewall
 //ball2	mapflag	pvp
-ball2	mapflag	pvp_noguild
+//ball2	mapflag	pvp_noguild
 ball2	mapflag	nomemo
 ball2	mapflag	noteleport
 ball2	mapflag	nowarp
