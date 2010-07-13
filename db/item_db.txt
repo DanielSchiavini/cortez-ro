@@ -1636,7 +1636,7 @@
 4207,Mysteltainn_Card,Mysteltainn Card,6,,10,10,,,,,,,,32,,,,,{ bonus2 bAddEff,Eff_Curse,1000; bonus2 bSubSize,2,10; },{},{}
 4208,Miyabi_Doll_Card,Miyabi Doll Card,6,,10,10,,,,,,,,64,,,,,{ skill 366,3; },{},{}
 4209,Violy_Card,Violy Card,6,,10,10,,,,,,,,769,,,,,{ bonus4 bAutoSpell,318,1+4*(getskilllv(318)==5),20,0; },{},{}
-4210,Wanderer_Card,Wanderer Card,6,,10,10,,,,,,,,769,,,,,{ skill 219,5; if(isequippedcnt(16110)&&isequippedcnt(4210)<3) bonus2 bSkillAtk,219,100; },{},{}
+4210,Wanderer_Card,Wanderer Card,6,,10,10,,,,,,,,769,,,,,{ skill 219,5; if(isequippedcnt(16110)&&isequippedcnt(4210)==1) bonus2 bSkillAtk,219,100; },{},{}
 4211,Vocal_Card,Vocal Card,6,,10,10,,,,,,,,136,,,,,{ bonus bDex,15; bonus bInt,15; bonus bMatkRate,-3; },{},{}
 4212,Bongun_Card,Bongun Card,6,,10,10,,,,,,,,136,,,,,{ bonus3 bAutoSpell,5,1,20; bonus2 bSkillAtk,5,5; },{},{}
 4213,Brilight_Card,Brilight Card,6,,10,10,,,,,,,,769,,,,,{ skill 20,5+2*(Class==Job_Soul_Linker); },{},{}
