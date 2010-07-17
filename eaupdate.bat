@@ -1,1 +1,1 @@
-TortoiseProc /command:update /path:"C:\Server\SVN\eA" /closeonend:1
+"C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe" /command:update /path:"C:\Server\eA" /closeonend:1
