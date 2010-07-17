@@ -113,7 +113,7 @@ MD_OTHER:
 		"- Banco",L_BANK,
 		"- Vale-Bilhão",L_BILLION,
 		"- Utilidades",L_SHOP,
-		"- Broascast",L_BROADCAST,
+		"- Broadcast",L_BROADCAST,
 		"- Serviço para refinar",L_REFINE,
 //		"- Serviço de retirar carta",L_UNCARD,
 		"- Mudar de estilo",L_STYLE,
