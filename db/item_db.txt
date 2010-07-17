@@ -1813,7 +1813,7 @@
 4383,Novus_Card,Red Novus Card,6,,10,10,,,,,,,,16,,,,,{ bonus3 bAddEffWhenHit,Eff_Confusion,3000,2; },{},{}
 4384,Hydro_Card,Hydro Card,6,,10,10,,,,,,,,136,,,,,{ bonus3 bAutoSpell,277,1,100; },{},{}
 4385,Dragon_Egg_Card,Dragon Egg Card,6,,10,10,,,,,,,,2,,,,,{ bonus bHit,-50; bonus2 bSkillAtk,46,35; } },{},{}
-4386,Detale_Card,Detale Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMdef,10; bonus2 bResEff,Eff_Freeze,10000; bonus5 bAutoSpellWhenHit,288,1,50,BF_MAGIC,0; },{},{}
+4386,Detale_Card,Detale Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMdef,10; bonus5 bAutoSpellWhenHit,288,1,50,BF_MAGIC,0; },{},{}
 4387,Ancient_Mimic_Card,Ancient Mimic Card,6,,10,10,,,,,,,,16,,,,,{ bonus bAgi,readparam(bLuk)/10; },{},{}
 4388,Deathword_Card,Deathword Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,11,50; bonus2 bSkillAtk,13,50; bonus2 bSkillAtk,400,20; },{},{ percentheal 0,-50; }
 4389,Plasma_Card,Plasma Card,6,,10,10,,,,,,,,136,,,,,{ bonus bInt,10; },{},{}
@@ -1846,7 +1846,7 @@
 4416,Siroma_Card,Siroma Card,6,,10,10,,,,,,,,136,,,,,{ bonus2 bSkillAtk,14,25; bonus2 bCastrate,14,-25; },{},{}
 4417,Ice_Titan_Card,Ice Titan Card,6,,10,10,,,,,,,,64,,,,,{ bonus bVit,2; bonusautoscript2 "{ sc_start SC_INCDEF,10000,10; }",10,BF_WEAPON|BF_MAGIC; },{},{}
 4418,Gazeti_Card,Gazeti Card,6,,10,10,,,,,,,,136,,,,,{ bonus3 bAutoSpell,14,2,10; },{},{}
-4419,Ktullanux_Card,Ktullanux Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHP,4000; bonus2 bResEff,Eff_Freeze,10000; bonus5 bAutoSpellWhenHit,"NPC_WIDEFREEZE",5,100,0xFFF,0; },{},{}
+4419,Ktullanux_Card,Ktullanux Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHP,4000; bonus2 bResEff,Eff_Freeze,5000; bonus5 bAutoSpellWhenHit,"NPC_WIDEFREEZE",5,100,0xFFF,0; },{},{}
 4420,Muscipular_Card,Muscipular Card,6,,10,10,,,,,,,,32,,,,,{ bonus5 bAutoSpellWhenHit,28,1,10,BF_SHORT,0; bonus5 bAutoSpellWhenHit,29,1,10,BF_SHORT,0; },{},{}
 4421,Drosera_Card,Drosera Card,6,,10,10,,,,,,,,2,,,,,{ if(isequippedcnt(4421)<=3) { if (getiteminfo(getequipid(EQI_HAND_R),9) > 3) { bonus bCritical,25; bonus bLuk,-15; } else if(readparam(bLuk)>99) { bonus bCritAtkRate,35; } } },{},{}
 4422,Roween_Card,Roween Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bAddEle,Ele_Water,10; bonus bHit,5; },{},{}
