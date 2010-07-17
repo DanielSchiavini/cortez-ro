@@ -502,8 +502,8 @@ function	script	jobmaster	{
 									setarray @qtde[0],	4,						4,						4,						4,						2000,			1,			1;
 									break;
 								case 105:
-									setarray @itens[0],	1014,					1552,		1418,		2696;
-									setarray @itens$[0],"Mandibula de Formiga",	"Tabula",	"Gungnir",	"Vesper Core 01";
+									setarray @itens[0],	1014,					1552,		1413,		2659;
+									setarray @itens$[0],"Mandibula de Formiga",	"Tabula",	"Gungnir",	"Núcleo Vesper 01";
 									setarray @qtde[0],	20,						2,			1,			1;
 									break;
 								case 106:
