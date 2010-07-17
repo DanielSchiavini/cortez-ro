@@ -184,7 +184,10 @@ OnInterIfInitOnce:
 
 // War of Emperium has started.
 OnAgitStart:
-	if($castleMap1$ != strnpcinfo(2) && $castleMap2$ != strnpcinfo(2)) { debugmes "Base "+strnpcinfo(2)+" sem woe. "+$castleMap1$+"/"+$castleMap2$; end; }
+	if($castleMap1$ != strnpcinfo(2) && $castleMap2$ != strnpcinfo(2)) {
+		//debugmes "Base "+strnpcinfo(2)+" sem woe. "+$castleMap1$+"/"+$castleMap2$;
+		end;
+	}
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	MapRespawnGuildID strnpcinfo(2),GetCastleData(strnpcinfo(2),1),2;
 	GvgOn strnpcinfo(2);
@@ -268,7 +271,10 @@ OnAgitBreak:
 
 // War of Emperium has ended.
 OnAgitEnd:
-	if($castleMap1$ != strnpcinfo(2) && $castleMap2$ != strnpcinfo(2)) { debugmes "Sem woe no "+strnpcinfo(2)+" ("+$castleMap1$+"/"+$castleMap2$+")"; end; }
+	if($castleMap1$ != strnpcinfo(2) && $castleMap2$ != strnpcinfo(2)) {
+		//debugmes "Sem woe no "+strnpcinfo(2)+" ("+$castleMap1$+"/"+$castleMap2$+")";
+		end;
+	}
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	GvgOff strnpcinfo(2);
 	// If the castle has no owner at the end of WoE, do not kill Emperium.
@@ -1293,6 +1299,7 @@ OnClock0001:
 			setd "$@"+strnpcinfo(2)+"_treasure",getd("$@"+strnpcinfo(2)+"_treasure") | .@box;
 		}
 	}
+	debugmes "Tesouro " + .@treasurebox + " criado " + .@Treasure + "x pro castelo " + strnpcinfo(2);
 	end;
 
 // Individual "You killed a chest" events to ensure proper spawning at the change of day.
