@@ -1519,7 +1519,7 @@
 4092,Skeleton_Worker_Card,Skeleton Worker Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddSize,1,20; bonus bBaseAtk,5; },{},{}
 4093,Obeaune_Card,Obeaune Card,6,,10,10,,,,,,,,905,,,,,{ skill 35,1; bonus4 bAutoSpell,28,10,30,2; },{},{}
 4094,Archer_Skeleton_Card,Archer Skeleton Card,6,,10,10,,,,,,,,2,,,,,{ bonus bLongAtkRate,15; },{},{}
-4095,Marse_Card,Marse Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Water,23; bonus bFlee,5; },{},{}
+4095,Marse_Card,Marse Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Water,22; bonus bFlee,5; },{},{}
 4096,Zenorc_Card,Zenorc Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEff,Eff_Poison,400; bonus bBaseAtk,10; },{},{}
 4097,Matyr_Card,Matyr Card,6,,10,10,,,,,,,,64,,,,,{ bonus bMaxHPrate,16; bonus bAgi,1; },{},{}
 4098,Dokebi_Card,Dokebi Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Wind; bonus bDef,1; },{},{}
