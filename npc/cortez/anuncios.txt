@@ -47,7 +47,7 @@ end;
 		case 5:
 			announce "[Atenção] Ajude-nos a crescer, vote para o Cortez Online e chame seus amigos!",0;
 			sleep 2000;
-			announce "[Atenção] Este mês, se ficarmos entre os 15 primeiros do ranking,",0;
+			announce "[Atenção] Este mês, se ficarmos entre os 8 primeiros do ranking,",0;
 			sleep 500;
 			announce "[Atenção] Ganharemos uma semana de rates dobradas!",0;
 			break;
