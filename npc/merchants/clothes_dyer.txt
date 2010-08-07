@@ -77,7 +77,7 @@ Male_dye:
 	if(BaseJob==Job_Knight || BaseJob==Job_Knight2 || BaseJob==Job_Crusader || BaseJob==Job_Crusader2 || BaseJob==Job_Lord_Knight || BaseJob==Job_Lord_Knight2 || BaseJob==Job_Paladin || BaseJob==Job_Paladin2 || BaseJob==Job_Stalker || BaseJob==Job_Baby_Knight || BaseJob==Job_Baby_Knight2 || BaseJob==Job_Baby_Crusader || BaseJob==Job_Baby_Crusader2) goto L_Swordman2_M;
 	if(BaseJob==Job_Priest || BaseJob==Job_Monk || BaseJob==Job_High_Priest || BaseJob==Job_Champion || BaseJob==Job_Baby_Priest || BaseJob==Job_Baby_Monk) goto L_Acolyte2_M;
 	if(BaseJob==Job_Wizard || BaseJob==Job_High_Wizard || BaseJob==Job_Baby_Wizard) goto L_Mage2_M;
-	if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchem || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith|| BaseJob==Job_Baby_Alchem) goto L_Merchant2_M;
+	if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchemist || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith || BaseJob==Job_Baby_Alchemist) goto L_Merchant2_M;
 	if(BaseJob==Job_Hunter || BaseJob==Job_Bard || BaseJob==Job_Sniper || BaseJob==Job_Clown || BaseJob==Job_Baby_Hunter || BaseJob==Job_Baby_Bard) goto L_Archer2_M;
 	if(BaseJob==Job_Assassin || BaseJob==Job_Rogue || BaseJob==Job_Assassin_Cross || BaseJob==Job_Baby_Assassin || BaseJob==Job_Baby_Rogue) goto L_Thief2_M;
 	if(BaseJob==Job_SuperNovice || BaseJob==Job_Super_Baby) goto L_Super_Novice_M;
@@ -173,8 +173,8 @@ Female_dye:
 	if(BaseJob==Job_Knight || BaseJob==Job_Knight2 || BaseJob==Job_Crusader || BaseJob==Job_Crusader2 || BaseJob==Job_Lord_Knight || BaseJob==Job_Lord_Knight2 || BaseJob==Job_Paladin || BaseJob==Job_Paladin2 || BaseJob==Job_Stalker || BaseJob==Job_Baby_Knight || BaseJob==Job_Baby_Knight2 || BaseJob==Job_Baby_Crusader || BaseJob==Job_Baby_Crusader2) goto L_Swordman2_F;
 	if(BaseJob==Job_Priest || BaseJob==Job_Baby_Priest) goto L_Acolyte2_F;
 	if(BaseJob==Job_Wizard || BaseJob==Job_Sage || BaseJob==Job_High_Wizard || BaseJob==Job_Professor || BaseJob==Job_Baby_Wizard || BaseJob==Job_Baby_Sage) goto L_Mage2_F;
-	if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchem || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith|| BaseJob==Job_Baby_Alchem) goto L_Merchant2_F;
-	if(BaseJob==Job_Hunter || BaseJob==Job_Bard || BaseJob==Job_Sniper || BaseJob==Job_Clown || BaseJob==Job_Baby_Hunter || BaseJob==Job_Baby_Bard) goto L_Archer2_F;
+	if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchemist || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith || BaseJob==Job_Baby_Alchemist) goto L_Merchant2_F;
+	if(BaseJob==Job_Hunter || BaseJob==Job_Dancer || BaseJob==Job_Sniper || BaseJob==Job_Gypsy || BaseJob==Job_Baby_Hunter || BaseJob==Job_Baby_Dancer) goto L_Archer2_F;
 	if(BaseJob==Job_Assassin || BaseJob==Job_Baby_Assassin) goto L_Thief2_F;
 	if(BaseJob==Job_Rogue || BaseJob==Job_Assassin_Cross || BaseJob==Job_Baby_Rogue) goto L_Thief3_F;
 	if(BaseJob==Job_SuperNovice || BaseJob==Job_Super_Baby) goto L_Super_Novice_F;
@@ -360,7 +360,7 @@ sL_Zeny:
 	close;
 
 sL_NoDye:
-	mes "For me to dye your clothes, I'll need the appropriate Dyestuff. Please check my price list for the information.";
+	mes "For me to dye your clothes, I'll need the appropriate Dyestuffs. Please check my price list for the information.";
 	next;
 
 L_Busy:
@@ -371,14 +371,14 @@ L_PriceList:
 	mes "[Dyer Ginedin Rephere]";
 	mes "Here is the list of colors you can choose from and their prices:";
 	mes " ";
-	mes " - ^FF4422Red^000000: 10000 zeny, 1 Scarlet Dyestuff";
-	mes " - ^D5A500Yellow^000000: 10000 zeny, 1 Lemon Dyestuff";
-	mes " - ^AA00AAViolet^000000: 10000 zeny, 1 Violet Dyestuff";
-	mes " - ^FF8800Orange^000000: 10000 zeny, 1 Orange Dyestuff";
-	mes " - ^4422FFBlue^000000: 10000 zeny, 1 CobaltBlue Dyestuff";
-	mes " - ^009500Green^000000: 10000 zeny, 1 DarkGreen Dyestuff";
-	mes " - Black: 10000 zeny, 1 Black Dyestuff";
-	mes " - White: 10000 zeny, 1 White Dyestuff";
+	mes " - ^FF4422Red^000000: 10000 zeny, 1 Scarlet Dyestuffs";
+	mes " - ^D5A500Yellow^000000: 10000 zeny, 1 Lemon Dyestuffs";
+	mes " - ^AA00AAViolet^000000: 10000 zeny, 1 Violet Dyestuffs";
+	mes " - ^FF8800Orange^000000: 10000 zeny, 1 Orange Dyestuffs";
+	mes " - ^4422FFBlue^000000: 10000 zeny, 1 CobaltBlue Dyestuffs";
+	mes " - ^009500Green^000000: 10000 zeny, 1 DarkGreen Dyestuffs";
+	mes " - Black: 10000 zeny, 1 Black Dyestuffs";
+	mes " - White: 10000 zeny, 1 White Dyestuffs";
 	goto M_Menu;
 
 L_End:
