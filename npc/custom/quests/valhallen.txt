@@ -10,9 +10,7 @@
 //= All-in-one: Mjollnir,Sleipnir,Brisingammen,Gleipnir,Megingjard
 //===== Additional Comments: ================================= 
 //= Custom quest, ingredients based on official RO FAQ
-//============================================================
-//= Skeleton Manteau, Kaho`s Horn
-//============================================================
+//============================================================ 
 
 prontera,147,171,5	script	Lenneth	811,{
 	mes "[Lenneth]";
@@ -193,7 +191,6 @@ L_NOTENOUGH:
 	mes "You are lacking a few items, please return when you have them.";
 	close;
 L_OUT:
-	next;
 	mes "[Lenneth]";
 	mes "Please return when you change your mind.";
 	close;

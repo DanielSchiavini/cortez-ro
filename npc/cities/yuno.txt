@@ -1,607 +1,391 @@
 //===== eAthena Script ======================================= 
-//= Yuno City
+//= Juno City
 //===== By: ================================================== 
-//= KitsuneStarwind, kobra_k88
+//= KitsuneStarwind, kobra_k88, L0ne_W0lf
 //===== Current Version: ===================================== 
-//= 1.2
+//= 1.4a
 //===== Compatible With: ===================================== 
-//= eAthena 7.15 +
+//= eAthena SVN
 //===== Description: ========================================= 
-//=
+//= [Aegis Conversion]
+//= NPCs for the City of Juno
 //===== Additional Comments: ================================= 
 //= Added additional npcs.  Added Metto quest. [kobra_k88]
 //= Moved item quest to quest folder. Re-edited a majority of the npcs. [kobra_k88]
-//= Removed duplicate npcs already found in the sage quest.
+//=a Removed duplicate npcs already found in the sage quest.
 //= Fixed & Spellchecked [massdriller]
+//= 1.3 Started updating Juno NPCs based on iRO. 10% complete.
+//= 1.3.2 Started updating Juno NPCs based on iRO. 30% complete.
+//= 1.3.3 Removed Noyee	NPC (it's implemented in sleipnir_seal.txt)
+//= 1.4 Updated to Aegis 10.3 standards. [L0ne_W0lf]
+//=	Added Juno Airship Representative.
+//= 1.4a Corrected a Typo error (bugreport:716) [Samuray22]
 //============================================================ 
 
-
-
-
-//=================================================================================================//
-//					NPCs Found outside
-//=================================================================================================//
-
-//======================================================================================
-yuno,156,87,4	script	Citizen of Yuno	47,{
-	mes "[Hans]";
-	mes "If you go north from Al De Baran you will arrive at 'Elmeth Plateau'.";
-	mes "It is a place that was once covered with molten rocks and lava.";
-	next;
-	mes "[Hans]";
-	mes "At the top of a mountain connected to the plateau, you can find a bridge that will lead you here to Yuno.";
-	next;
-	mes "[Hans]";
-	mes "Here in Yuno, you can visit world famous places such as the:";
-	mes "^5533FF'Yuphero Plaza'";
-	mes "'Yuno Conference Hall'";
-	mes "'Schweicherbil Magic Academy'^000000";
-	mes "and the ^5533FF'Museum of Monsters'^000000";
-	next;
-	mes "[Hans]";
-	mes "There is also the ^5533FF'Sage Castle'^000000 which is the greatest attraction in this city.";
-	mes "The castle is where people go to become Sages.";
-	next;
-	mes "[Hans]";
-	mes "If you have any interest in becoming a Sage, why not have a look around the castle?";
-	close;
+// Juno
+//============================================================ 
+yuno,184,173,4	script	Freidrich#juno	729,{
+	if (rand(1,5) == 1) {
+		mes "[Freidrich]";
+		mes "^3355FFJuno^000000 is kept aloft in the air by an ancient and mysterious force.";
+		next;
+		mes "[Freidrich]";
+		mes "This power is said to come from a relic from an ancient civilization called ^3355FFJuperos^000000 which existed here long before Juno.";
+		next;
+		mes "[Freidrich]";
+		mes "Research revealed that Juno's power source based on ^3355FFPieces of Ymir's Heart^000000. I hear that this power source is found where Juperos used to exist.";
+		next;
+		mes "[Freidrich]";
+		mes "Since many scholars have been coming to Juno to study and research this power source, our city is basically a well known mecca for scholars.";
+		close;
+	}
+	else {
+		mes "[Freidrich]";
+		mes "The city of Sages,";
+		mes "^3355FFJuno,^000000 is made of";
+		mes "three islands.";
+		next;
+		mes "[Freidrich]";
+		mes "These are Solomon, the island of honor, Mineta, the island of prosperity, and Snotora, the island of knowledge.";
+		next;
+		mes "[Freidrich]";
+		mes "The location of each island is";
+		mes "North-west : Solomon";
+		mes "North-east : Snotora";
+		mes "South : Mineta.";
+		close;
+	}
 }
-
-//=======================================================================================
-yuno,158,205,4	script	Artisan	54,{
-	mes "[Artisan]";
-	mes "~(mumbling to himself.......)~";
-	next;
-	mes "[Artisan]";
-	mes "Oh hello there.  Let me introduce myself.  I am an artisan who is trying to carry on the traditions and duties of the master craftsmen here in Yuno.";
-	M_Menu:
-	next;
-	menu "About powerful equipment.",M_1,"About special items",M_2,"About authentic foods",M_3,"End conversation",M_End;
 	
-	M_1: 
-		mes "[Artisan]";
-		mes "For Crusaders, I suggest looking into the ^5533FF'Holy Guard' and 'Holy Avenger'^000000.";
-		mes "They are both light weight pieces of equipment and they perform remarkably well.";
-		next;
-		mes "[Artisan]";
-		mes "They also posses the holy property so they are even more powerful against undead and ghost creatures,";
-		next;
-		mes "[Artisan]";
-		mes "I've heard that these pieces of equipment are quite rare, and that only a chosen few are able to obtain them.";
-		goto M_Menu;
-		
-	M_2:
-		mes "[Artisan]";
-		mes "One item that I know about is a magic scroll called the ^5533FF'Worn-Out Magic Scroll'^000000.";
-		mes "It is described to have a circle inside of another circle.... and a star...... ";
-		next; 
-		mes "[Artisan]";
-		mes "Although the scroll is very old and tattered, it very special to many Sages who use it for their research.";
-		mes "Apparently it can be used with very high level magic spells.";
-		goto M_Menu;
-	
-	M_3:
-		mes "[Artisan]";
-		mes "^5533FF'Rice Cake'^000000!! A traditional food that has been a favorite of many people over the years.";
-		mes "It has a way of reminding people of those old traditional markets and fairs.";
-		next;
-		mes "[Artisan]";
-		mes "Ah.... Rice Cake..... I sure wish I could eat some now..............";
-		//possible quest here .. not sure though
-		goto M_Menu;
-		
-	M_End:
-		mes "[Artisan]";
-		mes "Although Yuno is known as the city of Sages,..............";
-		mes "I hope you will understand that Yuno is also home to many kind and gentle people who live ordinary lives.";
-		next;
-		mes "[Artisan]";
-		mes "Please enjoy everything this unique city has to offer.";
-		close;
-}
-
-//======================================================================================
-yuno,336,227,4	script	Yuno Granny	103,{
+yuno,337,227,4	script	Juno Granny#juno	103,{
 	mes "[Granny]";
-	mes "Here you are......... I am an elderly Sage who can foresee everything before it happens.";
-	next;
-	mes "[Granny]";
-	mes "Have you heard about the boss monster, who's name has been buzzing around Yuno for the longest time?";
-	mes "It's called ^FF3355'Lord of the Dead'^000000.  Rumor has it that it comes form the realm of the dead.";
-	next;
-	mes "[Granny]";
-	mes "It brings with it many undead monsters that are intent on leading the living to the cold and icy land of the dead.";
-	next;
-	mes "[Granny]";
-	mes "I know that you have already chosen whether or not you will fight the Lord of the Dead.";
-	mes "The only thing left for you to do is find out why you made that choice......";
-	close;
-}
-
-//========================================================================================
-yuno,329,239,4	script	Yuno Fighter	732,{
-	mes "[Sergiof]";
-	mes "My name is Sergiof and I am Granny's protector.";
-	next;
-	mes "[Sergiof]";
-	mes "Let me tell you about the ^5533FF'Grand Peco'^000000, which is a high level Peco Peco.";
-	mes "The Grand Peco is faster than regular Peco Pecos and has aggressive tendencies.";
-	next;
-	mes "[Sergiof]";
-	mes "It attacks its targets using its strong bill.  It is always surrounded by a large group of Peco Pecos.";
-	next;
-	mes "[Sergiof]";
-	mes ".... Unfortunately it is time for us to part...... farewell...........";
-	close;
-}
-
-//========================================================================================
-yuno,344,68,4	script	Yuno Tyrant	730,{
-	mes "[Ninno]";
-	mes "Have you ever heard of an Egyptian king who was once believed to be the son of a god?";
-	mes "His name was ^5533FF'Pharaoh'^000000";
-	next;
-	mes "[Ninno]";
-	mes "Rumor has it that he was a high sorcerer and that he used his abilities to curse innocent people.";
-	mes "There are people that say he is still around, and continues to place curses on people.";
-	next;
-	mes "[Ninno]";
-	mes "Have you ever seen him before?";
-	close;
-}
-
-//=======================================================================================
-yuno,261,98,4	script	Ykla	735,{
-		mes "[Ykla]";
-		mes "^5533FFYuphero^000000......,";
-		mes "That was the name of the ancient city where the most intelligent and talented people used to live.";
-		next;
-		mes "[Ykla]";
-		mes "By finding a way to harness the power from the pieces of Ymir's heart, they became the most advanced city know to man.";
-		next;
-		mes "[Ykla]";
-		mes "However, over time they came to abuse that power and ended up destroying themselves.";
-		next;
-		mes "[Ykla]";
-		mes "If you ever find yourself in the position of acquiring this kind of power, make sure you remain humble to it.";
-		next;
-		mes "[Ykla]";
-		mes "Power without humility is nothing more than a fools path to destruction.";
-		close;
-}
-
-//=========================================================================================
-yuno,306,207,6	script	Sage Sykla	735,{
-		mes "[Sykla]";
-		mes "There is talk about a suspicious man living somewhere here in Yuno.";
-		mes "Apparently he is a dangerous person who is immersed in some kind of wicked research.";
-		next;
-		mes "[Sykla]";
-		mes "This so called 'Mad Scientist' spends his time working on complex ideas that cannot be understood by normal people.";
-		next;
-		mes "[Sykla]";
-		mes "Just outside of town you will find a monster called ^FF3355'Blazer'^000000.";
-		mes "This ball of magic flame attacks any living creature it finds with horrible spells such as fire bolt and fire ball.";
-		next;
-		mes "[Sykla]";
-		mes "This hideous creature is feared my most, if not all, of the people here in Yuno.";
-		mes "But what's even more frightening than the monster itself, is the rumor that the mad scientist was the one who created it....";
-		next;
-		mes "[Sykla]";
-		mes "Imagine if this mad man were to create more of these creatures..... possibly create monsters even more powerful than Blazer....";
-		close;
-}
-
-//==========================================================================================
-yuno,162,328,4	script	Sage Eskla	735,{
-	mes "[Eskla]";
-	mes "I remember seeing it once........ Yeah... I remember now....... ";
-	mes "There was this piece of paper floating in the air.  I asked myself, 'Hmm... who lost a piece of paper out here?'.";
-	next;
-	mes "[Eskla]";
-	mes "Then... without warning.... the piece of paper attacked me!! ME! One of the GREATEST Sages in Yuno!!";
-	emotion e_omg;
-	next;
-	mes "[Eskla]";
-	mes "I said to the piece of paper, 'How dare you attack me you little piece of paper!!' and struck it with my trusty sword.";
-	mes "But that piece of paper was persistent and annoying at that.";
-	emotion e_gasp;
-	next;
-	mes "[Eskla]";
-	mes "Using its paper thin body it dodged my sword simply by turning itself.  The way it was turned I couldn't even tell if it was still there.";
-	mes "Dammit it was thin!!!";
-	next;
-	mes "[Eskla]";
-	mes "I decided to finally put an end to things and used a powerful magic spell to destroy that little piece of paper.";
-	mes "Because I had so much difficulty in defeating it, I decided to ask my colleagues if they knew anything about it.";
-	next;
-	mes "[Eskla]";
-	mes "I found out what I had fought was called ^FF3355'The Paper'^000000.";
-	mes "People say that it used to be part of an old book that contained a great deal of ancient knowledge about Yuno.";
-	next;
-	mes "[Eskla]";
-	mes "Somehow it became a monster....... isn't that weird?";
-	close;
-}
-
-
-
-//======================================================================================
-yuno,166,111,4	script	Remorpheous	120,{
-	mes "[Remorpheous]";
-	mes "'Apocalypse'. he, an artificial human being,";
-	mes "was the chief of gatekeepers and in charge of public order of the city";
-	mes "of [Yuno] during the Ancient times civilization...";
-	close;
-	mes "[Remorpheus]";
-	mes "....similar to Robot. After living for a long time,";
-	mes "its A.I. totally screwed up,it couldn't recognize friend or foe anymore,";
-	mes "so without consideration of friends or foe......";
-	close;
-	mes "[Remorpheus]";
-	mes ".... it became a monster that attacks anyone regardless";
-	close;
-}
-
-//=====================================================================================
-yuno,185,173,3	script	Impressor	729,{
-	mes "[Impressor]";
-	mes "Scholar's city, 'Yuno' is made of 3 big islands.";
-	next;
-	mes "[Impressor]";
-	mes "those are,";
-	mes "The island of Glory - Solomon";
-	mes "The island of Prosperity - Minetta";
-	mes "The island of Wisdom - Snottra";
-	next;
-	mes "[Impressor]";
-	mes "Each island's location are:";
-	mes "Northwest: Solomon";
-	mes "Northeast: Snottra";
-	mes "South: Minetta";
-	close;
-}
-
-//=====================================================================================
-yuno,80,150,4	script	Young Woman	746,{
-	mes "[Young Woman]";
-	mes "Have you ever seen such a beautiful city?";
-	mes "And Yuno at night time is so wonderful with its lights shiny through the clouds";
-	next;
-	mes "[Young Woman]";
-	mes "I'm sorry i got carried away , its my first time being here in the City of Sages";
-	mes "i suggest you go look around and enjoy your self";
-	next;
-	mes "[Young Woman]";
-	mes "I believe i shall wait around here till nightfall just so i can see the lights clearly";
-	mes "maybe i will see you here later";
-	close;
-}
-
-
-//===================================================================================================//
-//						Metto Quest
-//===================================================================================================//
-
-//========================================================================	
-yuno_in03,25,39,3	script	Metto	709,{
-	mes "[Metto]";
-	if(metto_q == 2 || metto_q == 4 || metto_q == 6) goto L_Check;
-	if(metto_q == 1) goto L_Stang;
-	if(metto_q == 3) goto L_Kato;
-	if(metto_q == 5) goto L_Cici;
-	if(metto_q == 7) goto L_Ruined;
-	if(metto_q > 7) goto L_Done;
-	mes "Whether it be today, tomorrow, or the next day, I spend every moment I have on my research.";
-	mes "My whole life has been dedicated to making............";
-	next;
-	mes "[Metto]";
-	mes "NEW YUNO, my own kingdom.  In order to do that I must research how this city floats in the air.";
-	mes "If I'm able to do so..... my goals will no longer be a mere dream, but a reality!!";
-	next;
-	mes "[Metto]";
-	mes "That ^5544FFWagan^000000 thinks my research means nothing......";
-	mes "But he doesn't realize that my ideas have been blessed by the Gods themselves!";
-	close;
-
-L_Stang:
-	mes "I'm going to ask my colleague ^5533FFStangckle^000000 to help me.  I am sure he will be more than willing to help out an old friend.";
-	next;
-	mes "[Metto]";
-	mes "Hmmm.... If I had that fellow's help, this would be much easier.... Pray! Pray to whatever God you believe in that we will succeed!";
-	set metto_q, 2;
-	close;
-L_Kato:
-	mes "What??!! That fool Stangckle said he doesn't want to help me?? This is not good...... My research will slow down considerably.";
-	mes "......... What will I do now?!?!?";
-	emotion e_swt2;
-	next;
-	mes "[Metto]";
-	mes "Luckily I have a backup plan.  I'm certain that my friend and colleague ^5533FFKato^000000 will lend me a hand.";
-	next;
-	mes "[Metto]";
-	mes "If I could only get a chance to study his super robot, the 'Great Z', I could continue my research.......";
-	next;
-	mes "[Metto]";
-	mes "That Stangckle can have it his way for all I care.  Even if he doesn't help me, my research will still go on.... it must!";
-	next;
-	mes "[Metto]";
-	mes "Expect great things from me young friend..... MUHAHAHAHAH!!!!";
-	set metto_q, 4;
-	emotion e_gg;
-	close;
-L_Cici:
-	mes "WHAT!?!? You're telling me that the very thing I need to continue my research with... the Great Z.... has been DESTROYED!?!?";
-	emotion e_wah;
-	next;
-	mes "[Metto]";
-	mes "NOOOOOOO!!! Why?? How?? Why would he do that? Are the Gods cursing me?!?";
-	emotion e_an;
-	next;
-	mes "[Metto]";
-	mes "Wait.... I need to calm down...";
-	mes "If I can just get the help of professor ^5533FFCiCi^000000 with his 'Riding Engine Theory', I may be able to finish my research.......";
-	next;
-	mes "[Metto]";
-	mes "*sigggghhhh* I still have hope...... YES I DO!! HAHAHA!!!";
-	set metto_q, 6;
-	emotion e_gg;
-	close;
-L_Check:
-	mes "I better get going so I can check this new thing out..... What are you still doing here?";
-	mes "I'll be leaving in a bit.  I need to get ready so why don't you go ahead and just take off.......";
-	close;
-L_Ruined:
-	mes "............................";
-	next;
-	mes "[Metto]";
-	mes "How could something like this happen?? All 3 of my colleagues abandoning me all at once?!?!";
-	mes "It's true....... the Gods HAVE forsaken me..... I'm ruined...... RUINED!!!";
-	emotion e_sob;
-	next;
-	mes "[Metto]";
-	mes "What else can I do now? Has the time really come for me to let go of all of my research?....";
-	mes "Those many, many years of research?........";
-	emotion e_sob;
-	next;
-	mes "[Metto]";
-	mes "You must be disappointed...... but please, forget about all of this... forget about me........";
-	mes "Who would do this to me? What kind of malicious person would shatter a man's dreams??";
-	next;
-	mes "[Metto]";
-	mes "I suddenly feel tired now....... It's time for me to give up....... It's all over.  Please don't be too disappointed.......";
-	set metto_q, 8;
-	close;
-L_Done:
-	mes "Maybe I should look into getting a job change.  I hear it's a popular thing to do these days.  I wonder what profession I should go into?";
-	mes "All I know for sure is that I don't want to be a scientist anymore.";
-	next;
-	mes "[Metto]";
-	mes "I'm done with research forever.............";
-	close;
-}
-
-//=====================================================================
-yuno_in01,18,95,5	script	Stangckle	99,{
-	mes "[Stangckle]";
-	if(metto_q > 2) goto L_Done;
-	if(metto_q == 2) goto L_Start;
-	mes "I am one of the scientists in this city.  My name is ^5533FFStangckle^000000.";
-	mes "Remember my name for it may be useful to you in the future.  Who knows, I may just invent something incredible.";
-	close;
-L_Start:
-	mes "What can I do for you? My colleague Metto is coming here soon, so I don't have much time.";
-	mes "So what did you say you needed??";
-	next;
-	menu "I need to talk to you about Metto!!",-, "Actually I don't need anything.",M_End;
-
-		mes "[Stangckle]";
-		mes "......................";
-		next;
-		mes "[Stangckle]";
-		mes "..................................";
-		next;
-		mes "[Stangckle]";
-		mes "Is this true?? Metto doesn't think of me as a colleague, and is only USING me?";
-		mes "He sees me as a lowly assistant and is going to STEAL all the CREDIT for our discoveries?!!";
-		emotion e_omg;
-		next;
-		mes "[Stangckle]";
-		mes "I can't believe I trusted him..... the rumors were true.... he IS a selfish mad man!!!.......";
-		mes "And to think I respected a scumbag like that!!";
-		emotion e_pif;
-		next;
-		mes "[Stangckle]";
-		mes "I don't think I can even bear to see his disgusting face anymore.....";
-		next;
-		mes "[Stangckle]";
-		mes "I'm glad that an honest and trustworthy person such as yourself had the guts to tell me the ugly truth about Metto.";
-		mes "Thank you for sharing that information with me.";
-		next;
-		mes "[Stangckle]";
-		mes "Now if you'll excuse me, I have some work to do.";
-		set metto_q, 3;
-		close;
-	M_End:
-		mes "[Stangckle]";
-		mes "What are you doing here then? Stop wasting my time.";
-		emotion e_swt;
-		close;
-L_Done:
-	mes "So Metto was truly a mad scientist after all...... I guess he will be the one who will ultimately pay for that choice.......";
-	close;
-}
-
-//===================================================================
-yuno_in01,19,182,3	script	Kato	55,{
-	mes "[Kato]";
-	if(metto_q > 4) goto L_Done;
-	if(metto_q == 4) goto L_Start;
-	mes "I am a scientist that specializes in ^5533FFArtificial Intelligence and Robotics^000000.";
-	mes "Although I'm not working on a specific project at this moment, my latest creation the 'Great Z' is truly a work of sheer genius!";
-	close;
-
-L_Start:
-	mes "As a scientist I research many different things.... of course this research is private.  What can I do for you?";
-	next;
-	menu "I have news from Metto!",-, "Just wanted to say hello.",M_End;
-
-		mes "[Kato]";
-		mes "WHAT!!?? Metto said my Great Z is INFERIOR to Stangckles research!!??";
-		mes "He.... he said I should rename it to 'LAME Z'??.......";
-		emotion e_omg;
-		next;
-		mes "[Kato]";
-		mes "*Sniff* I... I don't believe it.... *sob* how could he say that?..... If... if my invention is no good.....";
-		mes "Then I guess I should destroy it.... my Great Z.... *sigh*";
-		emotion e_sob;
-		next;
-		mes "[Kato]";
-		mes "How could that Metto be such a heartless bastard?? Thank you for letting me know Metto's TRUE feelings about my work.";
-		set metto_q, 5;
-		close;
-	M_End:
-		mes "[Kato]";
-		mes "........... Okay.... Um.... Hey........";
-		close;
-
-L_Done:
-	mes "I am interested in researching artificial intelligence.  You know, like robots.";
-	mes "I know that it is something very difficult to accomplish, but where there's a will, there's a way.";
-	next;
-	mes "[Kato]";
-	mes "If you ever see something amazing that is similar to what I described, you'll know that it's my handwork.";
-	close;
-}
-
-//===================================================================
-yuno_in03,179,43,5	script	CiCi	121,{
-	mes "[CiCi]";
-	if(metto_q > 6) goto L_Done;
-	mes "My name is ^5533FFCiCi^000000.  I am one of the ^5533FF3 great scientists^000000 that live in this city.";
-	mes "Although there are many great scientists in this town, being one of the top 3 is a true honor don't you think??";
-	if(metto_q == 6) goto L_Start;
-	close;
-
-L_Start:
-	next;
-	mes "[CiCi]";
-	mes "Heh, I guess I was being a little to egoistical there.... anyways what can I do for you?";
-	next;
-	menu "Metto wanted me to tell you this......",-, "Nothing, just saying hey.",M_End;
-
-		mes "[CiCi]";
-		mes "Hmm?? Metto said that he doesn't need my Riding Engine Theory?? Hmphf! How dare he!!!";
-		emotion e_pif;
-		next;
-		mes "[CiCi]";
-		mes "I have half a mind to teach him a little something about TRUE science and INTELLIGENT research!!";
-		emotion e_ag;
-		next;
-		mes "[CiCi]";
-		mes "... Whatever.... I don't have the necessary equipment to help him anyways.";
-		mes "I guess, either way, he didn't have a chance.";
-		next;
-		mes "[CiCi]";
-		mes "Let him know that I didn't really want to be a part of what he was doing in the first place.";
-		mes "He isn't even doing the type of research that could be publicized.........";
-		set metto_q, 7;
-		close;
-
-	M_End:
-		mes "[CiCi]";
-		mes "What? That's it? You just wanted to waste some time?...........";
-		emotion e_swt;
-		close;
-
-L_Done:
-	mes "Hmm... I want to improve the Riding Engine but I lack the necessary parts.  What a headache....";
-	mes "Metto never offered me any help at all.  This is not going to be easy.......";
-	close;
-}
-
-//===================================================================
-yuno_in01,18,30,3	script	Wagan	85,{
-	mes "[Wagan]";
-	if(metto_q > 0) goto L_Check;
-	mes "I'm sure you know that our village has been able to prosper for many years because of the brilliant research done here.";
-	mes "We owe a great deal to those who have dedicated their lives to research and study.";
-	next;
-	mes "[Wagan]";
-	mes "It is because of them that we can enjoy such a wonderful quality of life here.";
-	mes "They have been able to work together and support each other which is great to see.";
-	next;
-	mes "[Wagan]";
-	mes "Unfortunately there are a few 'bad apples' that cause problems within this solid community of researchers.";
-	next;
-	mes "[Wagan]";
-	mes "These people just drive me crazy!";
-	emotion e_an;
-	next;
-	mes "[Wagan]";
-	mes "They think only of themselves and their crazy actions make it much more difficult for everyone else.";
-	mes "Out of those few selfish mad men, ^FF3333'Metto'^000000 must be the worst by far.";
-	next;
-	mes "[Wagan]";
-	mes "This disturbed individual does nothing but destroy public facilities, create harmful pollutants, disrupt other peoples lives......";
-	next;
-	mes "[Wagan]";
-	mes "..... the list goes on and on.  What's worse..... He tries to justify his dreadful actions by calling it 'research'!!!!";
-	mes "He has definitely lost his sanity and has gone too far!!";
-	emotion e_ag;
-	next;
-	mes "[Wagan]";
-	mes "If only there was a way to stop this mad man from destroying our community......";
-	mes "I just wish there was someone capable and brave enough to put an end to ^FF3333Metto's^000000 insanity.......";
-	next;
-	menu "Leave it to me.",-, "I wish your city the best of luck...",M_End;
-
-		mes "[Wagan]";
-		mes "Oh?? Are you really going to help us stop Metto? Our city would be very grateful if you could do this.......";
-		mes "But how exactly do you plan on accomplishing this rather difficult task?";
-		emotion e_what;
-		next;
-		menu "Yeah it's pretty hard....",M_End, "Well, I guess I need to think of a plan now.....",-;
-
-			mes "[Wagan]";
-			mes "Yes a solid plan will be necessary to put a stop to Metto.  You will need to trick him into quitting his evil experiments somehow......";
-			mes "It will have to be something subtle like....... hmm........";
+	if (rand(1,50) == 1) {
+		if (Zeny > 999) {
+			mes "So, do you enjoy candy?";
 			next;
-			mes "[Wagan]";
-			mes "... Sabotaging his experiments in a way that makes it look like he was destined to fail.";
-			mes "He is talkative so you may be able to get him to tell you everything you need to know about his work.";
+			mes "^3355FFGranny hands you some candy^000000.";
 			next;
-			mes "[Wagan]";
-			mes "To be honest.... I have been thinking about this plan for a while.........";
-			set metto_q, 1;
+			mes "[Granny]";
+			mes "You've already chosen. It doesn't matter whether or not you get this candy. That doesn't matter at all. You have to understand why it's happened.";
+			next;
+			mes "[Granny]";
+			mes "Here's ^3355FF1,000 zeny^000000.";
+			mes "Do you accept this?";
+			next;
+			if (select("Accept:Do not accept") == 1) {
+				mes "[Granny]";
+				mes "*Giggle*";
+				mes "There you go~";
+				set zeny,zeny-1000;
+				getitem 529,1; //Candy
+				next;
+				mes "[Granny]";
+				mes "*Giggle*";
+				mes "Well then...";
+				mes "See you ~";
+				close;
+			}
+			mes "[Granny]";
+			mes "Yes, that's right. Now you must ask yourself why you didn't accept the candy I offered.";
 			close;
-	M_End:
-		mes "[Wagan]";
-		mes "We will have to hope that fate will be on our side as we wait for things to unfold......";
-		mes "Come to think of it.... Metto is a strong believer in fate..... If we could only use that to your advantage somehow....";
+		}
+		else {
+			mes "*Giggle giggle*";
+			mes "The time has come.";
+			mes "Well then...";
+			close;
+		}
+	}
+	else {
+		mes "I am an old Sage granny who foresees everything...";
+		next;
+		mes "[Granny]";
+		mes "Have you heard of a boss monster that has been around Juno for a long time? It's known only as the ^FF3355Lord of the Dead^000000.";
+		next;
+		mes "[Granny]";
+		mes "It is rumored to be from the realm of the dead. It brings many undead monsters with it, intending to lead living creatures to its cold and icy realm.";
+		next;
+		mes "[Granny]";
+		mes "You have already chosen whether or not you will challenge the Lord of the Dead. All you need to do right now is understand why you made the decision.";
 		close;
-L_Check:
-	if(metto_q == 8) goto L_Thank;
-	if(metto_q == 9) goto L_Done;
-	mes "How goes your work on sabotaging Metto's experiments?  Hopefully the plan is going well.";
-	mes "I'm sorry to involve you in our city's problems, but we really do appreciate you efforts.";
-	close;
-L_Thank:
-	mes "Is this true? You were able to shut down Metto's research? Thank you sooo much for your help.";
-	mes "Without Metto causing trouble we have a lot less to worry about.";
-	emotion e_ic;
+	}
+}
+
+yuno,328,239,4	script	Juno Fighter#juno	732,{
+	mes "[Sergiof]";
+	mes "My name is Sergiof,";
+	mes "the fighter who";
+	mes "serves Granny.";
 	next;
-	mes "[Wagan]";
-	mes "The people of this city are grateful to you.  Here is a little token of our appreciation......";
+	mes "[Sergiof]";
+	mes "I will tell you about ^3355FFGrand Peco^000000 which is a high level Peco Peco. Grand Peco is faster than Peco Peco and is quite aggressive.";
 	next;
-	mes "[Wagan]";
-	mes "Thank you once again for your assistance! I wish you the best of luck in all of your future endeavors!!!";
-	getitem 715,10;
-	emotion e_thx;
-	set metto_q, 9;
+	mes "[Sergiof]";
+	mes "It attacks using its strong bill and many Peco Pecos follow it. There's quite a difference in power between Peco Peco and the Grand Peco.";
 	close;
-L_Done:
-	mes "Things have been much more peaceful around here now that Metto has been shut down.  Thank you once again for your help.";
-	emotion e_thx;
+}
+
+yuno,343,68,4	script	Juno Despot#juno	730,{
+	mes "[Ninno]";
+	if (rand(1,1000) == 1) {
+		mes "You are very lucky to have me tell you this story. This only happens by ^FF33551 out of a 1,000 chance^000000.";
+		next;
+		mes "[Ninno]";
+		mes "This world you are experiencing is actually fabricated! It's time for you to see reality for what it is!";
+		next;
+		mes "[Ninno]";
+		mes "Open your eyes! Stop being manipulated by virtual reality!";
+		close2;
+		warp "prontera",182,206;
+		end;
+	}
+	mes "Have you ever heard of an Egyptian king who was once believed to be a son of a god? His name is ^3355FFPharoah^000000.";
+	next;
+	mes "[Ninno]";
+	mes "He was rumored to be a high sorcerer that used his power to curse innocents. It is said that he is still around, placing his curses on people.";
+	next;
+	mes "[Ninno]";
+	mes "As an adventurer, it's possible that you may see him in your travels. Be careful...";
 	close;
+}
+
+yuno,165,111,4	script	Juno Sage#juno	123,,{
+	mes "[Le Morpheus]";
+	if (rand(1,50) == 25) {
+		if (Zeny > 4999) {
+			mes "Look in my hand. I am holding two different kinds of herbs.";
+			next;
+			mes "[Le Morpheus]";
+			mes "One is a ^3355FFBlue Herb^000000 which will make you forget about reality and keep you in this virtual reality^000000.";
+			next;
+			mes "[Le Morpheus]";
+			mes "The other is a ^FF3355Red Herb^000000 which will reveal to you what is true and real.";
+			next;
+			mes "[Le Morpheus]";
+			mes "Whichever one you choose, you must spend ^3355FF5,000 zeny^000000. Now, please select one.";
+			next;
+			if (select("Choose ^FF3355Red Herb^000000:Choose ^3355FFBlue Herb^000000.") == 1) {
+				mes "[Le Morpheus]";
+				mes "As you have chosen, you will forget everything, and remain in this virtual reality.";
+				set zeny,zeny-5000;
+				getitem 507,1; //Red_Herb
+				close2;
+				warp "prontera",182,206;
+				end;
+			}
+			mes "[Le Morpheus]";
+			mes "You will see the truth.";
+			set zeny,zeny-5000;
+			getitem 510,1; //Blue_Herb
+			close2;
+			warp "pay_dun03",200,222;
+			end;
+		}
+		else {
+			mes "Hmm. I'm sorry to say you just missed a fortunate chance. However, I can tell you don't have enough wealth to bring this fortune to fruition.";
+			close;
+		}
+	}
+	else {
+		mes "^3355FFApocalypse^000000...";
+		mes "It is the name of an android that used to guard Juno long ago.";
+		next;
+		mes "[Le Morpheus]";
+		mes "Because its artificial intelligence has corrupted over the years, it can no longer distinguish comrades from enemies. Sadly, that android is nothing but a mindless monster now.";
+		close;
+	}
+}
+	
+yuno,157,205,4	script	Juno Artisan#juno	54,{
+	mes "[Artisan]";
+	mes "*Mumble mumble...*";
+	next;
+	mes "[Artisan]";
+	mes "Oh, hello there. Let me introduce myself. I am an artisan who tries to succeed the rights and duties of item makers in Juno.";
+	next;
+	switch(select("About Powerful Equipment:About Unique Items:About Authentic Food:End Conversation")) {
+	case 1:
+		mes "[Artisan]";
+		mes "Let me suggest the ^3355FFHoly Guard^000000 and ^3355FFHoly Avenger^000000 which are special items for Crusaders.";
+		next;
+		mes "[Artisan]";
+		mes "These pieces of equipment are very light and have sufficient abilities. They also happen to possess holy power.";
+		next;
+		mes "[Artisan]";
+		mes "Therefore, this equipment is more powerful over some kinds of monsters such as Ghosts or the Undead.";
+		next;
+		mes "[Artisan]";
+		mes "However it is rumored that only a few chosen Crusaders are able to obtain those items due of their rarity.";
+		close;
+	case 2:
+		mes "[Artisan]";
+		mes "It looks like a simple scroll marked with concentric circles and a star. Although the ^FF3355Worn-Out Magic Scroll^000000 is very old, it's wanted by many Sages for research purposes.";
+		next;
+		mes "[Artisan]";
+		mes "It seems you can use that item when you chant a high-level magic spell.";
+		close;
+	case 3:
+		mes "[Artisan]";
+		mes "^3355FFRice Cake^000000! Yes, it's a traditional food that's favored by a lot of people. There's a lot of nostalgic memories of old fashioned markets that are connected to the Rice Cake.";
+		next;
+		mes "[Artisan]";
+		mes "Ahhh~";
+		mes "I wish I could eat a bit of Rice Cake right now.";
+		close;
+	case 4:
+		mes "[Artisan]";
+		mes "Although Juno is known as a city of Sages, I hope you understand that ordinary people live and propser here as well. Please enjoy the unique atmosphere that Juno has to offer.";
+		close;
+	}
+}
+
+yuno,150,283,4	script	Juno Soldier#juno	105,{
+	mes "[Juno Soldier]";
+	mes "Welcome to Juno, the city of noble-mindedness.";
+	next;
+	mes "[Juno Soldier]";
+	mes "There is a monster near here known as Lava Golem. This golem is made from a stone heart whose power happened to be amplified with magic power when it was swept away by molten rock.";
+	next;
+	mes "[Juno Soldier]";
+	mes "The lava dripping from its body is so hot that it can melt down armor and weapons made out of high quality steel.";
+	next;
+	mes "[Juno Soldier]";
+	mes "You'd better be careful when you encounter this monster. It will damage armor and weapons in the twinkling of an eye.";
+	close;
+}
+	
+yuno,165,283,4	script	Juno Soldier#2juno	105,{
+	mes "[Juno Soldier]";
+	mes "Welcome to Juno, the city of noble-mindedness.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Geographer...";
+	mes "That monster looks like a flower blooming from the ground.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Strangely, it can extend its body a long distance. Even if you're far away from it, it can still pose a threat.";
+	next;
+	mes "[Juno Soldier]";
+	mes "The name of this monster originated from a story about a poor geographer who, unfortunately, was eaten by this monster while he was immersed in his studies.";
+	close;
+}
+	
+yuno,227,292,4	script	Juno Soldier#3juno	105,{
+	mes "[Juno Soldier]";
+	mes "Welcome to Juno, the city of noble-mindedness.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Near Juno, there exists a fallen angel named 'False Angel.' It feigns innocence, pretending to bless adventurers and then stabbing them in the back without any warning.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Don't be fooled by its appearance, or you'll find yourself in trouble.";
+	close;
+}
+	
+yuno,165,228,4	script	Juno Soldier#4juno	105,{
+	mes "[Juno Soldier]";
+	mes "Welcome to Juno, the city of noble-mindedness.";
+	next;
+	mes "[Juno Soldier]";
+	mes "'Goat' is a monster that was an antelope living in the high mountains that was somehow turned into a monster.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Even if you manage to dodge to its horns, you still need to be wary of its powerful legs.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Goat's legs are so strong because it's always climbing cliffs when it's not busy slaughtering the innocent.";
+	close;
+}
+	
+yuno,150,228,4	script	Juno Soldier#5juno	105,{
+	mes "[Juno Soldier]";
+	mes "Welcome to Juno, the city of noble-mindedness.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Have you ever";
+	mes "seen a Large Jellopy?";
+	mes "Those things are huuuge!";
+	next;
+	mes "[Juno Soldier]";
+	mes "It's hard to believe";
+	mes "that such a large and";
+	mes "shining jellopy even exists!";
+	close;
+}
+	
+yuno,334,182,4	script	Juno Soldier#6juno	105,{
+	mes "[Juno Soldier]";
+	mes "Welcome to Juno, the city of noble-mindedness.";
+	next;
+	mes "[Juno Soldier]";
+	mes "Among the Sage's weapons, there is a 'Dagger of Counter.'";
+	next;
+	mes "[Juno Soldier]";
+	mes "Its use is limited to the Sage class, and it increases the chance of inflicting critical attacks. So, for Sages, that dagger can be very useful, as well as make them look stylish in battle.";
+	close;
+}	
+	
+yuno,263,320,4	script	Juno Soldier#7juno	105,{
+	mes "[Juno Soldier]";
+	mes "Welcome to Juno, the city of noble-mindedness.";
+	next;
+	mes "[Juno Soldier]";
+	mes "There is a holy shield named 'Sacred Mission' which can only be used by Crusaders.";
+	next;
+	mes "[Juno Soldier]";
+	mes "It's a long and narrow shield with an angel wing engraved in the center of the front side. Against Devil and Undead monsters, it is especially powerful.";
+	close;
+}
+
+yuno,142,183,5	script	Airship Representative	100,{
+	mes "[Airship Representative]";
+	mes "Good day, I am here to inform you";
+	mes "about the Juno Airship which";
+	mes "we plan to operate in the near future.";
+	next;
+	mes "[Air ship Representative]";
+	mes "Unfortunately, it is still in";
+	mes "development, and we've yet";
+	mes "to complete testing. However,";
+	mes "we feel the need to let our";
+	mes "eager customers know of our";
+	mes "progress.";
+	next;
+	mes "[Airship Representative]";
+	mes "The Airship we're developing will provide you with convenient travel to any town. You can also enjoy the sights while aloft in the sky. Unique products from various areas will also be provided.";
+	next;
+	mes "[Airship Representative]";
+	mes "We promise our customers an";
+	mes "amazing travel experience";
+	mes "once the Airship is in";
+	mes "operation. In the meantime,";
+	mes "we are providing a special";
+	mes "teleport service.";
+	next;
+	mes "[Airship Representative]";
+	mes "The teleport fee is 1,800 zeny, regardless of where you want to go. Please let me know your desired destination.";
+	next;
+	switch(select("Prontera:Izlude:Geffen:Morroc:Payon:Alberta:Comodo:Cancel")) {
+	case 1: callsub S_Warp,"prontera",116,72;
+	case 2: callsub S_Warp,"izlude",94,103;
+	case 3: callsub S_Warp,"geffen",120,39;
+	case 4: callsub S_Warp,"morocc",156,46;
+	case 5: callsub S_Warp,"payon",69,100;
+	case 6: callsub S_Warp,"alberta",117,56;
+	case 7: callsub S_Warp,"comodo",209,143;
+	case 8: close;
+	}
+
+S_Warp:
+	if (Zeny >= 1800) {
+		set zeny,zeny-1800;
+		warp getarg(0),getarg(1),getarg(2);
+		end;
+	}
+	else {
+		mes "[Airship Representative]";
+		mes "I regret to say that you do not have enough zeny with you.";
+		mes "Please check the amount of zeny that you have.";
+		close;
+	}
 }

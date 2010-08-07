@@ -11,6 +11,8 @@ agi_penalty_num: 15
 equip_self_break_rate: 40
 equip_skill_break_rate: 15
 
+//battleground.conf
+
 //client.conf
 packet_ver_flag: 0x2000
 min_chat_delay: 200
@@ -64,6 +66,7 @@ death_penalty_base: 300
 death_penalty_job: 300
 disp_zeny: yes
 use_statpoint_table: yes
+disp_experience: 0
 
 //gm.conf
 atcommand_slave_clone_limit: 1
@@ -80,7 +83,6 @@ gm_cant_drop_max_lv: 98
 
 //guild.conf
 require_glory_guild: 0
-guild_skill_relog_delay: 1
 guild_max_castles: 2
 castle_defense_rate: 25
 gvg_short_attack_damage_rate: 50
@@ -91,25 +93,23 @@ gvg_misc_attack_damage_rate: 30
 
 //homunc.conf
 homunculus_friendly_rate: 200
-hom_rename: no
-hvan_explosion_intimate: 45000
 homunculus_show_growth: 1
 homunculus_autoloot: 0
 
 //items.conf
-vending_over_max: no
-buyer_name: yes
+vending_over_max: 0
+buyer_name: 1
 weapon_produce_rate: 150
 potion_produce_rate: 50
 produce_item_name_input: 0x9F
-dead_branch_active: yes
-random_monster_checklv: no
+dead_branch_active: 1
+random_monster_checklv: 0
 item_use_interval: 100
 gtb_sc_immunity: 50
 vending_tax: 0
 
 //misc.conf
-at_mapflag: yes
+at_mapflag: 1
 pk_mode: 0
 pk_min_level: 80
 pk_level_range: 5

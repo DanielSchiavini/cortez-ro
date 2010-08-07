@@ -28,7 +28,7 @@ pvp_2vs2,0,0,0,0	monster	Antonio	1247,1,0,0
 	
 	OnInit:
 		if(GetGuildName($GuildEmperiumGVG)=="null") set $GuildEmperiumGVG, 1;
-		monster "pvp_2vs2",40,33,($GuildEmperiumGVG?GetGuildName($GuildEmperiumGVG):"Emperium"),2301,1,"EmperiumTraining::OnEmperiumBroke";
+		monster "pvp_2vs2",40,33,($GuildEmperiumGVG?GetGuildName($GuildEmperiumGVG):"Emperium"),3301,1,"EmperiumTraining::OnEmperiumBroke";
 		end;
 }
 

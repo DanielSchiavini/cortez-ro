@@ -3,72 +3,73 @@
 // Structure of Database:
 // MobID,DummyName,Rate
 
-//0,Baphomet,1039
-1038,Osiris,10000
-1039,Baphomet,10000
-1046,Doppelganger,10000
-1059,Mistress,10000
-1086,Golden Thief Bug,10000
-1087,Orc Hero,10000
-1096,Angeling,20000
-1112,Drake,10000
-1115,Eddga,10000
-1120,Ghostring,20000
-1147,Maya,10000
-1150,Moonlight Flower,10000
-1157,Pharaoh,10000
-1159,Phreeoni,10000
-1190,Orc Lord,10000
-1251,Stormy Knight,10000
-1252,Garm,10000
-1272,Dark Lord,10000
-1312,Turtle General,10000
-1373,Lord of the Dead,10000
-1388,Arc Angeling,10000
-1389,Dracula,10000
-1418,Evil Snake Lord,10000
-1492,Samurai Specter,10000
-1511,Amon Ra,10000
-1518,Bacsojin,10000
-1582,Deviling,10000
-1583,Tao Gunka,10000
-1623,RSX-0806,10000
-//1630,White Lady,10000
-1658,Egnigem Cenia,10000
-1685,Vesper,10000
-1688,Lady Tanee,10000
-1708,Thanatos,200
-1719,Detale,10000
-1734,Kiel D-01,10000
-1751,Valkyrie Randgris,3000
-1768,Gloom Under Night,3000
-1779,Ktullanux,10000
-1885,Gorynych,10000
-1785,Atros,10000
-1871,Fallen Bishop,10000
-1873,Beelzebub,10000
+0,Baphomet,1039
+1038,Osiris,1000000
+1039,Baphomet,1000000
+1046,Doppelganger,1000000
+1059,Mistress,1000000
+1086,Golden Thief Bug,1000000
+1087,Orc Hero,1000000
+1096,Angeling,1000000
+1112,Drake,1000000
+1115,Eddga,1000000
+1120,Ghostring,1000000
+1147,Maya,1000000
+1150,Moonlight Flower,1000000
+1157,Pharaoh,1000000
+1159,Phreeoni,1000000
+1190,Orc Lord,1000000
+1251,Stormy Knight,1000000
+1252,Garm,1000000
+1272,Dark Lord,1000000
+1312,Turtle General,1000000
+1373,Lord of the Dead,1000000
+1388,Arc Angeling,1000000
+1389,Dracula,1000000
+1418,Evil Snake Lord,1000000
+1492,Samurai Specter,1000000
+1511,Amon Ra,1000000
+1582,Deviling,1000000
+1583,Tao Gunka,1000000
+1623,RSX-0806,1000000
+1630,White Lady,1000000
+1658,Egnigem Cenia,1000000
+1685,Vesper,1000000
+1688,Lady Tanee,1000000
+1708,Thanatos Phantom,1000000
+1719,Detardeurus,1000000
+1734,Kiel D-01,1000000
+1751,Valkyrie Randgris,1000000
+1768,Gloom Under Night,1000000
+1779,Ktullanux,1000000
+1785,Atros,1000000
+1785,Atros,1000000
+1832,Ifrit,1000000
+1871,Fallen Bishop Hibram,1000000
+1873,Beelzebub,1000000
+1885,Gopinich,1000000
 
-//== Not "Normal" MvP's. (Level 99 or Quest ones)
-1646,Lord Knight Seyren,100
-1647,Assassin Cross Eremes,100
-1648,Whitesmith Harword,100
-1649,High Priest Magaleta,100
-1650,Sniper Shecil,100
-1651,High Wizard Katrinn,100
+// ---- Cortez ---- //
+1646,Lord Knight Seyren,10000
+1647,Assassin Cross Eremes,10000
+1648,Whitesmith Harword,10000
+1649,High Priest Magaleta,10000
+1650,Sniper Shecil,10000
+1651,High Wizard Katrinn,10000
 
-2097,Turok,2000
-2098,Bola,2000
-2099,Dr.Pimpolho,1
-2100,Elfo,2000
-2101,Baltazar,1
-2102,Meteoro,2000
+2097,Turok,200000
+2098,Bola,200000
+2099,Dr.Pimpolho,100
+2100,Elfo,200000
+2101,Baltazar,100
+2102,Meteoro,200000
 
-2103,Yuri,2000
-2105,Brunim,1
-2104,Gleen,2000
-2106,T.Roz,2000
-2107,Hermes,2000
-2108,Sola,1
-2157,Yuufa,1
+2103,Yuri,200000
+2105,Brunim,100
+2104,Gleen,200000
+2106,T.Roz,200000
+2107,Hermes,200000
+2108,Sola,100
+2157,Yuufa,100
 
-2250,Giant Khalitzburg,10000	//Giant_Khalitzburg
+2250,Giant Khalitzburg,1000000	//Giant_Khalitzburg

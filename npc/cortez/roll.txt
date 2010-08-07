@@ -1,4 +1,4 @@
-prt_in,47,29,0	warp	prt10-1	2,1,schg_cas03,48,48
+//prt_in,47,29,0	warp	prt10-1	2,1,schg_cas03,48,48
 
 schg_cas03,77,93,5	script	Jogos	715,{		//712
 	mes "^ff0000[Velhinho Rico~]^000000";

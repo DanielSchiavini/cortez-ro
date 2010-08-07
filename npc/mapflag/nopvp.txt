@@ -1,12 +1,8 @@
-///===== Description: =============================================
+//===== Description: =========================================
 //= pvp	off: Disables Player versus Player mode.
 //= To disable PvP mode on a specific map add the mapname here.
-//= v 1.1
+//= v 1.1a
 //============================================================
-
-gld_dun02	mapflag	pvp	off
-guild_vs2	mapflag	pvp	off
-prt_gld	mapflag	pvp	off
 
 ayo_in01	mapflag	pvp	off
 ayo_in02	mapflag	pvp	off
@@ -46,6 +42,7 @@ moc_castle	mapflag	pvp	off
 monk_in	mapflag	pvp	off
 morocc_in	mapflag	pvp	off
 morocc	mapflag	pvp	off
+mosk_in	mapflag	pvp	off
 nif_in	mapflag	pvp	off
 payon_in01	mapflag	pvp	off
 payon_in02	mapflag	pvp	off
@@ -59,9 +56,7 @@ prt_church	mapflag	pvp	off
 prt_in	mapflag	pvp	off
 prontera	mapflag	pvp	off
 sec_in01	mapflag	pvp	off
-sword_1-1	mapflag	pvp	off
-sword_2-1	mapflag	pvp	off
-sword_3-1	mapflag	pvp	off
+job_sword1	mapflag	pvp	off
 um_in	mapflag	pvp	off
 umbala	mapflag	pvp	off
 xmas_in	mapflag	pvp	off
@@ -73,3 +68,15 @@ yuno_in05	mapflag	pvp	off
 yuno	mapflag	pvp	off
 yuno_pre	mapflag	pvp	off
 y_airport	mapflag	pvp	off
+rachel	mapflag	pvp	off
+ra_in01	mapflag	pvp	off
+ra_temin	mapflag	pvp	off
+airplane	mapflag	pvp	off
+airport	mapflag	pvp	off
+einbech	mapflag	pvp	off
+einbroch	mapflag	pvp	off
+ein_in01	mapflag	pvp	off
+ayothaya	mapflag	pvp	off
+veins	mapflag	pvp	off
+ve_in	mapflag	pvp	off
+ve_in02	mapflag	pvp	off

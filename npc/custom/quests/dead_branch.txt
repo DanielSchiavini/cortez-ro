@@ -91,8 +91,11 @@ M_CREATE:
 	mes "[Mister Mobry]";
 	mes "Heh... Hope you have fun with the tree spirits... Careful now...";
 	mes "Heh... careful now? What do I care if you di..... Never mind.";
+	if(rand(1000)==0) goto L_GIVE2;
 	getitem 604,1; //Dead Branch
-	if(rand(1000)==0) getitem 12103,1; //Bloody Branch
+	close;
+L_GIVE2:
+	getitem 12103,1; //Bloody Branch
 	close;
 
 M_END:

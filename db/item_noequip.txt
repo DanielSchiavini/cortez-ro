@@ -33,6 +33,7 @@
 602,1	//Butterfly_Wing
 
 //Zone 1 - Aldebaran Turbo Track
+601,4 //Fly Wing
 506,4 //Green Potion
 525,4 //Panacea
 601,4 //Fly Wing
@@ -60,6 +61,8 @@
 16757,4	//Chocolate_Quente
 
 //Zone 2 - Jail / MVPs Humanos
+601,8 //Fly Wing - not really needed here but ...
+602,8 //Butterfly Wing - also not needed
 12212,8 //Giant Fly Wing 
 14582,8 
 14583,8 
@@ -67,6 +70,7 @@
 14585,8 
 
 //Zona 3 + GVG
+601,16 //Fly Wing
 9925,18 //Necromancer
 
 //Zona 3 (Cidade)

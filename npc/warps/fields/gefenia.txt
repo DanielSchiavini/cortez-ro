@@ -1,4 +1,4 @@
-//===== Athena Script ========================================
+//===== eAthena Script =======================================
 //= Gefenia Warp Script
 //===== By: ==================================================
 //= Muad Dib (1.0)
@@ -27,4 +27,3 @@ gefenia03,269,168,0	warp	gefeniawarp006	1,1,gefenia02,20,175
 gefenia04,130,275,0	warp	gefeniawarp010	1,1,gefenia03,145,30
 gefenia04,33,273,0	warp	gefeniawarp012	1,1,gefenia03,58,29
 gefenia04,287,95,0	warp	gefeniawarp013	1,1,gefenia01,40,103
-

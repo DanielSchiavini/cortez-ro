@@ -18,7 +18,6 @@ char_new: 1
 char_new_display: 0
 max_connect_user: 500
 
-online_check: yes
 gm_allow_level: 2
 autosave_time: 60
 

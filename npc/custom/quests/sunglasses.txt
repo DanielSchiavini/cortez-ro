@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= Aegis - amichan
 //===== Current Version: =====================================
-//= 1.5
+//= 1.7
 //===== Compatible With: =====================================
 //= Any eAthena Version;
 //===== Description: =========================================
@@ -11,6 +11,8 @@
 //===== Additional Comments: =================================
 //= 1.0 by Aegis 1.1 by aichan 1.2 by x[tsk] 1.3 by Darkchild
 //= 1.5 Fixed Exploit [Lupus]
+//= 1.6 Fixed Exploit [KarLaeda]
+//= 1.7 Relocated 'Maseph' to moc_fild07. [Kisuka]
 //============================================================
 
 // quest will reset it self after 1 pair of Slotted Sunglasses is made. 
@@ -59,7 +61,7 @@ L_SG_1_Check:
 	mes "Great. Now, listen carefully.";
 	next;
 	mes "[Sunglasses Trader]";
-	mes "Look for someone name Maseph somewhere in the east of Morroc.";
+	mes "Look for someone named Maseph somewhere north of Morroc.";
 	mes "I will send her a message to let her know that you are coming.";
 	close;
 L_SG_Diamond:
@@ -79,7 +81,7 @@ L_SG_Q1_Done:
 	mes "There is nothing more I can tell you.";
 	next;
 	mes "[Sunglasses Trader]";
-	mes "Go see Maseph. She is somewhere east of Morroc.";
+	mes "Go see Maseph. She is somewhere north of Morroc.";
 	close;
 L_SG_No:
 	mes "[Sunglasses Trader]";
@@ -89,7 +91,7 @@ L_SG_No:
  
 // 2nd part of the quest
 
-moc_fild09,209,128,5	script	Maseph	702,{
+moc_fild07,334,186,5	script	Maseph	702,{
 	if(SG_QUEST1 == 1) goto L_SG_2;
 	mes "[Maseph]";
 	mes "Lovely Day, isn't it ?";
@@ -126,11 +128,11 @@ L_SG_Q2_Check:
 	mes "[Maseph]";
 	mes "Here you go my friend.";
 	getitem 2202,1;
+// quest reset
+	set SG_QUEST1,0;
 	next;
 	mes "[Maseph]";
 	mes "Enjoy your ^000088Slotted Sunglasses^000000.";
-// quest reset
-	set SG_QUEST1,0;
 	close;
 L_SG_Sunglasses:
 	mes "[Maseph]";
@@ -141,4 +143,3 @@ L_SG_Funds:
 	mes "You do not have enough money. Please come back to me when you do.";
 	close;
 }
- 

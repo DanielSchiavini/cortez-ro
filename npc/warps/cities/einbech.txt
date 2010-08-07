@@ -42,6 +42,4 @@ ein_in01,265,104,0	warp	eib_b02a	1,1,einbech,141,112
 //Einbech - Swordman guild
 //=========================================================================
 einbech,256,109,0	warp	eib_js01	1,1,ein_in01,148,153
-ein_in01,148,150,0	warp	eib_js01a	1,1,einbech,253,109
-
-
+ein_in01,144,153,0	warp	eib_js01a	1,1,einbech,253,109

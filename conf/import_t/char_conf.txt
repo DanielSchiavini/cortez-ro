@@ -4,8 +4,8 @@ passwd: FI5yoejOAsp6u2lacRoa
 server_name: Cortez Testes
 wisp_server_name: Server
 
-login_ip: server.cortezro.com.br
-char_ip: test.cortezro.com.br
+login_ip: server.cortezonline.org
+char_ip: test.cortezonline.org
 char_port: 6905
 
 login_port: 6901
@@ -19,7 +19,6 @@ char_new: 1
 char_new_display: 0
 max_connect_user: 30
 
-online_check: yes
 gm_allow_level: 4
 autosave_time: 60
 

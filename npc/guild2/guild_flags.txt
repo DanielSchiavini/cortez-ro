@@ -13,6 +13,14 @@
 //============================================================
 
 // Juno
+yuno,109,167,5	script	Himinn	722,{
+	end;
+
+OnRecvCastlesc01:
+	FlagEmblem GetCastleData("schg_cas01",1);
+	end;
+}
+
 yuno,110,171,5	script	Andlangr	722,{
 	end;
 

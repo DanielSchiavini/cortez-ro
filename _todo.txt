@@ -1,0 +1,34 @@
+Differences:
+- log.Loginlog?
+
+Steps:
+x Conf
+x DB
+x SRC
+x bRO
+x Conflicting mob_id's
+- Torre
+x Descrições dos itens
+~ NPC
+x Desduplicar userid's
+- Testes
+- Client com data folder + bg
+- npc/guild2/guild_dungeon.txt
+- npc @ valkyrie,48,82 + warps @ valkyrie,48,73
+- global_functionsKE x other/global_functions
+
+After:
+- Wilbis/Auction na cid.comércio
+- Doações->Cash points (kafra points?!)
+- Convert superkafra
+
+Client
+	- XRay? eathena.ws/wiki/index.php/Custom_Items
+
+[Error]: buildin_warp: moving player 'lobo' to "alde_dun03",18,267 failed. Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
+
+
+Multiple windows
+Data read
+1rag1 1sak1
+20091013

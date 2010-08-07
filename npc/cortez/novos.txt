@@ -32,6 +32,7 @@ guild_vs3	mapflag	loadevent
 guild_vs2	mapflag	restricted	2	//SGS - e outras salas de galho seco
 guild_vs2	mapflag	nodrop
 guild_vs2	mapflag	nogo
+guild_vs2	mapflag	pvp	off
 comodo	mapflag	restricted	2
 jawaii	mapflag	restricted	2
 moc_fild19	mapflag	restricted	2
@@ -57,6 +58,9 @@ tha_t09	mapflag	nowarpto
 tha_t10	mapflag	nowarpto
 tha_t11	mapflag	nowarpto
 tha_t12	mapflag	nowarpto
+
+gld_dun02	mapflag	pvp	off
+prt_gld	mapflag	pvp	off
 
 //Function F_UseBloodyBranch (int number_of_branches, string map, int x, int y, string trigger)
 function	script	F_UseBloodyBranch	{

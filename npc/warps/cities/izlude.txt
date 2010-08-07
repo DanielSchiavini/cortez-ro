@@ -1,4 +1,4 @@
-//===== Athena Script ========================================
+//===== eAthena Script =======================================
 //= Izlude Warp Script
 //===== By: ==================================================
 //= Athena (1.0), Nana (1.1)
@@ -15,8 +15,6 @@
 
 //= Izlude City ==============================================
 izlude,109,151,0	warp	iz01	3,3,izlude_in,65,87
-//izlude,128,225,0	warp	iz431	1,1,prt_are_in,100,28
-izlude,128,225,0	warp	iz431	1,1,prt_are_in,97,10
 izlude,148,148,0	warp	iz02	2,2,izlude_in,116,49
 izlude,216,129,0	warp	iz03	3,2,izlude_in,151,127
 izlude,30,78,0	warp	iz001	3,3,prt_fild08,367,212

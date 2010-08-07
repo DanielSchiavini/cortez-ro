@@ -1,4 +1,4 @@
-//===== Athena Script ========================================
+//===== eAthena Script =======================================
 //= Einbroch Field Warp Script
 //===== By: ==================================================
 //= Sara-chan (1.0), SSUNNY@YOUNG(1.2)
@@ -45,3 +45,9 @@ ein_fild04,14,215,0	warp	ein047	1,1,ein_fild03,359,219
 ein_fild03,361,219,0	warp	ein047a	1,1,ein_fild04,16,215
 ein_fild04,14,205,0	warp	ein048	1,1,ein_fild03,359,204
 ein_fild03,361,204,0	warp	ein048a	1,1,ein_fild04,16,205
+ein_fild03,142,32,0	warp	ein049	1,1,lhz_fild02,166,365
+lhz_fild02,166,367,0	warp	ein049a	1,1,ein_fild03,142,34
+lhz_fild02,164,37,0	warp	ein050	1,1,lhz_fild03,158,347
+lhz_fild03,158,349,0	warp	ein050a	1,1,lhz_fild02,164,39
+lhz_fild03,363,283,0	warp	ein051	1,1,ein_fild08,25,275
+ein_fild08,23,275,0	warp	ein051a	1,1,lhz_fild03,361,283

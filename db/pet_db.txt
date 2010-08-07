@@ -1,3 +1,27 @@
+// Pet Database
+//
+// Structure of Database:
+// MobID,Name,JName,LureID,EggID,EquipID,FoodID,Fullness,HungryDelay,R_Hungry,R_Full,Intimate,Die,Capture,Speed,S_Performance,talk_convert_class,attack_rate,defence_attack_rate,change_target_rate,pet_script,loyal_script
+//
+// 01. MobID			Monster ID of the pet.
+// 02. Name			Name of the monster as defined in the database.
+// 02. JName			The display name of the monster when hatched.
+// 03. LureID			Pet Tame Item ID.
+// 04. EggID			Pet Egg ID.
+// 05. EquipID			Pet Accessory ID.
+// 06. FoodID			Pet Food ID.
+// 07. Fullness			The amount Hunger is decreased every [HungeyDelay] seconds.
+// 08. HungeyDelay		The amount of time it takes for hunger to decrease after feeding. (Default: 60 seconds)
+// 09. R_Hungry			Amount of Intimacy that is increased when fed.
+// 10. R_Full			Amount of Intimacy that is decreased when over-fed.
+// 11. Intimate			Amount of Intimacy the pet starts with.
+// 12. Die			Amount of Intimacy that is decreased when the pet owner dies.
+// 13. Capture			Capture succes rate (10000 = 100%)
+// 14. Speed			Pet's walk speed. (Defaul: 150)
+// 15. S_Performance		Special Performance. (Yes = 1, No = 0)
+// 16. talk_convert_class	Disables pet talk (instead of talking they emote  with /!.)
+//NOTE: The max value (100%) of attack_rate, defense_rate & change_target_rate is 10000.
+
 //In theory you can use any valid script, but it is run only once upon pet
 //loading, so it is recommended you use the specific pet scripts:
 
@@ -31,214 +55,64 @@
 
 //NOTE: The max value (100%) of attack_rate, defense_rate & change_target_rate is 10000.
 // MobID,Name,JName,ItemID,EggID,AcceID,FoodID,Fullness,HungryDelay,R_Hungry,R_Full,Intimate,Die,Capture,Speed,S_Performance,talk_convert_class,attack_rate,defence_attack_rate,change_target_rate,pet_script
-1002,PORING,Poring,619,9001,10013,531,80,20,50,100,250,20,2000,400,1,0,350,400,800,{ petloot 10; }
-1011,CHONCHON,ChonChon,624,9006,10002,537,80,10,30,100,250,20,1500,200,1,0,500,500,250,{ petskillbonus bAgi,4,10,50; }
-1014,SPORE,Spore,630,9012,10017,537,80,20,30,100,250,20,1500,200,0,0,350,500,500,{ petrecovery SC_Poison,60; }
-1019,PECOPECO,PecoPeco,632,9014,10010,537,80,15,30,100,250,20,1000,200,1,0,400,500,800,{ petskillbonus bSpeedRate,25,20,20; }
-1023,ORC_WARRIOR,Orc Warrior,635,9017,10009,537,80,12,20,100,250,20,500,200,1,0,600,200,300,{ petskillattack2 158,100,1,0,10; }
-1026,MUNAK,Munak,636,9018,10008,537,80,20,20,100,250,20,500,100,0,0,300,750,300,{ petskillattack2 190,444,1,0,10; }
-1029,ISIS,Isis,639,9021,10006,537,80,20,10,100,250,20,500,200,0,0,650,450,150,{ petskillsupport 74,2,60,50,50; }
-1031,POPORING,Poporing,621,9003,10013,511,80,12,30,100,250,20,1000,300,1,0,300,500,400,{ petloot 15; }
-1035,HUNTER_FLY,Hunter Fly,626,9008,10002,716,80,12,10,100,250,20,500,150,1,0,500,500,200,{ petskillattack2 187,888,2,0,10;}
-1042,STEEL_CHONCHON,Steel ChonChon,625,9007,10002,1002,80,12,20,100,250,20,1000,150,1,0,500,500,200,{ petskillbonus bAgiVit,4,20,40; }
-1049,PICKY,Picky,623,9005,10012,507,80,15,40,100,250,20,2000,200,1,0,500,600,50,{ petskillbonus bStr,3,10,50;}
-1052,ROCKER,Rocker,629,9011,10014,537,80,60,30,100,250,20,1500,200,0,0,350,350,600,{ petskillbonus bAllStats,1,10,50;}
-1056,SMOKIE,Smokie,633,9015,10019,537,80,15,30,100,250,20,1000,200,1,0,600,600,100,{ bonus bPerfectHide,1; }
-1057,YOYO,Yoyo,634,9016,10018,532,80,12,20,100,250,20,1000,200,1,0,300,800,400,{ petloot 20; }
-1063,LUNATIC,Lunatic,622,9004,10007,534,80,15,40,100,250,20,1500,200,0,0,300,300,1000,{ petskillbonus bLuk,3,10,50; }
-1077,POISON_SPORE,Poison Spore,631,9013,10017,537,80,20,20,100,250,20,1000,200,0,0,600,200,400,{ petskillattack 176,20,0,10; }
-1101,BAPHOMET_Jr,Baphomet Jr.,642,9024,10001,518,80,30,10,100,250,20,200,100,0,0,1000,100,200,{ petskillattack2 190,1776,4,0,5; }
-1107,DESERT_WOLF_B,Baby Desert Wolf,628,9010,10003,537,80,10,40,100,250,20,1000,300,0,0,400,400,400,{ petskillattack 6,1,0,5;}
-1109,DEVIRUCHI,Deviruchi,641,9023,10004,711,80,30,10,100,250,20,500,150,0,0,800,200,100,{ petskillbonus bAgiDexStr,6,20,40; }
-1110,DOKEBI,Dokebi,637,9019,10005,537,80,15,20,100,250,20,500,250,0,0,300,300,800,{ petskillattack 110,1,0,10; }
-1113,DROPS,Drops,620,9002,10013,508,80,15,40,100,250,20,1500,400,1,0,300,400,500,{ petloot 10; }
-1155,PETIT,Petit,640,9022,10011,537,80,15,20,100,250,20,500,200,0,0,800,400,100,{ petskillattack2 91,500,1,0,10; }
-1167,SAVAGE_BABE,Savage Bebe,627,9009,10015,537,80,9,40,100,250,20,1500,400,0,0,500,500,200,{ petskillbonus bVit,4,10,50; }
-1170,SOHEE,Sohee,638,9020,10016,537,80,20,10,100,250,20,500,300,0,0,100,1000,200,{ petheal 400,60,33,100; }
-1188,BON_GUN,Bon Gun,659,9025,10020,537,80,20,10,100,250,20,500,200,1,0,600,200,400,{ petskillattack2 190,555,1,1,1; }
-1200,ZHERLTHSH,Zherlthsh,660,9026,0,929,80,20,10,100,250,20,50,200,0,0,1000,100,500,{ petskillattack 136,1,0,3; }
-1275,ALICE,Alice,661,9027,0,504,80,20,10,100,250,20,100,200,0,0,100,1000,200,{ petskillsupport 28,5,60,25,100; }
-1815,EVENT_RICECAKE,Rice Cake,0,9028,0,511,80,20,50,100,250,20,2000,150,1,0,500,500,200,{ petskillsupport 257,3,240,50,100; }
-//1963,P_CHUNG_E,New Year Doll,0,9038,0,554,80,20,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack 250,5,5,5; } 
+1002,PORING,Poring,619,9001,10013,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; }
+1113,DROPS,Drops,620,9002,10013,508,80,60,40,100,250,20,1500,150,1,0,300,400,500,{ petloot 10; },{ bonus bHit,3; bonus bAtk,3; }
+1031,POPORING,Poporing,621,9003,10013,511,80,60,30,100,250,20,1000,150,1,0,300,500,400,{ petloot 15; },{ bonus bLuk,2; bonus2 bSubEle,Ele_Poison,10; }
+1063,LUNATIC,Lunatic,622,9004,10007,534,80,60,40,100,250,20,1500,150,0,0,300,300,1000,{ petskillbonus bLuk,3,10,50; },{ bonus bCritical,2; bonus bAtk,2; }
+1049,PICKY,Picky,623,9005,10012,507,80,60,40,100,250,20,2000,150,1,0,500,600,50,{ petskillbonus bStr,3,10,50;},{ bonus bStr,1; bonus bAtk,5; }
+1011,CHONCHON,ChonChon,624,9006,10002,537,80,60,30,100,250,20,1500,150,1,0,500,500,250,{ petskillbonus bAgi,4,10,50; },{ bonus bAgi,1; bonus bFlee,2; }
+1042,STEEL_CHONCHON,Steel ChonChon,625,9007,10002,1002,80,60,20,100,250,20,1000,150,1,0,500,500,200,{ petskillbonus bAgiVit,4,20,40; },{ bonus bFlee,6; bonus bAgi,-1; }
+1035,HUNTER_FLY,Hunter Fly,626,9008,10002,716,80,60,10,100,250,20,500,150,1,0,500,500,200,{ petskillattack2 "NPC_WINDATTACK",888,2,0,10; },{ bonus bFlee,-5; bonus bFlee2,2; }
+1167,SAVAGE_BABE,Savage Babe,627,9009,10015,537,80,60,40,100,250,20,1500,150,0,0,500,500,200,{ petskillbonus bVit,4,10,50; },{ bonus bVit,1; bonus bMaxHP,50; }
+1107,DESERT_WOLF_B,Baby Desert Wolf,628,9010,10003,537,80,60,40,100,250,20,1000,150,0,0,400,400,400,{ petskillattack "SM_PROVOKE",1,0,5;},{ bonus bInt,1; bonus bMaxSP,50; }
+1052,ROCKER,Rocker,629,9011,10014,537,80,60,30,100,250,20,1500,150,0,0,350,350,600,{ petskillbonus bAllStats,1,10,50; },{ bonus bHPrecovRate,5; bonus bMaxHP,25; }
+1014,SPORE,Spore,630,9012,10017,537,80,60,30,100,250,20,1500,150,0,0,350,500,500,{ petrecovery SC_Poison,60; },{ bonus bHit,5; bonus bAtk,-2; }
+1077,POISON_SPORE,Poison Spore,631,9013,10017,537,80,60,20,100,250,20,1000,150,0,0,600,200,400,{ petskillattack "NPC_POISON",20,0,10; },{ bonus bStr,1; bonus bInt,1; }
+1019,PECOPECO,PecoPeco,632,9014,10010,537,80,60,30,100,250,20,1000,150,1,0,400,500,800,{ petskillbonus bSpeedRate,25,20,20; },{ bonus bMaxHP,150; bonus bMaxSP,-10; }
+1056,SMOKIE,Smokie,633,9015,10019,537,80,60,30,100,250,20,1000,150,1,0,600,600,100,{ petskillbonus bPerfectHide,1,3600,0; },{ bonus bAgi,1; bonus bFlee2,1; }
+1057,YOYO,Yoyo,634,9016,10018,532,80,60,20,100,250,20,1000,150,1,0,300,800,400,{ petloot 20; },{ bonus bCritical,3; bonus bLuk,-1; }
+1023,ORK_WARRIOR,Orc Warrior,635,9017,10009,537,80,60,20,100,250,20,500,150,1,0,600,200,300,{ petskillattack2 "NPC_PIERCINGATT",100,1,0,10; },{ bonus bAtk,10; bonus bDef,-3; }
+1026,MUNAK,Munak,636,9018,10008,537,80,60,20,100,250,20,500,150,0,0,300,750,300,{ petskillattack2 "NPC_DARKNESSATTACK",444,1,0,10; },{ bonus bInt,1; bonus bDef,1; }
+1110,DOKEBI,Dokebi,637,9019,10005,537,80,60,20,100,250,20,500,150,0,0,300,300,800,{ petskillattack "BS_HAMMERFALL",1,0,10; },{ bonus bMatkRate,1; bonus bAtkRate,-1; }
+1170,SOHEE,Sohee,638,9020,10016,537,80,60,10,100,250,20,500,150,0,0,100,1000,200,{ petheal 400,60,33,100; },{ bonus bStr,1; bonus bDex,1; }
+1029,ISIS,Isis,639,9021,10006,537,80,60,10,100,250,20,500,150,0,0,650,450,150,{ petskillsupport "PR_MAGNIFICAT",2,60,50,50; },{ bonus bMatkRate,-1; bonus bAtkRate,1; }
+1155,PETIT,Petite,640,9022,10011,537,80,60,20,100,250,20,500,150,0,0,800,400,100,{ petskillattack2 "WZ_HEAVENDRIVE",500,1,0,10; },{ bonus bDef,-2; bonus bMdef,-2; bonus bAspdRate,1; }
+1109,DEVIRUCHI,Deviruchi,641,9023,10004,711,80,60,10,100,250,20,500,150,0,0,800,200,100,{ petskillbonus bAgiDexStr,6,20,40; },{ bonus bMatkRate,1; bonus bAtkRate,1; bonus bMaxHPrate,-3; bonus bMaxSPrate,-3; }
+1101,BAPHOMET_,Baphomet Jr.,642,9024,10001,518,80,60,10,100,250,20,200,150,0,0,1000,100,200,{ petskillattack2 "NPC_DARKNESSATTACK",1776,4,0,5; },{ bonus bDef,1; bonus bMdef,1; bonus2 bResEff,Eff_Stun,-100; }
+1188,BON_GUN,Bon Gun,659,9025,10020,537,80,60,30,100,250,20,500,150,1,0,600,200,400,{ petskillattack2 "NPC_DARKNESSATTACK",555,1,1,1; },{ bonus bVit,1; bonus2 bResEff,Eff_Stun,100; }
+1200,ZHERLTHSH,Zealotus,660,9026,0,929,80,60,10,100,250,20,300,150,0,0,1000,100,500,{ petskillattack "AS_SONICBLOW",1,0,3; },{ bonus2 bAddRace,RC_Demihuman,2; bonus2 bMagicAddRace,RC_DemiHuman,2; }
+1275,ALICE,Alice,661,9027,0,504,80,60,20,100,250,20,800,150,0,0,100,1000,200,{ petskillsupport "AL_HEAL",5,60,25,100; },{ bonus bMdef,1; bonus2 bSubRace,RC_DemiHuman,1; }
+1815,EVENT_RICECAKE,Rice Cake,0,9028,0,511,80,60,50,100,250,20,2000,150,1,0,500,500,200,{ petskillsupport "CR_DEFENDER",3,240,50,100; },{ bonus2 bSubEle,Ele_Neutral,1; bonus bMaxHPrate,-1; }
+1245,GOBLINE_XMAS,Christmas Goblin,12225,9029,0,911,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "MG_SIGHT",5,5,5; },{ bonus bMaxHP,30; bonus2 bSubEle,Ele_Water,1; }
 
-//In theory you can use any valid script, but it is run only once upon pet
-//loading, so it is recommended you use the specific pet scripts:
+// Newest pets.
+1519,CHUNG_E,Green Maiden,12395,9030,0,6115,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "CR_SHIELDCHARGE",5,5,5; },{ bonus bDef,1; bonus2 bSubRace,RC_DemiHuman,1; }
+1879,ECLIPSE_P,Spring Rabbit,0,9031,0,7766,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "TF_THROWSTONE",1,5,5; },{}
+1122,GOBLIN_1,Goblin,14569,9032,0,7821,80,60,50,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_WINDATTACK",5,5,5; },{}
+1123,GOBLIN_2,Goblin,14570,9033,0,7821,80,60,50,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_FIREATTACK",5,5,5; },{}
+1125,GOBLIN_4,Goblin,14571,9034,0,7821,80,60,50,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_GROUNDATTACK",5,5,5; },{}
+1385,DELETER_,Deleter,14572,9035,0,7822,80,60,20,100,250,20,800,150,0,0,300,300,800,{ petskillattack "SM_MAGNUM",5,5,5; },{}
+1382,DIABOLIC,Diabolic,14573,9036,0,7823,80,60,10,100,250,20,800,150,0,0,300,300,800,{ petskillattack "WZ_METEOR",2,5,5; },{}
+1208,WANDER_MAN,Wanderer,14574,9037,0,7824,80,60,20,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_UNDEADATTACK",5,5,5; },{}
 
-//petskillattack skillid, skilllv, rate, bonusrate
-//Skill attack that triggers while the pet is attacking. Rate is the base
-//chance of execution per attack. Bonusrate is an additional success rate when
-//intimacy reaches max.
+1963,P_CHUNG_E,New Year Doll,0,9038,0,554,80,60,30,100,250,20,800,150,0,0,300,300,800,{ petskillattack "CR_SHIELDCHARGE",5,5,5; },{}
 
-//petskillattack2 skillid, damage, hits, rate, bonusrate
-//Same as petskillattack, but the damage and number of hits is fixed
-//the damage specified is total, not per hit.
-
-//petskillsupport skillid, skilllv, delay, hp%, sp%
-//Casts a support skill when the health levels are below the specified hp% and
-//sp%. Delay is the minimum time in seconds before the skill can be cast again
-
-//petheal amount, delay, hp%, sp%
-//Similar to petskillsupport, but the skill is fixed to heal (28) and the
-//heal-amount is fixed to the value given.
-
-//petrecovery type, delay: Cures the "type" status effect after "delay" seconds
-
-//petskillbonus type, value, duration, delay
-//Gives bonus stats. Type is the stat to increase (bStr, bLuk), value is the
-//amount by which it is increased, duration signals how long the bonus lasts
-//delay is the time elapsed after the bonus ends and before it starts again.
-
-//A single pet can have petloot, petskillbonus, petskillattack (or
-//petskillattack2) and petskillsupport (or petheal) at the same time,
-//but only one of each.
-//=  CSS25 Custom Human Pets  =
-//2068,NOVICE,Novice,15000,9028,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 183,10,0,100; } 
-//2069,SWORDMAN,Swordman,15001,9029,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2070,MAGICIAN,Magician,15002,9030,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 20,10,0,100; }
-//2071,ARCHER,Archer,15003,9031,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 46,10,0,100; }
-//2072,ACOLYTE,Acolyte,15004,9032,10022,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 5000,5,100,100; }
-//2073,MERCHANT,Merchant,15005,9033,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2074,THIEF,Thief,15006,9034,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 149,1,0,100; }
-//
-//2075,KNIGHT,Knight,15007,9035,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 7,10,0,100; }
-//2076,PRIEST,Priest,15008,9036,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 10000,5,100,100; petskillattack 156,10,0,100; }
-//2077,WIZARD,Wizard,15009,9037,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 89,5000,100,0,100; }
-//2078,BLACKSMITH,Blacksmith,15010,9038,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2079,HUNTER,Hunter,15011,9039,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 1009,10,0,100; }  //petskillattack2 129,5000,100,0,100;
-//2080,ASSASSIN,Assassin,15012,9040,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 136,5000,100,0,100; }
-//2081,KNIGHT_PECO,Knight Peco,15013,9041,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2082,CRUSADER,Crusader,15014,9042,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2083,MONK,Monk,15015,9043,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 271,1000,0,100; }
-//2084,SAGE,Sage,15016,9044,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 84,10,0,100; }
-//2085,ROUGE,Rouge,15017,9045,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 212,10,0,100; }
-//2086,ALCHEMIST,Alchemist,15018,9046,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 230,5,0,100; }
-//2087,BARD,Bard,15019,9047,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 316,5,0,100; }
-//2134,DANCER,Dancer,15020,9048,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 324,5,0,100; }
-//2088,CRUSADER_PECO,Crusader Peco,15021,9049,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2089,SUPER_NOVICE,Super Novice,15022,9050,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 19,10,0,100; }
-//
-//2090,NOVICE_HIGH,Novice High,15023,9051,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 183,5,0,100; }
-//2091,SWORDMAN_HIGH,Sowrdman High,15024,9052,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2092,MAGICIAN_HIGH,Magician High,15025,9053,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 13,10,0,100; }
-//2093,ARCHER_HIGH,Archer High,15026,9054,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 46,10,0,100; }
-//2094,ACOLYTE_HIGH,Acolyte High,15027,9055,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 5000,5,100,100; }
-//2095,MERCHANT_HIGH,Merchant High,15028,9056,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2096,THIEF_HIGH,Thief High,15029,9057,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 149,1,0,100; }
-//
-//2097,LORD_KNIGHT,Lord Knight,15030,9058,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 397,10,0,100; }
-//2098,HIGH_PRIEST,High Priest,15031,9059,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 20000,5,100,100; }
-//2099,HIGH_WIZARD,High Wizard,15032,9060,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 400,10,0,100; }
-//2100,WHITESMITH,Whitesmith,15033,9061,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 485,10,0,100; }
-//2101,SNIPER,Sniper,15034,9062,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 381,10000,0,10000; }
-//2102,ASSASSIN_CROSS,Assassin Cross,15035,9063,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 379,10,0,100; }
-//2103,PALADIN,Paladin,15036,9064,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2104,CHAMPION,Champion,15037,9065,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 372,10,0,100; } 
-//2105,PROFESSOR,Professor,15038,9066,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 482,10,0,100; }
-//2106,STALKER,Stalker,15039,9067,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 212,10,0,100; }
-//2107,CREATOR,Creator,15040,9068,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 490,10,0,100; }
-//2108,CLOWN,Clown,15041,9069,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 394,10,0,100; }
-//2157,GYPSY,Gypsy,15042,9070,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 394,10,0,100; }
-//2109,TAEKWON,Taekwon,15043,9071,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 419,10,0,100; }
-//2110,STAR_GLADIATOR,Star Gladiator,15044,9072,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 413,10,0,100; }
-//2111,FLYING_STAR_GLADIATOR,Flying Star Gladiator,15045,9073,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 415,10,0,100; }
-//2112,SOUL_LINKER,Soul Linker,15046,9074,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 469,100,0,100; }
-//
-////Female
-//2113,FEMALE_NOVICE,Female Novice,15047,9075,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 183,5,0,100; }
-//2114,FEMALE_SWORDMAN,Female Swordman,15048,9076,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 7,10,0,100; }
-//2115,FEMALE_MAGICIAN,Female Magician,15049,9077,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 13,10,0,100; }
-//2116,ARCHERESS,Archeress,15050,9078,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 46,10,0,100; }
-//2117,FEMALE_ACOLYTE,Female Acolyte,15051,9079,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 5000,5,100,100; }
-//2118,FEMALE_MERCHANT,Female Merchant,15052,9080,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2119,FEMALE_THIEF,Female Thief,15053,9081,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 149,1,0,100; }
-//2120,FEMALE_KNIGHT,Female Knight,15054,9082,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2121,PRIESTESS,Priestess,15055,9083,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 10000,3,100,100; }
-//2122,FEMALE_WIZARD,Female Wizard,15056,9084,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 89,10,0,100;  }
-//2123,FEMALE_BLACKSMITH,Female Blacksmith,15057,9085,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2124,FEMALE_HUNTER,Female Hunter,15058,9086,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 129,5,0,100; }
-//2125,FEMALE_ASSASSIN,Female Assassin,15059,9087,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 136,10,0,100; }
-//2126,FEMALE_KNIGHT_PECO,Female Knight Peco,15060,9088,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2127,FEMALE_CRUSADER,Female Crusader,15061,9089,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2128,FEMALE_MONK,Female Monk,15062,9090,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 271,5,0,100; }
-//2129,FEMALE_SAGE,Female Sage,15063,9091,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 84,10,0,100; }
-//2130,FEMALE_ROGUE,Female Rogue,15064,9092,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 212,10,0,100; }
-//2131,FEMALE_ALCHEMIST,Female Alchemist,15065,9093,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 230,5,0,100; }
-//2132,FEMALE_CRUSADER_PECO,Female Crusader Peco,15066,9094,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//
-//2133,FEMALE_SUPER_NOVICE,Female Super Novice,15067,9095,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 19,10,0,100; }
-//
-//2135,FEMALE_NOVICE_HIGH,Female Novice High,15068,9096,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 183,5,0,100; }
-//2136,FEMALE_SWORDMAN_HIGH,Female Swordman High,15069,9097,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2137,FEMALE_MAGICIAN_HIGH,Female Magician High,15070,9098,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 13,10,0,100; }
-//2138,ARCHERESS_HIGH,Archeress High,15071,9099,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 46,10,0,100; }
-//2139,FEMALE_ACOLYTE_HIGH,Female Acolyte High,15072,9100,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 5000,5,100,100; }
-//2140,FEMALE_MERCHANT_HIGH,Female Merchant,15073,9101,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2141,FEMALE_THIEF_HIGH,Female Thief High,15074,9102,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 149,1,0,100; }
-//2142,FEMALE_LORD_KNIGHT,Female Lord Knight,15075,9103,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 397,10,0,100; }
-//2143,HIGH_PRIESTESS,High Priestess,15076,9104,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 15000,5,100,100; }
-//2144,FEMALE_HIGH_WIZARD,Female High Wizard,15077,9105,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 89,3000,1,1,1; }
-//2145,FEMALE_WHITESMITH,Female Whitesmith,15078,9106,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 485,3000,1,1,1; }
-//2146,FEMALE_SNIPER,Female Sniper,15079,9107,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 381,4000,1,1,1; }
-//2147,FEMALE_ASSASSIN_CROSS,Female Assassin Cross,15080,9108,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 379,10,0,100; }
-//2148,FEMALE_PALADIN,Female Paladin,15081,9109,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2149,FEMALE_CHAMPION,Female Champion,15082,9110,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 271,10,0,100; }
-//2150,FEMALE_FEMALE_PROFESSOR,Female Professor,15083,9111,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 85,10,0,100; }
-//2151,FEMALE_STALKER,Female Stalker,15084,9112,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 212,3000,1,1,1; }
-//2152,FEMALE_CREATOR,Female Creator,15085,9113,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 490,10,0,100; }
-//2153,FEMALE_TAEKWON,Female Taekwon,15086,9114,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 419,3000,1,1,1; }
-//2154,FEMALE_STAR_GLADIATOR,Female Star Gladiator,15087,9115,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 429,3000,1,1,1; }
-//2155,FEMALE_FLYING_STAR_GLADIATOR,Female Flying Star Gladiator,15088,9116,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,1000,{ petskillattack2 429,3000,1,1,1; }
-//2156,FEMALE_SOUL_LINKER,Female Soul Linker,15089,9117,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 469,100,0,100; }
-//
-//2158,BABY_NOVICE,Novice,619,9118,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 183,5,0,100; } 
-//2159,BABY_SWORDMAN,Baby Swordman,619,9119,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2160,BABY_MAGICIAN,Baby Magician,619,9120,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 13,10,0,100; }
-//2161,BABY_ARCHER,Baby Archer,619,9121,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 46,10,0,100; }
-//2162,BABY_ACOLYTE,Baby Acolyte,619,9122,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 5000,5,100,100; }
-//2163,BABY_MERCHANT,Baby Merchant,619,9123,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2164,BABY_THIEF,Baby Thief,619,9124,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 149,1,0,100; }
-//2165,BABY_KNIGHT,Baby Knight,619,9125,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 7,10,0,100; }
-//2166,BABY_PRIEST,Baby Priest,619,9126,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 10000,5,100,100; }
-//2167,BABY_WIZARD,Baby Wizard,619,9127,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 89,5000,100,0,100; }
-//2168,BABY_BLACKSMITH,Baby Blacksmith,619,9128,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 42,10,0,100; }
-//2169,BABY_HUNTER,Baby Hunter,619,9129,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 129,5000,100,0,100; }
-//2170,BABY_ASSASSIN,Baby Assassin,619,9130,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 136,5000,100,0,100; }
-//2171,BABY_KNIGHT_PECO,Baby Knight Peco,619,9131,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2172,BABY_CRUSADER,Baby Crusader,619,9132,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2173,BABY_MONK,Baby Monk,619,9133,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 271,5,0,100; }
-//2174,BABY_SAGE,Baby Sage,619,9134,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 84,10,0,100; }
-//2175,BABY_ROUGE,Baby Rouge,619,9135,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 212,10,0,100; }
-//2176,BABY_ALCHEMIST,Baby Alchemist,619,9136,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 230,5,0,100; }
-//2177,BABY_BARD,Baby Bard,619,9137,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 316,5,0,100; }
-//2178,BABY_CRUSADER_PECO,Baby Crusader Peco,619,9138,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2179,BABY_SUPER_NOVICE,Baby Super Novice,619,9139,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 19,10,0,100; }
-//2180,BABY_NOVICE,Novice,619,9140,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 183,5,0,100; } 
-//2181,BABY_SWORDMAN,Baby Swordman,619,9141,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2182,BABY_MAGICIAN,Baby Magician,619,9142,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 13,10,0,100; }
-//2183,BABY_ARCHER,Baby Archer,619,9143,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 46,10,0,100; }
-//2184,BABY_ACOLYTE,Baby Acolyte,619,9144,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 5000,5,100,100; }
-//2185,BABY_MERCHANT,Baby Merchant,619,9145,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 42,5,0,100; }
-//2186,BABY_THIEF,Baby Thief,619,9146,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 149,1,0,100; }
-//2187,BABY_KNIGHT,Baby Knight,619,9147,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 7,10,0,100; }
-//2188,BABY_PRIEST,Baby Priest,619,9148,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petheal 10000,5,100,100; }
-//2189,BABY_WIZARD,Baby Wizard,619,9149,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 89,5000,100,0,100; },{ petskillattack2 83,5000,100,0,100; }
-//2190,BABY_BLACKSMITH,Baby Blacksmith,619,9150,0,537,80,20,50,100,250,20,1000,200,1,0,100,100,100,{ petskillattack 42,10,0,100; }
-//2191,BABY_HUNTER,Baby Hunter,619,9151,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 129,5000,100,0,100; }
-//2192,BABY_ASSASSIN,Baby Assassin,619,9152,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack2 136,5000,100,0,100; }
-//2193,BABY_KNIGHT_PECO,Baby Knight Peco,619,9153,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 7,10,0,100; }
-//2194,BABY_CRUSADER,Baby Crusader,619,9154,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2195,BABY_MONK,Baby Monk,619,9155,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 271,5,0,100; }
-//2196,BABY_SAGE,Baby Sage,619,9156,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 84,10,0,100; }
-//2197,BABY_ROUGE,Baby Rouge,619,9157,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 212,10,0,100; }
-//2198,BABY_ALCHEMIST,Baby Alchemist,619,9158,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 230,5,0,100; }
-//2199,BABY_DANCER,BABY Dancer,619,9160,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 324,5,0,100; }
-//2204,BABY_CRUSADER_PECO,Baby Crusader Peco,619,9161,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 254,10,0,100; }
-//2205,BABY_SUPER_NOVICE,Baby Super Novice,619,9162,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillattack 19,10,0,100; }
-//2206,GROOM,Groom,15090,9163,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillsupport 28,10,10,100,100; }
-//2207,BRIDE,Bride,15091,9164,0,537,80,12,1,100,1000,1,1000,200,1,1,10000,10000,10000,{ petskillsupport 28,10,10,100,100; }
-////Female
-//2208,GUNSLINGER,Gunslinger,0,9165,0,537,80,12,1,100,1000,1,1000,200,1,0,10000,10000,10000,{ petskillattack 520,10,0,100; }
-//2209,NINJA,Ninja,0,9166,0,537,80,12,1,100,1000,1,1000,200,1,0,10000,10000,10000,{ petskillattack 534,10,0,100; }
-////Male
-//2210,GUNSLINGER,Gunslinger,0,9167,0,537,80,12,1,100,1000,1,1000,200,1,0,10000,10000,10000,{ petskillattack 520,10,0,100; }
-//2211,NINJA,Ninja,0,9168,0,537,80,12,1,100,1000,1,1000,200,1,0,10000,10000,10000,{ petskillattack 534,10,0,100; }
+// New pets JapanRO Mobile
+1040,GOLEM,Golem,12371,9053,10035,6111,80,60,20,100,250,20,500,150,0,0,300,300,800,{},{ bonus bMaxHP,100; bonus bFlee,-5; }
+1143,MARIONETTE,Marionette,12361,9043,10025,6098,80,60,10,100,250,20,500,150,0,0,300,300,800,{},{ bonus bSPrecovRate,3; }
+1148,MEDUSA,Medusa,12368,9050,10032,6108,80,60,10,100,250,20,200,150,0,0,300,300,800,{},{ bonus bVit,1; bonus2 bResEff,Eff_Stone,500; }
+1179,WHISPER,Whisper,12363,9045,10027,6100,80,60,20,100,250,20,500,150,0,0,300,300,800,{},{ bonus bFlee,7; bonus bDef,-3; }
+1299,GOBLIN_LEADER,Goblin Leader,12364,9046,10028,6104,80,60,10,100,250,20,50,150,0,0,300,300,800,{},{ bonus2 bAddRace,RC_DemiHuman,3; }
+1370,SUCCUBUS,Succubus,12373,9055,10037,6113,80,60,10,100,250,20,200,150,0,0,300,300,800,{},{ bonus2 bHpDrainRate,50,5; }
+1374,INCUBUS,Incubus,12370,9052,10034,6110,80,60,10,100,250,20,50,150,0,0,300,300,800,{},{ bonus bMaxSPRate,5; }
+1379,NIGHTMARE_TERROR,Nightmare Terror,12372,9054,10036,6112,80,60,10,100,250,20,200,150,0,0,300,300,800,{},{ bonus2 bResEff,Eff_Sleep,10000; }
+1401,SHINOBI,Shinobi,12362,9044,10026,6099,80,60,20,100,250,20,500,150,0,0,300,300,800,{},{ bonus bAgi,2; }
+1404,MIYABI_NINGYO,Miyabi Doll,12366,9048,10030,6106,80,60,15,100,250,20,200,150,0,0,300,300,800,{},{ bonus bInt,1; bonus bCastrate,-3; }
+1416,WICKED_NYMPH,Evil Nymph,12365,9047,10029,6105,80,60,15,100,250,20,500,150,0,0,300,300,800,{},{ bonus bMaxSP,30; bonus bSPrecovRate,5; }
+1495,STONE_SHOOTER,Stone Shooter,12369,9051,10033,6109,80,60,20,100,250,20,500,150,0,0,300,300,800,{},{ bonus2 bSubEle,Ele_Fire,3; }
+1504,DULLAHAN,Dullahan,12367,9049,10031,6107,80,60,10,100,250,20,200,150,0,0,300,300,800,{},{ bonus bCritAtkRate,5; }
+1505,LOLI_RURI,Loli Ruri,12360,9042,10024,6097,80,60,15,100,250,20,200,150,0,0,300,300,800,{},{ bonus bMaxHPRate,3; bonus3 bAutoSpellWhenHit,"AL_HEAL",1,50; }
+1513,CIVIL_SERVANT,Mao Guai,12358,9040,10022,6095,80,60,10,100,250,20,500,150,0,0,300,300,800,{},{ bonus bMaxSP,10; }
+1586,LEAF_CAT,Leaf Cat,12359,9041,10023,6096,80,60,20,100,250,20,200,150,0,0,300,300,800,{},{ bonus2 bSubRace,RC_Brute,3; }
+1630,BACSOJIN_,White Lady,12357,9039,10021,6094,80,60,10,100,250,20,2000,150,0,0,300,300,800,{},{}
+1837,IMP,Fire Imp,12374,9056,10038,6114,80,60,10,100,250,20,200,150,0,0,300,300,800,{},{ bonus2 bSubEle,Ele_Fire,2; bonus2 bAddEle,Ele_Fire,2; }

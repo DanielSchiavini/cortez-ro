@@ -1,4 +1,4 @@
-//select * from  bd.mob where id in (2101,2098,2104,2106,2102,2099,2103,2157,2108,2105,2089,2097,2107)
+//select * from  bd.mob where id in (3101,3098,3104,3106,3102,3099,3103,3157,3108,3105,3089,3097,3107)
 //gef_dun03	mapflag	pvp
 pay_fild10	mapflag	restricted	5	//Baltazar
 beach_dun	mapflag	restricted	5	//Yuufa/Sola
@@ -22,25 +22,25 @@ yuno_fild04	mapflag	restricted	2
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-prt_monk,160,180,0,0	monster	Bola		2098,1,3600000,3600000,1
-prt_monk,250, 90,0,0	monster	Gleen		2104,1,3600000,3600000,1
-cmd_fild07,180,170,0,0	monster	T.Roz		2106,1,3600000,3600000,1
-moc_fild16,205,287,0,0	monster	Meteoro		2102,1,3600000,3600000,1
-pvp_y_5-5, 34,286,0,0	monster	Dr.Pimpolho	2099,1,3600000,3600000,1
-hu_fild05,319,283,0,0	monster	Yuri		2103,1,3600000,3600000,1
-beach_dun, 33, 54,0,0	monster	Yuufa		2157,1,3600000,3600000,1
-beach_dun,262,261,0,0	monster	Sola		2108,1,3600000,3600000,1
-yuno_fild04,228,72,0,0	monster	Brunim		2105,1,3600000,3600000,1
-gef_dun03,130,118,0,0	monster	Spok		2089,1,3600000,3600000,1
-pay_fild03,270,117,0,0	monster	Elfo		2100,1,3600000,3600000,1
+prt_monk,160,180,0,0	boss_monster	Bola		3098,1,3600000,3600000,1
+prt_monk,250, 90,0,0	boss_monster	Gleen		3104,1,3600000,3600000,1
+cmd_fild07,180,170,0,0	boss_monster	T.Roz		3106,1,3600000,3600000,1
+moc_fild16,205,287,0,0	boss_monster	Meteoro		3102,1,3600000,3600000,1
+pvp_y_5-5, 34,286,0,0	boss_monster	Dr.Pimpolho	3099,1,3600000,3600000,1
+hu_fild05,319,283,0,0	boss_monster	Yuri		3103,1,3600000,3600000,1
+beach_dun, 33, 54,0,0	boss_monster	Yuufa		3157,1,3600000,3600000,1
+beach_dun,262,261,0,0	boss_monster	Sola		3108,1,3600000,3600000,1
+yuno_fild04,228,72,0,0	boss_monster	Brunim		3105,1,3600000,3600000,1
+gef_dun03,130,118,0,0	boss_monster	Spok		3089,1,3600000,3600000,1
+pay_fild03,270,117,0,0	boss_monster	Elfo		3100,1,3600000,3600000,1
 
 pay_fild10,1,1,0	script	Sniper_MvpRespawn	-1,{
 	OnInit:
 	while(1){
 			if(rand(1,5) == 1)
-				monster "pay_fild10",289,129,"Krool",2146,1,"Sniper_MvpRespawn::OnMyMobDead";
+				monster "pay_fild10",289,129,"Krool",3146,1,"Sniper_MvpRespawn::OnMyMobDead";
 			else
-				monster "pay_fild10",274,318,"Baltazar",2101,1,"Sniper_MvpRespawn::OnMyMobDead";
+				monster "pay_fild10",274,318,"Baltazar",3101,1,"Sniper_MvpRespawn::OnMyMobDead";
 			end;
 		OnMyMobDead:
 			initnpctimer;
@@ -54,9 +54,9 @@ prt_fild10,1,1,0	script	Lord_MvpRespawn	-1,{
 	OnInit:
 	while(1){
 			if(rand(1,5) == 1)
-				monster "prt_fild10",170,120,"Chii~",2142,1,"Lord_MvpRespawn::OnMyMobDead";
+				monster "prt_fild10",170,120,"Chii~",3142,1,"Lord_MvpRespawn::OnMyMobDead";
 			else
-				monster "prt_fild10",262,182,"Turok",2097,1,"Lord_MvpRespawn::OnMyMobDead";
+				monster "prt_fild10",262,182,"Turok",3097,1,"Lord_MvpRespawn::OnMyMobDead";
 			end;
 		OnMyMobDead:
 			initnpctimer;
@@ -66,13 +66,13 @@ prt_fild10,1,1,0	script	Lord_MvpRespawn	-1,{
 			stopnpctimer;
 	}
 }
-c_tower1,1,1,0	script	Creator_MvpRespawn	-1,{
+c_tower1,1,1,000	script	Creator_MvpRespawn	-1,{
 	OnInit:
 	while(1){
 			if(rand(1,5) == 1)
-				monster "c_tower1",0,0,"Dimasi",2152,1,"Creator_MvpRespawn::OnMyMobDead";
+				monster "c_tower1",0,0,"Dimasi",3152,1,"Creator_MvpRespawn::OnMyMobDead";
 			else
-				monster "c_tower1",0,0,"Hermes",2107,1,"Creator_MvpRespawn::OnMyMobDead";
+				monster "c_tower1",0,0,"Hermes",3107,1,"Creator_MvpRespawn::OnMyMobDead";
 			end;
 		OnMyMobDead:
 			initnpctimer;
@@ -83,73 +83,73 @@ c_tower1,1,1,0	script	Creator_MvpRespawn	-1,{
 	}
 }
 
-gef_dun03,0,0,0,0	monster	Aprendiz	2068,1,0,0,1
-gef_dun03,0,0,0,0	monster	Aprendiz	2113,1,0,0,1
-gef_dun03,0,0,0,0	monster	Super-Aprendiz	2133,1,0,0,1
+gef_dun03,0,0,0,0	monster	Aprendiz	3068,1,0,0,1
+gef_dun03,0,0,0,0	monster	Aprendiz	3113,1,0,0,1
+gef_dun03,0,0,0,0	monster	Super-Aprendiz	3133,1,0,0,1
 
 //Primeira Classe - Homens
-gef_dun03,0,0,0,0	monster	Espadachim	2069,1,0,0,1
-gef_dun03,0,0,0,0	monster	Mago	2070,1,0,0,1
-gef_dun03,0,0,0,0	monster	Arqueiro	2071,1,0,0,1
-gef_dun03,0,0,0,0	monster	Noviço	2072,1,0,0,1
-gef_dun03,0,0,0,0	monster	Mercador	2073,1,0,0,1
-gef_dun03,0,0,0,0	monster	Gatuno	2074,1,0,0,1
+gef_dun03,0,0,0,0	monster	Espadachim	3069,1,0,0,1
+gef_dun03,0,0,0,0	monster	Mago	3070,1,0,0,1
+gef_dun03,0,0,0,0	monster	Arqueiro	3071,1,0,0,1
+gef_dun03,0,0,0,0	monster	Noviço	3072,1,0,0,1
+gef_dun03,0,0,0,0	monster	Mercador	3073,1,0,0,1
+gef_dun03,0,0,0,0	monster	Gatuno	3074,1,0,0,1
 
 //Primeira Classe - Mulheres
-gef_dun03,0,0,0,0	monster	Espadachim	2114,1,0,0,1
-gef_dun03,0,0,0,0	monster	Maga	2115,1,0,0,1
-gef_dun03,0,0,0,0	monster	Arqueira	2116,1,0,0,1
-gef_dun03,0,0,0,0	monster	Noviça	2117,1,0,0,1
-gef_dun03,0,0,0,0	monster	Mercadora	2118,1,0,0,1
-gef_dun03,0,0,0,0	monster	Gatuna	2119,1,0,0,1
+gef_dun03,0,0,0,0	monster	Espadachim	3114,1,0,0,1
+gef_dun03,0,0,0,0	monster	Maga	3115,1,0,0,1
+gef_dun03,0,0,0,0	monster	Arqueira	3116,1,0,0,1
+gef_dun03,0,0,0,0	monster	Noviça	3117,1,0,0,1
+gef_dun03,0,0,0,0	monster	Mercadora	3118,1,0,0,1
+gef_dun03,0,0,0,0	monster	Gatuna	3119,1,0,0,1
 
 //Novos - Homens
-gef_dun03,0,0,0,0	monster	Taekwon	2109,1,0,0,1
-gef_dun03,0,0,0,0	monster	Gladiador Estelar	2110,1,0,0,1
-gef_dun03,0,0,0,0	monster	Gladiador Estelar	2111,1,0,0,1
-//gef_dun03,0,0,0,0	monster	Espiritualista	2112,1,0,0,1
+gef_dun03,0,0,0,0	monster	Taekwon	3109,1,0,0,1
+gef_dun03,0,0,0,0	monster	Gladiador Estelar	3110,1,0,0,1
+gef_dun03,0,0,0,0	monster	Gladiador Estelar	3111,1,0,0,1
+//gef_dun03,0,0,0,0	monster	Espiritualista	3112,1,0,0,1
 
 //Novos - Mulheres
-gef_dun03,0,0,0,0	monster	Taekwon	2153,1,0,0,1
-gef_dun03,0,0,0,0	monster	Gladiador Estelar	2154,1,0,0,1
-gef_dun03,0,0,0,0	monster	Gladiador Estelar	2155,1,0,0,1
-//gef_dun03,0,0,0,0	monster	Espiritualista	2156,1,0,0,1
+gef_dun03,0,0,0,0	monster	Taekwon	3153,1,0,0,1
+gef_dun03,0,0,0,0	monster	Gladiador Estelar	3154,1,0,0,1
+gef_dun03,0,0,0,0	monster	Gladiador Estelar	3155,1,0,0,1
+//gef_dun03,0,0,0,0	monster	Espiritualista	3156,1,0,0,1
 
 //2-1 - Homens
-gef_dun03,0,0,0,0	monster	Cavaleiro	2075,1,0,0,1
-gef_dun03,0,0,0,0	monster	Sacerdote	2076,1,0,0,1
-gef_dun03,0,0,0,0	monster	Bruxo	2077,1,0,0,1
-gef_dun03,0,0,0,0	monster	Ferreiro	2078,1,0,0,1
-gef_dun03,0,0,0,0	monster	Caçador	2079,1,0,0,1
-gef_dun03,0,0,0,0	monster	Mercenário	2080,1,0,0,1
-gef_dun03,0,0,0,0	monster	Cavaleiro	2081,1,0,0,1
+gef_dun03,0,0,0,0	monster	Cavaleiro	3075,1,0,0,1
+gef_dun03,0,0,0,0	monster	Sacerdote	3076,1,0,0,1
+gef_dun03,0,0,0,0	monster	Bruxo	3077,1,0,0,1
+gef_dun03,0,0,0,0	monster	Ferreiro	3078,1,0,0,1
+gef_dun03,0,0,0,0	monster	Caçador	3079,1,0,0,1
+gef_dun03,0,0,0,0	monster	Mercenário	3080,1,0,0,1
+gef_dun03,0,0,0,0	monster	Cavaleiro	3081,1,0,0,1
 
 //2-2 - Homens
-gef_dun03,0,0,0,0	monster	Templário	2082,1,0,0,1
-gef_dun03,0,0,0,0	monster	Monge	2083,1,0,0,1
-gef_dun03,0,0,0,0	monster	Sábio	2084,1,0,0,1
-gef_dun03,0,0,0,0	monster	Arruaceiro	2085,1,0,0,1
-gef_dun03,0,0,0,0	monster	Alquimista	2086,1,0,0,1
-gef_dun03,0,0,0,0	monster	Bardo	2087,1,0,0,1
-gef_dun03,0,0,0,0	monster	Templário	2088,1,0,0,1
+gef_dun03,0,0,0,0	monster	Templário	3082,1,0,0,1
+gef_dun03,0,0,0,0	monster	Monge	3083,1,0,0,1
+gef_dun03,0,0,0,0	monster	Sábio	3084,1,0,0,1
+gef_dun03,0,0,0,0	monster	Arruaceiro	3085,1,0,0,1
+gef_dun03,0,0,0,0	monster	Alquimista	3086,1,0,0,1
+gef_dun03,0,0,0,0	monster	Bardo	3087,1,0,0,1
+gef_dun03,0,0,0,0	monster	Templário	3088,1,0,0,1
 
 //2-1 - Mulheres
-gef_dun03,0,0,0,0	monster	Cavaleira	2120,1,0,0,1
-gef_dun03,0,0,0,0	monster	Sacerdotiza	2121,1,0,0,1
-gef_dun03,0,0,0,0	monster	Bruxa	2122,1,0,0,1
-gef_dun03,0,0,0,0	monster	Ferreira	2123,1,0,0,1
-gef_dun03,0,0,0,0	monster	Caçadora	2124,1,0,0,1
-gef_dun03,0,0,0,0	monster	Mercenária	2125,1,0,0,1
-gef_dun03,0,0,0,0	monster	Cavaleira	2126,1,0,0,1
+gef_dun03,0,0,0,0	monster	Cavaleira	3120,1,0,0,1
+gef_dun03,0,0,0,0	monster	Sacerdotiza	3121,1,0,0,1
+gef_dun03,0,0,0,0	monster	Bruxa	3122,1,0,0,1
+gef_dun03,0,0,0,0	monster	Ferreira	3123,1,0,0,1
+gef_dun03,0,0,0,0	monster	Caçadora	3124,1,0,0,1
+gef_dun03,0,0,0,0	monster	Mercenária	3125,1,0,0,1
+gef_dun03,0,0,0,0	monster	Cavaleira	3126,1,0,0,1
 
 //2-2 - Mulheres
-gef_dun03,0,0,0,0	monster	Templária	2127,1,0,0,1
-gef_dun03,0,0,0,0	monster	Monja	2128,1,0,0,1
-gef_dun03,0,0,0,0	monster	Sábia	2129,1,0,0,1
-gef_dun03,0,0,0,0	monster	Arruaceira	2130,1,0,0,1
-gef_dun03,0,0,0,0	monster	Alquimista	2131,1,0,0,1
-gef_dun03,0,0,0,0	monster	Templária	2132,1,0,0,1
-gef_dun03,0,0,0,0	monster	Odalisca	2134,1,0,0,1
+gef_dun03,0,0,0,0	monster	Templária	3127,1,0,0,1
+gef_dun03,0,0,0,0	monster	Monja	3128,1,0,0,1
+gef_dun03,0,0,0,0	monster	Sábia	3129,1,0,0,1
+gef_dun03,0,0,0,0	monster	Arruaceira	3130,1,0,0,1
+gef_dun03,0,0,0,0	monster	Alquimista	3131,1,0,0,1
+gef_dun03,0,0,0,0	monster	Templária	3132,1,0,0,1
+gef_dun03,0,0,0,0	monster	Odalisca	3134,1,0,0,1
 
 // Outros Monstros nos mapas dos MVPs
 pvp_y_5-5,0,0,0,0	monster	Side Winder	1037,70,0,0,0

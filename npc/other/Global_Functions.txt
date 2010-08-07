@@ -3,11 +3,11 @@
 //===== By: ================================================== 
 //= Lupus, kobra_k88
 //===== Current Version: ===================================== 
-//= 1.8
+//= 2.15
 //===== Compatible With: ===================================== 
 //= eAthena 1.0
 //===== Description: ========================================= 
-//= <Description> 
+//= <Description>
 //===== Additional Comments: ================================= 
 //= Added F_ClearJobVar - on getting a new job it clears all Job Quest variables
 //= Removed individual job check functions as they were redundant [kobra_k88]
@@ -19,6 +19,25 @@
 //= Moved here useful function 'getJobName'
 //= 1.7 Added "F_ItemName" function, added a great sample for "F_ItemName"
 //= 1.8 Added Job Vars clear for Extended classes: TK,SL,SG [Lupus]
+//= 1.9 Added "F_ClearGarbage" func that clears outdated, wasted variables [Lupus]
+//= 1.91 Added "F_SaveQuestSkills","F_Load?Skills" functions [Lupus]
+//= 2.0 Fixed F_Save/LoadQuestSkills functions. Had to split in into 2 vars [Lupus]
+//= 2.01 Added $talk to F_ClearGarbage [Evera]
+//= 2.02 Added $dtsglobalelig and $dts|(1<<6) to F_ClearGarbage [Evera]
+//= 2.03 Added Gunslinger vars to F_ClearJobVar [Lupus]
+//= 2.04 Added dtseligible 2 (becomes MISC_QUEST|128) to F_ClearGarbage [Evera]
+//= 2.05 Book of Devil -> MISC_QUEST|256, clear other Niflheim garbage vars [Lupus]
+//=	+more garbage clean
+//= 2.06 Pass to Bio-Lab -> MISC_QUEST|512 [Lupus]
+//= 2.07 Added TK_Q variable clear. 2.08 Added NINJ_Q variable clear [Lupus]
+//= 2.09 Cleared F_ClearGarbage [Lupus]
+//= 2.10 Added F_CheckMaxCount to check count of carrid items. [L0ne_w0lf]
+//= 2.10a Removed function F_CheckMaxCount. Not needed. [L0ne_W0lf]
+//= 2.11 Updated function Job_Change to jobchange based on Upper value. [Paradox924X]
+//= 2.12 Added more unused vars to F_ClearGarbage [Lupus]
+//= 2.13 Added more unused vars to F_ClearGarbage [Lupus]
+//= 2.14 Added old novice variables to F_ClearGarbage. [L0ne_W0lf]
+//= 2.15 Added no unused DTS variables to F_ClearGarbage. [L0ne_W0lf]
 //============================================================ 
 
 
@@ -29,17 +48,21 @@
 function	script	F_ClearJobVar	{
 	// Misc ---------------------------------
 	set JBLVL,0;
+	set FIRSTAID,0;
+	set PLAYDEAD,0;
+	set got_bandage,0;
+	set got_novnametag,0;
 	// First Class Jobs ---------------------
 	set job_acolyte_q,0; set job_acolyte_q2,0;
 	set job_archer_q,0;
 	set job_magician_q,0;
 	set job_merchant_q,0; set job_merchant_q2,0; set job_merchant_q3,0;
-	set job_sword_q,0; set job_sword_q2,0; set SWTEST, 0;
+	set job_sword_q,0; set SWTEST, 0;
 	set job_thief_q,0;
 	// Super Novice
 	set SUPNOV_Q,0;
 	// 2-1 Jobs ------------------------------
-	set ASSIN_Q,0; set ASSIN_Q2,0;
+	set ASSIN_Q,0; set ASSIN_Q2,0; set ASSIN_Q3,0;
 	set BSMITH_Q,0; set BSMITH_Q2,0;
 	set HNTR_Q,0; set HNTR_Q2,0;
 	set KNIGHT_Q,0; set KNIGHT_Q2,0;
@@ -47,16 +70,52 @@ function	script	F_ClearJobVar	{
 	set WIZ_Q,0; set WIZ_Q2,0;
 	// 2-2 Jobs ------------------------------
 	set ROGUE_Q,0; set ROGUE_Q2,0;
-	set ALCH_Q,0; set ALCH_Q2,0; set al_morgen,0;
+	set ALCH_Q,0; set ALCH_Q2,0;
 	set CRUS_Q,0;
 	set MONK_Q,0; set JOB_MONK_C,0;
 	set SAGE_Q,0; set SAGE_Q2,0;
 	set DANC_Q,0;
 	set BARD_Q,0;
 	// Extended Classes
-	set TAEK_Q,0;
+	set TAEK_Q,0; set TK_Q,0;
 	set STGL_Q,0;
 	set SOUL_Q,0;
+	set GUNS_Q,0;
+	set NINJ_Q,0;
+	return;
+}
+
+function	script	F_ClearGarbage	{
+	// Clear outdated global VARS
+	//Clear TURTLE var if the Turtle Islans Quest is already done
+		if(TURTLE==20) set MISC_QUEST,MISC_QUEST | 65536;
+		if(MISC_QUEST & 65536) set TURTLE,0; //now clear the var if the quest is over
+	//Clear previously saved Quest Skills (now it isn't used)
+		set ADV_QSK,0;
+		set ADV_QSK2,0;
+	//Old Seset Skill Event used to use RES_SKILL var
+		set RES_SKILL,0;
+	//Here you put outdated variables from your outdated EVENTS
+	//e.g. Is XMAS done? Add the EVENT var clearing code here.
+
+	//due to bugs in BS quest:
+	set wizard_m2,0;
+
+	// Old Novice Ground Variables.
+	set NEW_MES_FLAG0,0;
+	set NEW_MES_FLAG1,0;
+	set NEW_MES_FLAG2,0;
+	set NEW_MES_FLAG3,0;
+	set NEW_MES_FLAG4,0;
+	set NEW_MES_FLAG5,0;
+	set NEW_LVUP0,0;
+	set NEW_LVUP1,0;
+	set NEW_JOBLVUP,0;
+
+	// Old DTS variables that are no longer used.
+	set dtseligible,0;
+	set MISC_QUEST,MISC_QUEST & ~128;
+	
 	return;
 }
 
@@ -68,86 +127,9 @@ function	script	F_ClearJobVar	{
 //////////////////////////////////////////////////////////////////////////////////
 
 function	script	Job_Change	{
-	if (Upper==0) jobchange getarg(0); //Change Job For Common
-	if (Upper==2) jobchange getarg(0) + Job_Baby; //Change Job For Baby Class
+	jobchange getarg(0),Upper; //Jobchange based on Upper
+	logmes "CLASS CHANGE: " +strcharinfo(0)+ " become a "+jobname(Class);
 	return;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-// FOT BACKWISE COMPATIBILITY: Functions used to check a players job class
-// HOW TO USE:
-// i.e. We need all holy classes but monks
-// if ( callfunc("Is_Holy_Class") && callfunc("Is_Monk")==0 ) goto L_Start;
-//////////////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////////////////////
-// returns 1 if the player is either Aco,Monk,Priest,Aco High,High Priest,
-// Champion, 0 otherwise
-//////////////////////////////////////////////////////////////////////////////////
-
-function	script	Is_Holy_Class	{
-	return ( BaseJob==Job_Acolyte || BaseJob==Job_Priest || BaseJob==Job_Monk );
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-// returns 1 if the player is either Archer,Hunter,Bard,Dancer,Archer High,Sniper,
-// Clown,Gypsy, 0 otherwise
-//////////////////////////////////////////////////////////////////////////////////
-
-function	script	Is_Bow_Class	{
-	return ( BaseJob==Job_Archer || BaseJob==Job_Hunter || BaseJob==Job_Bard || BaseJob==Job_Dancer );
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-// returns 1 if the player is either Mage,Wizard,Sage,Mage High,High Wizard,
-// Professor, 0 otherwise
-//////////////////////////////////////////////////////////////////////////////////
-
-function	script	Is_Magic_Class	{
-	return ( BaseJob==Job_Mage || BaseJob==Job_Wizard || BaseJob==Job_Sage );
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-// returns 1 if the player is either Merc,Blacksmith,Alchemist,Merc High,
-// Whitesmith,Creator, 0 otherwise
-//////////////////////////////////////////////////////////////////////////////////
-
-function	script	Is_Merc_Class	{
-	return ( BaseJob==Job_Merchant || BaseJob==Job_Blacksmith || BaseJob==Job_Alchem );
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-// returns 1 if the player is either Thief,Assassin,Rogue,Thief High, Assassin Cross
-// Stalker, 0 otherwise
-//////////////////////////////////////////////////////////////////////////////////
-
-function	script	Is_Thief_Class	{
-	return ( BaseJob==Job_Thief || BaseJob==Job_Assassin || BaseJob==Job_Rogue );
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-// returns 1 if the player is either Swordy,Knight,Crusader,Swordy High,
-// Lord Knight,Paladin, 0 otherwise
-//////////////////////////////////////////////////////////////////////////////////
-
-function	script	Is_Sword_Class	{
-	return ( BaseJob==Job_Swordman || BaseJob==Job_Knight || BaseJob==Job_Knight2 || BaseJob==Job_Crusader || BaseJob==Job_Crusader2 );
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-// returns 1 if the player is either Taekwon, Star Gladiator,Soul Linker, 0 otherwise
-// these classes can't be adopted nor reborn ()
-//////////////////////////////////////////////////////////////////////////////////
-
-function	script	Is_Taekwon_Class	{
-	return ( Class==Job_Taekwon || Class==Job_Star_Gladiator || Class==Job_Star_Gladiator2 || Class==Job_Soul_Linker );
 }
 
 
@@ -172,7 +154,7 @@ function	script	F_RandMes	{
 // *** Function "F_Sex"
 //////////////////////////////////////////////////////////////////////////////////
 //returns 1st string if female, 2nd string otherwise
-// Example: mes callfunc("F_Sex","What a beautiful lady!","What a handsom man!");
+// Example: mes callfunc("F_Sex","What a beautiful lady!","What a handsome man!");
 
 function	script	F_SexMes	{
 	return getarg(Sex);
@@ -233,154 +215,45 @@ function	script	F_ItemName	{
 //////////////////////////////////////////////////////////////////////////////////
 
 function	script	getJobName	{
-	switch(getarg(0)){
-		case Job_Novice:
-			return "Novice";
-		case Job_Swordman:
-			return "Swordman";
-		case Job_Mage:
-			return "Magician";
-		case Job_Archer:
-			return "Archer";
-		case Job_Acolyte:
-			return "Acolyte";
-		case Job_Merchant:
-			return "Merchant";
-		case Job_Thief:
-			return "Thief";
-		case Job_Knight:
-		case Job_Knight2:
-			return "Knight";
-		case Job_Priest:
-			return "Priest";
-		case Job_Wizard:
-			return "Wizard";
-		case Job_Blacksmith:
-			return "Blacksmith";
-		case Job_Hunter:
-			return "Hunter";
-		case Job_Assassin:
-			return "Assassin";
-		case Job_Crusader:
-		case Job_Crusader2:
-			return "Crusader";
-		case Job_Monk:
-			return "Monk";
-		case Job_Sage:
-			return "Sage";
-		case Job_Rogue:
-			return "Rogue";
-		case Job_Alchem:
-			return "Alchemist";
-		case Job_Bard:
-			return "Bard";
-		case Job_Dancer:
-			return "Dancer";
-		case Job_SuperNovice:
-			return "Super Novice";
-		case Job_Gunslinger:
-			return "Gunsligner";
-		case Job_Ninja:
-			return "Ninja";
-		case Job_Xmas:
-			return "Xmas";
-		case Job_Novice_High:
-			return "Novice High";
-		case Job_Swordman_High:
-			return "Swordman High";
-		case Job_Mage_High:
-			return "Magician High";
-		case Job_Archer_High:
-			return "Archer High";
-		case Job_Acolyte_High:
-			return "Acolyte High";
-		case Job_Merchant_High:
-			return "Merchant High";
-		case Job_Thief_High:
-			return "Thief High";
-		case Job_Lord_Knight:
-		case Job_Lord_Knight2:
-			return "Lord Knight";
-		case Job_High_Priest:
-			return "High Priest";
-		case Job_High_Wizard:
-			return "High Wizard";
-		case Job_Whitesmith:
-			return "Whitesmith";
-		case Job_Sniper:
-			return "Sniper";
-		case Job_Assassin_Cross:
-			return "Assassin Cross";
-		case Job_Paladin:
-		case Job_Paladin2:
-			return "Paladin";
-		case Job_Champion:
-			return "Champion";
-		case Job_Professor:
-			return "Professor";
-		case Job_Stalker:
-			return "Stalker";
-		case Job_Creator:
-			return "Creator";
-		case Job_Clown:
-			return "Clown";
-		case Job_Gypsy:
-			return "Gypsy";
-		case Job_Baby:
-			return "Baby";
-		case Job_Baby_Swordman:
-			return "Baby Swordman";
-		case Job_Baby_Mage:
-			return "Baby Magician";
-		case Job_Baby_Archer:
-			return "Baby Archer";
-		case Job_Baby_Acolyte:
-			return "Baby Acolyte";
-		case Job_Baby_Merchant:
-			return "Baby Merchant";
-		case Job_Baby_Thief:
-			return "Baby Thief";
-		case Job_Baby_Knight:
-		case Job_Baby_Knight2:
-			return "Baby Knight";
-		case Job_Baby_Priest:
-			return "Baby Priest";
-		case Job_Baby_Wizard:
-			return "Baby Wizard";
-		case Job_Baby_Blacksmith:
-			return "Baby Blacksmith";
-		case Job_Baby_Hunter:
-			return "Baby Hunter";
-		case Job_Baby_Assassin:
-			return "Baby Assassin";
-		case Job_Baby_Crusader:
-		case Job_Baby_Crusader2:
-			return "Baby Crusader";
-		case Job_Baby_Monk:
-			return "Baby Monk";
-		case Job_Baby_Sage:
-			return "Baby Sage";
-		case Job_Baby_Rogue:
-			return "Baby Rogue";
-		case Job_Baby_Alchem:
-			return "Baby Alchemist";
-		case Job_Baby_Bard:
-			return "Baby Bard";
-		case Job_Baby_Dancer:
-			return "Baby Dancer";
-		case Job_Super_Baby:
-			return "Super Baby";
-		case Job_Taekwon:
-			if(Sex == 0)
-				return "Taekwon Girl";
-			else
-				return "Taekwon Boy";
-		case Job_Star_Gladiator:
-		case Job_Star_Gladiator2:
-			return "Star Gladiator";
-		case Job_Soul_Linker:
-			return "Soul Linker";
-		default:
-			return "omghaxor";
+	return jobname(getarg(0));
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// *** Function "F_SaveQuestSkills": Store learnt quest skills 
+//////////////////////////////////////////////////////////////////////////////////
+function	script	F_SaveQuestSkills	{
+	set ADV_QSK,0; set ADV_QSK2,0;
+	//1st classes quest skills
+	for(set @i, 0; @i < 14; set @i, @i + 1){
+		if(getskilllv(144+@i)) set ADV_QSK,ADV_QSK|pow(2,@i);
 	}
+	//2nd classes quest skills
+	for(set @i, 0; @i < 19; set @i, @i + 1){
+		if(getskilllv(1001+@i)) set ADV_QSK2,ADV_QSK2|pow(2,@i);
+	}
+	return;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// *** Function "F_Load1Skills": Restore learnt 1st class quest skills
+//////////////////////////////////////////////////////////////////////////////////
+function	script	F_Load1Skills	{
+	//1st classes quest skills
+	for(set @i, 0; @i < 14; set @i, @i + 1){
+		if(ADV_QSK|pow(2,@i) == ADV_QSK) skill 144+@i,1,0;
+	}
+	set ADV_QSK,0; //Clear var
+	return;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// *** Function "F_Load2Skills": Restore learnt 2nd class quest skills
+//////////////////////////////////////////////////////////////////////////////////
+function	script	F_Load2Skills	{
+	//2nd classes quest skills
+	for(set @i, 0; @i < 19; set @i, @i + 1){
+		if(ADV_QSK2|pow(2,@i) == ADV_QSK2) skill 1001+@i,1,0;
+	}
+	set ADV_QSK2,0; //Clear var
+	return;
 }

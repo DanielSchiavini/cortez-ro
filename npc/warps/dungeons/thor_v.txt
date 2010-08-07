@@ -9,7 +9,7 @@
 //===== Description: =========================================
 //= Warp Points for Thor's Volcano Dungeon
 //===== Additional Comments: =================================
-//= 1.3 Rescripted to Aegis 11.2 Standards. [L0ne_W0lf]
+//= 1.3 Rescripted to Aegis 11.2 Standards. [L0ne_W0lf
 //============================================================
 
 ve_fild03,168,240,0	warp	thor_v1-1	1,1,thor_v01,21,229
@@ -25,4 +25,4 @@ thor_v03,30,262,0	warp	thor_v3-2	1,1,thor_v02,187,58
 //= 1.0 Initial version [$ephiroth]
 //= 1.1 Updated warps, according to Japan site [$ephiroth]
 //= 1.2 Updated more warps to thor_camp [$ephiroth]
-//============================================================
+//============================================================ 

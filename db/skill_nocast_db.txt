@@ -5,10 +5,10 @@
 //
 // Legend for 'Flag' field (bitmask):
 //  1 = Cannot be used in normal maps
-//  2 = Cannot be used in PvP maps
+//  2 = Cannot be used in PvP maps (use this instead of 1 for PK-mode servers)
 //  4 = Cannot be used in GvG maps
-//  8 = Cannot be used when WoE is on
-//  16 = Cannot be used in PK Mode maps
+//  8 = Cannot be used in Battleground maps
+//  16 = Cannot be cloned (clones will not copy this skill)
 //  Restricted zones - they're configured by 'restricted <number>' mapflag
 //  32 = Cannot be used in zone 1 maps
 //  64 = Cannot be used in zone 2 maps
@@ -17,66 +17,91 @@
 //  512 = Cannot be used in zone 5 maps
 //  1024 = Cannot be used in zone 6 maps
 //  2048 = Cannot be used in zone 7 maps
-
 //
 // Example:
 // 8,6 = Endure cannot be used in PvP and GvG maps (2+4)
-//GVG + WoE
-26,14	//	AL_TELEPORT
-27,14	//	AL_WARP
-87,164	//	WZ_ICEWALL / 4+128+32
-150,44	//	TF_BACKSLIDING/Back Sliding/Recuar
-//361,4	//	HP_ASSUMPTIO
-362,12	//	HP_BASILICA
-//395,4	//CG_MOONLIT
-426,8	//TK_HIGHJUMP/Taekwon Jump/Salto
 
-//Proibido teleporte (2+256+32 pois é proibido nos eventos e corridas)
-10013,290	//GD_EMERGENCYCALL#Rally Guild#
-336,290	//WE_CALLPARTNER#I miss You#
-409,290	//WE_CALLPARENT#Call Parent#
+//GVG
+26,4	//AL_TELEPORT
+27,4	//AL_WARP
+87,4	//WZ_ICEWALL
+150,4	//TF_BACKSLIDING
+361,4	//HP_ASSUMPTIO
+362,4	//HP_BASILICA
+395,4	//CG_MOONLIT
+491,4	//CR_CULTIVATION
+691,4	//CASH_ASSUMPTIO
+
+//BATTLEGROUND
+26,8	//AL_TELEPORT
+27,8	//AL_WARP
+87,8	//WZ_ICEWALL
+150,8	//TF_BACKSLIDING
+361,8	//HP_ASSUMPTIO
+362,8	//HP_BASILICA
+395,8	//CG_MOONLIT
+491,8	//CR_CULTIVATION
+411,8	//TK_RUN
+426,8	//High Jump
+427,8	//SG_FEEL
+428,8	//SG_SUN_WARM
+429,8	//SG_MOON_WARM
+430,8	//SG_STAR_WARM
+431,8	//SG_SUN_COMFORT
+432,8	//SG_MOON_COMFORT
+433,8	//SG_STAR_COMFORT
+434,8	//SG_HATE
+435,8	//SG_SUN_ANGER
+436,8	//SG_MOON_ANGER
+437,8	//SG_STAR_ANGER
+438,8	//SG_SUN_BLESS
+439,8	//SG_MOON_BLESS
+440,8	//SG_STAR_BLESS
+691,8	//CASH_ASSUMPITO
 
 //mixed
-488,19	//CG_HERMODE
-491,0x84	//CR_CULTIVATION
+488,3	//CG_HERMODE
+
+//Clone Forbidden/pointless skills
+77,16	//PR_TURNUNDEAD
+79,16	//PR_MAGNUS
 
 //Zone 1 - Aldebaran Turbo Track
-219,160	//Snatch	32
+219,32	//Snatch
 26,32	//Teleport
 27,32	//Warp portal
 51,32	//Hiding
 135,32	//Cloaking
 389,32	//Stealth
 35,32	//Cure
-//87,32 //Ice Wall
+87,32	//Ice Wall
 359,32	//Berserk (Frenzy)
 362,32	//Basilica
 395,32	//Sheltering Bliss
 357,32	//Spear Dynamo (Concentration)
-411,32	//TK_RUN#Running#
-426,32	//TK_HIGHJUMP#Taekwon Jump#
-421,32	//TK_JUMPKICK#Flying Side Kick#
-529,32	//NJ_SHADOWJUMP#NJ_SHADOWJUMP#
-29,32	//AL_INCAGI
-30,32	//AL_DECAGI
-328,32	//DC_DONTFORGETME
-383,32	//SN_WINDWALK
-257,32	//CR_DEFENDER
-268,32	//MO_STEELBODY
-387,32	//WS_CARTBOOST
-444,32	//SG_FUSION
-455,32	//SL_BARDDANCER
-456,32	//SL_ROGUE
-472,32	//SL_SKA
-8002,32	//HLIF_AVOID
-264,32	//MO_BODYRELOCATION/Snap
+264,32	//Snap (Body Relocation)
 
-//Zone 2 (Jail / MVPs Humanos)
+//Zone 2 - Jail
 421,64	//TK_JUMPKICK#Flying Side Kick#
 426,64	//TK_HIGHJUMP#Taekwon Jump#
 
+//Zone 3 - Izlude Battle Arena
+219,128 //Snatch
+26,128	//Teleport
+
+//Zone 4 - WoE:SE
+426,256 //High Jump
+
+//Zone 5 - Sealed Shrine
+12,512	//MG_SAFETYWALL
+26,512	//AL_TELEPORT
+219,512	//Snatch
+361,512	//HP_ASSUMPTIO
+691,512	//CASH_ASSUMPTIO
+
+// ---- Cortez ---- //
+
 //Zone 4 (Eventos)
-//41,256	//MC_VENDING#Vending#
 143,256	//NV_TRICKDEAD#Act Dead#
 389,256	//ST_CHASEWALK#Stealth#
 54,258	//ALL_RESURRECTION#Resurrection# + PVP
@@ -92,9 +117,6 @@
 //Zone 6 - WoE:SE 
 264,1024 //Snap
 426,1024 //TK_HIGHJUMP#Taekwon Jump#
-
-//Zone 7
-
 
 //Zone 3 - Cidades
 5,128//		SM_BASH#Bash#

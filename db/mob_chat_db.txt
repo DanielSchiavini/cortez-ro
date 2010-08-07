@@ -1,0 +1,33 @@
+// Monster Chat Database
+//
+// Structure of Database:
+// Line_ID,Color_Code,Dialog
+1,0xFF0000,Fracote! Você é corajoso? Então me desafie!
+2,0xFF0000,Impressionante! Eu me pergunto o quanto da sua imprudência, te levará!
+3,0xFF0000,Eu tenho piedade de você, Agora, se prepare para meu ataque! 
+4,0xFF0000,Meus servos são fiéis! Receba-os como uma morte dolorosa!
+5,0xFF0000,Não fuja!
+6,0xFF0000,Vocês humanos inúteis. Seu chamados poderes sagrados não têm nenhum efeito sobre mim!
+7,0xFF0000,Subalternos Inúteis! ... Bem, tudo bem, eu tenho mais armas para usar e induzir.
+8,0xFF0000,Reze para os seus deuses!
+9,0xFF0000,Você ainda acha que é um jogo para mim?!
+10,0xFF0000,Suma da minha frente!
+11,0xFF0000,Vamos ver quanto tempo você pode aguentar meu poder!
+12,0xFF0000,Isso é tudo o que você tem?!
+13,0xFF0000,Você está me fazendo cócegas!
+14,0xFF0000,Isso é um ataque? Assista e aprenda, fracos!
+15,0xFF0000,É hora de terminar o jogo!
+16,0xFF0000,Oh, você está mais forte do que eu pensava!
+17,0xFF0000,Não, isto não pode estar acontecendo! Eu sou Satan Morroc, o Rei Demôniaco da Destruição!
+18,0xFF0000,Eu não posso morrer! Eu estarei voltando para você!
+19,0xFF0000,Eu nasci para conquistar o mundo! Ninguém irá parar!
+20,0xFF0000,Seus dias estão contados!
+21,0xFF0000,Te rasgarei! Com meus punhos de aço!
+22,0xFF0000,Hahaha, me diga quem eu sou! Eu sou Baphomet, o herdeiro do inferno!
+23,0xFF0000,Aproveite o seu tempo no plano mortal, embora seja possível, a sua esperança em breve se transformará em desespero!
+24,0xFF0000,Quando você vai aprender a lição? Quando morrer?
+25,0xFF0000,Não... Eu não posso perder! Não vou implorar por minha vida! Eu não estou fugindo! Eu não aceito isso como derrota!
+26,0xFF0000,Eu... Eu estou enfraquecendo!
+27,0xFF0000,O que você quer de mim?
+28,0xFF0000,Não! Eu não fiz isso! Ele é a pessoa que planejou tudo isso!
+29,0xFF0000,Eu só queria encontrar a paz..! Por isso que fugi!

@@ -10,34 +10,34 @@ pvp_n_1-1,0,0,0,0	monster	Blue Plant		1079,10,600000,3600000,0
 pvp_n_1-1,0,0,0,0	monster	Shining Plant	1083,5,3600000,7200000,0
 
 //MvPs Novos
-pvp_n_1-1,086,071,3	script	Baltazar	2101,{warp "pay_fild10",0,	0;}
-pvp_n_1-1,085,071,4	script	Krool		2146,{warp "pay_fild10",0,	0;}
-pvp_n_1-1,102,171,4	script	T.Roz		2106,{warp "cmd_fild07",0,	0;}
-pvp_n_1-1,094,182,4	script	Meteoro		2102,{warp "moc_fild16",0,	0;}
-pvp_n_1-1,061,059,5	script	Dr.Pimpolho	2099,{warp "pvp_y_5-5",	0,	0;}
-pvp_n_1-1,107,144,5	script	Yuri		2103,{warp "hu_fild05",	0,	0;}
-pvp_n_1-1,120,071,3	script	Yuufa		2157,{warp "beach_dun",	0,	0;}
-pvp_n_1-1,083,159,4	script	Sola		2108,{warp "beach_dun",	0,	0;}
+pvp_n_1-1,086,071,3	script	Baltazar	3101,{warp "pay_fild10",0,	0;}
+pvp_n_1-1,085,071,4	script	Krool		3146,{warp "pay_fild10",0,	0;}
+pvp_n_1-1,102,171,4	script	T.Roz		3106,{warp "cmd_fild07",0,	0;}
+pvp_n_1-1,094,182,4	script	Meteoro		3102,{warp "moc_fild16",0,	0;}
+pvp_n_1-1,061,059,5	script	Dr.Pimpolho	3099,{warp "pvp_y_5-5",	0,	0;}
+pvp_n_1-1,107,144,5	script	Yuri		3103,{warp "hu_fild05",	0,	0;}
+pvp_n_1-1,120,071,3	script	Yuufa		3157,{warp "beach_dun",	0,	0;}
+pvp_n_1-1,083,159,4	script	Sola		3108,{warp "beach_dun",	0,	0;}
 
-pvp_n_1-1,114,044,3	script	Bola		2098,{warp "prt_monk",	0,	0;}
-pvp_n_1-1,112,044,5	script	Gleen		2104,{warp "prt_monk",	0,	0;}
-pvp_n_1-1,103,055,3	script	Turok		2097,{warp "prt_fild10",0,	0;}
-//pvp_n_1-1,100,055,5	script	Chii~	2142,{warp "prt_fild10",0,	0;}
-pvp_n_1-1,074,163,3	script	Hermes		2107,{warp "c_tower1",	0,	0;}
-//pvp_n_1-1,071,163,5	script	Dimasi	2152,{warp "c_tower1",	0,	0;}
+pvp_n_1-1,114,044,3	script	Bola		3098,{warp "prt_monk",	0,	0;}
+pvp_n_1-1,112,044,5	script	Gleen		3104,{warp "prt_monk",	0,	0;}
+pvp_n_1-1,103,055,3	script	Turok		3097,{warp "prt_fild10",0,	0;}
+//pvp_n_1-1,100,055,5	script	Chii~	3142,{warp "prt_fild10",0,	0;}
+pvp_n_1-1,074,163,3	script	Hermes		3107,{warp "c_tower1",	0,	0;}
+//pvp_n_1-1,071,163,5	script	Dimasi	3152,{warp "c_tower1",	0,	0;}
 
-pvp_n_1-1,093,027,4	script	Brunim		2105,{warp "yuno_fild04",0,	0;}
-pvp_n_1-1,088,049,4	script	Spok		2089,{warp "gef_dun03",	0,	0;}
-pvp_n_1-1,078,182,4	script	Elfo		2100,{warp "pay_fild03",0,	0;}
+pvp_n_1-1,093,027,4	script	Brunim		3105,{warp "yuno_fild04",0,	0;}
+pvp_n_1-1,088,049,4	script	Spok		3089,{warp "gef_dun03",	0,	0;}
+pvp_n_1-1,078,182,4	script	Elfo		3100,{warp "pay_fild03",0,	0;}
 
 //MvPs Normais
 pvp_n_1-1,086,169,4	script	Amon Ra				1511,{warp "moc_pryd06",0,	0;}
-pvp_n_1-1,126,181,4	script	Bacsojin			1518,{warp "lou_dun03",	0,	0;}
-pvp_n_1-1,068,069,4	script	Baphomet			1039,{warp "gl_cas02",	0,	0;}
+pvp_n_1-1,126,181,4	script	White Lady			1630,{warp "lou_dun03",	0,	0;}
+pvp_n_1-1,068,069,4	script	Baphomet			1039,{warp "prt_maze03",0,	0;}
 pvp_n_1-1,111,023,4	script	Beelzebub			1874,{warp "abbey03",	0,	0;}
 pvp_n_1-1,084,142,4	script	Bishop Hibram		1871,{warp "abbey02",	0,	0;}
 pvp_n_1-1,090,035,4	script	Dark Lord			1272,{warp "gl_chyard",	0,	0;}
-pvp_n_1-1,089,150,4	script	Detale				1719,{warp "abyss_03",	0,	0;}
+pvp_n_1-1,089,150,4	script	Detardeurus			1719,{warp "abyss_03",	0,	0;}
 pvp_n_1-1,110,182,4	script	Doppelganger		1046,{warp "gef_dun02",	0,	0;}
 pvp_n_1-1,157,115,4	script	Dracula				1389,{warp "gef_dun01",	0,	0;}
 pvp_n_1-1,085,018,4	script	Drake				1112,{warp "treasure02",0,	0;}
@@ -46,7 +46,7 @@ pvp_n_1-1,070,031,4	script	Evil Snake Lord		1418,{warp "gon_dun03",	0,	0;}
 pvp_n_1-1,095,161,4	script	Garm				1252,{warp "iz_dun04",	0,	0;}
 pvp_n_1-1,109,036,4	script	Gloom Under Night	1768,{warp "ra_san05",	0,	0;}
 pvp_n_1-1,091,127,4	script	Golden Thief Bug	1086,{warp "prt_sewb4",	0,	0;}
-pvp_n_1-1,076,147,4	script	Incantation Samurai	1492,{warp "ama_dun03",	0,	0;}
+pvp_n_1-1,076,147,4	script	Samurai Specter		1492,{warp "ama_dun03",	0,	0;}
 pvp_n_1-1,102,017,4	script	Kiel D-01			1734,{warp "kh_dun02",	0,	0;}
 pvp_n_1-1,106,163,4	script	Ktullanux			1779,{warp "ice_dun03",	0,	0;}
 pvp_n_1-1,068,047,4	script	Lady Tanee			1688,{warp "ayo_dun02",	0,	0;}
@@ -65,8 +65,7 @@ pvp_n_1-1,137,064,4	script	Tao Gunka			1583,{warp "beach_dun",	0,	0;}
 pvp_n_1-1,120,033,4	script	Turtle General		1312,{warp "tur_dun04",	0,	0;}
 pvp_n_1-1,103,045,4	script	Valkyrie Randgris	1751,{warp "odin_tem03",0,	0;}
 pvp_n_1-1,114,127,4	script	Vesper				1685,{warp "jupe_core",	0,	0;}
-pvp_n_1-1,126,058,4	script	Zmey Gorynych		1885,{warp "mosk_dun03",0,	0;}
-
+pvp_n_1-1,126,058,4	script	Gopinich			1885,{warp "mosk_dun03",0,	0;}
 
 pvp_n_1-1,105,107,5	script	Thanatos	1708,{
 	mes "[Thanatos]";

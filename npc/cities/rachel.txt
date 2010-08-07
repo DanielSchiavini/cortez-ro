@@ -4,7 +4,7 @@
 //= First Version: Tsuyuki and Harp
 //= iRO Version: L0ne_W0lf
 //===== Current Version: =====================================
-//= 0.7
+//= 0.9
 //===== Compatible With: =====================================
 //= eAthena SVN
 //===== Description: =========================================
@@ -15,12 +15,28 @@
 //= possibly missing some NPCs and missing all quests.
 //= 0.6 Removed Inn Keeper (it's in inn.txt), name duplicates [Lupus]
 //= 0.7 Total update of most if not all NPCs. [L0ne_W0lf]
+//= 0.8 Updated "Frozen Boy" dialog. (euRO) [L0ne_W0lf]
+//= 0.9 Replaced effect numerics with constants. [L0ne_W0lf]
 //============================================================
 
 //===== Set 1 ================================================
 ice_dun04,33,166,3	script	Frozen Boy	925,{
 	cutin "ra_sboy.bmp",2;
-	mes "Missing dialog.";
+	mes "["+strcharinfo(0)+"]";
+	mes "This boy must be the one who Ktullanux tried to protect.";
+	next;
+	mes "- The boy was frozen inside a giant ice pole, and he looks as if he is in sleep rather than dead. -";
+	next;
+	mes "- You felt freezing as you come closer to the giant ice pole that held the boy within,";
+	mes "- but for some reason, you felt a mysterious power from the pole. -";
+	next;
+	mes "- The boy appeared to be snowy white, and beautiful from the head to the toe. -";
+	next;
+	mes "- You wondered why a young boy had to be confined within this isolated cave, -";
+	mes "- you instinctively knew that no mage in this world would be able to release him from the ice pole.";
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "What happened to this boy?";
 	close2;
 	cutin "",255;
 	end;
@@ -75,7 +91,7 @@ ra_san04,137,48,3	script	Loomin-1st Class Secret	111,{
 	close;
 }
 
-rachel,77,117,1	script	Citizen#1 	921,{
+rachel,124,132,1	script	Citizen#1 	921,{
 	mes "[Citizen]";
 	mes "May Freya bless";
 	mes "you, and give you an";
@@ -276,7 +292,7 @@ rachel,206,30,3	script	Freya's Priest#play	920,{
 		mes "^3355FFYou told her the first";
 		mes "funny story that you";
 		mes "could think of.^000000";
-		specialeffect2 295; //EF_TALK_FROSTJOKE
+		specialeffect2 EF_TALK_FROSTJOKE;
 		next;
 		mes "[Freya's Priest]";
 		mes "That's supposed to";
@@ -372,7 +388,7 @@ ra_temin,287,88,7	script	Follower Lekua	926,{
 //ra_temin,228,303,5	script	Freya's Follower#in1	927,{
 ra_temin,228,303,5	script	Freya's Follower#in1	926,{
 	mes "[Freya's Follower]";
-	mes "Once atain, I didn't get";
+	mes "Once again, I didn't get";
 	mes "any sleep yesterday... I'm";
 	mes "praying so hard for Freya's";
 	mes "second coming. I'm exhausted,";
@@ -522,7 +538,7 @@ ra_fild12,283,208,3	script	Apprentice Priestess	914,{
 	close;
 }
 
-rachel,139,74,4	script	Child Follower#2	914,{
+rachel,127,117,4	script	Child Follower#2	914,{
 	mes "[Deno]";
 	mes "Although we pray to";
 	mes "the goddess Freya and";

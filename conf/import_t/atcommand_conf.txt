@@ -1,9 +1,14 @@
-// 0/5: Comandos VIP no Memories
-autoloot: 0
-storage: 0
-gstorage: 0
+// Comandos liberados
+gstorage: 0, 70
 
-whosell: 0
-whosells: 0
+whosell: 0, 0
+whosells: 0, 0
 
-mail: 0
+mail: 0, 70
+
+// Super comandos liberados pra testes:
+die: 0,60
+feelreset: 0,90
+who: 0,60
+jump: 0,70
+warp: 0,80
