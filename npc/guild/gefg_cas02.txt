@@ -3,13 +3,14 @@
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
-//= 1.0
+//= 1.1
 //===== Compatible With: =====================================
 //= eAthena SVN
 //===== Description: =========================================
 //= NPCs that relate to Geffen Guild Castle 2
 //===== Additional Comments: =================================
 //= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
 gefg_cas02	mapflag	gvg_castle
@@ -46,21 +47,20 @@ gefg_cas02,80,42,0	warp	gefg201-1	1,1,gefg_cas02,39,173
 
 // Guild Flag (Town)
 //============================================================
-geffen,113,130,1	script	Trapesac#g2-1::Trapesac	974,{
+geffen,113,130,1	script	Trapesac#g2-1::Trapesac	722,{
 	end;
 
 OnRecvCastleG02:
-	//FlagEmblem GetCastleData("gefg_cas02",1);
+	FlagEmblem GetCastleData("gefg_cas02",1);
 	end;
 }
 
 // Guild Flag (Outside Castle)
 //============================================================
-gef_fild13,303,243,4	script	Trapesac#g2-2::Trapesac2	974,{
+gef_fild13,303,243,4	script	Trapesac#g2-2::Trapesac2	722,{
 	set .@GID, GetCastleData("gefg_cas02",1);
 	if (.@GID == 0) {
-		mes "[Edital do Reino das Valquírias]";
-		mes " ";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
 		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
 		mes " ";
@@ -71,9 +71,10 @@ gef_fild13,303,243,4	script	Trapesac#g2-2::Trapesac2	974,{
 			mes "Bravo aventureiro...";
 			mes "Deseja voltar ao seu local de glória e honra?";
 			next;
-			if (select("Voltar:Quit.") == 1) {
+			if (select("Voltar:Sair.") == 1) {
 				if (getcharid(2) == GetCastleData("gefg_cas02",1)) {
 					warp "gefg_cas02",23,66;
+					//warp "gefg_cas02",178,43;
 					end;
 				}
 			}
@@ -89,22 +90,31 @@ gef_fild13,303,243,4	script	Trapesac#g2-2::Trapesac2	974,{
 	close;
 
 OnRecvCastleG02:
-	//FlagEmblem GetCastleData("gefg_cas02",1);
+	FlagEmblem GetCastleData("gefg_cas02",1);
 	end;
 }
 
-schg_cas03,53,17,4	duplicate(Trapesac2)	Trapesac#ctz	974
-gef_fild13,312,243,4	duplicate(Trapesac2)	Trapesac#g2-3	974
-gef_fild13,290,243,4	duplicate(Trapesac2)	Trapesac#g2-4	974
-gef_fild13,324,243,4	duplicate(Trapesac2)	Trapesac#g2-5	974
+schg_cas03,53,17,4	duplicate(Trapesac2)	Trapesac#ctz	722
+gef_fild13,312,243,4	duplicate(Trapesac2)	Trapesac#g2-3	722
+gef_fild13,290,243,4	duplicate(Trapesac2)	Trapesac#g2-4	722
+gef_fild13,324,243,4	duplicate(Trapesac2)	Trapesac#g2-5	722
 
-gefg_cas02,65,130,5	duplicate(Trapesac2)	Trapesac#g2-6	974
-gefg_cas02,30,123,5	duplicate(Trapesac2)	Trapesac#g2-7	974
-gefg_cas02,65,139,6	duplicate(Trapesac2)	Trapesac#g2-8	974
-gefg_cas02,37,177,6	duplicate(Trapesac2)	Trapesac#g2-9	974
-gefg_cas02,37,168,6	duplicate(Trapesac2)	Trapesac#g2-10	974
-gefg_cas02,68,47,2	duplicate(Trapesac2)	Trapesac#g2-11	974
-gefg_cas02,68,36,2	duplicate(Trapesac2)	Trapesac#g2-12	974
+// Guild Flag (Inside Castle)
+//============================================================
+gefg_cas02,65,130,5	script	Trapesac#g2-6::Trapesac3	722,{
+	end;
+
+OnRecvCastleG02:
+	FlagEmblem GetCastleData("gefg_cas02",1);
+	end;
+}
+
+gefg_cas02,30,123,5	duplicate(Trapesac3)	Trapesac#g2-7	722
+gefg_cas02,65,139,6	duplicate(Trapesac3)	Trapesac#g2-8	722
+gefg_cas02,37,177,6	duplicate(Trapesac3)	Trapesac#g2-9	722
+gefg_cas02,37,168,6	duplicate(Trapesac3)	Trapesac#g2-10	722
+gefg_cas02,68,47,2	duplicate(Trapesac3)	Trapesac#g2-11	722
+gefg_cas02,68,36,2	duplicate(Trapesac3)	Trapesac#g2-12	722
 
 // AGIT Manager
 //============================================================
@@ -120,7 +130,7 @@ gefg_cas02,12,66,5	duplicate(Gld_Guard_Template)	Guardian#gefg_cas02	-1
 
 // Kafra Staff
 //============================================================
-gefg_cas02,23,66,3	duplicate(Gld_Kafra_Template)	Kafra#gefg_cas02	117
+gefg_cas02,23,66,3	duplicate(Gld_Kafra_Template)	Kafra Staff#gefg_cas02	117
 
 // Master's Room Exit
 //============================================================
@@ -128,13 +138,8 @@ gefg_cas02,145,115,0	script	#switch_G02	111,{
 	mes " ";
 	mes "Há um pequeno interruptor. Deseja apertá-lo?";
 	next;
-	switch(select("Apertar:Não")) {
-	case 1:
-		warp "gefg_cas02",12,67;
-		break;
-	case 2:
-		break;
-	}
+	if(select("Apertar:Não") == 2) close;
+	warp "gefg_cas02",12,67;
 	end;
 }
 

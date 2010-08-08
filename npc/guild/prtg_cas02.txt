@@ -3,13 +3,14 @@
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
-//= 1.0
+//= 1.1
 //===== Compatible With: =====================================
 //= eAthena SVN
 //===== Description: =========================================
 //= NPCs that relate to Prontera Guild Castle 1
 //===== Additional Comments: =================================
 //= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
 prtg_cas02	mapflag	gvg_castle
@@ -40,13 +41,22 @@ prtg_cas02,71,86,0	warp	prtg204-1	1,1,prtg_cas02,35,187
 prtg_cas02,88,215,0	warp	prtg201	1,1,prtg_cas02,206,41
 prtg_cas02,98,21,0	warp	prtg203-1	1,1,prtg_cas02,64,168
 
+// Guild Flag (Town)
+//============================================================
+prontera,146,194,3	script	Hrist#p2-1::Hrist	722,{
+	end;
+
+OnRecvCastlePt02:
+	FlagEmblem GetCastleData("prtg_cas02",1);
+	end;
+}
+
 // Guild Flag (Outside Castle)
 //============================================================
-prt_gld,244,126,8	script	Hrist#p2-2::Hrist2	973,{
+prt_gld,244,126,8	script	Hrist#p2-2::Hrist2	722,{
 	set .@GID, GetCastleData("prtg_cas02",1);
 	if (.@GID == 0) {
-		mes "[Edital do Reino das Valquírias]";
-		mes " ";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
 		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
 		mes " ";
@@ -57,9 +67,10 @@ prt_gld,244,126,8	script	Hrist#p2-2::Hrist2	973,{
 			mes "Bravo aventureiro...";
 			mes "Deseja voltar ao seu local de glória e honra?";
 			next;
-			if (select("Voltar:Quit.") == 1) {
+			if (select("Voltar:Sair.") == 1) {
 				if (getcharid(2) == GetCastleData("prtg_cas02",1)) {
 					warp "prtg_cas02",71,36;
+					//warp "prtg_cas02",169,55;
 					end;
 				}
 			}
@@ -75,52 +86,36 @@ prt_gld,244,126,8	script	Hrist#p2-2::Hrist2	973,{
 	close;
 
 OnRecvCastlePt02:
-	//FlagEmblem 1; //GetCastleData("prtg_cas02",1);
+	FlagEmblem GetCastleData("prtg_cas02",1);
 	end;
 }
 
-schg_cas03,67,19,4	duplicate(Hrist2)	Hrist#ctz	973
-prt_gld,244,128,8	duplicate(Hrist2)	Hrist#p2-3	973
-prt_gld,236,126,8	duplicate(Hrist2)	Hrist#p2-4	973
-prt_gld,236,128,8	duplicate(Hrist2)	Hrist#p2-5	973
+schg_cas03,67,19,4	duplicate(Hrist2)	Hrist#ctz	722
+prt_gld,244,128,8	duplicate(Hrist2)	Hrist#p2-3	722
+prt_gld,236,126,8	duplicate(Hrist2)	Hrist#p2-4	722
+prt_gld,236,128,8	duplicate(Hrist2)	Hrist#p2-5	722
 
 // Guild Flag (Inside Castle)
 //============================================================
-prtg_cas02,40,227,4	script	Hrist#p2-6::Hrist3	973,{
-	set .@GID, GetCastleData("prtg_cas02",1);
-	if (.@GID == 0) {
-		mes "[Edital do Reino das Valquírias]";
-		mes " ";
-		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
-		mes " ";
-		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
-	}
-	else {
-		mes "[Edital do Reino das Valquírias]";
-		mes " ";
-		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
-		mes " ";
-		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
-	}
-	close;
+prtg_cas02,40,227,4	script	Hrist#p2-6::Hrist3	722,{
+	end;
 
 OnRecvCastlePt02:
-	//FlagEmblem 1; //GetCastleData("prtg_cas02",1);
+	FlagEmblem GetCastleData("prtg_cas02",1);
 	end;
 }
 
-prtg_cas02,46,227,4	duplicate(Hrist3)	Hrist#p2-7	973
-prtg_cas02,11,219,4	duplicate(Hrist3)	Hrist#p2-8	973
-prtg_cas02,11,214,4	duplicate(Hrist3)	Hrist#p2-9	973
-prtg_cas02,20,219,4	duplicate(Hrist3)	Hrist#p2-10	973
-prtg_cas02,20,214,4	duplicate(Hrist3)	Hrist#p2-11	973
-prtg_cas02,79,227,8	duplicate(Hrist3)	Hrist#p2-12	973
-prtg_cas02,70,227,8	duplicate(Hrist3)	Hrist#p2-13	973
-prtg_cas02,38,189,8	duplicate(Hrist3)	Hrist#p2-14	973
-prtg_cas02,34,189,8	duplicate(Hrist3)	Hrist#p2-15	973
-prtg_cas02,153,161,4	duplicate(Hrist3)	Hrist#p2-16	973
-prtg_cas02,162,161,4	duplicate(Hrist3)	Hrist#p2-17	973
+prtg_cas02,46,227,4	duplicate(Hrist3)	Hrist#p2-7	722
+prtg_cas02,11,219,4	duplicate(Hrist3)	Hrist#p2-8	722
+prtg_cas02,11,214,4	duplicate(Hrist3)	Hrist#p2-9	722
+prtg_cas02,20,219,4	duplicate(Hrist3)	Hrist#p2-10	722
+prtg_cas02,20,214,4	duplicate(Hrist3)	Hrist#p2-11	722
+prtg_cas02,79,227,8	duplicate(Hrist3)	Hrist#p2-12	722
+prtg_cas02,70,227,8	duplicate(Hrist3)	Hrist#p2-13	722
+prtg_cas02,38,189,8	duplicate(Hrist3)	Hrist#p2-14	722
+prtg_cas02,34,189,8	duplicate(Hrist3)	Hrist#p2-15	722
+prtg_cas02,153,161,4	duplicate(Hrist3)	Hrist#p2-16	722
+prtg_cas02,162,161,4	duplicate(Hrist3)	Hrist#p2-17	722
 
 // AGIT Manager
 //============================================================
@@ -144,13 +139,8 @@ prtg_cas02,207,228,0	script	#switch_Pt02	111,{
 	mes " ";
 	mes "Há um pequeno interruptor. Deseja apertá-lo?";
 	next;
-	switch(select("Apertar:Não")) {
-	case 1:
-		warp "prtg_cas02",94,62;
-		break;
-	case 2:
-		break;
-	}
+	if(select("Apertar:Não") == 2) close;
+	warp "prtg_cas02",94,62;
 	end;
 }
 

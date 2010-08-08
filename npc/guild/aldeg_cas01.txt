@@ -3,13 +3,14 @@
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
-//= 1.0
+//= 1.1
 //===== Compatible With: =====================================
 //= eAthena SVN
 //===== Description: =========================================
 //= NPCs that relate to Al De Baran Guild Castle 1
 //===== Additional Comments: =================================
 //= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
 aldeg_cas01	mapflag	gvg_castle
@@ -45,23 +46,33 @@ aldeg_cas01,46,197,0	warp	aldg107-1	1,1,aldeg_cas01,232,182
 aldeg_cas01,171,175,0	warp	aldg108	1,1,aldeg_cas01,35,197
 aldeg_cas01,31,197,0	warp	aldg108-1	1,1,aldeg_cas01,175,175
 
-// Guild Flags
+// Guild Flag (Town)
+//============================================================
+aldebaran,152,97,4	script	Sirius#a1-1::Sirius	722,{
+	end;
+
+OnRecvCastleA01:
+	FlagEmblem GetCastleData("aldeg_cas01",1);
+	end;
+}
+
+// Guild Flag (Outside Castle)
 //============================================================
 alde_gld,61,87,6	script	Sirius#a1-2::Sirius2	722,{
 	set .@GID, GetCastleData("aldeg_cas01",1);
 	if (.@GID == 0) {
-		mes "[ Edital do Reino Divino de Midgard ]";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que n√£o h√° um leg√≠timo mestre para este castelo.";
 		mes " ";
-		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que n„o h· um legÌtimo mestre para este castelo.";
-		mes " ";
-		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei ir· gratificar com a posse deste castelo.";
-	} else {
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei ir√° gratificar com a posse deste castelo.";
+	}
+	else {
 		if (getcharid(2) == .@GID) {
 			mes "Bravo aventureiro...";
-			mes "Deseja voltar ao seu local de glÛria e honra?";
+			mes "Deseja voltar ao seu local de gl√≥ria e honra?";
 			next;
-			if (select("Voltar:Quit.") == 1) {
+			if (select("Voltar:Sair.") == 1) {
 				if (getcharid(2) == GetCastleData("aldeg_cas01",1)) {
 					warp "aldeg_cas01",218,170;
 					end;
@@ -69,18 +80,17 @@ alde_gld,61,87,6	script	Sirius#a1-2::Sirius2	722,{
 			}
 			close;
 		}
-		mes "[ Edital do Reino Divino de Midgard ]";
+		mes "[Edital do Reino das Valqu√≠rias]";
 		mes " ";
-		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo est· sob possess„o do cl„ ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo est√° sob possess√£o do cl√£ ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O lÌder do cl„ ^ff0000"+ GetGuildName(.@GID) + "^000000 È ^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se houver alguma objeÁ„o, prove sua forÁa e honra com a l‚mina de uma espada em suas m„os.";
+		mes "2. O l√≠der do cl√£ ^ff0000"+ GetGuildName(.@GID) + "^000000 √© ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma obje√ß√£o, prove sua for√ßa e honra com a l√¢mina de uma espada em suas m√£os.";
 	}
 	close;
 
 OnRecvCastleA01:
-	FlagEmblem 1;
-	//FlagEmblem GetCastleData("aldeg_cas01",1);
+	FlagEmblem GetCastleData("aldeg_cas01",1);
 	end;
 }
 gonryun,155,130,4	duplicate(Sirius2)	Sirius#a1-1	722
@@ -91,23 +101,7 @@ alde_gld,51,87,8	duplicate(Sirius2)	Sirius#a1-5	722
 // Guild Flag (Inside Castle)
 //============================================================
 aldeg_cas01,30,248,4	script	Sirius#a1-6::Sirius3	722,{
-	set .@GID, GetCastleData("aldeg_cas01",1);
-	if (.@GID == 0) {
-		mes "[ Edital do Reino Divino de Midgard ]";
-		mes " ";
-		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que n„o h· um legÌtimo mestre para este castelo.";
-		mes " ";
-		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei ir· gratificar com a posse deste castelo.";
-	}
-	else {
-		mes "[ Edital do Reino Divino de Midgard ]";
-		mes " ";
-		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo est· sob possess„o do cl„ ^ff0000" + GetGuildName(.@GID) + "^000000.";
-		mes " ";
-		mes "2. O lÌder do cl„ ^ff0000"+ GetGuildName(.@GID) + "^000000 È ^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se houver alguma objeÁ„o, prove sua forÁa e honra com a l‚mina de uma espada em suas m„os.";
-	}
-	close;
+	end;
 
 OnRecvCastleA01:
 	FlagEmblem GetCastleData("aldeg_cas01",1);
@@ -142,23 +136,18 @@ aldeg_cas01,218,175,0	duplicate(Gld_Mngr_Template)	Alfredo#aldeg_cas01	55
 //============================================================
 aldeg_cas01,218,175,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas01	-1
 
-// Kafra
+// Kafra Staff
 //============================================================
-aldeg_cas01,218,170,0	duplicate(Gld_Kafra_Template)	Kafra#aldeg_cas01	117
+aldeg_cas01,218,170,0	duplicate(Gld_Kafra_Template)	Kafra Staff#aldeg_cas01	117
 
 // Master's Room Exit
 //============================================================
 aldeg_cas01,123,223,0	script	#switch_A01	111,{
 	mes " ";
-	mes "H· um pequeno interruptor. Deseja apert·-lo?";
+	mes "H√° um pequeno interruptor. Deseja apert√°-lo?";
 	next;
-	switch(select("Apertar:N„o")) {
-	case 1:
-		warp "aldeg_cas01",218,176;
-		break;
-	case 2:
-		break;
-	}
+	if(select("Apertar:N√£o") == 2) close;
+	warp "aldeg_cas01",218,176;
 	end;
 }
 

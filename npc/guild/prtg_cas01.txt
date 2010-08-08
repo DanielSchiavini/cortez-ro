@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
-//= 1.2
+//= 1.3
 //===== Compatible With: =====================================
 //= eAthena SVN
 //===== Description: =========================================
@@ -12,6 +12,7 @@
 //= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
 //= 1.1 Corrected flag-in spawn point. [L0ne_W0lf]
 //= 1.2 Corrected treasure room switch coordinates. [L0ne_W0lf]
+//= 1.3 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
 prtg_cas01	mapflag	gvg_castle
@@ -49,13 +50,22 @@ prtg_cas01,75,183,0	warp	prtg106-1	1,1,prtg_cas01,147,116
 prtg_cas01,84,19,0	warp	prtg109	1,1,prtg_cas01,192,65
 prtg_cas01,84,49,0	warp	prtg101-1	1,1,prtg_cas01,61,19
 
+// Guild Flag (Town)
+//============================================================
+prontera,155,190,4	script	Kriemhild#p1-1::Kriemhild	722,{
+	end;
+
+OnRecvCastlePt01:
+	FlagEmblem GetCastleData("prtg_cas01",1);
+	end;
+}
+
 // Guild Flag (Outside Castle)
 //============================================================
-prt_gld,131,60,6	script	Kriemhild#p1-2::Kriemhild2	973,{
+prt_gld,131,60,6	script	Kriemhild#p1-2::Kriemhild2	722,{
 	set .@GID, GetCastleData("prtg_cas01",1);
 	if (.@GID == 0) {
-		mes "[Edital do Reino das Valquírias]";
-		mes " ";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
 		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
 		mes " ";
@@ -66,7 +76,7 @@ prt_gld,131,60,6	script	Kriemhild#p1-2::Kriemhild2	973,{
 			mes "Bravo aventureiro...";
 			mes "Deseja voltar ao seu local de glória e honra?";
 			next;
-			if (select("Voltar:Quit.") == 1) {
+			if (select("Voltar:Sair.") == 1) {
 				if (getcharid(2) == GetCastleData("prtg_cas01",1)) {
 					warp "prtg_cas01",96,173;
 					end;
@@ -84,50 +94,34 @@ prt_gld,131,60,6	script	Kriemhild#p1-2::Kriemhild2	973,{
 	close;
 
 OnRecvCastlePt01:
-	//FlagEmblem 1; //GetCastleData("prtg_cas01",1);
+	FlagEmblem GetCastleData("prtg_cas01",1);
 	end;
 }
 
-schg_cas03,58,26,4	duplicate(Kriemhild2)	Kriemhild#ctz	973
-prt_gld,138,68,6	duplicate(Kriemhild2)	Kriemhild#p1-3	973
-prt_gld,138,60,6	duplicate(Kriemhild2)	Kriemhild#p1-4	973
-prt_gld,135,60,6	duplicate(Kriemhild2)	Kriemhild#p1-5	973
+schg_cas03,58,26,4	duplicate(Kriemhild2)	Kriemhild#ctz	722
+prt_gld,138,68,6	duplicate(Kriemhild2)	Kriemhild#p1-3	722
+prt_gld,138,60,6	duplicate(Kriemhild2)	Kriemhild#p1-4	722
+prt_gld,135,60,6	duplicate(Kriemhild2)	Kriemhild#p1-5	722
 
 // Guild Flag (Inside Castle)
 //============================================================
-prtg_cas01,58,56,4	script	Kriemhild#p1-4::Kriemhild3	973,{
-	set .@GID, GetCastleData("prtg_cas01",1);
-	if (.@GID == 0) {
-		mes "[Edital do Reino das Valquírias]";
-		mes " ";
-		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
-		mes " ";
-		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
-	}
-	else {
-		mes "[Edital do Reino das Valquírias]";
-		mes " ";
-		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
-		mes " ";
-		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
-	}
-	close;
+prtg_cas01,58,56,4	script	Kriemhild#p1-4::Kriemhild3	722,{
+	end;
 
 OnRecvCastlePt01:
-	//FlagEmblem 1; //GetCastleData("prtg_cas01",1);
+	FlagEmblem GetCastleData("prtg_cas01",1);
 	end;
 }
 
-prtg_cas01,64,56,4	duplicate(Kriemhild3)	Kriemhild#p1-7	973
-prtg_cas01,76,32,4	duplicate(Kriemhild3)	Kriemhild#p1-8	973
-prtg_cas01,84,32,4	duplicate(Kriemhild3)	Kriemhild#p1-9	973
-prtg_cas01,94,39,4	duplicate(Kriemhild3)	Kriemhild#p1-10	973
-prtg_cas01,94,24,4	duplicate(Kriemhild3)	Kriemhild#p1-11	973
-prtg_cas01,73,14,4	duplicate(Kriemhild3)	Kriemhild#p1-12	973
-prtg_cas01,73,6,4	duplicate(Kriemhild3)	Kriemhild#p1-13	973
-prtg_cas01,55,46,4	duplicate(Kriemhild3)	Kriemhild#p1-14	973
-prtg_cas01,45,46,4	duplicate(Kriemhild3)	Kriemhild#p1-15	973
+prtg_cas01,64,56,4	duplicate(Kriemhild3)	Kriemhild#p1-7	722
+prtg_cas01,76,32,4	duplicate(Kriemhild3)	Kriemhild#p1-8	722
+prtg_cas01,84,32,4	duplicate(Kriemhild3)	Kriemhild#p1-9	722
+prtg_cas01,94,39,4	duplicate(Kriemhild3)	Kriemhild#p1-10	722
+prtg_cas01,94,24,4	duplicate(Kriemhild3)	Kriemhild#p1-11	722
+prtg_cas01,73,14,4	duplicate(Kriemhild3)	Kriemhild#p1-12	722
+prtg_cas01,73,6,4	duplicate(Kriemhild3)	Kriemhild#p1-13	722
+prtg_cas01,55,46,4	duplicate(Kriemhild3)	Kriemhild#p1-14	722
+prtg_cas01,45,46,4	duplicate(Kriemhild3)	Kriemhild#p1-15	722
 
 // AGIT Manager
 //============================================================
@@ -151,13 +145,8 @@ prtg_cas01,15,209,0	script	#switch_Pt01	111,{
 	mes " ";
 	mes "Há um pequeno interruptor. Deseja apertá-lo?";
 	next;
-	switch(select("Apertar:Não")) {
-	case 1:
-		warp "prtg_cas01",112,183;
-		break;
-	case 2:
-		break;
-	}
+	if(select("Apertar:Não") == 2) close;
+	warp "prtg_cas01",112,183;
 	end;
 }
 
