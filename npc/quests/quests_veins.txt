@@ -3,7 +3,7 @@
 //===== By: ================================================== 
 //= L0ne_W0lf
 //===== Current Version: ===================================== 
-//= 1.4a
+//= 1.8
 //===== Compatible With: ===================================== 
 //= eAthena SVN
 //===== Description: ========================================= 
@@ -21,7 +21,7 @@
 //= - Help a boy save his little sister.
 //= - Dialog partially obtained from iRO.
 //= - Variable in use: rachel_camel (max 25)
-//= Thor Volcano Base Quest (Disabled):
+//= Thor Volcano Base Quest:
 //= - Missing addition to High Priest Zhed to start quest.
 //= - Infiltrate Thor Volcano Base. What is Arunafeltz up to?
 //= - Variable in use: rachel_camel (max 27)
@@ -35,6 +35,11 @@
 //= 1.3a More fixes to some of the Base quest NPCs. [L0ne_W0lf]
 //= 1.4 Added missing checkweights. [L0ne_W0lf]
 //= 1.4a Corrected a typo error ";;". [Toms]
+//= 1.5 Added Nameless Island quest addition. [L0ne_W0lf]
+//= 1.5a Corrected a couple typos in Nameless Addition. [L0ne_W0lf]
+//= 1.6 Replaced effect numerics with constants. [L0ne_W0lf]
+//= 1.7 Moved a couple NPCs related to the Spy quest. [L0ne_W0lf]
+//= 1.8 Fixed some typos and confusing condition checks. [L0ne_W0lf]
 //============================================================ 
 
 // Stone Quest
@@ -190,7 +195,7 @@ ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 		mes "by the Tavern. A-auuugh!";
 		close;
 	}
-	else if (veins_stone < 4) {
+	else if ((veins_stone > 1) && (veins_stone < 4)) {
 		mes "[Zabaroo]";
 		mes "Geez, Absar sure can";
 		mes "be fussy. Still, do your";
@@ -236,7 +241,7 @@ ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 		mes "to know that now. That's";
 		mes "really very nice of him.";
 		next;
-		mes "Zabaroo]";
+		mes "[Zabaroo]";
 		mes "I hate to ask you...";
 		mes "But would you mind";
 		mes "helping me out one";
@@ -256,7 +261,7 @@ ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 	else if (veins_stone < 7) {
 		mes "[Zabaroo]";
 		mes "Thanks again for your help!";
-		mes "What did Asbar call this";
+		mes "What did Absar call this";
 		mes "thing again? A Tactile...";
 		mes "Extendable... Damn it...";
 		mes "Why's the name so long?";
@@ -285,7 +290,7 @@ ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 	}
 	else if (veins_stone > 7) {
 		mes "[Zabaroo]";
-		mes "Thanks to you and Asbar,";
+		mes "Thanks to you and Absar,";
 		mes "my poor back hasn't been";
 		mes "bothering me at all lately.";
 		mes "I should be taking better";
@@ -320,7 +325,7 @@ ve_in,169,310,6	script	Strange Old Man#ve	121,{
 			mes "Look! Look what you did!";
 			mes "You made me screw up!";
 			next;
-			specialeffect 90; //EF_LORD
+			specialeffect EF_LORD;
 			percentheal -30,0;
 			next;
 			mes "[Absar]";
@@ -333,7 +338,7 @@ ve_in,169,310,6	script	Strange Old Man#ve	121,{
 		mes "[Absar]";
 		mes "Oh, no...";
 		next;
-		specialeffect 86; //"Strange Old Man#ve" EF_ASPERSIO
+		specialeffect EF_ASPERSIO;
 		next;
 		mes "[Absar]";
 		mes "How...?!";
@@ -414,7 +419,7 @@ ve_in,169,310,6	script	Strange Old Man#ve	121,{
 			delitem 7561,2; //Ice_Heart
 			set veins_stone,3;
 			close2;
-			specialeffect 50; //"Strange Old Man#ve" EF_FIRESPLASHHIT
+			specialeffect EF_FIRESPLASHHIT;
 			end;
 		}
 		mes "[Absar]";
@@ -555,7 +560,7 @@ ve_in02,54,49,2	script	Factory Worker#ve1	943,{
 		mes "[Bahed]";
 		mes "Let me confirm Zabaroo's";
 		mes "quota for today. Ah, and";
-		mes "don't worry, We pay him";
+		mes "don't worry, we pay him";
 		mes "for his quotas regularly.";
 		next;
 		select("I have a question...");
@@ -991,7 +996,7 @@ prt_church,89,108,6	script	Bard#sch	741,{
 	}
 }
 
-moc_castle,137,88,2	script	Prison Ward#sch	707,{
+morocc,53,87,7	script	Prison Ward#sch	707,{
 	if (que_sch < 4) {
 		mes "[Jesse]";
 		mes "Only authorized";
@@ -1111,7 +1116,7 @@ moc_castle,137,88,2	script	Prison Ward#sch	707,{
 	close;
 }
 
-moc_castle,173,122,0	script	Public Security Officer	748,{
+morocc_in,79,163,0	script	Public Security Officer	748,{
 	if (que_sch < 7) {
 		mes "[Krieg]";
 		mes "I'm in charge of public";
@@ -1193,7 +1198,7 @@ moc_castle,173,122,0	script	Public Security Officer	748,{
 	close;
 }
 
-ra_in01,48,352,0	warp	que_sch_jail	1,1,moc_castle,136,86
+ra_in01,48,352,0	warp	que_sch_jail	1,1,morocc,56,89
 
 ra_in01,50,387,4	script	Upset Looking Bard#sch	51,{
 	if (que_sch < 10) {
@@ -2906,7 +2911,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			mes "if I want to free Curdie.";
 			close;
 		}
-		else if (rachel_camel <= 16) {
+		else if ((rachel_camel >= 12) && (rachel_camel <= 16)) {
 			mes "["+strcharinfo(0)+"]";
 			mes "Well... I found the";
 			mes "camel. Now I need to get";
@@ -3028,11 +3033,91 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			mes "It's a promise, then.";
 			mes "I'll see you later~";
 			set rachel_camel,25;
-			specialeffect2 253; // EF_ABSORBSPIRITS
+			specialeffect2 EF_ABSORBSPIRITS;
 			getexp 1000000,700000;
 			close;
 		}
 		else {
+// Start Nameless Island Access Quest Addition
+			if (aru_monas == 15) {
+				mes "[Kid Karyn]";
+				mes "Hi! It's good to see";
+				mes "you again! Kurdi just came";
+				mes "back home from the hospital,";
+				mes "and is getting better everyday!";
+				mes "Ah, and I've been taking care";
+				mes "of her, just like I promised~";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Really? That's good";
+				mes "You should be proud~";
+				next;
+				mes "[Kid Karyn]";
+				mes "^666666*Blush*^000000 Heh heh!";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Anyway, I was wondering";
+				mes "if you could help me.";
+				mes "Your dad's a fisherman,";
+				mes "right? Would you mind";
+				mes "asking him if I could";
+				mes "borrow his boat?";
+				next;
+				mes "[Kid Karyn]";
+				mes "Well... Actually...";
+				mes "The pope said that my";
+				mes "dad isn't allowed to use";
+				mes "his boat for a while...";
+				mes "I'm not sure why...";
+				next;
+				mes "[Kid Karyn]";
+				mes "So yeah. Dad's not allowed";
+				mes "to go out to sea right now.";
+				mes "But it should be okay if it's";
+				mes "you, right? Hey, you helped";
+				mes "me, so I hafta help you, right?";
+				next;
+				mes "[Kid Karyn]";
+				mes "My dad is really mad that";
+				mes "he can't use his boat so";
+				mes "maybe we better not tell";
+				mes "him you want to use it. Let's";
+				mes "keep it our secret, okay?";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "S-sure thing!";
+				next;
+				mes "[Kid Karyn]";
+				mes "Anyway, his boat is the";
+				mes "only one on the south beach";
+				mes "since all the other fishermen";
+				mes "dock theirs boats in other";
+				mes "places. Also, my dad's boat";
+				mes "will rust if no one uses it.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Great! Thanks so much";
+				mes "for your help, Karyn~";
+				mes "I'll be sure to take";
+				mes "good care of your dad's";
+				mes "boat. I only need it for";
+				mes "a little while, anyway.";
+				next;
+				mes "[Kid Karyn]";
+				mes "Heh heh! Thanks!";
+				mes "I'm happy that";
+				mes "I can help you too!";
+				set aru_monas,16;
+				close;
+			}
+			else if (aru_monas > 15) {
+				mes "[Kid Karyn]";
+				mes "Hi! How do you like";
+				mes "fishing on my dad's boat?";
+				mes "Oh, and Kurdi says hi!";
+				close;
+			}
+// End Nameless Island Access Quest Addition.
 			mes "[Kid Karyn]";
 			mes "Hello, hello!";
 			mes "Hey, did you need";
@@ -3318,7 +3403,7 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "to hurry a little bit.";
 		mes "Alright, it's time to go.";
 		next;
-		mes "^3355FFYou extract the soup";
+		mes "^3355FFYou extract the soap";
 		mes "from the lock, and";
 		mes "carefully wrap it.";
 		mes "Now you need to take";
@@ -3875,6 +3960,7 @@ veins,181,166,3	script	Lockenlock	900,{
 			mes "the key, so I can get it done";
 			mes "as soon as you can bring";
 			mes "me the Steel. I'll be waiting.";
+			close;
 		}
 	}
 	else if (rachel_camel == 23) {
@@ -4234,7 +4320,7 @@ veins,227,127,5	script	Ivory	940,{
 		next;
 		mes "[Organic Soap Maker Ivory]";
 		mes "And um... Don't let";
-		mes "anyone 	else know what";
+		mes "anyone else know what";
 		mes "I use to make this soap.";
 		mes "People won't buy it if they";
 		mes "knew they were washing their";
@@ -5567,8 +5653,8 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 		mes "Hahahaha! Guess I look";
 		mes "pretty tough, don't I?";
 		next;
-		donpcevent "Drunken Lady#1::OnEmote";
-		donpcevent "Drunken Lady#2::OnEmote";
+		emotion e_lv,0,"Drunken Lady#1";
+		emotion e_lv,0,"Drunken Lady#2";
 		mes "[Ladies]";
 		mes "Oh, my God!";
 		mes "You're so cool~!";
@@ -5597,8 +5683,8 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 		mes "Hahahaha! Guess I look";
 		mes "pretty tough, don't I?";
 		next;
-		donpcevent "Drunken Lady#1::OnEmote";
-		donpcevent "Drunken Lady#2::OnEmote";
+		emotion e_lv,0,"Drunken Lady#1";
+		emotion e_lv,0,"Drunken Lady#2";
 		mes "[Ladies]";
 		mes "Oh, my God!";
 		mes "You're so cool~!";
@@ -5665,8 +5751,8 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 		mes "but duty calls.";
 		mes "Hahahahahahha~";
 		next;
-		donpcevent "Drunken Lady#1::OnEmote";
-		donpcevent "Drunken Lady#2::OnEmote";
+		emotion e_lv,0,"Drunken Lady#1";
+		emotion e_lv,0,"Drunken Lady#2";
 		mes "[Ladies]";
 		mes "Please don't go~";
 		next;
@@ -5750,8 +5836,8 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 		mes "I should stay here and";
 		mes "entreat them to a lecture.";
 		next;
-		donpcevent "Drunken Lady#1::OnEmote";
-		donpcevent "Drunken Lady#2::OnEmote";
+		emotion e_lv,0,"Drunken Lady#1";
+		emotion e_lv,0,"Drunken Lady#2";
 		mes "[Ladies]";
 		mes "Oh~! You'll really";
 		mes "teach us geology?";
@@ -5921,8 +6007,8 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 	mes "Hahahaha! Guess I look";
 	mes "pretty tough, don't I?";
 	next;
-	donpcevent "Drunken Lady#1::OnEmote";
-	donpcevent "Drunken Lady#2::OnEmote";
+	emotion e_lv,0,"Drunken Lady#1";
+	emotion e_lv,0,"Drunken Lady#2";
 	mes "[Ladies]";
 	mes "Oh, my God!";
 	mes "You're so cool~!";
@@ -5942,10 +6028,6 @@ ve_in,232,117,5	script	Drunken Lady#1	940,{
 	mes "I get free drinks if";
 	mes "I can put up with him~";
 	close;
-
-OnEmote:
-	emotion e_lv;
-	end;
 }
 
 ve_in,234,115,3	script	Drunken Lady#2	940,{
@@ -5956,10 +6038,6 @@ ve_in,234,115,3	script	Drunken Lady#2	940,{
 	mes "I can mix better drinks";
 	mes "at home, no sweat at all~";
 	close;
-
-OnEmote:
-	emotion e_lv;
-	end;
 }
 
 ve_in,277,229,3	script	Wall Closet#vol	111,{
@@ -6475,11 +6553,13 @@ OnTouch:
 		end;
 	}
 	else if (aru_vol == 14) {
+		enablenpc "Colonel Vito#1";
 		mes "[Colonel Vito]";
 		mes "What are you still";
 		mes "doing standing there?";
 		mes "Don't slack off! Come!";
 		close2;
+		disablenpc "Colonel Vito#1";
 		warp "thor_camp",156,68;
 		end;
 	}
@@ -6489,7 +6569,6 @@ OnTouch:
 thor_camp,162,182,0	script	#Colonel2	-1,7,7,{
 OnTouch:
 //OnTouch2:
-
 	if (aru_vol == 13) {
 		enablenpc "Colonel Vito#2";
 		mes "[????]";
@@ -6529,6 +6608,7 @@ OnTouch:
 		end;
 	}
 	else if (aru_vol == 14) {
+		enablenpc "Colonel Vito#1";
 		mes "[Colonel Vito]";
 		mes "What are you still";
 		mes "doing standing there?";
@@ -6542,12 +6622,16 @@ OnTouch:
 }
 
 thor_camp,187,228,5	script	Colonel Vito#1	946,{
+	end;
+
 OnInit:
 	disablenpc "Colonel Vito#1";
 	end;
 }
 
 thor_camp,155,175,7	script	Colonel Vito#2	946,{
+	end;
+
 OnInit:
 	disablenpc "Colonel Vito#2";
 	end;
@@ -6601,7 +6685,7 @@ thor_camp,159,74,3	script	Colonel Vito#3	946,{
 			mes "[Colonel Vito]";
 			mes "You idiot!";
 			percentheal -10,0;
-			specialeffect2 1; // EF_HIT2
+			specialeffect2 EF_HIT2;
 			next;
 		}
 		mes "[Colonel Vito]";
@@ -7000,43 +7084,43 @@ thor_camp,150,65,3	script	Dummy#1::VeinsDummy	111,{
 		mes "["+strcharinfo(0)+"]";
 		mes "Yes, sir!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "One!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Two!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Three!!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Four!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Five!!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Six!!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Seven!!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Eight!!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Nine!";
 		next;
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		mes "["+strcharinfo(0)+"]";
 		mes "Ten!";
 		set aru_vol,20;
@@ -7044,7 +7128,7 @@ thor_camp,150,65,3	script	Dummy#1::VeinsDummy	111,{
 	}
 	else if (aru_vol == 20) {
 		mes "^3355FF*THUD*^000000";
-		specialeffect 1; //EF_HIT2
+		specialeffect EF_HIT2;
 		emotion e_omg,1;
 		next;
 		mes "[Colonel Vito]";
@@ -7319,6 +7403,6 @@ ve_in,239,107,1	script	Male Customer#ve2	943,{
 	mes "my only friend in";
 	mes "all the world...";
 	mes "A toast... To drinking!";
-	specialeffect 86; //"Male Customer#ve2" EF_ASPERSIO
+	specialeffect EF_ASPERSIO;
 	close;
 }

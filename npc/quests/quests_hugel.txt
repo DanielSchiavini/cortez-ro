@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= MasterOfMuppets & SinSloth
 //===== Current Version: =====================================
-//= 1.7
+//= 1.9
 //===== Compatible With: =====================================
 //= eAthena
 //===== Description: =========================================
@@ -20,6 +20,8 @@
 //= 1.5b Fixed a variable name. [SinSloth]
 //= 1.6 Fixed bad NPC header data to comply with rev. 11603. [L0ne_W0lf]
 //= 1.7 Corrected locations of warpinside#1. (DarkValmir) [L0ne_W0lf]
+//= 1.8 Added missing checkweight. [L0ne_W0lf]
+//= 1.9 Replaced effect numerics with constants. [Samuray22]
 //============================================================
 
 //-------------------------------------------------------------------------
@@ -310,7 +312,7 @@ hu_in01,387,245,0	script	Allen Schuwell	849,2,2,{
 			mes "medicine you're";
 			mes "supposed to";
 			mes "need so badly.";
-			donpcevent "Postell Schuwell#D::OnEffect";
+			specialeffect EF_CHANGECOLD,AREA,"Postell Schuwell#D";
 			next;
 			mes "[Allen]";
 			mes "Thank goodness...";
@@ -322,7 +324,7 @@ hu_in01,387,245,0	script	Allen Schuwell	849,2,2,{
 			mes "Something's not";
 			mes "right. Bunkoll A";
 			mes "doesn't taste like this...";
-			donpcevent "Postell Schuwell#D::OnSweat";
+			emotion e_swt,0,"Postell Schuwell#D";
 			next;
 			mes "[Postell]";
 			mes "Bunkoll A...?";
@@ -467,15 +469,6 @@ OnTimer100000:
 	disablenpc "Postell Schuwell#D";
 	stopnpctimer;
 	end;
-	
-OnSweat:
-	emotion e_swt;
-	end;
-
-OnEffect:
-	specialeffect 174;
-	end;
-
 }
 
 hu_fild06,34,123,3	script	Postell Schuwell	97,{
@@ -702,7 +695,7 @@ OnTouch:
 		mes "Old Blue Box deep";
 		mes "inside the drawer.^000000";
 		close2;
-		specialeffect 71;
+		specialeffect EF_CONE;
 		set hg_herb,13;
 		getitem 603,1; //Old blue box
 		getexp 50000,0;
@@ -1912,6 +1905,7 @@ lhz_in03,193,28,3	script	Makkie	83,{
 		mes "[Makkie]";
 		mes "Oh, that? Yeah, that was";
 		mes "taken when Dono, Morriphen";
+		mes "and I worked for the";
 		mes "Rekenber Corporation. I know";
 		mes "they look eccentric, but they're really good guys, trust me.";
 		next;
@@ -2664,17 +2658,17 @@ hu_in01,256,40,3	script	Herico	897,{
 			mes "[Herico]";
 			mes "Then...SPIT THEM OUT!";
 			percentheal -5,0;
-			specialeffect2 3;
+			specialeffect2 EF_HIT4;
 			next;
 			mes "[Herico]";
 			mes "SPIT THEM OUT!";
 			percentheal -5,0;
-			specialeffect2 3;
+			specialeffect2 EF_HIT4;
 			next;
 			mes "[Herico]";
 			mes "I SAID, SPIT THEM OUUUUUT!";
 			percentheal -5,0;
-			specialeffect2 3;
+			specialeffect2 EF_HIT4;
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "Err...I was just kidding...";
@@ -2798,7 +2792,7 @@ hu_in01,256,40,3	script	Herico	897,{
 		mes "They have become too powerful to just be considered a big corporation.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "That was why they found the \"Bio Lab\"";
+		mes "That was why they founded the \"Bio Lab\"";
 		mes "in order to continue with their research without Sage Varmunt.";
 		next;
 		cutin "heri3.bmp",2;
@@ -3392,7 +3386,7 @@ hu_in01,310,380,5	script	Girl#hugel	891,{
 		mes "Then do you have any family member who shares the same name as yours?";
 		mes "Like your father, for instance.";
 		next;
-		mes "["+strcharinfo(0)+"]";
+		mes "[Wintzil Trony]";
 		mes "I said, I am the only Wintzil Trony in my family.";
 		mes "And I don't have a father.";
 		mes "My mom is out of Hugel to sell Hugel's principal products.";
@@ -3500,11 +3494,11 @@ hu_in01,317,312,0	script	Book	111,{
 					next;
 					mes "Date: **month **day";
 					mes "I was told that Rekenber succeeded";
-					mes "in creating a type of machine called ^FF000000Guardian^000000.";
+					mes "in creating a type of machine called ^FF0000Guardian^000000.";
 					mes "I have a bad feeling about that, so I decided to write a journal";
 					mes "starting from today and keep everything in record.";
 					mes "¡¡";
-					mes "\"^FF000000Guardian^000000\" is an android";
+					mes "\"^FF0000Guardian^000000\" is an android";
 					mes "that was created based on the idea of \"^3131FFGiantes^000000\",";
 					mes "the giant tribe that was said to live in an ancient age.";
 					mes "It is memorized with various commands,";
@@ -3738,22 +3732,12 @@ einbech,208,124,3	script	Bomb Maker	851,{
 
 	if(hg_tre == 54)
 	{
-		/*var max_max_c1 = CheckMaxCount 1201 1
-		if (max_max_c1 == 1)
+		if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 			mes "[Boomer]";
 			mes "Hey, you look pretty heavy, huh?";
 			mes "Do you want me to help you?";
-			close
-			return
-		endif
-		var now_weight = v[VAR_MAXWEIGHT] - v[VAR_WEIGHT]
-		if (now_weight < 2000)
-			mes "[Boomer]";
-			mes "Hey, you look pretty heavy, huh?";
-			mes "Do you want me to help you?";
-			close
-			return
-		endif*/
+			close;
+		}
 		mes "[Boomer]";
 		mes "Hey, what's up?";
 		mes "I am a professional Marine Sphere Bottle maker.";
@@ -3834,16 +3818,16 @@ hu_fild06,168,359,3	script	Moks Mushrooms#Mush1	111,{
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- You were being clumsy and broke the mushrooms. You have failed in gathering the mushrooms. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered mushrooms. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 11)
 				mes "Collected Moks Mushroom Solution: 1ea ";
@@ -3898,16 +3882,16 @@ hu_fild06,194,341,3	script	Moks Mushrooms#Mush2	111,{
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- You were being clumsy and broke the mushrooms. You have failed in gathering the mushrooms. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered mushrooms. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 11)
 				mes "Collected Moks Mushroom Solution: 1ea ";
@@ -3962,16 +3946,16 @@ hu_fild06,198,339,3	script	Moks Mushrooms#Mush3	111,{
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- You were being clumsy and broke the mushrooms. You have failed in gathering the mushrooms. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered mushrooms. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 11)
 				mes "Collected Moks Mushroom Solution: 1ea ";
@@ -4026,16 +4010,16 @@ hugel,209,163,3	script	Clam#C1	111,{
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- Clams are too strong to open. You have failed in gathering Clam Flesh. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Clam Flesh. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 21)
 				mes "Collected Clam Flesh: 1ea ";
@@ -4090,16 +4074,16 @@ hugel,203,166,3	script	Clam#C2	111,{
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- Clams are too strong to open. You have failed in gathering Clam Flesh. -";
-				specialeffect 194;
+				specialeffect EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Clam Flesh. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 21)
 				mes "Collected Clam Flesh: 1ea ";
@@ -4154,16 +4138,16 @@ hugel,217,158,3	script	Clam#C3	111,{
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- Clams are too strong to open. You have failed in gathering Clam Flesh. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Clam Flesh. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 21)
 				mes "Collected Clam Flesh: 1ea ";
@@ -4218,16 +4202,16 @@ hugel,204,150,3	script	Clam#C4	111,{
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
 			mes "- *Snip Snip* -";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- Clams are too strong to open. You have failed in gathering Clam Flesh. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Clam Flesh. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 21)
 				mes "Collected Clam Flesh: 1ea ";
@@ -4282,16 +4266,16 @@ hu_fild06,155,309,1	script	Moks Bugs#Bug1	1053,{
 			mes "- *Whizz Whizz Bzzzz* -";
 			mes "- *Whizz Whizz*-";
 			mes "- *Whizz Whizz*-";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- The bugs quickly ran away. You have failed to gather their shells. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Moks Bugs Shells. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 31)
 				mes "Collected Moks Bugs Shells: 1ea ";
@@ -4346,16 +4330,16 @@ hu_fild06,218,320,1	script	Moks Bugs#Bug2	1053,{
 			mes "- *Whizz Whizz Bzzzz* -";
 			mes "- *Whizz Whizz*-";
 			mes "- *Whizz Whizz*-";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- The bugs quickly ran away. You have failed to gather their shells. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Moks Bugs Shells. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 31)
 				mes "Collected Moks Bugs Shells: 1ea ";
@@ -4410,16 +4394,16 @@ hu_fild06,249,329,1	script	Moks Bugs#Bug3	1053,{
 			mes "- *Whizz Whizz Bzzzz* -";
 			mes "- *Whizz Whizz*-";
 			mes "- *Whizz Whizz*-";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- The bugs quickly ran away. You have failed to gather their shells. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Moks Bugs Shells. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 31)
 				mes "Collected Moks Bugs Shells: 1ea ";
@@ -4474,16 +4458,16 @@ hu_fild06,218,373,1	script	Moks Bugs#Bug4	1053,{
 			mes "- *Whizz Whizz Bzzzz* -";
 			mes "- *Whizz Whizz*-";
 			mes "- *Whizz Whizz*-";
-			specialeffect2 71;
+			specialeffect2 EF_CONE;
 			next;
 			if(rand(1,5) > 4)
 			{
 				mes "- The bugs quickly ran away. You have failed to gather their shells. -";
-				specialeffect2 194;
+				specialeffect2 EF_STUNATTACK;
 				close;
 			}
 			mes "- You have successfully gathered Moks Bugs Shells. -";
-			specialeffect2 364;
+			specialeffect2 EF_VALLENTINE2;
 			set hg_tre,hg_tre+1;
 			if(hg_tre == 31)
 				mes "Collected Moks Bugs Shells: 1ea ";
@@ -4573,7 +4557,7 @@ lhz_dun02,244,226,0	script	Unethical Machine	111,{
 			mes "- You threw a Marine Sphere Bottle toward the machine. -";
 			next;
 			mes "BOOM!";
-			specialeffect2 183;
+			specialeffect2 EF_SUI_EXPLOSION;
 			enablenpc "HiddenExplosion";
 			mapannounce "lhz_dun02","Beep------------------ ",1,0x99CCFF;
 			delitem 7138,1; //Marine sphere bottle
@@ -4597,7 +4581,7 @@ OnInit:
 	
 OnTouch:
 	percentheal -10,0;
-	specialeffect 4;
+	specialeffect EF_HIT5;
 	disablenpc "HiddenExplosion";
 	end;
 	
@@ -4612,7 +4596,7 @@ hu_in01,365,170,3	script	Girl#Hu	793,{
 	
 }
 
-hu_in01,377,106,3	script	Pub Granny	891,{
+hu_in01,377,106,3	script	Pub Granny	892,{
 
 	mes "[Pub Granny]";
 	mes "Recently we have many tourists visiting our town.";
@@ -4651,7 +4635,7 @@ hugel,198,169,0	script	#HugelTree	139,2,2,{
 		}
 		else if(hg_memory == 6)
 		{
-			specialeffect2 57;
+			specialeffect2 EF_BEGINSPELL5;
 			mes "^3355FFWhat's this strange";
 			mes "feeling of dread?";
 			mes "This peculiar chill...";
@@ -5357,7 +5341,7 @@ hugel,196,164,3	script	El Schatt	50,{
 		mes "It's... I'm Manainne...";
 		mes "^333333*Sniff*^000000 She had to go back...";
 		next;
-		specialeffect2 71;
+		specialeffect2 EF_CONE;
 		set hg_memory,12;
 		getexp 50000,0;
 		getitem 603,1; //Old blue box
@@ -5687,7 +5671,7 @@ hu_fild06,190,367,3	script	Torpy's Mom	701,{
 		mes "it's not much, but I hope";
 		mes "you accept this as our thanks.";
 		mes "Goodbye for now, adventurer~";
-		specialeffect2 71;
+		specialeffect2 EF_CONE;
 		set hg_ubu01,8;
 		getitem 12065,3; //Green salad
 		getexp 50000,0;
@@ -5709,7 +5693,7 @@ hu_fild06,190,367,3	script	Torpy's Mom	701,{
 		mes "it's not much, but I hope";
 		mes "you accept this as our thanks.";
 		mes "Goodbye for now, adventurer~";
-		specialeffect2 68;
+		specialeffect2 EF_MVP;
 		set hg_ubu01,8;
 		getitem 12065,3; //Green salad
 		getexp 50000,0;
@@ -7179,7 +7163,7 @@ yuno,111,156,3	script	Euslan	90,{
 		mes "Take care of yourself...";
 		close2;
 		set hg_ma1,13;
-		specialeffect 253;
+		specialeffect EF_ABSORBSPIRITS;
 		getexp 900000,600000;
 		end;
 	}
@@ -7732,7 +7716,7 @@ hugel,56,104,3	script	Kurupe	709,3,3,{
 			close;
 		}
 		set hg_milk,9;
-		specialeffect2 71;
+		specialeffect2 EF_CONE;
 		getexp 100000,0;
 		getitem 12063,3;
 		mes "[Kurupe]";
@@ -8728,7 +8712,7 @@ hu_in01,19,161,0	script	Alex	803,{
 				mes "when you're done and";
 				mes "don't waste my time!";
 				next;
-				donpcevent "Julian::OnEmote";
+				emotion e_ho,0,"Julian";
 				mes "[Julian]";
 				mes "Hey, you know what,";
 				mes "Alex? You can't push";
@@ -8962,7 +8946,7 @@ hu_in01,14,11,4	script	Laura	70,{
 		mes "Milton, is right over";
 		mes "there. Say, 'Hello,' Ashe.";
 		next;
-		donpcevent "Ashe::OnEmote";
+		emotion e_heh,0,"Ashe";
 		mes "[Ashe]";
 		mes "Hello!";
 		next;
@@ -9104,7 +9088,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				mes "expedition for the Rune Midgarts^FFFFFF ^000000 Kingdom. Ashe Milton is my";
 				mes "assistant for this excavation.";
 				next;
-				donpcevent "Ashe::OnEmote";
+				emotion e_heh,0,"Ashe";
 				mes "[Ashe]";
 				mes "Hello!";
 				next;
@@ -9280,7 +9264,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				mes "greets me with a fake";
 				mes "smile. I hate her!";
 				next;
-				donpcevent "Ashe::OnEmote2"; //ET_PROFUSELY_SWAT
+				emotion e_swt2,0,"Ashe";
 				mes "[Ashe]";
 				mes "Ms. Laurence...!";
 				mes "Stop it, please!";
@@ -9664,7 +9648,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				mes "Well, have you";
 				mes "ever heard of Ymir's...";
 				next;
-				donpcevent "Ashe::OnEmote3"; //ET_SURPRISE
+				emotion e_gasp,0,"Ashe";
 				mes "[Ashe]";
 				mes "...Heart?";
 				mes "Ymir's Heart, right?";
@@ -9706,7 +9690,7 @@ hu_in01,14,11,4	script	Laura	70,{
 						next;
 						break;
 				}
-				donpcevent "Ashe::OnEmote4"; //ET_OK
+				emotion e_ok,0,"Ashe";
 				mes "[Ashe]";
 				mes "Ymir's Heart?";
 				mes "That's a clothing";
@@ -9860,10 +9844,6 @@ hu_in01,18,167,4	script	Julian	86,{
 		mes "Don't tell them I said that!";
 		close;
 	}
-	
-OnEmote:
-	emotion e_ho,0;
-	end;
 }
 
 hu_in01,16,21,0	script	Ashe#5	139,2,2,{
@@ -10031,22 +10011,6 @@ hu_in01,16,20,4	script	Ashe	95,{
 			mes "you no harm~";
 			close;
 	}
-	
-OnEmote:
-	emotion e_heh,0;
-	end;
-	
-OnEmote2:
-	emotion e_swt2,0;
-	end;
-
-OnEmote3:
-	emotion e_gasp,0;
-	end;
-	
-OnEmote4:
-	emotion e_ok,0;
-	end;
 }
 
 hu_in01,174,90,0	script	Entrance	139,2,2,{
@@ -10067,7 +10031,7 @@ hu_in01,159,84,3	script	Laura#2	70,{
 	if(hg_odin == 22 || hg_odin == 23)
 	{
 		cutin "hu_laura03.bmp",2;
-		donpcevent "Laura#2::OnEmote";
+		emotion e_an,0,"Laura#2";
 		mes "[Laura]";
 		mes "Wh-what...?!";
 		mes "Does this mean";
@@ -10077,7 +10041,7 @@ hu_in01,159,84,3	script	Laura#2	70,{
 		mes "complete lunacy!";
 		next;
 		cutin "hu_alex04.bmp",0;
-		donpcevent "Alex#2::OnEmote";
+		emotion e_an,0,"Alex#2";
 		mes "[Alex]";
 		mes "What are you talking";
 		mes "about, you crazy wench?";
@@ -10134,12 +10098,12 @@ hu_in01,159,84,3	script	Laura#2	70,{
 		mes "waves a thick file";
 		mes "clasped in her hands.^000000";
 		next;
-		donpcevent "Julian#2::OnEmote";
+		emotion e_omg,0,"Julian#2";
 		mes "[Julian]";
 		mes "What...?";
 		mes "Argh, that's--!";
 		next;
-		donpcevent "Laura#2::OnEmote2";
+		emotion e_ag,0,"Laura#2";
 		mes "[Laura]";
 		mes "That's right.";
 		mes "Now tell me, what the";
@@ -10150,7 +10114,7 @@ hu_in01,159,84,3	script	Laura#2	70,{
 		mes "......";
 		mes "Julian!";
 		next;
-		donpcevent "Julian#2::OnEmote2";
+		emotion e_swt2,0,"Julian#2";
 		mes "[Julian]";
 		mes "Uh, this isn't my fault!";
 		mes "Sh-she doesn't have any";
@@ -10174,7 +10138,7 @@ hu_in01,159,84,3	script	Laura#2	70,{
 		mes "what are your true goals?!";
 		next;
 		cutin "hu_alex03.bmp",0;
-		donpcevent "Alex#2::OnEmote3";
+		emotion e_swt2,0,"Alex#2";
 		mes "[Alex]";
 		mes "I-I don't know what you're";
 		mes "talking about! J-Julian must";
@@ -10192,18 +10156,18 @@ hu_in01,159,84,3	script	Laura#2	70,{
 		mes "away, and threateningly";
 		mes "rolled up her sleeves.^000000";
 		next;
-		donpcevent "Ashe#2::OnEmote";
+		emotion e_sob,0,"Ashe#2";
 		mes "[Ashe]";
 		mes "S-stop!";
 		mes "Both of you!";
 		next;
-		donpcevent "Laura#2::OnEmote3";
+		emotion e_swt2,0,"Laura#2";
 		mes "[Laura]";
 		mes "Stay out of";
 		mes "this, Ashe!";
 		next;
 		cutin "hu_alex04.bmp",0;
-		donpcevent "Alex#2::OnEmote";
+		emotion e_an,0,"Alex#2";
 		mes "[Alex]";
 		mes "Yeah, this is none";
 		mes "of your business!";
@@ -10218,31 +10182,20 @@ hu_in01,159,84,3	script	Laura#2	70,{
 	else if(hg_odin > 23)
 	{
 		cutin "hu_laura03.bmp",2;
-		donpcevent "Laura#2::OnEmote";
+		emotion e_an,0,"Laura#2";
 		mes "[Laura]";
 		mes "Hah...!";
 		mes "Did you...";
 		mes "Just hit me?";
 		next;
 		cutin "hu_alex04.bmp",0;
-		donpcevent "Alex#2::OnEmote";
+		emotion e_an,0,"Alex#2";
 		mes "[Alex]";
 		mes "You crazy...!";
 		close2;
 		cutin "hu_alex04.bmp",255;
 		end;
 	}
-OnEmote:
-	emotion e_an,0;
-	end;
-	
-OnEmote2:
-	emotion e_ag,0;
-	end;
-	
-OnEmote3:
-	emotion e_swt2,0;
-	end;
 }
 
 hu_in01,158,84,5	duplicate(Laura#2)	Alex#2	803,0,0
@@ -10296,10 +10249,6 @@ hu_in01,162,85,4	script	Ashe#2	95,{
 		mes "find him as soon as you can!";
 		close;
 	}
-
-OnEmote:
-	emotion e_sob,0;
-	end;
 }
 
 hu_in01,171,90,0	script	Ashe#3	139,2,2,{
@@ -10353,20 +10302,9 @@ hu_in01,155,82,4	script	Julian#2	86,{
 	mes "involved. If you want,";
 	mes "you can try to stop them...";
 	close;
-	
-OnEmote:
-	emotion e_omg,0;
-	end;
-	
-OnEmote2:
-	emotion e_swt2,0;
-	end;
 }
 
 moc_fild12,160,372,0	script	Hit	139,{
-
-OnEffect:
-	specialeffect 122;
 	end;
 }
 
@@ -10385,7 +10323,7 @@ OnTouch:
 		mes "followed. Hold on a sec";
 		mes "while I take care of him.";
 		next;
-		donpcevent "Hit::OnEffect";
+		specialeffect EF_SONICBLOWHIT,AREA,"Hit";
 		mes "[???]";
 		mes "Ha!";
 		next;
@@ -10823,9 +10761,9 @@ OnTouch:
 							mes "What was";
 							mes "that noise?!";
 							next;
-							specialeffect 90;
-							specialeffect 90;
-							specialeffect 90;
+							specialeffect EF_LORD;
+							specialeffect EF_LORD;
+							specialeffect EF_LORD;
 							mes "["+strcharinfo(0)+"]";
 							mes "Wa...waaaahhhh!";
 							close2;

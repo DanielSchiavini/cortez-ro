@@ -3,7 +3,7 @@
 //===== By: ================================================== 
 //= eAthena team & others? & MasterOfMuppets
 //===== Current Version: ===================================== 
-//= 1.2
+//= 1.4a
 //===== Compatible With: ===================================== 
 //= eAthena SVN
 //===== Description: ========================================= 
@@ -13,19 +13,21 @@
 //= Dungeon Quest
 //===== Additional Comments: ================================= 
 //= 1.3 Rescripted to Aegis 10.3 Standards. [L0ne_W0lf]
+//= 1.4 Added missing checkweight. [L0ne_W0lf]
+//= 1.4a Fixed typo in condition check [Gepard]
 //============================================================ 
 
 // Momotaro Event
 //============================================================ 
 amatsu,223,236,3	script	Publisher#ama	763,{
-	//if (max_max_c == 1) {
-	//	mes "- Wait a moment!! -";
-	//	mes "- Currently you are carrying -";
-	//	mes "- too many items with you. -";
-	//	mes "- Please store some items into your Kafra storage -";
-	//	mes "- and try again. -";
-	//	close;
-	//}
+	if (checkweight(1201,1) == 0) {
+		mes "- Wait a moment!! -";
+		mes "- Currently you are carrying -";
+		mes "- too many items with you. -";
+		mes "- Please store some items into your Kafra storage -";
+		mes "- and try again. -";
+		close;
+	}
 	if (event_momo < 2) {
 		mes "[Publisher]";
 		mes "Hello~!!";
@@ -665,7 +667,7 @@ OnInit:
 
 OnEnable:
 	enablenpc "Am Mut#ama";
-	set .MyMobs,.MyMobs-1;
+	set .MyMobs,3;
 	monster "ama_test",35,102,"Am Mut",1301,1,"Am Mut#ama::OnMyMobDead";
 	monster "ama_test",40,91,"Am Mut",1301,1,"Am Mut#ama::OnMyMobDead";
 	monster "ama_test",56,108,"Am Mut",1301,1,"Am Mut#ama::OnMyMobDead";
@@ -705,8 +707,7 @@ OnInit:
 OnTouch:
 	mes "[Coach]";
 	mes "( Clap- Clap- Clap- )";
-	close;
-	end;
+	next;
 	mes "[Coach]";
 	mes "Hohoho~ You are really something.";
 	mes "You've got the moves, kiddo.";
@@ -1896,7 +1897,7 @@ ama_in01,22,111,0	script	Grandma#ama2	761,{
 		mes "it won't harm me!! Yelp!^000000";
 		next;
 		select("Taaaah!!");
-		if ((BaseJob == Job_Priest || BaseJob != Job_Acolye && BaseJob != Job_Monk) || (countitem(523) < 1 || countitem(948) < 1 || countitem(1029) < 1)) {
+		if ((BaseJob == Job_Priest || BaseJob != Job_Acolyte && BaseJob != Job_Monk) || (countitem(523) < 1 || countitem(948) < 1 || countitem(1029) < 1)) {
 			if (rand(1,4) == 1)
 				set .@fox_kill,0;
 			else

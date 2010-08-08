@@ -3,7 +3,7 @@
 //===== By: ================================================== 
 //= kobra_k88; L0ne_W0lf
 //===== Current Version: ===================================== 
-//= 2.0
+//= 2.6
 //===== Compatible With: ===================================== 
 //= eAthena SVN
 //===== Description: ========================================= 
@@ -16,6 +16,7 @@
 //= - [Aegis Conversion]
 //= - Variable in use: MISC_QUEST (bit 8)
 //= Ph.D Hat Quest:
+//= - [Aegis Conversion]
 //= - n/a
 //= Gaebolg Family Curse:
 //= - [Aegis Conversion]
@@ -34,11 +35,22 @@
 //= 1.8 Fixed experience gains to match upcoming rate adjustments. [SinSloth]
 //= 1.9 Fixed "him" -> "her" in Ph.D hat quest. THansk to yyCC. [L0ne_W0lf]
 //= 2.0 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
+//= 2.0a Corrected a Typo error ";;". [Samuray22]
+//= 2.0b Corrected a Typo error. (bugreport:950) [Samuray22]
+//= 2.1 Added missing checkweights. [L0ne_W0lf]
+//= 2.2 Added Nameless Island quest addition. [L0ne_W0lf]
+//= 2.3 Bamph will now talk to those who failed the Gaebolg quest. [L0ne_W0lf]
+//= 2.3a Touch up to Bamph fo other fail-points. [L0ne_W0lf]
+//= 2.3b Hopefully the last change needed for Nameless quest. [L0ne_W0lf]
+//= 2.4 Updated Headgear Quest. [L0ne_W0lf]
+//= 2.5 Fixed requirements for PH D. Hat. [L0ne_W0lf]
+//= 2.5a Fixed requirements for PH D. Hat agian lol. [L0ne_W0lf]
+//= 2.6 Replaced effect numerics with constants. [L0ne_W0lf]
 //============================================================ 
 
 // Prontera Culvert
 //============================================================ 
-prt_in,88,105,2	script	Recruiter#inPront	105,{
+prt_in,88,105,2	script	Recruiter	105,{
 	if (MISC_QUEST & 8) {
 		mes "[Recruiter]";
 		mes "Ah...";
@@ -130,7 +142,7 @@ S_Volunteer:
 	return;
 }
 
-prt_fild05,270,212,5	script	Culvert Guardian#01	105,{
+prt_fild05,270,212,5	script	Culvert Guardian	105,{
 	if(MISC_QUEST & 8) {
 		mes "[Culvert Guardian]";
 		mes "Ah, you're one of our volunteers. This is the entrance of the Prontera Culvert.";
@@ -153,78 +165,86 @@ prt_fild05,270,212,5	script	Culvert Guardian#01	105,{
 
 // Ph.D Hat Quest
 //============================================================ 
-prt_in,38,108,3	script	Teacher	53,{
-	if(countitem(710) > 0 && countitem(703) > 0 && countitem(704) > 0 && countitem(708) > 0) {
+prt_in,38,108,4	script	Teacher	53,{
+	if ((countitem(710) > 0) && (countitem(703) > 0) && (countitem(704) > 0) && (countitem(708) > 0)) {
 		mes "[Teacher]";
-		mes "My God! The Flower you are holding...";
+		mes "Oh...";
+		mes "Those Flowers in your hand are...";
 		next;
-		switch( select( "Show her the flowers.","Give her the flowers.","Cancel.")) {
-			case 1:
-				mes "[Teacher]";
-				mes "Are those the Flowers I've been looking for...";
-				mes "Would you give them to me?";
-				next;
-				mes "[Teacher]";
-				mes "If you give them to me... I... I will give my precious item...";
-				close;
-			case 2:
-				if(countitem(710) > 0 && countitem(703) > 0 && countitem(704) > 0 && countitem(708) > 0) {
-					delitem 710,1;
-					delitem 703,1;
-					delitem 704,1;
-					delitem 708,1;
-					getitem 5012,1;
-					mes "[Teacher]";
-					mes "Thank you so much! First time in my life someone is nice to me!";
-					mes "I will give you my precious item like I promised you.";
-					mes "This is the cap I wore when I graduated, it is full of my school memory.";
-					mes "Please take it... I hope you would cherish it like me.";
-					close;
-				}
-					mes "[Teacher]";
-					mes "... After a closer look I realized those are not the flowers I want...";
-					mes "Ha! Ha! I have really bad eyesight...";
-					close;
-			case 3:
-				close;
-			}
-	}
-	mes "[Teacher]";
-	mes "Those flowers are pretty... Right?";
-	next;
-	switch( select( "Continue talking.","Cancel.")) {
+		switch(select("Show Flowers:Present Flowers:Cancel")) {
 		case 1:
 			mes "[Teacher]";
-			mes "I seldom go out with anyone when I was young, I was studying all the time.";
-			mes "Sometimes I think I've wasted my youth ... But I don't regret it. Because I study hard, I got good education and become who I am today!";
+			mes "Ah...";
+			mes "Those are definitely the 4 kinds of Flowers I was looking for! Would you give them to me?";
 			next;
 			mes "[Teacher]";
-			mes "But honestly... I feel sad sometimes for not having good friends...";
-			mes "When I get tired of studying... I don't even have a friend to talk to...";
-			mes "Luckily, I found the true friend of my life at last.";
+			mes "If you would...";
+			mes "I'll give you my precious item.";
+			close;
+		case 2:
+			if ((countitem(710) > 0) && (countitem(703) > 0) && (countitem(704) > 0) && (countitem(708) > 0)) {
+				delitem 710,1;  //Illusion_Flower
+				delitem 703,1;  //Hinalle
+				delitem 704,1;  //Aloe
+				delitem 708,1;  //Ment
+				getitem 5012,1;	//Ph.D_Hat
+				mes "[Teacher]";
+				mes "I really really appreciate you what you've done for me. I'm truly grateful. I will give my precious item to you as promised.";
+				next;
+				mes "[Teacher]";
+				mes "This is the Hat I've worn on my Graduation from my University. It reminds me of my happy school days. Please take this...";
+				close;
+			}
+			else {
+				mes "[Teacher]";
+				mes "... Oh, I'm Sorry.";
+				mes "But that's not what I'm looking for. Maybe you need to study flowers a little bit?";
+				close;
+			}
+		}
+	}
+	else {
+		mes "[Teacher]";
+		mes "Don't you think...";
+		mes "Flowers are pretty?";
+		next;
+		switch(select("Talk:Quit")) {
+		case 1:
+			mes "[Teacher]";
+			mes "When I was young,";
+			mes "I had no friends and";
+			mes "studied all the time.";
 			next;
 			mes "[Teacher]";
-			mes "When I walked into that garden and saw all the beautiful flowers...";
-			mes "I suddenly feel I am sharing the same fate as these flowers, so they become my best friends ever.";
+			mes "Sometimes I regret what I did when I was younger, but it's not a big deal now. Through hard study, I finished entire educational courses earlier than all the other students.";
 			next;
 			mes "[Teacher]";
-			mes "For others, they are just flowers... But for me, they are my source of strength.";
-			mes "I can't have achieved anything without their company.";
+			mes "However...";
+			mes "I was sad and sometimes lonely. Whenever the studying got too hard, I needed someone who would listen to me. Finally, one day, I met my best friend.";
 			next;
 			mes "[Teacher]";
-			mes "That's why I start to think about doing something to repay the people who had given me the flowers.";
-			mes "We have done so much research about flowers here... We even want to build a place full of flowers... for a better world!";
+			mes "When I saw a Pretty Flower blooming in the abandoned Garden, I realized It was my friend which shared my fate.";
 			next;
 			mes "[Teacher]";
-			mes "So... We really need a large amount of flowers...";
-			mes "But I never go out anywhere... It is hard for me to find any!";
-			mes "If you can find me  ^3355FFIllusion Flower^000000, ^3355FFHinalle^000000, ^3355FFAloe^000000 and ^3355FFMent^000000 and bring them to me, I will give you my treasure.";
+			mes "Although it is a Common and Normal Flower to others, she gave me the reason to study again. I could achieve my goals because of her.";
+			next;
+			mes "[Teacher]";
+			mes "So recently...";
+			mes "I am trying to pay her back. Now I am studying Flowers, and plan to over the whole world with them.";
+			next;
+			mes "[Teacher]";
+			mes "To accomplish my work...";
+			mes "I need bunches of flowers. But for someone who rarely goes outside, it is really hard to find all the flowers I need.";
+			next;
+			mes "[Teacher]";
+			mes "I need 1 ^3355FFIllusion Flower^000000 ,1 ^3355FFHinalle^000000,1 ^3355FFAloe^000000 and 1 ^3355FFMent^000000. If you can bring them to me, I'd give you my treasure...";
 			close;
 		case 2:
 			mes "[Teacher]";
-			mes "One day I will use a lot of flowers to make the most pretty place in the world...";
+			mes "One of these days I will cover this whole world with Flowers.";
 			close;
 		}
+	}
 }
 
 // Gaebolg Family Curse
@@ -306,7 +326,7 @@ prontera,248,212,3	script	Busy Boy#prt	706,3,3,{
 			mes "You couldn't help it:";
 			mes "it was a natural reflex!^000000";
 			next;
-			Specialeffect 180; //EF_HITDARK
+			Specialeffect EF_HITDARK;
 			Emotion e_omg;
 			mes "^3355FF*BAM!*^000000";
 			next;
@@ -428,7 +448,7 @@ OnTouch:
 	callsub S_CheckWeight; //Check Player's weight
 	if (BaseLevel > 59) {
 		if (prt_curse == 0) {
-			Specialeffect 180; //EF_HITDARK
+			Specialeffect EF_HITDARK;
 			mes "^3355FF*BAM!*^000000";
 			next;
 			mes "[Busy Looking Boy]";
@@ -492,7 +512,7 @@ OnTouch:
 			mes "time I just can't help it.";
 			mes "There's nothing I can do!";
 			mes "Oh, I'm gonna lose this job!";
-			Emotion e_sob;;
+			Emotion e_sob;
 			next;
 			mes "[Busy-Looking Boy]";
 			mes "Wait... You adventurers";
@@ -548,18 +568,7 @@ S_GetBooks:
 	return;
 
 S_CheckWeight:
-	//var max_max_c1 = CheckMaxCount 1201 1
-	//if (max_max_c1 == 1) {
-	//	mes "^3355FFWait a second!";
-	//	mes "Right now, you're carrying";
-	//	mes "too many things with you.";
-	//	mes "Please come back after";
-	//	mes "using the Kafra Service";
-	//	mes "to store some of your items.^000000";
-	//	close;
-	//}
-	set .@now_weight,MaxWeight-Weight;
-	if (.@now_weight < 2000) {
+	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
 		mes "too many things with you.";
@@ -572,18 +581,7 @@ S_CheckWeight:
 }
 
 yuno,311,195,3	script	Historian#prt01	754,{
-	//var max_max_c1 = CheckMaxCount 1201 1
-	//if (max_max_c1 == 1) {
-	//	mes "^3355FFWait a second!";
-	//	mes "Right now, you're carrying";
-	//	mes "too many things with you.";
-	//	mes "Please come back after";
-	//	mes "using the Kafra Service";
-	//	mes "to store some of your items.^000000";
-	//	close;
-	//}
-	set .@now_weight,MaxWeight-Weight;
-	if (.@now_weight < 2000) {
+	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
 		mes "too many things with you.";
@@ -934,18 +932,7 @@ yuno,311,195,3	script	Historian#prt01	754,{
 }
 
 morocc_in,45,126,3	script	Historian#prt02	702,{
-	//var max_max_c1 = CheckMaxCount 1201 1
-	//if (max_max_c1 == 1) {
-	//	mes "^3355FFWait a second!";
-	//	mes "Right now, you're carrying";
-	//	mes "too many things with you.";
-	//	mes "Please come back after";
-	//	mes "using the Kafra Service";
-	//	mes "to store some of your items.^000000";
-	//	close;
-	//}
-	set .@now_weight,MaxWeight-Weight;
-	if (.@now_weight < 2000) {
+	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
 		mes "too many things with you.";
@@ -1372,18 +1359,7 @@ S_GiveName:
 }
 
 mjolnir_01,135,168,3	script	Historian#prt03	754,{
-	//var max_max_c1 = CheckMaxCount 1201 1
-	//if (max_max_c1 == 1) {
-	//	mes "^3355FFWait a second!";
-	//	mes "Right now, you're carrying";
-	//	mes "too many things with you.";
-	//	mes "Please come back after";
-	//	mes "using the Kafra Service";
-	//	mes "to store some of your items.^000000";
-	//	close;
-	//}
-	set .@now_weight,MaxWeight-Weight;
-	if (.@now_weight < 2000) {
+	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
 		mes "too many things with you.";
@@ -1773,18 +1749,7 @@ mjolnir_01,313,269,5	script	Dazed Boy#prt	706,{
 }
 
 mjolnir_01,316,268,3	script	Exhausted-Looking Woman	879,{
-	//var max_max_c1 = CheckMaxCount 1201 1
-	//if (max_max_c1 == 1) {
-	//	mes "^3355FFWait a second!";
-	//	mes "Right now, you're carrying";
-	//	mes "too many things with you.";
-	//	mes "Please come back after";
-	//	mes "using the Kafra Service";
-	//	mes "to store some of your items.^000000";
-	//	close;
-	//}
-	set .@now_weight,MaxWeight-Weight;
-	if (.@now_weight < 2000) {
+	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
 		mes "too many things with you.";
@@ -2205,7 +2170,7 @@ prt_church,185,106,3	script	Father Bamph	60,{
 		next;
 		select("Give him the herb pouch.");
 		if (countitem(7432) < 1) {
-			mes "[+strcharinfo(0)+]";
+			mes "["+strcharinfo(0)+"]";
 			mes "Ack!";
 			mes "Now, where did I put";
 			mes "that pouch with the herbs?";
@@ -2627,7 +2592,7 @@ prt_church,185,106,3	script	Father Bamph	60,{
 		set prt_curse,35;
 		close;
 	}
-	else if (prt_curse > 34 && prt_curse < 40) {
+	else if (prt_curse > 34 && prt_curse < 40 && !aru_monas) {
 		mes "[Father Bamph]";
 		mes "I'm at a loss at what";
 		mes "to do. Sometimes, even";
@@ -2699,7 +2664,7 @@ prt_church,185,106,3	script	Father Bamph	60,{
 		getexp 1600000,0;
 		close;
 	}
-	else if (prt_curse > 43 && prt_curse < 50) {
+	else if (prt_curse > 43 && prt_curse < 50 && !aru_monas) {
 		mes "[Father Bamph]";
 		mes "Have you spoken to";
 		mes "Bonnie Imbullea yet?";
@@ -2788,12 +2753,191 @@ prt_church,185,106,3	script	Father Bamph	60,{
 		close;
 	}
 	else {
-		mes "[Father Bamph]";
-		mes "I'm sorry, but would it";
-		mes "be alright if we talked";
-		mes "later? I have to handle";
-		mes "a very important task now...";
-		close;
+		if (prt_curse == 36 || prt_curse == 45 || prt_curse == 56 || prt_curse == 61) {
+// Begin Nameless Island Access Quest Addition
+			if (aru_monas == 1) {
+				mes "[Father Bamph]";
+				mes "Oh, I've been waiting for";
+				mes "you, adventurer. I'm sorry";
+				mes "for giving you such short";
+				mes "notice, but it seems that";
+				mes "you've grown much stronger";
+				mes "since the last time we met.";
+				next;
+				mes "[Father Bamph]";
+				mes "The Church has received";
+				mes "a request from Prontera";
+				mes "Palace, but we don't have";
+				mes "the resources to handle it.";
+				mes "I believe you'd be well suited";
+				mes "to this task if you'll help us.";
+				next;
+				mes "[Father Bamph]";
+				mes "A man of high rank suddenly";
+				mes "disappeared a while ago.";
+				mes "Although Prontera Palace";
+				mes "asked us to find him, I can";
+				mes "only tell you who he is later.";
+				next;
+				mes "[Father Bamph]";
+				mes "All we know is that he was";
+				mes "last seen in Comodo. Please";
+				mes "speak to our informant, ^6B8E23Larjes^000000,";
+				mes "and he will assist you in your";
+				mes "search for the lost official.";
+				set aru_monas,2;
+				close;
+			}
+			else if (aru_monas == 2 || aru_monas == 3) {
+				mes "[Father Bamph]";
+				mes "Please go to Comodo and";
+				mes "find our informant, ^6B8E23Larjes^000000,";
+				mes "in the Casino. He will help";
+				mes "you in your search for the";
+				mes "official who disappeared.";
+				close;
+			}
+			else if (aru_monas == 4) {
+				mes "[Father Bamph]";
+				mes "Ah, so you found Larjes?";
+				mes "How has your investigation of";
+				mes "that official's disappearance";
+				mes "progressing? I hope that he";
+				mes "is still safe and sound";
+				mes "when you find him.";
+				next;
+				select("Tell him what Larjes said.");
+				mes "[Father Bamph]";
+				mes "I see. We've detected some";
+				mes "disquieting activity from";
+				mes "Arunafeltz lately, but I didn't";
+				mes "think they would make";
+				mes "their move so soon. Hmm...";
+				mes "Give me a moment to think.";
+				set aru_monas,5;
+				close;
+			}
+			else if (aru_monas == 5) {
+				if (rand(1,10) == 10) {
+					mes "[Father Bamph]";
+					mes "Well, I've considered all";
+					mes "possible scenarios. I think";
+					mes "it would work best if you";
+					mes "continue your investigation";
+					mes "on our behalf. That is, if";
+					mes "you're willing to do it.";
+					next;
+					mes "[Father Bamph]";
+					mes "We don't want to provoke";
+					mes "an international conflict";
+					mes "with our official involvement,";
+					mes "but I also can't force you to";
+					mes "work for us. Whether you";
+					mes "can help is your choice.";
+					next;
+					if (select("Let me think about it.:Of course, I'll help.") == 1) {
+						mes "[Father Bamph]";
+						mes "I hope that you decide";
+						mes "to help us. The safety of";
+						mes "our nation depends on the";
+						mes "success of this investigation.";
+						mes "We could really use your help.";
+						close;
+					}
+					mes "[Father Bamph]";
+					mes "Thank you. I'm glad to hear";
+					mes "that you'll help us. You may";
+					mes "take the airship in Izlude to";
+					mes "travel to Arunafeltz, where you";
+					mes "must continue your investigation.";
+					next;
+					mes "[Father Bamph]";
+					mes "I believe that you should";
+					mes "be able to learn more if you";
+					mes "investigate the city of ^9370DBRachel^000000.";
+					mes "Please accept this money";
+					mes "to cover your Airship fee.";
+					mes "Thank you, and good luck.";
+					set zeny,zeny+1500;
+					set aru_monas,6;
+					close;
+				}
+				else {
+					mes "[Father Bamph]";
+					mes "Hmm... What's the best way";
+					mes "for us to handle this? Let";
+					mes "me think about our options.";
+					mes "We can--no. That wouldn't";
+					mes "work. This will be difficult.";
+					close;
+				}
+			}
+			else if (aru_monas == 6) {
+				// Anyone else see the irony in this?
+				mes "[Father Bamph]";
+				mes "You might have problems";
+				mes "in Rachel since the culture";
+				mes "there is much different than";
+				mes "our own. Their ways of doing";
+				mes "things, their government...";
+				mes "Everything is tied to religion.";
+				close;
+			}
+			else if (aru_monas > 6 && aru_monas < 24) {
+				mes "[Father Bamph]";
+				mes "Thank you so much for all";
+				mes "of your hard work. Our agents";
+				mes "will contact you whenever they";
+				mes "uncover any new information.";
+				mes "Remember that no one can";
+				mes "know what we've been doing.";
+				close;
+			}
+			else if (aru_monas == 24) {
+				mes "[Father Bamph]";
+				mes "Thank you for bring us such";
+				mes "important information. With";
+				mes "your help, we were able to";
+				mes "clear a few unsolved cases.";
+				mes "We expected something like";
+				mes "this, but not this soon.";
+				next;
+				mes "[Father Bamph]";
+				mes "I fear that the Royal Court";
+				mes "has been bickering over their";
+				mes "own selfish needs. I pray that";
+				mes "it does not grow worse, devolve";
+				mes "into chaos. ^666666*Sigh*^000000 We'll see...";
+				set aru_monas,25;
+				close;
+			}
+			else if (aru_monas >= 25) {
+				mes "[Father Bamph]";
+				mes "Thank you for bring us such";
+				mes "important information. With";
+				mes "your help, we were able to";
+				mes "clear a few unsolved cases.";
+				mes "We expected something like";
+				mes "this, but not this soon.";
+				next;
+				mes "[Father Bamph]";
+				mes "I fear that the Royal Court";
+				mes "has been bickering over their";
+				mes "own selfish needs. I pray that";
+				mes "it does not grow worse, devolve";
+				mes "into chaos. ^666666*Sigh*^000000 We'll see...";
+				close;
+			}
+// End Nameless Island Access Quest Addition
+			else {
+				mes "[Father Bamph]";
+				mes "I'm sorry, but would it";
+				mes "be alright if we talked";
+				mes "later? I have to handle";
+				mes "a very important task now...";
+				close;
+			}
+		}
 	}
 }
 
@@ -3069,9 +3213,9 @@ prt_church,21,111,5	script	#prince2	887,{
 		close;
 	}
 	else if (prt_curse == 33 || prt_curse > 41 && prt_curse < 51 || prt_curse == 52) {
-		specialeffect 192; //EF_POISONATTACK
-		specialeffect 53; //EF_POISONHIT
-		specialeffect 109; //EF_BUBBLE
+		specialeffect EF_POISONATTACK;
+		specialeffect EF_POISONHIT;
+		specialeffect EF_BUBBLE;
 		mes "^3355FFYou poured a little of the";
 		mes "solution made from Green";
 		mes "Potion and Yellow Gemstone";
@@ -3161,9 +3305,9 @@ prt_church,24,111,5	script	#prince3	887,{
 			mes "forming a solution to test for the presense of poison. You pour";
 			mes "it on the prince's scale marks.^000000";
 			next;
-			specialeffect 192; //EF_POISONATTACK
-			specialeffect 53; //EF_POISONHIT
-			specialeffect 109; //EF_BUBBLE
+			specialeffect EF_POISONATTACK;
+			specialeffect EF_POISONHIT;
+			specialeffect EF_BUBBLE;
 			mes "^3355FF*Pssssssssh*^000000";
 			next;
 			mes "^3355FFThe solution bubbles";
@@ -3288,7 +3432,7 @@ que_job01,10,16,5	script	Marjana#poison	885,{
 		mes "It's true that such powerful";
 		mes "poison exists, but such deadly";
 		mes "poison is usually only used by";
-		mes "Assassin Crosses. Generally,";;
+		mes "Assassin Crosses. Generally,";
 		mes "normal Assassins use poisons";
 		mes "that are much less potent.";
 		next;
@@ -3435,16 +3579,15 @@ OnTouch:
 }
 
 prt_in,162,99,4	script	Librarian#curse	67,{
-	//var max_max_c1 = CheckMaxCount 1201 1
-	//if (max_max_c1 == 1) {
-	//	mes "^3355FFWait a second!";
-	//	mes "Right now, you're carrying";
-	//	mes "too many things with you.";
-	//	mes "Please come back after";
-	//	mes "using the Kafra Service";
-	//	mes "to store some of your items.";
-	//	close;
-	//}
+	if (checkweight(1201,1) == 0) {
+		mes "^3355FFWait a second!";
+		mes "Right now, you're carrying";
+		mes "too many things with you.";
+		mes "Please come back after";
+		mes "using the Kafra Service";
+		mes "to store some of your items.";
+		close;
+	}
 	if (prt_curse == 3) {
 		if (countitem(7431) < 1) {
 			mes "[Librarian]";

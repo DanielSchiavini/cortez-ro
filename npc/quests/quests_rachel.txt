@@ -3,7 +3,7 @@
 //===== By: ================================================== 
 //= L0ne_W0lf
 //===== Current Version: ===================================== 
-//= 2.2
+//= 3.3a
 //===== Compatible With: ===================================== 
 //= eAthena SVN
 //===== Description: ========================================= 
@@ -17,8 +17,6 @@
 //= - Variable in use: rach_vice (max 24)
 //= Ice Necklace Quest:
 //= - iRO uses a different sprite for Urstia, and no cutins.
-//= - Need command to change NPC sprite
-//= - Need Mosnter triggered "OnTouch" event. (OnTouchNPC)
 //= - Variable in use: ice_necklace_q (max 7)
 //= Sanctuary Quest:
 //= - Actually two quests in one. Donation and dungeon quest.
@@ -46,6 +44,22 @@
 //= 2.0 Fixed experience gains to match upcoming rate adjustments. [SinSloth]
 //= 2.1 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
 //= 2.2 Maheo NPC now uses "setnpcdisplay" instead of two NPCs. [L0ne_W0lf]
+//= 2.2a Corrected a Typo error ";;". [Samuray22]
+//= 2.3 Added Zhed's portion of Thor Volcano Base Quest. (euRO) [L0ne_W0lf]
+//= 2.4 Updated Zhed's Thor Vol. Base addition dialog to iRO's. [L0ne_W0lf]
+//= 2.4a Further updates to Zhed's Veins addition. [L0ne_W0lf]
+//= 2.5 Added Nameless Island quest addition. [L0ne_W0lf]
+//= 2.6 Uncommented ontouchNPC label for Man Stuck in Ice. [L0ne_W0lf]
+//= 2.7 Corrected overlaping warp coordinates. [L0ne_W0lf]
+//= 2.8 Replaced effect numerics with constants. [L0ne_W0lf]
+//= 2.9 Replaced effect numerics with constants. [Samuray22]
+//= 3.0 Large reordering of Zhed, and Peace to the Arunafeltz addition. [L0ne_W0lf]
+//=     Some more numeric conversion, and some other cleanup.
+//= 3.1 Updated Ice Necklace quest, added missing checks. [L0ne_W0lf]
+//= 3.2 Added missing updates for Peace to the Arunafeltz quest. [L0ne_W0lf]
+//= 3.3 Fixed occurance of PcName. [L0ne_W0lf]
+//=     Fixed level 4 ID warps always being usable.
+//= 3.3a Fixed level 4 ID warps again. (Bugreport:4102) [L0ne_W0lf]
 //============================================================ 
 
 // Lost Child Quest (Prerequisite to High Priest quest)
@@ -1805,6 +1819,7 @@ ra_in01,235,194,5	script	Katinshuell	931,{
 		mes "in the mood for talking with";
 		mes "anyone. I'm still coping with";
 		mes "breaking up with my girlfriend.";
+		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Katinshuell... I get the";
 		mes "feeling that you're hiding";
@@ -2072,7 +2087,7 @@ ra_in01,250,19,3	script	Mr. Shendar	929,{
 		mes "Still alive, eh? Hmpf!";
 		mes "I'll finish you off! I'll...";
 		mes "Er, huh?! Wait, I think";
-		mes "AI know you. You're that";
+		mes "I know you. You're that";
 		mes "adventurer that's been";
 		mes "here before, right?";
 		next;
@@ -2720,7 +2735,7 @@ ra_in01,255,25,0	script	Book#ra_in	111,{
 //End of Bruspetti quest
 //============================================================ 
 
-// Ice Necklace/Summon Ktullanux Quest and Glaial Heart buyer
+// Ice Necklace/Summon Ktullanux Quest and Glacial Heart buyer
 //============================================================ 
 //iRO Changed this NPC to avoid "offending" people.
 //To enable how it originally looked, uncomment the
@@ -2730,6 +2745,14 @@ ra_in01,255,25,0	script	Book#ra_in	111,{
 //rachel,157,183,3	script	Sincere Follower Urstia	917,{
 rachel,157,183,3	script	Sincere Follower Urstia	916,{
 	cutin "ra_usti1",2;
+	if (checkweight(908,200) == 0) {
+		mes "^3355FFWait a second!";
+		mes "Right now, you're carrying";
+		mes "too many things with you.";
+		mes "Please come back after";
+		mes "using the Kafra Service";
+		mes "to store some of your items.^000000";
+	}
 	if (ice_necklace_q < 1) {
 		mes "[Urstialla]";
 		mes "Oh, are you an adventurer";
@@ -2850,7 +2873,9 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 				mes "maybe my prayers haven't";
 				mes "been answered yet. Perhaps";
 				mes "I need to pray more fervently?.";
-				goto L_End;
+				close2;
+				cutin "",255;
+				end;
 			}
 			mes "[Urstialla]";
 			mes "Thank you so much!";
@@ -2859,9 +2884,11 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 			mes "to restore its luster. Then,";
 			mes "it'll be a fitting tribute to";
 			mes "our loving goddess Freya.";
-			getitem 7572,1; //Ashy_Necklace
+			getitem 7572,1; //Magic_Necklace
 			set ice_necklace_q,1;
-			goto L_End;
+			close2;
+			cutin "",255;
+			end;
 		}
 		cutin "ra_usti2",2;
 		mes "[Urstialla]";
@@ -2870,67 +2897,73 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 		mes "that you don't believe?";
 		mes "Repent, and may your";
 		mes "heart be opened to Freya!";
-		goto L_End;
 	}
-
 	else if ((ice_necklace_q >= 1) && (ice_necklace_q < 5)) {
 		mes "[Urstialla]";
 		mes "Please find Maheo the";
 		mes "Mage and ask him to restore";
 		mes "the beauty of the necklace";
-
 		mes "I gave you. He should be";
 		mes "fighting monsters in the";
 		mes "ice cave to the north.";
-		goto L_End;
 	}
-
 	else if (ice_necklace_q == 5) {
-		mes "[Urstialla]";
-		mes "Oh! My necklace! Thank you!";
-		mes "It's so beautiful! It will";
-		mes "make a wonderful tribute to";
-		mes "Freya! I am certain with this,";
-		mes "my son will get better!";
-		next;
-		mes "[Urstialla]";
-		mes "Here, I know it's not much,";
-		mes "but please accept this as a";
-		mes "token of my appreication for";
-		mes " what you have done for me.";
-		delitem 7573,1; //Sparkling Necklace
-		getexp 700000,0;
-		set ice_necklace_q,6;
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "Oh, let's just say it was";
-		mes "a worthwhile experience";
-		mes "for me.";
-		next;
-		mes "[Urstialla]";
-		mes ".........";
-		mes "............";
-		mes "May Freya always protect and";
-		mes "guide you and forgive you for";
-		mes "that horrible joke.";
-		goto L_End;
+		if (countitem(7573) > 0) {
+			mes "[Urstialla]";
+			mes "Oh! My necklace! Thank you!";
+			mes "It's so beautiful! It will";
+			mes "make a wonderful tribute to";
+			mes "Freya! I am certain with this,";
+			mes "my son will get better!";
+			next;
+			mes "[Urstialla]";
+			mes "Here, I know it's not much,";
+			mes "but please accept this as a";
+			mes "token of my appreication for";
+			mes " what you have done for me.";
+			delitem 7573,1; //Magic_Necklace_
+			getexp 700000,0;
+			set ice_necklace_q,6;
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "Oh, let's just say it was";
+			mes "a worthwhile experience";
+			mes "for me.";
+			next;
+			mes "[Urstialla]";
+			mes ".........";
+			mes "............";
+			mes "May Freya always protect and";
+			mes "guide you and forgive you for";
+			mes "that horrible joke.";
+		}
+		else {
+			mes "["+strcharinfo(0)+"]";
+			mes "Oh, no! The necklace has disappeared!";
+		}
 	}
-
-	mes "[Urstialla]";
-	mes "May Freya always";
-	mes "protect and guide you";
-	mes "with her everflowing";
-	mes "grace and wisdom..";
-	goto L_End;
-
-L_End:
+	else {
+		mes "[Urstialla]";
+		mes "May Freya always";
+		mes "protect and guide you";
+		mes "with her everflowing";
+		mes "grace and wisdom..";
+	}
 	close2;
 	cutin "",255;
 	end;
-
 }
 
 ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
+	if (checkweight(908,200) == 0) {
+		mes "^3355FFWait a second!";
+		mes "Right now, you're carrying";
+		mes "too many things with you.";
+		mes "Please come back after";
+		mes "using the Kafra Service";
+		mes "to store some of your items.^000000";
+		close;
+	}
 	if (ice_necklace_q == 1) {
 		cutin "ra_magic3",2;
 		emotion e_omg;
@@ -2950,13 +2983,13 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "later! Just... Just get";
 		mes "this ice off of me!.";
 		next;
-		if (getskilllv(19) > 0) {
-			misceffect 24;  //EF_FIREBALL
+		if (getskilllv("MG_FIREBOLT") > 0) {
+			misceffect EF_FIREBALL;
 			mes "^3355FFYou cast Fire Bolt at";
 			mes "the ice..^000000";
 		}
 		else {
-			misceffect 1; //EF_HIT2
+			misceffect EF_HIT2;
 			mes "^3355FFYou hammer at the";
 			mes "ice with all your might.^000000";
 		}
@@ -3122,7 +3155,6 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		cutin "",255;
 		end;
 	}
-
 	else if ((ice_necklace_q == 2) || (ice_necklace_q == 3)) {
 		mes "[Maheo]";
 		mes "My master may not have";
@@ -3133,15 +3165,36 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "be reading near Freya's Spring.";
 		close;
 	}
-
 	else if (ice_necklace_q == 4) {
-		mes "[Maheo]";
-		mes "Oh, you're back!";
-		mes "So did my master have";
-		mes "any ideas on breaking";
-		mes "this cold prison of ice?";
-		next;
-		//Need proper check for Hammer_of_Wind and Gray_Necklace
+		if (countitem(7569) > 0) {
+			if (countitem(7572) > 0) {
+				mes "[Maheo]";
+				mes "Oh, you're back!";
+				mes "So did my master have";
+				mes "any ideas on breaking";
+				mes "this cold prison of ice?";
+				next;
+			}
+			else {
+				mes "["+strcharinfo(0)+"]";
+				mes "Oh, shoot! I left the necklace in the city! I will be right back!";
+				next;
+				mes "[Maheo]";
+				mes "Hey, hey! Can't you just release me first?";
+				emotion e_sob;
+				close;
+			}
+		}
+		else {
+			mes "[Maheo]";
+			mes "My master may not have";
+			mes "my sheer talent, but he";
+			mes "is very knowledgable in";
+			mes "the ways of magic. Please...";
+			mes "Ask him for help. He should";
+			mes "be reading near Freya's Spring.";
+			close;
+		}
 		mes "["+strcharinfo(0)+"]";
 		mes "Well, he made this";
 		mes "magic hammer which is";
@@ -3159,9 +3212,9 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "swung it down at the ice";
 		mes "with all of your strength.^000000";
 		next;
-		misceffect 276; //EF_TEIHIT3
-		misceffect 133; //EF_FREEZE
-		misceffect 135; //EF_ICECRASH
+		misceffect EF_TEIHIT3;
+		misceffect EF_FREEZE;
+		misceffect EF_ICECRASH;
 		mes "^3355FF*Pzzzzz*";
 		mes "*CRASH!*^000000";
 		next;
@@ -3172,7 +3225,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "After all of this";
 		mes "time! I'm free!";
 		next;
-		misceffect 56; //EF_BEGINSPELL4
+		misceffect EF_BEGINSPELL4;
 		mes "[Maheo]";
 		mes "Now, all of the monsters";
 		mes "in this cave will taste the";
@@ -3185,7 +3238,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		monster "ice_dun02",114,112,"Snowier",1775,1,"Man Stuck in Ice#cave::OnMyMobDead";
 		monster "ice_dun02",126,105,"Snowier",1775,1,"Man Stuck in Ice#cave::OnMyMobDead";
 		monster "ice_dun02",121,99,"Snowier",1775,1,"Man Stuck in Ice#cave::OnMyMobDead";
-		misceffect 90; //EF_LORD
+		misceffect EF_LORD;
 		killmonster "ice_dun02","Man Stuck in Ice#cave::OnMyMobDead";
 		mes "[Maheo]";
 		mes "Muhahahahahahahaha!";
@@ -3209,7 +3262,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "[Maheo]";
 		mes "Let's see, now...";
 		next;
-		misceffect 256; //EF_FROSTWEAPON
+		misceffect EF_FROSTWEAPON;
 		mes "^3355FF*Ting*^000000";
 		next;
 		mes "[Maheo]";
@@ -3219,10 +3272,10 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "And please don't mention";
 		mes "the fact that I trapped myself";
 		mes "in ice to anyone else, okay?";
+		delitem 7572,1; //Magic_Necklace
+		delitem 7569,1; //Wind Of_Hammer
 		getitem 7574,4; //Freezing Snow Powder
-		getitem 7573,1; //Sparkling Necklace
-		delitem 7572,1; //Ashy_Necklace
-		delitem 7569,1; //Wind Hammer
+		getitem 7573,1; //Magic_Necklace_
 		set ice_necklace_q,5;
 		close2;
 		cutin "",255;
@@ -3233,14 +3286,13 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 OnTouch:
 	end;
 
-//OnTouchNPC: 
-//	emotion e_ang;
-//	emotion e_gg,2; //Emote on monster
-//	end;
+OnTouchNPC: 
+	emotion e_an;
+	//emotion e_gg,1; //Emote on monster - unsupported
+	end;
 
 OnMyMobDead:
 	end;
-
 }
 
 ice_dun02,120,3,0	script	#cave_vos	-1,{
@@ -3264,6 +3316,15 @@ OnTimer10800000:
 }
 
 rachel,265,98,3	script	Hamion#aru	930,{
+	if (checkweight(908,200) == 0) {
+		mes "^3355FFWait a second!";
+		mes "Right now, you're carrying";
+		mes "too many things with you.";
+		mes "Please come back after";
+		mes "using the Kafra Service";
+		mes "to store some of your items.^000000";
+		close;
+	}
 	if (ice_necklace_q < 2) {
 		mes "[Hamion]";
 		mes "Hm? Did you need";
@@ -3272,7 +3333,6 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		mes "get back to reading my book.";
 		close;
 	}
-
 	else if (ice_necklace_q == 2) {
 		mes "[Hamion]";
 		mes "Hm? Did you need";
@@ -3324,7 +3384,6 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		set ice_necklace_q,3;
 		close;
 	}
-
 	else if (ice_necklace_q == 3) {
 		if ((countitem(996) < 5) || (countitem(1354) < 1) || (countitem(7433) < 1)) { 
 			mes "[Hamion]";
@@ -3350,7 +3409,6 @@ rachel,265,98,3	script	Hamion#aru	930,{
 			mes "I'm just smart, not strong.";
 			close;
 		}
-
 		mes "[Hamion]";
 		mes "Great, you have everything";
 		mes "I need! But first, would you";
@@ -3379,7 +3437,7 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		mes "[Hamion]";
 		mes "Here we go...!";
 		next;
-		specialeffect2 71; //EF_CONE
+		specialeffect2 EF_CONE;
 		mes "^3355FF*Pzzzz*^000000";
 		next;
 		mes "[Hamion]";
@@ -3396,7 +3454,6 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		set ice_necklace_q,4;
 		close;
 	}
-
 	else if (ice_necklace_q >= 4) {
 		mes "[Hamion]";
 		mes "There are always";
@@ -3407,7 +3464,6 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		mes "such a great place to read.";
 		close;
 	}
-
 }
 
 rachel,113,96,5	script	Mohadian	929,10,10,{
@@ -3472,7 +3528,6 @@ rachel,113,96,5	script	Mohadian	929,10,10,{
 		set ice_necklace_q,7;
 		close;
 	}
-
 	else if (ice_necklace_q == 7) {
 		if (countitem(7561) < 1) {
 			mes "[Mohadian]";
@@ -3538,11 +3593,10 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	802,{
 				mes "Powder onto the flame. It";
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				disablenpc "Blazing Fire#ice1";
+				hideonnpc "Blazing Fire#ice1";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
-
 			else if (countitem(7562) > 0) {
 				next;
 				select("Use Ice Scale.");
@@ -3550,14 +3604,12 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	802,{
 				mes "the flame, it crackles before";
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
-				disablenpc "Blazing Fire#ice1";
+				hideonnpc "Blazing Fire#ice1";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
-
 		}
-
 	}
 	close;
 
@@ -3583,11 +3635,10 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	802,{
 				mes "Powder onto the flame. It";
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				disablenpc "Blazing Fire#ice2";
+				hideonnpc "Blazing Fire#ice2";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
-
 			else if (countitem(7562) > 0) {
 				next;
 				select("Use Ice Scale.");
@@ -3595,14 +3646,12 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	802,{
 				mes "the flame, it crackles before";
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
-				disablenpc "Blazing Fire#ice2";
+				hideonnpc "Blazing Fire#ice2";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
-
 		}
-
 	}
 	close;
 
@@ -3627,11 +3676,10 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	802,{
 				mes "Powder onto the flame. It";
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				disablenpc "Blazing Fire#ice3";
+				hideonnpc "Blazing Fire#ice3";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
-
 			else if (countitem(7562) > 0) {
 				next;
 				select("Use Ice Scale.");
@@ -3639,14 +3687,12 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	802,{
 				mes "the flame, it crackles before";
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
-				disablenpc "Blazing Fire#ice3";
+				hideonnpc "Blazing Fire#ice3";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
-
 		}
-
 	}
 	close;
 
@@ -3671,11 +3717,10 @@ ice_dun03,127,172,0	script	Blazing Fire#ice4	802,{
 				mes "Powder onto the flame. It";
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Freezing Snow Powder
-				disablenpc "Blazing Fire#ice4";
+				hideonnpc "Blazing Fire#ice4";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
-
 			else if (countitem(7562) > 0) {
 				next;
 				select("Use Ice Scale.");
@@ -3683,14 +3728,12 @@ ice_dun03,127,172,0	script	Blazing Fire#ice4	802,{
 				mes "the flame, it crackles before";
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
-				disablenpc "Blazing Fire#ice4";
+				hideonnpc "Blazing Fire#ice4";
 				set $ktullanux_summon,$ktullanux_summon+1;
 				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
-
 		}
-
 	}
 	close;
 
@@ -3710,27 +3753,27 @@ OnStart:
 	end;
 
 OnTimer2000:
-	mapannounce "ice_dun03","Who dares to extinguish the flames of Thor!?",bc_map,0xFF6633;
+	mapannounce "ice_dun03","Someone has put out Thor's flames... Infidel!",bc_map,0xFF6633;
 	end;
 
 OnTimer8000:
-	mapannounce "ice_dun03","I, Ktullanux shall keep everything from Thor's fierce flame,",bc_map,0xFF6633;
+	mapannounce "ice_dun03","I, Ktullanux, must protect and preserve Thor's fierce flames...",bc_map,0xFF6633;
 	end;
 
 OnTimer10000:
-	mapannounce "ice_dun03","for I am the master of this cave of ice!",bc_map,0xFF6633;
+	mapannounce "ice_dun03","As the master of this cave, I vow vengeance!",bc_map,0xFF6633;
 	end;
 
 OnTimer13000:
-	mapannounce "ice_dun03","You foolish adventurer, who cares not for the gift of life.",bc_map,0xFF6633;
+	mapannounce "ice_dun03","Only a human would be so foolhardy....",bc_map,0xFF6633;
 	end;
 
 OnTimer16000:
-	mapannounce "ice_dun03","Because of your dangerous curiosity,",bc_map,0xFF6633;
+	mapannounce "ice_dun03","Your curiosity will cost you, human.",bc_map,0xFF6633;
 	end;
 
 OnTimer19000:
-	mapannounce "ice_dun03","you will taste inconceivable pain, a cold which can freeze even Mother Nature's breath!",bc_map,0xFF6633;
+	mapannounce "ice_dun03","Prepare yourself for a freezing realm of pain which you cannot possibly imagine!",bc_map,0xFF6633;
 	end;
 
 OnTimer21000:
@@ -3754,8 +3797,8 @@ OnStopTimer:
 	end;
 
 OnMyMobDead:
-	mapannounce "ice_dun03","Odin! Odin I beg you! Please protect this haven from Thor's fiere fire!",bc_map,0xFF6633;
-	mapannounce "ice_dun03","Hisssss.... Hisssss...",bc_map,0x33FFFF;
+	mapannounce "ice_dun03","Oh, Odin! Please protect this place from Thor's fierce fire!",bc_map,0xFF6633;
+	mapannounce "ice_dun03","Pzzzzz...Pzzzz...",bc_map,0x33FFFF;
 	donpcevent "ice_boss#on::OnStartTimer";
 	donpcevent "#ice_sec::OnStart";
 	end;
@@ -3763,10 +3806,10 @@ OnMyMobDead:
 OnTimer7200000:
 	stopnpctimer;
 	set $ktullanux_summon,0;
-	enablenpc "Blazing Fire#ice1";
-	enablenpc "Blazing Fire#ice2";
-	enablenpc "Blazing Fire#ice3";
-	enablenpc "Blazing Fire#ice4";
+	hideoffnpc "Blazing Fire#ice1";
+	hideoffnpc "Blazing Fire#ice2";
+	hideoffnpc "Blazing Fire#ice3";
+	hideoffnpc "Blazing Fire#ice4";
 	end;
 }
 	
@@ -3792,7 +3835,7 @@ OnTimer60000:
 	end;
 }
 
-ice_dun03,150,132,0	script	#ice_4f_1	45,2,2,{
+ice_dun03,150,137,0	script	#ice_4f_1	45,2,2,{
 OnTouch:
 	warp "ice_dun04",33,144;
 	end;
@@ -3802,7 +3845,7 @@ OnInit:
 	end;
 
 OnEnable:
-	misceffect 247; //EF_MAPPILLAR2
+	misceffect EF_MAPPILLAR2;
 	end;
 
 }
@@ -3817,7 +3860,7 @@ OnInit:
 	end;
 
 OnEnable:
-	misceffect 247; //EF_MAPPILLAR2
+	misceffect EF_MAPPILLAR2;
 	end;
 
 }
@@ -3832,7 +3875,7 @@ OnInit:
 	end;
 
 OnEnable:
-	misceffect 247; //EF_MAPPILLAR2
+	misceffect EF_MAPPILLAR2;
 	end;
 
 }
@@ -3847,7 +3890,7 @@ OnInit:
 	end;
 
 OnEnable:
-	misceffect 247; //EF_MAPPILLAR2
+	misceffect EF_MAPPILLAR2;
 	end;
 
 }
@@ -3868,7 +3911,7 @@ OnTouch:
 			mes "entrance is locked.^000000";
 			next;
 			select("Kick Door.:Smash Door with Weapon.");
-			donpcevent "Nemma#ra_temple::OnEmotion";
+			emotion e_omg,0,"Nemma#ra_temple";
 			mes "[Priestess Nemma]";
 			mes "Please don't do that!";
 			close;
@@ -4008,7 +4051,7 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 				mes "donation? Splendid! How much";
 				mes "would you like to donate this";
 				mes "time? Remember that we can only";
-				mes "accept donations in inrements of";
+				mes "accept donations in increments of";
 				mes "50,000 zeny up to 150,000 zeny.";
 				next;
 
@@ -4272,10 +4315,6 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 L_End:
 	close2;
 	cutin "",255;
-	end;
-
-OnEmotion:
-	emotion e_omg;
 	end;
 
 S_Donate:
@@ -4914,17 +4953,18 @@ que_rachel,169,18,0	script	Quest Temple Exit#ra_tem	45,2,2,{
 }
 
 ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
-	cutin "ra_gman",2;
-	if (MISC_QUEST & 8192) {
-		mes "[High Priest Zhed]";
-		mes "I need to rest now";
-		mes "But I thank you for";
-		mes "stopping by to check";
-		mes "up on me, "+strcharinfo(0)+".";
-		goto L_End;
+	if ((ra_tem_q > 14) || (MISC_QUEST&8192)) set lost_boy,14;
+	if (checkweight(908,200) == 0) {
+		mes "^3355FFWait a second!";
+		mes "Right now, you're carrying";
+		mes "too many things with you.";
+		mes "Please come back after";
+		mes "using the Kafra Service";
+		mes "to store some of your items.^000000";
+		close;
 	}
-
 	if (lost_boy == 12) {
+		cutin "ra_gman",2;
 		mes "[High Priest Zhed]";
 		mes "For some reason, you look";
 		mes "familiar to me. Are you supposed";
@@ -4946,7 +4986,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		mes "these packages, but perhaps";
 		mes "this was necessitated by some";
 		mes "strange circumstance. Anyway,";
-		mes "let's see what he sent me.";
+		mes "let's see what he sent me...";
 		next;
 		cutin "ra_gman2",2;
 		mes "[High Priest Zhed]";
@@ -4954,15 +4994,15 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		mes "Vincent sent a note?";
 		mes "I suppose this must be";
 		mes "important. Give me just a";
-		mes "moment to read this, please.";
+		mes "moment to read this, please...";
 		next;
 		mes "[High Priest Zhed]";
-		mes "..................................";
-		mes "Hrrrmm. Vincent. Now";
+		mes "...............................";
+		mes "...Hrrrmm. Vincent. Now";
 		mes "I understand. So he was being";
 		mes "intentionally cold towards Jenny";
 		mes "and Phoebe so other people";
-		mes "wouldn't get suspicious.";
+		mes "wouldn't get suspicious...";
 		next;
 		cutin "ra_gman",2;
 		mes "[High Priest Zhed]";
@@ -4984,7 +5024,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		mes "[High Priest Zhed]";
 		mes "You were doing this just to";
 		mes "satisfy your curiosity? Heh";
-		mes "heh, that's very interesting";
+		mes "heh, that's very interesting.";
 		mes "That's also the best attitude";
 		mes "for a brave adventurer. I like";
 		mes "that. May I have your name?";
@@ -5003,12 +5043,13 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		mes "Freya to guide and protect";
 		mes "you in your travels. Peace";
 		mes "be with you, "+strcharinfo(0)+".";
+		close2;
+		cutin "ra_gman",255;
 		set lost_boy,13;
-		specialeffect2 253;
+		specialeffect2 EF_ABSORBSPIRITS;
 		getexp 900000,0;
-		goto L_End;
+		end;
 	}
-
 	else if ((lost_boy == 13) && (ra_tem_q < 14)) {
 		mes "[High Priest Zhed]";
 		mes "Ah, "+strcharinfo(0)+"...";
@@ -5016,436 +5057,1435 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		mes "managed to retrieve my";
 		mes "belongings for me. You are";
 		mes "a truly talented adventurer.";
-		mes "May Freya protect you.";
-		goto L_End;
+		mes "May Freya protect you...";
 	}
-
-	else {
-		if (lost_boy < 13) {
+	else if ((lost_boy == 13) && (ra_tem_q == 14)) {
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "Ah, good, I was hoping you'd";
+		mes "show up here sooner or later.";
+		mes "I have a favor to ask of you";
+		mes "since I'm too busy to do it";
+		mes "myself, and I trust you more";
+		mes "than any other adventurer.";
+		next;
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "However, before I give you";
+		mes "the details, you must know";
+		mes "that this favor must be kept";
+		mes "secret. In other words, once";
+		mes "I explain the task, you must";
+		mes "accept my request.";
+		next;
+		if (select("Let me think about it.:Yes, sure.") == 1) {
 			mes "[High Priest Zhed]";
-			mes "May Freya be with you.";
+			mes "I understand, but if you";
+			mes "change your mind, please";
+			mes "come back and let me know.";
+			mes "It's very hard for me to find";
+			mes "someone that I can really";
+			mes "rely on to do this for me...";
+			close2;
+			cutin "ra_gman",255;
+			end;
 		}
-		else {
-			if (ra_tem_q == 14) {
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "Ah, I'm relieved to see";
+		mes "that you accept. Don't worry,";
+		mes "this task isn't complicated,";
+		mes "nor will it require much";
+		mes "in the way of sacrifice.";
+		next;
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "As you may already know,";
+		mes "our country of Arunafeltz";
+		mes "worships the goddess Freya.";
+		mes "There's almost no separation";
+		mes "between politics, society,";
+		mes "and our religion, really.";
+		next;
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "Now, the leader of our";
+		mes "national religion, our pope,";
+		mes "is a direct servant of Freya";
+		mes "and delivers her messages";
+		mes "to us. As such, she must live";
+		mes "by very strict guidelines.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Our pope is curious about";
+		mes "the outside world and wishes";
+		mes "to learn more about what lies";
+		mes "beyond Arunafeltz, but she";
+		mes "cannot come easily by this";
+		mes "sort of knowledge.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Firstly, she cannot leave";
+		mes "Rachel, the place where the";
+		mes "spirit of goddess Freya dwells.";
+		mes "Secondly, all citizens and priests are forbidden to leave the city in";
+		mes "order to preserve our sanctity.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "These are implicit rules that";
+		mes "normally aren't discussed openly,";
+		mes "but everyone follows them to";
+		mes "prevent from being stigmatized.";
+		mes "Frankly, I think it's somewhat shameful, but we're working on it.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Furthermore, our pope must";
+		mes "maintain her image of aloof";
+		mes "piety, so it'd be inappropriate of her to openly question outside";
+		mes "world affairs. Although, such";
+		mes "knowledge would benefit her...";
+		next;
+		mes "[High Priest Zhed]";
+		mes "That is why the high priests";
+		mes "decided to enlist a trustworthy";
+		mes "adventurer to inform our pope";
+		mes "about the outside world. Now";
+		mes "you understand why I've asked";
+		mes "you to keep all of this secret.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "You won't need to divulge";
+		mes "outrageous secrets or anything";
+		mes "like that. I presume mundane";
+		mes "details would be enough to";
+		mes "please her. Just let her be";
+		mes "able to envision your homeland.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Personally, I think it would";
+		mes "be refreshing for our pope to";
+		mes "hear a few of your stories as";
+		mes "she is always worshipping";
+		mes "our goddess on the behalf of";
+		mes "everyone in our glorious city.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Unfortunately, I cannot escort";
+		mes "you to the priestess, but I will";
+		mes "relate the means to which you";
+		mes "can gain an audience with her.";
+		mes "First, you will need a ^FF0000High";
+		mes "Priest's Recommendation^000000.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "I will write that for you, so";
+		mes "there's no need to concern";
+		mes "yourself with that. Next, you";
+		mes "will need to gather ^FF000040 Glacial";
+		mes "Hearts^000000 as symbolic proof of";
+		mes "your strength and purity.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "While I finish writing this";
+		mes "recommendation, let me tell";
+		mes "you how to get to the pope's";
+		mes "office where you must go once";
+		mes "you gather 40 Glacial Hearts.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Head west from the chapel";
+		mes "in the center of the temple,";
+		mes "and then enter a door guarded";
+		mes "by two soldiers. Show them your";
+		mes "recommendation and Glacial Hearts, and they should grant you passage.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Ah, here you are.";
+		mes "I've finished writing";
+		mes "your recommendation.";
+		mes "Well then, I guess I'll";
+		mes "see you after you've";
+		mes "completed this task.";
+		next;
+		mes "^3355FFYou received a High";
+		mes "Priest's recommendation.^000000";
+		set ra_tem_q,15;
+		set lost_boy,14;
+	}
+	else if ((ra_tem_q == 15) || (ra_tem_q == 16)) {
+		mes "[High Priest Zhed]";
+		mes "Once you gather";
+		mes "^FF000040 Glacial Hearts^000000,";
+		mes "you can show them, along";
+		mes "with the recommendation I've";
+		mes "written for you, to the soldiers";
+		mes "guarding the pope's office.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "When you're ready to go";
+		mes "to the pope's office, just";
+		mes "head west from the chapel";
+		mes "to the center of the temple:";
+		mes "this is where the entrance is.";
+	}
+	else if (ra_tem_q == 17) {
+		mes "[High Priest Zhed]";
+		mes "Ah, thank you so much";
+		mes "for spending some time";
+		mes "with the pope for me.";
+		mes "I can tell that she really";
+		mes "enjoyed speaking to you.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "I am curious, though...";
+		mes "Our pope is unaccustomed";
+		mes "to speaking with outsiders,";
+		mes "so I assume that you have";
+		mes "your own questions after";
+		mes "your conversation with her...";
+		next;
+		select("Well, she did mention some Holy Ground...");
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "What...?!";
+		mes "She mentioned";
+		mes "the Holy Ground...?!";
+		next;
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "The Holy Ground is a place";
+		mes "where all humans, including";
+		mes "the pope, have been forbidden.";
+		mes "We used to allow people to";
+		mes "visit in the past, but... ";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Only the gods can access";
+		mes "that place now. Listen, if";
+		mes "the other priests ask about";
+		mes "your conversation with the";
+		mes "pope, please do not make any";
+		mes "mention of the Holy Ground.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Please don't ask me";
+		mes "why, but believe me that";
+		mes "it's very important that";
+		mes "you feign ignorance of the";
+		mes "Holy Ground's existence!";
+		next;
+		mes "[????]";
+		mes "Excuse me, Zhed?";
+		mes "May I speak with you";
+		mes "for a moment? I need";
+		mes "to talk to you about";
+		mes "a private matter...";
+		next;
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "Er, yes, of course!";
+		mes "Excuse me for a moment...";
+		mes "While you're waiting for me,";
+		mes "why don't you relax in the";
+		mes "next room? Don't forget:";
+		mes "there is no Holy Ground.";
+		close2;
+		cutin "",255;
+		select("Okay.");
+		set ra_tem_q,18;
+		warp "ra_temin",297,156;
+		end;
+	}
+	else if (ra_tem_q == 18) {
+		mes "[High Priest Zhed]";
+		mes "I'm sorry, but we're not";
+		mes "quite finished with our";
+		mes "discussion. Why don't you";
+		mes "wait and relax in the next room";
+		mes "over there in the meantime?";
+		close2;
+		cutin "",255;
+		warp "ra_temin",297,156;
+		end;
+	}
+	else if (ra_tem_q == 19) {
+		mes "[High Priest Zhed]";
+		mes "I apologize for making";
+		mes "you wait for so long: I had";
+		mes "some crucial matters to";
+		mes "discuss. Now, that look";
+		mes "on your face tells me that";
+		mes "you have a pressing question.";
+		next;
+		select("Ask about Bekento");
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "Bekento? Ah, you must";
+		mes "have been speaking to";
+		mes "High Priestess Niren.";
+		mes "She's the only one that";
+		mes "calls me that. You see, my";
+		mes "full name is Zhed Bekento.";
+		next;
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "Speaking of which...";
+		mes "Did Niren ask you anything";
+		mes "or tell you something that";
+		mes "was out of the ordinary?";
+		next;
+		mes "^3355FFAfter a little hesitation,";
+		mes "you tell High Priest Zhed";
+		mes "about your conversation";
+		mes "with High Priestess Niren.^000000";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Hmm, I see.";
+		mes "Yes. That sounds";
+		mes "like something she'd do.";
+		mes "I'll explain it all later, but";
+		mes "right now, I need to rest.";
+		mes "I'm getting old, you know.";
+		next;
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "Ah, but before you go, let";
+		mes "me warn you not to ^FF0000go near";
+		mes "the Holy Ground^000000. I repeat,";
+		mes "stay away from the Holy Ground.";
+		next;
+		mes "^3355FFThe Holy Ground...";
+		mes "Why is High Priest Zhed";
+		mes "so adamant about protecting";
+		mes "the Holy Ground? Regardless...";
+		mes "If you want to go there, then";
+		mes "just go there. Who'll stop you?^000000";
+		set ra_tem_q,20;
+	}
+	else if ((ra_tem_q >= 20) && (ra_tem_q < 22)) {
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "Whatever you do, whatever";
+		mes "journeys you take, please";
+		mes "make sure that you stay";
+		mes "away from the Holy Ground!";
+		next;
+		mes "^3355FFNow, more than ever,";
+		mes "you feel compelled to";
+		mes "enter the Holy Ground.^000000";
+	}
+	else if (ra_tem_q == 23) {
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "Oh, it's you.";
+		mes "Let me guess...";
+		mes "After everything I said,";
+		mes "you still went ahead and";
+		mes "visited the Holy Ground,";
+		mes "didn't you? Oh, well...";
+		next;
+		select("Did something happen?");
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "Well, honestly, I've been";
+		mes "temporarily suspended from";
+		mes "work, but no need to worry.";
+		mes "It's not your fault. I've been";
+		mes "in conflict with the other High";
+		mes "Priests for a while, anyway.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Please don't worry about it.";
+		mes "If not this, they would have";
+		mes "found some other way to attack";
+		mes "me. It would only be a matter";
+		mes "of time. They're exaggerating";
+		mes "your intrusion for their benefit.";
+		next;
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "All I want is for";
+		mes "Arunafeltz to be safe";
+		mes "and at peace. I hope this";
+		mes "land is not twisted by the";
+		mes "greedy humans. I hope all will";
+		mes "work according to Freya's will.";
+		next;
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "Ah, and please do not";
+		mes "blame Niren. She must have";
+		mes "her own reasons for her own";
+		mes "actions. She has changed";
+		mes "much but in the end, I think";
+		mes "that we are still friends.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "One last thing:";
+		mes "try not to let the";
+		mes "other priests catch you";
+		mes "doing anything forbidden.";
+		mes "It'd be a little embarassing";
+		mes "for me, you understand.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Still, you were secretly";
+		mes "invited here, so I'm sure";
+		mes "that only a very few of them";
+		mes "would be able to recognize";
+		mes "you. In the end, you'll do";
+		mes "what you will, right?";
+		next;
+		cutin "ra_gman2",2;
+		mes "[High Priest Zhed]";
+		mes "...I think I know what";
+		mes "you saw in the Holy Ground.";
+		mes "I'm sure that you have much";
+		mes "to ask, but now isn't the time";
+		mes "to seek for answers. Please,";
+		mes "you must be patient.";
+		next;
+		mes "[High Priest Zhed]";
+		mes "Until the right time";
+		mes "comes, I want you not";
+		mes "to tell anyone else what";
+		mes "you saw in the Holy Ground.";
+		next;
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "Well then, adventurer,";
+		mes "thank you for coming by.";
+		mes "I need to go lay down now,";
+		mes "so if you'll let me rest...";
+		close2;
+		set MISC_QUEST,MISC_QUEST | 8192;
+		set ra_tem_q,0;
+		cutin "",255;
+		specialeffect2 EF_ABSORBSPIRITS;
+		getexp 900000,600000;
+		end;
+	}
+	else if (MISC_QUEST & 8192) {
+		// Start Veins "Thor Volcano Base" Quest Addition
+		if (rachel_camel == 25) {
+			// Start Nameless Island Access Quest Addition
+			if (aru_monas == 11) {
+				cutin "ra_gman",2;
 				mes "[High Priest Zhed]";
-				mes "Ah, good, I was hoping you'd";
-				mes "show up here sooner or later";
-				mes "I have a favor to ask of you";
-				mes "since I'm too busy to do it";
-				mes "myself, and I trust you more";
-				mes "than any other adventurer.";
+				mes "Ah, it's been a while,";
+				mes "hasn't it? You look well,";
+				mes "and I'm doing fine as you";
+				mes "can see. What can I do";
+				mes "for you today, "+strcharinfo(0)+"?";
 				next;
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "However, before I give you";
-				mes "the details, you must know";
-				mes "that this favor must be kept";
-				mes "secret. In other words, once";
-				mes "I explain the task, you must";
-				mes "accept my request.";
-				next;
-				if (select("Let me think about it.:Yes, sure.") == 2) {
-					cutin "ra_gman",2;
+				switch(select("I just wanted to say hi.:Ask About Veins Incident")) {
+				case 1:
 					mes "[High Priest Zhed]";
-					mes "Ah, I'm relieved to see";
-					mes "that you accept. Don't worry,";
-					mes "this task isn't complicated,";
-					mes "nor will it require much";
-					mes "in the way of sacrifice.";
+					mes "As you well know, I'm only";
+					mes "a High Priest in title, and";
+					mes "lost much of my influence";
+					mes "amongst many of the other";
+					mes "priests for my views.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Still, I have faith that";
+					mes "justice and good will";
+					mes "prevail over the corruption";
+					mes "that plagues our priests,";
+					mes "so long as good people";
+					mes "are willing to act.";
+					break;
+				case 2:
+					mes "[High Priest Zhed]";
+					mes "Veins incident?";
+					mes "I haven't heard of";
+					mes "anything... Well, perhaps";
+					mes "if you'd elaborate, then";
+					mes "I'd understand a bit more.";
+					next;
+					mes "^3355FFYou told High Priest";
+					mes "Zhed about the group of";
+					mes "smugglers arrested in Veins.^000000";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Oh, I think I did hear";
+					mes "something about that earlier.";
+					mes "Let's see now... Ah, right.";
+					mes "Niren mentioned something";
+					mes "strange about them...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "The smugglers were with";
+					mes "a high ranking official from";
+					mes "the Rune-Midgarts Kingdom,";
+					mes "which is why Niren was so";
+					mes "hesitant to take any action";
+					mes "against them for a while.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "I was too preoccupied with";
+					mes "other matters, and I didn't";
+					mes "think much of it at the time.";
+					mes "Why don't you speak to Niren?";
+					mes "I'm sure that she can tell you";
+					mes "more about what happened.";
+					set aru_monas,12;
+					next;
+					mes "[High Priest Zhed]";
+					mes "If you do decide to";
+					mes "visit Niren, please";
+					mes "send her my regards.";
+					break;
+				}
+			}
+			// End Nameless Island Access Quest Addition.
+			else if (aru_vol == 0) {
+				cutin "ra_gman",2;
+				mes "[High Priest Zhed]";
+				mes "Ah, it does my heart to";
+				mes "good to see you again.";
+				mes "Adventurers willing to work";
+				mes "so hard for the sake of world";
+				mes "peace like yourself are fairly";
+				mes "uncommon. I hope you know that.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Huh...?";
+				mes "Please don't flatter";
+				mes "me like that! Saying";
+				mes "it like that is kind of";
+				mes "overdoing it, isn't it?";
+				emotion 54,1;
+				next;
+				mes "[High Priest Zhed]";
+				mes "Not at all. In fact, I'm";
+				mes "sure that a place in";
+				mes "Valhalla has already";
+				mes "been secured for you";
+				mes "by the Valkyries. Now, how";
+				mes "may I help you, my friend?";
+				next;
+				select("Mysterious Building in the Volcano:");
+				mes "["+strcharinfo(0)+"]";
+				mes "Actually, I was wondering";
+				mes "if you knew of anything about";
+				mes "this facility inside Thor";
+				mes "Volcano near Veins. There";
+				mes "might be something big";
+				mes "going on over there.";
+				next;
+				mes "^3131FFYou told High Priest";
+				mes "Zhed about the shackled";
+				mes "child in Thor Volcano, and";
+				mes "how you found the building";
+				mes "hidden there. High Priest Zhed";
+				mes "seemed disturbed by your words.^000000";
+				next;
+				mes "[High Priest Zhed]";
+				mes "I see. I have my suspicions";
+				mes "about what is happening. Now,";
+				mes "you're aware that Arunafeltz";
+				mes "is governed by our church,";
+				mes "and that our entire nation";
+				mes "worships the goddess Freya.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "The priests that lead this";
+				mes "nation are split into two main";
+				mes "factions: I am considered part";
+				mes "of the moderate faction, which";
+				mes "usually butts heads with the";
+				mes "jingoistic hard-liner faction.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "These hard-liner priests";
+				mes "are more than willing to use";
+				mes "violent methods if they believe";
+				mes "it to be the will of Freya, and";
+				mes "are the ones that established";
+				mes "the military camp  at Thor Volcano.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Of course, it's also";
+				mes "considered a geology camp";
+				mes "since they're always monitoring";
+				mes "that place for volcanic activity,";
+				mes "but for all intents and purposes,";
+				mes "they are training men to fight.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "It scares me to think";
+				mes "about it, but I'm sure that";
+				mes "they have many military supplies";
+				mes "and machines of mass destruction";
+				mes "hidden over there in the camp.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Wait, what exactly do";
+				mes "they hope to accomplish";
+				mes "by fighting? How do they";
+				mes "intend to help the goddess";
+				mes "Freya by using violence?";
+				next;
+				mes "[High Priest Zhed]";
+				mes "All the priests agree that";
+				mes "reassembling Ymir's Heart will";
+				mes "revive Freya. As you know, the";
+				mes "pieces are scattered all over";
+				mes "the world. Some are possessed";
+				mes "by the Rune-Midgarts Kingdom.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "In the interest of avoiding";
+				mes "conflict, the moderate faction";
+				mes "of priests decided to hire";
+				mes "scientists to reproduce Ymir's";
+				mes "Heart, resulting in an";
+				mes "imitation of that artifact.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "An imitation of Ymir's";
+				mes "Heart? I think I know of";
+				mes "a famous scientist from the";
+				mes "Schwartzvalt Republic that";
+				mes "was working on that! Let's";
+				mes "see, his name was...";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Isn't the scientist's name...";
+				input .@input$;
+				mes "^3131FF"+.@input$+"^000000?";
+				next;
+				if (.@input$ == "Varmunt") {
+					mes "[High Priest Zhed]";
+					mes "Oh, you've heard of him?";
+					mes "Yes, his name was Varmunt.";
+					mes "Unfortunately, he deliberately";
+					mes "destroyed the Imitation of";
+					mes "Ymir's Heart into pieces,";
+					mes "and then disappeared.";
+					next;
+				}
+				else {
+					mes "[High Priest Zhed]";
+					mes ""+.@input$+"?";
+					mes "No, that wasn't him.";
+					mes "The man that created the";
+					mes "imitation of Ymir's Heart";
+					mes "was named Varmunt.";
+					mes "He was truly a genius.";
+					next;
+				}
+				mes "[High Priest Zhed]";
+				mes "I'm not sure what happened";
+				mes "to Varmunt. All I know was that";
+				mes "something serious happened";
+				mes "in the Schwaltzvalt Republic,";
+				mes "and that he disappeared in";
+				mes "the fiasco. It's strange...";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Although the working";
+				mes "Ymir's Heart imitation that";
+				mes "Varmunt had created was broken";
+				mes "into pieces, other scientists";
+				mes "managed to mostly reproduce";
+				mes "his work with unstable Ymir Hearts.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Since our moderate faction,";
+				mes "was only able to provide";
+				mes "unstable Ymir Heart imitations,";
+				mes "the hard-liner faction quickly";
+				mes "gained more respectability than";
+				mes "us in the eyes of the people.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Despite our advanced weaponry";
+				mes "and armor, I'm afraid that our";
+				mes "country of Arunafeltz is not as";
+				mes "civilized and peaceful as I'd";
+				mes "like it to be, and the hard-liners";
+				mes "control our government now.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Although the hard-liners";
+				mes "allowed us to continue";
+				mes "our research in faithfully";
+				mes "reproducing Ymir's Heart,";
+				mes "they've been developing their";
+				mes "military might unopposed.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "So basically, the moderates";
+				mes "are trying to recreate Ymir's";
+				mes "Heart at research centers";
+				mes "in the Holy Ground and the";
+				mes "Schwaltzvalt Republic.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "The hard-liners are";
+				mes "training soldiers and";
+				mes "storing up military supplies";
+				mes "and weapons in their camp";
+				mes "in Thor Volcano. However,";
+				mes "I don't know any more details.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "This doesn't look good.";
+				mes "I mean, if they're gearing";
+				mes "up to take the Ymir Heart";
+				mes "Pieces by force, it'll be war";
+				mes "against the Schwalzvalt Republic";
+				mes "and the Rune-Midgarts Kingdom!";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Seeing as I'm part of the";
+				mes "moderate faction, as well as";
+				mes "recently demoted, I just don't";
+				mes "have access to much information";
+				mes "about the hard-liners. However,";
+				mes "there may still be hope yet...";
+				next;
+				mes "[High Priest Zhed]";
+				mes "War would be bad for all";
+				mes "parties involved. That is";
+				mes "why I'd like to ask you to";
+				mes "sneak into the camp at";
+				mes "Thor Volcano for the sake of";
+				mes "protecting international peace.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "I really want to know";
+				mes "more about what they're";
+				mes "planning to do, but that";
+				mes "place is heavily guarded!";
+				mes "How am I going to sneak in?";
+				next;
+				mes "[High Priest Zhed]";
+				mes "You're right.";
+				mes "We'll have to think";
+				mes "of a really good way";
+				mes "for you to infiltrate";
+				mes "that place. Hmmmm...";
+				set aru_vol,1;
+				close2;
+				cutin "ra_gman",255;
+				end;
+			}
+			else if ((aru_vol > 0) && (aru_vol < 5)) {
+				mes "[High Priest Zhed]";
+				mes "Hmm...";
+				next;
+				switch(select("How to Sneak into the Camp :The Moderates:The Hard-Liners")) {
+				case 1:
+					mes "[High Priest Zhed]";
+					mes "I still don't have any";
+					mes "ideas for sneaking into";
+					mes "the camp at Thor Volcano.";
+					mes "Give me a little more time,";
+					mes "and hopefully we can figure";
+					mes "something out together.";
+					break;
+				case 2:
+					mes "[High Priest Zhed]";
+					mes "We priests of the moderate";
+					mes "faction are opposed to war,";
+					mes "so we've been trying to";
+					mes "develop imitations of Ymir's";
+					mes "Heart for a long time. We've";
+					mes "yet to succeed, unfortunately.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "The hard-liners actually";
+					mes "opposed our efforts, but";
+					mes "they've let us continue since";
+					mes "they think they can eventually";
+					mes "use imitation Ymir Hearts for";
+					mes "military purposes.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "The Ymir Heart reproduction";
+					mes "project has been frustrating";
+					mes "the best minds in the world,";
+					mes "and some scientists have even";
+					mes "resorted to using forbidden";
+					mes "methods. It's a shame, really.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Varmunt actually succeeded";
+					mes "in recreating Ymir's Heart,";
+					mes "but then he destroyed it and";
+					mes "he disappeared. He did it to";
+					mes "prevent war, but we could";
+					mes "really use his help now.";
+					break;
+				case 3:
+					mes "[High Priest Zhed]";
+					mes "The hard-liners are especially";
+					mes "fanatical in their devotion to";
+					mes "Freya, and will use any means";
+					mes "to further what they interpret";
+					mes "as her will. They're willing to";
+					mes "go to war for their beliefs.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "The fact that they've even";
+					mes "built a military camp in Thor";
+					mes "Volcano disturbs me greatly.";
+					mes "It's almost certain that they";
+					mes "intend to wage war against any";
+					mes "nation with a Ymir's Heart piece.";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "Who is in charge of that";
+					mes "camp at Thor's Volcano?";
+					next;
+					mes "[High Priest Zhed]";
+					mes "High Priest Vildt.";
+					mes "He's in charge of all";
+					mes "important buildings in";
+					mes "Arunafeltz. His room is at";
+					mes "the other side of the building,";
+					mes "but it's always heavily guarded.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Vildt is one of the";
+					mes "highest ranking members";
+					mes "of the hard-liner priest";
+					mes "faction. He rarely makes it";
+					mes "his business to see anybody";
+					mes "that he sees as beneath him.";
+					break;
+				}
+				close2;
+				cutin "ra_gman",255;
+				end;
+			}
+			else if (aru_vol == 5) {
+				cutin "ra_gman",2;
+				if (countitem(7342) > 0) {
+					mes "["+strcharinfo(0)+"]";
+					mes "Would you please";
+					mes "take a look at this";
+					mes "file, High Priest Zhed?";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Of course.";
+					mes "Let's see, what's";
+					mes "in this File Folder?";
+					next;
+					mes "[High Priest Zhed]";
+					mes ".............";
+					mes ".................";
+					mes "....................!";
+					next;
+					mes "[High Priest Zhed]";
+					mes "This is a geological";
+					mes "report about Thor Volcano?";
+					mes "Ah, I see. They must have";
+					mes "someone regularly check";
+					mes "to see if it will erupt.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Although it's fairly dangerous";
+					mes "to build a military camp there,";
+					mes "some weapon materials can";
+					mes "only be forged from the heat";
+					mes "coming from Thor's Volcano.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Yes, I think it's also";
+					mes "likely that there are special";
+					mes "weapon crafting metals and";
+					mes "materials that can only be";
+					mes "found on the volcano. That";
+					mes "makes perfect sense.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Although the volcano is";
+					mes "dormant now, these reports";
+					mes "claim that the volcano is";
+					mes "either safe or ready to erupt";
+					mes "at any time. The data here";
+					mes "doesn't make any sense.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Hm. This is just a hunch,";
+					mes "but seeing these discrepancies";
+					mes "in his reports, I really think this geologist has an agenda against";
+					mes "the camp at Thor Volcano.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "You know, if that's true,";
+					mes "he might be able to help";
+					mes "you sneak into the camp.";
+					mes "Don't you think it's worth";
+					mes "checking out for now?";
+					next;
+					if (select("Yes:No") == 2) {
+						mes "[High Priest Zhed]";
+						mes "Well, you never know";
+						mes "until you ask. Besides,";
+						mes "I don't know if there's";
+						mes "any other way to sneak";
+						mes "into the Thor Volcano Camp...";
+						next;
+					}
+					mes "[High Priest Zhed]";
+					mes "I hope you'll go and talk";
+					mes "to the geologist. He should";
+					mes "be in Veins, the desert city";
+					mes "south of Rachel. He's your";
+					mes "best chance of entering the Thor";
+					mes "Volcano camp without suspicion.";
+					delitem 7342,1; //File01
+					set aru_vol,6;
+				}
+				else {
+					mes "["+strcharinfo(0)+"]";
+					mes "Huh...?";
+					mes "Where did I put";
+					mes "that File Folder?";
+				}
+			}
+			else if (aru_vol == 6) {
+				cutin "ra_gman",2;
+				mes "[High Priest Zhed]";
+				mes "I hope you'll go and talk";
+				mes "to the geologist. He should";
+				mes "be in Veins, the desert city";
+				mes "south of Rachel. He's your";
+				mes "best chance of entering the Thor";
+				mes "Volcano camp without suspicion.";
+				close2;
+				cutin "ra_gman",255;
+				end;
+			}
+			else if ((aru_vol > 6) && (aru_vol < 26)) {
+				cutin "ra_gman",2;
+				mes "[High Priest Zhed]";
+				mes "I hope you'll go and talk";
+				mes "to the geologist. He should";
+				mes "be in Veins, the desert city";
+				mes "south of Rachel. He's your";
+				mes "best chance of entering the Thor";
+				mes "Volcano camp without suspicion.";
+				close2;
+				cutin "ra_gman",255;
+				end;
+			}
+			else if (aru_vol == 26) {
+				cutin "ra_gman",2;
+				mes "[High Priest Zhed]";
+				mes "Oh! You're back!";
+				mes "Was that geologist able";
+				mes "to help you sneak into";
+				mes "the Thor Volcano camp?";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "More than that. We've";
+				mes "convinced the camp that the";
+				mes "volcano is going to explode,";
+				mes "so they're scrambling to";
+				mes "evacuate. They're really";
+				mes "panicking over there!";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Hahaha! That's great!";
+				mes "Even if they do figure";
+				mes "out that they've been";
+				mes "fooled, it will take them";
+				mes "some time to realize it";
+				mes "in all that confusion.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Yes, it might not be the";
+				mes "perfect time to bring down";
+				mes "the hard-liner faction right";
+				mes "now, but the opportunity";
+				mes "should present itself soon.";
+				mes "Thank you for all your help.";
+				next;
+				mes "[High Priest Zhed]";
+				mes "Please relax for a while,";
+				mes "and I'll take care of the rest.";
+				mes "When the time to strike comes,";
+				mes "I will be contacting you again.";
+				mes "Together, we can protect";
+				mes "peace between our nations.";
+				set aru_vol,27;
+				getexp 200000,0;
+				close2;
+				cutin "ra_gman",255;
+				end;
+			}
+			else if (aru_vol > 26) {
+				// Start Peace to Arunafeltz addition
+				if (aru_em < 7) {
+					mes "[High Priest Zhed]";
+					mes "I'll be sure to contact";
+					mes "you again for your help";
+					mes "when the time is right.";
+					mes "I'm sure there are others";
+					mes "that may need you now...";
+				}
+				else if (aru_em == 8){
+					cutin "ra_gman",2;
+					mes "["+strcharinfo(0)+"]";
+					mes "Welcome, adventurer.";
+					mes "I'm glad to see that you're";
+					mes "here. I think... I think an";
+					mes "opportunity has arisen in";
+					mes "which I could use your";
+					mes "expert assistance.";
 					next;
 					cutin "ra_gman2",2;
 					mes "[High Priest Zhed]";
-					mes "As you may already know,";
-					mes "our country of Arunafeltz";
-					mes "worships the goddess Freya";
-					mes "There's almost no separation";
-					mes "between politics, society";
-					mes "and our religion, really.";
+					mes "Though, I fear that I may be";
+					mes "making the wrong decision.";
+					mes "After all, I no longer have";
+					mes "much influence among the";
+					mes "other priests... I can't help";
+					mes "but think I'm in the wrong.";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "Don't lose heart,";
+					mes "High Priest Zhed.";
+					mes "I... I believe in you!";
 					next;
 					cutin "ra_gman",2;
 					mes "[High Priest Zhed]";
-					mes "Now, the leader of our";
-					mes "national religion, our pope,";
-					mes "is a direct servant of Freya";
-					mes "and delivers her messages";
-					mes "to us. As such, she must live";
-					mes "by very strict guidelines.";
+					mes "I guess you're right.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "Our pope is curious about";
-					mes "the outside world and wishes";
-					mes "to learn more about what lies";
-					mes "beyond Arunafeltz, but she";
-					mes "cannot come easily by this";
-					mes "sort of knowledge.";
+					mes "As you well know, the";
+					mes "highest authority in";
+					mes "Arunafeltz is our Pope,";
+					mes "the reincarnation of";
+					mes "our goddess Freya.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "Firstly, she cannot leave";
-					mes "Rachel, the place where the";
-					mes "spirit of goddess Freya dwells";
-					mes "Secondly, all citizens and priests are forbidden to leave the city in";
-					mes "order to preserve our sanctity.";
+					mes "Unfortunately, she is too";
+					mes "young and innocent, and she";
+					mes "doesn't yet have the experience";
+					mes "to assert control, and stamp";
+					mes "out the in-fighting and";
+					mes "corruption among the priests.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "These are implicit rules that";
-					mes "normally aren't discussed openly,";
-					mes "but everyone follows them to";
-					mes "prevent from being stigmatized.";
-					mes "Frankly, I think it's somewhat shameful, but we're working on it.";
+					mes "In these desperate times,";
+					mes "we will need someone to";
+					mes "provide strong and confident";
+					mes "leadership to the people";
+					mes "of Arunafeltz before all";
+					mes "is lost to war and violence.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "Furthermore, our pope must";
-					mes "maintain her image of aloof";
-					mes "piety, so it'd be inappropriate of her to openly question outside";
-					mes "world affairs. Although, such";
-					mes "knowledge would benefit her.";
+					mes "^333333*Sigh...*^000000";
+					mes "I know it may not be";
+					mes "right, but someone";
+					mes "must do something";
+					mes "before the other High";
+					mes "Priests ruin our nation.";
+					next;
+					Emotion e_omg,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "Y-you're not thinking";
+					mes "of overthrowing the";
+					mes "pope are you? I-isn't";
+					mes "that a bit extreme?";
+					next;
+					cutin "ra_gman2",2;
+					Emotion e_swt;
+					mes "[High Priest Zhed]";
+					mes "What? No, no!";
+					mes "Don't jump to conclusions";
+					mes "like that! Don't misunderstand";
+					mes "me: I'm loyal to our pope.";
+					next;
+					cutin "ra_gman",2;
+					mes "[High Priest Zhed]";
+					mes "I actually want to work";
+					mes "very closely with the pope,";
+					mes "in essense, rule together with";
+					mes "her by combining my experience";
+					mes "and her wisdom. It's ambitious,";
+					mes "but what else can I do?";
 					next;
 					mes "[High Priest Zhed]";
-					mes "That is why the high priests";
-					mes "decided to enlist a trustworthy";
-					mes "adventurer to inform our pope";
-					mes "about the outside world. Now";
-					mes "you understand why I've asked";
-					mes "you to keep all of this secret.";
+					mes "You remember how you";
+					mes "stopped the hard-liner";
+					mes "priests from carrying out";
+					mes "their plans for war in the";
+					mes "Thor Volcano camp? That will";
+					mes "only stop them temporarily.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "You won't need to divulge";
-					mes "outrageous secrets or anything";
-					mes "like that. I presume mundane";
-					mes "details would be enough to";
-					mes "please her. Just let her be";
-					mes "able to envision your homeland.";
+					mes "They'll eventually prepare";
+					mes "to act out in violence again.";
+					mes "We need a permanent solution";
+					mes "to ensure that this sort of";
+					mes "thing doesn't happen again.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "Personally, I think it would";
-					mes "be refreshing for our pope to";
-					mes "hear a few of your stories as";
-					mes "she is always worshipping";
-					mes "our goddess on the behalf of";
-					mes "everyone in our glorious city.";
+					mes "We need to convince the";
+					mes "pope to finally act, and";
+					mes "give my policy of peace";
+					mes "her full support. Will";
+					mes "you help me to do this?";
+					next;
+					if (select("Yes:No") == 2) {
+						mes "Well... Asking for the";
+						mes "pope's support is the only";
+						mes "solution I've been able to";
+						mes "find. Do you have any ideas";
+						mes "for protecting peace here";
+						mes "in Arunafeltz?";
+						next;
+						input .@input$;
+						mes "["+strcharinfo(0)+"]";
+						mes ""+.@input$+"?";
+						next;
+						mes "[High Priest Zhed]";
+						mes "Well, I don't know.";
+						mes "It's a good idea, but";
+						mes "I fear that it will only";
+						mes "be effective in the short";
+						mes "term. Why don't we just";
+						mes "try what I've proposed first?";
+						next;
+					}
+					mes "[High Priest Zhed]";
+					mes "Hmm, now how can";
+					mes "we convince the pope to";
+					mes "support us? Even as Freya's";
+					mes "reincarnation... She's just";
+					mes "a young girl. She probably";
+					mes "knows nothing of politics.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "Unfortunately, I cannot escort";
-					mes "you to the priestess, but I will";
-					mes "relate the means to which you";
-					mes "can gain an audience with her";
-					mes "First, you will need a ^FF0000High";
-					mes "Priest's Recommendation^000000";
+					mes "It'd probably be best to";
+					mes "tell her exactly what is";
+					mes "happening. The full truth.";
+					mes "In my heart, I know that";
+					mes "would be best.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "I will write that for you, so";
-					mes "there's no need to concern";
-					mes "yourself with that. Next, you";
-					mes "will need to gather ^FF000040 Glacial";
-					mes "Hearts^000000 as symbolic proof of";
-					mes "your strength and purity.";
+					mes "But... Maybe it would";
+					mes "be better if we sugar";
+					mes "coated it a little bit.";
+					mes "She might not be too";
+					mes "receptive to us if we";
+					mes "totally shock her.";
 					next;
 					mes "[High Priest Zhed]";
-					mes "While I finish writing this";
-					mes "recommendation, let me tell";
-					mes "you how to get to the pope's";
-					mes "office where you must go once";
-					mes "you gather 40 Glacial Hearts.";
+					mes "Hmm... What do you";
+					mes "think? Should we stick";
+					mes "with the truth, or do you";
+					mes "think it'd be better if we";
+					mes "exaggerate and... lie when";
+					mes "we feel it's necessary?";
+					next;
+					switch(select("Truth:Lies")) {
+					case 1:
+						mes "[High Priest Zhed]";
+						mes "That's what I think too.";
+						mes "Although I'm worried about";
+						mes "how the pope will react at";
+						mes "our message, I should have";
+						mes "faith. I should have faith.";
+						next;
+						break;
+					case 2:
+						mes "[High Priest Zhed]";
+						mes "I suppose that you may";
+						mes "have a point. It might not";
+						mes "be a good idea to totally";
+						mes "expose her to the ugly";
+						mes "truth. I'll try to be as";
+						mes "honest as I can...";
+						next;
+						break;
+					}
+					mes "[High Priest Zhed]";
+					mes "Well, there's no time";
+					mes "to waste. The two of us may";
+					mes "not be enough to convince";
+					mes "the pope to act for peace.";
+					mes "I already have someone in";
+					mes "mind that might help us.";
+					next;
+					Emotion 52,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "That sounds good.";
+					mes "Who is he?";
 					next;
 					mes "[High Priest Zhed]";
-					mes "Head west from the chapel";
-					mes "in the center of the temple,";
-					mes "and then enter a door guarded";
-					mes "by two soldiers. Show them your";
-					mes "recommendation and Glacial Hearts, and they should grant you passage.";
+					mes "My old friend, High Priest";
+					mes "Niren. I'm not sure if she'll";
+					mes "help me after all that's";
+					mes "happened between us. She";
+					mes "may even think I deserve";
+					mes "to be excommunicated...";
+					next;
+					Emotion e_no1,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "Come on, it wouldn't";
+					mes "hurt to try! Besides,";
+					mes "Niren isn't a bad person.";
+					mes "Maybe she'll understand";
+					mes "the way you see things";
+					mes "if you explain them?";
 					next;
 					mes "[High Priest Zhed]";
-					mes "Ah, here you are";
-					mes "I've finished writing";
-					mes "your recommendation.";
-					mes "Well then, I guess I'll";
-					mes "see you after you've";
-					mes "completed this task.";
+					mes "You're right, of course.";
+					mes "I'm just grasping at straws";
+					mes "here, but she and I both used";
+					mes "to believe that peace was";
+					mes "possible. I don't know why";
+					mes "she joined the hard-liners...";
 					next;
-					mes "^3355FFYou received a High";
-					mes "Priest's recommendation.^000000";
-					set ra_tem_q,15;
-					goto L_End;
-
+					mes "[High Priest Zhed]";
+					mes ""+strcharinfo(0)+"...";
+					mes "Would you please talk to";
+					mes "her, and just see how she's";
+					mes "doing? It might not be a good";
+					mes "time to mention our plan";
+					mes "right away, though...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "If you think that you";
+					mes "have a chance of convincing";
+					mes "her, then feel free and offer";
+					mes "my proposal. Her office is";
+					mes "located across from here,";
+					mes "but she's always very busy...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "There's actually";
+					mes "a good chance that";
+					mes "she is away somewhere";
+					mes "on business. She is highly";
+					mes "loved by the people, you know.";
+					set aru_em,9;
 				}
-				mes "[High Priest Zhed]";
-				mes "I understand, but if you";
-				mes "change your mind, please";
-				mes "come back and let me know";
-				mes "It's very hard for me to find";
-				mes "someone that I can really";
-				mes "rely on to do this for me.";
-				goto L_End;
+				else if ((aru_em == 9) || (aru_em == 10)) {
+					mes "[High Priest Zhed]";
+					mes "Please speak to Niren,";
+					mes "and she if she'd be willing";
+					mes "to help us convince the pope";
+					mes "to enforce peace in our nation.";
+				}
+				else if (aru_em == 11) {
+					cutin "ra_gman",2;
+					mes "[High Priest Zhed]";
+					mes "Welcome back.";
+					mes "So did you get a chance";
+					mes "to speak to Niren? How did";
+					mes "she respond to my proposal?";
+					next;
+					mes "^3355FFYou explain Niren's reasons";
+					mes "for her disappointment in";
+					mes "the Moderate priest faction,";
+					mes "and tell Zhed that she intends";
+					mes "to carry out the plans for war.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "....................";
+					mes "....................";
+					mes "....................";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Hmm... This explains why";
+					mes "she and some other high";
+					mes "priests started being absent";
+					mes "from their offices. Many of";
+					mes "them were invited over to";
+					mes "the Schwaltzvalt Republic...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Regardless, I know for";
+					mes "a fact that war is never";
+					mes "a solution. It only brings";
+					mes "death and destruction.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Give me a moment.";
+					mes "I'm going to write";
+					mes "a letter that I want";
+					mes "you to give to Niren.";
+					set aru_em,12;
+				}
+				else if(aru_em == 12) {
+					cutin "ra_gman",2;
+					mes "[High Priest Zhed]";
+					mes "Please bring this letter";
+					mes "to Niren. I hope what";
+					mes "I have to say will help";
+					mes "her understand how I feel";
+					mes "about these plans for war.";
+					next;
+					mes "^3355FFYou received a letter for";
+					mes "Niren from High Priest Zhed.^000000";
+					set aru_em,13;
+				}
+				else if((aru_em == 13) || (aru_em == 14)) {
+					mes "[High Priest Zhed]";
+					mes "Please deliver my";
+					mes "letter to Niren as";
+					mes "soon as you can.";
+					mes "I really appreciate";
+					mes "you helping me on this.";
+				}
+				else if ((aru_em > 14) && (aru_em < 20)) {
+					mes "[High Priest Zhed]";
+					mes "Great news! Niren just";
+					mes "sent me a reply: I can't";
+					mes "believe that she's willing";
+					mes "to help me! Would you please";
+					mes "give her any help that she";
+					mes "may need from now on?";
+				}
+				else if(aru_em == 20) {
+					cutin "ra_gman",2;
+					mes "[High Priest Zhed]";
+					mes "Ah, I've been";
+					mes "waiting for you.";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "High Priest Zhed,";
+					mes "everything's ready!";
+					mes "High Priest Niren managed";
+					mes "to send away all of those";
+					mes "followers that were near the";
+					mes "pope. You won't be interrupted.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "I hope we can get the pope";
+					mes "to understand the situation";
+					mes "of our nation. I only...";
+					mes "Oh, Freya help us...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "..............";
+					mes "..............";
+					mes "..............";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Alright, I'm ready.";
+					mes "Let's receive an";
+					mes "audience with the";
+					mes "pope, shall we?";
+					set aru_em,21;
+				}
+				else if(aru_em == 21) {
+					mes "[High Priest Zhed]";
+					mes "I'm a little nervous";
+					mes "about talking so brazenly";
+					mes "to the pope, but I'm";
+					mes "ready to go meet her.";
+				}
+				else if (aru_em == 22) {
+					mes "[High Priest Zhed]";
+					mes "I believe that Niren";
+					mes "has something important";
+					mes "to tell you. Why don't";
+					mes "you speak to her before";
+					mes "coming back to me?";
+				}
+				else if (aru_em == 23) {
+					cutin "ra_gman",2;
+					mes "[High Priest Zhed]";
+					mes "I'm glad that everything";
+					mes "turned out great. Your";
+					mes "help was truly a blessing.";
+					mes "Although Schwaltzvalt will";
+					mes "continue their plans without";
+					mes "us, we've slowed them down.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Yes, without our support,";
+					mes "Schwaltzvalt won't have";
+					mes "any excuse to continue";
+					mes "their dangerous research";
+					mes "for a little while, at least.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "Thor Volcano Camp";
+					mes "should close down soon,";
+					mes "now that we no longer";
+					mes "have any use for it.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "I also underestimated our";
+					mes "pope. She is more dignified,";
+					mes "willed that I believed.";
+					mes "I owe her my apologies.";
+					next;
+					mes "[High Priest Zhed]";
+					mes "We won't give up on";
+					mes "reviving our goddess Freya,";
+					mes "but we will retrieve Ymir's";
+					mes "Heart through diplomacy";
+					mes "rather than violence.";
+					mes "It won't be easy...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "You've been instrumental";
+					mes "in returning peace here in";
+					mes "Arunafeltz. I've even been";
+					mes "reinstated, and will be very";
+					mes "busy from now on, working";
+					mes "closely with the pope...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "I know that the life of";
+					mes "adventuring beckons you.";
+					mes "I know she'd like to see";
+					mes "you before you leave, but";
+					mes "she's sleeping deeply after";
+					mes "that exhausting speech...";
+					next;
+					mes "[High Priest Zhed]";
+					mes "On behalf of our pope";
+					mes "and all the citizens of";
+					mes "Arunafeltz, I'd like to";
+					mes "thank you for your heroism.";
+					mes "Your place in Valhalla is";
+					mes "already assured, I'm sure.";
+					set aru_em,24;
+					getexp 1500000,0;
+				}
+				else {
+					mes "[High Priest Zhed]";
+					mes "May Freya bless you";
+					mes "on all your journeys,";
+					mes "my good friend.";
+				}
+				// End Peace to Arunafeltz addition
 			}
-
-			else if ((ra_tem_q == 15) || (ra_tem_q == 16)) {
-				mes "[High Priest Zhed]";
-				mes "Once you gather";
-				mes "^FF000040 Glacial Hearts^000000,";
-				mes "you can show them, along";
-				mes "with the recommendation I've";
-				mes "written for you, to the soldiers";
-				mes "guarding the pope's office.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "When you're ready to go";
-				mes "to the pope's office, just";
-				mes "head west from the chapel";
-				mes "to the center of the temple:";
-				mes "this is where the entrance is.";
-				goto L_End;
-
-			}
-
-			else if (ra_tem_q == 17) {
-				mes "[High Priest Zhed]";
-				mes "Ah, thank you so much";
-				mes "for spending some time";
-				mes "with the pope for me";
-				mes "I can tell that she really";
-				mes "enjoyed speaking to you.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "I am curious, though...";
-				mes "Our pope is unaccustomed";
-				mes "to speaking with outsiders,";
-				mes "so I assume that you have";
-				mes "your own questions after";
-				mes "your conversation with her.";
-				next;
-				select("Well, she did mention some Holy Ground...");
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "What...?!";
-				mes "She mentioned";
-				mes "the Holy Ground...?!";
-				next;
+			else {
 				cutin "ra_gman",2;
 				mes "[High Priest Zhed]";
-				mes "The Holy Ground is a place";
-				mes "where all humans, including";
-				mes "the pope, have been forbidden.";
-				mes "We used to allow people to";
-				mes "visit in the past, but...";
-				next;
-				mes "[High Priest Zhed]";
-				mes "Only the gods can access";
-				mes "that place now. Listen, if";
-				mes "the other priests ask about";
-				mes "your conversation with the";
-				mes "pope, please do not make any";
-				mes "mention of the Holy Ground.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "Please don't ask me";
-				mes "why, but believe me that";
-				mes "it's very important that";
-				mes "you feign ignorance of the";
-				mes "Holy Ground's existence!";
-				next;
-				mes "[????]";
-				mes "Excuse me, Zhed?";
-				mes "May I speak with you";
-				mes "for a moment? I need";
-				mes "to talk to you about";
-				mes "a private matter.";
-				next;
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "Er, yes, of course!";
-				mes "Excuse me for a moment...";
-				mes "While you're waiting for me,";
-				mes "why don't you relax in the";
-				mes "next room? Don't forget:";
-				mes "there is no Holy Ground.";
-				close2;
-				cutin "",255;
-				select("Okay.");
-				warp "ra_temin",297,156;
-				set ra_tem_q,18;
-				end;
-
+				mes "Ugh...!";
+				mes "I've got such";
+				mes "a horrible headache!";
 			}
-
-			else if (ra_tem_q == 18) {
-				mes "[High Priest Zhed]";
-				mes "Er, I thought I asked you";
-				mes "to wait in the next room?";
-				close2;
-				cutin "",255;
-				warp "ra_temin",297,156;
-				end;
-			}
-
-
-			else if (ra_tem_q == 19) {
-				mes "[High Priest Zhed]";
-				mes "I apologize for making";
-				mes "you wait for so long: I had";
-				mes "some crucial matters to";
-				mes "discuss. Now, that look";
-				mes "on your face tells me that";
-				mes "you have a pressing question.";
-				next;
-				select("Ask about Bekento");
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "Bekento? Ah, you must";
-				mes "have been speaking to";
-				mes "High Priestess Niren.";
-				mes "She's the only one that";
-				mes "calls me that. You see, my";
-				mes "full name is Zhed Bekento.";
-				next;
-				cutin "ra_gman",2;
-				mes "[High Priest Zhed]";
-				mes "Speaking of which...";
-				mes "Did Niren ask you anything";
-				mes "or tell you something that";
-				mes "was out of the ordinary?";
-				next;
-				mes "^3355FFAfter a little hesitation,";
-				mes "you tell High Priest Zhed";
-				mes "about your conversation";
-				mes "with High Priestess Niren.^000000";
-				next;
-				mes "[High Priest Zhed]";
-				mes "Hmm, I see.";
-				mes "Yes. That sounds";
-				mes "like something she'd do.";
-				mes "I'll explain it all later, but";
-				mes "right now, I need to rest.";
-				mes "I'm getting old, you know.";
-				next;
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "Ah, but before you go, let";
-				mes "me warn you not to ^FF0000go near";
-				mes "the Holy Ground^000000. I repeat,";
-				mes "stay away from the Holy Ground.";
-				next;
-				mes "^3355FFThe Holy Ground...";
-				mes "Why is High Priest Zhed";
-				mes "so adamant about protecting";
-				mes "the Holy Ground? Regardless...";
-				mes "If you want to go there, then";
-				mes "just go there. Who'll stop you?^000000";
-				set ra_tem_q,20;
-				goto L_end;
-			}
-
-			else if ((ra_tem_q >= 20) && (ra_tem_q < 22)) {
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "Whatever you do, whatever";
-				mes "journeys you take, please";
-				mes "make sure that you stay";
-				mes "away from the Holy Ground!";
-				next;
-				mes "^3355FFNow, more than ever,";
-				mes "you feel compelled to";
-				mes "enter the Holy Ground.^000000";
-				goto L_End;
-
-			}
-
-			else if (ra_tem_q == 23) {
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "Oh, it's you.";
-				mes "Let me guess...";
-				mes "After everything I said,";
-				mes "you still went ahead and";
-				mes "visited the Holy Ground,";
-				mes "didn't you? Oh, well...";
-				next;
-				select("Did something happen?");
-				cutin "ra_gman",2;
-				mes "[High Priest Zhed]";
-				mes "Well, honestly, I've been";
-				mes "temporarily suspended from";
-				mes "work, but no need to worry.";
-				mes "It's not your fault. I've been";
-				mes "in conflict with the other High";
-				mes "Priests for a while, anyway.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "Please don't worry about it.";
-				mes "If not this, they would have";
-				mes "found some other way to attack";
-				mes "me. It would only be a matter";
-				mes "of time. They're exaggerating";
-				mes "your intrusion for their benefit.";
-				next;
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "All I want is for";
-				mes "Arunafeltz to be safe";
-				mes "and at peace. I hope this";
-				mes "land is not twisted by the";
-				mes "greedy humans. I hope all will";
-				mes "work according to Freya's will.";
-				next;
-				cutin "ra_gman",2;
-				mes "[High Priest Zhed]";
-				mes "Ah, and please do not";
-				mes "blame Niren. She must have";
-				mes "her own reasons for her own";
-				mes "actions. She has changed";
-				mes "much but in the end, I think";
-				mes "that we are still friends.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "One last thing:";
-				mes "try not to let the";
-				mes "other priests catch you";
-				mes "doing anything forbidden.";
-				mes "It'd be a little embarassing";
-				mes "for me, you understand.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "Still, you were secretly";
-				mes "invited here, so I'm sure";
-				mes "that only a very few of them";
-				mes "would be able to recognize";
-				mes "you. In the end, you'll do";
-				mes "what you will, right?";
-				next;
-				cutin "ra_gman2",2;
-				mes "[High Priest Zhed]";
-				mes "...I think I know what";
-				mes "you saw in the Holy Ground.";
-				mes "I'm sure that you have much";
-				mes "to ask, but now isn't the time";
-				mes "to seek for answers. Please,";
-				mes "you must be patient.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "Until the right time";
-				mes "comes, I want you not";
-				mes "to tell anyone else what";
-				mes "you saw in the Holy Ground.";
-				next;
-				mes "[High Priest Zhed]";
-				mes "Well then, adventurer,";
-				mes "thank you for coming by.";
-				mes "I need to go lay down now,";
-				mes "so if you'll let me rest...";
-				close2;
-				set MISC_QUEST,MISC_QUEST | 8192;
-				set ra_tem_q,0;
-				cutin "",255;
-				specialeffect2 253;
-				getexp 900000,600000;
-				end;
-
-			}
-
 		}
-
+		else {
+			cutin "ra_gman",2;
+			mes "[High Priest Zhed]";
+			mes "I should rest for now.";
+			mes "Please travel in safety.";
+		}
+	// End Veins "Thor Volcano Base" Quest Addition.
 	}
-
-L_End:
+	else {
+		cutin "ra_gman",2;
+		mes "[High Priest Zhed]";
+		mes "May Freya be with you.";
+	}
 	close2;
 	cutin "",255;
 	end;
@@ -5491,7 +6531,7 @@ ra_temin,170,46,3	script	Panno#rachel	920,{
 			next;
 			if (select("Yes:No") == 1) goto L_Lottery;
 			cutin "ra_fano03",2;
-			mes "[Priestess Panno]";;
+			mes "[Priestess Panno]";
 			mes "You can redeem your";
 			mes "Lottery Tickets at any";
 			mes "time, so please visit";
@@ -5712,7 +6752,7 @@ ra_temin,170,46,3	script	Panno#rachel	920,{
 		mes "be a shelter from intruders.";
 		next;
 		mes "[Priestess Panno]";
-		mes "My ancester designed the";
+		mes "My ancestor designed the";
 		mes "temple security system to";
 		mes "require a special permit in";
 		mes "order to access the temple";
@@ -5884,7 +6924,47 @@ L_End:
 }
 
 ra_temin,134,128,3	script	Pope's Office Guard#rac::raofficeguard	926,{
-	if (MISC_QUEST & 8192) {
+	if ((ra_tem_q == 15) && (countitem(7561) > 39)) {
+		mes "[Pope's Office Guard]";
+		mes "Hm? What's that you have";
+		mes "there? Oh, you've gathered";
+		mes "40 Glacial Hearts and brought";
+		mes "a recommendation letter from";
+		mes "a High Priest? Most impressive.";
+		next;
+		mes "[Pope's Office Guard]";
+		mes "I think I know why you're";
+		mes "here. Thanks for bringing";
+		mes "those to me, and I'll let you";
+		mes "enter and see the pope";
+		mes "Welcome, brave "+strcharinfo(0)+".";
+		close2;
+		set ra_tem_q,16;
+		delitem 7561,40; //Ice_Heart
+		end;
+	}
+	else if (ra_tem_q == 16) {
+		mes "[Pope's Office Guard]";
+		mes "The pope is inside";
+		mes "expecting you, so please";
+		mes "don't keep her waiting long.";
+		close;
+	}
+	else if (MISC_QUEST & 8192) {
+		if ((aru_em == 15) || (aru_em == 21)) {
+			mes "- Niren told me to pay a visit to the Pope in her office... -";
+			close;
+		}
+		else {
+			mes "[Pope's Office Guard]";
+			mes "I'm sorry, but outsiders";
+			mes "typically aren't allowed";
+			mes "to visit the pope without";
+			mes "special authorization.";
+			close;
+		}
+	}
+	else {
 		mes "[Pope's Office Guard]";
 		mes "I'm sorry, but the pope";
 		mes "is officiating a service";
@@ -5892,45 +6972,19 @@ ra_temin,134,128,3	script	Pope's Office Guard#rac::raofficeguard	926,{
 		mes "after the service is ended.";
 		close;
 	}
+}
 
-	if ((ra_tem_q < 15) || (ra_tem_q == 15) && (countitem(7561) < 40)) {
-		mes "[Pope's Office Guard]";
-		mes "I'm sorry, but outsiders";
-		mes "typically aren't allowed";
-		mes "to visit the pope without";
-		mes "special authorization.";
-		close;
+ra_temin,134,134,3	duplicate(raofficeguard)	Pope's Office Guard#2ra	926
+
+ra_temin,134,131,0	script	gyoin1#rachel	45,1,1,{
+OnTouch:
+	if (ra_tem_q == 16) {
+		warp "ra_temin",276,239;
 	}
-
-
-	else {
-		if (ra_tem_q == 15) {
-			mes "[Pope's Office Guard]";
-			mes "Hm? What's that you have";
-			mes "there? Oh, you've gathered";
-			mes "40 Glacial Hearts and brought";
-			mes "a recommendation letter from";
-			mes "a High Priest? Most impressive.";
-			next;
-			mes "[Pope's Office Guard]";
-			mes "I think I know why you're";
-			mes "here. Thanks for bringing";
-			mes "those to me, and I'll let you";
-			mes "enter and see the pope";
-			mes "Welcome, brave "+strcharinfo(0)+".";
-			close2;
-			set ra_tem_q,16;
-			delitem 7561,40; //Ice_Heart
+	else if ((ra_tem_q > 16) || (MISC_QUEST & 8192)){
+		if ((aru_em == 15) || (aru_em == 21)) {
+			warp "ra_temin",276,239;
 		}
-
-		if (ra_tem_q == 16) {
-			mes "[Pope's Office Guard]";
-			mes "The pope is inside";
-			mes "expecting you, so please";
-			mes "don't keep her waiting long.";
-			close;
-		}
-
 		else {
 			mes "[Pope's Office Guard]";
 			mes "I'm sorry, but the pope";
@@ -5939,32 +6993,21 @@ ra_temin,134,128,3	script	Pope's Office Guard#rac::raofficeguard	926,{
 			mes "after the service is ended.";
 			close;
 		}
-
 	}
-
-}
-
-ra_temin,134,134,3	duplicate(raofficeguard)	Pope's Office Guard#2ra	926
-
-ra_temin,134,131,0	script	gyoin1#rachel	45,1,1,{
-OnTouch:
-	if ((ra_tem_q > 16) || (MISC_QUEST & 8192)){
-		mes "[Pope's Office Guard]";
-		mes "I'm sorry, but the pope";
-		mes "is officiating a service";
-		mes "now. Please come back";
-		mes "after the service is ended.";
-		close;
-	}
-
 	if (ra_tem_q < 16) {
 		mes "^3355FFThe door is locked.^000000";
 		close;
 	}
-	else if (ra_tem_q == 16) {
-		warp "ra_temin",276,239;
-	}
+	end;
+}
 
+ra_temin,275,226,0	script	#rachel33	45,1,1,{
+	end;
+OnTouch:
+	if (aru_em == 21)
+		warp "que_temsky",99,11;
+	else
+		warp "ra_temsky",99,11;
 	end;
 }
 
@@ -6106,20 +7149,85 @@ ra_temsky,99,99,5	script	Pope#rachel	936,{
 		cutin "",255;
 		end;
 	}
-
-	else if (ra_tem_q == 17) {
-		mes "[Pope]";
-		mes "Oh, that's right...";
-		mes "Zhed... Er, High Priest";
-		mes "Zhed wanted to speak to you!";
-		close2;
-		cutin "",255;
-		end;
+	else {
+		if (aru_em < 15) {
+			mes "[Pope]";
+			mes "Oh, that's right...";
+			mes "Zhed... Er, High Priest";
+			mes "Zhed wanted to speak to you!";
+			close2;
+			cutin "",255;
+			end;
+		}
+		else if (aru_em == 15) {
+			mes "[Pope]";
+			mes "Oh, hello! It's you again!";
+			mes "Have you come to tell me";
+			mes "interesting stories about";
+			mes "the outside world again?";
+			next;
+			input .@input$;
+			mes "[Pope]";
+			mes "Mm. That sounds pretty";
+			mes "strange to me. Well, it's";
+			mes "good to hear it from you.";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "(^333333I can't just leave";
+			mes "now. I should try to see";
+			mes "if I can learn anything";
+			mes "useful from the pope...^000000)";
+			next;
+			switch(select("Aren't you lonely?:Do you ever take a break?")) {
+			case 1:
+				mes "[Pope]";
+				mes "Well, there are always";
+				mes "some priests with me all";
+				mes "the time. Some of them";
+				mes "even watch me when I sleep.";
+				mes "I don't think I have time";
+				mes "to feel lonely, actually.";
+				next;
+				mes "[Pope]";
+				mes "Thank you for asking.";
+				mes "Sometimes... Sometimes";
+				mes "I wonder if I have a real";
+				mes "family. I don't even know";
+				mes "who'd they be or if they";
+				mes "exist. I don't know...";
+				next;
+				mes "[Pope]";
+				mes "I... I'm sorry.";
+				mes "I guess you didn't";
+				mes "expect to hear something";
+				mes "like that. ^666666*Sigh*^000000 I'm feeling";
+				mes "pretty exhausted. I better...";
+				mes "I better get some rest...";
+				set aru_em,16;
+				close2;
+				cutin "",255;
+				end;
+			case 2:
+				mes "[Pope]";
+				mes "Well, even if I wanted";
+				mes "to, I can't just go out";
+				mes "and play. As pope... Well...";
+				mes "Everyone and everything";
+				mes "sort of needs my attention.";
+				close2;
+				cutin "",255;
+				end;
+			}
+		}
+		else if (aru_em == 16) {
+			mes "[Follower]";
+			mes "The pope said that she's";
+			mes "exhausted. Please come";
+			mes "back when she's feeling";
+			mes "better, and she will have";
+			mes "an audience with you.";
+		}
 	}
-
-	mes "[Pope]";
-	mes "...";
-	mes "...";
 	close2;
 	cutin "",255;
 	end;
@@ -6129,21 +7237,16 @@ ra_temin,294,149,0	script	High Priestess Niren#ra	915,{
 	end;
 
 OnInit:
-	disablenpc "High Priestess Niren#ra";
+	hideonnpc "High Priestess Niren#ra";
 	end;
 
 OnEnable:
 	initnpctimer;
-	misceffect 16;
-	end;
-
-OnDisable:
-	misceffect 16;
 	end;
 
 OnTimer120000:
 	stopnpctimer;
-	disablenpc "High Priestess Niren#ra";
+	hideonnpc "High Priestess Niren#ra";
 	end;
 
 }
@@ -6243,7 +7346,7 @@ OnTouch:
 		mes "from the wall and feign";
 		mes "ignorance as best you can!^000000";
 		next;
-		enablenpc "High Priestess Niren#ra";
+		hideoffnpc "High Priestess Niren#ra";
 		cutin "ra_gwoman",2;
 		mes "[High Priestess Niren]";
 		mes "Oh! You must be the one";
@@ -6320,7 +7423,7 @@ OnTouch:
 		mes "yourself in trouble.";
 		next;
 		cutin "",255;
-		disablenpc "High Priestess Niren#ra";
+		hideonnpc "High Priestess Niren#ra";
 		mes "^3355FFHigh Priestess Niren left";
 		mes "as soon as she said those words.";
 		mes "What could she possibly mean?";
@@ -6431,7 +7534,7 @@ que_san04,119,203,0	script	imir3#rachel	-1,7,7,{
 			mes "this is the secret that the";
 			mes "priests are trying to keep.^000000";
 			next;
-			enablenpc "High Priestess Niren#r2";
+			hideoffnpc "High Priestess Niren#r2";
 			cutin "ra_gwoman",2;
 			mes "[High Priestess Niren]";
 			mes "How dare you intrude";
@@ -6479,7 +7582,7 @@ que_san04,119,203,0	script	imir3#rachel	-1,7,7,{
 			mes "grow drowsier and sleepier...^000000";
 			set ra_tem_q,22;
 			close2;
-			disablenpc "High Priestess Niren#r2";
+			hideonnpc "High Priestess Niren#r2";
 			warp "rachel",163,152;
 			end;
 		}
@@ -6490,23 +7593,17 @@ que_san04,122,200,4	script	High Priestess Niren#r2	915,{
 	end;
 
 OnInit:
-	disablenpc "High Priestess Niren#r2";
+	hideonnpc "High Priestess Niren#r2";
 	end;
 
 OnEnable:
 	initnpctimer;
-	misceffect 16;
-	end;
-
-OnDisable:
-	misceffect 16;
 	end;
 
 OnTimer120000:
 	stopnpctimer;
-	disablenpc "High Priestess Niren#r2";
+	hideonnpc "High Priestess Niren#r2";
 	end;
-
 }
 
 rachel,163,152,0	script	imir3#rachel2	-1,3,3,{
