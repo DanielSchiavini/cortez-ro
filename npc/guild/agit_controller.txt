@@ -1,4 +1,40 @@
-
+//===== eAthena Script =======================================
+//= War of Emperium - WoE Auto-Start
+//===== By: ==================================================
+//= kalen (1.0)
+//= 1.1 by Akaru and ho|yAnge|
+//===== Current Version: =====================================
+//= 2.0
+//===== Compatible With: =====================================
+//= eAthena SVN; RO Episode 4+
+//===== Description: =========================================
+//= Auto Start for War of Emperium
+//=============================================
+//= gettime(3): Gets hour (24 hour time)
+//= gettime(4): Gets day of week 1=Monday, 2=Tuesday,
+//= 3=Wednesday, 4=Thursday, etc.
+//===== Additional Comments: =================================
+//= v1.1a changed OnInit to OnAgitInit.[kobra_k88]
+//= v1.2 added gettime checks. removed $AgitStarted var.[kobra_k88]
+//= v1.3 Moved treasure spawn time here.[kobra_k88]
+//= v1.3a Implemented Shadowlady's idea to allow for different
+//= start/stop times on different days.[kobra_k88]
+//= 1.4 Fixed treasure chests spawn! We had to unroll some loops
+//= Now they appear in castles from 00:01 to 00:24. [Lupus]
+//= 1.5 Fixed WOE end messages on non-WOE days, by Avaj
+//= 1.5a missing tabs [KarLaeda]
+//= 1.6 Corrected multiple "WoE has begun" announces [ultramage]
+//= 1.7 Commented out the WoE start and end announces. [L0ne_W0lf]
+//= 1.8 Castle owners displayed when WoE starts and finished. [L0ne_W0lf]
+//= 1.8a Will now report unoccupied castles at start/end. [L0ne_W0lf]
+//= 1.8b Whoops. Fixed a mistake :D [L0ne_W0lf]
+//= 1.9 Rearranged the time-checks so they no longer use goto. [L0ne_W0lf]
+//=	Removed treasure spawning function calls. (No longer needed)
+//= 2.0 Added WoE Battle Log support for broadcasts. [L0ne_W0lf]
+//============================================================
+//| To know how to set up WoE times, go to doc\woe_time_explanation.txt
+// WoE Start/Stop times
+//======================================
 -	script	Agit_Event	-1,{
 	end;
 
@@ -19,6 +55,7 @@ OnSun1600:
 OnInit:
 
 OnAgitStart:
+OnAgitStart2:
 	if($serv==5 || $serv==-1){
 		set $@dia1,3;	// Dia da WOE 1.0 com 2 castelos. 3 = Quarta
 		set $@hor1,20;	// Horário de início
@@ -44,24 +81,30 @@ OnAgitStart:
 	set $@duracao, 2;
 	
 	if(($@dia==$@dia1 && $@hor>=$@hor1 && $@hor<$@hor1+$@duracao) || ($@dia==$@dia2 && $@hor>=$@hor2 && $@hor<$@hor2+$@duracao) || ($@dia==$@dia3 && $@hor>=$@hor3 && $@hor<$@hor3+$@duracao)){
-		if(!agitcheck()){
+		if(!agitcheck() && !agitcheck2()){
 			Announce "A Guerra do Emperium começou!",bc_npc;
 			if($@dia==$@dia1){ //WOE 1.0, 2 castelos
 				set $castleMap1$,"prtg_cas01";
 				set $castleMap2$,""; // prtg_cas02
+				AgitStart;
 			}else if($@dia==$@dia2){	//WOE 2.0
 				set $castleMap1$,"arug_cas03";
 				set $castleMap2$,"";
+				AgitStart2;
 			}else if($@dia==$@dia3){	//WOE 1.0, 1 castelo
 				set $castleMap1$,"gefg_cas02";
 				set $castleMap2$,"";
+				AgitStart;
 			}
-			AgitStart;
 		}
 	}else if(($@dia==$@dia1 && $@hor==$@hor1+$@duracao) || ($@dia==$@dia2 && $@hor==$@hor2+$@duracao) || ($@dia==$@dia3 && $@hor==$@hor3+$@duracao)){
 		if(agitcheck()){
 			Announce "A Guerra do Emperium acabou!",bc_npc;
 			AgitEnd;
+		}
+		if(agitcheck2()){
+			Announce "A Guerra do Emperium acabou!",bc_npc;
+			AgitEnd2;
 		}
 		sleep 30000;
 		set $castleMap1$,"";
@@ -69,8 +112,9 @@ OnAgitStart:
 	}else if(agitcheck()){	// testando
 		debugmes "Testando WOE!";
 		set $castleMap1$,"prtg_cas01";
+	}else if(agitcheck2()){	// testando
+		debugmes "Testando WOE 2.0!";
 		set $castleMap2$,"arug_cas03";
-		//set $castleMap2$,"schg_cas01";
 	}else{
 		set $castleMap1$,"";
 		set $castleMap2$,"";

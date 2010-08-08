@@ -2,18 +2,11 @@ Differences:
 - log.Loginlog?
 
 Steps:
-x Conf
-x DB
-x SRC
-x bRO
-x Conflicting mob_id's
 - Torre
-x Descrições dos itens
 ~ NPC
-x Desduplicar userid's
 - Testes
 - Client com data folder + bg
-- npc/guild2/guild_dungeon.txt
+- arug_dun01 / sch_dun01
 - npc @ valkyrie,48,82 + warps @ valkyrie,48,73
 - global_functionsKE x other/global_functions
 
