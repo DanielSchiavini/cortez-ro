@@ -1111,7 +1111,8 @@ OnGuardianDied:
 			//	mes "[Kafra]";
 			//	mes "I am sorry. The Cart Service is only provided for the Merchant and Blacksmith class.";
 			//}
-			else if(checkcart() == 1){
+			//else
+			if(checkcart() == 1){
 				mes "[Kafra]";
 				mes "You have a cart equipped already.";
 			}
