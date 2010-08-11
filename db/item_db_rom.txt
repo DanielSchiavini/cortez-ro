@@ -30,6 +30,9 @@
 13258,Kunai_of_Fierce_Heat,Kunai of Fierce Heat,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus bAtkEle,Ele_Fire; },{},{}
 13259,Kunai_of_Deadly_Poison,Kunai of Deadly Poison,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus2 bAddEff,Eff_Poison,50; },{},{}
 
+// Cartas
+4361,Whitesmith_Card,Whitesmith Card,6,,10,10,,,,,,,,2,,,,,{},{},{}
+
 //Sistema de Teleporte
 //Cavernas: -50% do teleporte que estiver acima de 250 z
 //Woe: Reduzir -50% do teleporte, menos mapa dos mvps

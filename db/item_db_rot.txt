@@ -1,1 +1,4 @@
 // ID,Name,Name,Type,Price,Sell,Weight,ATK,DEF,Range,Slot,Job,Upper,Gender,Loc,wLV,eLV,Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
+
+// Cartas
+4361,Whitesmith_Card,Whitesmith Card,6,,10,10,,,,,,,,2,,,,,{},{},{}
