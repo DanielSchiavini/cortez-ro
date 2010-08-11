@@ -667,7 +667,7 @@ function	script	jobmaster	{
 									setarray @qtde[0],	2,		2,			2,		1;
 									break;
 								case 72:
-									setarray @itens[0],	7340,					7566,							5138,						5161;
+									setarray @itens[0],	7340,					7566,							5138,						2258;
 									setarray @itens$[0],"Desejo das Trevas",	"Desejo das Trevas Escarlate",	"Chapeu do Olho Magico",	"Chifres Pontudos";
 									setarray @qtde[0],	1,						1,								1,							1;
 									break;
