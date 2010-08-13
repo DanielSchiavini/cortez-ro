@@ -31,6 +31,7 @@
 13259,Kunai_of_Deadly_Poison,Kunai of Deadly Poison,10,360,,20,30,,,,0x02000000,7,2,32768,,1,,7,{ bonus2 bAddEff,Eff_Poison,50; },{},{}
 
 // Cartas
+4357,Lord_Knight_Card,Lord Knight Card,6,,10,10,,,,,,,,769,,,,,{},{},{}
 4361,Whitesmith_Card,Whitesmith Card,6,,10,10,,,,,,,,2,,,,,{},{},{}
 
 //Sistema de Teleporte
