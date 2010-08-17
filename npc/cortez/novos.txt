@@ -139,5 +139,11 @@ gld_dun04,110,20,0	warp	gldd_007	1,1,gld_dun02,23,160
 gld_dun03,42,30,0	warp	gldd_004	1,1,gld_dun03,238,271
 gld_dun03,238,274,0	warp	gldd_005	1,1,gld_dun03,42,33
 
+// Warp to morocc
 schg_cas03,58,8,0	warp	city_moc	2,2,moc_fild12,159,378
 moc_fild12,154,377,0	warp	moc_city	2,2,schg_cas03,58,13
+
+//Guild flags
+schg_cas03,58,26,4	duplicate(Kriemhild2)	Kriemhild#ctz	722
+schg_cas03,53,17,4	duplicate(Trapesac2)	Trapesac#ctz	722
+schg_cas03,62,17,4	duplicate(Ar03_Flag)	Horn#flag_Cortez	974

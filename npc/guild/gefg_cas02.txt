@@ -94,7 +94,6 @@ OnRecvCastleG02:
 	end;
 }
 
-schg_cas03,53,17,4	duplicate(Trapesac2)	Trapesac#ctz	722
 gef_fild13,312,243,4	duplicate(Trapesac2)	Trapesac#g2-3	722
 gef_fild13,290,243,4	duplicate(Trapesac2)	Trapesac#g2-4	722
 gef_fild13,324,243,4	duplicate(Trapesac2)	Trapesac#g2-5	722

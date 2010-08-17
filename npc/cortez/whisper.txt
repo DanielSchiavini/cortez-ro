@@ -98,7 +98,7 @@ function	script	podeusarcmd	{
 	//	dispbottom "Use este comando quando estiver vivo.";
 	}else if(getmapxy(.@mapname$,@mapx,@mapy,0) == -1) {
 		return 0;
-	}else if(compare(.@mapname$,"cas") || compare(.@mapname$,"guild") || compare(.@mapname$,"ordeal") ||
+	}else if(compare(.@mapname$,"cas") || compare(.@mapname$,"guild") || compare(.@mapname$,"ordeal") || compare(.@mapname$,"arena") ||
 			compare(.@mapname$,"sec") || compare(.@mapname$,"tha") || compare(.@mapname$,"quiz") || .@mapname$=="gl_step"){
 		dispbottom "Não é possível usar comandos neste mapa!";
 	}else{
