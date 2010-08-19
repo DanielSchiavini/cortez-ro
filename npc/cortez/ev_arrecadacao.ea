@@ -1,6 +1,6 @@
 //Arrecadação de zeny
 
-new_zone01,49,120,4	script	Arrecadar	58,{
+new_zone01,52,136,4	script	Arrecadar	58,{
 	mes "^FF0000[ Arrecadações ]^000066";
 	if(getgmlevel()>60){
 		if($arz_total){
@@ -30,13 +30,14 @@ new_zone01,49,120,4	script	Arrecadar	58,{
 				mes "Deseja confirmar o evento, que criará " + $arz_mvps + " MVPs se os jogadores doarem " + $arz_total + "kk?";
 				if(select("Não:Sim") == 2){
 					logmes "[Arrecadações] Iniciado, " + $arz_total + "kk, " + $arz_mvps + " MVPs.";
+					enablenpc "Arrecadações";
 					close2;
 					sleep 3000;
 					while($arz_total > 0){
 						if($arz_total >= $arz_pago){
 							announce "[Arrecadações] Oi gente, conseguimos arrecadar o zeny necessário para o evento!", bc_all;
 							sleep 3000;
-							announce "[Arrecadações] Às 19h, criaremos diversos MVPs no mapa NOME_DO_MAPA!", bc_all;
+							announce "[Arrecadações] Às 19h, criaremos diversos MVPs! Não perca essa!", bc_all;
 							sleep 32*60000;
 						}else{
 							announce "[Arrecadações] Oi gente, estou arrecadando zeny para o servidor...", bc_all;
@@ -52,13 +53,13 @@ new_zone01,49,120,4	script	Arrecadar	58,{
 	close;
 }
 
-schg_cas03,59,37,5	script	Arrecadações	58,{
+schg_cas03,57,44,5	script	Arrecadações	58,{
 	if($arz_aberto){
 		mes "^FF0000[ Arrecadações ]^000066";
 		mes "Deseja ir para o mapa do evento?";
 		if(select("Não:Sim") == 2){
 			close2;
-			warp "COD_DO_MAPA",50,50;
+			warp "arug_cas04",50,50;
 			end;
 		}
 	}else if($arz_total){
@@ -97,25 +98,25 @@ schg_cas03,59,37,5	script	Arrecadações	58,{
 	
 	OnClock1905:
 		if($arz_total){
-			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecadações","COD_DO_MAPA");
+			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecadações","arug_cas04");
 			if($arz_total >= $arz_pago){
 				announce "[Arrecadações] Conseguimos arrecadar o zeny suficiente para o evento!", bc_all;
-				announce "[Arrecadações] Estamos criando neste momento os MVPs no mapa NOME_DO_MAPA!", bc_all;
+				announce "[Arrecadações] Estamos criando neste momento os MVPs! Fale comigo para participar!", bc_all;
 				set $arz_total, 0;
 				set $arz_pago, 0;
 				set $arz_aberto, 1;
 				
-				callfunc "F_UseBloodyBranch",$arz_mvps,"COD_DO_MAPA",0,0,"Arrecadações::OnMvpDead",300,300;
-				callfunc "F_UseDeadBranch",$arz_mvps*3,"COD_DO_MAPA",0,0,"Arrecadações::OnMobDead",300,300;
-				callfunc "F_UseDeadBranch",$arz_mvps*3,"COD_DO_MAPA",0,0,"Arrecadações::OnMobDead",300,300;
+				callfunc "F_UseBloodyBranch",$arz_mvps,"arug_cas04",0,0,"Arrecadações::OnMvpDead",300,300;
+				callfunc "F_UseDeadBranch",$arz_mvps*3,"arug_cas04",0,0,"Arrecadações::OnMobDead",300,300;
+				callfunc "F_UseDeadBranch",$arz_mvps*3,"arug_cas04",0,0,"Arrecadações::OnMobDead",300,300;
 				
-				areamonster "COD_DO_MAPA",0,0,300,300,"Ghostring",1120,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "COD_DO_MAPA",0,0,300,300,"Archangeling",1388,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "COD_DO_MAPA",0,0,300,300,"Giant Deviling",3251,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "COD_DO_MAPA",0,0,300,300,"Angeling",1096,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "COD_DO_MAPA",0,0,300,300,"Deviling",1582,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "COD_DO_MAPA",0,0,300,300,"Giant Khalitzburg",3250,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "COD_DO_MAPA",0,0,300,300,"Cristal",3303,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "arug_cas04",0,0,300,300,"Ghostring",1120,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "arug_cas04",0,0,300,300,"Archangeling",1388,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "arug_cas04",0,0,300,300,"Giant Deviling",3251,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "arug_cas04",0,0,300,300,"Angeling",1096,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "arug_cas04",0,0,300,300,"Deviling",1582,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "arug_cas04",0,0,300,300,"Giant Khalitzburg",3250,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "arug_cas04",0,0,300,300,"Cristal",3303,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
 			}else{
 				announce "[Arrecadações] Não conseguimos arrecadar o dinheiro suficiente para o evento!", bc_all;
 				announce "[Arrecadações] Por favor, continuem a doar seu zeny para podermos chegar ao valor amanhã.", bc_all;
