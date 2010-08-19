@@ -62,24 +62,6 @@ tha_t12	mapflag	nowarpto
 gld_dun02	mapflag	pvp	off
 prt_gld	mapflag	pvp	off
 
-//Function F_UseBloodyBranch (int number_of_branches, string map, int x, int y, string trigger)
-function	script	F_UseBloodyBranch	{
-	if(playerattached()) dispbottom "MVPs:";
-	for(set .@cont, 0; .@cont<getarg(0); set .@cont, .@cont+1){
-		set .@id, $MVPs[rand(1,getarraysize($MVPs))-1];
-		monster getarg(1),getarg(2),getarg(3),"--ja--",.@id,1,getarg(4);
-		if(playerattached()) dispbottom " " + (.@cont+1) + ". " + strmobinfo(2, .@id) + " (" + .@id + ")";
-	}
-	return .@id;
-}
-
-//Function F_UseDeadBranch (int number_of_branches, string map, int x, int y, string trigger)
-function	script	F_UseDeadBranch	{
-	for(set .@cont, 0; .@cont<getarg(0); set .@cont, .@cont+1){
-		monster getarg(1),getarg(2),getarg(3),"--ja--",-1,1,getarg(4);
-	}
-	return getarg(0);
-}
 guild_vs3,1,1,0	script	LoadMapaIni	-1,{
 	OnPCLoadMapEvent:
 		//sleep2 300;
@@ -112,7 +94,6 @@ prontera,151,330,4	script	Guarda#prt_castle	105,{
 			}
 		}
 }
-
 
 xmas_dun01,0,0,0,0	monster	Antonio	1247,40,0,0
 //schg_cas03,0,0,0,0	monster	Antonio	1247,40,0,0

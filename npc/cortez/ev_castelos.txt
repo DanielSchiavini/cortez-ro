@@ -144,13 +144,13 @@ new_zone01,49,124,5	script	Evento dos Castelos	47,{
 		logmes "[Castelos] Evento iniciado";
 		callfunc "EvCastelosWarp";
 		announce "[Evento] Olá jogadores do Cortez Online!", bc_all;
-		sleep 2000;
+		sleep 4000;
 		announce "[Evento] Um novo evento acaba de começar", bc_all;
-		sleep 2000;
+		sleep 4000;
 		announce "[Evento] Quatro castelos foram invadidos", bc_all;
-		sleep 2000;
+		sleep 4000;
 		announce "[Evento] E agora precisamos conquistar os castelos novamente", bc_all;
-		sleep 2000;
+		sleep 4000;
 		announce "[Evento] Quem quiser ajudar, estarei esperando no centro da cidade", bc_all;
 		end;
 		

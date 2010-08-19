@@ -105,3 +105,23 @@ function	script	send_mail	{
 	query_sql "INSERT INTO mail(send_name,send_id,dest_name,dest_id,title,message,time,status,zeny,nameid,amount,identify)VALUES('"+escape_sql(getarg(3,"Server"))+"',"+escape_sql(getarg(2,"0"))+",'"+escape_sql(getarg(1))+"',"+escape_sql(getarg(0))+",'"+escape_sql(getarg(4,"Mensagem"))+"',Replace('"+escape_sql(getarg(5,""))+"','\n','\n\r '),unix_timestamp(),0,"+.@zeny+","+.@nameid+","+.@amount+",1);";
 	return 1;
 }
+
+
+//Function F_UseBloodyBranch (int number_of_branches, string map, int x1, int y1, string trigger, int x2=x1, int y2=y1)
+function	script	F_UseBloodyBranch	{
+	if(playerattached()) dispbottom "MVPs:";
+	for(set .@cont, 0; .@cont<getarg(0); set .@cont, .@cont+1){
+		set .@id, $MVPs[rand(1,getarraysize($MVPs))-1];
+		areamonster getarg(1),getarg(2),getarg(3),getarg(5,getarg(2)),getarg(6,getarg(3)),"--ja--",.@id,1,getarg(4);
+		if(playerattached()) dispbottom " " + (.@cont+1) + ". " + strmobinfo(2, .@id) + " (" + .@id + ")";
+	}
+	return .@id;
+}
+
+//Function F_UseDeadBranch (int number_of_branches, string map, int x, int y, string trigger, int x2=x1, int y2=y1)
+function	script	F_UseDeadBranch	{
+	for(set .@cont, 0; .@cont<getarg(0); set .@cont, .@cont+1){
+		areamonster getarg(1),getarg(2),getarg(3),getarg(5,getarg(2)),getarg(6,getarg(3)),"--ja--",-1,1,getarg(4);
+	}
+	return getarg(0);
+}
