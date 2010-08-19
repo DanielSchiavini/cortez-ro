@@ -6,6 +6,11 @@ new_zone01,52,136,4	script	Arrecadar	58,{
 		if($arz_total){
 			mes "Estamos tentando arrecadar " + $arz_total + "kk para criar " + $arz_mvps + " MVPs até às 19h.";
 			mes "Até agora já arrecadamos " + $arz_pago + "kk.";
+			if($arz_pago >= $arz_total){
+				if(select("OK:Começar evento agora") == 2){
+					donpcevent "Arrecadações::OnEventTime";
+				}
+			}
 		}else{
 			mes "Deseja ativar o evento?";
 			if(select("Não:Sim") == 2){
@@ -34,7 +39,7 @@ new_zone01,52,136,4	script	Arrecadar	58,{
 					close2;
 					sleep 3000;
 					while($arz_total > 0){
-						if($arz_total >= $arz_pago){
+						if($arz_pago >= $arz_total){
 							announce "[Arrecadações] Oi gente, conseguimos arrecadar o zeny necessário para o evento!", bc_all;
 							sleep 3000;
 							announce "[Arrecadações] Às 19h, criaremos diversos MVPs! Não perca essa!", bc_all;
@@ -96,6 +101,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 	}
 	close;
 	
+	OnEventTime:
 	OnClock1905:
 		if($arz_total){
 			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecadações","arug_cas04");
