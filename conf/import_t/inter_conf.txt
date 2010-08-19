@@ -26,7 +26,7 @@ map_server_id: cortezonline
 map_server_pw: hLeNoaB5aTo0vlEm9U4h
 
 log_db_ip: 192.168.1.34
-log_db: log
+log_db_db: log
 log_db_id: cortezonline
 log_db_pw: hLeNoaB5aTo0vlEm9U4h
 
