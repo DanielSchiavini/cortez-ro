@@ -64,8 +64,14 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 		mes "Deseja ir para o mapa do evento?";
 		if(select("Não:Sim") == 2){
 			close2;
-			warp "arug_cas04",50,50;
+			warp "arug_cas04",142,42;
 			end;
+		}
+		if(getgmlevel()>=10){
+			if(select("Fechar:Esconder NPC") == 2){
+				disablenpc "Arrecadações";
+				set $arz_aberto, 0;
+			}
 		}
 	}else if($arz_total){
 		mes "^FF0000[ Arrecadações ]^000066";
@@ -107,6 +113,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecadações","arug_cas04");
 			if($arz_total >= $arz_pago){
 				announce "[Arrecadações] Conseguimos arrecadar o zeny suficiente para o evento!", bc_all;
+				sleep 3000;
 				announce "[Arrecadações] Estamos criando neste momento os MVPs! Fale comigo para participar!", bc_all;
 				set $arz_total, 0;
 				set $arz_pago, 0;

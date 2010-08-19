@@ -1,4 +1,8 @@
 // ID,Name,Name,Type,Price,Sell,Weight,ATK,DEF,Range,Slot,Job,Upper,Gender,Loc,wLV,eLV,Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
 
 // Cartas
-4361,Whitesmith_Card,Whitesmith Card,6,,10,10,,,,,,,,2,,,,,{},{},{}
+4357,Lord_Knight_Card,Lord Knight Card,6,,10,10,,,,,,,,769,,,,,{ bonus2 bAddRace,RC_Boss,-45; if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill 359,1; bonus bMaxHPrate,-50; },{ if(isequipped(4361)) sc_end SC_MAXOVERTHRUST; },{ if(isequipped(4361)) sc_end SC_MAXOVERTHRUST; }
+4358,Seyren_Card,Seyren Windsor Card,6,,10,10,,,,,,,,769,,,,,{ bonus2 bAddRace,RC_Boss,-90; if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill 359,1; bonus bMaxHPrate,-50; },{ if(isequipped(4361)) sc_end SC_MAXOVERTHRUST; },{ if(isequipped(4361)) sc_end SC_MAXOVERTHRUST; }
+
+4361,Whitesmith_Card,Whitesmith Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace,RC_Boss,-25; if(BaseClass!=Job_Mage) if(!isequipped(4357)) { bonus bBreakWeaponRate,200; bonus2 bAddItemHealRate,IG_FirstAid,-50; if(readparam(bVit)>100) { skill 486,4; bonus bMaxHpRate,-25;} else skill 486,3; } },{},{ sc_end SC_MAXOVERTHRUST; } //bonus bBreakWeaponRate,100; bonus bBreakArmorRate,70;
+4362,Harword_Card,Howard Alt-Eisen Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace,RC_Boss,-50; if(BaseClass!=Job_Mage) if(!isequipped(4357)) { bonus bBreakWeaponRate,200; bonus2 bAddItemHealRate,IG_FirstAid,-50; if(readparam(bVit)>100) { skill 486,4; bonus bMaxHpRate,-25;} else skill 486,3; } },{},{ sc_end SC_MAXOVERTHRUST; } //bonus bBreakWeaponRate,100; bonus bBreakArmorRate,70;

@@ -97,6 +97,7 @@ undisguise: 10,40
 mute: 10,10
 unmute: 10,10
 size: 10,40
+killer: 10,70
 
 // Pré-GMs
 jumpto: 40,90
@@ -192,7 +193,6 @@ delitem: 60,90
 makeegg: 60,90
 hatch: 60,80
 nuke: 60,70
-killer: 60,70
 produce: 60,80
 refine: 60,90
 repairall: 60,80
