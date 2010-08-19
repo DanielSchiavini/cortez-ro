@@ -317,7 +317,7 @@
 966,Clam_Flesh,Clam Flesh,3,,79,10,,,,,,,,,,,,,{},{},{}
 967,Turtle_Shell,Turtle Shell,3,,340,10,,,,,,,,,,,,,{},{},{}
 968,Heroic_Emblem,Heroic Emblem,3,,1500,10,,,,,,,,,,,,,{},{},{}
-969,Gold,Gold,3,200000,100000,100,,,,,,,,,,,,,{},{},{}
+969,Gold,Gold,3,200000,50000,100,,,,,,,,,,,,,{},{},{}
 970,Alcohol,Alcohol,3,,200,30,,,,,,,,,,,,,{},{},{}
 971,Detrimindexta,Detrimindexta,3,,200,30,,,,,,,,,,,,,{},{},{}
 972,Karvodailnirol,Karvodailnirol,3,,200,30,,,,,,,,,,,,,{},{},{}
