@@ -6,10 +6,9 @@ new_zone01,52,136,4	script	Arrecadar	58,{
 		if($arz_total){
 			mes "Estamos tentando arrecadar " + $arz_total + "kk para criar " + $arz_mvps + " MVPs até às 19h.";
 			mes "Até agora já arrecadamos " + $arz_pago + "kk.";
-			if($arz_pago >= $arz_total){
-				if(select("OK:Começar evento agora") == 2){
-					donpcevent "Arrecadações::OnEventTime";
-				}
+			if(select("OK:Testar") == 2){
+				close2;
+				donpcevent "Arrecadações::OnEventTime";
 			}
 		}else{
 			mes "Deseja ativar o evento?";
@@ -33,7 +32,10 @@ new_zone01,52,136,4	script	Arrecadar	58,{
 				
 				mes "^FF0000[ Arrecadações ]^000066";
 				mes "Deseja confirmar o evento, que criará " + $arz_mvps + " MVPs se os jogadores doarem " + $arz_total + "kk?";
-				if(select("Não:Sim") == 2){
+				if(select("Não:Sim") == 1){
+					set $arz_total, 0;
+					set $arz_mvps, 0;
+				}else{
 					logmes "[Arrecadações] Iniciado, " + $arz_total + "kk, " + $arz_mvps + " MVPs.";
 					enablenpc "Arrecadações";
 					close2;
@@ -67,17 +69,13 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 			warp "arug_cas04",142,42;
 			end;
 		}
-		if(getgmlevel()>=10){
-			if(select("Fechar:Esconder NPC") == 2){
-				disablenpc "Arrecadações";
-				set $arz_aberto, 0;
-			}
-		}
 	}else if($arz_total){
 		mes "^FF0000[ Arrecadações ]^000066";
 		mes "Olá!";
 		mes "Estamos arrecadando zeny para organizar um evento no servidor.";
-		mes "Deseja participar doando para nós?";
+		mes "Se juntarmos pelo menos " + $arz_total + "kk, o evento será realizado.";
+		mes "Já juntamos " + $arz_pago + "kk até agora.";
+		mes "Deseja participar dando sua contribuição?";
 		if(select("Não:Sim") == 2){
 			mes "A quantia deve ser entre 1 e 100kk.";
 			mes "Por favor, digite-a em ^FF0000milhões^000066.";
@@ -86,7 +84,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 			next;
 			mes "^FF0000[ Arrecadações ]^000066";
 			if(callfunc("tem_milhoes", @arz_zeny)){
-				mes "Deseja confirmar sua doação de " + @arz_zeny + " para a organização do evento?";
+				mes "Deseja confirmar sua contribuição de " + @arz_zeny + " para a organização do evento?";
 				if(select("Não:Sim") == 2){
 					callfunc("tira_milhoes", @arz_zeny, "Arrecadações");
 					set $arz_pago, $arz_pago + @arz_zeny;
@@ -111,7 +109,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 	OnClock1905:
 		if($arz_total){
 			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecadações","arug_cas04");
-			if($arz_total >= $arz_pago){
+			if($arz_pago >= $arz_total){
 				announce "[Arrecadações] Conseguimos arrecadar o zeny suficiente para o evento!", bc_all;
 				sleep 3000;
 				announce "[Arrecadações] Estamos criando neste momento os MVPs! Fale comigo para participar!", bc_all;
@@ -132,12 +130,22 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 				areamonster "arug_cas04",0,0,300,300,"Cristal",3303,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
 			}else{
 				announce "[Arrecadações] Não conseguimos arrecadar o dinheiro suficiente para o evento!", bc_all;
-				announce "[Arrecadações] Por favor, continuem a doar seu zeny para podermos chegar ao valor amanhã.", bc_all;
+				announce "[Arrecadações] Por favor, continuem a contribuir com zeny para podermos chegar ao valor amanhã.", bc_all;
 			}
 		}
 		end;
 	
 	OnMvpDead:
+		if(!mobcount("arug_cas04","Arrecadações::OnMvpDead")){
+			announce "[Arrecadações] Todos os MVPs foram mortos! Obrigado pela ajuda no evento!", bc_all;
+			disablenpc "Arrecadações";
+			set $arz_aberto, 0;
+			sleep 2000;
+			killmonsterall "arug_cas04", 1;
+			mapwarp "arug_cas04","schg_cas03",57,44;
+		}
+		end;
+		
 	OnMobDead:
 	OnMiniBossDead:
 		end;
