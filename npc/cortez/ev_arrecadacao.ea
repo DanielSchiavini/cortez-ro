@@ -75,6 +75,9 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 		mes "Estamos arrecadando zeny para organizar um evento no servidor.";
 		mes "Se juntarmos pelo menos " + $arz_total + "kk, o evento será realizado.";
 		mes "Já juntamos " + $arz_pago + "kk até agora.";
+		next;
+		
+		mes "^FF0000[ Arrecadações ]^000066";
 		mes "Deseja participar dando sua contribuição?";
 		if(select("Não:Sim") == 2){
 			mes "A quantia deve ser entre 1 e 100kk.";
@@ -84,7 +87,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 			next;
 			mes "^FF0000[ Arrecadações ]^000066";
 			if(callfunc("tem_milhoes", @arz_zeny)){
-				mes "Deseja confirmar sua contribuição de " + @arz_zeny + " para a organização do evento?";
+				mes "Deseja confirmar sua contribuição de " + @arz_zeny + "kk para a organização do evento?";
 				if(select("Não:Sim") == 2){
 					callfunc("tira_milhoes", @arz_zeny, "Arrecadações");
 					set $arz_pago, $arz_pago + @arz_zeny;
