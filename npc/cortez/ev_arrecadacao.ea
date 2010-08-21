@@ -89,7 +89,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 			if(callfunc("tem_milhoes", @arz_zeny)){
 				mes "Deseja confirmar sua contribuição de " + @arz_zeny + "kk para a organização do evento?";
 				if(select("Não:Sim") == 2){
-					callfunc("tira_milhoes", @arz_zeny, "Arrecadações");
+					callfunc("tira_milhoes", @arz_zeny, "Arrecada");
 					set $arz_pago, $arz_pago + @arz_zeny;
 					next;
 					
@@ -111,7 +111,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 	OnEventTime:
 	OnClock1905:
 		if($arz_total){
-			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecadações","arug_cas04");
+			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecada","arug_cas04");
 			if($arz_pago >= $arz_total){
 				announce "[Arrecadações] Conseguimos arrecadar o zeny suficiente para o evento!", bc_all;
 				sleep 3000;
