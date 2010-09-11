@@ -66,7 +66,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 		mes "Deseja ir para o mapa do evento?";
 		if(select("Não:Sim") == 2){
 			close2;
-			warp "arug_cas04",142,42;
+			warp "alde_gld",280,160;
 			end;
 		}
 	}else if($arz_total){
@@ -111,7 +111,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 	OnEventTime:
 	OnClock1905:
 		if($arz_total){
-			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecada","arug_cas04");
+			callfunc("log_mes","Necessário: " + $arz_total + ", Pago: " + $arz_pago,"Arrecada","alde_gld");
 			if($arz_pago >= $arz_total){
 				announce "[Arrecadações] Conseguimos arrecadar o zeny suficiente para o evento!", bc_all;
 				sleep 3000;
@@ -120,17 +120,17 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 				set $arz_pago, 0;
 				set $arz_aberto, 1;
 				
-				callfunc "F_UseBloodyBranch",$arz_mvps,"arug_cas04",0,0,"Arrecadações::OnMvpDead",300,300;
-				callfunc "F_UseDeadBranch",$arz_mvps*3,"arug_cas04",0,0,"Arrecadações::OnMobDead",300,300;
-				callfunc "F_UseDeadBranch",$arz_mvps*3,"arug_cas04",0,0,"Arrecadações::OnMobDead",300,300;
+				callfunc "F_UseBloodyBranch",$arz_mvps,"alde_gld",0,0,"Arrecadações::OnMvpDead",300,300;
+				callfunc "F_UseDeadBranch",$arz_mvps*3,"alde_gld",0,0,"Arrecadações::OnMobDead",300,300;
+				callfunc "F_UseDeadBranch",$arz_mvps*3,"alde_gld",0,0,"Arrecadações::OnMobDead",300,300;
 				
-				areamonster "arug_cas04",0,0,300,300,"Ghostring",1120,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "arug_cas04",0,0,300,300,"Archangeling",1388,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "arug_cas04",0,0,300,300,"Giant Deviling",3251,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "arug_cas04",0,0,300,300,"Angeling",1096,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "arug_cas04",0,0,300,300,"Deviling",1582,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "arug_cas04",0,0,300,300,"Giant Khalitzburg",3250,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
-				areamonster "arug_cas04",0,0,300,300,"Cristal",3303,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "alde_gld",0,0,300,300,"Ghostring",1120,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "alde_gld",0,0,300,300,"Archangeling",1388,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "alde_gld",0,0,300,300,"Giant Deviling",3251,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "alde_gld",0,0,300,300,"Angeling",1096,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "alde_gld",0,0,300,300,"Deviling",1582,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "alde_gld",0,0,300,300,"Giant Khalitzburg",3250,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
+				areamonster "alde_gld",0,0,300,300,"Cristal",3303,$arz_mvps/2,"Arrecadações::OnMiniBossDead";
 			}else{
 				announce "[Arrecadações] Não conseguimos arrecadar o dinheiro suficiente para o evento!", bc_all;
 				announce "[Arrecadações] Por favor, continuem a contribuir com zeny para podermos chegar ao valor amanhã.", bc_all;
@@ -139,13 +139,13 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 		end;
 	
 	OnMvpDead:
-		if(!mobcount("arug_cas04","Arrecadações::OnMvpDead")){
+		if(!mobcount("alde_gld","Arrecadações::OnMvpDead")){
 			announce "[Arrecadações] Todos os MVPs foram mortos! Obrigado pela ajuda no evento!", bc_all;
 			disablenpc "Arrecadações";
 			set $arz_aberto, 0;
 			sleep 2000;
-			killmonsterall "arug_cas04", 1;
-			mapwarp "arug_cas04","schg_cas03",57,44;
+			killmonsterall "alde_gld", 1;
+			mapwarp "alde_gld","schg_cas03",57,44;
 		}
 		end;
 		

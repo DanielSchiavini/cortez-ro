@@ -231,7 +231,7 @@ schg_cas03,57,38,4	script	Devil Square	705,{
 				close;
 		}
 		close2;
-		warp "n_castle",103,103;
+		if($devil_square==1) warp "n_castle",103,103;
 	}
 	end;
 }
