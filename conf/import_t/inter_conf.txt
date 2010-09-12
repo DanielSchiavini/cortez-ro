@@ -1,31 +1,31 @@
-login_server_ip: 192.168.1.34
+//login_server_ip: 192.168.1.34
 login_server_db: ro
 login_server_id: cortezonline
 login_server_pw: hLeNoaB5aTo0vlEm9U4h
 login_server_port: 3306
 
-sql.db_hostname: 192.168.1.34
+//sql.db_hostname: 192.168.1.34
 sql.db_database: ro
 sql.db_username: cortezonline
 sql.db_password: hLeNoaB5aTo0vlEm9U4h
 sql.db_port: 3306
 
-log_db_ip: 192.168.1.34
+//log_db_ip: 192.168.1.34
 log_db_db: ro
 log_db_id: cortezonline
 log_db_pw: hLeNoaB5aTo0vlEm9U4h
 
-char_server_ip: 192.168.1.34
+//char_server_ip: 192.168.1.34
 char_server_db: rot
 char_server_id: cortezonline
 char_server_pw: hLeNoaB5aTo0vlEm9U4h
 
-map_server_ip: 192.168.1.34
+//map_server_ip: 192.168.1.34
 map_server_db: rot
 map_server_id: cortezonline
 map_server_pw: hLeNoaB5aTo0vlEm9U4h
 
-log_db_ip: 192.168.1.34
+//log_db_ip: 192.168.1.34
 log_db_db: log
 log_db_id: cortezonline
 log_db_pw: hLeNoaB5aTo0vlEm9U4h

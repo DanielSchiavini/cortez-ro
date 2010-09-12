@@ -437,22 +437,22 @@ function	script	F_keDungeonWarps	{
 		if ($@kewd_showOnline) {
 			set @submenu, select(
 				"- Voltar - teleporte para Ant Hell",
-				"- Entrada Norte ("+@cost+"z/"+getmapusers("anthell01")+" "+$@ked_users$+")",
-				"- Entrada Sul ("+@cost+"z/"+getmapusers("anthell02")+" "+$@ked_users$+")"
+				"- Entrada Superior ("+@cost+"z/"+getmapusers("anthell01")+" "+$@ked_users$+")",
+				"- Entrada Inferior ("+@cost+"z/"+getmapusers("anthell02")+" "+$@ked_users$+")"
 			);
 		} else {
 			set @submenu, select(
 				"- Voltar - teleporte para Ant Hell",
-				"- Entrada Norte ("+@cost+"z)",
-				"- Entrada Sul ("+@cost+"z)"
+				"- Entrada Superior ("+@cost+"z)",
+				"- Entrada Inferior ("+@cost+"z)"
 			);
 		}
 		switch (@submenu) {
 		case 2:
-			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"moc_fild04",232,322;
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"moc_fild20",164,145;
 			break;
 		case 3:
-			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"moc_fild15",246,251;
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"moc_fild20",330,314;
 			break;
 		}
 	}

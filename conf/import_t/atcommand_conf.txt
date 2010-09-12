@@ -1,10 +1,12 @@
 // Comandos liberados
 gstorage: 0, 70
+go: 0, 90
 
 whosell: 0, 0
 whosells: 0, 0
 
 mail: 0, 70
+auction: 0,1
 
 // Super comandos liberados pra testes:
 die: 0,60

@@ -262,7 +262,7 @@ function	script	F_KafStor	{
 	if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
 		mes "[Funcionária Kafra]";
 		// Niflheim Specific Message
-		if (getarg(2) == 1) {
+		if (getarg(2, 0) == 1) {
 			mes "^666666D-d-ddeeeesculpaaa, mmmmmas v-vvocêee pr-precisaaa da habiliddddddadeeeee b-b-básica n-nível 6...^000000";
 			return;
 		}
@@ -275,10 +275,10 @@ function	script	F_KafStor	{
 		// Consume "Free Ticket for Kafra Storage" if available.
 		if(countitem(7059)) delitem 7059,1;
 		else {
-			if(Zeny<getarg(1)){
+			if(Zeny<getarg(1, 0)){
 				mes "[Funcionária Kafra]";
 				// Niflheim Specific Message
-				if (getarg(2) == 1) {
+				if (getarg(2, 0) == 1) {
 					percentheal -50,-50;
 					mes "^666666Zeeeeeny...";
 					mes "M-mais z-zeny...!";
@@ -289,15 +289,15 @@ function	script	F_KafStor	{
 				mes "Desculpe-me, mas você não tem zeny suficiente para utilizar os serviços de armazém. Nossa tarifa é de "+getarg(1)+" zeny.";
 				return;
 			}
-			set Zeny, Zeny-getarg(1);
-			set RESRVPTS, RESRVPTS + (getarg(1)/5);
+			set Zeny, Zeny-getarg(1, 0);
+			set RESRVPTS, RESRVPTS + (getarg(1, 0)/5);
 		}
 	}
 
 	// Surpress the "End" message if in guild castle.
 	if (getarg(0) != 2) {
 		// Niflheim specific Message
-		if (getarg(2) == 1) {
+		if (getarg(2, 0) == 1) {
 			percentheal 0,-10;
 			mes "[Funcionária Kafra]";
 			mes "^666666Obrigada.. por... utilizar...";

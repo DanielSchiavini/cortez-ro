@@ -30,7 +30,7 @@ max_cloth_color: 77
 display_status_timers: 0
 
 //Drops.conf
-item_rate_common: 2000 //inicio 2x
+item_rate_common: 2000
 item_rate_heal: 2000
 item_rate_use: 4000
 item_rate_equip: 2000
@@ -47,7 +47,7 @@ item_rate_adddrop: 0
 item_rate_treasure: 500
 rare_drop_announce: 20
 
-item_first_get_time: 10000 // Não muda em 2x
+item_first_get_time: 10000
 item_second_get_time: 10000
 item_third_get_time: 2000
 
@@ -55,7 +55,7 @@ item_third_get_time: 2000
 base_exp_rate: 10000
 job_exp_rate: 10000
 mvp_exp_rate: 10000
-quest_exp_rate: 5000 // fim 2x
+quest_exp_rate: 5000
 
 multi_level_up: yes
 max_exp_gain_rate: 1500
