@@ -82,7 +82,9 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 		if(select("Não:Sim") == 2){
 			mes "A quantia deve ser entre 1 e 100kk.";
 			mes "Por favor, digite-a em ^FF0000milhões^000066.";
-			input @arz_zeny, 1, 100;
+			set @arz_zeny, 0;
+			while(@arz_zeny<1 || @arz_zeny>100)
+				input @arz_zeny;
 			
 			next;
 			mes "^FF0000[ Arrecadações ]^000066";

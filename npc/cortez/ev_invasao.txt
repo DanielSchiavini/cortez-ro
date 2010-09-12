@@ -19,6 +19,11 @@ new_zone01,49,130,4	script	Invasão de Cidades	888,{
 			if(.map$!=""){
 				mes "Há "+mobcount(.map$,"PvpAdvanced_MvpRespawn::OnDbDead")+"/"+.nr_mobs+" monstros e "+mobcount(.map$,"Invasão de Cidades::OnMvpDead")+"/"+.nr_mvps+" MVPs vivos em "+.cidade$+".";
 			}
+			if(getgmlevel()>80){
+				if(select("OK:Resetar contador") == 2){
+					set $invasao, $invasao-2;
+				}
+			}
 		}
 	}else{
 		mes "Estarei fazendo um evento de invasão em uma cidade, o que acha?";
@@ -79,10 +84,10 @@ new_zone01,49,130,4	script	Invasão de Cidades	888,{
 				mes "Pronto, seu evento começou!";
 				close2;
 				logmes "[Invasao] Invasão de "+.cidade$+" com "+.nr_mvps+" MVPs e "+.nr_mobs+" monstros";
-				set $invasao, gettime(8);
 				
-				callfunc "F_UseBloodyBranch",.nr_mvps,.map$,0,0,"Invasão de Cidades::OnMvpDead";
-				callfunc "F_UseDeadBranch",.nr_mobs,.map$,0,0,"Invasão de Cidades::OnMobDead";
+				callfunc "F_UseBloodyBranch",.nr_mvps,.map$,0,0,"Invasão de Cidades::OnMvpDead", 300, 300;
+				callfunc "F_UseDeadBranch",.nr_mobs,.map$,0,0,"Invasão de Cidades::OnMobDead", 300, 300;
+				set $invasao, gettime(8);
 				announce "[Invasao] "+.cidade$+" foi invadida por monstros!",bc_all;
 				sleep 3000;
 				announce "[Invasao] Venha nos ajudar a libertar "+.cidade$+" agora mesmo...",bc_all;

@@ -12,9 +12,6 @@ guild_vs1	mapflag	nocommand	10
 
 guild_vs1,1,1,0	script	PvpAdvanced_MvpRespawn	-1,{
 	OnInit:
-		deletearray $MVPs[0],getarraysize($MVPs);
-		setarray $MVPs[0],1038,1039,1046,1059,1086,1087,1096,1112,1115,1120,1147,1150,1157,1159,1190,1251,1252,1272,1312,1373,1388,1389,1418,1492,1511,1518,1582,1583,1623,1658,1685,1688,1734,1768,2250,2251;
-		
 	while(1){
 		callfunc "F_UseBloodyBranch",1,"guild_vs1",50,50,"PvpAdvanced_MvpRespawn::OnMyMvpDead";
 		callfunc "F_UseDeadBranch",10,"guild_vs1",50,50,"PvpAdvanced_MvpRespawn::OnDbDead";
