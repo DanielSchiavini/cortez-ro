@@ -3,17 +3,18 @@ Differences:
 
 Steps:
 - Torre
-~ NPC
-- Testes
-- Client com data folder + bg
-- arug_dun01 / sch_dun01
-- npc @ valkyrie,48,82 + warps @ valkyrie,48,73
+- Novas dungeons: arug_dun01 / sch_dun01
+- NPC @ valkyrie,48,82 + warps @ valkyrie,48,73
 - global_functionsKE x other/global_functions
+- Asa de borboleta no mapa do T.Roz e Meteoro
+- Aura no 99 / Barra de experiência não aparece
+- Skin/novas descs no patch
+- Skills com descrições do kRO (adicionar skills do bRO no patch)
 
 After:
-- Wilbis/Auction na cid.comércio
+~ Wilbis/Auction na cid.comércio (aoshii)
 - Doações->Cash points (kafra points?!)
-- Convert superkafra
+? Convert superkafra
 
 Client
 	- XRay? eathena.ws/wiki/index.php/Custom_Items

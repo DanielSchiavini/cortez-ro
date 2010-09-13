@@ -74,6 +74,9 @@ L_INFO:
 	mes "A cada R$ 1,00 doados, você ganha de brinde 2 dias de conta VIP, e 1 crédito no npc. Você pode doar quanto quiser!";
 	next;
 	mes "^336699[Doações]^333333";
+	mes "Se não quiser os créditos nesse NPC, pode escolher por receber 4 dias de conta VIP por R$ 1 doado.";
+	next;
+	mes "^336699[Doações]^333333";
 	mes "Ao adquirir uma conta VIP, você vai poder resetar seu personagem no nível 99!";
 	next;
 	mes "^336699[Doações]^333333";
