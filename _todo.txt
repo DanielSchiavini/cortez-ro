@@ -1,7 +1,7 @@
 Differences:
 - log.Loginlog?
 
-Steps:
+Todo:
 - Torre
 - Novas dungeons: arug_dun01 / sch_dun01
 - NPC @ valkyrie,48,82 + warps @ valkyrie,48,73
@@ -10,6 +10,24 @@ Steps:
 - Aura no 99 / Barra de experiência não aparece
 - Skin/novas descs no patch
 - Skills com descrições do kRO (adicionar skills do bRO no patch)
+- Unknown items: t=3515
+- Velha Esperta mostrando -1 em slots sem equipamento
+- Monstros em Brasilis
+- NO MSG t=3477
+- Novos @go t=3503
+- Precisa liberar uso de asa de mosca (ID: 601) nos seguintes mapas:
+	• prt_fild10 (mapa dos mvps Turok e Chii)
+	• pay_fild10 (mapa dos mvps Baltazar e Krool)
+	• beach_dun (mapa dos mvps Sola e Yuufa)
+	• prt_monk (mapa dos mvps Bola e Gleen)
+	• yuno_fild04 (mapa do mvp Brunim)
+	• pvp_y_5-5 (mapa do mvp Dr. Pimpolho)
+	• hu_fild05 (mapa do mvp Yuri)
+	• c_tower1 (mapa dos mvps Hermes e Dimasi)
+	• cmd_fild07 (mapa do mvp T.Roz)
+	• moc_fild16 (mapa do mvp Meteoro)
+	- O mapa do mvp Elfo está dando para usar a asa de mosca normalmente
+	- O mvp do mvp Spok não é liberado para teleportar mesmo.
 
 After:
 ~ Wilbis/Auction na cid.comércio (aoshii)

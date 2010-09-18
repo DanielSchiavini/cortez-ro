@@ -1,6 +1,7 @@
 // Comandos liberados
 gstorage: 0, 70
 go: 0, 90
+return: 0, 10
 
 whosell: 0, 0
 whosells: 0, 0
