@@ -2,7 +2,7 @@
 //Insert Into leiloes (idItem,nomeItem,intMinimo,dtIni,intDias) Values (16501,'Asa de Deviling',1,now(),7)
 // intStatus: 0=desativo 1=aguardando 2=ativo 3=esperando jogador 4=jogador pegou 5=jogador nao pegou 6=jogador nao pegou e foi punido //
 
-schg_cas03,0,0,0	script	leilaoautomatico	-1,{
+brasilis,0,0,0	script	leilaoautomatico	-1,{
 	OnClock2256:
 	//OnInit:
 	//debugmes "$leilao="+$leilao;
@@ -384,7 +384,7 @@ L_JogadorNormal:
 // ===========================================
 // ==   Duplicações dos Agentes de Leilão   ==
 // ===========================================
-schg_cas03,27,74,3	script	Agente de Leilão	56,{
+brasilis,253,80,3	script	Agente de Leilão	56,{
 	set @outro,0;
 	set @name$, "Agron";       // <-- Nome do Agente de Leilão
 	set @sexx,1;               // <-- Sexo do Agente (1 = M / 2 = F)

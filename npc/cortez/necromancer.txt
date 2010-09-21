@@ -174,4 +174,4 @@
 		close;
 }
 
-schg_cas03,19,55,4	duplicate(necromancer)	Necromancer	 	735
+brasilis,291,119,4	duplicate(necromancer)	Necromancer	 	735

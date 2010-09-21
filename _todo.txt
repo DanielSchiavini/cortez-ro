@@ -3,13 +3,11 @@ Differences:
 
 Todo:
 - Torre
-- Novas dungeons: arug_dun01 / sch_dun01
-- NPC @ valkyrie,48,82 + warps @ valkyrie,48,73
+- @storage pra não-vips? Crânios de ouro?
 - global_functionsKE x other/global_functions
 - Asa de borboleta no mapa do T.Roz e Meteoro
-- Aura no 99 / Barra de experiência não aparece
-- Skin/novas descs no patch
-- Skills com descrições do kRO (adicionar skills do bRO no patch)
+- Skin/novas descrições no patch
+T Skills com descrições do kRO (adicionar skills do bRO no patch)
 - Unknown items: t=3515
 - Velha Esperta mostrando -1 em slots sem equipamento
 - Monstros em Brasilis
@@ -28,8 +26,11 @@ Todo:
 	• moc_fild16 (mapa do mvp Meteoro)
 	- O mapa do mvp Elfo está dando para usar a asa de mosca normalmente
 	- O mvp do mvp Spok não é liberado para teleportar mesmo.
+- Aura no 99 / Barra de experiência não aparece
+- Proibir galho seco nos mapas novos
 
-After:
+After update:
+- Novas dungeons: arug_dun01 / sch_dun01
 ~ Wilbis/Auction na cid.comércio (aoshii)
 - Doações->Cash points (kafra points?!)
 ? Convert superkafra

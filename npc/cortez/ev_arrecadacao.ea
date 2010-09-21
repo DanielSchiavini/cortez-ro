@@ -60,7 +60,7 @@ new_zone01,52,136,4	script	Arrecadar	58,{
 	close;
 }
 
-schg_cas03,57,44,5	script	Arrecadações	58,{
+brasilis,266,89,5	script	Arrecadações	58,{
 	if($arz_aberto){
 		mes "^FF0000[ Arrecadações ]^000066";
 		mes "Deseja ir para o mapa do evento?";
@@ -147,7 +147,7 @@ schg_cas03,57,44,5	script	Arrecadações	58,{
 			set $arz_aberto, 0;
 			sleep 2000;
 			killmonsterall "alde_gld", 1;
-			mapwarp "alde_gld","schg_cas03",57,44;
+			mapwarp "alde_gld","brasilis",266,105;
 		}
 		end;
 		

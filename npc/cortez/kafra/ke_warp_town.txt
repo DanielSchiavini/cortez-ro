@@ -32,7 +32,7 @@ function	script	F_keWarpTown	{
 		if ($@kewt_showOnline) {
 			set @kmenu, select(
 				"- Voltar",
-				"- Cortez (0z/"+(getmapusers("schg_cas03"))+" "+$@ked_users$+")",
+				"- Cortez (0z/"+(getmapusers("brasilis"))+" "+$@ked_users$+")",
 				"- Alberta ("+@cost+"z/"+(getmapusers("alberta")+getmapusers("alberta_in"))+" "+$@ked_users$+")",
 				"- Al De Baran ("+@cost+"z/"+(getmapusers("aldebaran")+getmapusers("aldeba_in"))+" "+$@ked_users$+")",
 				"- Amatsu ("+@cost+"z/"+(getmapusers("amatsu")+getmapusers("ama_in01")+getmapusers("ama_in02"))
@@ -102,7 +102,7 @@ function	script	F_keWarpTown	{
 		}
 		switch (@kmenu) {
 		case 2:		//Cortez
-			SF_warp 0,0,e_yawn,"schg_cas03",48,48;
+			SF_warp 0,0,e_yawn,"brasilis",266,92;
 			break;
 		case 3:		//Alberta
 			if (SF_check(ketw_alberta, #ketw_alberta))

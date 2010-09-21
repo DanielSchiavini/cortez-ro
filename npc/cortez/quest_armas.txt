@@ -1,11 +1,11 @@
-schg_cas03,40,106,6	script	Cortez Quests	733,{
-	mes "^336699[ Cortez Quests ]^333333";
+brasilis,257,111,6	script	Missões Cortez	733,{
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Olá! Bem vindo ao Cortez Online";
 	mes "Claro, você quer fazer quests! O que deseja?";
 	next;
 	menu "Mais Informações",L_Bl, "Fazer item",-, "Sair",L_Cancel;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Bom, bom... Que item você quer?";
 	next;
 	menu "Adaga",F_adaga, "Espada",F_espada, "Espada de 2 mãos",F_2handed, "Machado",F_axe, "Lança",F_pike, "Maça",F_mace, "Arco",F_bow, "Garra",F_claw, "Instrumento",F_instrum, "Chicote",F_chicote, "Katar",F_katar, "Sair",L_Cancel;
@@ -17,7 +17,7 @@ F_adaga:
 	if (countitem(2507)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -26,14 +26,14 @@ F_adaga:
 	delitem 1064,30;
 	delitem 2507,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1240,1;
 	logmes "[Quest] Adaga da Princesa";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -44,7 +44,7 @@ F_espada:
 	if (countitem(1124)<2) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -53,14 +53,14 @@ F_espada:
 	delitem 1131,2;
 	delitem 1124,2;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1137,1;
 	logmes "[Quest] Excalibur";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -71,7 +71,7 @@ F_2handed:
 	if (countitem(1165)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -80,14 +80,14 @@ F_2handed:
 	delitem 2317,1;
 	delitem 1165,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1164,1;
 	logmes "[Quest] Muramasa";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -98,7 +98,7 @@ F_axe:
 	if (countitem(1363)<2) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -107,14 +107,14 @@ F_axe:
 	delitem 7024,1;
 	delitem 1363,2;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1368,1;
 	logmes "[Quest] Tomahawk";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -125,7 +125,7 @@ F_pike:
 	if (countitem(1413)<2) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -134,14 +134,14 @@ F_pike:
 	delitem 1466,2;
 	delitem 1413,2;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1416,1;
 	logmes "[Quest] Tjungkuletti";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -152,7 +152,7 @@ F_mace:
 	if (countitem(1524)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -161,14 +161,14 @@ F_mace:
 	delitem 969,10;
 	delitem 1524,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1531,1;
 	logmes "[Quest] Chave Inglesa";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -179,7 +179,7 @@ F_bow:
 	if (countitem(4053)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -188,14 +188,14 @@ F_bow:
 	delitem 2254,5;
 	delitem 4053,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1720,1;
 	logmes "[Quest] Necro Bow";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -206,7 +206,7 @@ F_claw:
 	if (countitem(1810)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -215,14 +215,14 @@ F_claw:
 	delitem 999,50;
 	delitem 1810,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1814,1;
 	logmes "[Quest] Fúria Insana";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -233,7 +233,7 @@ F_instrum:
 	if (countitem(1907)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -242,14 +242,14 @@ F_instrum:
 	delitem 2261,1;
 	delitem 1907,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1913,1;
 	logmes "[Quest] Guitarra Elétrica";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -260,7 +260,7 @@ F_chicote:
 	if (countitem(1960)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -269,14 +269,14 @@ F_chicote:
 	delitem 5008,1;
 	delitem 1960,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1963,1;
 	logmes "[Quest] Rosa Fustigante";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
@@ -287,7 +287,7 @@ F_katar:
 	if (countitem(1261)<1) goto L_NoMake;
 	next;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Me dê um segundo.....";
 	next;
 
@@ -296,19 +296,19 @@ F_katar:
 	delitem 5025,1;
 	delitem 1261,1;
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou fazer seu item.....";
 	next;
 
 	getitem 1266,1;
 	logmes "[Quest] Infiltrador [4]";
 
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Pronto, feito! Divirta-se!!!";
 	close;
 
 L_NoMake:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Você não tem os itens necessários.";
 	mes "Venha outra hora...";
 	close;
@@ -316,13 +316,13 @@ L_NoMake:
 // --- ITENS NECESSÁRIOS ---
 
 L_Bl:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Entendi... De qual item você vai querer?";
 	next;
 	menu "Adaga",I_adaga, "Espada",I_espada, "Espada de 2 mãos",I_2handed, "Machado",I_axe, "Lança",I_pike, "Maça",I_mace, "Arco",I_bow, "Garra",I_claw, "Instrumento",I_instrum, "Chicote",I_chicote, "Katar",I_katar, "Sair",L_Cancel;
 
 I_adaga:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de uma adaga sinistra, 300 Crânios, 30 Rédeas e 1 Capa do Marquês...";
 	mes "Como recompensa você receberá o item Adaga da princesa!";
 	next;
@@ -330,7 +330,7 @@ I_adaga:
 	close;
 
 I_espada:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 500 amuletos dos orcs, 2 Línguas de fogo, 2 Alfanges de Gelo e 2 Espadas Orc...";
 	mes "Como recompensa você receberá o item Excalibur!";
 	next;
@@ -338,7 +338,7 @@ I_espada:
 	close;
 
 I_2handed:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 300 Brigan, 3 elmos[4], uma armadura metálica[4] e uma Masamune...";
 	mes "Como recompensa você receberá o item Muramasa!";
 	next;
@@ -346,7 +346,7 @@ I_2handed:
 	close;
 
 I_axe:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 150 pó de borboleta, 50 sangue escarlate, uma Lâmina ensanguentada e 2 machados sangrentos...";
 	mes "Como recompensa você receberá o item Tomahawk!";
 	next;
@@ -354,7 +354,7 @@ I_axe:
 	close;
 
 I_pike:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 400 Foices de Louva-Deus, 5 Piques[4], 2 Foices (do bafomé) e 2 Gungnir....";
 	mes "Como recompensa você receberá o item Tjungkuletti!";
 	next;
@@ -362,7 +362,7 @@ I_pike:
 	close;
 
 I_mace:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 200 Cabelos dourados, um Chapéu de Enfermeira, 10 Ouros e uma maça de ouro...";
 	mes "Como recompensa você receberá o item Chave Inglesa!";
 	next;
@@ -370,7 +370,7 @@ I_mace:
 	close;
 
 I_bow:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar dos itens:";
 	mes "-150 Heal Scroll (lv 5)";
 	mes "-5 asas de anjo";
@@ -382,7 +382,7 @@ I_bow:
 	close;
 
 I_claw:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 200 presas de zenorc, 300 dentes de morcego, 50 aços e uma garra[2]...";
 	mes "Como recompensa você receberá o item Fúria Insana!";
 	next;
@@ -390,7 +390,7 @@ I_claw:
 	close;
 
 I_instrum:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 200 cascos de tartaruga, 30 elunium, um capacete de soldado e um violão[0]...";
 	mes "Como recompensa você receberá o item Guitarra Elétrica!";
 	next;
@@ -398,7 +398,7 @@ I_instrum:
 	close;
 
 I_chicote:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 250 cascos de tartaruga, 40 oridecon, uma grinalda e um chicote[1]....";
 	mes "Como recompensa você receberá o item Rosa Fustigante!";
 	next;
@@ -406,7 +406,7 @@ I_chicote:
 	close;
 
 I_katar:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Vou precisar de 200 ferros, 200 aços, um Elmo Angelical e um infiltrador[3]....";
 	mes "Como recompensa você receberá o item Infiltrador!";
 	next;
@@ -414,7 +414,7 @@ I_katar:
 	close;
 
 L_Cancel:
-	mes "^336699[ Cortez Quests ]^333333";
+	mes "^336699[ Missões Cortez ]^333333";
 	mes "Ah, que vergonha!";
 	mes "Já vai desistir? hahaha... Que idiota!";
 	mes "Talvez você consiga fazer uma máscara feliz...";

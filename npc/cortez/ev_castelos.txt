@@ -29,7 +29,7 @@ payg_cas05	mapflag	monster_noteleport
 payg_cas05	mapflag	nocommand	50
 payg_cas05	mapflag	nosave	SavePoint
 
-schg_cas03,61,38,5	script	Invasão dos Castelos	47,{
+brasilis,264,94,5	script	Invasão dos Castelos	47,{
 	if($castelo==0){
 		donpcevent "Evento dos Castelos::OnInit";
 		end;
@@ -91,11 +91,11 @@ new_zone01,49,124,5	script	Evento dos Castelos	47,{
 		setarray @mobs5[0],	3302, 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303;	//Chefe é sempre o primeiro
 		
 		//Looping pelos castelos
-		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "schg_cas03", 48, 48;
+		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "brasilis", 48, 48;
 		dispbottom "Chefes:";
 		for(set @i, 1; @i<=5; set @i, @i + 1){
 			//Limpando mapa
-			areawarp $evcity$ + "g_cas0" + @i, 0, 0, 300, 300, "schg_cas03", 48, 48;
+			areawarp $evcity$ + "g_cas0" + @i, 0, 0, 300, 300, "brasilis", 266, 105;
 			killmonsterall $evcity$ + "g_cas0" + @i;
 			
 			if(@i==5){
@@ -206,9 +206,9 @@ new_zone01,49,124,5	script	Evento dos Castelos	47,{
 		for(set $castelo, 1; $castelo<=5; set $castelo, $castelo + 1){
 			enablenpc $evcity$ + "g0" + $castelo;
 			killmonsterall $evcity$ + "g_cas0" + $castelo;
-			areawarp $evcity$ + "g_cas0" + $castelo, 0, 0, 300, 300, "schg_cas03", 48, 48;
+			areawarp $evcity$ + "g_cas0" + $castelo, 0, 0, 300, 300, "brasilis", 266, 105;
 		}
-		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "schg_cas03", 48, 48;
+		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "brasilis", 266, 105;
 		set $castelo, 0;
 		goto OnFim;
 	
@@ -241,6 +241,6 @@ function	script	EvCastelosWarp	{
 	else if($castelo>0)
 		areawarp $evcity$ + "g_cas0" + ($castelo-1), 0, 0, 300, 300, $evcity$ + "_gld", .@x, .@y;
 	else
-		areawarp $evcity$ + "g_cas05", 0, 0, 300, 300, "schg_cas03", 48, 48;
+		areawarp $evcity$ + "g_cas05", 0, 0, 300, 300, "brasilis", 266, 105;
 	return;
 }

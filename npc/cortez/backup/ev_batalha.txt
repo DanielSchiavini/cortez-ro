@@ -46,9 +46,9 @@ guild_vs2-1,50,53,4	script	Batalha PvP	936,{
 			set .BatalhaPVP, 0;
 			gvgoff "guild_vs2-1";
 			logmes "[Batalha] Evento cancelado";
-			mapwarp "prt_are_in","schg_cas03",48,48;
-			mapwarp "arena_room","schg_cas03",48,48;
-			mapwarp "guild_vs2-1","schg_cas03",48,48;
+			mapwarp "prt_are_in","brasilis",266,105;
+			mapwarp "arena_room","brasilis",266,105;
+			mapwarp "guild_vs2-1","brasilis",266,105;
 			end;
 		}else if(.BatalhaPVP==1){
 			mes "[^660066 Batalha PvP ^000000]";

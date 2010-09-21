@@ -90,7 +90,7 @@ OnRecvCastlePt02:
 	end;
 }
 
-schg_cas03,67,19,4	duplicate(Hrist2)	Hrist#ctz	722
+//brasilis,263,120,4	duplicate(Hrist2)	Hrist#ctz	722
 prt_gld,244,128,8	duplicate(Hrist2)	Hrist#p2-3	722
 prt_gld,236,126,8	duplicate(Hrist2)	Hrist#p2-4	722
 prt_gld,236,128,8	duplicate(Hrist2)	Hrist#p2-5	722

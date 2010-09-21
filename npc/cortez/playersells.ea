@@ -8,7 +8,7 @@
 // recebeu => Muda quando se dá o zeny para o vendedor
 // pago => Muda quando se tira o zeny do comprador
 
-schg_cas03,69,72,5	script	Wilbis	784,{
+brasilis,250,80,5	script	Wilbis	784,{
 	mes "^993300[ " + .name$ + " ]^003399";
 	mes "Olá viajante... Eu vivo pelo mundo fazendo leilões...";
 	mes "Se quiser, eu posso vender um item seu, ou se preferir pode comprar algumas coisas que eu tenho.";
@@ -147,7 +147,7 @@ schg_cas03,69,72,5	script	Wilbis	784,{
 						logmes "[Wilbis] "+@id+" Lance "+@lance+"kk (pago)";
 						
 						set .@msg$, "Wilbis: Foi oferecido um lance de "+@lance+" milhões de Zeny pelo item "+@item$+"!";
-						mapannounce "schg_cas03",	.@msg$, bc_map, .color;	//cidade principal
+						mapannounce "brasilis",	.@msg$, bc_map, .color;	//cidade principal
 						mapannounce "pvp_y_1-2",.@msg$, bc_map, .color;	//cidade do comércio
 						mes "^993300[ " + .name$ + " ]^003399";
 						mes "Obrigado, seu lance de "+@lance+" milhões de Zeny foi registrado.";
@@ -316,7 +316,7 @@ schg_cas03,69,72,5	script	Wilbis	784,{
 			mes "Para verificar o status, basta falar comigo e escolher a opção de vender.";
 			next;
 			set .@msg$, "Wilbis: O item "+getitemname(@item)+" foi colocado à venda por "+@valor+" milhões de Zeny!";
-			mapannounce "schg_cas03",	.@msg$,bc_map,.color;	//cidade principal
+			mapannounce "brasilis",	.@msg$,bc_map,.color;	//cidade principal
 			mapannounce "pvp_y_1-2",.@msg$,bc_map,.color;	//cidade do comércio
 			
 			mes "^993300[ " + .name$ + " ]^003399";
@@ -345,7 +345,7 @@ schg_cas03,69,72,5	script	Wilbis	784,{
 				set $playerSellsId,.@playerSellsId[0];
 				if(.@item$!=""){
 					set .@msg$, .name$ + ": Olá! Venda do item " + .@item$[0] + " por " + .@valor$[0] + ". Confira!";
-					mapannounce "schg_cas03",	.@msg$,bc_map,.color;	//cidade principal
+					mapannounce "brasilis",	.@msg$,bc_map,.color;	//cidade principal
 					mapannounce "pvp_y_1-2",.@msg$,bc_map,.color;	//cidade do comércio
 				}else{
 					set $playerSellsId,0;

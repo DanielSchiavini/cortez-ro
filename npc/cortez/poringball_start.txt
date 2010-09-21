@@ -1,5 +1,4 @@
-//auction_01,184,76,5	script	 Anfitrião do jogo#hj1	911,{
-schg_cas03,86,93,5	script	 Anfitrião do jogo#hj1	911,{
+brasilis,232,110,5	script	 Anfitrião do jogo#hj1	911,{
 	callfunc "F_Anfitrião do jogo";
 	close;
 }
@@ -99,7 +98,7 @@ OnLeaveRoom:
 		cutin "",255;
 	}
 
-	savepoint "schg_cas03",48,48;
+	savepoint "brasilis",266,92;
 	warp "SavePoint",0,0;
 	end;
 }

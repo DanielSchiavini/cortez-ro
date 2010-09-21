@@ -1,4 +1,4 @@
-schg_cas03,22,41,5	script	Canibal	796,{		//792
+brasilis,296,87,5	script	Canibal	796,{		//792
 	mes "[Canibal]";
 	mes "Olá, que tal me dar algo pra me alimentar?";
 	mes "Que tal você, aspira?";

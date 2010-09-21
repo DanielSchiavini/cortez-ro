@@ -1,4 +1,4 @@
-schg_cas03,67,48,5	script	Choco::healer	1225,{
+brasilis,270,97,5	script	Totó::healer	81,{
 	if(.maxQuestionId==0)
 		query_sql "Select Max(id) From ro.Questions",.maxQuestionId;
 	if(.maxQuestionId==0)
@@ -14,19 +14,19 @@ schg_cas03,67,48,5	script	Choco::healer	1225,{
 	set @tempSp, (pow((MaxSp-Sp)/200,2)*reborn)*5;
 	
 	//mes @tempSp + " >> " + ((MaxSp-Sp) * BaseLevel) / 3;
-	mes "[^990000 Choco ^000000]";
+	mes "[^990000 Totó ^000000]";
 	mes "Eu tenho uma pergunta para você.";
 	mes "Se responder corretamente, curo seu HP e SP pelo preço de "+(@tempHp/3+@tempSp/3)+"z.";
 	mes "Mas, se você errar, eu terei que lhe cobrar "+@tempHp+"z pelo HP e "+@tempSp+"z pelo SP.";
 	next;
 	if(Zeny<@tempHp+@tempSp){
-		mes "[^990000 Choco ^000000]";
+		mes "[^990000 Totó ^000000]";
 		mes "Mas você não pode tentar acertar a pergunta se não tiver pelo menos "+(@tempHp+@tempSp)+"z com você.";
 		close;
 	}
 	menu "Responder Pergunta",L_Question,"Pagar sem responder",-,"Sair",L_Cancel;
 
-	mes "[^990000 Choco ^000000]";
+	mes "[^990000 Totó ^000000]";
 	mes "Deseja que eu cure seu HP? ("+@tempHp+" z)";
 	mes "Deseja que eu cure seu SP? ("+@tempSp+" z)?";
 	mes "Ou deseja ambos? ("+(@tempHp+@tempSp)+" z)";
@@ -63,7 +63,7 @@ schg_cas03,67,48,5	script	Choco::healer	1225,{
 		goto L_Fim;
 
 	L_Question:
-		mes "[^990000 Choco ^000000]";
+		mes "[^990000 Totó ^000000]";
 		if(#mimicId==0){
 			set #mimicId, rand(1,.maxQuestionId);
 		}
@@ -76,7 +76,7 @@ schg_cas03,67,48,5	script	Choco::healer	1225,{
 		set #mimicId,0;
 		set #mimicCorreto, #mimicCorreto + 1;
 		
-		mes "[^990000 Choco ^000000]";
+		mes "[^990000 Totó ^000000]";
 		mes "Parabéns, resposta ^009900CORRETA^000000!!! Você foi curado.";
 		if(#mimicCorreto>2){
 			mes "Muito bom, é sua " + #mimicCorreto + "a vez que acerta de primeira!";
@@ -101,37 +101,37 @@ schg_cas03,67,48,5	script	Choco::healer	1225,{
 		}
 		heal MaxHp,MaxSp;
 		set #mimicCorreto, 0;
-		mes "[^990000 Choco ^000000]";
+		mes "[^990000 Totó ^000000]";
 		mes "Não! ^990000INCORRETO^000000!!!";
 		mes "Estou te curando pelo valor de " + (@tempHp+@tempSp) + "z.";
 		close;
 	
 	L_Nozeny:
-		mes "[^990000 Choco ^000000]";
+		mes "[^990000 Totó ^000000]";
 		mes "Meu querido, você não tem zeny!";
 		close;
 	
 	L_Fim:
-		mes "[^990000 Choco ^000000]";
+		mes "[^990000 Totó ^000000]";
 		mes "Pronto. Você foi curado.";
 		close;
 
 	L_Cancel:
-		mes "[^990000 Choco ^000000]";
+		mes "[^990000 Totó ^000000]";
 		mes "Obrigado. Por favor volte quando precisar.";
 		close;
 }
 
-alberta,120,60,7	duplicate(healer)	Choco#alberta	1225
-aldebaran,140,120,5	duplicate(healer)	Choco#aldebaran	1225
-amatsu,189,85,8	duplicate(healer)	Choco#amatsu	1225
-geffen,115,67,8	duplicate(healer)	Choco#geffen	1225
-rachel,123,126,4	duplicate(healer)	Choco#rachel	1225
-izlude,136,91,2	duplicate(healer)	Choco#izlude	1225
-louyang,216,122,3	duplicate(healer)	Choco#louyang	1225
-xmas,146,126,4	duplicate(healer)	Choco#xmas	1225
-payon,159,182,5	duplicate(healer)	Choco#payon	1225
-prontera,143,94,5	duplicate(healer)	Choco#pront	1225
-umbala,86,161,4	duplicate(healer)	Choco#umbala	1225
-yuno,162,87,5	duplicate(healer)	Choco#yuno	1225
-pay_arche,36,138,6	duplicate(healer)	Choco#pay_arche	1225
+alberta,120,60,7	duplicate(healer)	Totó#alberta	1225
+aldebaran,140,120,5	duplicate(healer)	Totó#aldebaran	1225
+amatsu,189,85,8	duplicate(healer)	Totó#amatsu	1225
+geffen,115,67,8	duplicate(healer)	Totó#geffen	1225
+rachel,123,126,4	duplicate(healer)	Totó#rachel	1225
+izlude,136,91,2	duplicate(healer)	Totó#izlude	1225
+louyang,216,122,3	duplicate(healer)	Totó#louyang	1225
+xmas,146,126,4	duplicate(healer)	Totó#xmas	1225
+payon,159,182,5	duplicate(healer)	Totó#payon	1225
+prontera,143,94,5	duplicate(healer)	Totó#pront	1225
+umbala,86,161,4	duplicate(healer)	Totó#umbala	1225
+yuno,162,87,5	duplicate(healer)	Totó#yuno	1225
+pay_arche,36,138,6	duplicate(healer)	Totó#pay_arche	1225

@@ -15,7 +15,7 @@
 //= Fixed a few spelling errors. [Nexon]
 //============================================================
 
-schg_cas03,94,76,4	script	Jaax	832,{		//852
+brasilis,258,130,4	script	Jaax	832,{		//852
 	mes "^666699[ Jaax, O inventor~ ]^333333";
 	mes "Meu nome é Jaax.";
 	mes "Sem exagerar, eu posso dizer que talvez eu seja o ^996600maior inventor dos nossos tempos.^333333";

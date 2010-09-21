@@ -57,8 +57,8 @@
 //callfunc "F_KafraExpress","Kafra Especial","",2,"prontera",142,199;
 //close;
 
-schg_cas03,54,47,4	script	Super Kafra#cortez	116,{
-	callfunc "F_KafraExpress","Super Kafra","",2,"schg_cas03",48,48;
+brasilis,265,99,4	script	Super Kafra#cortez	845,{
+	callfunc "F_KafraExpress","Super Kafra","",2,"brasilis",266,105;
 }
 
 prontera,76,62,4	script	Super Kafra#prontera1	116,{

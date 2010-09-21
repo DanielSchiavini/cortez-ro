@@ -1046,12 +1046,12 @@ function	script	platinum	{
 	return;
 }
 
-schg_cas03,57,53,4	script	Profissões	780,{
+brasilis,269,111,4	script	Profissões	780,{
 	callfunc "jobmaster";
 	end;
 }
 
-schg_cas03,0,0,0	script	#LvUpEvent	-1,{
+brasilis,0,0,0	script	#LvUpEvent	-1,{
 	OnPCJobLvUpEvent:
 	if(NextJobExp==0) callfunc "jobmaster";
 	end;

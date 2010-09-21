@@ -23,7 +23,7 @@ autosave_time: 60
 
 save_log: yes
 
-start_point: schg_cas03,48,48
+start_point: brasilis,266,105
 start_weapon: 1203
 start_armor: 2301
 start_zeny: 5000

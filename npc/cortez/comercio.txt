@@ -4,9 +4,9 @@ pvp_y_room	mapflag	autotrade
 pvp_y_room	mapflag	nomemo
 pvp_y_room	mapflag	nosave	SavePoint
 pvp_y_room	mapflag	nochat
-schg_cas03	mapflag	novending
+brasilis	mapflag	novending
 
-schg_cas03,45,48,4	script	Salas de Chat	748,{
+brasilis,284,105,4	script	Salas de Chat	748,{
 	mes "[^3333CC Salas de Chat ^000000]";
 	mes "As salas de chat somente podem ser criadas ao lado da calçada, atrás de mim.";
 	mes "Assim podemos manter nossa cidade organizada!";
@@ -15,14 +15,14 @@ schg_cas03,45,48,4	script	Salas de Chat	748,{
 	
 	OnInit:
 		announce "NPCs carregados.",0;
-		setcell "schg_cas03",0,0,300,300,cell_nochat,1;
-		setcell "schg_cas03",45,71,45,49,cell_nochat,0;
+		setcell "brasilis",0,0,300,300,cell_nochat,1;
+		setcell "brasilis",284,105,284,87,cell_nochat,0;
 		setcell "pvp_y_room",0,0,300,300,cell_novending,1;
 		waitingroom "Chats Atrás de Mim!",0;
 		end;
 }
 
-schg_cas03,38,48,4	script	CdC	726,{		//701,{
+brasilis,255,91,4	script	CdC	726,{		//701,{
 	mes "Deseja ir para a cidade do comércio (CdC)?";
 	menu "Sim",MIr,"Não",-;
 	close;
@@ -78,8 +78,8 @@ pvp_y_room,51,17,4	script	Cidade Principal	726,{
 	MIr:
 	mes "Obrigado!!!";
 	close2;
-	warp "schg_cas03",48,48;
-	query_sql "Update `char` Set last_map='schg_cas03',last_x=48,last_y=48 Where char_id="+escape_sql(getcharid(0));
+	warp "brasilis",266,105;
+	query_sql "Update `char` Set last_map='brasilis',last_x=266,last_y=105 Where char_id="+escape_sql(getcharid(0));
 	end;
 }
 

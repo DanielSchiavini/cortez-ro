@@ -46,6 +46,9 @@ DELETE FROM `global_reg_value` WHERE `str`='COOKING_ATTEMPT' OR str='question$' 
 
 DROP TABLE `quest_objective`;
 
+Update `char` Set save_x=266, save_y=105, save_map='brasilis';
+Update `char` Set last_x=266, last_y=105, last_map='brasilis' Where last_map = 'schg_cas03';
+
 
 --- Login DB
 

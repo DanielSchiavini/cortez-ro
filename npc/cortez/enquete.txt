@@ -36,7 +36,7 @@
 // ==                     [ http://www.talk-scripts.cjb.net ]
 // ============================================================
 
-schg_cas03,70,54,4	script	Garota da Enquete::poll	831,{
+brasilis,228,74,4	script	Garota da Enquete::poll	831,{
 
 if ($the_poll_question$ == "") goto L_NoQuestion;
 
