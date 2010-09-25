@@ -102,16 +102,16 @@ REMOVEMENU:
 	//set @part, select("Mudei de idéia...:"+getequipname(1)+":"+getequipname(2)+":"+getequipname(3)+":"+getequipname(4)+":"+getequipname(5)+":"+getequipname(6)+":"+getequipname(7)+":"+getequipname(8)+":"+getequipname(9)+":"+getequipname(10))-1;
 	set @part, select(
 		"Mudei de idéia...",
-		"- "+getequipname(EQI_HEAD_TOP),
-		"- "+getequipname(EQI_ARMOR),
-		"- "+getequipname(EQI_HAND_L),
-		"- "+getequipname(EQI_HAND_R),
-		"- "+getequipname(EQI_GARMENT),
-		"- "+getequipname(EQI_SHOES),
-		"- "+getequipname(EQI_ACC_L),
-		"- "+getequipname(EQI_ACC_R),
-		"- "+getequipname(EQI_HEAD_MID),
-		"- "+getequipname(EQI_HEAD_LOW)
+		""+getequipname(EQI_HEAD_TOP),
+		""+getequipname(EQI_ARMOR),
+		""+getequipname(EQI_HAND_L),
+		""+getequipname(EQI_HAND_R),
+		""+getequipname(EQI_GARMENT),
+		""+getequipname(EQI_SHOES),
+		""+getequipname(EQI_ACC_L),
+		""+getequipname(EQI_ACC_R),
+		""+getequipname(EQI_HEAD_MID),
+		""+getequipname(EQI_HEAD_LOW)
 	);
 	set @part, @part-1;
 	
@@ -136,8 +136,7 @@ REMOVEMENU:
 			mes "Mas, como é quase hora da guerra, vou utilizar meus equipamentos para retirar a carta para você.";
 			mes "Tudo isso sem nenhum custo =)";
 		}else{
-			mes "Para fazer minha mágica, irei precisar de:";
-			mes "" + (20000+(@cardcount * 10000)) + " zeny";
+			mes "Para fazer minha mágica, irei precisar de " + (20000+(@cardcount * 10000)) + " zeny";
 			mes "1 ^0000FFFragmento Estelar^000000";
 			mes "1 ^0000FFGema Amarela^000000";
 			mes "20 ^0000FFAmuletos dos Orcs^000000.";

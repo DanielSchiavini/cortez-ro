@@ -27,6 +27,7 @@ noks: 0,60
 autoloot: 0,60
 autotrade: 0,60
 at: 0,60
+storage: 0,70
 
 // VIPs
 exp: 5,50
@@ -36,7 +37,6 @@ mi: 5,5
 iteminfo: 5,5
 ii: 5,5
 whodrops: 5,5
-storage: 5,70
 mail: 5, 70
 auction: 5,80
 hominfo: 5,80

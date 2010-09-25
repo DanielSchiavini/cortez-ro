@@ -78,8 +78,15 @@ gm_join_chat: 60
 gm_kick_chat: 60
 ban_hack_trade: 60
 hack_info_GM_level: 5
+
+lowest_gm_level: 10
 gm_cant_drop_min_lv: 10
 gm_cant_drop_max_lv: 98
+gm_viewequip_min_lv: 0
+gm_can_party: no
+gm_cant_party_min_lv: 10
+who_display_aid: 10
+any_warp_GM_min_level: 20
 
 //guild.conf
 require_glory_guild: 0

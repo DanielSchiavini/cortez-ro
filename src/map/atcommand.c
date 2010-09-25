@@ -2166,46 +2166,49 @@ int atcommand_go(const int fd, struct map_session_data* sd, const char* command,
 		char map[MAP_NAME_LENGTH];
 		int x, y;
 	} data[] = {
-		{ MAP_PRONTERA,    156, 191 }, //  0=Prontera
-		{ MAP_MORROC,      156,  93 }, //  1=Morroc
-		{ MAP_GEFFEN,      119,  59 }, //  2=Geffen
-		{ MAP_PAYON,       162, 233 }, //  3=Payon
-		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
-		{ MAP_IZLUDE,      128, 114 }, //  5=Izlude
-		{ MAP_ALDEBARAN,   140, 131 }, //  6=Al de Baran
+		{ "brasilis",      266,  92 }, // 0=Cortez
+		{ "force_1-1",     100, 100 }, // 1=Mini Boss 1
+		{ "pay_fild05",     90,  90 }, // 2=Mini Boss 2
+		{ "sec_in02",      138,  84 }, // 3=PvP
+		{ "guild_vs2",       0,   0 }, // 4=Galho Seco
+		{ "pvp_n_1-1",     106, 100 }, // 5=MVPs
+		{ "pvp_y_room",     52,  24 }, // 6=CDC
+		{ "gld_dun02",      80,  29 }, // 7=SuperParty
+		{ "gld_dun01",     119,  17 }, // 8=GD Payon
+		{ "gld_dun04",      99,  99 }, // 9=GD Geffen
+		{ MAP_PRONTERA,    156, 191 }, //  10=Prontera
+		{ MAP_MORROC,      156,  93 }, //  11=Morroc
+		{ MAP_GEFFEN,      119,  59 }, //  12=Geffen
+		{ MAP_PAYON,       162, 233 }, //  13=Payon
+		{ MAP_ALBERTA,     192, 147 }, //  14=Alberta
+		{ MAP_IZLUDE,      128, 114 }, //  15=Izlude
+		{ MAP_ALDEBARAN,   140, 131 }, //  16=Al de Baran
 		{ MAP_LUTIE,       147, 134 }, //  7=Lutie
-		{ MAP_COMODO,      209, 143 }, //  8=Comodo
-		{ MAP_YUNO,        157,  51 }, //  9=Yuno
-		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
-		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
-		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
-		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
-		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
-		{ MAP_NOVICE,       55, 114 }, // 15=Training Grounds
-		{ MAP_JAIL,         23,  61 }, // 16=Prison
-		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
-		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
-		{ MAP_EINBROCH,     64, 200 }, // 19=Einbroch
-		{ MAP_LIGHTHALZEN, 158,  92 }, // 20=Lighthalzen
-		{ MAP_EINBECH,      70,  95 }, // 21=Einbech
-		{ MAP_HUGEL,        96, 145 }, // 22=Hugel
-		{ MAP_RACHEL,      130, 110 }, // 23=Rachel
-		{ MAP_VEINS,       216, 123 }, // 24=Veins
-		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
-		{ "sec_in02",      138,  84 }, // 26=PVP
-		{ "force_1-1",     100, 100 }, // 27=Mini-boss
-		{ "guild_vs2",       0,   0 }, // 28=Galho Seco
-		{ "pvp_n_1-1",     106, 100 }, // 29=MVPs
-		{ "gld_dun02",      80,  29 }, // 30=Super Party
-		{ "gld_dun01",     119,  17 }, // 31=GD Payon
-		{ "gld_dun04",      99,  99 }, // 32=GD Geffen
-		{ MAP_GH,          199, 128 }, // 33=GH
+		{ MAP_COMODO,      209, 143 }, //  18=Comodo
+		{ MAP_YUNO,        157,  51 }, //  19=Yuno
+		{ MAP_AMATSU,      198,  84 }, // 20=Amatsu
+		{ MAP_GONRYUN,     160, 120 }, // 21=Gonryun
+		{ MAP_UMBALA,       89, 157 }, // 22=Umbala
+		{ MAP_NIFLHEIM,     21, 153 }, // 23=Niflheim
+		{ MAP_LOUYANG,     217,  40 }, // 24=Louyang
+		{ MAP_NOVICE,       55, 114 }, // 25=Training Grounds
+		{ MAP_JAIL,         23,  61 }, // 26=Prison
+		{ MAP_JAWAII,      249, 127 }, // 27=Jawaii
+		{ MAP_AYOTHAYA,    151, 117 }, // 28=Ayothaya
+		{ MAP_EINBROCH,     64, 200 }, // 29=Einbroch
+		{ MAP_LIGHTHALZEN, 158,  92 }, // 30=Lighthalzen
+		{ MAP_EINBECH,      70,  95 }, // 31=Einbech
+		{ MAP_HUGEL,        96, 145 }, // 32=Hugel
+		{ MAP_RACHEL,      130, 110 }, // 33=Rachel
+		{ MAP_VEINS,       216, 123 }, // 34=Veins
+		{ MAP_MOSCOVIA,    223, 184 }, // 35=Moscovia
+		{ "brasilis",      266,  92 }, // 36=Brasilis
 	};
  
 	nullpo_retr(-1, sd);
  
 	if( map[sd->bl.m].flag.nogo && battle_config.any_warp_GM_min_level > pc_isGM(sd) ) {
-		clif_displaymessage(sd->fd,"You can not use @go on this map.");
+		clif_displaymessage(sd->fd,"@go é proibido nesse mapa.");
 		return 0;
 	}
  
@@ -2219,18 +2222,18 @@ int atcommand_go(const int fd, struct map_session_data* sd, const char* command,
 	if (!message || !*message || sscanf(message, "%11s", map_name) < 1 || town < 0 || town >= ARRAYLENGTH(data)) {
 		clif_displaymessage(fd, msg_txt(38)); // Invalid location number, or name.
 		clif_displaymessage(fd, msg_txt(82)); // Please provide a name or number from the list provided:
-		clif_displaymessage(fd, " 0=Prontera         1=Morroc       2=Geffen");
-		clif_displaymessage(fd, " 3=Payon            4=Alberta      5=Izlude");
-		clif_displaymessage(fd, " 6=Al De Baran      7=Lutie        8=Comodo");
-		clif_displaymessage(fd, " 9=Yuno             10=Amatsu      11=Gonryun");
-		clif_displaymessage(fd, " 12=Umbala          13=Niflheim    14=Louyang");
-		clif_displaymessage(fd, " 15=Novice Grounds  16=Prison      17=Jawaii");
-		clif_displaymessage(fd, " 18=Ayothaya        19=Einbroch    20=Lighthalzen");
-		clif_displaymessage(fd, " 21=Einbech         22=Hugel       23=Rachel");
-		clif_displaymessage(fd, " 24=Veins           25=Moscovia");
-		clif_displaymessage(fd, " 26=PVP             27=Mini-Boss   28=Galho Seco");
-		clif_displaymessage(fd, " 29=MVPs            30=SuperParty  31=GD Payon");
-		clif_displaymessage(fd, " 32=GD Geffen       33=Glast Heim");
+		clif_displaymessage(fd, " 0=Cortez          1/2=Mini Bosses  3=PvP");
+		clif_displaymessage(fd, " 4=Galho Seco        5=MVPs         6=CDC");
+		clif_displaymessage(fd, " 7=Super Party       8=GD Payon     9=GD Geffen");
+		clif_displaymessage(fd, " 10=Prontera        11=Morroc      12=Geffen");
+		clif_displaymessage(fd, " 13=Payon           14=Alberta     15=Izlude");
+		clif_displaymessage(fd, " 16=Aldebaran       17=Lutie       18=Comodo");
+		clif_displaymessage(fd, " 19=Yuno            20=Amatsu      21=Gonryun");
+		clif_displaymessage(fd, " 22=Umbala          23=Niflheim    24=Louyang");
+		clif_displaymessage(fd, " 25=Novice Grounds  26=Prison      27=Jawaii");
+		clif_displaymessage(fd, " 28=Ayothaya        29=Einbroch    30=Lighthalzen");
+		clif_displaymessage(fd, " 31=Einbech         32=Hugel       33=Rachel");
+		clif_displaymessage(fd, " 34=Veins           35=Moscovia    36=Brasilis");
 		return -1;
 	}
 
@@ -2239,92 +2242,95 @@ int atcommand_go(const int fd, struct map_session_data* sd, const char* command,
 	for (i = 0; map_name[i]; i++)
 		map_name[i] = TOLOWER(map_name[i]);
 	// try to identify the map name
-	if (strncmp(map_name, "prontera", 3) == 0) {
+	if (strncmp(map_name, "cortez", 3) == 0) {
 		town = 0;
-	} else if (strncmp(map_name, "morocc", 3) == 0) {
+	} else if (strncmp(map_name, "miniboss1", 3) == 0) {
 		town = 1;
-	} else if (strncmp(map_name, "geffen", 3) == 0) {
+	} else if (strncmp(map_name, "miniboss2", 3) == 0) {
 		town = 2;
+	} else if (strncmp(map_name, "pvp", 3) == 0) {
+		town = 3;
+	} else if (strncmp(map_name, "galhoseco", 3) == 0) {
+		town = 4;
+	} else if (strncmp(map_name, "mvps", 3) == 0) {
+		town = 5;
+	} else if (strncmp(map_name, "cdc", 3) == 0) {
+		town = 6;
+	} else if (strncmp(map_name, "superparty", 3) == 0) {
+		town = 7;
+	} else if (strncmp(map_name, "gdpayon", 3) == 0) {
+		town = 8;
+	} else if (strncmp(map_name, "gdgeffen", 3) == 0) {
+		town = 9;
+	} else if (strncmp(map_name, "prontera", 3) == 0) {
+		town = 10;
+	} else if (strncmp(map_name, "morocc", 3) == 0) {
+		town = 11;
+	} else if (strncmp(map_name, "geffen", 3) == 0) {
+		town = 12;
 	} else if (strncmp(map_name, "payon", 3) == 0 ||
 	           strncmp(map_name, "paion", 3) == 0) {
-		town = 3;
+		town = 13;
 	} else if (strncmp(map_name, "alberta", 3) == 0) {
-		town = 4;
+		town = 14;
 	} else if (strncmp(map_name, "izlude", 3) == 0 ||
 	           strncmp(map_name, "islude", 3) == 0) {
-		town = 5;
+		town = 15;
 	} else if (strncmp(map_name, "aldebaran", 3) == 0 ||
 	           strcmp(map_name,  "al") == 0) {
-		town = 6;
+		town = 16;
 	} else if (strncmp(map_name, "lutie", 3) == 0 ||
 	           strcmp(map_name,  "christmas") == 0 ||
 	           strncmp(map_name, "xmas", 3) == 0 ||
 	           strncmp(map_name, "x-mas", 3) == 0) {
-		town = 7;
+		town = 17;
 	} else if (strncmp(map_name, "comodo", 3) == 0) {
-		town = 8;
+		town = 18;
 	} else if (strncmp(map_name, "yuno", 3) == 0) {
-		town = 9;
+		town = 19;
 	} else if (strncmp(map_name, "amatsu", 3) == 0) {
-		town = 10;
+		town = 20;
 	} else if (strncmp(map_name, "gonryun", 3) == 0) {
-		town = 11;
+		town = 21;
 	} else if (strncmp(map_name, "umbala", 3) == 0) {
-		town = 12;
+		town = 22;
 	} else if (strncmp(map_name, "niflheim", 3) == 0) {
-		town = 13;
+		town = 23;
 	} else if (strncmp(map_name, "louyang", 3) == 0) {
-		town = 14;
+		town = 24;
 	} else if (strncmp(map_name, "new_1-1", 3) == 0 ||
 	           strncmp(map_name, "startpoint", 3) == 0 ||
 	           strncmp(map_name, "begining", 3) == 0) {
-		town = 15;
+		town = 25;
 	} else if (strncmp(map_name, "sec_pri", 3) == 0 ||
 	           strncmp(map_name, "prison", 3) == 0 ||
 	           strncmp(map_name, "jails", 3) == 0) {
-		town = 16;
+		town = 26;
 	} else if (strncmp(map_name, "jawaii", 3) == 0 ||
 	           strncmp(map_name, "jawai", 3) == 0) {
-		town = 17;
+		town = 27;
 	} else if (strncmp(map_name, "ayothaya", 3) == 0 ||
 	           strncmp(map_name, "ayotaya", 3) == 0) {
-		town = 18;
+		town = 28;
 	} else if (strncmp(map_name, "einbroch", 5) == 0 ||
 	           strncmp(map_name, "ainbroch", 5) == 0) {
-		town = 19;
-	} else if (strncmp(map_name, "lighthalzen", 3) == 0) {
-		town = 20;
-	} else if (strncmp(map_name, "einbech", 3) == 0) {
-		town = 21;
-	} else if (strncmp(map_name, "hugel", 3) == 0) {
-		town = 22;
-	} else if (strncmp(map_name, "rachel", 3) == 0) {
-		town = 23;
-	} else if (strncmp(map_name, "veins", 3) == 0) {
-		town = 24;
-	} else if (strncmp(map_name, "moscovia", 3) == 0) {
-		town = 25;
-	} else if (strncmp(map_name, "pvp", 3) == 0) {
-		town = 26;
-	} else if (strncmp(map_name, "miniboss", 3) == 0) {
-		town = 27;
-	} else if (strncmp(map_name, "galhoseco", 3) == 0) {
-		town = 28;
-	} else if (strncmp(map_name, "mvps", 3) == 0) {
 		town = 29;
-	} else if (strncmp(map_name, "superparty", 3) == 0) {
+	} else if (strncmp(map_name, "lighthalzen", 3) == 0) {
 		town = 30;
-	} else if (strncmp(map_name, "gd1", 5) == 0 ||
-	           strncmp(map_name, "gdpayon", 5) == 0) {
+	} else if (strncmp(map_name, "einbech", 3) == 0) {
 		town = 31;
-	} else if (strncmp(map_name, "gd4", 5) == 0 ||
-	           strncmp(map_name, "gdgeffen", 5) == 0) {
+	} else if (strncmp(map_name, "hugel", 3) == 0) {
 		town = 32;
-	} else if (strncmp(map_name, "gh", 5) == 0 ||
-	           strncmp(map_name, "glastheim", 5) == 0) {
+	} else if (strncmp(map_name, "rachel", 3) == 0) {
 		town = 33;
+	} else if (strncmp(map_name, "veins", 3) == 0) {
+		town = 34;
+	} else if (strncmp(map_name, "moscovia", 3) == 0) {
+		town = 35;
+	} else if (strncmp(map_name, "brasilis", 3) == 0) {
+		town = 36;
 	}
-
+	
 	if (town >= 0 && town < ARRAYLENGTH(data))
 	{
 		m = map_mapname2mapid(data[town].map);

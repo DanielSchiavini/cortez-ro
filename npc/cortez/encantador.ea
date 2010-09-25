@@ -9,50 +9,48 @@
 //===========================================================
 
 prontera,152,181,4	script	Encantador	406,{
-  
-	set .@npcencantador$,"^0000FF[Encantador]^000000";
-	set @PrecoEncantar,100000;	// Preço para encantar a arma
-
-	mes .@npcencantador$;
+	set .@nome$, "^0000FF[ Encantador ]^000000";
+	set .@PrecoEncantar,100000;	// Preço para encantar a arma
+	set .@Duracao,5*60000;	// Duração = 5 min
+	
+	mes .@nome$;
 	mes "Olá ^0000CD"+strcharinfo(0)+"^000000, bem vindo ao ^FF0000[Encantador]^000000, eu posso Encantar a sua Arma com qualquer elemento por 5 minutos!";
-	mes "Para encantar sua arma cobrarei "+@PrecoEncantar+"z.";
+	mes "Para encantar sua arma cobrarei "+.@PrecoEncantar+"z.";
 	next;
-	if(select("Sim.:Não.")==2){
-		mes .@npcencantador$;
+	if(select("Sim:Não")==2){
+		mes .@nome$;
 		mes "Volte quando precisar.";
 		close;
 	}
-	if(zeny < @PrecoEncantar){
-		mes .@npcencantador$;
+	if(Zeny < .@PrecoEncantar){
+		mes .@nome$;
 		mes "Você não tem o dinheiro suficiente.";
 		close;
 	}
-	mes .@npcencantador$;
+	mes .@nome$;
 	mes "Qual elemento você quer?";
-	set zeny,zeny-@PrecoEncantar;
 	next;
-	switch(select("Geada.:Chama.:Terremoto.:Ventania.:Sagrado.:Maldito.:Sair.")){
-	case 1:
-		sc_start SC_WATERWEAPON,5*60000,5;			// 60000 = 1 Minuto: Encantar com Geada, Duração: 5 Minutos, Level 5
-		close;
-	case 2:
-		sc_start SC_FIREWEAPON,5*60000,5;			// 60000 = 1 Minuto: Encantar com Chama, Duração: 5 Minutos, Level 5
-		close;
-	case 3:
-		sc_start SC_EARTHWEAPON,5*60000,5;			// 60000 = 1 Minuto: Encantar com Terremoto, Duração: 5 Minutos, Level 5
-		close;
-	case 4:
-		sc_start SC_WINDWEAPON,5*60000,5;			// 60000 = 1 Minuto: Encantar com Ventania, Duração: 5 Minutos, Level 5
-		close;
-	case 5:
-		sc_start SC_ASPERSIO,5*60000,5;				// 60000 = 1 Minuto: Encantar com Sagrado, Duração: 5 Minutos, Level 5
-		close;
-	case 6:
-		sc_start SC_SHADOWWEAPON,5*60000,5;			// 60000 = 1 Minuto: Encantar com Maldito, Duração: 5 Minutos, Level 5
-		close;
-	case 7:
-		set zeny,zeny+@PrecoEncantar;
-		close;
+	switch(select("Sair:Geada:Chama:Terremoto:Ventania")){
+		case 2:
+			sc_start SC_WATERWEAPON,.@Duracao,5;
+			skilleffect 162,0;
+			break;
+		case 3:
+			sc_start SC_FIREWEAPON,.@Duracao,5;
+			skilleffect 164,0;
+			break;
+		case 4:
+			sc_start SC_EARTHWEAPON,.@Duracao,5;
+			skilleffect 163,0;
+			break;
+		case 5:
+			sc_start SC_WINDWEAPON,.@Duracao,5;
+			skilleffect 165,0;
+			break;
+		default: close;
 	}
+	set Zeny, Zeny - .@PrecoEncantar;
+	query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-" + .@PrecoEncantar + ",'encantador')";
+	close;
 }
 

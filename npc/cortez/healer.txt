@@ -39,6 +39,7 @@ brasilis,270,97,5	script	Totó::healer	81,{
 		query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+(@tempHp+@tempSp)+",'healer')";
 		set Zeny, Zeny-(@tempHp+@tempSp);
 	}
+    skilleffect 28,MaxHp-Hp;
 	heal MaxHp,MaxSp;
 	goto L_Fim;
 	

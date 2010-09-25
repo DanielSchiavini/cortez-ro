@@ -3,42 +3,30 @@ Differences:
 
 Todo:
 - Torre
-- @storage pra não-vips? Crânios de ouro?
+x @storage pra não-vips
 - global_functionsKE x other/global_functions
-- Asa de borboleta no mapa do T.Roz e Meteoro
-- Skin/novas descrições no patch
-T Skills com descrições do kRO (adicionar skills do bRO no patch)
+x Asa de borboleta no mapa do T.Roz e Meteoro
+x Skin/novas descrições no patch
+x Skills com descrições do kRO (adicionar skills do bRO no patch)
 - Unknown items: t=3515
-- Velha Esperta mostrando -1 em slots sem equipamento
+T Velha Esperta mostrando -1 em slots sem equipamento
 - Monstros em Brasilis
 - NO MSG t=3477
 - Novos @go t=3503
-- Precisa liberar uso de asa de mosca (ID: 601) nos seguintes mapas:
-	• prt_fild10 (mapa dos mvps Turok e Chii)
-	• pay_fild10 (mapa dos mvps Baltazar e Krool)
-	• beach_dun (mapa dos mvps Sola e Yuufa)
-	• prt_monk (mapa dos mvps Bola e Gleen)
-	• yuno_fild04 (mapa do mvp Brunim)
-	• pvp_y_5-5 (mapa do mvp Dr. Pimpolho)
-	• hu_fild05 (mapa do mvp Yuri)
-	• c_tower1 (mapa dos mvps Hermes e Dimasi)
-	• cmd_fild07 (mapa do mvp T.Roz)
-	• moc_fild16 (mapa do mvp Meteoro)
-	- O mapa do mvp Elfo está dando para usar a asa de mosca normalmente
-	- O mvp do mvp Spok não é liberado para teleportar mesmo.
-- Aura no 99 / Barra de experiência não aparece
-- Proibir galho seco nos mapas novos
+x Liberar uso de asa de mosca nos mapas
+- Verificar MVPs t=3504
+- MVP Gleen com problemas nas skills t=3609, t=3686
+- moving player to "moc_fild15",0,0 failed
+- event not found [summon_boss_lt::OnMVP]
 
 After update:
 - Novas dungeons: arug_dun01 / sch_dun01
 ~ Wilbis/Auction na cid.comércio (aoshii)
 - Doações->Cash points (kafra points?!)
+- Aura no 99 / Barra de experiência não aparece
 ? Convert superkafra
 
 Client
-	- XRay? eathena.ws/wiki/index.php/Custom_Items
-
-[Error]: buildin_warp: moving player 'lobo' to "alde_dun03",18,267 failed. Source (NPC): Super Kafra#cortez at schg_cas03 (54,47)
 
 
 Multiple windows
