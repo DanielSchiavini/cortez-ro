@@ -1436,7 +1436,7 @@ packet_ver: 25
 0x07f9,-1
 
 //2009-11-17aRagexeRE
-//0x07fa,-1
+0x07fa,8
 
 //2009-11-24aRagexeRE
 //0x07fb,25

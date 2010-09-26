@@ -599,7 +599,7 @@ int mob_spawn_guardian(const char* mapname, short x, short y, const char* mobnam
 		return 0;
 	}
 	
-	if((x<=0 || y<=0) && !map_search_freecell(NULL, m, &x, &y, -1,-1, 0))
+	if((x<=0 || y<=0) && !map_search_freecell(NULL, m, &x, &y, -1,-1, 1))
 	{
 		ShowWarning("mob_spawn_guardian: Couldn't locate a spawn cell for guardian class %d (index %d) at castle map %s\n",class_, guardian, map[m].name);
 		return 0;
@@ -690,7 +690,7 @@ int mob_spawn_bg(const char* mapname, short x, short y, const char* mobname, int
 	}
 
 	data.class_ = class_;
-	if( (x <= 0 || y <= 0) && !map_search_freecell(NULL, m, &x, &y, -1,-1, 0) )
+	if( (x <= 0 || y <= 0) && !map_search_freecell(NULL, m, &x, &y, -1,-1, 1) )
 	{
 		ShowWarning("mob_spawn_bg: Couldn't locate a spawn cell for guardian class %d (bg_id %d) at map %s\n",class_, bg_id, map[m].name);
 		return 0;
@@ -2991,7 +2991,10 @@ int mobskill_use(struct mob_data *md, unsigned int tick, int event)
 		if (ms[i].msg_id){ //Display color message [SnakeDrak]
 			struct mob_chat *mc = mob_chat(ms[i].msg_id);
 			char temp[CHAT_SIZE_MAX];
-			snprintf(temp, sizeof temp,"%s : %s", md->name, mc->msg);
+ 			char name[NAME_LENGTH];
+ 			snprintf(name, sizeof name,"%s", md->name);
+ 			strtok(name, "#"); // discard extra name identifier if present [Daegaladh]
+ 			snprintf(temp, sizeof temp,"%s : %s", name, mc->msg);
 			clif_messagecolor(&md->bl, mc->color, temp);
 		}
 		

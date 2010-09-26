@@ -274,3 +274,15 @@ que_qaru02	mapflag	nobranch
 que_qaru03	mapflag	nobranch
 que_qaru04	mapflag	nobranch
 que_qaru05	mapflag	nobranch
+
+// Battle Grounds ==============
+bat_c01	mapflag	nobranch
+bat_c02	mapflag	nobranch
+bat_c03	mapflag	nobranch
+bat_room	mapflag	nobranch
+bat_b01	mapflag	nobranch
+bat_b02	mapflag	nobranch
+bat_a01	mapflag	nobranch
+bat_a02	mapflag	nobranch
+
+//evt_zombie	mapflag	nobranch

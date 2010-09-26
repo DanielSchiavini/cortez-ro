@@ -8,6 +8,26 @@
 	1475 Equestrian's Spear:	NEED INFO.
 	13005 Angelic Wing Dagger:	NEED INFO.
 =======================
+2010/09/18
+	* Rev. 14409 Lots of small minor updates. :P [L0ne_W0lf]
+	* Lots of updates to monster stats/drops, all fairly minor.
+	* Updated the price and weight of a handful of etc items.
+	* Removed drops for quest-spawned Satan Morroc. (bugreport:4425)
+	* Changed weight on novice consumable items to 0 (bugreport:4442)
+2010/09/16
+	* Rev. 14408 Added updated stats for Brasilis monsters. [L0ne_W0lf]
+2010/08/20
+	* Rev. 13485 Fixed kRO Name for Women's Bundle. (bugreport:4398) [L0ne_W0lf]
+2010/08/18
+	* Rev. 14381 Updated Asprika to use new bonus3 bSubEle. [L0ne_W0lf]
+2010/08/16
+	* Rev. 14378 Flag some skills so they won't be given with @allskills. (bugreport:3933) [L0ne_W0lf]
+2010/07/30
+	* Rev. 14367 Added two new monster mercenaries. [L0ne_W0lf]
+	- Added information for the three new mercenary skills.
+	- Added mercenary skills with cast times to castnodex.
+2010/07/27
+	* Rev. 14365 Updated entry for npc_randomattack in the skill database, now uses the newly added -3 element. [L0ne_W0lf]
 2010/07/16
 	* Rev. 14364 Added two new item groups, and implemented the remaining in the item database. [L0ne_W0lf]
 2010/07/10
