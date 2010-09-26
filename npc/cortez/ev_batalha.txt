@@ -143,8 +143,8 @@ force_1-3,100,173,4	script	Batalha PvP	936,{
 			warpparty "force_1-3",15,180, .@party_id1;
 			warpparty "force_1-3",185,180, .@party_id2;
 			for(set .@i, 0; .@i < .@Nr_Part; set .@i, .@i + 1){
-				sc_end SC_ALL, getcharid(3,.@party_members1$[.@i]);
-				sc_end SC_ALL, getcharid(3,.@party_members2$[.@i]);
+				callfunc "F_Dispell", getcharid(3,.@party_members1$[.@i]);
+				callfunc "F_Dispell", getcharid(3,.@party_members2$[.@i]);
 			}
 			
 			sleep 6000; //Loading screen

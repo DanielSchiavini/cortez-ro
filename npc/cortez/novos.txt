@@ -66,11 +66,9 @@ guild_vs3,1,1,0	script	LoadMapaIni	-1,{
 	OnPCLoadMapEvent:
 		//sleep2 300;
 		if(getgmlevel()<10){
-			skilleffect 289,1;
-			sc_end SC_ALL;
-			sc_end SC_ENDURE;
-			end;
+			callfunc "F_Dispell";
 		}
+		end;
 }
 
 prontera,151,330,4	script	Guarda#prt_castle	105,{

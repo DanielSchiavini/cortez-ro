@@ -2,18 +2,15 @@ Differences:
 - log.Loginlog?
 
 Todo:
-- Torre
-x @storage pra não-vips
-- global_functionsKE x other/global_functions
-x Asa de borboleta no mapa do T.Roz e Meteoro
-x Skin/novas descrições no patch
-x Skills com descrições do kRO (adicionar skills do bRO no patch)
-- Unknown items: t=3515
 T Velha Esperta mostrando -1 em slots sem equipamento
+
+- Changes folder conf - Revisões 14347 (14-8), 14382, 14409 (18-9)
+- Torre
+- global_functionsKE x other/global_functions
+- Unknown items: t=3515
 - Monstros em Brasilis
 - NO MSG t=3477
 - Novos @go t=3503
-x Liberar uso de asa de mosca nos mapas
 - Verificar MVPs t=3504
 - MVP Gleen com problemas nas skills t=3609, t=3686
 - moving player to "moc_fild15",0,0 failed

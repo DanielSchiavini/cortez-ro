@@ -125,3 +125,42 @@ function	script	F_UseDeadBranch	{
 	}
 	return getarg(0);
 }
+
+//Function F_Dispell (int char_id = 0)
+function	script	F_Dispell	{
+	set .@char, getarg(0,0);
+	for(set .@status, 0; .@status<SC_SPL_MATK; set .@status, .@status+1){
+		// copiado do dispell em skill.c
+		switch(.@status){
+			case SC_WEIGHT50:    case SC_WEIGHT90:    case SC_HALLUCINATION:
+			//case SC_STRIPWEAPON: case SC_STRIPSHIELD: case SC_STRIPARMOR:
+			//case SC_STRIPHELM:   case SC_CP_WEAPON:   case SC_CP_SHIELD:
+			case SC_COMBO:     //case SC_CP_ARMOR:    case SC_CP_HELM:
+			case SC_STRFOOD:     case SC_AGIFOOD:     case SC_VITFOOD:
+			case SC_INTFOOD:     case SC_DEXFOOD:     case SC_LUKFOOD:
+			case SC_HITFOOD:     case SC_FLEEFOOD:    case SC_BATKFOOD:
+			case SC_WATKFOOD:    case SC_MATKFOOD:    case SC_DANCING:
+			case SC_GUILDAURA:   case SC_EDP:         case SC_AUTOBERSERK:
+			case SC_CARTBOOST:   case SC_MELTDOWN:    case SC_SAFETYWALL:
+			case SC_SMA:         case SC_SPEEDUP0:    case SC_NOCHAT:
+			case SC_ANKLE:       case SC_SPIDERWEB:   case SC_JAILED:
+			case SC_ITEMBOOST:   case SC_EXPBOOST:    case SC_LIFEINSURANCE:
+			case SC_BOSSMAPINFO: case SC_PNEUMA:      case SC_AUTOSPELL:
+			case SC_INCHITRATE:  case SC_INCATKRATE:  case SC_NEN:
+			case SC_READYSTORM:  case SC_READYDOWN:   case SC_READYTURN:
+			case SC_READYCOUNTER:case SC_DODGE:       case SC_WARM:
+			case SC_SPEEDUP1:    case SC_AUTOTRADE:   case 253: //SC_CRITICALWOUND
+			case SC_JEXPBOOST:	 case SC_INVINCIBLE:  case SC_INVINCIBLEOFF:
+			case SC_HELLPOWER:	 case SC_MANU_ATK:    case SC_MANU_DEF:
+			case SC_SPL_ATK:	 case SC_SPL_DEF:	  case SC_MANU_MATK:
+			case SC_SPL_MATK:
+				continue;
+			default:
+				if(.@char) sc_end .@status, .@char; else sc_end .@status;
+		}
+	}
+	skilleffect 289,1;
+	//if(.@char) sc_end SC_ENDURE, .@char; else sc_end SC_ENDURE;
+	set .@char, 0;
+	return 1;
+}

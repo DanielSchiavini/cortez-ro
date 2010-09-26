@@ -146,11 +146,11 @@ guild_vs2-1,50,53,4	script	Batalha PvP	936,{
 			set .@gm_id, getcharid(3);
 			for(set .@i, 0; .@i < .@Nr_Part; set .@i, .@i + 1){
 				if(attachrid(.@party_members1[.@i]))
-					sc_end SC_ALL, .@party_members1[.@i];
+					callfunc "F_Dispell", .@party_members1[.@i];
 				else
 					set .BatalhaPVP, 0;
 				if(attachrid(.@party_members2[.@i]))
-					sc_end SC_ALL;
+					callfunc "F_Dispell";
 				else
 					set .BatalhaPVP, 0;
 				if(!.BatalhaPVP)

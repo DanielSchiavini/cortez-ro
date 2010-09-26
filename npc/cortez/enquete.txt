@@ -101,7 +101,7 @@ L_Begin:
 	if ($the_PQ$[9] != "") mes $the_PQ$[9];
 	if ($the_PQ$[9] != "") mes "["+@the_PB$[@the_PC[9]/5]+"] " + $the_PA[9] + " ("+@the_PC[9]+"%)";
 	mes "Total de Votos: " + @the_total;
-	if (getgmlevel() > 90) menu "Anunciar enquete",L_Anuncia,"Editar uma das Opções",L_Edit,"Editar Resultados",L_EditCount,"Criar nova Enquete",L_SetQuestion,"Sair",-;
+	if (getgmlevel() > 90) menu "Anunciar enquete",L_Anuncia,"Editar uma das Opções",L_Edit,"Editar pergunta",L_EditQuestion,"Editar Resultados",L_EditCount,"Criar nova Enquete",L_SetQuestion,"Sair",-;
 	close;
 
 
@@ -190,7 +190,7 @@ L_SetQuestion:
 	next;
 	mes "[^666699 Garota da Enquete ^000000]";
 	mes "Insira as opções:";
-	mes "Entre com 'fim' para feixar a enquete...";
+	mes "Entre com 'fim' para fechar a enquete...";
 	next;
 	
 	P_Set:
@@ -311,10 +311,18 @@ L_Edit:
 		PE7:	input $the_PQ$[7]; goto L_EditSet;
 		PE8:	input $the_PQ$[8]; goto L_EditSet;
 		PE9:	input $the_PQ$[9]; goto L_EditSet;
+		
+L_EditQuestion:
+	next;
+	mes "[^666699 Garota da Enquete ^000000]";
+	mes "Digite a nova pergunta. A pergunta atual é ^FF0000" + $the_poll_question$ + "^000000";
+	next;
+	input $the_poll_question$;
+	goto L_EditSet;
 
 L_EditSet:
 	mes "[^666699 Garota da Enquete ^000000]";
-	mes "Opção modificada!";
+	mes "Texto modificado!";
 	close;
 
 L_SetEnd:
