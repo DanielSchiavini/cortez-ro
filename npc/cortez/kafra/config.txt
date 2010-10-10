@@ -337,6 +337,7 @@ OnLoadWarpDungeon:
 	set $@kewd_antHell,0;	//Anthell base cost
 	set $@kewd_ayothaya,175;	//Ayothaya Dungeon base cost
 	set $@kewd_byalan,50;	//Byalan base cost
+	set $@kewd_brasilis,2000;	//Brasilis Dungeons base cost
 	set $@kewd_comodo,250;	//Comodo Caves base cost
 	set $@kewd_clockTower,625;	//Clock Tower base cost
 	set $@kewd_coalMines,375;	//Coal Mines base cost

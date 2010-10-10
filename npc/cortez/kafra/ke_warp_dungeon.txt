@@ -25,6 +25,7 @@ function	script	F_keDungeonWarps	{
 	function SF_amatsu;
 	function SF_antHell;
 	function SF_ayothaya;
+	function SF_brasilis;
 	function SF_byalan;
 	function SF_comodo;
 	function SF_clockTower;
@@ -70,6 +71,8 @@ function	script	F_keDungeonWarps	{
 						+getmapusers("anthell02"))+" "+$@ked_users$+")",
 					"- Ayothaya Ancient Shrine ("+$@kewd_ayothaya*@discount/100+"z/"+(getmapusers("ayo_dun01")
 						+getmapusers("ayo_dun02"))+" "+$@ked_users$+")",
+					"- Brasilis Dungeon ("+$@kewd_brasilis*@discount/100+"z/"+(getmapusers("bra_dun01")
+						+getmapusers("bra_dun02"))+" "+$@ked_users$+")",
 					"- Byalan Dungeon ("+$@kewd_byalan*@discount/100+"z/"+(getmapusers("iz_dun00")
 						+getmapusers("iz_dun01")+getmapusers("iz_dun02")+getmapusers("iz_dun03")
 						+getmapusers("iz_dun04"))+" "+$@ked_users$+")",
@@ -158,6 +161,7 @@ function	script	F_keDungeonWarps	{
 					"- Amatsu Dungeon ("+$@kewd_amatsu*@discount/100+"z)",
 					"- Ant Hell ("+$@kewd_antHell*@discount/100+"z)",
 					"- Ayothaya Ancient Shrine ("+$@kewd_ayothaya*@discount/100+"z)",
+					"- Brasilis Dungeon ("+$@kewd_brasilis*@discount/100+"z)",
 					"- Byalan Dungeon ("+$@kewd_byalan*@discount/100+"z)",
 					"- Comodo Caves ("+$@kewd_comodo*@discount/100+"z)",
 					"- Clock Tower ("+$@kewd_clockTower*@discount/100+"z)",
@@ -206,100 +210,103 @@ function	script	F_keDungeonWarps	{
 				SF_ayothaya(0);
 				break;
 			case 6:
-				SF_byalan(0);
+				SF_brasilis(0);
 				break;
 			case 7:
-				SF_comodo(0);
+				SF_byalan(0);
 				break;
 			case 8:
-				SF_clockTower(0);
+				SF_comodo(0);
 				break;
 			case 9:
-				SF_coalMine(0);
+				SF_clockTower(0);
 				break;
 			case 10:
-				SF_culvert(0);
+				SF_coalMine(0);
 				break;
 			case 11:
-				SF_einbech(0);
+				SF_culvert(0);
 				break;
 			case 12:
-				SF_gefenia(0);
+				SF_einbech(0);
 				break;
 			case 13:
-				SF_geffen(0);
+				SF_gefenia(0);
 				break;
 			case 14:
-				SF_glastHeim(0);
+				SF_geffen(0);
 				break;
 			case 15:
-				SF_gonRyun(0);
+				SF_glastHeim(0);
 				break;
 			case 16:
-				SF_hiddenTemple(0);
+				SF_gonRyun(0);
 				break;
 			case 17:
-				SF_iceDun(0);
+				SF_hiddenTemple(0);
 				break;
 			case 18:
-				SF_juperos(0);
+				SF_iceDun(0);
 				break;
 			case 19:
-				SF_lightHalzen(0);
+				SF_juperos(0);
 				break;
 			case 20:
-				SF_louYang(0);
+				SF_lightHalzen(0);
 				break;
 			case 21:
-				SF_magma(0);
+				SF_louYang(0);
 				break;
 			case 22:
-				SF_orcs(0);
+				SF_magma(0);
 				break;
 			case 23:
-				SF_payon(0);
+				SF_orcs(0);
 				break;
 			case 24:
-				SF_pyramid(0);
+				SF_payon(0);
 				break;
 			case 25:
-				SF_sanctuary(0);
+				SF_pyramid(0);
 				break;
 			case 26:
-				SF_sphinx(0);
+				SF_sanctuary(0);
 				break;
 			case 27:
-				SF_sunkenShip(0);
+				SF_sphinx(0);
 				break;
 			case 28:
-				SF_thanatosTower(0);
+				SF_sunkenShip(0);
 				break;
 			case 29:
-				SF_toyFactory(0);
+				SF_thanatosTower(0);
 				break;
 			case 30:
-				SF_turtleIsland(0);
+				SF_toyFactory(0);
 				break;
 			case 31:
+				SF_turtleIsland(0);
+				break;
+			case 32:
 				SF_umbala(0);
 				break;
-			case 32://Praia
+			case 33://Praia
 				callfunc "F_keWarp",800,$@kewd_discount,e_hmm,"cmd_fild02",335,95;
 				close;
 				break;
-			case 33:
+			case 34:
 				SF_kiel(0);
 				break;
-			case 34:
+			case 35:
 				SF_odin(0);
 				break;
-			case 35:
+			case 36:
 				SF_thor(0);
 				break;
-			case 36:
+			case 37:
 				SF_abbey(0);
 				break;
-			case 37:
+			case 38:
 				SF_moscovia(0);
 				break;
 			default:
@@ -485,6 +492,33 @@ function	script	F_keDungeonWarps	{
 		}
 	}
 
+	function SF_brasilis {
+		if (!(SF_check(kewd_brasilis, #kewd_brasilis, $@kewd_brasilis, 1, getarg(0), 2, "brasilis","bra_dun01")))
+			return;
+		
+		if ($@kewd_showOnline) {
+			set @submenu, select(
+				"- Voltar - teleporte para Brasilis dungeon",
+				"- Atrás da cachoeira 1 ("+@cost+"z/"+getmapusers("bra_dun01")+" "+$@ked_users$+")",
+				"- Atrás da cachoeira 2 ("+@cost+"z/"+getmapusers("bra_dun02")+" "+$@ked_users$+")"
+			);
+		} else {
+			set @submenu, select(
+				"- Voltar - teleporte para Brasilis dungeon",
+				"- Atrás da cachoeira 1 ("+@cost+"z)",
+				"- Atrás da cachoeira 2 ("+@cost+"z)"
+			);
+		}
+		switch (@submenu) {
+		case 2:
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"bra_dun01",87,47;
+			break;
+		case 3:
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"bra_dun01",262,262;
+			break;
+		}
+	}
+	
 	function SF_byalan {
 		if (!(SF_check(kewd_byalan, #kewd_byalan, $@kewd_byalan, 5, getarg(0), 1, "izlu2dun")))
 			return;
@@ -1133,12 +1167,16 @@ function	script	F_keDungeonWarps	{
 				"- Voltar - teleporte para Orcs Dungeon",
 				"- Entrada da Frente ("+@cost+"z/"+getmapusers("orcsdun01")+" "+$@ked_users$+")",
 				"- Entrada de Trás ("+@cost+"z/"+getmapusers("orcsdun02")+" "+$@ked_users$+")"
+			//	"- Caverna subterrânea 1 ("+@cost3+"z/"+getmapusers("1@orcs")+" "+$@ked_users$+")",
+			//	"- Caverna subterrânea 2 ("+@cost3+"z/"+getmapusers("2@orcs")+" "+$@ked_users$+")"
 			);
 		} else {
 			set @submenu, select(
 				"- Voltar - teleporte para Orcs Dungeon",
 				"- Entrada da Frente ("+@cost+"z)",
 				"- Entrada de Trás ("+@cost+"z)"
+			//	"- Caverna subterrânea 1 ("+@cost3+"z)",
+			//	"- Caverna subterrânea 2 ("+@cost3+"z)"
 			);
 		}
 		switch (@submenu) {
@@ -1147,6 +1185,12 @@ function	script	F_keDungeonWarps	{
 			break;
 		case 3:
 			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"in_orcs01",112,99;
+			break;
+		case 4:
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"1@orcs",34,165;
+			break;
+		case 5:
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"2@orcs",112,99;
 			break;
 		}
 	}

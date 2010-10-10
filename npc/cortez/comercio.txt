@@ -8,8 +8,8 @@ brasilis	mapflag	novending
 
 brasilis,284,105,4	script	Salas de Chat	748,{
 	mes "[^3333CC Salas de Chat ^000000]";
-	mes "As salas de chat somente podem ser criadas ao lado da calçada, atrás de mim.";
-	mes "Assim podemos manter nossa cidade organizada!";
+	mes "As salas de chat somente podem ser criadas em linha, na minha frente.";
+	mes "Assim podemos manter nossa cidade organizada.";
 	mes "Boa diversão! =)";
 	close;
 	
@@ -18,7 +18,7 @@ brasilis,284,105,4	script	Salas de Chat	748,{
 		setcell "brasilis",0,0,300,300,cell_nochat,1;
 		setcell "brasilis",284,105,284,87,cell_nochat,0;
 		setcell "pvp_y_room",0,0,300,300,cell_novending,1;
-		waitingroom "Chats Atrás de Mim!",0;
+		waitingroom "Chats na minha frente!",0;
 		end;
 }
 

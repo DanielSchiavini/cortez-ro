@@ -19,9 +19,9 @@ T Velha Esperta mostrando -1 em slots sem equipamento
 After update:
 - Novas dungeons: arug_dun01 / sch_dun01
 ~ Wilbis/Auction na cid.comércio (aoshii)
+- Update super kafra novo eA
 - Doações->Cash points (kafra points?!)
 - Aura no 99 / Barra de experiência não aparece
-? Convert superkafra
 
 Client
 

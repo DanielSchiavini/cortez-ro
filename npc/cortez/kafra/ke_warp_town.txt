@@ -39,6 +39,7 @@ function	script	F_keWarpTown	{
 					+" "+$@ked_users$+")",
 				"- Ayothaya ("+@cost+"z/"+(getmapusers("ayothaya")+getmapusers("ayo_in01")+getmapusers("ayo_in02"))
 					+" "+$@ked_users$+")",
+				"- Brasilis ("+@cost+"z/"+(getmapusers("brasilis")+getmapusers("bra_in01"))+" "+$@ked_users$+")",
 				"- Comodo ("+@cost+"z/"+(getmapusers("comodo")+getmapusers("cmd_in01")+getmapusers("cmd_in02"))
 					+" "+$@ked_users$+")",
 				"- Einbech ("+@cost+"z/"+(getmapusers("einbech"))+" "+$@ked_users$+")",
@@ -77,6 +78,7 @@ function	script	F_keWarpTown	{
 				"- Al De Baran ("+@cost+"z)",
 				"- Amatsu ("+@cost+"z)",
 				"- Ayothaya ("+@cost+"z)",
+				"- Brasilis ("+@cost+"z)",
 				"- Comodo ("+@cost+"z)",
 				"- Einbech ("+@cost+"z)",
 				"- Einbroch ("+@cost+"z)",
@@ -120,61 +122,65 @@ function	script	F_keWarpTown	{
 			if (SF_check(ketw_ayothaya, #ketw_ayothaya))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"ayothaya",202,174;
 			break;
-		case 7:		//Comodo
+		case 7:		//Brasilis
+			if (SF_check(ketw_brasilis, #ketw_brasilis))
+				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"brasilis",266,92;
+			break;
+		case 8:		//Comodo
 			if (SF_check(ketw_comodo, #ketw_comodo))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"comodo",189,150;
 			break;
-		case 8:		//Einbech
+		case 9:		//Einbech
 			if (SF_check(ketw_einbech, #ketw_einbech))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"einbech",165,127;
 			break;
-		case 9:		//Einbroch
+		case 10:		//Einbroch
 			if (SF_check(ketw_einbroch, #ketw_einbroch))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"einbroch",64,199;
 			break;
-		case 10:	//Geffen
+		case 11:	//Geffen
 			if (SF_check(ketw_geffen, #ketw_geffen))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"geffen",120,66;
 			break;
-		case 11:	//GonRyun
+		case 12:	//GonRyun
 			if (SF_check(ketw_gonryun, #ketw_gonryun))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"gonryun",160,180;
 			break;
-		case 12:	//Hugel
+		case 13:	//Hugel
 			if (SF_check(ketw_hugel, #ketw_hugel))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"hugel",96,145;
 			break;
-		case 13:	//Ilha Esquecida
+		case 14:	//Ilha Esquecida
 			SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"nameless_i",256,216;
 			break;
-		case 14:	//Izlude
+		case 15:	//Izlude
 			if (SF_check(ketw_izlude, #ketw_izlude))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"izlude",127,97;
 			break;
-		case 15:	//Jawaii
+		case 16:	//Jawaii
 			if (SF_check(ketw_jawaii, #ketw_jawaii))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"jawaii",214,223;
 			break;
-		case 16:	//LightHalzen
+		case 17:	//LightHalzen
 			if (SF_check(ketw_lighthalzen, #ketw_lighthalzen))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"lighthalzen",158,92;
 			break;
-		case 17:	//Louyang
+		case 18:	//Louyang
 			if (SF_check(ketw_louyang, #ketw_louyang))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"louyang",218,118;
 			break;
-		case 18:	//Lutie
+		case 19:	//Lutie
 			if (SF_check(ketw_lutie, #ketw_lutie))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"xmas",148,133;
 			break;
-		case 19:	//Morroc
+		case 20:	//Morroc
 			if (SF_check(ketw_morroc, #ketw_morroc))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"morocc",162,91;
 			break;
-		case 20:	//Moscóvia
+		case 21:	//Moscóvia
 			SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"moscovia",137,50;
 			break;
-		case 21:	//Niflheim - Liberado
+		case 22:	//Niflheim - Liberado
 			callfunc "F_keWarp",$@kewt_niflCost,$@kewd_discount,e_yawn,"niflheim",194,185;
 			break;
 		case 19000:	//Niflheim - Original
@@ -186,26 +192,26 @@ function	script	F_keWarpTown	{
 					callfunc "F_keWarp",$@kewt_niflCost,$@kewd_discount,e_yawn,"niflheim",194,185;
 			}
 			break;
-		case 22: //Payon
+		case 23: //Payon
 			if (SF_check(ketw_payon, #ketw_payon))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"payon",159,181;
-		case 23: //Prontera
+		case 24: //Prontera
 			if (SF_check(ketw_prontera, #ketw_prontera))
 				SF_warp 0,$@kewt_discount,e_yawn,"prontera",156,175;
 			break;
-		case 24: //Rachel
+		case 25: //Rachel
 			if (SF_check(ketw_rachel, #ketw_rachel))
 				SF_warp 0,$@kewt_discount,e_yawn,"rachel",130,118;
 			break;
-		case 25: //Umbala
+		case 26: //Umbala
 			if (SF_check(ketw_umbala, #ketw_umbala))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"umbala",88,153;
 			break;
-		case 26: //Veins
+		case 27: //Veins
 			if (SF_check(ketw_veins, #ketw_veins))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"veins",216,123;
 			break;
-		case 27: //Yuno
+		case 28: //Yuno
 			if (SF_check(ketw_yuno, #ketw_yuno))
 				SF_warp $@kewt_cost,$@kewt_discount,e_yawn,"yuno",158,77;
 			break;
@@ -253,6 +259,8 @@ function	script	F_keAddTravelTown	{
 			set #ketw_amatsu,1;
 		if (@map$ == "ayothaya" || ketw_ayothaya)
 			set #ketw_ayothaya,1;
+		if (@map$ == "brasilis" || ketw_brasilis)
+			set #ketw_brasilis,1;
 		if (@map$ == "comodo" || ketw_comodo)
 			set #ketw_comodo,1;
 		if (@map$ == "einbech" || ketw_einbech)
@@ -300,6 +308,8 @@ function	script	F_keAddTravelTown	{
 			set ketw_amatsu,1;
 		if (@map$ == "ayothaya")
 			set ketw_ayothaya,1;
+		if (@map$ == "brasilis")
+			set ketw_brasilis,1;
 		if (@map$ == "comodo")
 			set ketw_comodo,1;
 		if (@map$ == "einbech")
