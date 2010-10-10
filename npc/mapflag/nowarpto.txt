@@ -61,8 +61,8 @@ turbo_e_4	mapflag	nowarpto
 turbo_e_8	mapflag	nowarpto
 turbo_e_16	mapflag	nowarpto
 // Izlude Battle Arena =========
-force_1-1	mapflag	nowarpto
-force_2-1	mapflag	nowarpto
+//force_1-1	mapflag	nowarpto
+//force_2-1	mapflag	nowarpto
 force_3-1	mapflag	nowarpto
 force_4-1	mapflag	nowarpto
 force_5-1	mapflag	nowarpto
