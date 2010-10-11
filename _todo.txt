@@ -1,3 +1,6 @@
+Borgore
+Zed's dead
+
 Differences:
 - log.Loginlog?
 
@@ -6,15 +9,13 @@ T Velha Esperta mostrando -1 em slots sem equipamento
 
 - Changes folder conf - Revisões 14347 (14-8), 14382, 14409 (18-9)
 - Torre
-- global_functionsKE x other/global_functions
 - Unknown items: t=3515
 - Monstros em Brasilis
 - NO MSG t=3477
-- Novos @go t=3503
 - Verificar MVPs t=3504
-- MVP Gleen com problemas nas skills t=3609, t=3686
-- moving player to "moc_fild15",0,0 failed
-- event not found [summon_boss_lt::OnMVP]
+T MVP Gleen com problemas nas skills t=3609, t=3686
+x moving player to "moc_fild15",0,0 failed
+? event not found [summon_boss_lt::OnMVP]
 
 After update:
 - Novas dungeons: arug_dun01 / sch_dun01

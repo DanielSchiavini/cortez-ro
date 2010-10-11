@@ -149,7 +149,7 @@ moc_fild03	mapflag	nomemo
 moc_fild09	mapflag	nomemo
 //moc_fild13	mapflag	nomemo
 //moc_fild14	mapflag	nomemo
-moc_fild15	mapflag	nomemo
+//moc_fild15	mapflag	nomemo
 moc_fild16	mapflag	nomemo
 moc_fild17	mapflag	nomemo
 moc_fild18	mapflag	nomemo

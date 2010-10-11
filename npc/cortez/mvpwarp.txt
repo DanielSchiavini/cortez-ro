@@ -58,7 +58,7 @@ pvp_n_1-1,119,015,4	script	Orc Hero			1087,{warp "gef_fild14",0,	0;}
 pvp_n_1-1,076,054,4	script	Orc Lord			1190,{warp "orcsdun02",	0,	0;}
 pvp_n_1-1,094,140,4	script	Osiris				1038,{warp "moc_pryd04",0,	0;}
 pvp_n_1-1,058,140,4	script	Pharaoh				1157,{warp "in_sphinx5",0,	0;}
-pvp_n_1-1,067,174,4	script	Phreeoni			1159,{warp "moc_fild15",0,	0;}
+pvp_n_1-1,067,174,4	script	Phreeoni			1159,{warp "moc_fild17",0,	0;}
 pvp_n_1-1,074,131,4	script	RSX-0806			1623,{warp "ein_dun02",	0,	0;}
 pvp_n_1-1,115,165,4	script	Stormy Knight		1251,{warp "xmas_dun02",0,	0;}
 pvp_n_1-1,137,064,4	script	Tao Gunka			1583,{warp "beach_dun",	0,	0;}

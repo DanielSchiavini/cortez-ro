@@ -141,6 +141,7 @@ OnClock0001:
 
 	set .@Treasure,GetCastleData("schg_cas01",2)/5+4;
 	if (.@Treasure) {
+		debugmes gettimestr("%Y-%m-%d %H:%M:%S",21)+" Tesouros 1938/1324, " + .@Treasure + "x, castle schg_cas01, servidor " + $serv;
 		monster "schg_cas01",388,388,"Baú do Tesouro",1938,1,"Gerente#sch01_02::OnTreasureDied";
 		monster "schg_cas01",388,389,"Baú do Tesouro",1324,1,"Gerente#sch01_02::OnTreasureDied";
 		monster "schg_cas01",388,390,"Baú do Tesouro",1938,1,"Gerente#sch01_02::OnTreasureDied";

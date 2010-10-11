@@ -552,24 +552,6 @@ niflheim,200,191,5	script	Bulletin Board#25	837,{
 	close;
 }
 
-/*
-moc_fild15,267,264,5	script	Bulletin Board#26	837,{
-
-	mes "[Ant Hell]";
-	mes "^6B1312Caution!^000000";
-	mes "Ant Hell is consisting of 2 levels.";
-	mes "As the name shows, this dungeon is filled with various ants";
-	mes "and good as the training grounds for new adventurers.";
-	next;
-	mes "[Ant Hell]";
-	mes "However, please be aware that ^6B1312Maya Purple^000000 appears in the 1st level";
-	mes "and ^6B1312Maya^000000 does in the 2nd level. They are the queens of ants.";
-	mes "Also, in the field where you're standing";
-	mes "a boss monster called ^6B1312Phreeoni^000000 will appear at certain time.";
-	close;
-}
-*/
-
 moc_ruins,61,164,5	script	Bulletin Board#27	837,{
 
 	mes "[Pyramids]";

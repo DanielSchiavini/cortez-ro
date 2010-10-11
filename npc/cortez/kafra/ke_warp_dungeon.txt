@@ -439,7 +439,7 @@ function	script	F_keDungeonWarps	{
 	}
 
 	function SF_antHell {
-		if (!(SF_check(kewd_antHell, #kewd_antHell, $@kewd_antHell, 1, getarg(0), 2, "moc_fild04","moc_fild15")))
+		if (!(SF_check(kewd_antHell, #kewd_antHell, $@kewd_antHell, 1, getarg(0), 2, "moc_fild04","anthell01")))
 			return;
 		if ($@kewd_showOnline) {
 			set @submenu, select(
@@ -1647,7 +1647,7 @@ function	script	F_keAddTravelDungeon	{
 			set #kewd_abyss,1;
 		if (@map$ == "ama_in02" || kewd_amatsu)
 			set #kewd_amatsu,1;
-		if (@map$ == "moc_fild04" || @map$ == "moc_fild15" || kewd_antHell)
+		if (@map$ == "moc_fild04" || @map$ == "anthell01" || kewd_antHell)
 			set #kewd_antHell,1;
 		if (@map$ == "ayo_fild02" || kewd_ayothaya)
 			set #kewd_ayothaya,1;
@@ -1704,7 +1704,7 @@ function	script	F_keAddTravelDungeon	{
 			set kewd_abyss,1;
 		if (@map$ == "ama_in02")
 			set kewd_amatsu,1;
-		if (@map$ == "moc_fild04" || @map$ == "moc_fild15")
+		if (@map$ == "moc_fild04" || @map$ == "anthell01")
 			set kewd_antHell,1;
 		if (@map$ == "ayo_fild02")
 			set kewd_ayothaya,1;

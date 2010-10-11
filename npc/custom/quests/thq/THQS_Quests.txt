@@ -1032,7 +1032,7 @@ N_QuestStart:
 	close;
 }
 //10-4
-moc_fild15,250,251,6	script	Jeni	727,{
+moc_fild17,250,251,6	script	Jeni	727,{
 	if (ten_qset == 4 && countitem(1096) > 0) goto N_QuestComp;
 	if (ten_qset == 4) goto N_QuestStart;
 	mes "[Jeni]";

@@ -8,7 +8,7 @@
 //Fields
 gef_fild14,200,200,0,0	boss_monster	Orc Hero	1087,1,2700000,2700000,1
 mjolnir_04,180,205,0,0	boss_monster	Mistress	1059,1,2700000,2700000,1
-moc_fild15,210,202,0,0	boss_monster	Phreeoni	1159,1,2700000,2700000,1
+moc_fild17,210,202,0,0	boss_monster	Phreeoni	1159,1,2700000,2700000,1
 pay_fild11,180,160,0,0	boss_monster	Eddga	1115,1,2700000,2700000,1
 
 //Dungeons
