@@ -69,6 +69,7 @@ function	script	F_keWarpPvp	{
 			if(BaseLevel>100 || (JobLevel>70 && JobLevel<=75 && !NextJobExp)){
 				if(getgmlevel()>=10){
 					callfunc "F_keIntro", e_sry, "Você não é iniciante, mas como é GM poderá entrar!";
+					callfunc "F_keWarp",@cost,0,e_com,"guild_vs3",-1,-1;
 				}else{
 					callfunc "F_keIntro", e_sry, "Desculpe, você não é iniciante!";
 				}

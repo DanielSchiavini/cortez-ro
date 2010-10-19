@@ -15,3 +15,6 @@ feelreset: 0,90
 who: 0,60
 jump: 0,70
 warp: 0,80
+
+// Liberado pros gms:
+battleignore: 60,60

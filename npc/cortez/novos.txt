@@ -64,10 +64,7 @@ prt_gld	mapflag	pvp	off
 
 guild_vs3,1,1,0	script	LoadMapaIni	-1,{
 	OnPCLoadMapEvent:
-		//sleep2 300;
-		if(getgmlevel()<10){
-			callfunc "F_Dispell";
-		}
+		callfunc "F_Dispell";
 		end;
 }
 

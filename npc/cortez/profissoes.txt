@@ -398,7 +398,7 @@ function	script	jobmaster	{
 				mes "Ok, esta será a " +reborn+ "ª vez que você renasce.";
 				set @points, reborn*(100+20*(getgmlevel()>0 || reborn>=12));
 				mes "Você vai voltar ao nível 1 com a mesma classe, mas com " +@points+ " pontos de atributo.";
-				mes "Tem ceterteza?";
+				mes "Tem certeza?";
 				next;
 				if(select("Não, acho que não...:Sim, tenho!")==1) goto L_Sair;
 				
