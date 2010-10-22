@@ -30,21 +30,21 @@ max_cloth_color: 77
 display_status_timers: 0
 
 //Drops.conf
-item_rate_common: 1000000
-item_rate_heal: 1000000
-item_rate_use: 1000000
-item_rate_equip: 1000000
-item_rate_card: 1000000
+item_rate_common: 15000
+item_rate_heal: 2000
+item_rate_use: 100000
+item_rate_equip: 20000
+item_rate_card: 100000
 
-item_rate_common_boss: 1000000
-item_rate_heal_boss: 1000000
-item_rate_use_boss: 1000000
-item_rate_equip_boss: 1000000
-item_rate_card_boss: 1000000
+item_rate_common_boss: 1000
+item_rate_heal_boss: 1000
+item_rate_use_boss: 1000
+item_rate_equip_boss: 150
+item_rate_card_boss: 1000
 
-item_rate_mvp: 1000000
+item_rate_mvp: 1000
 item_rate_adddrop: 0
-item_rate_treasure: 1000000
+item_rate_treasure: 250
 rare_drop_announce: 10
 
 item_first_get_time: 10000
@@ -52,13 +52,13 @@ item_second_get_time: 10000
 item_third_get_time: 2000
 
 //exp.conf
-base_exp_rate: 400000
-job_exp_rate: 400000
-mvp_exp_rate: 400000
+base_exp_rate: 200000
+job_exp_rate: 200000
+mvp_exp_rate: 200000
 quest_exp_rate: 100
 
 multi_level_up: yes
-max_exp_gain_rate: 10000
+max_exp_gain_rate: 4500
 heal_exp: 1
 resurrection_exp: 50
 shop_exp: 1

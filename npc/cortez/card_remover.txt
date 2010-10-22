@@ -175,6 +175,7 @@ REMOVEMENU:
 	successremovecards @part;
 	mes "[Velhinha Esperta]";
 	mes "O processo foi um sucesso. Aqui estão sua cartas e seu item. Aliás, nem precisei de todos os itens. Pode ficar com o resto! Boa sorte!";
+	callfunc "F_Dispell";
 	close;
 
 DENYCARDCOUNT:
