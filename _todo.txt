@@ -6,8 +6,9 @@ T Velha Esperta mostrando -1 em slots sem equipamento
 
 - Torre
 - Unknown items: t=3515 (ids 4442-4453)
-- Verificar MVPs t=3504 (1980, 1990, 1991, 2022, 2068)
-- Adicionar no mapa de mvps. 1990=man_fild03, 
+x Verificar drops dos MVPs t=3504
+- Verificar força dos MVPs (1980, 1990, 1991, 2022, 2068)
+x Adicionar no mapa de mvps 1990=man_fild03, 1991=spl_fild03
 
 After update:
 - Novas dungeons: arug_dun01 / sch_dun01

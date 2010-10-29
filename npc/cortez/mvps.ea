@@ -36,6 +36,7 @@ jupe_core,150,41,0,0	boss_monster	Vesper	1685,1,2700000,2700000,1
 kh_dun02,203,132,0,0	boss_monster	Kiel D-01	1734,1,2700000,2700000,1
 lhz_dun02,00,00,00,00	boss_monster	Egnigem Cenia	1658,1,7200000,600000,1
 lou_dun03,141,158,0,0	boss_monster	White Lady	1630,1,2700000,2700000,1
+man_fild03,00,00,00,00	boss_monster	Hardrock Mammoth	1990,1,14400000,0,0
 moc_pryd04,99,128,0,0	boss_monster	Osiris	1038,1,2700000,2700000,1
 moc_pryd06,102,166,0,0	boss_monster	Amon Ra	1511,1,2700000,2700000,1
 mosk_dun03,207,221,5,5	boss_monster	Gopinich	1885,1,5400000,400000,1
@@ -44,6 +45,7 @@ orcsdun02,64,140,0,0	boss_monster	Orc Lord	1190,1,2700000,2700000,0
 pay_dun04,120,115,0,0	boss_monster	Moonlight Flower	1150,1,2700000,2700000,1
 prt_sewb4,155,155,0,0	boss_monster	Golden Thief Bug	1086,1,2700000,2700000,1
 ra_san05,149,224,0,0	boss_monster	Gloom Under Night	1768,1,5400000,5400000,0
+spl_fild03,00,00,00,00	boss_monster	Tendril Lion	1991,1,3600000,0,0
 thor_v03,00,00,00,00	boss_monster	Ifrit	1832,1,39600000,600000,0
 treasure02,100,162,0,0	boss_monster	Drake	1112,1,2700000,2700000,1
 tur_dun04,100,110,0,0	boss_monster	Turtle General	1312,1,2700000,2700000,1

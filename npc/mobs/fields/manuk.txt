@@ -33,4 +33,3 @@ man_fild02,0,0,0,0	monster	Tatacho	1986,25,0,0,0
 man_fild03,0,0,0,0	monster	Hillthion	1989,25,0,0,0
 man_fild03,0,0,0,0	monster	Tatacho	1986,25,0,0,0
 man_fild03,0,0,0,0	monster	Centipede	1987,25,0,0,0
-man_fild03,0,0,0,0	monster	Hardrock Mammoth	1990,1,14400000,0,0
