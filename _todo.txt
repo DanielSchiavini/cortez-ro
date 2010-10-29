@@ -4,11 +4,8 @@ Differences:
 Todo:
 T Velha Esperta mostrando -1 em slots sem equipamento
 
-- Changes folder conf - Revisões 14347 (14-8), 14382, 14409 (18-9)
 - Torre
-- Unknown items: t=3515
-- Monstros em Brasilis
-- NO MSG t=3477
+- Unknown items: t=3515 (ids 4447,4451)
 - Verificar MVPs t=3504
 
 After update:
