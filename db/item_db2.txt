@@ -1395,7 +1395,7 @@
 2710,Bloody_Iron_Ball_C,Refined Bloodied Shackle Ball,5,,0,0,,0,,0,0xFFFFFFFE,7,2,136,,1,0,0,{ bonus bBaseAtk,30; },{},{}
 2711,Spiritual_Ring_C,Refined Spiritual Ring,5,,0,0,,0,,0,0xFFFFFFFF,7,2,136,,1,0,0,{ bonus bInt,2; bonus bDex,2; if(isequippedcnt(2607,2608,2626)) { bonus2 bSkillAtk,28,50; bonus2 bSkillAtk,79,30; bonus bSPrecovRate,9; } },{},{}
 2712,Certificate_TW,Collector's Edition Book,5,,10,300,,0,,1,0xFFFFFFFF,7,2,136,,1,0,0,{ bonus bAgi,3; bonus bVit,3; bonus bLuk,3; },{},{}
-2714,Marvelous_Pandent,Marvelous Pendant,2,,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+2714,Marvelous_Pandent,Marvelous Pendant,2,,,0,,,,1,0xFFFFFFFF,7,2,,,,,,{},{},{}
 2715,Skul_Ring_,Skull Ring,5,10000,,100,,0,,1,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus2 bSubRace,RC_Undead,1; },{},{}
 2716,Librarian_Gloves,Librarian Gloves,5,,,100,,0,,1,0x00812200,7,2,136,,0,0,0,{ bonus MaxSP,20; if (getiteminfo(getequipid(EQI_HAND_R),11) == 15 && isequipped(2717)) bonus bInt,5; bonus bMaxHP,700; bonus bAspdRate,5; },{},{}
 2717,Pocket_Watch,Pocket Watch,5,,,100,,0,,0,0x00010204,7,2,136,,80,0,0,{},{},{}
