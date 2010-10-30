@@ -36,7 +36,6 @@ jupe_core,150,41,0,0	boss_monster	Vesper	1685,1,2700000,2700000,1
 kh_dun02,203,132,0,0	boss_monster	Kiel D-01	1734,1,2700000,2700000,1
 lhz_dun02,00,00,00,00	boss_monster	Egnigem Cenia	1658,1,7200000,600000,1
 lou_dun03,141,158,0,0	boss_monster	White Lady	1630,1,2700000,2700000,1
-man_fild03,00,00,00,00	boss_monster	Hardrock Mammoth	1990,1,14400000,0,0
 moc_pryd04,99,128,0,0	boss_monster	Osiris	1038,1,2700000,2700000,1
 moc_pryd06,102,166,0,0	boss_monster	Amon Ra	1511,1,2700000,2700000,1
 mosk_dun03,207,221,5,5	boss_monster	Gopinich	1885,1,5400000,400000,1
@@ -64,3 +63,4 @@ anthell01,00,00,00,00	monster	Maya Purple	1289,1,2700000,2700000,1
 gl_church,00,00,00,00	monster	Dark Illusion	1302,1,2700000,1200000,0
 gld_dun03,00,00,00,00	monster	Maya Purple	1289,3,1400000,400000,1
 gld_dun04,00,00,00,00	monster	Dark Illusion	1302,1,800000,400000,1
+man_fild03,00,00,00,00	monster	Hardrock Mammoth	1990,1,14400000,0,0
