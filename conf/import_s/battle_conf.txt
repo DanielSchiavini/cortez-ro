@@ -212,4 +212,4 @@ mob_luk_status_def: 300
 pc_max_status_def: 90
 mob_max_status_def: 90
 
-import: conf/import_s/battle_conf_2x.txt
+//import: conf/import_s/battle_conf_2x.txt
