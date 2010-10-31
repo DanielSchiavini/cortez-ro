@@ -312,8 +312,8 @@ enum {
 	MF_SAKURA,
 	MF_LEAVES,
 	MF_RAIN,	//20
-	MF_INDOORS,
-	MF_NOGO,
+	// 21 free
+	MF_NOGO = 22,
 	MF_CLOUDS,
 	MF_CLOUDS2,
 	MF_FIREWORKS,
@@ -9068,8 +9068,13 @@ BUILDIN_FUNC(warpwaitingpc)
  *------------------------------------------*/
 BUILDIN_FUNC(attachrid)
 {
-	st->rid=script_getnum(st,2);
-	script_pushint(st,(map_id2sd(st->rid)!=NULL));
+	int rid = script_getnum(st,2);
+	
+	if (map_id2sd(rid)) {
+		st->rid = rid;
+		script_pushint(st,1);
+	} else
+		script_pushint(st,0);
 	return 0;
 }
 /*==========================================
@@ -9156,7 +9161,6 @@ BUILDIN_FUNC(getmapflag)
 			case MF_SAKURA:				script_pushint(st,map[m].flag.sakura); break;
 			case MF_LEAVES:				script_pushint(st,map[m].flag.leaves); break;
 			case MF_RAIN:				script_pushint(st,map[m].flag.rain); break;
-			case MF_INDOORS:			script_pushint(st,map[m].flag.indoors); break;
 			case MF_NIGHTENABLED:		script_pushint(st,map[m].flag.nightenabled); break;
 			case MF_NOGO:				script_pushint(st,map[m].flag.nogo); break;
 			case MF_NOBASEEXP:			script_pushint(st,map[m].flag.nobaseexp); break;
@@ -9226,7 +9230,6 @@ BUILDIN_FUNC(setmapflag)
 			case MF_SAKURA:				map[m].flag.sakura=1; break;
 			case MF_LEAVES:				map[m].flag.leaves=1; break;
 			case MF_RAIN:				map[m].flag.rain=1; break;
-			case MF_INDOORS:			map[m].flag.indoors=1; break;
 			case MF_NIGHTENABLED:		map[m].flag.nightenabled=1; break;
 			case MF_NOGO:				map[m].flag.nogo=1; break;
 			case MF_NOBASEEXP:			map[m].flag.nobaseexp=1; break;
@@ -9293,7 +9296,6 @@ BUILDIN_FUNC(removemapflag)
 			case MF_SAKURA:				map[m].flag.sakura=0; break;
 			case MF_LEAVES:				map[m].flag.leaves=0; break;
 			case MF_RAIN:				map[m].flag.rain=0; break;
-			case MF_INDOORS:			map[m].flag.indoors=0; break;
 			case MF_NIGHTENABLED:		map[m].flag.nightenabled=0; break;
 			case MF_NOGO:				map[m].flag.nogo=0; break;
 			case MF_NOBASEEXP:			map[m].flag.nobaseexp=0; break;
