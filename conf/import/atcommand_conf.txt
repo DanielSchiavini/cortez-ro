@@ -4,6 +4,7 @@ whosell: 5, 5
 whosells: 5, 5
 
 // All players
+exp: 0,50
 commands: 0,50
 charcommands: 0,50
 showdelay: 0,50
@@ -30,7 +31,6 @@ at: 0,60
 storage: 0,70
 
 // VIPs
-exp: 5,50
 mobinfo: 5,5
 monsterinfo: 5,5
 mi: 5,5
@@ -273,6 +273,7 @@ monsterbig: 70,80
 kill: 70,70
 mapexit: 70,70
 mapinfo: 70,70
+battleignore: 70,90
 
 // Subadmin
 agitstart: 80,80
@@ -312,4 +313,3 @@ undisguiseall: 99,99
 mutearea: 99,99
 stfu: 99,99
 monsterignore: 99,99
-battleignore: 99,99

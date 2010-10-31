@@ -150,7 +150,7 @@
 				set @skullsfalta,0;
 			}
 		}
-		set necromancer,1999;
+		set necromancer,2999;
 		close;
 	
 	none:

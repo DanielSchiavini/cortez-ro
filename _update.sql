@@ -49,6 +49,7 @@ DROP TABLE `quest_objective`;
 Update `char` Set save_x=266, save_y=105, save_map='brasilis';
 Update `char` Set last_x=266, last_y=105, last_map='brasilis' Where last_map = 'schg_cas03';
 
+Update ros.Global_reg_value Set Value=2999 Where str = 'necromancer' and Value=1999;
 
 --- Login DB
 
