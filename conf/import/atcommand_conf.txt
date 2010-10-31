@@ -264,6 +264,8 @@ fireworks: 60,60
 sakura: 60,60
 leaves: 60,60
 clearweather: 60,60
+battleignore: 60,99
+raisemap: 60,60
 
 // SuperGM
 monster: 70,80
@@ -294,7 +296,6 @@ agitstart2: 80,80
 agitend2: 80,80
 doom: 80,80
 recallall: 80,80
-raisemap: 80,80
 setbattleflag: 80,80
 
 // Admin
