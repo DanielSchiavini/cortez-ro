@@ -514,7 +514,7 @@ function	script	F_keDungeonWarps	{
 			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"bra_dun01",87,47;
 			break;
 		case 3:
-			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"bra_dun01",262,262;
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"bra_dun02",262,262;
 			break;
 		}
 	}
