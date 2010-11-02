@@ -123,16 +123,16 @@ brasilis,270,97,5	script	Totó::healer	81,{
 		close;
 }
 
-alberta,120,60,7	duplicate(healer)	Totó#alberta	1225
-aldebaran,140,120,5	duplicate(healer)	Totó#aldebaran	1225
-amatsu,189,85,8	duplicate(healer)	Totó#amatsu	1225
-geffen,115,67,8	duplicate(healer)	Totó#geffen	1225
-rachel,123,126,4	duplicate(healer)	Totó#rachel	1225
-izlude,136,91,2	duplicate(healer)	Totó#izlude	1225
-louyang,216,122,3	duplicate(healer)	Totó#louyang	1225
-xmas,146,126,4	duplicate(healer)	Totó#xmas	1225
-payon,159,182,5	duplicate(healer)	Totó#payon	1225
-prontera,143,94,5	duplicate(healer)	Totó#pront	1225
-umbala,86,161,4	duplicate(healer)	Totó#umbala	1225
-yuno,162,87,5	duplicate(healer)	Totó#yuno	1225
-pay_arche,36,138,6	duplicate(healer)	Totó#pay_arche	1225
+alberta,120,60,7	duplicate(healer)	Totó#alberta	81
+aldebaran,140,120,5	duplicate(healer)	Totó#aldebaran	81
+amatsu,189,85,8	duplicate(healer)	Totó#amatsu	81
+geffen,115,67,8	duplicate(healer)	Totó#geffen	81
+rachel,123,126,4	duplicate(healer)	Totó#rachel	81
+izlude,136,91,2	duplicate(healer)	Totó#izlude	81
+louyang,216,122,3	duplicate(healer)	Totó#louyang	81
+xmas,146,126,4	duplicate(healer)	Totó#xmas	81
+payon,159,182,5	duplicate(healer)	Totó#payon	81
+prontera,143,94,5	duplicate(healer)	Totó#pront	81
+umbala,86,161,4	duplicate(healer)	Totó#umbala	81
+yuno,162,87,5	duplicate(healer)	Totó#yuno	81
+pay_arche,36,138,6	duplicate(healer)	Totó#pay_arche	81
