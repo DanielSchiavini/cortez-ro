@@ -12,6 +12,7 @@ P2:
 	x WS: Dano em mvp -20%
 P3:
 	- Aura no 99 / Barra de experiência não aparece
+	x Reformulação de chances de summon
 P4:
 	- Novas dungeons: arug_dun01 / sch_dun01
 	~ Wilbis/Auction na cid.comércio (aoshii)
