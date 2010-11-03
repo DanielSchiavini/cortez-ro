@@ -198,11 +198,10 @@ brasilis,266,92,4	script	Devil Square	705,{
 		next;
 		mes "[ Devil Square ]";
 		mes "Deseja ir para a arena?";
-		set @preco, $serv == 6 ? 100000 : 500000;
-		mes "O valor da entrada é de "+(@preco/1000)+".000z, mas se você pagar 1 milhão, lhe darei o valor em créditos para a loteria!";
+		mes "O valor da entrada é de 1 milhão, e lhe darei o valor em créditos para a loteria!";
 		set #ev_ds_pagou, 0;
 		next;
-		switch(select("Não, obrigado:Pagar 1 milhão:Pagar "+(@preco/1000)+" mil")){
+		switch(select("Não, obrigado:Pagar 1 milhão")){
 			case 2:
 				if(Zeny<1000000){
 					next;
@@ -215,16 +214,6 @@ brasilis,266,92,4	script	Devil Square	705,{
 					set #cred_loteria,#cred_loteria+1;
 					mes "[ Devil Square ]";
 					mes "É só falar com o NPC de loteria para retirar seus créditos!";
-				}
-				break;
-			case 3:
-				if(Zeny<@preco){
-					mes "[ Devil Square ]";
-					mes "Você não tem os "+(@preco/1000)+".000z necessários para pagar a entrada...";
-					close;
-				}else{
-					query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+@preco+",'devsquare')";
-					set Zeny, Zeny - @preco;
 				}
 				break;
 			default:
