@@ -1,20 +1,24 @@
 Differences:
 - log.Loginlog?
 
-Todo:
-T Velha Esperta mostrando -1 em slots sem equipamento
-
-- Torre
-x Verificar força dos MVPs (1980, 1990, 1991, 2022-, 2068-)
-x Pasta log vazias
-- Desativar contas de GMs
-
-After update:
-- Novas dungeons: arug_dun01 / sch_dun01
-~ Wilbis/Auction na cid.comércio (aoshii)
-- Update super kafra novo eA
-- Doações->Cash points (kafra points?!)
-- Aura no 99 / Barra de experiência não aparece
+P1:
+	x Algumas habilidades não estão funcionando nos mapas dos mvps humanos
+P2:
+	- Torre
+	- Desativar contas de GMs
+	x Modificações nas quests do 106 e 75
+	x Tirar a opção de 500k para a entrada do DS e só deixar a de 1kk.
+	x LK: Dano em mvp em -45%
+	x WS: Dano em mvp -20%
+P3:
+	- Aura no 99 / Barra de experiência não aparece
+P4:
+	- Novas dungeons: arug_dun01 / sch_dun01
+	~ Wilbis/Auction na cid.comércio (aoshii)
+	- Update super kafra novo eA
+	- Doações->Cash points (kafra points?!)
+P5:
+	x NPC totó com sprite correto
 
 Client
 
@@ -26,4 +30,3 @@ Data read
 Thor = ASCII
 14.434 - Versão do eA
 14.443 - Ultima checagem nas revisoes do eA
-

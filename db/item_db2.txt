@@ -1784,11 +1784,11 @@
 4354,Gemini_Card,Gemini-S58 Card,6,,10,10,,,,,,,,769,,,,,{ if(readparam(bAgi)>=90) { bonus2 bResEff,Eff_Silence,1000; bonus2 bResEff,Eff_Stun,1000; } if(readparam(bVit)>=80) { bonus2 bResEff,Eff_Stone,1500; bonus2 bResEff,Eff_Sleep,1500; } },{},{}
 4355,Gremlin_Card,Gremlin Card,6,,10,10,,,,,,,,136,,,,,{ bonus bStr,10; },{},{}
 4356,Beholder_Card,Beholder Card,6,,10,10,,,,,,,,136,,,,,{ skill 275,1; },{},{}
-4357,Lord_Knight_Card,Lord Knight Card,6,,10,10,,,,,,,,769,,,,,{ if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill 359,1; bonus bMaxHPrate,-50; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; },{ if(isequipped(Class != Job_Whitesmith)) sc_end SC_MAXOVERTHRUST; }
+4357,Lord_Knight_Card,Lord Knight Card,6,,10,10,,,,,,,,769,,,,,{ if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill "LK_BERSERK",1; bonus bMaxHPrate,-50; bonus2 bAddRace,RC_Boss,-45; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; },{ if(isequipped(Class != Job_Whitesmith)) sc_end SC_MAXOVERTHRUST; }
 4358,Seyren_Card,Seyren Windsor Card,6,,10,10,,,,,,,,769,,,,,{ bonus bStr,getrefine()-4; },{},{}
 4359,Assassin_Cross_Card,Assassin Cross Card,6,,10,10,,,,,,,,4,,,,,{ skill 135,3; },{},{}
 4360,Eremes_Card,Eremes Guile Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bCriticalAddRace,RC_DemiHuman,20; if(getiteminfo(getequipid(EQI_HAND_R),5)==34 && getiteminfo(getequipid(EQI_HAND_R),9)<=2) bonus bCritAtkRate,45; },{},{}
-4361,Whitesmith_Card,Whitesmith Card,6,,10,10,,,,,,,,2,,,,,{ if(BaseClass!=Job_Mage) if(!isequipped(4357)) { bonus bBreakWeaponRate,200; bonus2 bAddItemHealRate,IG_FirstAid,-50; if(readparam(bVit)>100) { skill 486,4; bonus bMaxHpRate,-25;} else skill 486,3; } },{},{ sc_end SC_MAXOVERTHRUST; } //bonus bBreakWeaponRate,100; bonus bBreakArmorRate,70;
+4361,Whitesmith_Card,Whitesmith Card,6,,10,10,,,,,,,,2,,,,,{ if(BaseClass!=Job_Mage) if(!isequipped(4357)) { bonus bBreakWeaponRate,200; bonus2 bAddItemHealRate,IG_FirstAid,-50; bonus2 bAddRace,RC_Boss,-25; if(readparam(bVit)>100) { skill "WS_OVERTHRUSTMAX",4; bonus bMaxHpRate,-25;} else skill "WS_OVERTHRUSTMAX",3; } },{},{ sc_end SC_MAXOVERTHRUST; } //bonus bBreakWeaponRate,100; bonus bBreakArmorRate,70;
 4362,Harword_Card,Howard Alt-Eisen Card,6,,10,10,,,,,,,,2,,,,,{ if(isequippedcnt(4362)==1 && getiteminfo(getequipid(3),5)!=32 && getiteminfo(getequipid(EQI_HAND_L),5)!=32) { bonus2 bSubRace,RC_DemiHuman,35; } else { bonus bHit,100; } },{},{}
 4363,High_Priest_Card,High Priest Card,6,,10,10,,,,,,,,16,,,,,{ bonus5 bAutoSpellWhenHit,361,1,10,BF_WEAPON|BF_MAGIC,0; },{},{}
 4364,Magaleta_Card,Margaretha Solin Card,6,,10,10,,,,,,,,769,,,,,{ bonus bInt,1; bonus5 bAutoSpellWhenHit,76,5,150,BF_MAGIC,1; },{},{}
