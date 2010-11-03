@@ -562,9 +562,9 @@ function	script	jobmaster	{
 									setarray @qtde[0],	12,						12,						50,						100,						3,				15;
 									break;
 								case 106:
-									setarray @itens[0],	5143,					7308,				12103,					9928,			12085;
-									setarray @itens$[0],"Máscara de Kabuki",	"Tônico da Bruxa",	"Galhos Sangrentos",	"Espinafre",	"Cozido Imortal";
-									setarray @qtde[0],	1,						2,					50,						30,				30;
+									setarray @itens[0],	5143,					7308,				12103,					9928,			5126;
+									setarray @itens$[0],"Máscara de Kabuki",	"Tônico da Bruxa",	"Galhos Sangrentos",	"Espinafre",	"Capuz de Mopheus [2]";
+									setarray @qtde[0],	1,						2,					50,						30,				3;
 									break;
 								case 107:
 									setarray @itens[0],	5179,				5149,				5257,				10006,					10018,				1963,				1913;
@@ -712,9 +712,9 @@ function	script	jobmaster	{
 									setarray @qtde[0],	40,						50,						150,					350,				150;
 									break;
 								case 75:
-									setarray @itens[0],	12090,								1552,			2268,			7036,			10016,			2677;
-									setarray @itens$[0],"Escorpiões do Deserto ao Vapor",	"Tabula[2]",	"Cachimbo[2]",	"Presa de Hati","Sino de Ouro",	"Anel Espiritual";
-									setarray @qtde[0],	100,								7,				10,				2,				10,				1;
+									setarray @itens[0],	12129,							1552,			2268,			7036,			10016,			2677;
+									setarray @itens$[0],"Kit de Culinária Fantástico",	"Tabula[2]",	"Cachimbo[2]",	"Presa de Hati","Sino de Ouro",	"Anel Espiritual";
+									setarray @qtde[0],	100,							7,				10,				2,				10,				1;
 									break;
 								default:
 									close;
