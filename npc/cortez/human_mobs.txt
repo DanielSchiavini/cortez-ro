@@ -1,24 +1,24 @@
 //select * from  bd.mob where id in (3101,3098,3104,3106,3102,3099,3103,3157,3108,3105,3089,3097,3107)
-//gef_dun03	mapflag	pvp
-pay_fild10	mapflag	restricted	5	//Baltazar
-beach_dun	mapflag	restricted	5	//Yuufa/Sola
-yuno_fild04	mapflag	restricted	5	//Brunim
-pvp_y_5-5	mapflag	restricted	5	//Pimpolho
-pvp_y_5-5	mapflag	fog
-//pvp_y_5-5	mapflag	clouds
 
-// Restricted 2 - evitando basilica
-beach_dun	mapflag	restricted	2
-cmd_fild07	mapflag	restricted	2
-c_tower1	mapflag	restricted	2
-gef_dun03	mapflag	restricted	2
-hu_fild05	mapflag	restricted	2
-moc_fild16	mapflag	restricted	2
-pay_fild10	mapflag	restricted	2
-prt_fild10	mapflag	restricted	2
-prt_monk	mapflag	restricted	2
-pvp_y_5-5	mapflag	restricted	2
-yuno_fild04	mapflag	restricted	2
+// These need some special skills and items (gtb for instance)..
+pay_fild10	mapflag	restricted	6	//Baltazar
+beach_dun	mapflag	restricted	6	//Yuufa/Sola
+yuno_fild04	mapflag	restricted	6	//Brunim
+pvp_y_5-5	mapflag	restricted	6	//Pimpolho
+pvp_y_5-5	mapflag	fog
+
+// Restricted 6 - Not all the skills were needed but lacking more restricted options
+beach_dun	mapflag	restricted	6
+cmd_fild07	mapflag	restricted	6
+c_tower1	mapflag	restricted	6
+gef_dun03	mapflag	restricted	6
+hu_fild05	mapflag	restricted	6
+moc_fild16	mapflag	restricted	6
+pay_fild10	mapflag	restricted	6
+prt_fild10	mapflag	restricted	6
+prt_monk	mapflag	restricted	6
+pvp_y_5-5	mapflag	restricted	6
+yuno_fild04	mapflag	restricted	6
 
 ////////////////////////////////////////////////////////////////////////////////////
 

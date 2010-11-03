@@ -51,7 +51,7 @@ arug_cas03	mapflag	nowarp
 arug_cas03	mapflag	nowarpto
 arug_cas03	mapflag	noreturn
 arug_cas03	mapflag	nogo
-arug_cas03	mapflag	restricted	6
+arug_cas03	mapflag	restricted	4
 arug_cas03	mapflag	nocommand	10
 
 arug_cas03,141,40,0	warp	arug301	1,1,aru_gld,68,155

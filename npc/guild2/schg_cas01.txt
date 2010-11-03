@@ -37,7 +37,7 @@ schg_cas01	mapflag	nowarp
 schg_cas01	mapflag	nowarpto
 schg_cas01	mapflag	noreturn
 schg_cas01	mapflag	nogo
-schg_cas01	mapflag	restricted	6
+schg_cas01	mapflag	restricted	4
 schg_cas01	mapflag	nocommand	10
 
 schg_cas01,119,4,0	warp	schg101	1,1,sch_gld,293,100

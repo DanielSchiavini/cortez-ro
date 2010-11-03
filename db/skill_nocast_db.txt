@@ -10,13 +10,13 @@
 //  8 = Cannot be used in Battleground maps
 //  16 = Cannot be cloned (clones will not copy this skill)
 //  Restricted zones - they're configured by 'restricted <number>' mapflag
-//  32 = Cannot be used in zone 1 maps
-//  64 = Cannot be used in zone 2 maps
-//  128 = Cannot be used in zone 3 maps
-//  256 = Cannot be used in zone 4 maps
-//  512 = Cannot be used in zone 5 maps
-//  1024 = Cannot be used in zone 6 maps
-//  2048 = Cannot be used in zone 7 maps
+//  32 = Cannot be used in zone 1 maps - Corridas
+//  64 = Cannot be used in zone 2 maps - Jail
+//  128 = Cannot be used in zone 3 maps - Izlude Battle Arena / Cidades
+//  256 = Cannot be used in zone 4 maps - Eventos/WoE:SE
+//  512 = Cannot be used in zone 5 maps - Sealed Shrine
+//  1024 = Cannot be used in zone 6 maps - MVPs humanos/Galho Seco
+//  2048 = Cannot be used in zone 7 maps - Itens avançados
 //
 // Example:
 // 8,6 = Endure cannot be used in PvP and GvG maps (2+4)
@@ -103,22 +103,24 @@
 
 // ---- Cortez ---- //
 
-//Zone 4 (Eventos)
+// PVP
+54,2	//ALL_RESURRECTION#Resurrection#
+
+//Zone 4 Eventos/WoE:SE
 143,256	//NV_TRICKDEAD#Act Dead#
 389,256	//ST_CHASEWALK#Stealth#
-54,258	//ALL_RESURRECTION#Resurrection# + PVP
+54,256	//ALL_RESURRECTION#Resurrection# + PVP
+264,256 //Snap
+426,256 //TK_HIGHJUMP#Taekwon Jump#
+362,256	//HP_BASILICA#Basilica#
 
-//Zone 4 (Eventos) e Zone 2 (Jail / MVPs Humanos)
-362,320	//HP_BASILICA#Basilica#
+//Zone 6 - MVPs humanos
+362,1024	//HP_BASILICA#Basilica#
+25,1024 //AL_PNEUMA#Pneuma#
+257,1024 //CR_DEFENDER#Defending Aura#
+288,1024 //SA_LANDPROTECTOR#Magnetic Earth#
 
-//Zone 5 - Mapa do MvP Baltazar / Sola / Yuufa e também Dr.Pimpolho / HotGuy
-25,512 //AL_PNEUMA#Pneuma#
-257,512 //CR_DEFENDER#Defending Aura#
-288,512 //SA_LANDPROTECTOR#Magnetic Earth#
-
-//Zone 6 - WoE:SE 
-264,1024 //Snap
-426,1024 //TK_HIGHJUMP#Taekwon Jump#
+//Zone 7 - Itens avançados
 
 //Zone 3 - Cidades
 5,128//		SM_BASH#Bash#

@@ -29,15 +29,15 @@ guild_vs3	mapflag	restricted	7
 guild_vs3	mapflag	nocommand	10
 guild_vs3	mapflag	loadevent
 
-guild_vs2	mapflag	restricted	2	//SGS - e outras salas de galho seco
+guild_vs2	mapflag	restricted	6	//SGS - e outras salas de galho seco
 guild_vs2	mapflag	nodrop
 guild_vs2	mapflag	nogo
 guild_vs2	mapflag	pvp	off
-comodo	mapflag	restricted	2
-jawaii	mapflag	restricted	2
-moc_fild19	mapflag	restricted	2
-moc_ruins	mapflag	restricted	2
-xmas_fild01	mapflag	restricted	2
+comodo	mapflag	restricted	6
+jawaii	mapflag	restricted	6
+moc_fild19	mapflag	restricted	6
+moc_ruins	mapflag	restricted	6
+xmas_fild01	mapflag	restricted	6
 
 guild_vs5	mapflag	nodrop		//Evento
 guild_vs5	mapflag	restricted	4

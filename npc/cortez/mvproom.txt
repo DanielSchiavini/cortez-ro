@@ -1,4 +1,3 @@
-//guild_vs2-2	mapflag	restricted	5
 guild_vs2-2	mapflag	nodrop
 guild_vs2-2	mapflag	noexp
 guild_vs2-2	mapflag	noloot

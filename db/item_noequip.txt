@@ -7,11 +7,11 @@
 // 3- restricted in both PvP and GvG
 // Restricted zones - they're configured by 'restricted <number>' mapflag
 // 4   - restricted in zone 1 - Corridas
-// 8   - restricted in zone 2 - Jail / MVPs Humanos
-// 16  - restricted in zone 3 - Cidade
-// 32  - restricted in zone 4 - 
-// 64 -  restricted in zone 5 - Mapas de alguns MVPs
-// 128 - restricted in zone 6 - 
+// 8   - restricted in zone 2 - Jail
+// 16  - restricted in zone 3 - Izlude Battle Arena / Cidades
+// 32  - restricted in zone 4 - Eventos/WoE:SE
+// 64 -  restricted in zone 5 - Sealed Shrine
+// 128 - restricted in zone 6 - MVPs Humanos/Galho Seco
 // 256 - restricted in zone 7 - Itens avançados
 
 //Examples:
@@ -24,12 +24,17 @@
 // you can even mix modes
 //519,41 (32+8+1) you can't use Milk on PVP, and maps marked as 'restricted zone 2' and 'restricted zone 4'
 
-//Zone 5 - Mapa dos MvPs Dr.Pimpolho / Sola / Baltazar / Yuufa / Brunim
-4045,64	//Horn
-4177,64	//Dryad
-4128,320	//Golden_Thief_Bug
-4174,320	//Deviling
+//Zone 6 - MVPs Humanos
+4045,128	//Horn
+4177,128	//Dryad
+4128,128	//Golden_Thief_Bug
+4174,128	//Deviling
 
+//Zone 7 - Itens avançados
+4128,256	//Golden_Thief_Bug
+4174,256	//Deviling
+
+//PVP
 602,1	//Butterfly_Wing
 
 //Zone 1 - Aldebaran Turbo Track
@@ -61,13 +66,13 @@
 16757,4	//Chocolate_Quente
 
 //Zone 2 - Jail / MVPs Humanos
-//601,8 //Fly Wing - not really needed here but ...
-//602,8 //Butterfly Wing - also not needed
+601,8 //Fly Wing - not really needed here but ...
+602,8 //Butterfly Wing - also not needed
 12212,8 //Giant Fly Wing 
-14582,8 
-14583,8 
-14584,8 
-14585,8 
+14582,8  // Yellow Butterfly Wing
+14583,8  // Green Butterfly Wing
+14584,8  // Red Butterfly Wing
+14585,8  // Blue Butterfly Wing
 
 //Zona 3 + GVG
 601,16 //Fly Wing

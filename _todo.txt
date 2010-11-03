@@ -5,10 +5,8 @@ Todo:
 T Velha Esperta mostrando -1 em slots sem equipamento
 
 - Torre
-x Unknown items: t=3515 (ids 4442-4453)
-- Verificar força dos MVPs (1980, 1990, 1991, 2022-, 2068-)
-x Corrigir status servidor
-- Pasta log vazias
+x Verificar força dos MVPs (1980, 1990, 1991, 2022-, 2068-)
+x Pasta log vazias
 - Desativar contas de GMs
 
 After update:
@@ -26,5 +24,6 @@ Data read
 1rag1 1sak1
 20091013
 Thor = ASCII
-14.434 - Ultima checagem nas revisoes do eA
+14.434 - Versão do eA
+14.443 - Ultima checagem nas revisoes do eA
 
