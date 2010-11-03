@@ -27,7 +27,9 @@ end;
 			}
 			break;
 		case 3:
-			if($the_poll_question$!=""){
+			if($the_poll_day > gettime(8)) set $the_poll_day, gettime(8); // changing year, add 30 days to the poll day
+			
+			if($the_poll_question$!="" && ($the_poll_day < gettime(8) + 30)){
 				announce "[Enquete] Venha votar na enquete que está no ar... " + $the_poll_question$,8;
 				sleep 15000;
 			}

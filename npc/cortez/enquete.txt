@@ -329,6 +329,7 @@ L_SetEnd:
 	Announce "[Enquete] Uma nova Enquete está no ar!",8;
 	Announce "[Enquete] "+ $the_poll_question$ +" ",8;
 	set $the_PQ$[@the_last],"";
+	set $the_poll_day, gettime(8);
 	mes "[^666699 Garota da Enquete ^000000]";
 	mes "Enquete ajustada!";
 	close;
