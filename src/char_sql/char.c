@@ -1914,7 +1914,7 @@ int parse_fromlogin(int fd)
 							class_[i] = (sex ? JOB_BABY_BARD : JOB_BABY_DANCER);
 						// remove specifical skills of classes 19,20 4020,4021 and 4042,4043
 						if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `skill_point` = `skill_point` +"
-							" (SELECT SUM(lv) FROM `%s` WHERE `char_id` = '%d' AND `id` >= '315' AND `id` <= '330' AND `lv` > '0')"
+							" (SELECT IfNull(SUM(lv),0) FROM `%s` WHERE `char_id` = '%d' AND `id` >= '315' AND `id` <= '330' AND `lv` > '0')"
 							" WHERE `char_id` = '%d'",
 							char_db, skill_db, char_id[i], char_id[i]) )
 							Sql_ShowDebug(sql_handle);
