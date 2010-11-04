@@ -1,3 +1,6 @@
+// SkillID,CastingTime,AfterCastActDelay,AfterCastWalkDelay,Duration1,Duration2
+
+
 //===== Item =============================
 //ITM_TOMAHAWK#Throw Tomahawk#
 337,0,400,500,0,0
@@ -180,7 +183,7 @@
 
 //===== Assassin Cross =====================
 //-- ASC_EDP
-378,3000,10000,2000,45000,45000
+378,2000,2000,1000,6000,6000
 //-- ASC_BREAKER
 379,700,2000,0,0,0
 

@@ -905,7 +905,7 @@
 1811,Finger,Finger,4,58000,,500,97,,1,1,0x00008100,7,2,2,3,24,1,12,{},{},{}
 1812,Finger_,Finger,4,58000,,500,97,,1,2,0x00008100,7,2,2,3,24,1,12,{},{},{}
 1813,Kaiser_Knuckle,Kaiser Knuckle,4,,10,450,110,,1,2,0x00008100,7,2,2,4,36,1,12,{ bonus bAtkEle,Ele_Wind; bonus2 bAddRace,RC_Undead,5; bonus2 bAddEle,Ele_Water,10; bonus2 bAddEle,Ele_Earth,10; bonus2 bAddEle,Ele_Fire,10; bonus2 bAddEle,Ele_Wind,10; },{},{}
-1814,Berserk,Berserk,4,,10,500,180,,1,4,0x00008100,7,2,2,4,36,1,12,{ bonus bAspdRate,30; bonus2 bSubRace,RC_Boss,30; },{},{}
+1814,Berserk,Berserk,4,,10,500,180,,1,4,0x00008100,7,2,2,4,36,1,12,{ bonus bAspdRate,15; bonus2 bSubRace,RC_Boss,30; },{},{}
 1815,Garm_Claw,Garm Claw,4,,10,550,115,,1,2,0x00008100,7,2,2,4,70,1,12,{ bonus bAtkEle,Ele_Dark; bonus bMaxHPrate,-2; bonus2 bAddEff,Eff_Bleeding,500; },{},{}
 1816,Berserk_,Berserk,4,,10,500,120,,1,1,0x00008100,7,2,2,4,36,1,12,{ bonus bAspdRate,12; },{},{}
 1817,Kaiser_Knuckle_C,Refined Kaiser Knuckle,4,,,0,159,,1,0,0x00008100,7,2,2,4,1,0,12,{ bonus bAtkEle,Ele_Wind; bonus2 bAddRace,RC_Undead,5; bonus2 bAddEle,Ele_Water,10; bonus2 bAddEle,Ele_Earth,10; bonus2 bAddEle,Ele_Fire,10; bonus2 bAddEle,Ele_Wind,10; bonus bAspdRate,5; },{},{}
@@ -1566,7 +1566,7 @@
 4139,Joker_Card,Joker Card,6,,10,10,,,,,,,,136,,,,,{ skill 50,10; },{},{}
 4140,Abysmal_Knight_Card,Abysmal Knight Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace,RC_Boss,25; if(Class==Job_Champion) bonus2 bAddRace,RC_Boss,-10; else if(Class==Job_Sniper) bonus2 bAddRace,RC_Boss,-5; },{},{}
 4141,Evil_Druid_Card,Evil Druid Card,6,,10,10,,,,,,,,16,,,,,{ if(!isequipped(4263)) bonus bDefEle,Ele_Undead; bonus bInt,1; bonus bDef,1; },{},{}
-4142,Doppelganger_Card,Doppelganger Card,6,,10,10,,,,,,,,2,,,,,{ bonus bAspdRate,90; },{},{}
+4142,Doppelganger_Card,Doppelganger Card,6,,10,10,,,,,,,,2,,,,,{ bonus bAspdRate,45; },{},{}
 4143,Orc_Hero_Card,Orc Hero Card,6,,10,10,,,,,,,,769,,,,,{ bonus bVit,10; bonus2 bResEff,Eff_Stun,10000; },{},{}
 4144,Osiris_Card,Osiris Card,6,,10,10,,,,,,,,136,,,,,{ if(isequippedcnt(4144)<=3) if(isequipped(2286)) { skill 83,10; } else { bonus bAllStats,15; bonus bVit,-5; skill 83,4+4*(isequippedcnt(4144)>1)+2*(isequippedcnt(4144)>2); } },{},{}
 4145,Berzebub_Card,Berzebub Card,6,,10,10,,,,,,,,136,,,,,{ if(isequippedcnt(4145)==1) { bonus bCastrate,-30; bonus bInt,20; } else if(isequippedcnt(4145)==2) { bonus bCastrate,-15; bonus bInt,25; } },{},{}
@@ -1711,7 +1711,7 @@
 4282,Tengu_Card,Tengu Card,6,,10,10,,,,,,,,136,,,,,{ bonus bStr,15; bonus bAgi,15; },{},{}
 4283,Greatest_General_Card,Greatest General Card,6,,10,10,,,,,,,,769,,,,,{ bonus4 bAutoSpell,261,5,2+18*(BaseClass == Job_Acolyte),0; },{},{}
 4284,Chepet_Card,Chepet Card,6,,10,10,,,,,,,,769,,,,,{ skill 68,4; },{},{ sc_end SC_ASPERSIO; }
-4285,Choco_Card,Choco Card,6,,10,10,,,,,,,,136,,,,,{ if(!isequipped(1223)) bonus bFlee2,8-4*isequipped(1240); bonus bFlee,10; bonus bAgi,10; },{},{}
+4285,Choco_Card,Choco Card,6,,10,10,,,,,,,,136,,,,,{ if(!isequipped(1223) && isequippedcnt(4285)<=3) bonus bFlee2,8-4*isequipped(1240); bonus bFlee,10; bonus bAgi,10; },{},{}
 4286,Karakasa_Card,Karakasa Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bAddEffWhenHit,Eff_Sleep,100+100*(readparam(bStr)>=77); },{},{}
 4287,Kapha_Card,Kapha Card,6,,10,10,,,,,,,,4,,,,,{ if(getrefine()<6) bonus bMdef,8; },{},{}
 4288,Carat_Card,Carat Card,6,,10,10,,,,,,,,136,,,,,{ bonus bLuk,20; },{},{}
@@ -1795,7 +1795,7 @@
 4365,High_Wizard_Card,High Wizard Card,6,,10,10,,,,,,,,769,,,,,{},{},{ heal 0,-2000; }
 4366,Katrinn_Card,Kathryne Keyron Card,6,,10,10,,,,,,,,769,,,,,{ bonus bCastrate,(getrefine()*-1)/isequippedcnt(4366); if(getrefine()>=9) { bonus bMatkRate,3; } },{},{}
 4367,Sniper_Card,Sniper Card,6,,10,10,,,,,,,,2,,,,,{ bonus bNoRegen,1; bonus2 bHpDrainRate,50,15; },{},{}
-4368,Shecil_Card,Cecil Damon Card,6,,10,10,,,,,,,,2,,,,,{ bonus bAspdRate,45; bonus bHit,-30; },{},{}
+4368,Shecil_Card,Cecil Damon Card,6,,10,10,,,,,,,,2,,,,,{ bonus bAspdRate,22; bonus bHit,-30; },{},{}
 4369,Venatu_Card,Venatu Card,6,,10,10,,,,,,,,16,,,,,{ bonus bLuk,readparam(bAgi)/10; },{},{}
 4370,Dimik_Card,Dimik Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,getrefine()*2-8; },{},{}
 4371,Archdam_Card,Archdam Card,6,,10,10,,,,,,,,16,,,,,{ bonus bBaseAtk,10; bonus bCastrate,20; if(isequippedcnt(4311)&&isequippedcnt(4319)&&isequippedcnt(4331)) { bonus bInt,1; bonus bStr,1; bonus bDef,2; bonus bSPrecovRate,10; bonus2 bSkillAtk,480,10; bonus2 bSkillAtk,368,10; bonus bCastrate,-10; if(BaseJob == Job_Crusader) { bonus bDefEle,Ele_Holy; } } },{},{}
