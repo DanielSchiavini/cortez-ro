@@ -14,13 +14,17 @@ P4:
 	- Doações->Cash points (kafra points?!)
 P5:
 
-Client
+Notícias:
+	Insert Into site.noticias (dt, titulo, tipo, topico) Values
+	('2010-11-','',0,null);
 
+Client:
+	Multiple windows
+	Data read
+	1rag1 1sak1
+	20091013
+	Thor = ASCII
 
-Multiple windows
-Data read
-1rag1 1sak1
-20091013
-Thor = ASCII
-14.434 - Versão do eA
-14.443 - Ultima checagem nas revisoes do eA
+SVN:
+	14.434 - Versão do eA
+	14.443 - Ultima checagem nas revisoes do eA
