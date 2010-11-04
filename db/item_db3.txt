@@ -44,7 +44,7 @@
 16123,Carta_T.Roz,Carta T.Roz,6,,10,10,,,,,,,,16,,,,,{ bonus bUnstripableArmor,1; bonus bUnbreakableArmor,0; bonus bUnstripableWeapon,1; bonus bUnbreakableWeapon,0; },{},{}
 16124,Carta_Baltazar,Carta Baltazar,6,,10,10,,,,,,,,16,,,,,{ bonus bDex,25; bonus bAgi,35; bonus bLuk,45; },{},{}
 16125,Carta_Sola,Carta Sola,6,,10,10,,,,,,,,16,,,,,{ if(isequippedcnt(16125,16112)<=2) bonus2 bSkillAtk,394,30; },{},{}
-16126,Carta_Yuufa,Carta Yuufa,6,,10,10,,,,,,,,16,,,,,{ if(Class==Job_Clown||Class==Job_Gypsy) { bonus bMaxHPrate,30; skill 318,3; } else { bonus bMaxHPrate,20; } bonus bAllStats,5; skill 326,3; bonus3 bAutoSpellWhenHit,"CG_TAROTCARD",2,10; },{},{}
+16126,Carta_Yuufa,Carta Yuufa,6,,10,10,,,,,,,,16,,,,,{ if(Class==Job_Clown||Class==Job_Gypsy) { bonus bMaxHPrate,30; skill 318,3; } else { bonus bMaxHPrate,20; } bonus bAllStats,5; skill 326,3; bonus3 bAutoSpellWhenHit,"CG_TAROTCARD",2,50; },{},{}
 16127,Carta_Dr.Pimpolho,Carta Dr.Pimpolho,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,15; bonus bDex,-30; bonus bMatkRate,7; },{},{}
 16128,Carta_Brunim,Carta Brunim,6,,10,10,,,,,,,,16,,,,,{ bonus2 bResEff,Eff_Freeze,10000; if(Class==Job_Professor) { skill 365,1; if(isequippedcnt(16128)==1) skill 12,5; else skill 12,10; } else { skill 276,2; if(isequippedcnt(16128)>=4) skill 12,10; else skill 12,3*isequippedcnt(16128); } if(BaseClass!=Job_Mage) { skill 482,2; } },{},{}
 16129,Carta_Elfo,Carta Elfo,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,10; skill 112,5; },{},{}
