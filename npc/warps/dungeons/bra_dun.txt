@@ -1,0 +1,19 @@
+//==== eAthena Script ========================================
+//= Brasilis Dungeon warp Script
+//===== By: ==================================================
+//= Baltazar Cortez (1.0)
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Description: =========================================
+//= Warp Points for Brasilis Dungeon
+//===== Additional Comments: =================================
+//= 1.0
+//============================================================
+
+//Brasilis Dungeon Warp's
+bra_in01,15,185,0	warp	brdun0-1	1,1,bra_dun01,36,204
+bra_dun01,36,204,0	warp	brdun1-0	1,1,bra_in01,15,185
+bra_dun01,199,35,0	warp	brdun1-2	1,1,bra_dun02,261,265
+bra_dun02,31,90,0	warp	brdun2-0	1,1,bra_fild01,158,294
