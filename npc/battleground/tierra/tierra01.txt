@@ -22,7 +22,7 @@ bat_room,57,227,5	script	Lieutenant Kalos	418,{
 	end;
 
 OnInit:
-	waitingroom "Battle Station",10,"start#bat_a01::OnReadyCheck",1;
+	waitingroom "Battle Station",4,"start#bat_a01::OnReadyCheck",1;
 	end;
 
 OnEnterBG:
@@ -34,7 +34,7 @@ bat_room,58,204,1	script	Lieutenant Eyor	414,{
 	end;
 
 OnInit:
-	waitingroom "Battle Station",10,"start#bat_a01::OnReadyCheck",1;
+	waitingroom "Battle Station",4,"start#bat_a01::OnReadyCheck",1;
 	end;
 
 OnEnterBG:
@@ -131,7 +131,7 @@ OnReadyCheck:
 		donpcevent "#bat_a01_timer::OnStop";
 		end;
 	}
-	else if( .@Guillaume < 10 || .@Croix < 10 )
+	else if( .@Guillaume < 4 || .@Croix < 4 )
 		end;
 	set $@TierraBG1,1;
 	donpcevent "Lieutenant Kalos::OnEnterBG";
