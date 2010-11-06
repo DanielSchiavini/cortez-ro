@@ -1951,3 +1951,18 @@
 
 3303,Cristal de Evento 2@SA_LANDPROTECTOR,any,288,3,5000,0,10000,yes,self,always,,,,,,,,
 3303,Cristal de Evento 2@AL_TELEPORT,any,26,1,5000,0,15000,yes,self,always,,,,,,,,
+
+2068,Boitatá@WZ_METEOR,attack,83,11,10000,800,10000,no,target,always,0,,,,,,,
+2068,Boitatá@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
+2068,Boitatá@AL_TELEPORT,walk,26,1,5000,0,5000,yes,self,rudeattacked,,,,,,,,
+2068,Boitatá@KN_TWOHANDQUICKEN,attack,60,20,10000,0,120000,yes,self,myhpltmaxrate,30,,,,,,6,
+2068,Boitatá@AS_SONICBLOW,attack,136,10,1000,0,10000,yes,target,always,0,,,,,,2,
+2068,Boitatá@NPC_POWERUP,attack,349,5,2000,0,100000,yes,self,always,0,,,,,,,
+2068,Boitatá@NPC_POWERUP,attack,349,5,2000,0,25000,yes,self,myhpltmaxrate,30,,,,,,,
+2068,Boitatá@NPC_CALLSLAVE,attack,352,1,10000,0,10000,yes,self,always,0,,,,,,,
+2068,Boitatá@NPC_CALLSLAVE,idle,352,1,10000,0,10000,yes,self,always,0,,,,,,,
+2068,Boitatá@NPC_SUMMONSLAVE,any,196,1,10000,0,0,no,self,slavele,4,2070,,,,,,
+2068,Boitatá@PF_DOUBLECASTING,idle,482,5,10000,0,90000,no,self,always,0,,,,,,,
+2068,Boitatá@PF_DOUBLECASTING,attack,482,5,5000,0,5000,no,self,always,0,,,,,,,
+2068,Boitatá@MG_COLDBOLT,attack,14,10,3000,500,10000,yes,target,afterskill,482,,,,,,,
+2068,Boitatá@MG_COLDBOLT,attack,14,10,3000,500,5000,yes,target,always,0,,,,,,,
