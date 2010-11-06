@@ -4,7 +4,7 @@ passwd: FI5yoejOAsp6u2lacRoa
 server_name: Cortez Testes
 wisp_server_name: Server
 
-//login_ip: server.cortezonline.org
+login_ip: server.cortezonline.org
 char_ip: test.cortezonline.org
 char_port: 6905
 
