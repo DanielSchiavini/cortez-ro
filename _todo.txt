@@ -1,6 +1,9 @@
 Differences:
 - log.Loginlog?
 
+
+[GM] Njord
+
 P1:
 P2:
 	- Torre

@@ -104,10 +104,12 @@ L_CHECK:
 	close;
 
 L_CLAIM:
-	if(getgmlevel()<5)
-		atcommand "@reloadgmdb";
 	mes "^336699[Doações]^333333";
 	mes "Muito obrigado por doar!!!";
+	if(getgmlevel()<5){
+		mes "Se estiver aguardando sua VIP, precisará relogar.";
+		mes " ";
+	}
 	mes "Você tem "+@value$+" créditos!";
 	mes "Deseja retirar um item agora?";
 	next;
