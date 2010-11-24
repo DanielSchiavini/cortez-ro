@@ -32,7 +32,7 @@ um_in,10,18,0	warp	sign06a	1,1,um_dun01,129,90
 
 que_sign01,113,133,0	warp	sign07	1,1,nif_in,117,173
 
-que_sign01,45,15,0	warp	sign08	1,1,niflheim,146,245
+//que_sign01,45,15,0	warp	sign08	1,1,niflheim,146,245
 
 que_sign02,22,314,0	warp	sign09	1,1,niflheim,30,156
 que_sign02,379,235,0	warp	sign09a	1,1,que_sign01,180,172
