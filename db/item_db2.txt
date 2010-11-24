@@ -2574,7 +2574,7 @@
 7305,Symbol_of_the_Nine_Realms,Symbol of the Nine Realms,3,,0,10,,,,,,,,,,,,,{},{},{}
 7306,Piece_of_Spirit,Piece of Spirit,3,,0,10,,,,,,,,,,,,,{},{},{}
 7307,Spiritual_Whispers,Spiritual Whispers,3,,0,10,,,,,,,,,,,,,{},{},{}
-7308,Witch's_Tonic,Witch's Tonic,3,,0,10,,,,,,,,,,,,,{},{},{}
+7308,Witch's_Tonic,Witch's Tonic,3,,0,0,,,,,,,,,,,,,{},{},{}
 7309,Crow_Wing,Crow Wing,3,,0,10,,,,,,,,,,,,,{},{},{}
 7310,Free_Ticket_for_Peco_Ride,Free Ticket for Peco Ride,3,,10,10,,,,,,,,,,,,,{},{},{}
 7311,Free_Ticket_for_Flyship,Free Ticket for Flyship,3,,10,10,,,,,,,,,,,,,{},{},{}
