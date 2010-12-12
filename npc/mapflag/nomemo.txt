@@ -162,7 +162,7 @@ pay_fild02	mapflag	nomemo
 pay_fild04	mapflag	nomemo
 pay_fild05	mapflag	nomemo
 pay_fild09	mapflag	nomemo
-pay_fild10	mapflag	nomemo
+//pay_fild10	mapflag	nomemo
 pay_fild11	mapflag	nomemo
 prt_fild00	mapflag	nomemo
 prt_fild03	mapflag	nomemo

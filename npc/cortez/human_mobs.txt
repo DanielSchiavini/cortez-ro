@@ -1,10 +1,6 @@
 //select * from  bd.mob where id in (3101,3098,3104,3106,3102,3099,3103,3157,3108,3105,3089,3097,3107)
 
 // These need some special skills and items (gtb for instance)..
-pay_fild10	mapflag	restricted	6	//Baltazar
-beach_dun	mapflag	restricted	6	//Yuufa/Sola
-yuno_fild04	mapflag	restricted	6	//Brunim
-pvp_y_5-5	mapflag	restricted	6	//Pimpolho
 pvp_y_5-5	mapflag	fog
 
 // Restricted 6 - Not all the skills were needed but lacking more restricted options
