@@ -139,7 +139,7 @@
 7535,123,100	// Photo_Album_02
 7536,123,100	// Photo_Album_03
 7537,123,100	// Photo_Album_04
-5147,123,100	// Baseball_Cap
+//5147,123,100	// Baseball_Cap
 
 // Poring Coin items
 7538,115,100	// Sifted_Sand
