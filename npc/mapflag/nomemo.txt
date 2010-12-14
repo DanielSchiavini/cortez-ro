@@ -170,7 +170,7 @@ prt_fild04	mapflag	nomemo
 prt_fild09	mapflag	nomemo
 prt_fild10	mapflag	nomemo
 prt_fild11	mapflag	nomemo
-prt_monk	mapflag	nomemo
+//prt_monk	mapflag	nomemo
 um_fild01	mapflag	nomemo
 um_fild02	mapflag	nomemo
 um_fild03	mapflag	nomemo
@@ -540,7 +540,7 @@ pvp_y_5-1	mapflag	nomemo
 pvp_y_5-2	mapflag	nomemo
 pvp_y_5-3	mapflag	nomemo
 pvp_y_5-4	mapflag	nomemo
-pvp_y_5-5	mapflag	nomemo
+//pvp_y_5-5	mapflag	nomemo
 pvp_y_6-1	mapflag	nomemo
 pvp_y_6-2	mapflag	nomemo
 pvp_y_6-3	mapflag	nomemo

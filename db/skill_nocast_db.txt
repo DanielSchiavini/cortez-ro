@@ -108,7 +108,7 @@
 
 //Zone 4 Eventos/WoE:SE
 143,256	//NV_TRICKDEAD#Act Dead#
-54,256	//ALL_RESURRECTION#Resurrection# + PVP
+54,256	//ALL_RESURRECTION#Resurrection#
 264,256 //Snap
 426,256 //TK_HIGHJUMP#Taekwon Jump#
 362,256	//HP_BASILICA#Basilica#
