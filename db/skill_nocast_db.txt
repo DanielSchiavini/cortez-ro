@@ -74,7 +74,7 @@
 27,32	//Warp portal
 51,32	//Hiding
 135,32	//Cloaking
-389,32	//Stealth
+389,32	//ST_CHASEWALK#Espreitar#Stealth
 35,32	//Cure
 87,32	//Ice Wall
 359,32	//Berserk (Frenzy)
@@ -108,7 +108,6 @@
 
 //Zone 4 Eventos/WoE:SE
 143,256	//NV_TRICKDEAD#Act Dead#
-389,256	//ST_CHASEWALK#Stealth#
 54,256	//ALL_RESURRECTION#Resurrection# + PVP
 264,256 //Snap
 426,256 //TK_HIGHJUMP#Taekwon Jump#
