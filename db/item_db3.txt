@@ -15,30 +15,30 @@
 //=======================================
 //Custom Cards (Human Mobs Cards)
 //1
-16100,Novice_Card,Novice Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHP,1000; bonus bStr,5; bonus bDex,5; },{},{}
-16101,Swordman_Card,Swordman Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,1; skill 5,5; },{},{}
+16100,Novice_Card,Novice Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,10; bonus bInt,10; bonus bDex,10; if(isequippedcnt(16100,16137)<=2 && !isequipped(4302)) { if(Class==Job_SuperNovice) { bonus bMaxHPrate,130-20*(isequippedcnt(16100,16137)-1); } } },{},{}
+16101,Swordman_Card,Swordman Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,8; if(isequippedcnt(16101,16120)<=2) bonus2 bSkillAtk,397,23; },{},{}
 16102,Magician_Card,Magician Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,10; bonus bDex,5; bonus bMaxSP,-200; },{},{}
-16103,Thief_Card,Thief Card,6,,10,10,,,,,,,,16,,,,,{ bonus bCritAtkRate,5; if(getequipid(3)>=1250 && getequipid(3)<=1299) bonus bCritical,30; else if(getequipid(3)>=13150 && getequipid(3)<=13153) { bonus bCritical,30; bonus bAtkRange,-2; }},{},{}
-16104,Archer_Card,Archer Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDex,10; bonus bAgi,15; bonus bLuk,20; },{},{}
-16105,Merchant_Card,Merchant Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,3; bonus bDex,2; bonus bMaxHP,100; },{},{}
-16106,Acolyte_Card,Acolyte Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,1; bonus bDex,1; skill 28,1; },{},{}
+16103,Thief_Card,Thief Card,6,,10,10,,,,,,,,16,,,,,{ bonus bCritAtkRate,15; if(getequipid(3)>=1250 && getequipid(3)<=1299) bonus bCritical,40; else if(getequipid(3)>=13150 && getequipid(3)<=13153) { bonus bCritical,40; bonus bAtkRange,-2; }},{},{}
+16104,Archer_Card,Archer Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDex,15; bonus bAgi,15; bonus bLuk,25; },{},{}
+16105,Merchant_Card,Merchant Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,6; bonus bMaxHP,2000; skill "AM_POTIONPITCHER",1; bonus2 bAddItemHealRate,IG_FirstAid,20-10*isequipped(2417,16130); bonus2 bSkillAtk,"AM_ACIDTERROR",20; bonus2 bSkillAtk,"AM_DEMONSTRATION",20; },{},{}
+16106,Acolyte_Card,Acolyte Card,6,,10,10,,,,,,,,16,,,,,{ bonus5 bAutoSpellWhenHit,"HP_ASSUMPTIO",1,1,BF_WEAPON,0; },{},{}
 //1-1
 16107,Knight_Card,Knight Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,4; bonus bDex,2; skill 4,10; },{},{}
-16108,Crusader_Card,Crusader Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,3; bonus bDex,2; bonus bAgi,3; },{},{}
+16108,Crusader_Card,Crusader Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,8; bonus bDex,8; skill 368,2; bonus bSpeedAddRate,-40; },{},{ sc_end SC_SACRIFICE; heal 1-Hp,0;  }
 16109,Assassin_Card,Assassin Card,6,,10,10,,,,,,,,16,,,,,{ bonus bAgi,5; skill 49,5; },{},{}
 16110,Rouge_Card,Rouge Card,6,,10,10,,,,,,,,16,,,,,{ bonus bAgi,5; bonus bDex,5; skill 212,2; },{},{}
 16111,Hunter_Card,Hunter Card,6,,10,10,,,,,,,,16,,,,,{ bonus bAgi,5; bonus bDex,5; },{},{}
 //1-2
-16112,Bard_Card,Bard Card,6,,10,10,,,,,,,,16,,,,,{ if(isequippedcnt(16125,16112)<=2 && isequippedcnt(1918,1970)) bonus2 bSkillAtk,394,15; },{},{}
-16113,Wizard_Card,Wizard Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,5; bonus bDex,2; bonus bMatkRate,5; },{},{}
-16114,Sage_Card,Sage Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,5; bonus bMaxSP,20; },{},{}
+16112,Bard_Card,Bard Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDex,8; if(isequippedcnt(16125,16112)<=2) bonus2 bSkillAtk,394,23; },{},{}
+16113,Wizard_Card,Wizard Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,10; bonus bDex,-20; bonus bMatkRate,7; },{},{}
+16114,Sage_Card,Sage Card,6,,10,10,,,,,,,,16,,,,,{ if(Class == Job_Professor) { skill "HW_MAGICCRASHER",1; skill "MG_SAFETYWALL",3*isequippedcnt(16114); } else { skill "SA_MAGICROD",1; skill "MG_SAFETYWALL",2*isequippedcnt(16114); } if(BaseJob != Job_Wizard) { skill "PF_DOUBLECASTING",1; } },{},{}
 16115,Dancer_Card,Dancer Card,6,,10,10,,,,,,,,16,,,,,{ skill 324,1; },{},{}
 16116,Blacksmith_Card,Blacksmith Card,6,,10,10,,,,,,,,16,,,,,{ skill 112,2; },{},{}
-16117,Alchemist_Card,Alchemist Card,6,,10,10,,,,,,,,16,,,,,{ skill 230,1; },{},{}
+16117,Alchemist_Card,Alchemist Card,6,,10,10,,,,,,,,16,,,,,{ skill "AM_ACIDTERROR",1; },{},{}
 16118,Priest_Card,Priest Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,2; skill 28,2; },{},{}
-16119,Monk_Card,Monk Card,6,,10,10,,,,,,,,16,,,,,{ bonus bAgi,5; bonus bDex,2; bonus bStr,2; },{},{}
+16119,Monk_Card,Monk Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,15; bonus bDex,10; bonus bMaxSP,200+40*(isequippedcnt(16119)==1); },{},{}
 //1-1-1 e 1-2-1
-16120,Carta_Turok,Carta Turok,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; if(isequippedcnt(16120)<=2) bonus2 bSkillAtk,397,30; },{},{}
+16120,Carta_Turok,Carta Turok,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; if(isequippedcnt(16101,16120)<=2) bonus2 bSkillAtk,397,30; },{},{}
 16121,Carta_Yuri,Carta Yuri,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,10; bonus bDex,10; skill 368,3; bonus bSpeedAddRate,-40; },{},{ sc_end SC_SACRIFICE; heal 1-Hp,0;  }
 16122,Carta_Meteoro,Carta Meteoro,6,,10,10,,,,,,,,16,,,,,{ if(isequippedcnt(16122)<=2) { bonus bCritAtkRate,20; if(getequipid(3)>=1250 && getequipid(3)<=1299) bonus bCritical,50; else if(getequipid(3)>=13150 && getequipid(3)<=13153) { bonus bCritical,100; bonus bAtkRange,-2; } } },{},{}
 16123,Carta_T.Roz,Carta T.Roz,6,,10,10,,,,,,,,16,,,,,{ bonus bUnstripableArmor,1; bonus bUnbreakableArmor,0; bonus bUnstripableWeapon,1; bonus bUnbreakableWeapon,0; },{},{}
@@ -48,15 +48,15 @@
 16127,Carta_Dr.Pimpolho,Carta Dr.Pimpolho,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,15; bonus bDex,-30; bonus bMatkRate,7; },{},{}
 16128,Carta_Brunim,Carta Brunim,6,,10,10,,,,,,,,16,,,,,{ bonus2 bResEff,Eff_Freeze,10000; if(Class==Job_Professor) { skill 365,1; if(isequippedcnt(16128)==1) skill 12,5; else skill 12,10; } else { skill 276,2; if(isequippedcnt(16128)>=4) skill 12,10; else skill 12,3*isequippedcnt(16128); } if(BaseClass!=Job_Mage) { skill 482,2; } },{},{}
 16129,Carta_Elfo,Carta Elfo,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,10; skill 112,5; },{},{}
-16130,Carta_Hermes,Carta Hermes,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; skill 231,3; bonus2 bAddItemHealRate,IG_FirstAid,25-10*isequipped(2417); bonus bMaxHP,3000; bonus2 bSkillAtk,230,20; bonus2 bSkillAtk,229,20; },{},{}
+16130,Carta_Hermes,Carta Hermes,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; skill "AM_POTIONPITCHER",3; bonus2 bAddItemHealRate,IG_FirstAid,25-10*isequippedcnt(2417,16105); bonus bMaxHP,3000; bonus2 bSkillAtk,"AM_ACIDTERROR",20; bonus2 bSkillAtk,"AM_DEMONSTRATION",20; },{},{}
 16131,Carta_Bola,Carta Bola,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,10; bonus bMaxHP,6000; },{},{}
-16132,Carta_Gleen,Carta Gleen,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,20; bonus bDex,15; if(isequippedcnt(16132)==1) bonus bMaxSP,400; else bonus bMaxSP,200*isequippedcnt(16132); },{},{}
+16132,Carta_Gleen,Carta Gleen,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,20; bonus bDex,15; bonus bMaxSP,200+200*(isequippedcnt(16132)==1); },{},{}
 //2 e 2-1
 16133,Super_Novice_Card,Super Novice Card,6,,10,10,,,,,,,,16,,,,,{ bonus bAgi,5; bonus bDex,5; bonus bInt,15; bonus bStr,15; if(Class!=Job_SuperNovice) { bonus2 bSubRace,RC_NonBoss,-40; bonus2 bSubRace,RC_Boss,-70; bonus bFleeRate,-30; } },{},{}
 16134,Taekwon_Card,Taekwon Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,10; bonus bAgi,10; bonus bDex,10; if(getequipid(EQI_HAND_R)==-1) bonus bAtkRate,45/isequippedcnt(16134); },{},{}
 16135,Star_Gladiator_Card,Star Gladiator Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; bonus bInt,10; bonus bLuk,10; },{},{}
 16136,Soul_Linker_Card,Soul Linker Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,10; bonus bDex,10; },{},{}
-16137,Carta_Spok,Carta Spok,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,15; bonus bInt,15; bonus bDex,15; if(isequippedcnt(16137)<=2 && !isequipped(4302)) { if(Class==Job_SuperNovice) { bonus bMaxHPrate,50+100*isequippedcnt(16137); } } },{},{}
+16137,Carta_Spok,Carta Spok,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,15; bonus bInt,15; bonus bDex,15; if(isequippedcnt(16100,16137)<=2 && !isequipped(4302)) { if(Class==Job_SuperNovice) { bonus bMaxHPrate,150-25*(isequippedcnt(16100,16137)-1); } } },{},{}
 // Items by CortezRO //
 16201,Giant_Khalitzburg_Card,Giant Khalitzburg Card,6,,10,10,,,,,,,,136,,,,,{ bonus bDex,15; bonus bInt,15; bonus bVit,10; bonus bMatkRate,-2; },{},{}
 16202,Giant_Deviling_Card,Giant Deviling Card,6,,10,10,,,,,,,,136,,,,,{ bonus bStr,20; bonus bVit,20; },{},{}
@@ -112,7 +112,7 @@
 16752,Ovo_de_Pascoa_com_Surpresa,Ovo de Páscoa com Surpresa,2,,10,150,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem groupranditem(IG_CardAlbum),1; sleep2 1500; getitem groupranditem(IG_Pascoa),1; },{},{}
 16753,Chocolate,Chocolate,0,500,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal rand(0,100),rand(0,100); },{},{}
 16754,Chocolate_Caseiro,Chocolate Caseiro,0,5000,,80,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_BLESSING,140000,5; skilleffect 34,0; },{},{}
-16755,Chocolate_Branco_Caseiro,Chocolate Branco Caseiro,0,,10,80,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ASSUMPTIO,60000,3; skilleffect 361,0; },{},{}
+16755,Chocolate_Branco_Caseiro,Chocolate Branco Caseiro,0,,10,80,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ASSUMPTIO,60000,3; skilleffect "HP_ASSUMPTIO",0; },{},{}
 16756,Chocolate_Branco,Chocolate Branco,0,,10,80,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal -10,0; heal -1,MaxHp/20; skilleffect 373,0; },{},{}
 16757,Chocolate_Quente,Chocolate Quente,0,,10,150,,,,,0xFFFFFFFF,7,2,,,,,,{ specialeffect 37; sc_start SC_SpeedUp0,60000,0; },{},{}
 16758,Bolo-Mousse_de_Chocolate,Bolo-Mousse de Chocolate,0,4000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_KAIZEL,1800000,1; skilleffect 462,0; },{},{}
