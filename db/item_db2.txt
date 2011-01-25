@@ -1524,7 +1524,7 @@
 4097,Matyr_Card,Matyr Card,6,,10,10,,,,,,,,64,,,,,{ if(isequippedcnt(4097)==2) { bonus bMaxHPrate,12; bonus bMaxSPrate,5; } else { bonus bMaxHPrate,16; } },{ if(isequippedcnt(4097)==2) sc_start4 SC_ENDURE,1800000,10,0,0,1; },{ sc_end SC_ENDURE; }
 4098,Dokebi_Card,Dokebi Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Wind; bonus bDef,1; },{},{}
 4099,Pasana_Card,Pasana Card,6,,10,10,,,,,,,,16,,,,,{ if(!isequipped(4003,4325)) bonus bDefEle,Ele_Fire; bonus bDef,1; },{},{}
-4100,Sohee_Card,Sohee Card,6,,10,10,,,,,,,,64,,,,,{ if(isequippedcnt(4100,4441)==1) { bonus bMaxSPrate,-40; bonus bMatk,5; bonus2 bMagicAddRace,RC_DemiHuman,18; bonus2 bMagicAddRace,RC_Angel,18; } },{},{}
+4100,Sohee_Card,Sohee Card,6,,10,10,,,,,,,,64,,,,,{ if(isequippedcnt(4100,4441)==1) { bonus bMaxSPrate,-40; bonus bMatkRate,5; bonus2 bMagicAddRace,RC_DemiHuman,18; bonus2 bMagicAddRace,RC_Angel,18; } },{},{}
 4101,Sandman_Card,Sandman Card,6,,10,10,,,,,,,,16,,,,,{ if(!isequipped(4003,4325)) bonus bDefEle,Ele_Earth; bonus bDef,1; },{},{}
 4102,Whisper_Card,Whisper Card,6,,10,10,,,,,,,,4,,,,,{ bonus bFlee,20; bonus2 bSubEle,Ele_Ghost,-50; },{},{}
 4103,Horong_Card,Horong Card,6,,10,10,,,,,,,,136,,,,,{ skill 10,1; },{},{}
