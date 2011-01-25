@@ -28,8 +28,8 @@
 //============================================================
 
 //Iniciantes:
-arug_cas03	mapflag	restricted	7
-arug_cas03	mapflag	loadevent
+//arug_cas03	mapflag	restricted	7
+//arug_cas03	mapflag	loadevent
 
 arug_cas03	mapflag	gvg_castle
 arug_cas03	mapflag	monster_noteleport
