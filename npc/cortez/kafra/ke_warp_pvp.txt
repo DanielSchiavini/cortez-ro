@@ -20,7 +20,7 @@ OnInit:	//Load Config
 }
 
 function	script	F_keWarpPvp	{
-	//set @maxIniciantes, getmapusers("ordeal_1-1");
+	set @maxIniciantes, 0; //getmapusers("ordeal_1-1");
 	set @cost,callfunc("F_keCost",$@kewp_cost,0);
 	set @submenu, select(
 		"- Voltar",
@@ -35,7 +35,7 @@ function	script	F_keWarpPvp	{
 	);
 	
 	if(@submenu==4){
-		if(getmapusers("guild_vs3") > @maxIniciantes){
+		if(getmapusers("guild_vs3") >= @maxIniciantes){
 			mes "["+@name$+"]";
 			mes "O PVP de iniciantes está cheio demais. Iremos lhe levar para o PVP normal.";
 			set @submenu, 2;
