@@ -25,9 +25,9 @@ guild_vs3	mapflag	nowarp
 guild_vs3	mapflag	nodrop
 guild_vs3	mapflag	nopenalty
 guild_vs3	mapflag	noreturn
-guild_vs3	mapflag	restricted	7
+//guild_vs3	mapflag	restricted	7
 guild_vs3	mapflag	nocommand	10
-guild_vs3	mapflag	loadevent
+//guild_vs3	mapflag	loadevent
 
 guild_vs2	mapflag	restricted	6	//SGS - e outras salas de galho seco
 guild_vs2	mapflag	nodrop
@@ -44,7 +44,7 @@ guild_vs5	mapflag	restricted	4
 
 force_2-1	mapflag	nosave	SavePoint	//Evento invasao (mapa igual ao mini boss)
 quiz_01	mapflag	restricted	1	//Eventos
-quiz_01	mapflag	restricted	7
+//quiz_01	mapflag	restricted	7
 quiz_01	mapflag	nosave	SavePoint
 
 prtg_cas01	mapflag	nodrop	//woe

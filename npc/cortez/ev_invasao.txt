@@ -1,7 +1,7 @@
-geffen	mapflag	restricted	7
-geffen	mapflag	loadevent
-izlude	mapflag	restricted	7
-izlude	mapflag	loadevent
+//geffen	mapflag	restricted	7
+//geffen	mapflag	loadevent
+//izlude	mapflag	restricted	7
+//izlude	mapflag	loadevent
 
 new_zone01,49,130,4	script	Invasão de Cidades	888,{
 	OnClick:
