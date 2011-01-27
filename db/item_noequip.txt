@@ -47,9 +47,9 @@
 1363,4 //Bloody_Axe
 1372,4 //Right_Epsilon_C
 1373,4 //Brood_Axe_C
-//2410,4 //Sleipnir - item avançado
+2410,4 //Sleipnir - item avançado
 2515,4 //Eagle_Wing
-//4131,4 //Moonlight_Flower - item avançado
+4131,4 //Moonlight_Flower - item avançado
 4161,4 //Grand_Peco
 4290,4 //Cat_O'_Nine_Tails
 4352,4 //B_Ygnizem
@@ -123,100 +123,99 @@
 16778,16	//Harpy_Combo_Card_Pack
 
 // Itens avançados - Zone 7
-4131,260	//Moonlight_Flower
-2410,260	//Sleipnir
-
-1530,256	//Mjolnir
-1565,256	//Death_Note
-2511,256	//Skeleton_Manteau
-2629,256	//Megingjard
-2630,256	//Brisingamen
-4047,256	//Ghostring
-4054,256	//Angeling
-4121,256	//Phreeoni
-4123,256	//Eddga
-4132,256	//Mistress
-4134,256	//Dracula
-4135,256	//Orc_Lord
-4137,256	//Drake
-4138,256	//Anubis
-4142,256	//Doppelganger
-4143,256	//Orc_Hero
-4144,256	//Osiris
-4145,256	//Berzebub
-4146,256	//Maya
-4147,256	//Baphomet
-4148,256	//Pharaoh
-4168,256	//Dark_Lord
-4198,256	//Maya Macho
-4236,256	//Amon_Ra
-4241,256	//Arc_Angeling
-4263,256	//Incantation_Samurai
-4276,256	//Lord_of_Death
-4302,256	//Tao_Gunka
-4305,256	//Turtle_General
-4318,256	//Stormy_Knight
-4324,256	//Garm
-4330,256	//Evil_Snake_Lord
-4342,256	//RSX_0806
-4357,256	//Lord_Knight
-4359,256	//Assassin Cross
-4361,256	//Whitesmith
-4363,256	//High Priest
-4365,256	//High Wizard
-4367,256	//Sniper
-4372,256	//Bacsojin
-4374,256	//Vesper
-4376,256	//Lady_Tanee
-4386,256	//Detale
-4399,256	//Thanatos
-4403,256	//Kiel
-4407,256	//Randgris
-4408,256	//Gloom_Under_Night
-4419,256	//Ktullanux
-4425,256	//Atroce
-4426,256	//Byorgue
-4427,256	//Sword Guardian
-4428,256	//Bow Guardian
-4430,256	//Ifrit
-4441,256	//Fallen_Bishop_Hibram
-5013,256	//Lord_Kaho`s_Horn
-5132,256	//Angeling_Hat
-5179,256	//Golden_Tiara
-16120,256	//Turok
-16121,256	//Yuri
-16122,256	//Meteoro
-16123,256	//T.Roz
-16124,256	//Baltazar
-16125,256	//Sola
-16126,256	//Yuufa
-16127,256	//Dr.Pimpolho
-16128,256	//Brunim
-16129,256	//Elfo
-16130,256	//Hermes
-16131,256	//Bola
-16132,256	//Gleen
-16134,256	//Taekwon
-16135,256	//Gladiador Estelar
-16136,256	//Espiritualista
-16137,256	//Spok
-16201,256	//Giant Khalitzburg
-16202,256	//Giant Deviling
-16501,256	//Asa de Deviling
-16502,256	//Asa do Ártico
-16503,256	//Asa de Borboleta
-16504,256	//Asa do Mestre
-16505,256	//Asa de Fada
-16506,256	//Asa Brilhante
-16507,256	//Asa do Demônio
-16508,256	//Asa de Fênix
-16509,256	//Asa Ying Yang
-16511,256	//Asa de Angeling
-16512,256	//Asa de Gárgula
-16513,256	//Asa da Retaliação
-16601,256	//Elmo_Negro
-16602,256	//Elmo_de_Dragao
-16603,256	//Elmo_Dourado
-16604,256	//Elmo_do_Baal
-16605,256	//Elmo_de_Valquiria
-16606,256	//Elmo_de_Ossos_Humanos
+//4131,256	//Moonlight_Flower
+//2410,256	//Sleipnir
+//1530,256	//Mjolnir
+//1565,256	//Death_Note
+//2511,256	//Skeleton_Manteau
+//2629,256	//Megingjard
+//2630,256	//Brisingamen
+//4047,256	//Ghostring
+//4054,256	//Angeling
+//4121,256	//Phreeoni
+//4123,256	//Eddga
+//4132,256	//Mistress
+//4134,256	//Dracula
+//4135,256	//Orc_Lord
+//4137,256	//Drake
+//4138,256	//Anubis
+//4142,256	//Doppelganger
+//4143,256	//Orc_Hero
+//4144,256	//Osiris
+//4145,256	//Berzebub
+//4146,256	//Maya
+//4147,256	//Baphomet
+//4148,256	//Pharaoh
+//4168,256	//Dark_Lord
+//4198,256	//Maya Macho
+//4236,256	//Amon_Ra
+//4241,256	//Arc_Angeling
+//4263,256	//Incantation_Samurai
+//4276,256	//Lord_of_Death
+//4302,256	//Tao_Gunka
+//4305,256	//Turtle_General
+//4318,256	//Stormy_Knight
+//4324,256	//Garm
+//4330,256	//Evil_Snake_Lord
+//4342,256	//RSX_0806
+//4357,256	//Lord_Knight
+//4359,256	//Assassin Cross
+//4361,256	//Whitesmith
+//4363,256	//High Priest
+//4365,256	//High Wizard
+//4367,256	//Sniper
+//4372,256	//Bacsojin
+//4374,256	//Vesper
+//4376,256	//Lady_Tanee
+//4386,256	//Detale
+//4399,256	//Thanatos
+//4403,256	//Kiel
+//4407,256	//Randgris
+//4408,256	//Gloom_Under_Night
+//4419,256	//Ktullanux
+//4425,256	//Atroce
+//4426,256	//Byorgue
+//4427,256	//Sword Guardian
+//4428,256	//Bow Guardian
+//4430,256	//Ifrit
+//4441,256	//Fallen_Bishop_Hibram
+//5013,256	//Lord_Kaho`s_Horn
+//5132,256	//Angeling_Hat
+//5179,256	//Golden_Tiara
+//16120,256	//Turok
+//16121,256	//Yuri
+//16122,256	//Meteoro
+//16123,256	//T.Roz
+//16124,256	//Baltazar
+//16125,256	//Sola
+//16126,256	//Yuufa
+//16127,256	//Dr.Pimpolho
+//16128,256	//Brunim
+//16129,256	//Elfo
+//16130,256	//Hermes
+//16131,256	//Bola
+//16132,256	//Gleen
+//16134,256	//Taekwon
+//16135,256	//Gladiador Estelar
+//16136,256	//Espiritualista
+//16137,256	//Spok
+//16201,256	//Giant Khalitzburg
+//16202,256	//Giant Deviling
+//16501,256	//Asa de Deviling
+//16502,256	//Asa do Ártico
+//16503,256	//Asa de Borboleta
+//16504,256	//Asa do Mestre
+//16505,256	//Asa de Fada
+//16506,256	//Asa Brilhante
+//16507,256	//Asa do Demônio
+//16508,256	//Asa de Fênix
+//16509,256	//Asa Ying Yang
+//16511,256	//Asa de Angeling
+//16512,256	//Asa de Gárgula
+//16513,256	//Asa da Retaliação
+//16601,256	//Elmo_Negro
+//16602,256	//Elmo_de_Dragao
+//16603,256	//Elmo_Dourado
+//16604,256	//Elmo_do_Baal
+//16605,256	//Elmo_de_Valquiria
+//16606,256	//Elmo_de_Ossos_Humanos
