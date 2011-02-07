@@ -1674,7 +1674,7 @@
 4245,Am_Mut_Card,Am Mut Card,6,,10,10,,,,,,,,2,,,,,{ if(isequippedcnt(4245)==1) { bonus2 bSkillAtk,42,80; } else { if(Class!=Job_Creator) bonus bDef,-5; bonus bAtk,100; } },{},{}
 4246,Assaulter_Card,Assaulter Card,6,,10,10,,,,,,,,136,,,,,{ if(BaseClass == Job_Acolyte) skill 40,1; else skill 264,1; },{},{}
 4247,Aster_Card,Aster Card,6,,10,10,,,,,,,,32,,,,,{ bonus bDef,10; },{},{}
-4248,Ancient_Mummy_Card,Ancient Mummy Card,6,,10,10,,,,,,,,136,,,,,{ bonus bAllStats,10; bonus bVit,-10; bonus bMatkRate,-2; bonus2 bSkillAtk,230,5; bonus2 bSkillAtk,229,5; },{},{}
+4248,Ancient_Mummy_Card,Ancient Mummy Card,6,,10,10,,,,,,,,136,,,,,{ bonus bAllStats,10; bonus bVit,-10; bonus bMatkRate,-2; bonus2 bSkillAtk,230,5; bonus2 bSkillAtk,229,5; if(equippedcnt(4248)<5) skill "WZ_METEOR",equippedcnt(4248); else skill "WZ_METEOR",5;  },{},{}
 4249,Ancient_Worm_Card,Ancient Worm Card,6,,10,10,,,,,,,,769,,,,,{ skill 280,1; },{},{ sc_end SC_FIREWEAPON; }
 4250,Executioner_Card,Executioner Card,6,,10,10,,,,,,,,32,,,,,{ if(isequipped(4404)) { bonus bMdef,30; bonus bMagicDamageReturn,15;  bonus bNearAtkDef,-10; if(isequippedcnt(4058,4128)) bonus2 bSubRace,RC_DemiHuman,13; } else { bonus2 bAddEff,Eff_Stun,750; bonus2 bSubSize,0,10; } },{},{}
 4251,Elder_Card,Elder Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace2,5,40; },{},{}
