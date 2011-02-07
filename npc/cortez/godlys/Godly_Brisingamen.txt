@@ -17,10 +17,10 @@ que_sign01,45,44,4	script	Loki	730,{
 	next;
 	mes "^006611[ Loki ]^333333";
 	mes "São estes itens:";
-	mes "- 150x Pedra Encantada Azul";
-	mes "- 150x Pedra Encantada Amarela";
-	mes "- 150x Pedra Encantada Vermelha";
-	mes "- 150x Pedra Encantada Verde";
+	mes "- 150x Bijuteria Azul";
+	mes "- 150x Bijuteria Amarela";
+	mes "- 150x Bijuteria Vermelha";
+	mes "- 150x Bijuteria Verde";
 	mes "- 150x Lagrímas de Freyja";
 	mes "- 150x Murmúrio";
 	mes "- 150x Ar Silencioso ";
@@ -43,9 +43,9 @@ que_sign01,45,44,4	script	Loki	730,{
 	next;
 	mes "^006611[ Loki ]^333333";
 	if(	countitem(7073)<150 || countitem(7090)<150 ||
-		countitem(7092)<150 || countitem(7428)<150 ||
-		countitem(7427)<150 || countitem(7426)<150 ||
-		countitem(7429)<150 || countitem(7077)<6   ||
+		countitem(7092)<150 || countitem(7446)<150 ||
+		countitem(7448)<150 || countitem(7447)<150 ||
+		countitem(7445)<150 || countitem(7077)<6   ||
 		countitem(7088)<6	|| countitem(969)<20){
 		mes "Está sem os itens, pegue-os para mim...";
 	}else{
@@ -59,10 +59,10 @@ que_sign01,45,44,4	script	Loki	730,{
 		delitem 7073,150;
 		delitem 7090,150;
 		delitem 7092,150;
-		delitem 7429,150;
-		delitem 7428,150;
-		delitem 7427,150;
-		delitem 7426,150;
+		delitem 7445,150;
+		delitem 7446,150;
+		delitem 7448,150;
+		delitem 7447,150;
 		delitem 7077,6;
 		delitem 7088,6;
 		delitem 969,20;
