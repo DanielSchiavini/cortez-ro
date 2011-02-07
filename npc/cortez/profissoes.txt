@@ -562,9 +562,9 @@ function	script	jobmaster	{
 									setarray @qtde[0],	12,						12,						50,						100,						3,				15;
 									break;
 								case 106:
-									setarray @itens[0],	5143,					7308,				12103,					9928,			5126;
-									setarray @itens$[0],"Máscara de Kabuki",	"Tônico da Bruxa",	"Galhos Sangrentos",	"Espinafre",	"Capuz de Mopheus [2]";
-									setarray @qtde[0],	1,						2,					50,						30,				3;
+									setarray @itens[0],	5143,					7566,							12103,					9928,			5126;
+									setarray @itens$[0],"Máscara de Kabuki",	"Desejo das Trevas Escarlate",	"Galhos Sangrentos",	"Espinafre",	"Capuz de Mopheus [2]";
+									setarray @qtde[0],	1,						2,								50,						30,				3;
 									break;
 								case 107:
 									setarray @itens[0],	5179,				5149,				5257,				10006,					10018,				1963,				1913;
