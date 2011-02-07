@@ -48,10 +48,14 @@ ordeal_1-1,0,0,0	script	ranking_pvp	-1,{
 		
 		if($eventopvp){
 			if(.@mapname$=="guild_vs5"){
+				sleep2 2000;
+				atcommand "@alive";
 				warp "SavePoint",0,0;
 				if(getmapusers("guild_vs5")==1 && attachrid(killerrid))
 					callfunc "premio_eventoPvp";
 			}else if(.@mapname$=="guild_vs2-2"){
+				sleep2 2000;
+				atcommand "@alive";
 				warp "SavePoint",0,0;
 			}
 		}
