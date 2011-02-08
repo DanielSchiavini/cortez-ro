@@ -1588,7 +1588,7 @@
 4159,Nine_Tail_Card,Nine Tail Card,6,,10,10,,,,,,,,2,,,,,{ if(getskilllv(48)==10) bonus bDoubleAddRate,20; },{},{}
 4160,Firelock_Soldier_Card,Firelock Soldier Card,6,,10,10,,,,,,,,64,,,,,{ bonus bStr,2; if(getrefine()>8) { bonus bMaxHPrate,15; bonus bMaxSPrate,8; } },{},{}
 4161,Grand_Peco_Card,Grand Peco Card,6,,10,10,,,,,,,,64,,,,,{ if (!isequipped(4131)) bonus bSpeedRate,(BaseLevel*20)/100+(pow(BaseLevel-100,2)*(BaseLevel>100))/10; },{},{}
-4162,Grizzly_Card,Grizzly Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMdef,6; bonus5 bAutoSpellWhenHit,"SA_LANDPROTECTOR",1,20,BF_MAGIC,0; },{},{}
+4162,Grizzly_Card,Grizzly Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMdef,6; bonus5 bAutoSpellWhenHit,"SA_LANDPROTECTOR",1,50,BF_MAGIC,0; },{},{}
 4163,Gryphon_Card,Gryphon Card,6,,10,10,,,,,,,,2,,,,,{ bonus bCritical,10; bonus bFlee,10; bonus3 bAutoSpell,62,5,100; },{},{}
 4164,Gullinbursti_Card,Gullinbursti Card,6,,10,10,,,,,,,,769,,,,,{ bonus bAgi,2; bonus bStr,3; bonus bLuk,1; },{},{}
 4165,Gig_Card,Gig Card,6,,10,10,,,,,,,,2,,,,,{ bonus bSPrecovRate,50; },{},{}
