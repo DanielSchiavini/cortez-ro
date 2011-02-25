@@ -155,9 +155,9 @@ marry: 40,70
 divorce: 40,70
 adopt: 40,70
 sound: 40,60
-storagelist: 40,80
-cartlist: 40,80
-itemlist: 40,80
+storagelist: 40,70
+cartlist: 40,70
+itemlist: 40,70
 stats: 40,80
 
 // GM
