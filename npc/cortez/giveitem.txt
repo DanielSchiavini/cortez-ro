@@ -1,7 +1,7 @@
 // Script desenvolvido por SOLA e BRUNIM
 
 new_zone01,65,116,1	script	Entregador de Prêmios	902,{
-	if(getgmlevel()<50) close;
+	if(getgmlevel()<15) close;
 	
 	mes	"[^660066 Entregador de Prêmios ^000000]";
 	mes "Olá, Sr. GM, você gostaria de premiar alguém?";
