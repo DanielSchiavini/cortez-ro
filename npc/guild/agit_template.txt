@@ -1400,7 +1400,7 @@ OnClock0001:
 			setd "$@"+strnpcinfo(2)+"_treasure",getd("$@"+strnpcinfo(2)+"_treasure") | .@box;
 		}
 	}
-	debugmes gettimestr("%Y-%m-%d %H:%M:%S",21)+" Tesouro " + .@treasurebox + ", " + .@Treasure + "x, castle " + strnpcinfo(2) + ", servidor " + $serv;
+	callfunc("log_mes", "[Tesouro] " + .@Treasure + "x " + .@treasurebox, "Tesouro", strnpcinfo(2));
 	end;
 
 // Individual "You killed a chest" events to ensure proper spawning at the change of day.
