@@ -1,0 +1,132 @@
+// o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
+//  Delay System for Usable Items with Anti Spamming / Behavior Control
+//
+// (c) 2009-2010, By Myzter
+//
+// Version 1.2
+// 
+// o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
+//
+// USE:
+// Edit your item script (item_db) and put your original item script inside the IF {} like the next samples:
+//
+// if (callfunc("ItemDelay",[ITEM ID],[DELAY IN MILISECONDS],[RETURN USED ITEM (0/1/2)],[DELAY CONDITION],[ANTI-SPAMMING FLAGS])) { [ORIGINAL ITEM SCRIPT] }
+//
+// getarg(0): Item ID - Use the same ID from your item_db, because this item id is used to recover the lost item when delay fail, if you put another Id, the player will get another item, be carefull (-__-)
+// getarg(1): Delay in Miliseconds
+// getarg(2): Return the item if delayed (0=No, 1=Always, 2=Yes if no Spamming detected)
+// getarg(3): Delay Condition (1=On Normal Maps, 2=On GvG Maps, 4=On PvP Maps, 8=Only During WoE)
+// getarg(4): Anti-Spamming Flags (1+code1+code2+code?)
+//	1=Random Effect (between COMMA and BLEEDING)
+// 	2=COMA
+// 	4=STONE
+// 	8=FREEZE
+// 	16=STUN
+// 	32=SLEEP
+// 	64=POISON
+// 	128=CURSE
+// 	256=SILENCE
+// 	512=CONFUSION
+// 	1024=BLIND
+// 	2048=BLEEDING
+// 	4096=KILL PLAYER
+//	8192=KICK PLAYER
+
+// Sample of Anti-Spamming Flags:
+// 0 (Anti-Spamming Disabled)
+// 4+256=260 (Stone and Silence effects)
+// 16+32=48 (Stun and Sleep effects)
+// 128 (Curse effect)
+// NOTES:
+// Anti-Spamming apply only after 5 consecutive delayed tryes.
+//
+// Item Script Sample:
+// Affected item: 607 - Yggdrasil Berry's
+// Delay: 500 miliseconds (0.5 seconds)
+// Recover item on delay but lost it on Spam (2)
+// Apply only in GvG Maps during WOE (2+8)
+// Effects of Anti-Spamming: SLEEP and BLEEDING (32+2048=2080)
+// Original Item Script in Item_DB:
+// percentheal 100,100;
+// Nuevo Item Script:
+// { if (callfunc("ItemDelay",607,500,2,10,2080)) { percentheal 100,100; } }
+// NOTE: FOR TESTING, CHANGE 10 TO 1 (Try it in normal maps)
+
+
+// Function to control Delay in Usable Items
+function	script	ItemDelay	{
+	// Receive Item ID
+	set .@ItemID, getarg(0);
+	// Calculate Delay contitions
+	set .@ApplyDelay,0;
+	if (gettimetick(0) < getd("@DCHK_" + .@ItemID)) {
+		set .@MapFlags,0;
+		if (getmapflag(strcharinfo(3), mf_gvg) || getmapflag(strcharinfo(3), mf_gvg_noparty)) set .@MapFlags,2;
+		if (getmapflag(strcharinfo(3), mf_pvp) || getmapflag(strcharinfo(3), mf_pvp_noparty) || getmapflag(strcharinfo(3), mf_pvp_noguild)) set .@MapFlags,.@MapFlags+4;
+		if (!.@MapFlags) set .@MapFlags,1;
+		// Check map flags
+		set .@DelayConditions,getarg(3);
+		// Enable Delay here?
+		if ((.@DelayConditions&1 && .@MapFlags&1) || (.@DelayConditions&2 && .@MapFlags&2) || (.@DelayConditions&4 && .@MapFlags&4)) set .@ApplyDelay,1;
+		// If Only on WoE (On Old eAthena Servers, remove the "&& !agitcheck2()" if send errors in the console)
+		if (.@ApplyDelay && .@DelayConditions&8 && (!agitcheck() && !agitcheck2())) set .@ApplyDelay,0;
+	}
+	// If Delay is still active...
+	if (.@ApplyDelay) {
+		// Send a message alerting the item is blocked by Delay
+		if (.@DelayConditions&1 && .@DelayConditions&2 && .@DelayConditions&3) {
+			set .@ApplyIn$, "All Maps";
+		} else {
+			if (.@DelayConditions&1) set .@ApplyIn$, "Normal Maps";
+			if (.@DelayConditions&2) {
+				if (getstrlen(.@ApplyIn$)) set .@ApplyIn$, .@ApplyIn$ + ",";
+				set .@ApplyIn$, .@ApplyIn$ + "GvG Maps";
+			}
+			if (.@DelayConditions&4) {
+				if (getstrlen(.@ApplyIn$)) set .@ApplyIn$, .@ApplyIn$ + ",";
+				set .@ApplyIn$, .@ApplyIn$ + "PvP Maps";
+			}
+		}
+		if (.@DelayConditions&8) {
+			if (getstrlen(.@ApplyIn$))set .@ApplyIn$, .@ApplyIn$ + ", ";
+			set .@ApplyIn$, .@ApplyIn$ + "Only during WoE!";
+		} else {
+			if (getstrlen(.@ApplyIn$))set .@ApplyIn$, .@ApplyIn$ + ", ";
+			set .@ApplyIn$, .@ApplyIn$ + "Always!";
+		}
+		// If Anti-Spamming enabled (Flag 1)
+		set .@Flags, getarg(4);
+		if (.@Flags) {
+			// Count this fail try...
+			setd "@DCHKQ" + .@ItemID,getd("@DCHKQ" + .@ItemID) + 1;
+			// If this Player is spamming with the message... apply Effects on it.
+			if (getd("@DCHKQ" + .@ItemID) > 5) {
+				// Calculate the Effects Delay in milliseconds
+				set .@Delay, getarg(1)*1000;
+				// If Flag "Random" (1) is enabled, calculate 1 random effect
+				if (.@Flags&1) set .@Flags, 3 + pow(2,rand(1,11));
+				// Apply effects...
+				if (.@Flags&2)    sc_start SC_COMA,.@Delay,0;	        // COMA
+				if (.@Flags&64)   sc_start SC_POISON,.@Delay,0;	        // POISON
+				if (.@Flags&128)  sc_start SC_CURSE,.@Delay,0;	        // CURSE
+				if (.@Flags&512)  sc_start SC_CONFUSION,.@Delay,0;      // CONFUSION
+				if (.@Flags&1024) sc_start SC_BLIND,.@Delay,0;	        // BLIND
+				if (.@Flags&2048) sc_start SC_BLEEDING,.@Delay,0;       // BLEEDING
+				if (.@Flags&4)    sc_start SC_STONE,.@Delay,0;	        // STONE CURSE
+				if (.@Flags&8)    sc_start SC_FREEZE,.@Delay,0;	        // FREEZE
+				if (.@Flags&16)   sc_start SC_STUN,.@Delay,0;	        // STUN
+				if (.@Flags&32)   sc_start SC_SLEEP,.@Delay,0;	        // SLEEP
+				if (.@Flags&256)  sc_start SC_SILENCE,.@Delay,0;        // SILENCE
+				if (.@Flags&4096) atcommand "@die";		        // KILL PLAYER
+				if (.@Flags&8192) atcommand "@kick " + strcharinfo(0);  // KICK PLAYER
+			}
+		}
+		// Return the lost item to the inventory..
+		if (getarg(2)==1 || (getarg(2)==2 && getd("@DCHKQ" + .@ItemID) < 6)) getitem .@ItemID,1;
+		announce " * Wait " + (callfunc("MS2SEC",getd("@DCHK_" + .@ItemID) - gettimetick(0))) + " second(s) to use again a " + getitemname(.@ItemID) + " [Behavior: " + .@ApplyIn$ + "]",bc_self,0xa9edec;
+		return 0;
+	}
+	setd "@DCHK_" + .@ItemID,gettimetick(0) + getarg(1);
+	setd "@DCHKQ" + .@ItemID,0;
+	return 1;
+}

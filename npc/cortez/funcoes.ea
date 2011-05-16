@@ -126,6 +126,21 @@ function	script	F_UseDeadBranch	{
 	return getarg(0);
 }
 
+//Function F_PercentHeal (int item_id, int hp_percentage = 0, int sp_percentage = 0)
+	// Copiado de: http://www.eathena.ws/board/?showtopic=241801&p=1318430#entry1318430
+	// Com efeitos: http://www.eathena.ws/board/lofiversion/index.php/t217475.html
+	// Com itemtype 11: http://www.eathena.ws/board/index.php?showtopic=155858&view=findpost&p=858166
+function	script	F_PercentHeal	{
+	if(YggDelay > gettimetick(1)){
+		dispbottom "Aguarde mais "+(YggDelay-gettimetick(1))+"s antes de usar este item.";
+		getitem getarg(0), 1; //gives them back the item they just used
+	}else{
+		percentheal getarg(1,0), getarg(2,0);
+		set YggDelay, gettimetick(1) + 15;
+	}
+	end;
+}
+
 //Function F_Dispell (int char_id = 0)
 function	script	F_Dispell	{
 	set .@char, getarg(0,0);
