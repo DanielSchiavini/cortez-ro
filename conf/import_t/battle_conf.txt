@@ -16,7 +16,7 @@ equip_skill_break_rate: 15
 //client.conf
 packet_ver_flag: 0x10000
 min_chat_delay: 200
-display_version: 0
+display_version: 1
 min_chat_delay: 500
 hide_woe_damage: 0
 max_lv: 110
