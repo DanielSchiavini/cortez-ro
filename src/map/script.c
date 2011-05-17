@@ -6110,9 +6110,9 @@ BUILDIN_FUNC(joinguild)
 	}
 	
 	if (guild_search(guild_id) == NULL) {
-		// guild doesn't exist
-		script_pushint(st,0);
-		return 0;
+		ShowWarning("buildin_joinguild: guild is not loaded\n");
+		sd->status.guild_id = guild_id;
+		// guild is not loaded
 	}
 	
 	guild_makemember(&m, sd);
@@ -6126,7 +6126,11 @@ BUILDIN_FUNC(joinguild)
 BUILDIN_FUNC(leaveguild)
 {
 	struct map_session_data* sd;
+	struct guild *g;
 	int char_id = script_getnum(st,2);
+	int account_id;
+	int guild_id;
+	int i;
 	
 	if (!char_id) {
 		ShowWarning("buildin_leaveguild: unknown parameter.\n");
@@ -6134,26 +6138,31 @@ BUILDIN_FUNC(leaveguild)
 		return 0;
 	}
 	
-	if ((sd = map_charid2sd(char_id)) == NULL) {
-		ShowWarning("buildin_leaveguild: cannot find the player %d.\n", char_id);
+	if ((sd = map_charid2sd(char_id)) != NULL) {
+		account_id = sd->status.account_id;
+		guild_id = sd->status.guild_id;
+	}else{
+		account_id = script_getnum(st,3);
+		guild_id = script_getnum(st,4);
+	}
+	
+	if((g = guild_search(guild_id)) == NULL){
+		ShowWarning("buildin_leaveguild: guild %d cannot be found.\n", guild_id);
 		script_pushint(st,0);
 		return 0;
 	}
 	
-	if (guild_search(sd->status.guild_id) == NULL) {
-		ShowWarning("buildin_leaveguild: the player %d does not have a guild.\n", char_id);
+	if (sd && sd->status.guild_id != guild_id) {
+		ShowWarning("buildin_leaveguild: the player %d does not behave to the guild %d.\n", char_id, guild_id);
 		script_pushint(st,0);
 		return 0;
 	}
 	
-	if((agit_flag || agit2_flag) && map[sd->bl.m].flag.gvg_castle) {
-		ShowWarning("buildin_leaveguild: cannot leave in the WOE.\n");
-		script_pushint(st,0);
-		return 0;
-	}
-	
-	intif_guild_leave(sd->status.guild_id, sd->status.account_id, sd->status.char_id, 0, "");
-	script_pushint(st,0);
+	// find the member and perform expulsion
+	i = guild_getindex(g, account_id, char_id);
+	if( i != -1 && strcmp(g->member[i].name,g->master) != 0 ) //Can't expel the GL!
+		intif_guild_leave(g->guild_id,account_id,char_id,0,"");
+	script_pushint(st,1);
 	return 0;
 }
 
@@ -14524,7 +14533,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(getguildmaster,"i"),
 	BUILDIN_DEF(getguildmasterid,"i"),
 	BUILDIN_DEF(joinguild,"ii"), // [Cortez] - char_id, guild_id
-	BUILDIN_DEF(leaveguild,"i"), // [Cortez] - char_id
+	BUILDIN_DEF(leaveguild,"i??"), // [Cortez] - char_id
 	BUILDIN_DEF(strcharinfo,"i"),
 	BUILDIN_DEF(strnpcinfo,"i"),
 	BUILDIN_DEF(getequipid,"i"),
