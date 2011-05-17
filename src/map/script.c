@@ -6083,6 +6083,76 @@ BUILDIN_FUNC(getguildmasterid)
 	return 0;
 }
 
+// leaveguild (char_id, guild_id)
+BUILDIN_FUNC(joinguild)
+{
+	struct map_session_data *sd;
+	struct guild *g;
+	int char_id = script_getnum(st,2);
+	int guild_id = script_getnum(st,3);
+	struct guild_member m;
+	
+	if (!guild_id || !char_id) {
+		ShowWarning("buildin_joinguild: unknown parameter.\n");
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	if ((sd = map_charid2sd(char_id)) == NULL) {
+		ShowWarning("buildin_joinguild: cannot find the player %d.\n", char_id);
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	if ((g = guild_search(sd->status.guild_id)) != NULL) {
+		ShowWarning("buildin_joinguild: the player %d already has a guild.\n", char_id);
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	guild_makemember(&m, sd);
+	sd->guild_invite = guild_id;
+	intif_guild_addmember(sd->guild_invite, &m);
+	script_pushint(st,1);
+	return 0;
+}
+
+// leaveguild (char_id)
+BUILDIN_FUNC(leaveguild)
+{
+	struct map_session_data* sd;
+	int char_id = script_getnum(st,2);
+	struct guild *g;
+	
+	if (!char_id) {
+		ShowWarning("buildin_leaveguild: unknown parameter.\n");
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	if ((sd = map_charid2sd(char_id)) == NULL) {
+		ShowWarning("buildin_leaveguild: cannot find the player %d.\n", char_id);
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	if ((g = guild_search(sd->status.guild_id)) == NULL) {
+		ShowWarning("buildin_leaveguild: the player %d does not have a guild.\n", char_id);
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	if((agit_flag || agit2_flag) && map[sd->bl.m].flag.gvg_castle) {
+		ShowWarning("buildin_leaveguild: cannot leave in the WOE.\n");
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	intif_guild_leave(sd->status.guild_id, sd->status.account_id, sd->status.char_id, 0, "");
+	script_pushint(st,0);
+	return 0;
+}
+
 /*==========================================
  * キャラクタの名前
  *------------------------------------------*/
@@ -14449,6 +14519,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(getguildname,"i"),
 	BUILDIN_DEF(getguildmaster,"i"),
 	BUILDIN_DEF(getguildmasterid,"i"),
+	BUILDIN_DEF(joinguild,"ii"), // [Cortez] - char_id, guild_id
+	BUILDIN_DEF(leaveguild,"i"), // [Cortez] - char_id
 	BUILDIN_DEF(strcharinfo,"i"),
 	BUILDIN_DEF(strnpcinfo,"i"),
 	BUILDIN_DEF(getequipid,"i"),
