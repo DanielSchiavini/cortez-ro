@@ -2,6 +2,12 @@
 // Orc		+50 agi	Rogue
 // Elf		+50 str	Sniper
 
+//TODO:
+// give guilds 30min before WOE
+// custom clothes
+// custom map
+// custom treasure
+
 new_zone01,52,147,0	script	Faction War	55,{
 	callfunc("F_FactionWar", "Kriemhild (test)", "prtg_cas01", 99, 32, agitcheck());
 	end;
@@ -14,7 +20,9 @@ new_zone01,52,147,0	script	Faction War	55,{
 		
 		// humans, orcs, elfs
 		setarray $factionItem[0], 2260, 2291, 2286;
-		setarray $factionMap$[0], "", "", "";
+		//setarray $factionClothes[0], 7, 9, 12;
+		//setarray $factionMap$[0], "pvp_y_1-1", "pvp_n_1-4", "job_monk";
+		//setarray $factionTreasure$[0], ;
 		sleep 1000;
 		if($serv==5)
 			setarray $factions[0], 414524, 414525, 414526; // supreme
@@ -73,14 +81,14 @@ new_zone01,52,147,0	script	Faction War	55,{
 	
 	OnPCLoginEvent:
 		// If the char wasn't online after the war, he'll come back to his clan after the war
+		set guild_id, 36;
 		if(guild_id) {
 			set .@char_id, getcharid(0);
 			logmes "[FactionWar] Player " + .@char_id + " returning to guild " + guild_id + " after login";
-			if(joinguild(.@char_id, guild_id)){
-				set guild_id, 0;
-			}else{
+			if(!joinguild(.@char_id, guild_id)){
 				dispbottom "Não foi possível retornar ao seu clã original";
 			}
+			set guild_id, 0;
 		}
 		end;
 	
@@ -158,9 +166,12 @@ function	script	F_FactionWar	{
 			if(joinguild(.@char_id, .@faction_id)){
 				query_sql "Update `char` set guild_id = " + .@faction_id + " Where char_id=" + .@char_id;
 				mes "["+getarg(0)+"]";
-				mes "Bem vindo à facção " + getguildname(.@faction_id) + "!";
-				dispbottom "Bem vindo à facção " + getguildname(.@faction_id) + "!";
+				mes "Bem vindo à facção dos " + getguildname(.@faction_id) + "!";
+				dispbottom "Bem vindo à facção dos " + getguildname(.@faction_id) + "!";
 				close2;
+				
+				//setlook 7,
+				
 			}else{
 				dispbottom "Não foi possível te adicionar à facção " + getguildname(.@faction_id) + " (" + .@faction_id + ")";
 			}

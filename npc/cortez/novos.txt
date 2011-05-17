@@ -77,6 +77,7 @@ prontera,151,330,4	script	Guarda#prt_castle	105,{
 	end;
 	OnInit:
 		if(getbattleflag("display_version")==1){
+			announce "Servidor exclusivo para testes !!", bc_all;
 			set $serv$, "Testes";
 			set $serv, -1;
 		}else{
