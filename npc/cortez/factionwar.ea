@@ -1,28 +1,127 @@
+// Human	+50 int	High Wizard
+// Orc		+50 agi	Rogue
+// Elf		+50 str	Sniper
+
+new_zone01,52,147,0	script	Faction War	55,{
+	callfunc("F_FactionWar", "Kriemhild (test)", "prtg_cas01", 99, 32, agitcheck());
+	end;
+
+	OnInit:
+		//disabling old portals
+		disablenpc "prtg01";
+		disablenpc "gefg03";
+		disablenpc "arug302";
+		
+		// humans, orcs, elfs
+		setarray $factionItem[0], 2260, 2291, 2286;
+		setarray $factionMap$[0], "", "", "";
+		sleep 1000;
+		if($serv==5)
+			setarray $factions[0], 414524, 414525, 414526; // supreme
+		else
+			setarray $factions[0], 111, 112, 113; // testes
+		
+		end;
+	
+	OnAgitEnd:
+	OnAgitEnd2: // 15min after WOE
+		//sleep 15*60*1000;
+		sleep 5000;
+		
+		// everybody comes back to the old guild
+		for(set $@i,0; $@i<getarraysize($factions) ; set $@i, $@i+1 ){
+			set $@faction_id, $factions[$@i];
+			query_sql "Select char_id From `guild` Where guild_id = " + $@faction_id, $@leader_id;
+			query_sql "Select account_id, char_id From `char` Where guild_id = " + $@faction_id, $@account_ids, $@char_ids;
+			debugmes "Faction " + $@i + " = " + $@faction_id + " leader ("+$@leader_id+")";
+			for(set $@j,0; $@j<getarraysize($@char_ids) ; set $@j, $@j+1 ){
+				set $@account_id, $@account_ids[$@j];
+				set $@char_id, $@char_ids[$@j];
+				
+				if($@leader_id != $@char_id){
+					debugmes "Char " + $@j + " = " + $@char_id + " (" + $@account_id + ")";
+					// either online or offline, the player has to leave the faction
+					callfunc("log_mes","[FactionWar] Player " + $@char_id + " leaving faction " + $@faction_id,"[FactionWar]", "", $@account_id, $@char_id);
+					leaveguild($@char_id, $@account_id, $@faction_id);
+					
+					// if the char is online, he'll come back to the old clan immediately
+					if(attachrid($@account_id)){
+						if(getcharid(0) == $@char_id){
+							if(guild_id) {
+								sleep2 2000;
+								logmes "[FactionWar] Player " + $@char_id + " returning to guild " + guild_id;
+								if(joinguild($@char_id, guild_id)){
+									dispbottom "Bem vindo de volta ao seu clã!";
+								}else{
+									dispbottom "Não foi possível retornar ao seu clã!";
+								}
+								set guild_id, 0;
+							}else{
+								dispbottom "Você saiu da facção!";
+							}
+						}else{
+							debugmes "Wrong char of the same account";
+						}
+						detachrid;
+					}else{
+						debugmes "Char offline";
+					}
+				}
+			}
+		}
+		end;
+	
+	OnPCLoginEvent:
+		// If the char wasn't online after the war, he'll come back to his clan after the war
+		if(guild_id) {
+			set .@char_id, getcharid(0);
+			logmes "[FactionWar] Player " + .@char_id + " returning to guild " + guild_id + " after login";
+			if(joinguild(.@char_id, guild_id)){
+				set guild_id, 0;
+			}else{
+				dispbottom "Não foi possível retornar ao seu clã original";
+			}
+		}
+		end;
+	
+	OnPCLogoutEvent:
+		end;
+		
+	OnSun0100:
+		// Once a week the factions will be reset, so new factions can be chosen
+		query_sql("Update ro.login Set faction_id = null Where faction_id is not null");
+		end;
+}
+
 
 prt_gld,129,65,0	script	Kriemhild#FactionWar	55,{
-	if(agitcheck())
-		callfunc("F_FactionWar", "Kriemhild", "prtg_cas01", 99, 32);
+	callfunc("F_FactionWar", "Kriemhild", "prtg_cas01", 99, 32, agitcheck());
 }
 
 gef_fild13,308,244,0	script	Trapesac#FactionWar	55,{
-	if(agitcheck())
-		callfunc("F_FactionWar", "Trapesac", "gefg_cas02", 70, 143);
+	callfunc("F_FactionWar", "Trapesac", "gefg_cas02", 70, 143, agitcheck());
 }
 
 aru_gld,68,150,0	script	Horn#FactionWar	55,{
-	if(agitcheck2())
-		callfunc("F_FactionWar", "Horn", "arug_cas03", 141, 45);
+	callfunc("F_FactionWar", "Horn", "arug_cas03", 141, 45, agitcheck2());
 }
 
-// callfunc("F_FactionWar", "NOME DO CASTELO/NPC", "WARP TO MAP", X, Y);
+// callfunc("F_FactionWar", "NOME DO CASTELO/NPC", "WARP TO MAP", X, Y, agit_active);
 function	script	F_FactionWar	{
+	if(!getarg(4) || ($castleMap1$!=getarg(1) && $castleMap2$!=getarg(1))){
+		mes "["+getarg(0)+"]";
+		mes "No Cortez nós temos o sistema de guerra entre facções.";
+		mes "Este castelo somente se abrirá durante a guerra do imperium.";
+		close;
+	}
+	
 	set .@char_id, getcharid(0);
 	set .@account_id, getcharid(3);
 	set .@guild_id, getcharid(2);
-	set .@faction_id, query_sql("Select IfNull(faction_id,0) From ro.login Where account_id = " + .@account_id);
+	query_sql("Select IfNull(faction_id,0) From ro.login Where account_id = " + .@account_id, .@faction_id);
 	
 	if(!.@faction_id){
-		set .@faction_id, .@factions[rand(0, getarraysize(.@factions[0])-1)];
+		set .@faction_id, $factions[rand(0, getarraysize($factions[0])-1)];
 		query_sql("Update ro.login Set faction_id = " + .@faction_id + " Where account_id = " + .@account_id);
 	}
 	
@@ -43,66 +142,30 @@ function	script	F_FactionWar	{
 		guildopenstorage();
 	}else{
 		if(.@guild_id != .@faction_id){
-			logmes "[FactionWar] Leaving guild " + .@guild_id + " to faction" + .@faction_id;
-			set guild_id, .@guild_id;
-			leaveguild .@char_id;
-			joinguild .@char_id, .@faction_id;
-			warp getarg(1), getarg(2), getarg(3);
-			sleep2 2000;
-			message "", "Bem vindo à facção " + getguildname(.@faction_id);
-		}else{
-			warp getarg(1), getarg(2), getarg(3);
-		}
-	}
-	end;
-	
-	OnAgitEnd:
-	OnAgitEnd2: // 30min after WOE
-		sleep 30*60*1000;
-		
-		// everybody comes back to the old guild
-		for(set $@i,0; $@i<getarraysize($factions) ; set $@i, $@i+1 ){
-			set $@faction_id, $factions[$@i];
-			query_sql "Select account_id, char_id From `char` Where guild_id = " + $@faction_id, $@account_ids, $@char_ids;
-			for(set $@j,0; $@j<getarraysize($char_ids) ; set $@j, $@j+1 ){
-				set $@account_id, $@account_ids[$@j];
-				set $@char_id, $@char_ids[$@j];
+			logmes "[FactionWar] Leaving guild " + .@guild_id + " to faction " + .@faction_id;
+			if(.@guild_id){
+				mes "["+getarg(0)+"]";
+				mes "Para participar da guerra entre facções, você precisa sair temporariamente do seu clã.";
+				set guild_id, .@guild_id;
+				leaveguild(.@char_id);
 				
-				// either online or offline, the player has to leave the faction
-				logmes "[FactionWar] Player " + $@char_id + " leaving faction " + $@faction_id;
-				leaveguild $@char_id;
-				
-				// if the char is online, he'll come back to the old clan immediately
-				if(attachrid($@account_id) && getcharid(0) == $@char_id){
-					if(guild_id) {
-						logmes "[FactionWar] Player " + $@char_id + " returning to guild " + guild_id;
-						joinguild($@char_id, guild_id);
+				// No guild_id if he was in a faction
+				for(set $@i,0; $@i<getarraysize($factions) ; set $@i, $@i+1 )
+					if(guild_id == $factions[$@i])
 						set guild_id, 0;
-					}
-				}
+				next;
+			}
+			if(joinguild(.@char_id, .@faction_id)){
+				query_sql "Update `char` set guild_id = " + .@faction_id + " Where char_id=" + .@char_id;
+				mes "["+getarg(0)+"]";
+				mes "Bem vindo à facção " + getguildname(.@faction_id) + "!";
+				dispbottom "Bem vindo à facção " + getguildname(.@faction_id) + "!";
+				close2;
+			}else{
+				dispbottom "Não foi possível te adicionar à facção " + getguildname(.@faction_id) + " (" + .@faction_id + ")";
 			}
 		}
-		end;
-	
-	OlogmesinEvent:
-		// If the char wasn't online after the war, he'll come back to his clan after the war
-		if(guild_id) {
-			logmes "[FactionWar] Player " + $@char_id + " returning to guild " + guild_id + " after login";
-			joinguild(getcharid(0), guild_id);
-			set guild_id, 0;
-		}
-		end;
-	
-	OnSun0100:
-		// Once a week the factions will be reset, so new factions can be chosen
-		query_sql("Update ro.login Set faction_id = null Where faction_id is not null");
-		end;
-		
-	OnInit:
-		// Setting the default factions and disabling old portals
-		setarray $factions[0], 1, 24, 29; // humans, orcs, elfs
-		disablenpc "prtg01";
-		disablenpc "gefg03";
-		disablenpc "arug302";
-		end;
+		warp getarg(1), getarg(2), getarg(3);
+	}
+	end;
 }

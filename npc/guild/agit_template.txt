@@ -148,8 +148,10 @@ function	script	F_WoeShowResults	{ //string map, int timer
 		}
 		set $@titulo$, "Resumo - GdE de "+$@dia_semana$+gettimestr("%d/%m",6)+" - "+$serv$;
 		set .@forum_id, 15;
-		query_sql "Insert Into Forum.cof_Topics(forum_id,topic_title,topic_poster,topic_time,topic_first_post_id,topic_first_poster_name,topic_first_poster_colour,topic_last_post_id,topic_last_poster_id,topic_last_poster_name,topic_last_poster_colour,topic_last_post_subject,topic_last_post_time,topic_last_view_time)values(" + .@forum_id + ",'" + $@titulo$ + "',1,unix_timestamp(),(Select max(post_id)+1 From Forum.cof_Posts),'Guerra do Emperium','543333',(Select max(post_id)+1 From Forum.cof_Posts),1,'Guerra do Emperium','543333','" + $@titulo$ + "',unix_timestamp(),unix_timestamp())";
-		query_sql "Insert Into Forum.cof_Posts(topic_id,forum_id,poster_id,poster_ip,post_time,enable_sig,post_username,post_subject,post_text)Values((Select max(topic_id) From Forum.cof_Topics)," + .@forum_id + ",1,'127.0.0.1',unix_timestamp(),0,'Guerra do Emperium','" + $@titulo$ + "','"+$woe_post$+"')";
+		if($serv>0){
+			query_sql "Insert Into Forum.cof_Topics(forum_id,topic_title,topic_poster,topic_time,topic_first_post_id,topic_first_poster_name,topic_first_poster_colour,topic_last_post_id,topic_last_poster_id,topic_last_poster_name,topic_last_poster_colour,topic_last_post_subject,topic_last_post_time,topic_last_view_time)values(" + .@forum_id + ",'" + $@titulo$ + "',1,unix_timestamp(),(Select max(post_id)+1 From Forum.cof_Posts),'Guerra do Emperium','543333',(Select max(post_id)+1 From Forum.cof_Posts),1,'Guerra do Emperium','543333','" + $@titulo$ + "',unix_timestamp(),unix_timestamp())";
+			query_sql "Insert Into Forum.cof_Posts(topic_id,forum_id,poster_id,poster_ip,post_time,enable_sig,post_username,post_subject,post_text)Values((Select max(topic_id) From Forum.cof_Topics)," + .@forum_id + ",1,'127.0.0.1',unix_timestamp(),0,'Guerra do Emperium','" + $@titulo$ + "','"+$woe_post$+"')";
+		}
 		set $woe_post$, "";
 	}
 	
