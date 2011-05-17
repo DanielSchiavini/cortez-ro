@@ -6087,7 +6087,6 @@ BUILDIN_FUNC(getguildmasterid)
 BUILDIN_FUNC(joinguild)
 {
 	struct map_session_data *sd;
-	struct guild *g;
 	int char_id = script_getnum(st,2);
 	int guild_id = script_getnum(st,3);
 	struct guild_member m;
@@ -6104,8 +6103,14 @@ BUILDIN_FUNC(joinguild)
 		return 0;
 	}
 	
-	if ((g = guild_search(sd->status.guild_id)) != NULL) {
+	if (guild_search(sd->status.guild_id) != NULL) {
 		ShowWarning("buildin_joinguild: the player %d already has a guild.\n", char_id);
+		script_pushint(st,0);
+		return 0;
+	}
+	
+	if (guild_search(guild_id) == NULL) {
+		// guild doesn't exist
 		script_pushint(st,0);
 		return 0;
 	}
@@ -6122,7 +6127,6 @@ BUILDIN_FUNC(leaveguild)
 {
 	struct map_session_data* sd;
 	int char_id = script_getnum(st,2);
-	struct guild *g;
 	
 	if (!char_id) {
 		ShowWarning("buildin_leaveguild: unknown parameter.\n");
@@ -6136,7 +6140,7 @@ BUILDIN_FUNC(leaveguild)
 		return 0;
 	}
 	
-	if ((g = guild_search(sd->status.guild_id)) == NULL) {
+	if (guild_search(sd->status.guild_id) == NULL) {
 		ShowWarning("buildin_leaveguild: the player %d does not have a guild.\n", char_id);
 		script_pushint(st,0);
 		return 0;
