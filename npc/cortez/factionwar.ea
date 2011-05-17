@@ -43,7 +43,7 @@ function	script	F_FactionWar	{
 		guildopenstorage();
 	}else{
 		if(.@guild_id != .@faction_id){
-			npclog "[FactionWar] Leaving guild " + .@guild_id + " to faction" + .@faction_id;
+			logmes "[FactionWar] Leaving guild " + .@guild_id + " to faction" + .@faction_id;
 			set guild_id, .@guild_id;
 			leaveguild .@char_id;
 			joinguild .@char_id, .@faction_id;
@@ -69,13 +69,13 @@ function	script	F_FactionWar	{
 				set $@char_id, $@char_ids[$@j];
 				
 				// either online or offline, the player has to leave the faction
-				npclog "[FactionWar] Player " + $@char_id + " leaving faction " + $@faction_id;
+				logmes "[FactionWar] Player " + $@char_id + " leaving faction " + $@faction_id;
 				leaveguild $@char_id;
 				
 				// if the char is online, he'll come back to the old clan immediately
 				if(attachrid($@account_id) && getcharid(0) == $@char_id){
 					if(guild_id) {
-						npclog "[FactionWar] Player " + $@char_id + " returning to guild " + guild_id;
+						logmes "[FactionWar] Player " + $@char_id + " returning to guild " + guild_id;
 						joinguild($@char_id, guild_id);
 						set guild_id, 0;
 					}
@@ -84,10 +84,10 @@ function	script	F_FactionWar	{
 		}
 		end;
 	
-	OnPCLoginEvent:
+	OlogmesinEvent:
 		// If the char wasn't online after the war, he'll come back to his clan after the war
 		if(guild_id) {
-			npclog "[FactionWar] Player " + $@char_id + " returning to guild " + guild_id + " after login";
+			logmes "[FactionWar] Player " + $@char_id + " returning to guild " + guild_id + " after login";
 			joinguild(getcharid(0), guild_id);
 			set guild_id, 0;
 		}
@@ -100,7 +100,7 @@ function	script	F_FactionWar	{
 		
 	OnInit:
 		// Setting the default factions and disabling old portals
-		set $factions[0], 1, 24, 29; // humans, orcs, elfs
+		setarray $factions[0], 1, 24, 29; // humans, orcs, elfs
 		disablenpc "prtg01";
 		disablenpc "gefg03";
 		disablenpc "arug302";
