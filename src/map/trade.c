@@ -56,7 +56,7 @@ void trade_traderequest(struct map_session_data *sd, struct map_session_data *ta
 		}
 	}
 
-	if ((target_sd->trade_partner != 0) || (sd->trade_partner != 0)) {
+	if (target_sd->trade_partner != 0) {
 		clif_tradestart(sd, 2); // person is in another trade
 		return;
 	}
@@ -110,6 +110,7 @@ void trade_tradeack(struct map_session_data *sd, int type)
 	if (tsd->state.trading || tsd->trade_partner != sd->bl.id)
 	{
 		clif_tradestart(sd, 2);
+		sd->trade_partner=0;
 		return; //Already trading or wrong partner.
 	}
 
@@ -137,8 +138,8 @@ void trade_tradeack(struct map_session_data *sd, int type)
 	}
 
 	//Check if you can start trade.
-	if (sd->npc_id || sd->vender_id || sd->state.storage_flag ||
-		tsd->npc_id || tsd->vender_id || tsd->state.storage_flag)
+	if (sd->npc_id || sd->state.vending || sd->state.buyingstore || sd->state.storage_flag ||
+		tsd->npc_id || tsd->state.vending || tsd->state.buyingstore || tsd->state.storage_flag)
 	{	//Fail
 		clif_tradestart(sd, 2);
 		clif_tradestart(tsd, 2);
@@ -455,8 +456,12 @@ void trade_tradecancel(struct map_session_data *sd)
 
 	if(!sd->state.trading)
 	{ // Not trade acepted
-		if( target_sd ) target_sd->trade_partner = 0;
+		if( target_sd ) {
+			target_sd->trade_partner = 0;
+			clif_tradecancelled(target_sd);
+		}
 		sd->trade_partner = 0;
+		clif_tradecancelled(sd);
 		return;
 	}
 	

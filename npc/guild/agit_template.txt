@@ -1077,7 +1077,7 @@ OnGuardianDied:
 		case 2:
 			// Unofficial, but since it's already been in eA for ages
 			// and used, I can't exactly remove it, now, can I? >:(
-			if(guildopenstorage(0) == 1){
+			if(guildopenstorage() == 1){
 				mes "[ Kafra ]";
 				mes "Desculpe mas outro jogador do clã está com o armazém do clã aberto. Aguarde até que ele termine.";
 				close2;

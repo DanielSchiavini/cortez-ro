@@ -31,22 +31,21 @@ struct s_instance instance[MAX_INSTANCE];
 /*--------------------------------------
  * name : instance name
  * Return value could be
- * -4 = already exists | -3 = no free instances | -2 = missing parameter | -1 = invalid type
+ * -4 = already exists | -3 = no free instances | -2 = party not found | -1 = invalid type
  * On success return instance_id
  *--------------------------------------*/
 int instance_create(int party_id, const char *name)
 {
 	int i;
-	struct party_data *p = NULL;
+	struct party_data* p;
 
-	if( !party_id || !name )
+	if( ( p = party_search(party_id) ) == NULL )
 	{
-		ShowError("map_instance_create: missing parameter.\n");
+		ShowError("instance_create: party %d not found for instance '%s'.\n", party_id, name);
 		return -2;
 	}
 
-	p = party_search(party_id);
-	if( !p || p->instance_id )
+	if( p->instance_id )
 		return -4; // Party already instancing
 
 	// Searching a Free Instance
@@ -54,7 +53,7 @@ int instance_create(int party_id, const char *name)
 	ARR_FIND(1, MAX_INSTANCE, i, instance[i].state == INSTANCE_FREE);
 	if( i == MAX_INSTANCE )
 	{
-		ShowError("map_instance_create: no free instances, consider increasing MAX_INSTANCE.\n");
+		ShowError("instance_create: no free instances, consider increasing MAX_INSTANCE.\n");
 		return -3;
 	}
 
@@ -235,7 +234,7 @@ int instance_del_load(struct map_session_data* sd, va_list args)
 	if( !sd || sd->bl.m != m )
 		return 0;
 
-	pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, 0);
+	pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, CLR_OUTSIGHT);
 	return 1;
 }
 
@@ -439,9 +438,9 @@ void instance_check_kick(struct map_session_data *sd)
 	if( map[m].instance_id )
 	{ // User was on the instance map
 		if( map[m].save.map )
-			pc_setpos(sd, map[m].save.map, map[m].save.x, map[m].save.y, 3);
+			pc_setpos(sd, map[m].save.map, map[m].save.x, map[m].save.y, CLR_TELEPORT);
 		else
-			pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, 3);
+			pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, CLR_TELEPORT);
 	}
 }
 

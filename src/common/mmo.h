@@ -38,6 +38,9 @@
 // 20100629 - 2010-06-29aRagexeRE+ - 0x2d0, 0xaa, 0x2d1, 0x2d2
 // 20100721 - 2010-07-21aRagexeRE+ - 0x6b, 0x6d
 // 20100727 - 2010-07-27aRagexeRE+ - 0x6b, 0x6d
+// 20100803 - 2010-08-03aRagexeRE+ - 0x6b, 0x6d, 0x827, 0x828, 0x829, 0x82a, 0x82b, 0x82c, 0x842, 0x843
+// 20101124 - 2010-11-24aRagexeRE+ - 0x856, 0x857, 0x858
+// 20110111 - 2011-01-11aRagexeRE+ - 0x6b, 0x6d
 
 #define PACKETVER 20091013
 #ifndef PACKETVER
@@ -53,8 +56,6 @@
 #undef PACKETVER
 #define PACKETVER 20071106
 #endif
-
-#define FIFOSIZE_SERVERLINK	256*1024
 
 //Remove/Comment this line to disable sc_data saving. [Skotlex]
 #define ENABLE_SC_SAVING 
@@ -86,7 +87,7 @@
 #define MAX_ZENY 1000000000
 #define MAX_FAME 1000000000
 #define MAX_CART 100
-#define MAX_SKILL 1020
+#define MAX_SKILL 2536
 #define GLOBAL_REG_NUM 256
 #define ACCOUNT_REG_NUM 64
 #define ACCOUNT_REG2_NUM 16
@@ -96,7 +97,7 @@
 #define MIN_WALK_SPEED 0
 #define MAX_WALK_SPEED 1000
 #define MAX_STORAGE 1000
-#define MAX_GUILD_STORAGE 1000
+#define MAX_GUILD_STORAGE 600
 #define MAX_PARTY 24
 #define MAX_GUILD 16+10*6	// increased max guild members +6 per 1 extension levels [Lupus]
 #define MAX_GUILDPOSITION 20	// increased max guild positions to accomodate for all members [Valaris] (removed) [PoW]
@@ -106,15 +107,8 @@
 #define MAX_GUILDCASTLE 34	// Updated to include new entries for WoE:SE. [L0ne_W0lf]
 #define MAX_GUILDLEVEL 50
 #define MAX_GUARDIANS 8	//Local max per castle. [Skotlex]
-#define MAX_QUEST_DB 1500 //Max quests that the server will load
+#define MAX_QUEST_DB 2000 //Max quests that the server will load
 #define MAX_QUEST_OBJECTIVES 3 //Max quest objectives for a quest
-
-#define MIN_HAIR_STYLE battle_config.min_hair_style
-#define MAX_HAIR_STYLE battle_config.max_hair_style
-#define MIN_HAIR_COLOR battle_config.min_hair_color
-#define MAX_HAIR_COLOR battle_config.max_hair_color
-#define MIN_CLOTH_COLOR battle_config.min_cloth_color
-#define MAX_CLOTH_COLOR battle_config.max_cloth_color
 
 // for produce
 #define MIN_ATTRIBUTE 0
@@ -148,6 +142,10 @@
 #define END_ACCOUNT_NUM 100000000
 #define START_CHAR_NUM 150000
 
+//Guilds
+#define MAX_GUILDMES1 60
+#define MAX_GUILDMES2 120
+
 //Base Homun skill.
 #define HM_SKILLBASE 8001
 #define MAX_HOMUNSKILL 16
@@ -178,6 +176,7 @@ enum item_types {
 	IT_UNKNOWN2,//9
 	IT_AMMO,    //10
 	IT_DELAYCONSUME,//11
+	IT_CASH = 18,
 	IT_MAX 
 };
 
@@ -241,7 +240,7 @@ struct guild_storage {
 	int guild_id;
 	short storage_status;
 	short storage_amount;
-	struct item storage_[MAX_GUILD_STORAGE];
+	struct item items[MAX_GUILD_STORAGE];
 };
 
 struct s_pet {
@@ -333,6 +332,7 @@ struct mmo_charstatus {
 	short weapon; // enum weapon_type
 	short shield; // view-id
 	short head_top,head_mid,head_bottom;
+	short robe;
 
 	char name[NAME_LENGTH];
 	unsigned int base_level,job_level;
@@ -353,6 +353,8 @@ struct mmo_charstatus {
 #endif
 	bool show_equip;
 	short rename;
+
+	time_t delete_date;
 };
 
 typedef enum mail_status {
@@ -469,12 +471,13 @@ struct guild_skill {
 struct guild {
 	int guild_id;
 	short guild_lv, connect_member, max_member, average_lv;
-	unsigned int exp,next_exp;
+	uint64 exp;
+	unsigned int next_exp;
 	int skill_point;
 	char name[NAME_LENGTH],master[NAME_LENGTH];
 	struct guild_member member[MAX_GUILD];
 	struct guild_position position[MAX_GUILDPOSITION];
-	char mes1[60],mes2[120];
+	char mes1[MAX_GUILDMES1],mes2[MAX_GUILDMES2];
 	int emblem_len,emblem_id;
 	char emblem_data[2048];
 	struct guild_alliance alliance[MAX_GUILDALLIANCE];

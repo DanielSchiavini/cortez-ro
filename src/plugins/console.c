@@ -32,9 +32,9 @@
 #define WORKER_FUNC_END(name) } ExitThread(0); return 0; }
 #define WORKER_EXECUTE(name,errvar) \
 	do{ \
-		buf.worker = CreateThread(NULL, 0, worker_ ## name, NULL, CREATE_SUSPENDED, NULL); \
-		if( errvar ) \
-			*errvar = ( buf.worker == NULL ); \
+		DWORD dwThreadId; \
+		buf.worker = CreateThread(NULL, 0, worker_ ## name, NULL, CREATE_SUSPENDED, &dwThreadId); \
+		*(errvar) = ( buf.worker == NULL ); \
 	}while(0)
 
 /// Buffer for asynchronous input
@@ -60,8 +60,7 @@ typedef struct _buffer {
 		if( pid == 0 ){ \
 			worker_ ## name(); \
 		} \
-		if( errvar ) \
-			*errvar = (pid == -1); \
+		*(errvar) = (pid == -1); \
 	}while(0)
 
 #define PIPE_READ 0
@@ -132,10 +131,10 @@ int (*add_timer_func_list)(TimerFunc func, char* name);
 int (*add_timer_interval)(unsigned int tick, TimerFunc func, int id, intptr data, int interval);
 int (*delete_timer)(int tid, TimerFunc func);
 unsigned int (*gettick)(void);
-int (*parse_console)(char* buf);
+int (*parse_console)(const char* buf);
 
 // Locals
-int tid; // timer id
+int tid = -1; // timer id
 BUFFER buf; // input buffer
 WORKER_FUNC_DECLARE(getinput); // worker for the input buffer
 

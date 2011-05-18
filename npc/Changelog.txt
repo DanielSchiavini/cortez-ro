@@ -1,5 +1,59 @@
 Date		Added
 ======
+2011/04/08
+	* Rev. 14780 Added missing Hair Dressers and Hair Dyer to Lighthalzen. [L0ne_W0lf]
+	- Hair Dresser will change hair styles ranging between 20 to 27
+	- Assistant Beautician changes to a random style and colour between 1-23.
+	* Updated the Cursed Spirit quest, and added some more town NPCs.
+	* Added more town NPCs to Splendide and Manuk.
+2011/04/06
+	* Rev. 14775 Added two new quests, Alberta Boy and Secret Note of Bazett. [L0ne_W0lf]
+	* Implemented 13.2 update to Report to the New World quest.
+2011/03/21
+	* Fixed and commented out old Anthell entrance warps (bugreport:3589). Moved entrance to cmd_fild08 to match mapcache updates [Gepard]
+	- Fixed an issue in Resurrection of Satan Morroc (Continental Guard Quest) when player dying/logging out during conversation
+	  could prevent summoning of Satan Morroc until server reboot (bugreport:3437).
+2011/03/17
+	* Rev. 14747 Endless Tower fixes: [Gepard]
+	- Added missing end's to prevent accidental disabling of warps between floors. (bugreport:4623)
+	- Added missing end's to prevent infinite mobspawn (bugreport:4540)
+	- Commented out remaining GM-only NPCs.
+2011/02/06
+	* Rev. 14697 Script bug fixing. :] Here's some. I know it's been awhile. [L0ne_W0lf]
+	- Changed some duplicates so they use a floating NPC as their original. (bugreport:1395)
+	- Fixed the NPC looking for missing label in the Cursed Spirit quest. (bugreport:4654)
+	- Applied Uno's fix for the cooldown condition in Endless Tower. (bugreport:4677)
+	- Removed level requirement for the Viens Stone gathering quest. (bugreport:4678)
+	- Added the missing restricted skills to zone 6 for Endless Tower. (bugreport:4707)
+	  It's worth noting how much I hate the system for restricting skills per zone.
+	- Fixed Cat Hand warp service warping players to all warp options. (bugreport:4709)
+	- Fixed floor 75 warp in endless tower disabling the wrong warp. (bugreport:4711)
+	- Added a condition for Chungwolmang to only delete items if a certain ID is specified. (bugreport:4719)
+	- Corrected a mobcount specifying the wrong NPC in the Moscovia Ship quest. (bugreport:4736)
+2011/01/16
+	* Rev. 14676 Various fixes for scripts that are disabled by default. [Ai4rei]
+	- Fixed name collision in Baphomet Jr. taming item quest (custom) with 'Little Boy' in cities/lutie.txt
+	- Fixed name collision in THQS_Quests (custom) with 'Little Girl' in cities/lutie.txt
+	- Fixed outdated reference to npc_dynamic_shop sample (follow up to r14277).
+2010/12/03
+	* Rev. 14555 Updated instances with more proper English, care of Resplendent. [L0ne_W0lf]
+2010/12/02
+	* Rev. 14552 Just going through bug reports. :P [L0ne_W0lf]
+	- Removed duplicate NPCs in Lighthalzen and Morroc. (bugreport:4555)
+	- Corrected typo (Sit -> Suit) in enhcant_arm NPC. (bugreport:4586)
+	- Corrected a typo in the christmas_2008 event. (bugreport:4600)
+	- Changed which White Lady spawns in endless tower. (bugreport:4601)
+	- Also added Quest Log Entries to Endless Tower, please test.
+2010/11/22
+	* Rev. 14490 Added quest log support for the following quests. [L0ne_W0lf]
+	- Factory Quest, Murder Quest, Cursed Spirit Quest, Juno Remedy Quest,
+	Airship Ticket Quest, How the Airship Works, Ice Necklace Quest, 
+	Siblings Quest, Thor Volcano Base Quest, Muff's Loan, Broken Diamond,
+	and the Z-Gang Quest
+2010/11/04
+	* Rev. 14448 Just a couple Bug fixes. :P [L0ne_W0lf]
+	- Added a missing close in quests_13_2.txt. (bugreport:4520)
+	- Corrected 'IProntera' typo in quests_prontera.txt (bugreport:4522)
 2010/09/18
 	* Rev 14409 Updates, and bugfixes, the usual stuff. [L0ne_W0lf]
 	* Updated Sage quest skill quest with the file curtosy of 5511.

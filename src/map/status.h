@@ -910,6 +910,7 @@ enum si_type {
 	SI_WATER_INSIGNIA = 568,
 	SI_WIND_INSIGNIA = 569,
 	SI_EARTH_INSIGNIA = 570,
+	SI_EQUIPED_FLOOR = 571,
 */
 };
 
@@ -955,7 +956,9 @@ enum {
 	OPT1_STUN,
 	OPT1_SLEEP,
 	//Aegis uses OPT1 = 5 to identify undead enemies (which also grants them immunity to the other opt1 changes)
-	OPT1_STONEWAIT=6 //Petrifying
+	OPT1_STONEWAIT=6, //Petrifying
+	OPT1_BURNING,
+	OPT1_IMPRISON,
 };
 
 //opt2: Stackable status changes.
@@ -968,6 +971,7 @@ enum {
 	OPT2_ANGELUS      = 0x0020,
 	OPT2_BLEEDING     = 0x0040,
 	OPT2_DPOISON      = 0x0080,
+	OPT2_FEAR         = 0x0100,
 };
 
 //opt3: (SHOW_EFST_*)
@@ -1014,9 +1018,18 @@ enum {
 	OPTION_XMAS      = 0x00010000,
 	OPTION_TRANSFORM = 0x00020000,
 	OPTION_SUMMER    = 0x00040000,
+	OPTION_DRAGON1   = 0x00080000,
+	OPTION_WUG       = 0x00100000,
+	OPTION_WUGRIDER  = 0x00200000,
+	OPTION_MADOGEAR  = 0x00400000,
+	OPTION_DRAGON2   = 0x00800000,
+	OPTION_DRAGON3   = 0x01000000,
+	OPTION_DRAGON4   = 0x02000000,
+	OPTION_DRAGON5   = 0x04000000,
 };
 
 #define OPTION_CART (OPTION_CART1|OPTION_CART2|OPTION_CART3|OPTION_CART4|OPTION_CART5)
+#define OPTION_DRAGON (OPTION_DRAGON1|OPTION_DRAGON2|OPTION_DRAGON3|OPTION_DRAGON4|OPTION_DRAGON5)
 
 #define OPTION_MASK ~0x40
 
@@ -1263,7 +1276,8 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 #define sc_start4(bl, type, rate, val1, val2, val3, val4, tick) status_change_start(bl,type,100*(rate),val1,val2,val3,val4,tick,0)
 
 int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val1,int val2,int val3,int val4,int tick,int flag);
-int status_change_end(struct block_list* bl, enum sc_type type, int tid);
+int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const char* file, int line);
+#define status_change_end(bl,type,tid) status_change_end_(bl,type,tid,__FILE__,__LINE__)
 int kaahi_heal_timer(int tid, unsigned int tick, int id, intptr data);
 int status_change_timer(int tid, unsigned int tick, int id, intptr data);
 int status_change_timer_sub(struct block_list* bl, va_list ap);

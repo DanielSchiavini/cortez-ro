@@ -160,7 +160,7 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr data)
 	struct block_list *target = map_id2bl(dat->target);
 	if (target && dat && map_id2bl(id) == dat->src && target->prev != NULL && !status_isdead(target) &&
 		target->m == dat->src->m &&
-		(target->type != BL_PC || ((TBL_PC*)target)->invincible_timer == -1) &&
+		(target->type != BL_PC || ((TBL_PC*)target)->invincible_timer == INVALID_TIMER) &&
 		check_distance_bl(dat->src, target, dat->distance)) //Check to see if you haven't teleported. [Skotlex]
 	{
 		map_freeblock_lock();
@@ -179,8 +179,8 @@ int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src,
 {
 	struct delay_damage *dat;
 	struct status_change *sc;
-	nullpo_retr(0, src);
-	nullpo_retr(0, target);
+	nullpo_ret(src);
+	nullpo_ret(target);
 
 	sc = status_get_sc(target);
 	if( sc && sc->data[SC_DEVOTION] && damage > 0 )
@@ -263,7 +263,7 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 		if( tsc->data[SC_SPIDERWEB]->val2-- > 0 )
 			damage <<= 1; // double damage
 		if( tsc->data[SC_SPIDERWEB]->val2 == 0 )
-			status_change_end(target,SC_SPIDERWEB,-1);
+			status_change_end(target, SC_SPIDERWEB, INVALID_TIMER);
 	}
 	return damage*ratio/100;
 }
@@ -278,7 +278,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 	struct status_change_entry *sce;
 	int div_ = d->div_, flag = d->flag;
 
-	nullpo_retr(0, bl);
+	nullpo_ret(bl);
 
 	if( !damage )
 		return 0;
@@ -326,7 +326,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				d->dmg_lv = ATK_BLOCK;
 				return 0;
 			}
-			status_change_end(bl,SC_SAFETYWALL,-1);
+			status_change_end(bl, SC_SAFETYWALL, INVALID_TIMER);
 		}
 
 		if( sc->data[SC_PNEUMA] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG )
@@ -381,7 +381,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			//Shouldn't end until Breaker's non-weapon part connects.
 			if (skill_num != ASC_BREAKER || !(flag&BF_WEAPON))
 				if (--(sce->val3) <= 0) //We make it work like Safety Wall, even though it only blocks 1 time.
-					status_change_end(bl, SC_KAUPE, -1);
+					status_change_end(bl, SC_KAUPE, INVALID_TIMER);
 			return 0;
 		}
 
@@ -395,9 +395,9 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			}
 			//Both need to be consumed if they are active.
 			if (sce && --(sce->val2) <= 0)
-				status_change_end(bl, SC_UTSUSEMI, -1);
+				status_change_end(bl, SC_UTSUSEMI, INVALID_TIMER);
 			if ((sce=sc->data[SC_BUNSINJYUTSU]) && --(sce->val2) <= 0)
-				status_change_end(bl, SC_BUNSINJYUTSU, -1);
+				status_change_end(bl, SC_BUNSINJYUTSU, INVALID_TIMER);
 			return 0;
 		}
 
@@ -408,7 +408,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				damage <<= 1; // Lex Aeterna only doubles damage of regular attacks from mercenaries
 
 			if( skill_num != ASC_BREAKER || !(flag&BF_WEAPON) )
-				status_change_end( bl,SC_AETERNA,-1 ); //Shouldn't end until Breaker's non-weapon part connects.
+				status_change_end(bl, SC_AETERNA, INVALID_TIMER); //Shouldn't end until Breaker's non-weapon part connects.
 		}
 
 		//Finally damage reductions....
@@ -464,7 +464,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			per /=20; //Uses 20% SP intervals.
 			//SP Cost: 1% + 0.5% per every 20% SP
 			if (!status_charge(bl, 0, (10+5*per)*status->max_sp/1000))
-				status_change_end( bl,SC_ENERGYCOAT,-1 );
+				status_change_end(bl, SC_ENERGYCOAT, INVALID_TIMER);
 			//Reduction: 6% + 6% every 20%
 			damage -= damage * 6 * (1+per) / 100;
 		}
@@ -484,7 +484,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			status_fix_damage(bl,src,damage,clif_damage(bl,src,gettick(),0,0,damage,0,0,0));
 			clif_skill_nodamage(bl,bl,ST_REJECTSWORD,sce->val1,1);
 			if(--(sce->val3)<=0)
-				status_change_end(bl, SC_REJECTSWORD, -1);
+				status_change_end(bl, SC_REJECTSWORD, INVALID_TIMER);
 		}
 
 		//Finally Kyrie because it may, or not, reduce damage to 0.
@@ -497,7 +497,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				  	damage=-sce->val2;
 			}
 			if((--sce->val3)<=0 || (sce->val2<=0) || skill_num == AL_HOLYLIGHT)
-				status_change_end(bl, SC_KYRIE, -1);
+				status_change_end(bl, SC_KYRIE, INVALID_TIMER);
 		}
 
 		if (!damage) return 0;
@@ -713,7 +713,7 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 	int weapon;
 	damage = dmg;
 
-	nullpo_retr(0, sd);
+	nullpo_ret(sd);
 
 	if((skill = pc_checkskill(sd,AL_DEMONBANE)) > 0 &&
 		target->type == BL_MOB && //This bonus doesnt work against players.
@@ -1395,8 +1395,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				//Add any bonuses that modify the base baseatk+watk (pre-skills)
 				if(sd)
 				{
-					if (sd->atk_rate != 100)
-						ATK_RATE(sd->atk_rate);
+					if (sd->atk_rate)
+						ATK_ADDRATE(sd->atk_rate);
 
 					if(flag.cri && sd->crit_atk_rate)
 						ATK_ADDRATE(sd->crit_atk_rate);
@@ -1444,8 +1444,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case MC_MAMMONITE:
 					skillratio += 50*skill_lv;
 					break;
-				case HT_POWER: //FIXME: How exactly is the STR based damage supposed to be done? [Skotlex]
-					skillratio += 5*sstatus->str;
+				case HT_POWER:
+					skillratio += -50+8*sstatus->str;
 					break;
 				case AC_DOUBLE:
 				case MA_DOUBLE:
@@ -1946,8 +1946,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 			if (sc && sc->data[SC_MIRACLE]) i = 2; //Star anger
 			else
-			ARR_FIND(0, 3, i, t_class == sd->hate_mob[i]);
-			if (i < 3 && (skill=pc_checkskill(sd,sg_info[i].anger_id))) 
+			ARR_FIND(0, MAX_PC_FEELHATE, i, t_class == sd->hate_mob[i]);
+			if (i < MAX_PC_FEELHATE && (skill=pc_checkskill(sd,sg_info[i].anger_id))) 
 			{
 				skillratio = sd->status.base_level + sstatus->dex + sstatus->luk;
 				if (i == 2) skillratio += sstatus->str; //Star Anger
@@ -2774,7 +2774,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case CR_ACIDDEMONSTRATION: // updated the formula based on a Japanese formula found to be exact [Reddozen]
 		if(tstatus->vit+sstatus->int_) //crash fix
-			md.damage = (int64)5*tstatus->vit*sstatus->int_*sstatus->int_ / (10*(tstatus->vit*3+sstatus->int_));
+			md.damage = (int)((int64)5*tstatus->vit*sstatus->int_*sstatus->int_ / (10*(tstatus->vit+10*sstatus->int_)));
 		else
 			md.damage = 0;
 		if (tsd) md.damage>>=1;
@@ -2864,8 +2864,6 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		int race2 = status_get_race2(src);
 		if (!(nk&NK_NO_ELEFIX))
 		{
-			if (!(nk&NK_NO_ELEFIX))
-			{
 				int ele_fix = tsd->subele[s_ele];
 				for (i = 0; ARRAYLENGTH(tsd->subele2) > i && tsd->subele2[i].rate != 0; i++)
 				{
@@ -2878,7 +2876,6 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				}
 				cardfix=cardfix*(100-ele_fix)/100;
 			}
-		}
 		cardfix=cardfix*(100-tsd->subsize[sstatus->size])/100;
 		cardfix=cardfix*(100-tsd->subrace2[race2])/100;
 		cardfix=cardfix*(100-tsd->subrace[sstatus->race])/100;
@@ -2893,7 +2890,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			cardfix=cardfix*(100-tsd->long_attack_def_rate)/100;
 
 		if (cardfix != 10000)
-			md.damage=(int64)md.damage*cardfix/10000;
+			md.damage=(int)((int64)md.damage*cardfix/10000);
 	}
 
 	if (sd && (i = pc_skillatk_bonus(sd, skill_num)))
@@ -3097,7 +3094,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	}
 
 	if (sc && sc->data[SC_CLOAKING] && !(sc->data[SC_CLOAKING]->val4&2))
-		status_change_end(src,SC_CLOAKING,-1);
+		status_change_end(src, SC_CLOAKING, INVALID_TIMER);
 
 	if( tsc && tsc->data[SC_AUTOCOUNTER] && status_check_skilluse(target, src, KN_AUTOCOUNTER, 1) )
 	{
@@ -3109,7 +3106,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			int skilllv = tsc->data[SC_AUTOCOUNTER]->val1;
 			clif_skillcastcancel(target); //Remove the casting bar. [Skotlex]
 			clif_damage(src, target, tick, sstatus->amotion, 1, 0, 1, 0, 0); //Display MISS.
-			status_change_end(target,SC_AUTOCOUNTER,-1);
+			status_change_end(target, SC_AUTOCOUNTER, INVALID_TIMER);
 			skill_attack(BF_WEAPON,target,target,src,KN_AUTOCOUNTER,skilllv,tick,0);
 			return ATK_NONE;
 		}
@@ -3119,7 +3116,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	{
 		int skilllv = tsc->data[SC_BLADESTOP_WAIT]->val1;
 		int duration = skill_get_time2(MO_BLADESTOP,skilllv);
-		status_change_end(target, SC_BLADESTOP_WAIT, -1);
+		status_change_end(target, SC_BLADESTOP_WAIT, INVALID_TIMER);
 		if(sc_start4(src, SC_BLADESTOP, 100, sd?pc_checkskill(sd, MO_BLADESTOP):5, 0, 0, target->id, duration))
 	  	{	//Target locked.
 			clif_damage(src, target, tick, sstatus->amotion, 1, 0, 1, 0, 0); //Display MISS.
@@ -3135,7 +3132,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		if (sc && sc->data[SC_SKILLRATE_UP] && sc->data[SC_SKILLRATE_UP]->val1 == MO_TRIPLEATTACK)
 		{
 			triple_rate+= triple_rate*(sc->data[SC_SKILLRATE_UP]->val2)/100;
-			status_change_end(src,SC_SKILLRATE_UP,-1);
+			status_change_end(src, SC_SKILLRATE_UP, INVALID_TIMER);
 		}
 		if (rand()%100 < triple_rate)
 			//FIXME: invalid return type!
@@ -3149,7 +3146,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			int skilllv = sc->data[SC_SACRIFICE]->val1;
 
 			if( --sc->data[SC_SACRIFICE]->val2 <= 0 )
-				status_change_end(src, SC_SACRIFICE,-1);
+				status_change_end(src, SC_SACRIFICE, INVALID_TIMER);
 
 			status_zap(src, sstatus->max_hp*9/100, 0);//Damage to self is always 9%
 
@@ -3161,7 +3158,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			return (damage_lv)skill_attack(BF_MAGIC,src,src,target,NPC_MAGICALATTACK,sc->data[SC_MAGICALATTACK]->val1,tick,0);
 	}
 
-	if(tsc && tsc->data[SC_KAAHI] && tsc->data[SC_KAAHI]->val4 == -1 && tstatus->hp < tstatus->max_hp)
+	if(tsc && tsc->data[SC_KAAHI] && tsc->data[SC_KAAHI]->val4 == INVALID_TIMER && tstatus->hp < tstatus->max_hp)
 		tsc->data[SC_KAAHI]->val4 = add_timer(tick + skill_get_time2(SL_KAAHI,tsc->data[SC_KAAHI]->val1), kaahi_heal_timer, target->id, SC_KAAHI); //Activate heal.
 
 	wd = battle_calc_attack(BF_WEAPON, src, target, 0, 0, flag);	
@@ -3204,7 +3201,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			status_fix_damage(NULL, d_bl, damage, 0);
 		}
 		else
-			status_change_end(target, SC_DEVOTION, -1);
+			status_change_end(target, SC_DEVOTION, INVALID_TIMER);
 	}
 
 	if (sc && sc->data[SC_AUTOSPELL] && rand()%100 < sc->data[SC_AUTOSPELL]->val4) {
@@ -3263,7 +3260,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 				--sce->val2;
 			}
 			if (sce->val2 <= 0)
-				status_change_end(target, SC_POISONREACT, -1);
+				status_change_end(target, SC_POISONREACT, INVALID_TIMER);
 		}
 	}
 	map_freeblock_unlock();
@@ -3335,8 +3332,8 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 	int strip_enemy = 1; //Flag which marks whether to remove the BCT_ENEMY status if it's also friend/ally.
 	struct block_list *s_bl = src, *t_bl = target;
 
-	nullpo_retr(0, src);
-	nullpo_retr(0, target);
+	nullpo_ret(src);
+	nullpo_ret(target);
 
 	m = target->m;
 
@@ -3351,7 +3348,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 	switch( target->type )
 	{ // Checks on actual target
 		case BL_PC:
-			if (((TBL_PC*)target)->invincible_timer != -1 || pc_isinvisible((TBL_PC*)target))
+			if (((TBL_PC*)target)->invincible_timer != INVALID_TIMER || pc_isinvisible((TBL_PC*)target))
 				return -1; //Cannot be targeted yet.
 			break;
 		case BL_MOB:
@@ -4013,6 +4010,16 @@ static const struct _battle_data {
 	{ "invincible.nodamage",                &battle_config.invincible_nodamage,             0,      0,      1,              },
 	{ "mob_slave_keep_target",              &battle_config.mob_slave_keep_target,           0,      0,      1,              },
 	{ "autospell_check_range",              &battle_config.autospell_check_range,           0,      0,      1,              },
+	{ "client_reshuffle_dice",              &battle_config.client_reshuffle_dice,           0,      0,      1,              },
+	{ "client_sort_storage",                &battle_config.client_sort_storage,             0,      0,      1,              },
+	{ "gm_check_minlevel",                  &battle_config.gm_check_minlevel,               60,     0,      100,            },
+	{ "feature.buying_store",               &battle_config.feature_buying_store,            1,      0,      1,              },
+	{ "feature.search_stores",              &battle_config.feature_search_stores,           1,      0,      1,              },
+	{ "searchstore_querydelay",             &battle_config.searchstore_querydelay,         10,      0,      INT_MAX,        },
+	{ "searchstore_maxresults",             &battle_config.searchstore_maxresults,         30,      1,      INT_MAX,        },
+	{ "display_party_name",                 &battle_config.display_party_name,              0,      0,      1,              },
+	{ "cashshop_show_points",               &battle_config.cashshop_show_points,            0,      0,      1,              },
+	{ "mail_show_status",                   &battle_config.mail_show_status,                0,      0,      2,              },
 // BattleGround Settings
 	{ "bg_update_interval",                 &battle_config.bg_update_interval,              1000,   100,    INT_MAX,        },
 	{ "bg_short_attack_damage_rate",        &battle_config.bg_short_damage_rate,            80,     0,      INT_MAX,        },

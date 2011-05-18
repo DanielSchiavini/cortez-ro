@@ -247,7 +247,7 @@ function	script	F_Kafra	{
 function	script	F_KafStor	{
 	// Unable to access Guild Storage (Busy)
 	if(getarg(0) == 1){
-		if(guildopenstorage(0) == 1){
+		if(guildopenstorage() == 1){
 			mes "[Funcionária Kafra]";
 			mes "Desculpe mas outro jogador do clã está usando o armazém do clã. Por favor aguarde até que o ele termine de utilizá-lo.";
 			close2;

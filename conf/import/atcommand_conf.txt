@@ -19,8 +19,6 @@ invite: 0,60
 accept: 0,60
 reject: 0,60
 leave: 0,60
-away: 0,60
-aw: 0,60
 noask: 0,60
 jailtime: 0,10
 noks: 0,60

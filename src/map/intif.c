@@ -195,7 +195,7 @@ int intif_broadcast2(const char* mes, int len, unsigned long fontColor, short fo
 // The transmission of Wisp/Page to inter-server (player not found on this server)
 int intif_wis_message(struct map_session_data *sd, char *nick, char *mes, int mes_len)
 {
-	nullpo_retr(0, sd);
+	nullpo_ret(sd);
 	if (CheckForCharServer())
 		return 0;
 
@@ -317,7 +317,7 @@ int intif_saveregistry(struct map_session_data *sd, int type)
 //Request the registries for this player.
 int intif_request_registry(struct map_session_data *sd, int flag)
 {
-	nullpo_retr(0, sd);
+	nullpo_ret(sd);
 
 	sd->save_reg.account2_num = -1;
 	sd->save_reg.account_num = -1;
@@ -368,7 +368,7 @@ int intif_create_party(struct party_member *member,char *name,int item,int item2
 {
 	if (CheckForCharServer())
 		return 0;
-	nullpo_retr(0, member);
+	nullpo_ret(member);
 
 	WFIFOHEAD(inter_fd,64);
 	WFIFOW(inter_fd,0) = 0x3020;
@@ -506,7 +506,7 @@ int intif_guild_create(const char *name,const struct guild_member *master)
 {
 	if (CheckForCharServer())
 		return 0;
-	nullpo_retr(0, master);
+	nullpo_ret(master);
 
 	WFIFOHEAD(inter_fd,sizeof(struct guild_member)+(8+NAME_LENGTH));
 	WFIFOW(inter_fd,0)=0x3030;
@@ -698,8 +698,8 @@ int intif_guild_notice(int guild_id,const char *mes1,const char *mes2)
 	WFIFOHEAD(inter_fd,186);
 	WFIFOW(inter_fd,0)=0x303e;
 	WFIFOL(inter_fd,2)=guild_id;
-	memcpy(WFIFOP(inter_fd,6),mes1,60);
-	memcpy(WFIFOP(inter_fd,66),mes2,120);
+	memcpy(WFIFOP(inter_fd,6),mes1,MAX_GUILDMES1);
+	memcpy(WFIFOP(inter_fd,66),mes2,MAX_GUILDMES2);
 	WFIFOSET(inter_fd,186);
 	return 0;
 }
@@ -984,10 +984,7 @@ int intif_parse_LoadGuildStorage(int fd)
 	if(battle_config.save_log)
 		ShowInfo("intif_open_guild_storage: %d\n",RFIFOL(fd,4) );
 	memcpy(gstor,RFIFOP(fd,12),sizeof(struct guild_storage));
-	gstor->storage_status = 1;
-	sd->state.storage_flag = 2;
-	clif_guildstoragelist(sd,gstor);
-	clif_updateguildstorageamount(sd,gstor->storage_amount);
+	storage_guild_storageopen(sd);
 	return 0;
 }
 int intif_parse_SaveGuildStorage(int fd)
@@ -1124,7 +1121,7 @@ int intif_parse_GuildBasicInfoChanged(int fd)
 		return 0;
 
 	switch(type) {
-	case GBI_EXP:        g->exp = RFIFOL(fd,10); break;
+	case GBI_EXP:        g->exp = RFIFOQ(fd,10); break;
 	case GBI_GUILDLV:    g->guild_lv = RFIFOW(fd,10); break;
 	case GBI_SKILLPOINT: g->skill_point = RFIFOL(fd,10); break;
 	}
@@ -1141,8 +1138,7 @@ int intif_parse_GuildMemberInfoChanged(int fd)
 	int account_id = RFIFOL(fd,8);
 	int char_id = RFIFOL(fd,12);
 	int type = RFIFOW(fd,16);
-	void* data = RFIFOP(fd,18);
-	int dd = *((int *)data);
+	//void* data = RFIFOP(fd,18);
 
 	struct guild* g;
 	int idx;
@@ -1156,13 +1152,13 @@ int intif_parse_GuildMemberInfoChanged(int fd)
 		return 0;
 
 	switch( type ) {
-	case GMI_POSITION:   g->member[idx].position = dd; guild_memberposition_changed(g,idx,dd); break;
-	case GMI_EXP:        g->member[idx].exp = dd; break;
-	case GMI_HAIR:       g->member[idx].hair = dd; break;
-	case GMI_HAIR_COLOR: g->member[idx].hair_color = dd; break;
-	case GMI_GENDER:     g->member[idx].gender = dd; break;
-	case GMI_CLASS:      g->member[idx].class_ = dd; break;
-	case GMI_LEVEL:      g->member[idx].lv = dd; break;
+	case GMI_POSITION:   g->member[idx].position   = RFIFOW(fd,18); guild_memberposition_changed(g,idx,RFIFOW(fd,18)); break;
+	case GMI_EXP:        g->member[idx].exp        = RFIFOQ(fd,18); break;
+	case GMI_HAIR:       g->member[idx].hair       = RFIFOW(fd,18); break;
+	case GMI_HAIR_COLOR: g->member[idx].hair_color = RFIFOW(fd,18); break;
+	case GMI_GENDER:     g->member[idx].gender     = RFIFOW(fd,18); break;
+	case GMI_CLASS:      g->member[idx].class_     = RFIFOW(fd,18); break;
+	case GMI_LEVEL:      g->member[idx].lv         = RFIFOW(fd,18); break;
 	}
 	return 0;
 }
@@ -1469,7 +1465,7 @@ int intif_parse_Mail_inboxreceived(int fd)
 
 	if (flag)
 		clif_Mail_refreshinbox(sd);
-	else
+	else if( battle_config.mail_show_status && ( battle_config.mail_show_status == 1 || sd->mail.inbox.unread ) )
 	{
 		char output[128];
 		sprintf(output, msg_txt(510), sd->mail.inbox.unchecked, sd->mail.inbox.unread + sd->mail.inbox.unchecked);
@@ -1921,7 +1917,7 @@ int intif_parse_mercenary_received(int fd)
 	if( sizeof(struct s_mercenary) != len )
 	{
 		if( battle_config.etc_log )
-			ShowError("intif: create mercenary data size error %d != %d\n", sizeof(struct s_homunculus), len);
+			ShowError("intif: create mercenary data size error %d != %d\n", sizeof(struct s_mercenary), len);
 		return 0;
 	}
 
