@@ -51,7 +51,7 @@ brasilis,256,80,5	script	Loteria	73,{
 			}else{
 				set @name$, "";
 				set @valor, 0;
-				query_sql "Select char_name, valor From loteria Where account_id="+escape_sql(getcharid(3))+" And loteria_id="+escape_sql($lot_id), @name$, @valor;
+				query_sql "Select char_name, valor From loteria Where account_id="+getcharid(3)+" And loteria_id="+$lot_id, @name$, @valor;
 				if(@name$==""){
 					mes "Você ainda não apostou nada esta semana.. Deseja apostar?";
 				}else{
@@ -144,7 +144,7 @@ brasilis,256,80,5	script	Loteria	73,{
 			set .@premio$, callfunc("formata_milhoes",($lot_tot-$lot_tot/10));
 			announce "[Loteria] O prêmio de "+.@premio$+" desta semana será sorteado agora!",bc_all;
 			
-			query_sql "Select account_id, valor From loteria Where loteria_id="+escape_sql($lot_id)+" and valor>0 order by valor desc,account_id", .@acc, .@valor;
+			query_sql "Select account_id, valor From loteria Where loteria_id="+$lot_id+" and valor>0 order by valor desc,account_id", .@acc, .@valor;
 			set .@vencedor, rand($lot_tot-$lot_ultimo+$lot_ultimo/5);
 			callfunc("log_mes","[Loteria] "+$lot_id+": *Resultado do Sorteio de "+$lot_tot+"-"+$lot_ultimo+"+"+($lot_ultimo/5)+": "+.@vencedor,"loteria","brasilis");
 			set $lot_ultimo,0;
@@ -158,7 +158,7 @@ brasilis,256,80,5	script	Loteria	73,{
 			announce "[Loteria] E o vencedor do prêmio de "+.@premio$+" é...",bc_all;
 			if(.@vencedor<=0 && .@i>=0){
 				set $lot_acc, .@acc[.@i];
-				query_sql "Select char_name From loteria Where loteria_id="+escape_sql($lot_id)+" and account_id="+escape_sql($lot_acc), .@char$;
+				query_sql "Select char_name From loteria Where loteria_id="+$lot_id+" and account_id="+$lot_acc, .@char$;
 				callfunc("log_mes","[Loteria] "+$lot_id+": *Vencedor nr."+.@vencedor+", "+.@premio$+", pos."+.@i,.@char$,"brasilis",$lot_acc);
 				set $lot_ultimo, $lot_tot - $lot_tot/10;
 				query_sql "Replace into site.vars (str,dt,valor,valorstr) values ('Loteria"+$serv+"',now(),"+$lot_ultimo+",'"+escape_sql(.@char$)+"')";

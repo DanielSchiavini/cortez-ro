@@ -31,7 +31,7 @@ brasilis,255,91,4	script	CdC	726,{		//701,{
 	mes "Seja bem-vindo!!!";
 	close2;
 	warp "pvp_y_room",52,24;
-	query_sql "Update `char` Set last_map='pvp_y_room',last_x=52,last_y=24 Where char_id="+escape_sql(getcharid(0));
+	query_sql "Update `char` Set last_map='pvp_y_room',last_x=52,last_y=24 Where char_id="+getcharid(0);
 	end;
 	
 	OnInit:
@@ -79,7 +79,7 @@ pvp_y_room,51,17,4	script	Cidade Principal	726,{
 	mes "Obrigado!!!";
 	close2;
 	warp "brasilis",266,105;
-	query_sql "Update `char` Set last_map='brasilis',last_x=266,last_y=105 Where char_id="+escape_sql(getcharid(0));
+	query_sql "Update `char` Set last_map='brasilis',last_x=266,last_y=105 Where char_id="+getcharid(0);
 	end;
 }
 

@@ -92,7 +92,7 @@ L_INFO:
 	close;
 
 L_CHECK:
-	query_sql "SELECT replace(format(amount,2),',',''),replace(format(claimed,2),',','') FROM ro.donate WHERE account_id = "+escape_sql(getcharid(3)), @amount$, @claimed$;
+	query_sql "SELECT replace(format(amount,2),',',''),replace(format(claimed,2),',','') FROM ro.donate WHERE account_id = "+getcharid(3), @amount$, @claimed$;
 	query_sql "SELECT MIN(price),replace(format('"+@amount$+"' - '"+@claimed$+"',2),',','') FROM ro.donate_item_db", @min$, @value$;
 	query_sql "SELECT '"+@value$+"' >= '"+@min$+"'", @enough;
 	if(@enough) goto L_CLAIM;
@@ -200,8 +200,8 @@ L_YES:
 	mes "Certeza que quer receber "+@quantity+" "+@name$[@menu]+" por "+@total$+" créditos?";
 	next;
 	menu "Não",L_CLAIM,"Sim",-;
-	query_sql "UPDATE ro.donate SET `claimed` = `claimed` + "+@total$+" WHERE account_id = '"+escape_sql(getcharid(3))+"'";
-	query_sql "INSERT INTO ro.donate_log (dt,item,qtde,vlr,account_id,serv) Values (Now(),"+@id+","+@quantity+","+@total$+","+escape_sql(getcharid(3))+","+$serv+")";
+	query_sql "UPDATE ro.donate SET `claimed` = `claimed` + "+@total$+" WHERE account_id = '"+getcharid(3)+"'";
+	query_sql "INSERT INTO ro.donate_log (dt,item,qtde,vlr,account_id,serv) Values (Now(),"+@id+","+@quantity+","+@total$+","+getcharid(3)+","+$serv+")";
 	getitem @id,@quantity;
 	mes "^336699[Doações]^333333";
 	mes "Obrigado por doar! Esperamos que goste do seu presente!";

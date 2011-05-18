@@ -7,6 +7,8 @@
 // custom clothes
 // custom map
 // custom treasure
+// change leader
+// orc face
 
 new_zone01,52,147,0	script	Faction War	55,{
 	callfunc("F_FactionWar", "Kriemhild (test)", "prtg_cas01", 99, 32, agitcheck());

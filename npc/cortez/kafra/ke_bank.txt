@@ -118,7 +118,7 @@ function	script	F_keBank	{
 			break;
 		}
 	} while (@kmenu > 1);
-	query_sql "Update ro.Login Set banco"+$serv+"="+escape_sql(#ke_bank)+" Where account_id="+escape_sql(getcharid(3));
+	query_sql "Update ro.Login Set banco"+$serv+"="+#ke_bank+" Where account_id="+getcharid(3);
 return;
 
 //Subfunction: SF_calcInterest
@@ -174,7 +174,7 @@ function	SF_calcInterest {
 		set #ke_bank, $@kebk_capacity;
 	else
 		set #ke_bank,#ke_bank+@qty;
-	query_sql "Update ro.Login Set banco"+$serv+"="+escape_sql(#ke_bank)+" Where account_id="+escape_sql(getcharid(3));
+	query_sql "Update ro.Login Set banco"+$serv+"="+#ke_bank+" Where account_id="+getcharid(3);
 
 	callfunc "F_keIntro", -1, "Desde a sua última visita, você ganhou "+@qty+"z!";
 }	//SF end
