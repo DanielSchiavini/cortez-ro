@@ -422,7 +422,7 @@ function	script	F_keGuildStorage	{
 		callfunc "F_keIntro", e_an, "Desculpe, mas você não tem dinheiro suficiente.";
 		return;
 	}
-	if (guildopenstorage(0) == 1) {
+	if (guildopenstorage() == 1) {
 		callfunc "F_keIntro", -1, "Desculpe, o armazém do clã está sendo usado! Tente mais tarde.";
 		return;
 	}

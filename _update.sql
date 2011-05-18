@@ -1,57 +1,22 @@
-CREATE TABLE IF NOT EXISTS `mercenary` (
-  `mer_id` int(11) unsigned NOT NULL auto_increment,
-  `char_id` int(11) NOT NULL,
-  `class` mediumint(9) unsigned NOT NULL default '0',
-  `hp` int(12) NOT NULL default '1',
-  `sp` int(12) NOT NULL default '1',
-  `kill_counter` int(11) NOT NULL,
-  `life_time` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`mer_id`)
-);
+Use ro;
+ALTER TABLE `ragsrvinfo` DROP `motd`;
+ALTER TABLE `login` ADD `birthdate` DATE NOT NULL DEFAULT '0000-00-00';
 
-
-CREATE TABLE IF NOT EXISTS `mercenary_owner` (
-  `char_id` int(11) NOT NULL,
-  `merc_id` int(11) NOT NULL default '0',
-  `arch_calls` int(11) NOT NULL default '0',
-  `arch_faith` int(11) NOT NULL default '0',
-  `spear_calls` int(11) NOT NULL default '0',
-  `spear_faith` int(11) NOT NULL default '0',
-  `sword_calls` int(11) NOT NULL default '0',
-  `sword_faith` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`char_id`)
-);
-
-ALTER TABLE `char` CHANGE `status_point` `status_point` INT( 11 ) UNSIGNED NOT NULL DEFAULT '0';
-ALTER TABLE `char` CHANGE `skill_point` `skill_point` INT( 11 ) UNSIGNED NOT NULL DEFAULT '0';
-ALTER TABLE `char` CHANGE `manner` `manner` SMALLINT ( 6 ) NOT NULL DEFAULT '0';
-Alter Table `char` Add `rename` SMALLINT(3) unsigned NOT NULL default '0' After fame;
-ALTER TABLE `char` ADD COLUMN `mer_id` INTEGER UNSIGNED NOT NULL DEFAULT '0' AFTER `homun_id`;
-
+Use ros;
+ALTER TABLE `char` ADD `rename` SMALLINT( 3 ) UNSIGNED NOT NULL DEFAULT '0';
 ALTER TABLE `guild` MODIFY COLUMN `exp` bigint(20) unsigned NOT NULL default '0';
+DELETE FROM `global_reg_value` WHERE `str` = 'killedrid' OR `str` = 'killerrid';
+ALTER TABLE `char` ADD `delete_date` INT(11) UNSIGNED NOT NULL DEFAULT '0';
 
-Alter Table `quest` Change Column `state` `state` enum('0','1','2') NOT NULL default '0';
-Alter Table `quest` Add `time` int(11) unsigned NOT NULL default '0';
-Alter Table `quest` Add `count1` mediumint(8) unsigned NOT NULL default '0';
-Alter Table `quest` Add `count2` mediumint(8) unsigned NOT NULL default '0';
-Alter Table `quest` Add `count3` mediumint(8) unsigned NOT NULL default '0';
+ALTER TABLE `cart_inventory` MODIFY COLUMN `card0` SMALLINT(11) NOT NULL DEFAULT '0';
+ALTER TABLE `cart_inventory` MODIFY COLUMN `card1` SMALLINT(11) NOT NULL DEFAULT '0';
+ALTER TABLE `cart_inventory` MODIFY COLUMN `card2` SMALLINT(11) NOT NULL DEFAULT '0';
+ALTER TABLE `cart_inventory` MODIFY COLUMN `card3` SMALLINT(11) NOT NULL DEFAULT '0';
 
-Alter Table `storage` Add `expire_time` int(11) unsigned NOT NULL default '0';
-Alter Table `inventory` Add `expire_time` int(11) unsigned NOT NULL default '0';
-Alter Table `cart_inventory` Add `expire_time` int(11) unsigned NOT NULL default '0';
-Alter Table `guild_storage` Add `expire_time` int(11) unsigned NOT NULL default '0';
+ALTER TABLE `char` MODIFY `weapon` SMALLINT(6) UNSIGNED NOT NULL DEFAULT '0';
+ALTER TABLE `char` ADD `robe` SMALLINT(6) UNSIGNED NOT NULL DEFAULT '0' AFTER `head_bottom`;
 
-DELETE FROM `global_reg_value` WHERE `str`='COOKING_ATTEMPT' OR str='question$' OR str='question2$' OR str='question3$';
-
-DROP TABLE `quest_objective`;
-
-Update `char` Set save_x=266, save_y=105, save_map='brasilis';
-Update `char` Set last_x=266, last_y=105, last_map='brasilis' Where last_map = 'schg_cas03';
-
-Update ros.Global_reg_value Set Value=2999 Where str = 'necromancer' and Value=1999;
-
---- Login DB
-
-Alter Table `login` Change Column `connect_until` `expiration_time` int(11) unsigned NOT NULL default '0';
-Alter Table `login` Change Column `ban_until` `unban_time` int(11) unsigned NOT NULL default '0';
--- Delete `memo`, `error_message`
+Use logs;
+-- Adds 'B' to `type` in `picklog` and `zenylog`
+ALTER TABLE `picklog` MODIFY `type` ENUM('M','P','L','T','V','S','N','C','A','R','G','E','B') NOT NULL DEFAULT 'P';
+ALTER TABLE `zenylog` MODIFY `type` ENUM('M','T','V','S','N','A','E','B') NOT NULL DEFAULT 'S';

@@ -669,7 +669,7 @@
 //6283  // Banana_Bomb_Guidebook
 //6284  // Plant_Genetic_Cultivation_Guide
 //6285  // Improved_Potion_Creation_Manual
-6297  // Empty_Potion_Bottle
+//6297  // Empty_Potion_Bottle
 //6321  // Rake_Helmet
 //6322  // Antler_Helmet
 //6323  // Two-Horn_Helmet
@@ -823,7 +823,7 @@
 7167  // Mystery_Iron_Bit
 7168  // Great_Wing
 7169  // Taegeuk_Plate
-7170  // Tuxedo
+//7170  // Tuxedo
 7171  // Leopard_Skin
 7172  // Leopard_Talon
 7174  // Packing_Ribbon

@@ -1055,7 +1055,7 @@
 3131,Alchemist@AM_DEMONSTRATION,attack,229,5,2000,0,2000,yes,target,always,0,,,,,,6,
 3131,Alchemist@AM_POTIONPITCHER,attack,231,2,10000,500,5000,yes,friend,friendhpltmaxrate,60,,,,,,5,
 3131,Alchemist@AM_ACIDTERROR,chase,230,5,50,0,5000,yes,target,always,0,,,,,,29,
-3131,Alchemist@MC_MAMMONITE,attack,42,5,2000,0,5000,no,target,always,0,,,,,,8 // Merchant,
+3131,Alchemist@MC_MAMMONITE,attack,42,5,2000,0,5000,no,target,always,0,,,,,,8, // Merchant
 3131,Alchemist@MC_CARTREVOLUTION,attack,153,5,500,800,5000,no,target,always,0,,,,,,,
 //Crusader(Peco)
 3132,Crusader Peco@CR_AUTOGUARD,attack,249,2,500,0,300000,yes,self,always,0,,,,,,,
@@ -1325,7 +1325,7 @@
 3153,Taekwon@TK_MISSION,attack,493,1,2000,0,5000,no,target,always,0,,,,,,,
 //Star Gladiator
 3154,Star Gladiator@TK_MISSION,attack,493,1,2000,0,5000,yes,target,always,0,,,,,,,
-3154,Star Gladiator@SG_FEEL,chase,427,5,2000,0,5000,no,self,always,0,,,,,, //SG,
+3154,Star Gladiator@SG_FEEL,chase,427,5,2000,0,5000,no,self,always,0,,,,,,, //SG
 3154,Star Gladiator@SG_SUN,chase,428,5,2000,0,5000,no,self,always,0,,,,,,,
 3154,Star Gladiator@SG_MOON_WARM,chase,429,5,2000,0,5000,no,self,always,0,,,,,,,
 3154,Star Gladiator@SG_STAR,chase,430,5,2000,0,5000,no,self,always,0,,,,,,,
@@ -1349,7 +1349,7 @@
 3154,Star Gladiator@TK_HIGHJUMP,chase,426,5,500,0,5000,yes,self,always,0,,,,,,,
 //Star Gladiator Flying
 3155,Flying Star Gladiator@TK_MISSION,attack,493,1,2000,0,5000,yes,target,always,0,,,,,,,
-3155,Flying Star Gladiator@SG_FEEL,chase,427,5,2000,0,5000,no,self,always,0,,,,,, //SG,
+3155,Flying Star Gladiator@SG_FEEL,chase,427,5,2000,0,5000,no,self,always,0,,,,,,, //SG
 3155,Flying Star Gladiator@SG_SUN,chase,428,5,2000,0,5000,no,self,always,0,,,,,,,
 3155,Flying Star Gladiator@SG_MOON_WARM,chase,429,5,2000,0,5000,no,self,always,0,,,,,,,
 3155,Flying Star Gladiator@SG_STAR,chase,430,5,2000,0,5000,no,self,always,0,,,,,,,
@@ -1373,7 +1373,7 @@
 3155,Flying Star Gladiator@TK_HIGHJUMP,chase,426,5,500,0,5000,yes,self,always,0,,,,,,,
 //Soul Linker
 3156,Soul Linker@TK_MISSION,attack,493,1,2000,0,5000,yes,target,always,0,,,,,,,
-3156,Soul Linker@SL_ALCHEMIST,chase,445,5,2000,0,5000,yes,target,always,0,,,,,, //SLinker,
+3156,Soul Linker@SL_ALCHEMIST,chase,445,5,2000,0,5000,yes,target,always,0,,,,,,, //SLinker
 3156,Soul Linker@SL_MONK,chase,447,5,2000,0,5000,yes,target,always,0,,,,,,,
 3156,Soul Linker@SL_STAR,chase,448,5,2000,0,5000,yes,target,always,0,,,,,,,
 3156,Soul Linker@SL_SAGE,chase,449,5,2000,0,5000,yes,target,always,0,,,,,,,
