@@ -14,7 +14,7 @@ equip_skill_break_rate: 15
 //battleground.conf
 
 //client.conf
-packet_ver_flag: 0x10000
+packet_ver_flag: 0x20000
 min_chat_delay: 200
 display_version: 0
 min_chat_delay: 500
