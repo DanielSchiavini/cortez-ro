@@ -145,8 +145,8 @@
 5147,123,100	// Baseball_Cap
 
 // Poring Coin items
-7538,115,100	// Sifted_Sand
-7539,115,100	// Poring_Coin
+7538,0x73,100	// Sifted_Sand
+7539,0x53,100	// Poring_Coin
 
 // Europe Tiara Event
 5149,83,100	// Silver_Tiara
@@ -1566,7 +1566,7 @@
 
 // ---- Começo itens Cortez ---- //
 
-7539,75,100	//Moeda Cortez
+7539,0x4B,100	//Moeda Cortez
 569,115,70	//Novice_Potion
 //Example:
 //1161,67,50 //Balmung: No drop, No trade, No Guild Store (1+2+64 =67),
