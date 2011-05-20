@@ -120,7 +120,7 @@ function	script	F_FactionWar	{
 	if(!getarg(4) || ($castleMap1$!=getarg(1) && $castleMap2$!=getarg(1))){
 		mes "["+getarg(0)+"]";
 		mes "No Cortez nós temos o sistema de guerra entre facções.";
-		mes "Este castelo somente se abrirá durante a guerra do imperium.";
+		mes "Este castelo somente se abrirá durante a guerra do emperium.";
 		close;
 	}
 	

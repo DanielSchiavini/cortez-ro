@@ -83,7 +83,7 @@ function	script	formata_milhoes	{
 
 //callfunc("log_mes","mes","Char/NPC name","map","acc_id=1","char_id=150000");
 function	script	log_mes	{
-	query_logsql "INSERT INTO npclog (npc_date,account_id,char_id,char_name,map,mes) Values (now(),"+escape_sql(getarg(3,"1"))+","+escape_sql(getarg(4,"150000"))+",'"+escape_sql(getarg(1))+"','"+escape_sql(getarg(2))+"','"+escape_sql(getarg(0))+"')";
+	query_logsql "INSERT INTO npclog (npc_date,account_id,char_id,char_name,map,mes) Values (now(),"+(0+getarg(3,"1"))+","+(0+getarg(4,"150000"))+",'"+escape_sql(getarg(1))+"','"+escape_sql(getarg(2))+"','"+escape_sql(getarg(0))+"')";
 	return;
 }
 
