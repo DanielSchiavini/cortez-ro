@@ -15,7 +15,7 @@ pvp_2vs2,0,0,0,0	monster	Antonio	1247,1,0,0
 				set $GuildEmperiumGVG,getcharid(2);
 				MapAnnounce "pvp_2vs2", "Emperium destruído por "+strcharinfo(0), 17;
 				detachrid;
-				sleep 2000;
+				sleep2 2000;
 				MapAnnounce "pvp_2vs2", "Mapa GvG dominado pelo clã [" + GetGuildName($GuildEmperiumGVG) + "]!", bc_map;
 				doevent "GvG#gvg_flag::OnChangeFlag";
 				sleep getbattleflag("gvg_eliminate_time");
