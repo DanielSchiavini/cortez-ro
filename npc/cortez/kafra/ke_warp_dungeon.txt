@@ -456,10 +456,10 @@ function	script	F_keDungeonWarps	{
 		}
 		switch (@submenu) {
 		case 2:
-			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"moc_fild20",164,145;
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"cmd_fild08",329,357;
 			break;
 		case 3:
-			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"moc_fild20",330,314;
+			callfunc "F_keWarp",@cost*100/@discountKP,$@kewd_discount,e_hmm,"cmd_fild08",343,83;
 			break;
 		}
 	}
