@@ -1642,7 +1642,7 @@
 4213,Brilight_Card,Brilight Card,6,,10,10,,,,,,,,769,,,,,{ skill 20,5+2*(Class==Job_Soul_Linker); },{},{}
 4214,Bloody_Murderer_Card,Bloody Murderer Card,6,,10,10,,,,,,,,2,,,,,{ skill 24,1; },{},{}
 4215,Blazer_Card,Blazer Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,20; bonus bMaxSPrate,-35; },{},{}
-4216,Sasquatch_Card,Sasquatch Card,6,,10,10,,,,,,,,769,,,,,{ bonus bAllStats,3; skill "WZ_STORMGUST",1; },{},{}
+4216,Sasquatch_Card,Sasquatch Card,6,,10,10,,,,,,,,769,,,,,{ bonus bAllStats,1; skill "WZ_STORMGUST",1; },{},{}
 4217,Enchanted_Peach_Tree_Card,Enchanted Peach Tree Card,6,,10,10,,,,,,,,32,,,,,{ if(isequippedcnt(4311) && readparam(bInt)<=50) bonus4 bAutoSpellWhenHit,28,10,100,0; },{},{}
 4218,Succubus_Card,Succubus Card,6,,10,10,,,,,,,,136,,,,,{ bonus bDex,10; bonus bVit,10; bonus bAgi,10; bonus bHPrecovRate,-30; if(isequipped(4269)) skill 88,5; },{},{}
 4219,Sage_Worm_Card,Sage Worm Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,80; bonus bDef,-15; bonus bMdef,-15; bonus bDefRate,-15; bonus bMdefRate,-15; },{},{}
