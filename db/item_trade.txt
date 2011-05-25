@@ -1675,7 +1675,7 @@
 4241,9,100	//Carta Archangeling
 5013,9,100	//Chifre de Lord Kaho [2]
 5132,9,100	//Chapéu de Angeling [2]
-5179,73,100	//Tiara Dourada [2]
+5179,9,100	//Tiara Dourada [2]
 5255,9,100	//Família Poring [2]
 
 //ITENS QUEST GODLY
