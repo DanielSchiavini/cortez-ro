@@ -154,10 +154,10 @@
 //7539,83,100	// Poring_Coin
 
 // Europe Tiara Event
-5149,83,100	// Silver_Tiara
+//5149,83,100	// Silver_Tiara
 //5179,65,100	// Gold_Tiara
-5262,83,100	// Gold_Tiara_
-5261,83,100	// Silver_Tiara_
+//5262,83,100	// Gold_Tiara_
+//5261,83,100	// Silver_Tiara_
 
 // Brazillian Event items
 7547,115,100	// Soccer_Ball
