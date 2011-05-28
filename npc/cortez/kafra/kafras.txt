@@ -118,7 +118,7 @@ gonryun,169,188,2	script	Super Kafra	117,{
 //	callfunc "F_KafraExpress","Super Kafra","kafra_03",0,"einbroch",64,184;
 //}
 
-izlude,136,94,2	script	Super Kafra#izlude	115,{
+izlude,136,88,2	script	Super Kafra#izlude	115,{
 	callfunc "F_KafraExpress","Super Kafra","kafra_03",0,"izlude",147,99;
 }
 
