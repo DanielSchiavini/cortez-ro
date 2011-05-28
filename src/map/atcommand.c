@@ -2172,7 +2172,7 @@ ACMD_FUNC(go)
 		{ "brasilis",      266,  92 }, // 0=Cortez
 		{ "force_1-1",     100, 100 }, // 1=Mini Boss 1
 		{ "pay_fild05",     90,  90 }, // 2=Mini Boss 2
-		{ "ordeal_1-1",    150, 143 }, // 3=PvP
+		{ "poring_w01",		97,	 99 }, // 3=PvP
 		{ "guild_vs2",       0,   0 }, // 4=Galho Seco
 		{ "pvp_n_1-1",     106, 100 }, // 5=MVPs
 		{ "pvp_y_room",     52,  24 }, // 6=CDC

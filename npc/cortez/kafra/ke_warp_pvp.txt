@@ -23,7 +23,7 @@ function	script	F_keWarpPvp	{
 	set @cost,callfunc("F_keCost",$@kewp_cost,0);
 	set @submenu, select(
 		"- Voltar",
-		"- PvP ("+getmapusers("ordeal_1-1")+" "+$@ked_users$+")",
+		"- PvP ("+getmapusers("poring_w01")+" "+$@ked_users$+")",
 		"- PvP Individual - Máx. 2 "+$@ked_users$,
 		"- GvG ("+getmapusers("pvp_2vs2")+" "+$@ked_users$+")",
 		"- Mini Boss 1 ("+getmapusers("force_1-1")+" "+$@ked_users$+")",
@@ -36,26 +36,7 @@ function	script	F_keWarpPvp	{
 		case 1: // Voltar
 			return;
 		case 2: // pvp
-			switch(rand(1,5)){
-				case 1:
-					callfunc "F_keWarp",@cost,0,e_com,"ordeal_1-1",132,151;
-					break;
-				case 2:
-					callfunc "F_keWarp",@cost,0,e_com,"ordeal_1-1",150,165;
-					break;
-				case 3:
-					callfunc "F_keWarp",@cost,0,e_com,"ordeal_1-1",166,149;
-					break;
-				case 4:
-					callfunc "F_keWarp",@cost,0,e_com,"ordeal_1-1",151,132;
-					break;
-				case 5:
-					callfunc "F_keWarp",@cost,0,e_com,"ordeal_1-1",150,143;
-					break;
-				case 6:
-					callfunc "F_keWarp",@cost,0,e_com,"ordeal_1-1",149,157;
-					break;
-			}
+			callfunc "F_keWarp",@cost,0,e_com,"poring_w01",97,99;
 			break;
 		case 3: //1x1
 				if (getmapusers("pvp_n_1-5") < 2){
