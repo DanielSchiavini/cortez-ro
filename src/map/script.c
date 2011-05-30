@@ -6512,7 +6512,7 @@ BUILDIN_FUNC(joinguild)
 	}
 	
 	if (guild_search(guild_id) == NULL) {
-		ShowWarning("buildin_joinguild: guild is not loaded\n");
+		ShowWarning("buildin_joinguild: guild %d is not loaded\n", guild_id);
 		sd->status.guild_id = guild_id;
 		// guild is not loaded
 	}
