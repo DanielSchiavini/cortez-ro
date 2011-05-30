@@ -282,7 +282,7 @@ OnTouch:
 	end;
 }
 
-nif_in,188,168,3	script	Witch#nif	792,{
+nif_in,188,170,3	script	Witch#nif	792,{
 	mes "[Kirkena]";
 	mes "Huh? ...You're alive, aren't you?";
 	mes "I'm not sure how more of you are";
