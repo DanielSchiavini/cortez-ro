@@ -120,6 +120,7 @@ function	script	F_keBroadcast	{
 				SF_doBroadcast $@kebc_cost,@map$,strcharinfo(0)+": Estou procurando por ",1;
 				break;
 			default:
+				callfunc "F_keIntro", -1, "Muito bem, o que posso fazer por você?";
 				return;
 			}
 		} while (1);
