@@ -127,14 +127,15 @@ function	script	F_FactionWar	{
 	set .@char_id, getcharid(0);
 	set .@account_id, getcharid(3);
 	set .@guild_id, getcharid(2);
-	query_sql("Select IfNull(faction_id,0) From ro.login Where account_id = " + .@account_id, .@faction_id);
-	
-	if(!.@faction_id){
-		set .@faction_id, $factions[rand(0, getarraysize($factions[0])-1)];
-		query_sql("Update ro.login Set faction_id = " + .@faction_id + " Where account_id = " + .@account_id);
-	}
 	
 	if(.@char_id == getguildmasterid(.@guild_id)){
+		// Faction leader..
+		for(set $@i,0; $@i<getarraysize($factions) ; set $@i, $@i+1 ) {
+			if(.@guild_id == $factions[$@i]) {
+				warp getarg(1), getarg(2), getarg(3);
+				end;
+			}
+		}
 		mes "["+getarg(0)+"]";
 		mes "No Cortez nós temos o sistema de guerra entre facções.";
 		mes "Você não pode participar de uma facção sendo o líder do clã.";
@@ -150,6 +151,13 @@ function	script	F_FactionWar	{
 		
 		guildopenstorage();
 	}else{
+		query_sql("Select IfNull(faction_id,0) From ro.login Where account_id = " + .@account_id, .@faction_id);
+		
+		if(!.@faction_id){
+			set .@faction_id, $factions[rand(0, getarraysize($factions[0])-1)];
+			query_sql("Update ro.login Set faction_id = " + .@faction_id + " Where account_id = " + .@account_id);
+		}
+		
 		if(.@guild_id != .@faction_id){
 			logmes "[FactionWar] Leaving guild " + .@guild_id + " to faction " + .@faction_id;
 			if(.@guild_id){
