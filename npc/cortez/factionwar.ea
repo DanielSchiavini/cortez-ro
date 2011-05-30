@@ -17,8 +17,8 @@ new_zone01,52,147,0	script	Faction War	55,{
 	OnInit:
 		//disabling old portals
 		disablenpc "prtg01";
-		disablenpc "gefg03";
-		disablenpc "arug302";
+		//disablenpc "gefg03";
+		//disablenpc "arug302";
 		
 		// humans, orcs, elfs
 		setarray $factionItem[0], 2260, 2291, 2286;
@@ -107,13 +107,13 @@ prt_gld,129,65,0	script	Kriemhild#FactionWar	55,{
 	callfunc("F_FactionWar", "Kriemhild", "prtg_cas01", 99, 32, agitcheck());
 }
 
-gef_fild13,308,244,0	script	Trapesac#FactionWar	55,{
-	callfunc("F_FactionWar", "Trapesac", "gefg_cas02", 70, 143, agitcheck());
-}
+//gef_fild13,308,244,0	script	Trapesac#FactionWar	55,{
+//	callfunc("F_FactionWar", "Trapesac", "gefg_cas02", 70, 143, agitcheck());
+//}
 
-aru_gld,68,150,0	script	Horn#FactionWar	55,{
-	callfunc("F_FactionWar", "Horn", "arug_cas03", 141, 45, agitcheck2());
-}
+//aru_gld,68,150,0	script	Horn#FactionWar	55,{
+//	callfunc("F_FactionWar", "Horn", "arug_cas03", 141, 45, agitcheck2());
+//}
 
 // callfunc("F_FactionWar", "NOME DO CASTELO/NPC", "WARP TO MAP", X, Y, agit_active);
 function	script	F_FactionWar	{
