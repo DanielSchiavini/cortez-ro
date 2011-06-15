@@ -16,7 +16,7 @@ pvp_2vs2,0,0,0,0	monster	Antonio	1247,1,0,0
 				MapAnnounce "pvp_2vs2", "Emperium destruído por "+strcharinfo(0), bc_blue|bc_map|bc_npc;
 				sleep 2000;
 				MapAnnounce "pvp_2vs2", "Mapa GvG dominado pelo clã [" + GetGuildName($GuildEmperiumGVG) + "]!", bc_map|bc_npc;
-				doevent "GvG#gvg_flag::OnChangeFlag";
+				donpcevent "GvG#gvg_flag::OnChangeFlag";
 				sleep getbattleflag("gvg_eliminate_time");
 				
 				//MapAnnounce "pvp_2vs2","Respawn...!", bc_map;
