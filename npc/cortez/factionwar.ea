@@ -83,7 +83,7 @@ new_zone01,52,147,0	script	Faction War	55,{
 	
 	OnPCLoginEvent:
 		// If the char wasn't online after the war, he'll come back to his clan after the war
-		if(guild_id) {
+		if(!agitcheck() && guild_id) {
 			set .@char_id, getcharid(0);
 			logmes "[FactionWar] Player " + .@char_id + " returning to guild " + guild_id + " after login";
 			if(!joinguild(.@char_id, guild_id)){
