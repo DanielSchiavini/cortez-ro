@@ -165,7 +165,7 @@ function	script	F_WoeShowResults	{ //string map, int timer
 			announce "Parabéns! [" + .@GName$ + "] ficou com a base [" + .@CName$ + "] por "+(.@timer/60)+"min!",0;
 		else
 			announce "Que sufoco! [" + .@GName$ + "] ficou com a base [" + .@CName$ + "] por "+(.@timer)+"seg!",0;
-		query_sql "Update guild set tempo=IfNull(tempo,0)+"+escape_sql(.@timer)+" Where guild_id="+escape_sql(.@GID);
+		query_sql "Update guild set tempo=IfNull(tempo,0)+"+.@timer+" Where guild_id="+.@GID;
 	}else{
 		announce "Ninguém conseguiu conquistar o castelo " + .@CName$ + "!",0;
 	}
