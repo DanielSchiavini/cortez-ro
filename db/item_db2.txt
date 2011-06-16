@@ -1512,7 +1512,7 @@
 4085,Orc_Skeleton_Card,Orc Skeleton Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEle,Ele_Holy,30; },{},{}
 4086,Soldier_Skeleton_Card,Soldier Skeleton Card,6,,10,10,,,,,,,,2,,,,,{ bonus bCritical,9; },{},{}
 4087,Giearth_Card,Giearth Card,6,,10,10,,,,,,,,769,,,,,{ bonus2 bResEff,Eff_Confusion,10000; bonus2 bSubEle,Ele_Earth,10; },{},{}
-4088,Frilldora_Card,Frilldora Card,6,,10,10,,,,,,,,4,,,,,{ skill "AS_CLOAKING",3; bonus2 bSubEle,Ele_Water,-20; bonus2 bSubEle,Ele_Earth,-20; bonus2 bSubEle,Ele_Fire,-20; bonus2 bSubEle,Ele_Wind,-20; bonus bSpeedRate,-30; },{},{ heal 4*Hp/10,0; }
+4088,Frilldora_Card,Frilldora Card,6,,10,10,,,,,,,,4,,,,,{ skill "AS_CLOAKING",3; bonus2 bSubEle,Ele_Water,-20; bonus2 bSubEle,Ele_Earth,-20; bonus2 bSubEle,Ele_Fire,-20; bonus2 bSubEle,Ele_Wind,-20; bonus bSpeedRate,-30; },{},{ heal -4*Hp/10,0; }
 4089,Swordfish_Card,Swordfish Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Water; bonus bDef,1; },{},{}
 4090,Munak_Card,Munak Card,6,,10,10,,,,,,,,32,,,,,{ bonus2 bResEff,Eff_Stone,1500; bonus2 bSubEle,Ele_Earth,5; bonus bDef,1; },{},{}
 4091,Kobold_Card,Kobold Card,6,,10,10,,,,,,,,136,,,,,{ bonus bStr,1; bonus bCritical,4; },{},{}
