@@ -24,6 +24,10 @@
 // you can even mix modes
 //519,41 (32+8+1) you can't use Milk on PVP, and maps marked as 'restricted zone 2' and 'restricted zone 4'
 
+// 2- restricted in GVG
+607,2	//Yggdrasilberry
+608,2	//Seed_Of_Yggdrasil
+
 //Zone 6 - MVPs Humanos
 4045,128	//Horn
 4177,128	//Dryad
