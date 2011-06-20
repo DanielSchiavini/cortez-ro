@@ -42,14 +42,14 @@ font: 5,60
 showexp: 5,60
 showzeny: 5,60
 alootid: 5,60
-changegm: 5,60
-changeleader: 5,60
-partyoption: 5,60
+changegm: 5,80
+changeleader: 5,80
+partyoption: 5,80
 pettalk: 5,60
 homtalk: 5,60
-mobsearch: 5,60
-showmobs: 5,60
-whereis: 5,60
+mobsearch: 5,80
+showmobs: 5,80
+whereis: 5,80
 request: 5,40
 mountpeco: 5,40
 mount: 5,40
@@ -57,10 +57,10 @@ return: 5,60
 load: 5,60
 identify: 5,40
 storeall: 5,40
-guild: 5,70
-gstorage: 5,70
+guild: 5,80
+gstorage: 5,80
 go: 5,90
-changesex: 5,70
+changesex: 5,80
 
 // Eventos/Superplayers
 main: 10,60
@@ -72,7 +72,7 @@ die: 10,60
 petrename: 10,60
 where: 10,60
 feelreset: 10,90
-follow: 10,60
+follow: 10,80
 model: 10,80
 who: 10,60
 whois: 10,60
