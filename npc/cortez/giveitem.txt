@@ -4,6 +4,10 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 	if(getgmlevel()<15) close;
 	
 	mes	"[^660066 Entregador de Prêmios ^000000]";
+	if($premios_dia>=4){
+		mes "O número máximo de prêmios foi esgotado.";
+		close;
+	}
 	mes "Olá, Sr. GM, você gostaria de premiar alguém?";
 	menu "Sim",-,"Não",L_Fail;
 	
@@ -97,6 +101,7 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 						getitem .@id[@i], .@qtde[@i];
 					announce "O jogador "+strcharinfo(0)+" recebeu "+.@nomePremio$+" como premiação!"+.@justificativa$,bc_all;
 					logmes "[Premio] Recebeu "+.@nomePremio$+" de "+rid2name(.@account_gm)+.@justificativa$+" ("+.@qtde[0]+"x"+.@id[0]+")";
+					set $premios_dia, $premios_dia+1;
 				}else{
 					message rid2name(.@account_gm),"Entregador de Prêmios: O jogador estava acima do peso!";
 					message strcharinfo(0),"Seu prêmio "+.@nomePremio$+" não foi entregue pois você está com muito peso!";
@@ -113,4 +118,7 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 		
 	L_FAIL:
 		close;
+	
+	OnClock0400:
+		set $premios_dia, 0;
 }
