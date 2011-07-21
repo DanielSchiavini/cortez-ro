@@ -8,10 +8,10 @@
 brasilis,256,80,5	script	Loteria	73,{
 	mes "[^666699 Loteria ^000000]";
 	mes "Oi caro viajante!";
-	
+	L_Loteria:
 	if(getgmlevel()>=10){
 		if(getgmlevel()>=90){
-			switch(select("Continuar:Sortear:Zerar")){
+			switch(select("Continuar:Sortear:Zerar:Total loteria")){
 				case 2:
 					close2;
 					debugmes "Testando loteria";
@@ -23,6 +23,19 @@ brasilis,256,80,5	script	Loteria	73,{
 					set $lot_acc, 0;
 					set $lot_ultimo, 0;
 					debugmes "Valores da loteria resetados!";
+					break;
+				case 4:
+					mes "$lot_id = "+$lot_id;
+					mes "$lot_tot = "+$lot_tot;
+					mes "$lot_acc = "+$lot_acc;
+					mes "$lot_ultimo = "+$lot_ultimo;
+					mes "Digite quanto quer remover da loteria.";
+					input @remover;
+					set $lot_tot, $lot_tot - @remover;
+					set $lot_ultimo, $lot_ultimo - @remover;
+					debugmes "Valor removido da loteria: "+@remover;
+					set @remover, 0;
+					goto L_Loteria;
 					break;
 				default:
 					break;
@@ -118,7 +131,7 @@ brasilis,256,80,5	script	Loteria	73,{
 	OnSun0000:
 	OnTeste:
 		if($serv==5){
-			set $lot_start, 400;
+			set $lot_start, 40;
 		}else{
 			set $lot_start, 5;
 		}
@@ -145,8 +158,8 @@ brasilis,256,80,5	script	Loteria	73,{
 			announce "[Loteria] O prêmio de "+.@premio$+" desta semana será sorteado agora!",bc_all;
 			
 			query_sql "Select account_id, valor From loteria Where loteria_id="+$lot_id+" and valor>0 order by valor desc,account_id", .@acc, .@valor;
-			set .@vencedor, rand($lot_tot-$lot_ultimo+$lot_ultimo/5);
-			callfunc("log_mes","[Loteria] "+$lot_id+": *Resultado do Sorteio de "+$lot_tot+"-"+$lot_ultimo+"+"+($lot_ultimo/5)+": "+.@vencedor,"loteria","brasilis");
+			set .@vencedor, rand($lot_tot-$lot_ultimo+(($lot_tot-$lot_ultimo)/3));
+			callfunc("log_mes","[Loteria] "+$lot_id+": *Resultado do Sorteio de "+$lot_tot+"-"+$lot_ultimo+"+"+(($lot_tot-$lot_ultimo)/3)+": "+.@vencedor,"loteria","brasilis");
 			set $lot_ultimo,0;
 			set .@i,-1;
 			while(.@vencedor > 0 && .@valor[.@i+1] > 0){
