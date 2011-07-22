@@ -20,7 +20,7 @@ monk_test,319,140,4	script	Thor	808,{
 	mes "^006611[ Thor ]^333333";
 	mes "Os itens necessários são:";
 	mes "- 1x  Gleipnir";
-	mes "- 50x Pesadelo maternal"; // aceitando item antigo (Pedra encantada Preta)
+	mes "- 2x Pesadelo maternal"; // aceitando item antigo (Pedra encantada Preta)
 	mes "- 20x Ouros";
 	mes "- 4x  Cinto de Morrigane";
 	next;
@@ -36,7 +36,7 @@ monk_test,319,140,4	script	Thor	808,{
 	mes "^006611[ Thor ]^333333";
 	mes "Então, deixe-me verificar se você tem todos os itens...";
 	if (countitem(7058)<1 || countitem(969)<20 ||
-		(countitem(7020)<50 && countitem(7430)<50) || countitem(2650)<4){
+		(countitem(7020)<2 && countitem(7430)<50) || countitem(2650)<4){
 		mes "Você não trouxe tudo que é necessário...";
 	}else{
 		mes "Nossa que maravilha!!";
@@ -50,7 +50,7 @@ monk_test,319,140,4	script	Thor	808,{
 		if(countitem(7430)>=50){ // aceitando item antigo (Pedra encantada Preta)
 			delitem 7430,50;
 		}else{
-			delitem 7020,50;
+			delitem 7020,2;
 		}
 		delitem 2650,4;
 		
