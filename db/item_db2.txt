@@ -1870,7 +1870,7 @@
 4440,Necromancer_Card,Necromancer Card,6,,10,10,,,,,,,,2,,,,,{ if (getiteminfo(getequipid(EQI_HAND_R),11) == 10) { bonus bInt,1; bonus bIgnoreMdefRate,2; } },{},{}
 4441,Fallen_Bishop_Hibram_Card,Fallen Bishop Hibram Card,6,,10,10,,,,,,,,64,,,,,{ bonus bMatkRate,10; bonus bMaxSPrate,-50; if(isequippedcnt(4441,4100)==1) { bonus2 bMagicAddRace,RC_Angel,25; bonus2 bMagicAddRace,RC_DemiHuman,25; } },{},{}
 
-4451,Entweihen_Card,Entweihen Crothen Card,6,20,,10,,,,,,,,136,,,,,{ bonus5 bAutoSpellWhenHit,"NPC_WIDESOULDRAIN",10,50,BF_NORMAL|BF_SKILL,1; },{ bonus5 bAutoSpellWhenHit,"NPC_WIDESOULDRAIN",10,50,BF_MAGIC|BF_MISC,1; },{}
+4451,Not_Implemented_Card,Not Implemented Card,6,20,,10,,,,,,,,16,,,,,{},{},{}
 
 // More Headgears
 //===================================================================
