@@ -8,3 +8,5 @@
 deny: 201.42.43.105
 deny: 200.207.57.45
 deny: 189.33.51.180
+
+socket_max_client_packet: 22480
