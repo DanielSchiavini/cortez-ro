@@ -13,7 +13,6 @@ poring_w01	mapflag	pvp_noguild
 poring_w01	mapflag	nogo
 poring_w01	mapflag	nowarp
 poring_w01	mapflag	nodrop
-poring_w01	mapflag	noteleport
 poring_w01	mapflag	nopenalty
 poring_w01	mapflag	noreturn
 poring_w01	mapflag	nosave	SavePoint
