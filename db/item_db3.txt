@@ -81,7 +81,7 @@
 16501,Asa_de_Deviling,Asa de Deviling,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,100,0,501,{ bonus bStr,15; },{},{}
 16502,Asa_do_Artico,Asa do Ártico,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,101,0,502,{ if(getskilllv(48)>0) bonus bDoubleAddRate,(getskilllv(48)*3); else bonus bDoubleRate,50; bonus bAgi,3; bonus bDex,3; bonus bStr,3; },{},{}
 16503,Asa_de_Borboleta,Asa de Borboleta,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,102,0,503,{ bonus bLuk,10; if(getskilllv(379)>0) bonus2 bSkillAtk,379,20; else skill 379,3; },{},{}
-16504,Asa_do_Mestre,Asa do Mestre,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,103,0,504,{ bonus4 bAutoSpellWhenHit,16,10,40+3*getskilllv(16),1; bonus2 bResEff,Eff_Stone,-5000; },{},{}
+16504,Asa_do_Mestre,Asa do Mestre,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,103,0,504,{ bonus3 bAutoSpellWhenHit,"MG_STONECURSE",10,70+3*getskilllv("MG_STONECURSE"); bonus bCastrate,-5; },{},{}
 16505,Asa_de_Fada,Asa de Fada,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,104,0,505,{ bonus bDex,8; bonus bAgi,5; bonus bAtkRange,2; },{},{}
 16506,Asa_Brilhante,Asa Brilhante,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,105,0,506,{ bonus bDex,6; bonus bVit,6; bonus bInt,6; },{},{}
 16507,Asa_do_Demonio,Asa do Demônio,5,,10,1000,,1,,0,0xFFFFFFFF,7,2,1,,106,0,507,{ bonus bStr,6; if(isequipped(1164)) bonus bMatkRate,50; },{},{}
