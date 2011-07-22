@@ -1891,7 +1891,7 @@
 5015,Egg_Shell,Egg Shell,5,,10,200,,3,,2,0xFFFFFFFF,7,2,256,,0,0,101,{},{},{}
 5016,Boys_Cap,Boys Cap,5,,10,100,,2,,4,0xFFFFFFFF,7,2,256,,80,1,102,{ bonus bAllStats,5; },{},{}
 5017,Bone_Helm,Bone Helm,5,,10,800,,10,,2,0x000444A2,7,2,256,,70,1,103,{ bonus2 bSubEle,Ele_Dark,30; },{},{}
-5018,Feather_Bonnet,Feather Bonnet,5,,10,300,,4,,2,0x00080808,7,2,256,,0,1,104,{ bonus bDex,15; bonus bLuk,10; bonus4 bAutoSpell,"AC_DOUBLE",10,20; },{},{}
+5018,Feather_Bonnet,Feather Bonnet,5,,10,300,,4,,2,0x00080808,7,2,256,,0,1,104,{ bonus bDex,15; bonus bLuk,10; bonus3 bAutoSpell,"AC_DOUBLE",10,20; },{},{}
 5019,Corsair,Corsair,5,,10,500,,5,,2,0xFFFFFFFF,7,2,256,,50,1,105,{ bonus bVit,10; },{},{}
 5020,Kafra_Band,Kafra Band,5,,10,500,,3,,3,0xFFFFFFFF,7,2,256,,0,1,106,{ bonus bMdef,3; },{},{}
 5021,Grief_for_Greed,Grief for Greed,5,,10,1200,,4,,2,0x00040420,7,2,256,,38,1,107,{ bonus bInt,1; bonus bDex,1; },{},{}
