@@ -36,11 +36,11 @@ function	script	F_keWarpPvp	{
 		case 1: // Voltar
 			return;
 		case 2: // pvp
-			callfunc "F_keWarp",@cost,0,e_com,"poring_w01",97,99;
+			callfunc "F_keWarp",@cost,0,e_com,"poring_w01",-1,-1;
 			break;
 		case 3: //1x1
-				if (getmapusers("pvp_n_1-5") < 2){
-					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_1-5",-1,-1;
+				if (getmapusers("pvp_n_6-5") < 2){
+					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_6-5",-1,-1;
 				}else{
 					callfunc "F_keIntro", e_sry, "O mapa já tem pessoas lutando, quando um deles sair ou morrer você pode entrar!!!";
 				}
@@ -73,11 +73,11 @@ function	script	F_keWarpPvp	{
 			set @submenu, select(
 				"- Voltar",
 				"- Sala do Galho Seco",
-				"- Jawaii",
-				"- Comodo",
-				"- Esfinge",
-				"- Pirâmide",
-				"- Natal"
+				"- Sala 1",
+				"- Sala 2",
+				"- Sala 3",
+				"- Sala 4",
+				"- Sala 5"
 			);
 			switch(@submenu){
 				case 2:
@@ -85,24 +85,24 @@ function	script	F_keWarpPvp	{
 					callfunc "F_keWarp",@cost,0,e_com,"guild_vs2",-1,-1;
 					break;
 				case 3:
-					if(getmapmobs("jawaii")>200) killmonsterall("jawaii");
-					callfunc "F_keWarp",@cost,0,e_com,"jawaii",-1,-1;
+					if(getmapmobs("pvp_n_1-5")>200) killmonsterall("pvp_n_1-5");
+					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_1-5",-1,-1;
 					break;
 				case 4:
-					if(getmapmobs("comodo")>200) killmonsterall("comodo");
-					callfunc "F_keWarp",@cost,0,e_com,"comodo",-1,-1;
+					if(getmapmobs("pvp_n_2-5")>200) killmonsterall("pvp_n_2-5");
+					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_2-5",-1,-1;
 					break;
 				case 5:
-					if(getmapmobs("moc_fild19")>200) killmonsterall("moc_fild19");
-					callfunc "F_keWarp",@cost,0,e_com,"moc_fild19",-1,-1;
+					if(getmapmobs("pvp_n_3-5")>200) killmonsterall("pvp_n_3-5");
+					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_3-5",-1,-1;
 					break;
 				case 6:
-					if(getmapmobs("moc_ruins")>200) killmonsterall("moc_ruins");
-					callfunc "F_keWarp",@cost,0,e_com,"moc_ruins",-1,-1;
+					if(getmapmobs("pvp_n_4-5")>200) killmonsterall("pvp_n_4-5");
+					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_4-5",-1,-1;
 					break;
 				case 7:
-					if(getmapmobs("xmas_fild01")>200) killmonsterall("xmas_fild01");
-					callfunc "F_keWarp",@cost,0,e_com,"xmas_fild01",-1,-1;
+					if(getmapmobs("pvp_n_5-5")>200) killmonsterall("pvp_n_5-5");
+					callfunc "F_keWarp",@cost,0,e_com,"pvp_n_5-5",-1,-1;
 					break;
 			}
 			break;
