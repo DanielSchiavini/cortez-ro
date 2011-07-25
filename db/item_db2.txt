@@ -1854,7 +1854,7 @@
 4424,Stapo_Card,Stapo Card,6,,10,10,,,,,,,,136,,,,,{ skill 151,1; skill 152,1; },{},{}
 4425,Atroce_Card,Atroce Card,6,,10,10,,,,,,,,2,,,,,{ bonus3 bAutoSpellWhenHit,"NPC_DRAGONFEAR",3,30; bonus3 bAutoSpellWhenHit,"SM_MAGNUM",5,20; bonus3 bAutoSpellWhenHit,"ASC_METEORASSAULT",5,15; },{},{}
 4426,Byorgue_Card,Byorgue Card,6,,10,10,,,,,,,,16,,,,,{ if(BaseJob == Job_Rogue){ bonus bMatkRate,10; bonus bAtkRate,10; } },{},{}
-4427,Sword_Guardian_Card,Sword Guardian Card,6,,10,10,,,,,,,,2,,,,,{ bonus bHit,5; bonus bCritical,5; if (getiteminfo(getequipid(EQI_HAND_R),11) == 2 || getiteminfo(getequipid(EQI_HAND_R),11) == 3) bonus2 bSkillAtk,62,25; },{},{}
+4427,Sword_Guardian_Card,Sword Guardian Card,6,,10,10,,,,,,,,2,,,,,{ if(isequippedcnt(4427,16120)<=2){ bonus bHit,5; bonus bCritical,5; set @v,getiteminfo(getequipid(EQI_HAND_R),11); if (@v == 2 || @v == 3) bonus2 bSkillAtk,"KN_BOWLINGBASH",30; set @v,0; } },{},{}
 4428,Bow_Guardian_Card,Bow Guardian Card,6,,10,10,,,,,,,,2,,,,,{ bonus bHit,5; bonus bCritical,5; if (getiteminfo(getequipid(EQI_HAND_R),11) == 11) bonus2 bSkillAtk,47,50; },{},{}
 4429,Salamander_Card,Salamander Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSkillAtk,80,40; bonus2 bSkillAtk,83,40; },{},{}
 4430,Ifrit_Card,Ifrit Card,6,,10,10,,,,,,,,136,,,,,{ bonus bBaseAtk,3*(JobLevel/2); bonus bCritical,(JobLevel/10); bonus bHit,JobLevel; bonus5 bAutoSpellWhenHit,653,7,100,0xFFF,0; bonus2 bSkillAtk,653,30; },{},{}

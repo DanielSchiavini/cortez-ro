@@ -16,7 +16,7 @@
 //Custom Cards (Human Mobs Cards)
 //1
 16100,Novice_Card,Novice Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,10; bonus bInt,10; bonus bDex,10; if(isequippedcnt(16100,16137)<=2 && !isequipped(4302)) { if(Class==Job_SuperNovice) { bonus bMaxHPrate,130-20*(isequippedcnt(16100,16137)-1); } } },{},{}
-16101,Swordman_Card,Swordman Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,8; if(isequippedcnt(16101,16120)<=2) bonus2 bSkillAtk,397,23; },{},{}
+16101,Swordman_Card,Swordman Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,8; if(isequippedcnt(4427,16101,16120)<=2) bonus2 bSkillAtk,"LK_SPIRALPIERCE",23; },{},{}
 16102,Magician_Card,Magician Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,10; bonus bDex,5; bonus bMaxSP,-200; },{},{}
 16103,Thief_Card,Thief Card,6,,10,10,,,,,,,,16,,,,,{ bonus bCritAtkRate,15; if(getequipid(3)>=1250 && getequipid(3)<=1299) bonus bCritical,40; else if(getequipid(3)>=13150 && getequipid(3)<=13153) { bonus bCritical,40; bonus bAtkRange,-2; }},{},{}
 16104,Archer_Card,Archer Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDex,15; bonus bAgi,15; bonus bLuk,25; },{},{}
@@ -38,7 +38,7 @@
 16118,Priest_Card,Priest Card,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,2; skill 28,2; },{},{}
 16119,Monk_Card,Monk Card,6,,10,10,,,,,,,,16,,,,,{ bonus bStr,15; bonus bDex,10; bonus bMaxSP,200+40*(isequippedcnt(16119)==1); },{},{}
 //1-1-1 e 1-2-1
-16120,Carta_Turok,Carta Turok,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; if(isequippedcnt(16101,16120)<=2) bonus2 bSkillAtk,397,30; },{},{}
+16120,Carta_Turok,Carta Turok,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; if(isequippedcnt(4427,16101,16120)<=2) bonus2 bSkillAtk,"LK_SPIRALPIERCE",30; },{},{}
 16121,Carta_Yuri,Carta Yuri,6,,10,10,,,,,,,,16,,,,,{ bonus bInt,10; bonus bDex,10; skill 368,3; bonus bSpeedAddRate,-40; },{},{ sc_end SC_SACRIFICE; heal 1-Hp,0;  }
 16122,Carta_Meteoro,Carta Meteoro,6,,10,10,,,,,,,,16,,,,,{ if(isequippedcnt(16122)<=2) { bonus bCritAtkRate,20; if(getequipid(3)>=1250 && getequipid(3)<=1299) bonus bCritical,50; else if(getequipid(3)>=13150 && getequipid(3)<=13153) { bonus bCritical,100; bonus bAtkRange,-2; } } },{},{}
 16123,Carta_T.Roz,Carta T.Roz,6,,10,10,,,,,,,,16,,,,,{ bonus bUnstripableArmor,1; bonus bUnbreakableArmor,0; bonus bUnstripableWeapon,1; bonus bUnbreakableWeapon,0; },{},{}
