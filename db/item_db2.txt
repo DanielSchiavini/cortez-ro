@@ -1702,7 +1702,7 @@
 4273,Shell_Fish_Card,Shell Fish Card,6,,10,10,,,,,,,,2,,,,,{ bonus bBaseAtk,5; bonus2 bAddDamageClass,1310,25; },{},{}
 4274,Zombie_Master_Card,Zombie Master Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,15; },{ },{}
 4275,Zombie_Prisoner_Card,Zombie Prisoner Card,6,,10,10,,,,,,,,32,,,,,{ bonus bAllStats,-20; bonus bVit,20; bonus bMaxHP,5000; },{},{}
-4276,Lord_of_Death_Card,Lord of Death Card,6,,10,10,,,,,,,,4,,,,,{ bonus bFlee,125+(3*getrefine()); },{},{}
+4276,Lord_of_Death_Card,Lord of Death Card,6,,10,10,,,,,,,,4,,,,,{ bonus bFlee,200; },{},{}
 4277,Zherlthsh_Card,Zherlthsh Card,6,,10,10,,,,,,,,34,,,,,{ if(BaseClass==Job_Sage){ bonus3 bAutoSpell,13,6,40; bonus3 bAutoSpell,14,6,40; bonus3 bAutoSpell,15,6,40; bonus3 bAutoSpell,19,6,40; bonus3 bAutoSpell,20,6,40; bonus3 bAutoSpell,90,6,40; }else{ bonus3 bAutoSpell,13,6,15; bonus3 bAutoSpell,14,6,15; if(!isequipped(4385)) bonus3 bAutoSpell,15,6,15; bonus3 bAutoSpell,19,6,15; bonus3 bAutoSpell,20,6,15; bonus3 bAutoSpell,90,6,15; } },{},{}
 4278,Gibbet_Card,Gibbet Card,6,,10,10,,,,,,,,256,,,,,{ if(isequippedcnt(4278)<=2) bonus bDef,2+1*(getrefine()==10 || getrefine()==0); },{},{}
 4279,Earth_Deleter_Card,Earth Deleter Card,6,,10,10,,,,,,,,18,,,,,{ bonus bSPrecovRate,-100; bonus bSPGainValue,30; },{ },{ heal 0,-100; }
@@ -1778,7 +1778,7 @@
 4348,Whikebain_Card,Wikebine Tres Card,6,,10,10,,,,,,,,136,,,,,{ bonus3 bAutoSpell,217,1,50; if(isequippedcnt(4039)&&isequippedcnt(4210)&&isequippedcnt(4257)&&isequippedcnt(4230)) { bonus bStr,6; bonus bAgi,4; bonus2 bSkillAtk,212,10; if(getskilllv(217)==5) bonus3 bAutoSpell,217,5,50; if(BaseJob == Job_Rogue) { bonus bUseSPrate,-20; bonus3 bAutoSpell,219,1,-20; } } },{},{}
 4349,Erend_Card,Errende Ebecee Card,6,,10,10,,,,,,,,136,,,,,{ bonus4 bAutoSpellWhenHit,25,1,50,0; },{},{}
 4350,Rawrel_Card,Laurell Weinder Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,88,3; bonus2 bSkillAtk,89,3; },{},{ percentheal 0,-50; }
-4351,Kavac_Card,Kavach Icarus Card,6,,10,10,,,,,,,,4,,,,,{ if(getrefine()<=5) { bonus bFlee,80; bonus bFlee2,1; } else { bonus bFlee,60; } },{},{}
+4351,Kavac_Card,Kavach Icarus Card,6,,10,10,,,,,,,,4,,,,,{ bonus bFlee,125; },{},{}
 4352,B_Ygnizem_Card,General Egnigem Cenia Card,6,,10,10,,,,,,,,64,,,,,{ if (!isequipped(4131)) bonus bSpeedRate,((BaseLevel*10)/100); bonus bMaxHPrate,6; bonus bMaxSPrate,6; },{},{}
 4353,Removal_Card,Remover Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHP,(2000-(100*getrefine())); bonus bHPrecovRate,10; },{},{}
 4354,Gemini_Card,Gemini-S58 Card,6,,10,10,,,,,,,,769,,,,,{ if(readparam(bAgi)>=90) { bonus2 bResEff,Eff_Silence,1000; bonus2 bResEff,Eff_Stun,1000; } if(readparam(bVit)>=80) { bonus2 bResEff,Eff_Stone,1500; bonus2 bResEff,Eff_Sleep,1500; } },{},{}
