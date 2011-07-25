@@ -1480,7 +1480,7 @@
 4053,Vitata_Card,Vitata Card,6,,10,10,,,,,,,,136,,,,,{ skill 28,1; bonus bUseSPrate,25; },{},{}
 4054,Angeling_Card,Angeling Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Holy; },{},{}
 4055,Marina_Card,Marina Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEff,Eff_Freeze,500; bonus bBaseAtk,5; },{},{}
-4056,Dustiness_Card,Dustiness Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Wind,23; bonus bFlee,5; },{},{}
+4056,Dustiness_Card,Dustiness Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Wind,22; bonus bFlee,5; },{},{}
 4057,Metaller_Card,Metaller Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEff,Eff_Silence,500; bonus bBaseAtk,5; },{},{}
 4058,Thara_Frog_Card,Thara Frog Card,6,,10,10,,,,,,,,32,,,,,{ bonus2 bSubRace,RC_DemiHuman,27-10*isequippedcnt(4128); },{},{}
 4059,Soldier_Andre_Card,Soldier Andre Card,6,,10,10,,,,,,,,32,,,,,{ bonus2 bSubRace,RC_Plant,30-15*isequippedcnt(4128); },{},{}
@@ -1495,7 +1495,7 @@
 4068,Scorpion_Card,Scorpion Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace,RC_Plant,30; },{},{}
 4069,Drainliar_Card,Drainliar Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEle,Ele_Water,30; },{},{}
 4070,Eggyra_Card,Eggyra Card,6,,10,10,,,,,,,,64,,,,,{ bonus bSPrecovRate,15; },{},{}
-4071,Orc_Zombie_Card,Orc Zombie Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Undead,23; bonus bFlee,5; },{},{}
+4071,Orc_Zombie_Card,Orc Zombie Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Undead,22; bonus bFlee,5; },{},{}
 4072,Golem_Card,Golem Card,6,,10,10,,,,,,,,2,,,,,{ bonus bUnbreakableWeapon,0; bonus bBaseAtk,5; },{},{}
 4073,Pirate_Skeleton_Card,Pirate Skeleton Card,6,,10,10,,,,,,,,136,,,,,{ skill 248,5; },{},{}
 4074,Bigfoot_Card,Bigfoot Card,6,,10,10,,,,,,,,32,,,,,{ bonus2 bSubRace,RC_Insect,20-10*isequippedcnt(4128); },{},{}
@@ -1505,7 +1505,7 @@
 4078,Savage_Card,Savage Card,6,,10,10,,,,,,,,16,,,,,{ bonus bVit,10; },{},{}
 4079,Mantis_Card,Mantis Card,6,,10,10,,,,,,,,136,,,,,{ bonus bStr,15; },{},{}
 4080,Flora_Card,Flora Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace,RC_Fish,30; },{},{}
-4081,Hode_Card,Hode Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Earth,23; bonus bFlee,5; },{},{}
+4081,Hode_Card,Hode Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Earth,22; bonus bFlee,5; },{},{}
 4082,Desert_Wolf_Card,Desert Wolf Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddSize,0,20; bonus bBaseAtk,5; },{},{}
 4083,Rafflesia_Card,Rafflesia Card,6,,10,10,,,,,,,,32,,,,,{ bonus2 bSubRace,RC_Fish,30-15*isequippedcnt(4128); },{},{}
 4084,Marine_Sphere_Card,Marine Sphere Card,6,,10,10,,,,,,,,136,,,,,{ skill 7,3; },{},{}
@@ -1519,7 +1519,7 @@
 4092,Skeleton_Worker_Card,Skeleton Worker Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddSize,1,20; bonus bBaseAtk,5; },{},{}
 4093,Obeaune_Card,Obeaune Card,6,,10,10,,,,,,,,905,,,,,{ skill 35,1; bonus4 bAutoSpell,28,10,30,2; },{},{}
 4094,Archer_Skeleton_Card,Archer Skeleton Card,6,,10,10,,,,,,,,2,,,,,{ bonus bLongAtkRate,15; },{},{}
-4095,Marse_Card,Marse Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Water,23; bonus bFlee,5; },{},{}
+4095,Marse_Card,Marse Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Water,22; bonus bFlee,5; },{},{}
 4096,Zenorc_Card,Zenorc Card,6,,10,10,,,,,,,,2,,,,,{ if(BaseClass!=Job_Mage) if(!isequipped(4357)) { bonus bBreakWeaponRate,400; bonus2 bAddItemHealRate,IG_FirstAid,-50; bonus2 bAddRace,RC_Boss,-25; if(readparam(bVit)>100) { skill "WS_OVERTHRUSTMAX",3; bonus bMaxHpRate,-25;} else skill "WS_OVERTHRUSTMAX",2; } },{},{ sc_end SC_MAXOVERTHRUST; }
 4097,Matyr_Card,Matyr Card,6,,10,10,,,,,,,,64,,,,,{ if(isequippedcnt(4097)==2) { bonus bMaxHPrate,12; bonus bMaxSPrate,5; } else { bonus bMaxHPrate,16; } },{ if(isequippedcnt(4097)==2) sc_start4 SC_ENDURE,1800000,10,0,0,1; },{ sc_end SC_ENDURE; }
 4098,Dokebi_Card,Dokebi Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Wind; bonus bDef,1; },{},{}
@@ -1532,15 +1532,15 @@
 4105,Marc_Card,Marc Card,6,,10,10,,,,,,,,16,,,,,{ bonus2 bSubEle,Ele_Water,5; bonus2 bResEff,Eff_Freeze,10000; },{},{}
 4106,Mummy_Card,Mummy Card,6,,10,10,,,,,,,,2,,,,,{ bonus bHit,50; },{},{}
 4107,Verit_Card,Verit Card,6,,10,10,,,,,,,,64,,,,,{ bonus bMaxHPrate,10; bonus bMaxSPrate,10; bonus bVit,1; },{},{}
-4108,Myst_Card,Myst Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Poison,23; bonus bFlee,5; },{},{}
-4109,Jakk_Card,Jakk Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Fire,23; bonus bFlee,5; },{},{}
+4108,Myst_Card,Myst Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Poison,22; bonus bFlee,5; },{},{}
+4109,Jakk_Card,Jakk Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Fire,22; bonus bFlee,5; },{},{}
 4110,Ghoul_Card,Ghoul Card,6,,10,10,,,,,,,,769,,,,,{ bonus2 bSubEle,Ele_Poison,10; bonus2 bResEff,Eff_Poison,2000; bonus bDef,1; },{},{}
 4111,Strouf_Card,Strouf Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace,RC_Demon,30; },{},{}
 4112,Marduk_Card,Marduk Card,6,,10,10,,,,,,,,769,,,,,{ bonus2 bResEff,Eff_Silence,10000; },{},{}
-4113,Marionette_Card,Marionette Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Ghost,23; bonus bFlee,5; },{},{}
+4113,Marionette_Card,Marionette Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Ghost,22; bonus bFlee,5; },{},{}
 4114,Argiope_Card,Argiope Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Poison; bonus bDef,1; },{},{}
 4115,Hunter_Fly_Card,Hunter Fly Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bHpDrainRate,30,15; },{},{}
-4116,Isis_Card,Isis Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Dark,23; bonus bFlee,5; },{},{}
+4116,Isis_Card,Isis Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Dark,22; bonus bFlee,5; },{},{}
 4117,Sidewinder_Card,Sidewinder Card,6,,10,10,,,,,,,,2,,,,,{ bonus bDoubleRate,5; },{},{}
 4118,Earth_Petite_Card,Earth Petite Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddRace,RC_Dragon,30; },{},{}
 4119,Bathory_Card,Bathory Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Dark; },{},{}
