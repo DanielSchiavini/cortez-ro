@@ -1658,7 +1658,7 @@
 4229,Clock_Tower_Manager_Card,Clock Tower Manager Card,6,,10,10,,,,,,,,769,,,,,{ if(Class==Job_Paladin || Class==Job_Professor) skill 27,4; },{},{}
 4230,Shinobi_Card,Shinobi Card,6,,10,10,,,,,,,,4,,,,,{ bonus bAgi,5; bonus4 bAutoSpellWhenHit,135,5,100,0; },{},{}
 4231,Increase_Soil_Card,Increase Soil Card,6,,10,10,,,,,,,,769,,,,,{ bonus3 bAutoSpell,90,3,50; },{},{}
-4232,Hermit_Plant_Card,Hermit Plant Card,6,,10,10,,,,,,,,136,,,,,{ bonus2 bAddItemHealRate,IG_Herb,50; },{},{}
+4232,Hermit_Plant_Card,Hermit Plant Card,6,,10,10,,,,,,,,136,,,,,{ bonus bCastrate,-20; bonus2 bSkillAtk,"WZ_EARTHSPIKE",25; },{},{}
 4233,Baby_Leopard_Card,Baby Leopard Card,6,,10,10,,,,,,,,769,,,,,{ skill 52,10; },{},{}
 4234,Anolian_Card,Anolian Card,6,,10,10,,,,,,,,769,,,,,{ skill 14,5+2*(Class==Job_Soul_Linker); },{},{}
 4235,Christmas_Cookie_Card,Christmas Cookie Card,6,,10,10,,,,,,,,769,,,,,{ bonus bDex,1; bonus bStr,2; bonus bAgi,3; },{},{}
