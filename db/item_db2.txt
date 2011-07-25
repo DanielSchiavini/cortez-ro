@@ -1621,7 +1621,7 @@
 4192,Rotar_Zairo_Card,Rotar Zairo Card,6,,10,10,,,,,,,,2,,,,,{ bonus bCritical,10; bonus2 bCriticalAddRace,RC_NonBoss,10; },{},{}
 4193,Lude_Card,Lude Card,6,,10,10,,,,,,,,136,,,,,{ bonus3 bAutoSpell,6,5,30; },{},{}
 4194,Rybio_Card,Rybio Card,6,,10,10,,,,,,,,16,,,,,{ bonus2 bAddEffWhenHit,Eff_Stun,300+100*(readparam(bDex)>=77); },{},{}
-4195,Leaf_Cat_Card,Leaf Cat Card,6,,10,10,,,,,,,,4,,,,,{ bonus bFleeRate,10; },{},{}
+4195,Leaf_Cat_Card,Leaf Cat Card,6,,10,10,,,,,,,,64,,,,,{ bonus bFleeRate,3; bonus bMaxHPrate,3; },{},{}
 4196,Marin_Card,Marin Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bAddEle,Ele_Fire,10; bonus bHit,5; },{},{}
 4197,Mastering_Card,Mastering Card,6,,10,10,,,,,,,,136,,,,,{ bonus bAgi,15; bonus bLuk,20; },{},{}
 4198,Maya_Purple_Card,Maya Purple Card,6,,10,10,,,,,,,,769,,,,,{ skill 278,10; },{},{}
