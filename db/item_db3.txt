@@ -64,8 +64,8 @@
 //Entweihen estava caindo no old card album, por isso mudei o nome do ID 4451 e criei essa
 20201,Carta_Entweihen,Carta Entweihen Crothen,6,20,,10,,,,,,,,136,,,,,{ bonus3 bAutoSpellWhenHit,"NPC_WIDESOULDRAIN",10,50; },{},{}
 //Outras cartas novas
-20202,Carta_Tendrilrion,Carta Tendrilrion,6,20,,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Water,22; bonus2 bSubEle,Ele_Wind,22; },{},{}
-20202,Carta_Hardrock_Mommoth,Carta Hardrock Mommoth,6,20,,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Earth,22; bonus2 bSubEle,Ele_Fire,22; },{},{}
+20202,Carta_Tendrilrion,Carta Tendrilrion,6,20,,10,,,,,,,,4,,,,,{ bonus bFlee,10; bonus2 bSubEle,Ele_Water,22; bonus2 bSubEle,Ele_Wind,22; },{},{}
+20202,Carta_Hardrock_Mommoth,Carta Hardrock Mommoth,6,20,,10,,,,,,,,4,,,,,{ bonus bFlee,10; bonus2 bSubEle,Ele_Earth,22; bonus2 bSubEle,Ele_Fire,22; },{},{}
 
 // Outros itens
 9921,Slave_Cloning_Scroll,Pergaminho para Clonagem 1,2,,25000,10,,,,,127918079,7,2,,,,,,{ atcommand "@slaveclone "+strcharinfo(0); misceffect 514; misceffect 501; misceffect 403; misceffect 501; },{},{}
