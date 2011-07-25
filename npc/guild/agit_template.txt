@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
-//= 1.7
+//= 1.8
 //===== Compatible With: =====================================
 //= eAthena SVN
 //===== Description: =========================================
@@ -49,6 +49,7 @@
 //= 1.6b Moved where investments are added to eco/def. [L0ne_W0lf]
 //= 1.7 Updated Agitbreak announcements, added bc_woe [L0ne_W0lf]
 //=     and added extended anouncement format for mapannounce.
+//= 1.8 Fixed a possible exploit in guild castle investment. [Brian]
 //============================================================
 
 -	script	WoE_Timer	-1,{
@@ -656,7 +657,7 @@ OnRecvCastle:
 			mes "^ff0000O nível de comércio já chegou no máximo já chegou a 100%. Não é necessário investir mais. Você conquistou um grande reinado, mestre.^000000";
 			close;
 		}
-		if (GetCastleData(strnpcinfo(2),4) == 2) {
+		if (GetCastleData(strnpcinfo(2),4) >= 2) {
 			mes "^ff0000Mas você já investiu duas vezes hoje. Não poderá investir mais.^000000 Espero que volte amanhã para aumentar nosso nível de investimento.";
 			close;
 		}
@@ -669,6 +670,11 @@ OnRecvCastle:
 		next;
 		switch(select("Investir em Comércio:Cancelar")) {
 		case 1:
+			if (GetCastleData(strnpcinfo(2),4) >= 2) {
+				mes "[ Steward " + .@name$ + " ]";
+				mes "I'm sorry but you already invested twice today so you cannot invest any more.";
+				close;
+			}
 			if (Zeny < .@eco_invest) {
 				mes "[ Funcionário " + .@name$ + " ]";
 				mes "Desculpe mas você não tem zeny suficiente para investir. Você vai precisar tentar novamente quando conseguir o zeny.";
@@ -720,7 +726,7 @@ OnRecvCastle:
 			mes "^ff0000Mas o nível de defesa já chegou a 100%! Não precisamos de mais investimentos. Como eu esperava, meus parabéns.^000000";
 			close;
 		}
-		if (GetCastleData(strnpcinfo(2),5) == 2) {
+		if (GetCastleData(strnpcinfo(2),5) >= 2) {
 			mes "^ff0000Você já investiu duas vezes hoje, então não será possível investir novamente.^000000 Espero que nossos guardiões ainda melhorem muito.";
 			close;
 		}
@@ -733,6 +739,11 @@ OnRecvCastle:
 		next;
 		mes "[ Funcionário " + .@name$ + " ]";
 		if(select("Investir em Defesa:Cancelar")==1) {
+			if (GetCastleData(strnpcinfo(2),5) >= 2) {
+				mes "[ Steward " + .@name$ + " ]";
+				mes "I'm sorry but you already invested twice today so you cannot invest any more.";
+				close;
+			}
 			if (Zeny < .@def_invest) {
 				mes "Desculpe mas não há zeny suficiente para investir. Você vai precisar tentar novamente quando tiver zeny.";
 				close;

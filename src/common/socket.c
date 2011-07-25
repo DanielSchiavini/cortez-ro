@@ -32,6 +32,9 @@
 	#ifndef SIOCGIFCONF
 	#include <sys/sockio.h> // SIOCGIFCONF on Solaris, maybe others? [Shinomori]
 	#endif
+	#ifndef FIONBIO
+	#include <sys/filio.h> // FIONBIO on Solaris [FlavioJS]
+	#endif
 
 	#ifdef HAVE_SETRLIMIT
 	#include <sys/resource.h>
@@ -938,7 +941,7 @@ static int connect_check_(uint32 ip)
 
 /// Timer function.
 /// Deletes old connection history records.
-static int connect_check_clear(int tid, unsigned int tick, int id, intptr data)
+static int connect_check_clear(int tid, unsigned int tick, int id, intptr_t data)
 {
 	int i;
 	int clear = 0;
@@ -1118,6 +1121,9 @@ void socket_final(void)
 /// Closes a socket.
 void do_close(int fd)
 {
+	if( fd <= 0 ||fd >= FD_SETSIZE )
+		return;// invalid
+
 	flush_fifo(fd); // Try to send what's left (although it might not succeed since it's a nonblocking socket)
 	sFD_CLR(fd, &readfds);// this needs to be done before closing the socket
 	sShutdown(fd, SHUT_RDWR); // Disallow further reads/writes
@@ -1242,16 +1248,23 @@ void socket_init(void)
 			rlp.rlim_cur = FD_SETSIZE;
 			if( 0 != setrlimit(RLIMIT_NOFILE, &rlp) )
 			{// failed, try setting the maximum too (permission to change system limits is required)
+				int err;
 				rlp.rlim_max = FD_SETSIZE;
-				if( 0 != setrlimit(RLIMIT_NOFILE, &rlp) )
+				err = setrlimit(RLIMIT_NOFILE, &rlp);
+				if( err != 0 )
 				{// failed
+					const char* errmsg = "unknown";
+					int rlim_ori;
 					// set to maximum allowed
 					getrlimit(RLIMIT_NOFILE, &rlp);
+					rlim_ori = (int)rlp.rlim_cur;
 					rlp.rlim_cur = rlp.rlim_max;
 					setrlimit(RLIMIT_NOFILE, &rlp);
 					// report limit
 					getrlimit(RLIMIT_NOFILE, &rlp);
-					ShowWarning("socket_init: failed to set socket limit to %d (current limit %d).\n", FD_SETSIZE, (int)rlp.rlim_cur);
+					if( err == EPERM )
+						errmsg = "permission denied";
+					ShowWarning("socket_init: failed to set socket limit to %d, setting to maximum allowed (original limit=%d, current limit=%d, maximum allowed=%d, error=%s).\n", FD_SETSIZE, rlim_ori, (int)rlp.rlim_cur, (int)rlp.rlim_max, errmsg);
 				}
 			}
 		}

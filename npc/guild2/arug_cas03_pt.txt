@@ -2409,7 +2409,7 @@ arug_cas03,328,98,3	script	Steward#aru03	55,{
 			mes "comercial além disso.";
 			close;
 		}
-		if (GetCastleData("arug_cas03",4) == 2) {
+		if (GetCastleData("arug_cas03",4) >= 2) {
 			mes "[ Steward ]";
 			mes "Você já fez dois investimentos";
 			mes "hoje, então você deve esperar";
@@ -2435,6 +2435,11 @@ arug_cas03,328,98,3	script	Steward#aru03	55,{
 		next;
 		switch(select("Investir no Crescimento Comercial:Cancelar")) {
 		case 1:
+			if (GetCastleData("arug_cas03",4) >= 2) {
+				mes "[ Steward ]";
+				mes "Você já investiu duas vezes hoje, portanto precisará esperar até amanhã.";
+				close;
+			}
 			if (Zeny < .@eco_invest) {
 				mes "[ Steward ]";
 				mes "Lamento, Mestre, mas";
