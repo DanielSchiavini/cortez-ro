@@ -234,10 +234,10 @@ new_zone01,49,124,5	script	Evento dos Castelos	47,{
 		if(playerattached()){
 			specialeffect2 573; sleep2 50;
 			specialeffect2 581; sleep2 50;
+			logmes "[Castelo] O chefe do castelo " + $castelo + " foi morto";
 		}else{
-			debugmes "Evento dos Castelos::OnChefe called without an attached player";
+			debugmes "Evento dos Castelos::OnChefe(" + $castelo + ") called without an attached player";
 		}
-		logmes "[Castelo] O chefe do castelo " + $castelo + " foi morto";
 		if($castelo<=4){
 			announce "[Evento] O chefe do " + $castelo + "º castelo foi morto", bc_all|bc_npc;
 			sleep 2000;
@@ -267,8 +267,10 @@ new_zone01,49,124,5	script	Evento dos Castelos	47,{
 	
 	OnMvp:
 		mapannounce $evcity$ + "g_cas0" + $castelo, "[Evento] Um MVP foi morto... Ainda há " + mobcount($evcity$ + "g_cas0" + $castelo, "Evento dos Castelos::OnMvp") + " vivos!", bc_map;
-		specialeffect2 377; sleep2 50;
-		specialeffect2 381; sleep 50;
+		if(playerattached()){
+			specialeffect2 377; sleep2 50;
+			specialeffect2 381; sleep 50;
+		}
 	OnMob:
 		if($castelo>0 && $castelo<5)
 			areamonster $evcity$ + "g_cas0" + $castelo, 0, 0, 300, 300, "--ja--", .mobs[rand(0, getarraysize(.mobs)-1)], 1, "Evento dos Castelos::OnMob";
