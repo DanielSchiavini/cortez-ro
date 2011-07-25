@@ -634,3 +634,6 @@
 62,16131,7		//Carta Bola
 62,16132,4		//Carta Gleen
 62,16137,9		//Carta Spok
+62,20201,5		//Carta Entweihen Crothen
+62,20202,5		//Carta Tendrilrion
+62,20202,5		//Carta Hardrock Mommoth
