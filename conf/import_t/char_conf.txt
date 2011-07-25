@@ -1,7 +1,7 @@
 userid: testserver
 passwd: FI5yoejOAsp6u2lacRoa
 
-server_name: CortezTestes
+server_name: Testes
 wisp_server_name: Server
 
 login_ip: server.cortezonline.org
