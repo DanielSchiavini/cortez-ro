@@ -1,7 +1,7 @@
 userid: servero
 passwd: M4wrap2rEbrU
 
-server_name: Cortez Memories
+server_name: CortezMemories
 wisp_server_name: Server
 
 login_ip: 174.123.60.34

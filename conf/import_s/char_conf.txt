@@ -1,7 +1,7 @@
 userid: server
 passwd: Hd83odasnH2s09
 
-server_name: Cortez Supreme
+server_name: CortezSupreme
 wisp_server_name: Server
 
 login_ip: 174.123.60.34
