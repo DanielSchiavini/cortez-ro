@@ -1523,9 +1523,9 @@
 4096,Zenorc_Card,Zenorc Card,6,,10,10,,,,,,,,2,,,,,{ if(BaseClass!=Job_Mage) if(!isequipped(4357)) { bonus bBreakWeaponRate,400; bonus2 bAddItemHealRate,IG_FirstAid,-50; bonus2 bAddRace,RC_Boss,-25; if(readparam(bVit)>100) { skill "WS_OVERTHRUSTMAX",3; bonus bMaxHpRate,-25;} else skill "WS_OVERTHRUSTMAX",2; } },{},{ sc_end SC_MAXOVERTHRUST; }
 4097,Matyr_Card,Matyr Card,6,,10,10,,,,,,,,64,,,,,{ if(isequippedcnt(4097)==2) { bonus bMaxHPrate,12; bonus bMaxSPrate,5; } else { bonus bMaxHPrate,16; } },{ if(isequippedcnt(4097)==2) sc_start4 SC_ENDURE,1800000,10,0,0,1; },{ sc_end SC_ENDURE; }
 4098,Dokebi_Card,Dokebi Card,6,,10,10,,,,,,,,16,,,,,{ bonus bDefEle,Ele_Wind; bonus bDef,1; },{},{}
-4099,Pasana_Card,Pasana Card,6,,10,10,,,,,,,,16,,,,,{ if(!isequipped(4003,4325)) bonus bDefEle,Ele_Fire; bonus bDef,1; },{},{}
+4099,Pasana_Card,Pasana Card,6,,10,10,,,,,,,,16,,,,,{ if(!isequipped(4325)) bonus bDefEle,Ele_Fire; bonus bDef,1; },{},{}
 4100,Sohee_Card,Sohee Card,6,,10,10,,,,,,,,64,,,,,{ if(isequippedcnt(4100,4441)==1) { bonus bMaxSPrate,-40; bonus bMatkRate,5; bonus2 bMagicAddRace,RC_DemiHuman,18; bonus2 bMagicAddRace,RC_Angel,18; } },{},{}
-4101,Sandman_Card,Sandman Card,6,,10,10,,,,,,,,16,,,,,{ if(!isequipped(4003,4325)) bonus bDefEle,Ele_Earth; bonus bDef,1; },{},{}
+4101,Sandman_Card,Sandman Card,6,,10,10,,,,,,,,16,,,,,{ if(!isequipped(4325)) bonus bDefEle,Ele_Earth; bonus bDef,1; },{},{}
 4102,Whisper_Card,Whisper Card,6,,10,10,,,,,,,,4,,,,,{ bonus bFlee,20; bonus2 bSubEle,Ele_Ghost,-50; },{},{}
 4103,Horong_Card,Horong Card,6,,10,10,,,,,,,,136,,,,,{ skill 10,1; },{},{}
 4104,Requiem_Card,Requiem Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEff,Eff_Confusion,500; },{},{}
@@ -1751,7 +1751,7 @@
 4322,High_Orc_Card,High Orc Card,6,,10,10,,,,,,,,2,,,,,{ bonus bFlee,25; bonus bHit,40; },{},{}
 4323,Garm_Baby_Card,Garm Baby Card,6,,10,10,,,,,,,,2,,,,,{ bonus bHit,300; },{},{}
 4324,Garm_Card,Garm Card,6,,10,10,,,,,,,,769,,,,,{ skill 89,(isequippedcnt(4324)>3?10:3*isequippedcnt(4324)); bonus bAllStats,3; },{},{}
-4325,Harpy_Card,Harpy Card,6,,10,10,,,,,,,,16,,,,,{ if(isequippedcnt(4003)){ if(isequipped(4099)) bonus bDefEle,Ele_Holy; else if(isequipped(4101) && !isequipped(4174)) bonus bDefEle,Ele_Ghost; } },{},{}
+4325,Harpy_Card,Harpy Card,6,,10,10,,,,,,,,16,,,,,{ bonus bMaxHP,2000; if(isequipped(4099)) bonus bDefEle,Ele_Holy; else if(isequipped(4101) && !isequipped(4174)) bonus bDefEle,Ele_Ghost; },{},{}
 4326,Sea-Otter_Card,Sea-Otter Card,6,,10,10,,,,,,,,136,,,,,{ bonus bVit,15; },{},{}
 4327,Bloody_Butterfly_Card,Bloody Butterfly Card,6,,10,10,,,,,,,,769,,,,,{ skill 18,10; if(BaseClass==Job_Mage) bonus2 bSkillAtk,18,50; },{},{}
 4328,Hyegun_Card,Hyegun Card,6,,10,10,,,,,,,,4,,,,,{ bonus2 bResEff,Eff_Stone,1000; bonus bVit,5; },{},{}
