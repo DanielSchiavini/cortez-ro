@@ -103,9 +103,9 @@ new_zone01,52,147,0	script	Faction War	55,{
 }
 
 
-prt_gld,129,65,0	script	Kriemhild#FactionWar	55,{
-	callfunc("F_FactionWar", "Kriemhild", "prtg_cas01", 99, 32, agitcheck());
-}
+//prt_gld,129,65,0	script	Kriemhild#FactionWar	55,{
+//	callfunc("F_FactionWar", "Kriemhild", "prtg_cas01", 99, 32, agitcheck());
+//}
 
 //gef_fild13,308,244,0	script	Trapesac#FactionWar	55,{
 //	callfunc("F_FactionWar", "Trapesac", "gefg_cas02", 70, 143, agitcheck());
