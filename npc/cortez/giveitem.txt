@@ -4,7 +4,7 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 	if(getgmlevel()<15) close;
 	
 	mes	"[^660066 Entregador de Prêmios ^000000]";
-	if($premios_dia>=4){
+	if($premios_dia>=6){
 		mes "O número máximo de prêmios foi esgotado.";
 		close;
 	}
