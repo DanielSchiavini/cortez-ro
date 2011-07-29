@@ -9,7 +9,6 @@ gon_in	mapflag	restricted	3
 gon_in	mapflag	restricted	4
 
 poring_w01	mapflag	pvp	//PVP
-poring_w01	mapflag	pvp_noguild
 poring_w01	mapflag	nogo
 poring_w01	mapflag	nowarp
 poring_w01	mapflag	nodrop
@@ -19,7 +18,6 @@ poring_w01	mapflag	nosave	SavePoint
 ordeal_1-1,150,143,0	warp	old_to_pvp	1,1,poring_w01,97,99
 
 guild_vs3	mapflag	pvp		//PvP iniciantes
-guild_vs3	mapflag	pvp_noguild
 guild_vs3	mapflag	nogo
 guild_vs3	mapflag	nowarp
 guild_vs3	mapflag	nodrop
