@@ -3,13 +3,37 @@ OnWhisperGlobal:
 	input @a;
 	
 test:
-	getitem @a,1;
-	if(countitem(@a)>0) equip @a;
+	switch(getiteminfo(@a,2)){
+		case 6: //Card
+			debugmes "Testing card "+@a;
+			getitem2 2404,1,1,1,0,@a,0,0,0;
+			equip 2404;
+			sleep2 200;
+			
+			delitem 2404,1;
+			break;
+		case 4: //Weapon
+		case 5: //Armor/Garment/Boots/Headgear
+			debugmes "Testing equipment "+@a;
+			getitem @a,1;
+			if(countitem(@a)>0) equip @a;
+			sleep2 200;
+			
+			if(countitem(@a)>0) delitem @a,1;
+			break;
+		case -1: //Item doesnt exist
+		case 0: //Healing item.
+		case 2: //Usable item.
+		case 3: //Etc item
+		case 7: //Pet egg
+		case 8: //Pet equipment
+		case 10: //Ammo (Arrows/Bullets/etc)
+		case 11: //Usable with delayed consumption
+		case 18: //requires user confirmation before using
+		default:
+			break;
+	}
 	sleep2 200;
-	
-	if(countitem(@a)>0) delitem @a,1;
-	sleep2 200;
-	
 	set @a,@a+1;
 	if(@a<20000&&playerattached()) goto test;
 	end;
