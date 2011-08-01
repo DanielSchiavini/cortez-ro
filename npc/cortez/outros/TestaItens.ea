@@ -1,0 +1,16 @@
+-	script	Itemstest	-1,{
+OnWhisperGlobal:
+	input @a;
+	
+test:
+	getitem @a,1;
+	if(countitem(@a)>0) equip @a;
+	sleep2 200;
+	
+	if(countitem(@a)>0) delitem @a,1;
+	sleep2 200;
+	
+	set @a,@a+1;
+	if(@a<20000&&playerattached()) goto test;
+	end;
+}
