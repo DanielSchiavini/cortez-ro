@@ -1629,7 +1629,7 @@
 4200,Megalith_Card,Megalith Card,6,,10,10,,,,,,,,64,,,,,{ if(getrefine()<6) bonus bMdef,5; },{},{}
 4201,Majoruros_Card,Majoruros Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEff,Eff_Stun,600; },{},{}
 4202,Civil_Servant_Card,Civil Servant Card,6,,10,10,,,,,,,,2,,,,,{ if(getrefine()>8) bonus2 bAddEff,Eff_Stone,300; },{},{}
-4203,Mutant_Dragonoid_Card,Mutant Dragonoid Card,6,,10,10,,,,,,,,769,,,,,{ if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill "LK_BERSERK",1; bonus bMaxHPrate,-80; bonus2 bAddRace,RC_Boss,-50; bonus2 bAddRace,RC_NonBoss,-10; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; },{ if(isequipped(Class != Job_Whitesmith)) sc_end SC_MAXOVERTHRUST; }
+4203,Mutant_Dragonoid_Card,Mutant Dragonoid Card,6,,10,10,,,,,,,,769,,,,,{ if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill "LK_BERSERK",1; bonus bMaxHPrate,-80; bonus2 bAddRace,RC_Boss,-50; bonus2 bAddRace,RC_NonBoss,-10; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; }
 4204,Mini_Demon_Card,Mini Demon Card,6,,10,10,,,,,,,,769,,,,,{ bonus bStr,4; },{},{}
 4205,Mimic_Card,Mimic Card,6,,10,10,,,,,,,,769,,,,,{ bonus bAgi,1; bonus bDex,2; bonus bStr,3; },{},{}
 4206,Myst_Case_Card,Myst Case Card,6,,10,10,,,,,,,,769,,,,,{ skill 42,5; },{},{}
@@ -1784,7 +1784,7 @@
 4354,Gemini_Card,Gemini-S58 Card,6,,10,10,,,,,,,,769,,,,,{ if(readparam(bAgi)>=90) { bonus2 bResEff,Eff_Silence,1000; bonus2 bResEff,Eff_Stun,1000; } if(readparam(bVit)>=80) { bonus2 bResEff,Eff_Stone,1500; bonus2 bResEff,Eff_Sleep,1500; } },{},{}
 4355,Gremlin_Card,Gremlin Card,6,,10,10,,,,,,,,136,,,,,{ bonus bStr,10; },{},{}
 4356,Beholder_Card,Beholder Card,6,,10,10,,,,,,,,136,,,,,{ skill 275,1; },{},{}
-4357,Lord_Knight_Card,Lord Knight Card,6,,10,10,,,,,,,,769,,,,,{ if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill "LK_BERSERK",1; bonus bMaxHPrate,-50; bonus2 bAddRace,RC_Boss,-45; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; },{ if(isequipped(Class != Job_Whitesmith)) sc_end SC_MAXOVERTHRUST; }
+4357,Lord_Knight_Card,Lord Knight Card,6,,10,10,,,,,,,,769,,,,,{ if(!isequippedcnt(4154,1136,4115,4367,5208,13403)) skill "LK_BERSERK",1; bonus bMaxHPrate,-50; bonus2 bAddRace,RC_Boss,-45; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; },{ if(Class != Job_Whitesmith) sc_end SC_MAXOVERTHRUST; }
 4358,Seyren_Card,Seyren Windsor Card,6,,10,10,,,,,,,,769,,,,,{ bonus bStr,getrefine()-4; },{},{}
 4359,Assassin_Cross_Card,Assassin Cross Card,6,,10,10,,,,,,,,4,,,,,{ skill "AS_CLOAKING",3; },{},{ sc_end SC_CLOAKING; }
 4360,Eremes_Card,Eremes Guile Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bCriticalAddRace,RC_DemiHuman,20; if(getiteminfo(getequipid(EQI_HAND_R),5)==34 && getiteminfo(getequipid(EQI_HAND_R),9)<=2) bonus bCritAtkRate,45; },{},{}
