@@ -22,7 +22,7 @@ bat_room,114,227,5	script	Lieutenant Rundel	418,{
 	end;
 
 OnInit:
-	waitingroom "Battle Station",4,"start#bat_a02::OnReadyCheck",1,0,80,99;
+	waitingroom "Battle Station",4,"start#bat_a02::OnReadyCheck",1,0,80,199;
 	end;
 
 OnEnterBG:
@@ -34,7 +34,7 @@ bat_room,114,204,1	script	Lieutenant Guerrit	414,{
 	end;
 
 OnInit:
-	waitingroom "Battle Station",4,"start#bat_a02::OnReadyCheck",1,0,80,99;
+	waitingroom "Battle Station",4,"start#bat_a02::OnReadyCheck",1,0,80,199;
 	end;
 
 OnEnterBG:
