@@ -1,9 +1,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //alterações:	13/05/2010 	correção nos IDs dos itens Manto de Seda e Armadura de Goibne	//
+//alterações:   31/07/2011 Upgrade de vários itens no NPC //
 //				remoção de alguns "next" no começo do script			//
 //Script feito por Sola e Baltazar Cortez - contato: sola@cortezonline.org			//
+//Editado por: Timaum 			//
 //Cortez Online - new.cortezonline.org								//
 //////////////////////////////////////////////////////////////////////////////////////////////////
+
 brasilis,277,80,4	script	Negociante	902,{
 	
 	mes	"[^660066 Negociante ^000000]";
@@ -23,36 +26,50 @@ brasilis,277,80,4	script	Negociante	902,{
 	L_HATS:
 		mes	"[^660066 Negociante ^000000]";
 		mes "Chapéus: Veja as opções";
-		menu "Nada disso",L_INICIO,"Boneca de Alice",L_BonecadeAlice,"Chapéu de Angeling",L_ChapeudeAngeling,"Chapéu de Poporing",L_ChapeudePoporing,"Chapéu do Detetive Famoso",L_ChapeuDetetive,"Chapéu do Olho Mágico",L_ChapeudoOlhoMagico,"Chifres Majestosos",L_ChifresMajestosos,"Coroa Adornada",L_CoroaAdornada,"Coroa Chinesa",L_CoroaChinesa,"Elmo de Baal",L_ElmodeBaal,"Elmo de Deviling",L_ElmodeDeveling,"Elmo de Ossos Humanos",L_ElmodeOssosHumanos,"Elmo de Valkyrie",L_ElmodeValkyrie,"Elmo Dourado",L_ElmoDourado,"Elmo Negro",L_ElmoNegro,"Quepe",L_Quepe,"Tiara de Prata",L_TiaradePrata,"Tiara Dourada",L_TiaraDourada;
+		menu "Nada disso",L_INICIO,"Auréolas de Anjo",L_AureolasAnjo,"Boneca de Alice",L_BonecadeAlice,"Capuz de Morpheus",L_CapuzM,"Chapéu de Angeling",L_ChapeudeAngeling,"Chapéu de Poporing",L_ChapeudePoporing,"Chapéu do Detetive Famoso",L_ChapeuDetetive,"Chapéu do Olho Mágico",L_ChapeudoOlhoMagico,"Chifres Majestosos",L_ChifresMajestosos,"Coroa Adornada",L_CoroaAdornada,"Coroa Chinesa",L_CoroaChinesa,"Elmo de Baal",L_ElmodeBaal,"Elmo de Deviling",L_ElmodeDeveling,"Elmo de Ossos Humanos",L_ElmodeOssosHumanos,"Elmo de Valkyrie",L_ElmodeValkyrie,"Elmo Dourado",L_ElmoDourado,"Elmo Negro",L_ElmoNegro,"Flor Romantica",L_Florromantica,"Olhos Biônicos",L_OlhosBionicos,"Máscara de Kabuki",L_MascaraKabuki,"Peça Dourada",L_PecaDourada,"Quepe",L_Quepe,"Tiara de Prata",L_TiaradePrata,"Tiara Dourada",L_TiaraDourada,"Venda",L_Venda,"Venda Sombria",L_VendaSombria;
 		next;
 
+		
+		L_AureolasAnjo:
+			set .@nomePremio$, "Auréolas de Anjo";
+			setarray .@id[0], 5257;
+			setarray .@qtde[0], 1;
+			set .@preco, 9;
+			goto L_ENTREGA;
 		
 		L_BonecadeAlice:
 			set .@nomePremio$, "Boneca de Alice";
 			setarray .@id[0], 5137;
 			setarray .@qtde[0], 1;
-			set .@preco, 10;
+			set .@preco, 5;
+			goto L_ENTREGA;
+			
+		L_CapuzM:
+			set .@nomePremio$, "Capuz de Morpheus";
+			setarray .@id[0], 5126;
+			setarray .@qtde[0], 1;
+			set .@preco, 7;
 			goto L_ENTREGA;
 
 		L_ChapeudeAngeling:
 			set .@nomePremio$, "Chapéu de Angeling";
 			setarray .@id[0], 5132;
 			setarray .@qtde[0], 1;
-			set .@preco, 6;
+			set .@preco, 5;
 			goto L_ENTREGA;
 
 		L_ChapeudePoporing:
 			set .@nomePremio$, "Chapéu de Poporing";
 			setarray .@id[0], 5352;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 5;
 			goto L_ENTREGA;
 
 		L_ChapeuDetetive:
 			set .@nomePremio$, "Chapéu do Detetive Famoso";
 			setarray .@id[0], 5108;
 			setarray .@qtde[0], 1;
-			set .@preco, 4;
+			set .@preco, 5;
 			goto L_ENTREGA;
 
 		L_ChapeudoOlhoMagico:
@@ -66,28 +83,28 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Chifres Majestosos";
 			setarray .@id[0], 2256;
 			setarray .@qtde[0], 1;
-			set .@preco, 10;
+			set .@preco, 5;
 			goto L_ENTREGA;
 
 		L_CoroaAdornada:
 			set .@nomePremio$, "Coroa Adornada";
 			setarray .@id[0], 5002;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 4;
 			goto L_ENTREGA;
 
 		L_CoroaChinesa:
 			set .@nomePremio$, "Coroa Chinesa";
 			setarray .@id[0], 5152;
 			setarray .@qtde[0], 1;
-			set .@preco, 15;
+			set .@preco, 20;
 			goto L_ENTREGA;
 
 		L_ElmodeBaal:
 			set .@nomePremio$, "Elmo de Baal";
 			setarray .@id[0], 16604;
 			setarray .@qtde[0], 1;
-			set .@preco, 10;
+			set .@preco, 9;
 			goto L_ENTREGA;
 
 		L_ElmodeDeveling:
@@ -101,35 +118,63 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Elmo de Ossos Humanos";
 			setarray .@id[0], 16606;
 			setarray .@qtde[0], 1;
-			set .@preco, 15;
+			set .@preco, 20;
 			goto L_ENTREGA;
 
 		L_ElmodeValkyrie:
 			set .@nomePremio$, "Elmo de Valkyrie";
 			setarray .@id[0], 16605;
 			setarray .@qtde[0], 1;
-			set .@preco, 15;
+			set .@preco, 20;
 			goto L_ENTREGA;
 
 		L_ElmoDourado:
 			set .@nomePremio$, "Elmo Dourado";
 			setarray .@id[0], 16603;
 			setarray .@qtde[0], 1;
-			set .@preco, 15;
+			set .@preco, 20;
 			goto L_ENTREGA;
 
 		L_ElmoNegro:
 			set .@nomePremio$, "Elmo Negro";
 			setarray .@id[0], 16601;
 			setarray .@qtde[0], 1;
-			set .@preco, 15;
+			set .@preco, 6;
 			goto L_ENTREGA;
+			
+		L_FlorRomantica:
+			set .@nomePremio$, "Flor Romantica";
+			setarray .@id[0], 2269;
+			setarray .@qtde[0], 1;
+			set .@preco, 1;
+			goto L_ENTREGA;	
+			
+		L_OlhosBionicos:
+			set .@nomePremio$, "Olhos Biônicos";
+			setarray .@id[0], 5325;
+			setarray .@qtde[0], 1;
+			set .@preco, 20;
+			goto L_ENTREGA;	
+			
+		L_MascaraKabuki:
+			set .@nomePremio$, "Máscara de Kabuki";
+			setarray .@id[0], 5143;
+			setarray .@qtde[0], 1;
+			set .@preco, 7;
+			goto L_ENTREGA;
+			
+		L_PecaDourada:
+			set .@nomePremio$, "Peça Dourada";
+			setarray .@id[0], 2246;
+			setarray .@qtde[0], 1;
+			set .@preco, 10;
+			goto L_ENTREGA;		
 
 		L_Quepe:
 			set .@nomePremio$, "Quepe";
 			setarray .@id[0], 5016;
 			setarray .@qtde[0], 1;
-			set .@preco, 4;
+			set .@preco, 7;
 			goto L_ENTREGA;
 
 		L_TiaradePrata:
@@ -143,82 +188,145 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Tiara Dourada";
 			setarray .@id[0], 5179;
 			setarray .@qtde[0], 1;
-			set .@preco, 15;
+			set .@preco, 20;
 			goto L_ENTREGA;
+		
+		L_Venda:
+			set .@nomePremio$, "Venda";
+			setarray .@id[0], 2295;
+			setarray .@qtde[0], 1;
+			set .@preco, 3;
+			goto L_ENTREGA;	
+			
+		L_VendaSombria:
+			set .@nomePremio$, "Venda Sombria";
+			setarray .@id[0], 5104;
+			setarray .@qtde[0], 1;
+			set .@preco, 5;
+			goto L_ENTREGA;		
 
 	L_ARMOR:
 		mes	"[^660066 Negociante ^000000]";
 		mes "Vestimentas: Veja as opções";
-		menu "Nada disso",L_INICIO,"Armadura de Goibne",L_ArmaduradeGoibne,"Manto Abençoado",L_MantoAbencoado,"Manto de Seda",L_MantodeSeda,"Vestimenta Arcana",L_VestimentaArcana;
+		menu "Nada disso",L_INICIO,"Armadura do Legionário",L_ArmaduraLegionario,"Armadura de Goibne",L_ArmaduradeGoibne,"Couraça da Fúria Flamejante",L_CouracaasdFlamejante,"Couraça da Submissão Oceânica",L_CouracaOceanica,"Couraça da Liberdade Celestial",L_CouracaCelestial,"Couraça da Perseverança Continental",L_CouracaContinental,"Manto Abençoado",L_MantoAbencoado,"Manto de Seda",L_MantodeSeda,"Vestimenta Arcana",L_VestimentaArcana;
 		next;
 
+		L_ArmaduraLegionario:
+			set .@nomePremio$, "Armadura do Legionário";
+			setarray .@id[0], 2341;
+			setarray .@qtde[0], 1;
+			set .@preco, 7;
+			goto L_ENTREGA;
+		
 		L_ArmaduradeGoibne:
 			set .@nomePremio$, "Armadura de Goibne";
 			setarray .@id[0], 2354;
 			setarray .@qtde[0], 1;
 			set .@preco, 9;
 			goto L_ENTREGA;
+			
+		L_CouracaFlamejante:
+			set .@nomePremio$, "Couraça da Fúria Flamejante";
+			setarray .@id[0], 2345;
+			setarray .@qtde[0], 1;
+			set .@preco, 9;
+			goto L_ENTREGA;	
+			
+		L_CouracaOceanica:
+			set .@nomePremio$, "Couraça da Submissão Oceânica";
+			setarray .@id[0], 2347;
+			setarray .@qtde[0], 1;
+			set .@preco, 9;
+			goto L_ENTREGA;	
+
+		L_CouracaCelestial:
+			set .@nomePremio$, "Couraça da Liberdade Celestial";
+			setarray .@id[0], 2349;
+			setarray .@qtde[0], 1;
+			set .@preco, 9;
+			goto L_ENTREGA;	
+
+		L_CouracaContinental:
+			set .@nomePremio$, "Couraça da Perseverança Continental";
+			setarray .@id[0], 2351;
+			setarray .@qtde[0], 1;
+			set .@preco, 9;
+			goto L_ENTREGA;		
 
 		L_MantoAbencoado:
 			set .@nomePremio$, "Manto Abençoado";
 			setarray .@id[0], 9931;
 			setarray .@qtde[0], 1;
-			set .@preco, 10;
+			set .@preco, 5;
 			goto L_ENTREGA;
 
 		L_MantodeSeda:
 			set .@nomePremio$, "Manto de Seda";
 			setarray .@id[0], 2322;
 			setarray .@qtde[0], 1;
-			set .@preco, 4;
+			set .@preco, 1;
 			goto L_ENTREGA;
 
 		L_VestimentaArcana:
 			set .@nomePremio$, "Vestimenta Arcana";
 			setarray .@id[0], 2334;
 			setarray .@qtde[0], 1;
-			set .@preco, 10;
+			set .@preco, 4;
 			goto L_ENTREGA;
 
 	L_WEAPON:
 		mes	"[^660066 Negociante ^000000]";
 		mes "Armas: Veja as opções";
-		menu "Nada disso",L_Inicio,"Azoth",L_Azoth,"Brionac",L_Brionac,"Cruz Impiedosa",L_CruzImpiedosa,"Gungnir",L_Gungnir,"Infiltrador",L_Infiltrador,"Machado Sangrento",L_MachadoSangrento,"Muramasa",L_Muramasa,"Rondel",L_Rondel,"Zéfiro",L_Zefiro;
+		menu "Nada disso",L_Inicio,"Azoth",L_Azoth,"Brionac",L_Brionac,"Chave Inglesa",L_ChaveInglesa,"Cruz Impiedosa",L_CruzImpiedosa,"Guitarra Elétrica",L_GuitarraEletrica,"Gungnir",L_Gungnir,"Infiltrador",L_Infiltrador,"Machado Sangrento",L_MachadoSangrento,"Muramasa",L_Muramasa,"Rondel",L_Rondel,"Rosa Fustigante",L_RosaFustigante,"Zéfiro",L_Zefiro;
 		next;
 
 		L_Azoth:
 			set .@nomePremio$, "Azoth";
 			setarray .@id[0], 1235;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 9;
 			goto L_ENTREGA;
 
 		L_Brionac:
 			set .@nomePremio$, "Brionac";
 			setarray .@id[0], 1470;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 3;
 			goto L_ENTREGA;
+			
+			L_ChaveInglesa:
+			set .@nomePremio$, "Chave Inglesa";
+			setarray .@id[0], 1531;
+			setarray .@qtde[0], 1;
+			set .@preco, 4;
+			goto L_ENTREGA;	
 
 		L_CruzImpiedosa:
 			set .@nomePremio$, "Cruz Impiedosa";
 			setarray .@id[0], 1366;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 9;
 			goto L_ENTREGA;
+			
+		L_GuitarraEletrica:
+			set .@nomePremio$, "Guitarra Elétrica";
+			setarray .@id[0], 1913;
+			setarray .@qtde[0], 1;
+			set .@preco, 6;
+			goto L_ENTREGA;	
 
 		L_Gungnir:
 			set .@nomePremio$, "Gungnir";
 			setarray .@id[0], 1413;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 3;
 			goto L_ENTREGA;
 
 		L_Infiltrador:
 			set .@nomePremio$, "Infiltrador";
 			setarray .@id[0], 1266;
 			setarray .@qtde[0], 1;
-			set .@preco, 9;
+			set .@preco, 5;
 			goto L_ENTREGA;
 
 		L_MachadoSangrento:
@@ -232,7 +340,7 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Muramasa";
 			setarray .@id[0], 1164;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 3;
 			goto L_ENTREGA;
 
 		L_Rondel:
@@ -241,12 +349,19 @@ brasilis,277,80,4	script	Negociante	902,{
 			setarray .@qtde[0], 1;
 			set .@preco, 7;
 			goto L_ENTREGA;
+			
+		L_RosaFustigante:
+			set .@nomePremio$, "Rosa Fustigante";
+			setarray .@id[0], 1963;
+			setarray .@qtde[0], 1;
+			set .@preco, 6;
+			goto L_ENTREGA;	
 
 		L_Zefiro:
 			set .@nomePremio$, "Zéfiro";
 			setarray .@id[0], 1468;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 3;
 			goto L_ENTREGA;
 
 	L_SHIELD:
@@ -258,14 +373,14 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Broquel de Pedra";
 			setarray .@id[0], 2114;
 			setarray .@qtde[0], 1;
-			set .@preco, 6;
+			set .@preco, 2;
 			goto L_ENTREGA;
 
 		L_Broquel:
 			set .@nomePremio$, "Broquel";
 			setarray .@id[0], 2104;
 			setarray .@qtde[0], 1;
-			set .@preco, 4;
+			set .@preco, 1;
 			goto L_ENTREGA;
 
 		L_EscudodaValquiria:
@@ -279,14 +394,14 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Spiritus Sancti";
 			setarray .@id[0], 2111;
 			setarray .@qtde[0], 1;
-			set .@preco, 15;
+			set .@preco, 10;
 			goto L_ENTREGA;
 
 		L_Vembrassa:
 			set .@nomePremio$, "Vembrassa";
 			setarray .@id[0], 2102;
 			setarray .@qtde[0], 1;
-			set .@preco, 4;
+			set .@preco, 1;
 			goto L_ENTREGA;
 	
 	L_BOOTS:
@@ -305,21 +420,21 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Botas do Taekwon";
 			setarray .@id[0], 9932;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 3;
 			goto L_ENTREGA;
 
 		L_Coturnos:
 			set .@nomePremio$, "Coturnos";
 			setarray .@id[0], 2413;
 			setarray .@qtde[0], 1;
-			set .@preco, 10;
+			set .@preco, 14;
 			goto L_ENTREGA;
 
 		L_Sapatos:
 			set .@nomePremio$, "Sapatos";
 			setarray .@id[0], 2404;
 			setarray .@qtde[0], 1;
-			set .@preco, 4;
+			set .@preco, 1;
 			goto L_ENTREGA;
 
 	L_ACESSORY:
@@ -331,66 +446,103 @@ brasilis,277,80,4	script	Negociante	902,{
 			set .@nomePremio$, "Anel Espiritual";
 			setarray .@id[0], 2677;
 			setarray .@qtde[0], 1;
-			set .@preco, 20;
+			set .@preco, 23;
 			goto L_ENTREGA;
 
 		L_AneldoSenhor:
 			set .@nomePremio$, "Anel do Senhor das Chamas";
 			setarray .@id[0], 2678;
 			setarray .@qtde[0], 1;
-			set .@preco, 20;
+			set .@preco, 23;
 			goto L_ENTREGA;
 
 		L_AneldaRessonancia:
 			set .@nomePremio$, "Anel da Ressonância";
 			setarray .@id[0], 2679;
 			setarray .@qtde[0], 1;
-			set .@preco, 20;
+			set .@preco, 23;
 			goto L_ENTREGA;
 
 		L_AneldeDefesa:
 			set .@nomePremio$, "Anel de Defesa";
 			setarray .@id[0], 2615;
 			setarray .@qtde[0], 1;
-			set .@preco, 4;
+			set .@preco, 2;
 			goto L_ENTREGA;
 
 		L_Helgardh:
 			set .@nomePremio$, "Helgardh";
 			setarray .@id[0], 16711;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 6;
 			goto L_ENTREGA;
 
 	L_QUEST:
 		mes	"[^660066 Negociante ^000000]";
 		mes "Itens de Quest: Veja as opções";
-		menu "Nada disso",L_INICIO,"Desejo das Trevas",L_Desejo,"Floco de Neve",L_Floco,"Ornamento de Prata",L_Ornamento;
+		menu "Nada disso",L_INICIO,"Arca do Tesouro",L_ArcaTesouro,"Cranio de Ouro",L_Cranio,"Desejo das Trevas",L_Desejo,"Escama de Gelo",L_EscamaGelo,"Espinafre",L_Espinafre,"Floco de Neve",L_Floco,"Ornamento de Prata",L_Ornamento,"Lamento de Lúcifer",L_Lamento;
 
+		
+		L_ArcaTesouro:
+			set .@nomePremio$, "Arca do Tesouro";
+			setarray .@id[0], 7444;
+			setarray .@qtde[0], 1;
+			set .@preco, 2;
+			goto L_ENTREGA;
+		
+		L_Cranio:
+			set .@nomePremio$, "Cranio de Ouro";
+			setarray .@id[0], 9927;
+			setarray .@qtde[0], 1;
+			set .@preco, 2;
+			goto L_ENTREGA;
+		
 		L_Desejo:
 			set .@nomePremio$, "Desejo das Trevas";
 			setarray .@id[0], 7340;
 			setarray .@qtde[0], 1;
 			set .@preco, 7;
 			goto L_ENTREGA;
+			
+		L_EscamaGelo:
+			set .@nomePremio$, "Escama de Gelo";
+			setarray .@id[0], 7562;
+			setarray .@qtde[0], 1;
+			set .@preco, 2;
+			goto L_ENTREGA;		
+			
+		L_Espinafre:
+			set .@nomePremio$, "Espinafre";
+			setarray .@id[0], 9928;
+			setarray .@qtde[0], 1;
+			set .@preco, 3;
+			goto L_ENTREGA;	
 
 		L_Floco:
 			set .@nomePremio$, "Floco de Neve";
 			setarray .@id[0], 7088;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 5;
 			goto L_ENTREGA;
 
 		L_Ornamento:
 			set .@nomePremio$, "Ornamento de Prata";
 			setarray .@id[0], 7077;
 			setarray .@qtde[0], 1;
-			set .@preco, 7;
+			set .@preco, 5;
 			goto L_ENTREGA;
+			
+		L_Lamento:
+			set .@nomePremio$, "Lamento de Lúcifer";
+			setarray .@id[0], 7025;
+			setarray .@qtde[0], 1;
+			set .@preco, 3;
+			goto L_ENTREGA;
+			
 	L_POT:
 		mes	"[^660066 Negociante ^000000]";
 		mes "Itens de Utilidades: Veja as opções";
-		menu "Nada disso",L_INICIO,"Asa de Mosca Gigante 100x",L_AMG,"Erva Azul 250x",L_EA,"Poção Branca 250x",L_PB,"Poção Branca Compacta 250x",L_PBC;
+		menu "Nada disso",L_INICIO,"Asa de Mosca Gigante 100x",L_AMG,"Erva Azul 1000x",L_EA,"Poção Branca 1000x",L_PB,"Poção Branca Compacta 1000x",L_PBC;
 
 		L_AMG:
 			set .@nomePremio$, "100x Asa de Mosca Gigante";
@@ -400,23 +552,23 @@ brasilis,277,80,4	script	Negociante	902,{
 			goto L_ENTREGA;
 
 		L_EA:
-			set .@nomePremio$, "250x Erva Azul";
+			set .@nomePremio$, "1000x Erva Azul";
 			setarray .@id[0], 510;
-			setarray .@qtde[0], 250;
-			set .@preco, 2;
+			setarray .@qtde[0], 1000;
+			set .@preco, 1;
 			goto L_ENTREGA;
 
 		L_PB:
-			set .@nomePremio$, "250x Poção Branca";
+			set .@nomePremio$, "1000x Poção Branca";
 			setarray .@id[0], 504;
-			setarray .@qtde[0], 250;
+			setarray .@qtde[0], 1000;
 			set .@preco, 1;
 			goto L_ENTREGA;
 
 		L_PBC:
-			set .@nomePremio$, "250x Poção Branca Compacta";
+			set .@nomePremio$, "1000x Poção Branca Compacta";
 			setarray .@id[0], 547;
-			setarray .@qtde[0], 250;
+			setarray .@qtde[0], 1000;
 			set .@preco, 2;
 			goto L_ENTREGA;
 	
