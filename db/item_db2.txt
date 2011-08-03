@@ -2439,7 +2439,7 @@
 7167,Strange_Steel_Piece,Strange Steel Piece,3,,215,10,,,,,,,,,,,,,{},{},{}
 7168,Giant_Butterfly_Wing,Giant Butterfly Wing,3,,307,10,,,,,,,,,,,,,{},{},{}
 7169,Ba_Gua,Ba_Gua,3,,1400,10,,,,,,,,,,,,,{},{},{}
-7170,Tuxedo,Tuxedo,5,43000,,10,,0,,0,0xFFFFFFFE,7,1,16,,0,1,0,{},{ setoption Option_Wedding,1; },{ setoption Option_Wedding,0; }
+7170,Tuxedo,Tuxedo,5,43000,,10,,0,,0,0xFFFFFFFF,7,1,16,,0,1,0,{},{ setoption Option_Wedding,1; },{ setoption Option_Wedding,0; }
 7171,Leopard_Skin,Leopard Skin,3,,141,10,,,,,,,,,,,,,{},{},{}
 7172,Leopard_Claw,Leopard Claw,3,,145,10,,,,,,,,,,,,,{},{},{}
 7173,Bun_Buster_Bag,Bun Buster Bag,3,,10,10,,,,,,,,,,,,,{},{},{}
