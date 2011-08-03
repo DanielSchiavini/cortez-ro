@@ -134,7 +134,7 @@
 16766,Vara_De_Pesca_Avancada,Vara De Pesca Avançada,4,250000,,100,0,,0,0,0xFFFFFFFF,7,2,2,4,20,0,1,{ skill 999,3+isequipped(16763); },{},{}
 16767,Vara_De_Pesca_De_Luxo,Vara De Pesca De Luxo,4,500000,,100,0,,0,0,0xFFFFFFFF,7,2,2,4,20,0,1,{ skill 999,4+isequipped(16763); },{},{}
 16768,Vara_De_Pesca_Perfeita,Vara De Pesca Perfeita,4,1000000,,100,0,,0,0,0xFFFFFFFF,7,2,2,4,20,0,1,{ skill 999,5+isequipped(16763); },{},{}
-16769,Isca,Isca,0,100,,250,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(5,10),0; specialeffect2 7; },{},{}
+16769,Isca,Isca,0,100,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(5,10),0; specialeffect2 7; },{},{}
 //Packs de cartas
 16770,Alligator_Card_Pack,Pacote de Cartas Alligator,2,80,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 4252,8; },{},{}
 16771,Dragon_Fly_Card_Pack,Pacote de Cartas Dragon Fly,2,80,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 4179,8; },{},{}

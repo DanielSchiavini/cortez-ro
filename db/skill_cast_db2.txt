@@ -267,7 +267,7 @@
 
 //===== Custom Skills =====
 //-- ALL_FISHING
-999,3000,1500,0,0,0
+999,2200,0,0,0,0
 
 //===== 2nd Jobs Quest Skills ==============
 //-- KN_CHARGEATK
