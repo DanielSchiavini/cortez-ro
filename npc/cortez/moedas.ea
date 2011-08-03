@@ -1,12 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//alterações:	13/05/2010 	correção nos IDs dos itens Manto de Seda e Armadura de Goibne	//
-//alterações:   31/07/2011 Upgrade de vários itens no NPC //
-//				remoção de alguns "next" no começo do script			//
-//Script feito por Sola e Baltazar Cortez - contato: sola@cortezonline.org			//
-//Editado por: Timaum 			//
-//Cortez Online - new.cortezonline.org								//
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
 brasilis,277,80,4	script	Negociante	902,{
 	
 	mes	"[^660066 Negociante ^000000]";
@@ -208,7 +199,7 @@ brasilis,277,80,4	script	Negociante	902,{
 	L_ARMOR:
 		mes	"[^660066 Negociante ^000000]";
 		mes "Vestimentas: Veja as opções";
-		menu "Nada disso",L_INICIO,"Armadura do Legionário",L_ArmaduraLegionario,"Armadura de Goibne",L_ArmaduradeGoibne,"Couraça da Fúria Flamejante",L_CouracaasdFlamejante,"Couraça da Submissão Oceânica",L_CouracaOceanica,"Couraça da Liberdade Celestial",L_CouracaCelestial,"Couraça da Perseverança Continental",L_CouracaContinental,"Manto Abençoado",L_MantoAbencoado,"Manto de Seda",L_MantodeSeda,"Vestimenta Arcana",L_VestimentaArcana;
+		menu "Nada disso",L_INICIO,"Armadura do Legionário",L_ArmaduraLegionario,"Armadura de Goibne",L_ArmaduradeGoibne,"Couraça da Fúria Flamejante",L_CouracaFlamejante,"Couraça da Submissão Oceânica",L_CouracaOceanica,"Couraça da Liberdade Celestial",L_CouracaCelestial,"Couraça da Perseverança Continental",L_CouracaContinental,"Manto Abençoado",L_MantoAbencoado,"Manto de Seda",L_MantodeSeda,"Vestimenta Arcana",L_VestimentaArcana;
 		next;
 
 		L_ArmaduraLegionario:
