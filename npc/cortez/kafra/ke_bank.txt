@@ -168,6 +168,7 @@ function	SF_calcInterest {
 	if (@qty == 0) return;
 	if (@qty < 0) {
 		callfunc "F_keIntro", -1, "Desculpe, seus ganhos foram cancelados por serem grandes demais.";
+		debugmes "Cancelando ganhos no banco, qty="+@qty;
 		return;
 	}
 	if (#ke_bank + @qty > $@kebk_capacity)

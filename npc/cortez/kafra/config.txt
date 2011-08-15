@@ -46,7 +46,7 @@ OnLoadBank:
 	set $@kebk_minTransact,1000;	//Value of the Minimum Transaction (deposit/withdraw)
 	set $@kebk_maxTransact,1000000000;	//Value of the Maximum Transaction (deposit/withdraw)
 	set $@kebk_capacity,1000000000;	//Account capacity: Max zeny that can be held.
-	set $@kebk_dayInterest,10;	//Savings daily interests in 0.01% units (100 = 1%)
+	set $@kebk_dayInterest,1;	//Savings daily interests in 0.01% units (100 = 1%)
 	set $@kebk_monMaintenance,1000;	//Monthly flat fee charged for account maintenance
 	set $@kebk_useGlobalBank,0;	//When 1, all charged fees go to $ke_globalbank 
 	end;
