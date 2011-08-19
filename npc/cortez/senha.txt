@@ -8,7 +8,7 @@
 //		Define a % de autoloot da conta (0 = off)
 //
 
-brasilis,0,0,0	script	#LoginEvent	-1,{
+prontera,0,0,0	script	#LoginEvent	-1,{
 	OnPCLoginEvent:
 		announce "Seja bem vindo ao Cortez Online "+$serv$+" - leia as regras! cortezonline.org",bc_self,0x6699FF;
 		if(getgmlevel()>=10){
@@ -146,7 +146,7 @@ brasilis,0,0,0	script	#LoginEvent	-1,{
 	end;
 }
 
-brasilis,248,111,5	script	Cortez Online Serviços	833,{	//61,108
+prontera,100,79,5	script	Serviços Cortez	833,{	//61,108
 	mes "^336699[Serviços Cortez]^333333";
 	mes "Se quiser trocar seu e-mail, senha, apagar ou salvar personagens (entre outras coisas), utilize o painel de controle.";
 	mes "O endereço é: ^0000FFwww.cortezonline.org/cp";

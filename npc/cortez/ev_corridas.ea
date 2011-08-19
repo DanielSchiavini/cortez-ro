@@ -51,7 +51,7 @@ new_zone01,50,133,4	script	Corrida	70,1,1,{
 				case 4:
 					mes "Ok, estou te teleportando..!";
 					close2;
-					warp "brasilis",266,105;
+					warp "prontera",76,55;
 					break;
 				default:
 					mes "Sem problemas, até a próxima!";
@@ -73,7 +73,7 @@ alde_tt02	mapflag	noteleport
 alde_tt02	mapflag	nomemo
 alde_tt02	mapflag	nosave	alde_tt02,24,186
 
-brasilis,267,89,4	script	corrida_alde	45,1,1,{
+prontera,66,49,4	script	corrida_alde	45,1,1,{
 	callfunc("tirabuff_corrida");
 	warp "alde_tt02",24,186;
 	end;

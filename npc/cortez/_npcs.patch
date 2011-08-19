@@ -1,0 +1,766 @@
+=== Testar auction.ea and leilao.txt
+
+Index: conf/import_m/char_conf.txt
+===================================================================
+--- conf/import_m/char_conf.txt	(revision 791)
++++ conf/import_m/char_conf.txt	(working copy)
+@@ -23,7 +23,7 @@
+ 
+ save_log: yes
+ 
+-start_point: brasilis,266,105
++start_point: prontera,76,55
+ start_weapon: 1203
+ start_armor: 2301
+ start_zeny: 5000
+Index: conf/import_s/char_conf.txt
+===================================================================
+--- conf/import_s/char_conf.txt	(revision 791)
++++ conf/import_s/char_conf.txt	(working copy)
+@@ -23,7 +23,7 @@
+ 
+ save_log: yes
+ 
+-start_point: brasilis,266,105
++start_point: prontera,76,55
+ start_weapon: 1203
+ start_armor: 2301
+ start_zeny: 20000
+Index: conf/import_t/char_conf.txt
+===================================================================
+--- conf/import_t/char_conf.txt	(revision 791)
++++ conf/import_t/char_conf.txt	(working copy)
+@@ -24,7 +24,7 @@
+ 
+ save_log: yes
+ 
+-start_point: brasilis,266,105
++start_point: prontera,76,55
+ start_weapon: 1203
+ start_armor: 2301
+ start_zeny: 20000
+Index: npc/cortez/auction.ea
+===================================================================
+--- npc/cortez/auction.ea	(revision 791)
++++ npc/cortez/auction.ea	(working copy)
+@@ -1,4 +1,4 @@
+-brasilis,253,90,6	script	Agente de Leilão#ctz	807,{
++prontera,84,64,6	script	Audições#ctz	807,{
+ 	mes "[Agente de leilão]";
+ 	mes "Olá, estou aqui para oferecer-lhe leilões!";
+ 	mes "Gostaria de ver o que tenho disponível?";
+Index: npc/cortez/card_remover.txt
+===================================================================
+--- npc/cortez/card_remover.txt	(revision 791)
++++ npc/cortez/card_remover.txt	(working copy)
+@@ -2,7 +2,7 @@
+ // DANGEROUS! TODO: Think.. think 8) [Lupus]
+ 
+ 
+-brasilis,278,111,4	script	Velhinha Esperta	863,{
++prontera,71,66,4	script	Velhinha Esperta	863,{
+ 
+ 	//mes "[Velhinha Esperta]";
+ 	//mes "Olá meu jovem.";
+Index: npc/cortez/caveiras.txt
+===================================================================
+--- npc/cortez/caveiras.txt	(revision 791)
++++ npc/cortez/caveiras.txt	(working copy)
+@@ -1,4 +1,4 @@
+-brasilis,296,87,5	script	Canibal	796,{		//792
++prontera,96,50,5	script	Canibal	796,{		//792
+ 	mes "[Canibal]";
+ 	mes "Olá, que tal me dar algo pra me alimentar?";
+ 	mes "Que tal você, aspira?";
+Index: npc/cortez/comercio.txt
+===================================================================
+--- npc/cortez/comercio.txt	(revision 791)
++++ npc/cortez/comercio.txt	(working copy)
+@@ -4,9 +4,9 @@
+ pvp_y_room	mapflag	nomemo
+ pvp_y_room	mapflag	nosave	SavePoint
+ pvp_y_room	mapflag	nochat
+-brasilis	mapflag	novending
++prontera	mapflag	novending
+ 
+-brasilis,284,105,4	script	Salas de Chat	748,{
++prontera,53,53,4	script	Salas de Chat	748,{
+ 	mes "[^3333CC Salas de Chat ^000000]";
+ 	mes "As salas de chat somente podem ser criadas em linha, na minha frente.";
+ 	mes "Assim podemos manter nossa cidade organizada.";
+@@ -15,14 +15,14 @@
+ 	
+ 	OnInit:
+ 		announce "NPCs carregados.",0;
+-		setcell "brasilis",0,0,300,300,cell_nochat,1;
+-		setcell "brasilis",284,105,284,87,cell_nochat,0;
++		setcell "prontera",0,0,300,300,cell_nochat,1;
++		setcell "prontera",53,53,53,35,cell_nochat,0;
+ 		setcell "pvp_y_room",0,0,300,300,cell_novending,1;
+ 		waitingroom "Chats na minha frente!",0;
+ 		end;
+ }
+ 
+-brasilis,255,91,4	script	CdC	726,{		//701,{
++prontera,80,64,4	script	CdC	726,{		//701,{
+ 	mes "Deseja ir para a cidade do comércio (CdC)?";
+ 	menu "Sim",MIr,"Não",-;
+ 	close;
+@@ -78,8 +78,8 @@
+ 	MIr:
+ 	mes "Obrigado!!!";
+ 	close2;
+-	warp "brasilis",266,105;
+-	query_sql "Update `char` Set last_map='brasilis',last_x=266,last_y=105 Where char_id="+getcharid(0)+"";
++	warp "prontera",69,61;
++	query_sql "Update `char` Set last_map='prontera',last_x="",last_y="" Where char_id="+getcharid(0)+"";
+ 	end;
+ }
+ 
+Index: npc/cortez/donate.txt
+===================================================================
+--- npc/cortez/donate.txt	(revision 791)
++++ npc/cortez/donate.txt	(working copy)
+@@ -1,4 +1,4 @@
+-brasilis,263,111,3	script	Doações	803,{		//790//845
++prontera,62,67,3	script	Doações	803,{		//790//845
+ 
+ if( getgmlevel()==59 || getgmlevel()>=80 ) goto L_GM;
+ 
+Index: npc/cortez/enquete.txt
+===================================================================
+--- npc/cortez/enquete.txt	(revision 791)
++++ npc/cortez/enquete.txt	(working copy)
+@@ -36,7 +36,7 @@
+ // ==                     [ http://www.talk-scripts.cjb.net ]
+ // ============================================================
+ 
+-brasilis,228,74,4	script	Garota da Enquete::poll	831,{
++prontera,93,50,4	script	Garota da Enquete::poll	831,{
+ 
+ if ($the_poll_question$ == "") goto L_NoQuestion;
+ 
+Index: npc/cortez/ev_arrecadacao.ea
+===================================================================
+--- npc/cortez/ev_arrecadacao.ea	(revision 791)
++++ npc/cortez/ev_arrecadacao.ea	(working copy)
+@@ -60,7 +60,7 @@
+ 	close;
+ }
+ 
+-brasilis,266,89,5	script	Arrecadações	58,{
++prontera,69,51,5	script	Arrecadações	58,{
+ 	if($arz_aberto){
+ 		mes "^FF0000[ Arrecadações ]^000066";
+ 		mes "Deseja ir para o mapa do evento?";
+@@ -147,7 +147,7 @@
+ 			set $arz_aberto, 0;
+ 			sleep 2000;
+ 			killmonsterall "alde_gld", 1;
+-			mapwarp "alde_gld","brasilis",266,105;
++			mapwarp "alde_gld","prontera",69,57;
+ 		}
+ 		end;
+ 		
+Index: npc/cortez/ev_castelos.txt
+===================================================================
+--- npc/cortez/ev_castelos.txt	(revision 791)
++++ npc/cortez/ev_castelos.txt	(working copy)
+@@ -100,7 +100,7 @@
+ payg_cas05,242,41,0	warp	payg505	1,1,payg_cas05,18,18
+ payg_cas05,14,14,0	warp	payg505-1	1,1,payg_cas05,246,41
+ 
+-brasilis,264,94,5	script	Invasão dos Castelos	47,{
++prontera,66,57,5	script	Invasão dos Castelos	47,{
+ 	if($castelo==0){
+ 		donpcevent "Evento dos Castelos::OnInit";
+ 		end;
+@@ -162,11 +162,11 @@
+ 		setarray @mobs5[0],	3302, 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303;	//Chefe é sempre o primeiro
+ 		
+ 		//Looping pelos castelos
+-		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "brasilis", 48, 48;
++		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "prontera", 76, 55;
+ 		dispbottom "Chefes:";
+ 		for(set @i, 1; @i<=5; set @i, @i + 1){
+ 			//Limpando mapa
+-			areawarp $evcity$ + "g_cas0" + @i, 0, 0, 300, 300, "brasilis", 266, 105;
++			areawarp $evcity$ + "g_cas0" + @i, 0, 0, 300, 300, "prontera", 76, 55;
+ 			killmonsterall $evcity$ + "g_cas0" + @i;
+ 			
+ 			if(@i==5){
+@@ -287,9 +287,9 @@
+ 		for(set $castelo, 1; $castelo<=5; set $castelo, $castelo + 1){
+ 			enablenpc $evcity$ + "g0" + $castelo;
+ 			killmonsterall $evcity$ + "g_cas0" + $castelo;
+-			areawarp $evcity$ + "g_cas0" + $castelo, 0, 0, 300, 300, "brasilis", 266, 105;
++			areawarp $evcity$ + "g_cas0" + $castelo, 0, 0, 300, 300, "prontera", 76, 55;
+ 		}
+-		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "brasilis", 266, 105;
++		areawarp $evcity$ + "_gld", 0, 0, 300, 300, "prontera", 76, 55;
+ 		set $castelo, 0;
+ 		goto OnFim;
+ 	
+@@ -322,6 +322,6 @@
+ 	else if($castelo>0)
+ 		areawarp $evcity$ + "g_cas0" + ($castelo-1), 0, 0, 300, 300, $evcity$ + "_gld", .@x, .@y;
+ 	else
+-		areawarp $evcity$ + "g_cas05", 0, 0, 300, 300, "brasilis", 266, 105;
++		areawarp $evcity$ + "g_cas05", 0, 0, 300, 300, "prontera", 76, 55;
+ 	return;
+ }
+\ No newline at end of file
+Index: npc/cortez/ev_corridas.ea
+===================================================================
+--- npc/cortez/ev_corridas.ea	(revision 791)
++++ npc/cortez/ev_corridas.ea	(working copy)
+@@ -51,7 +51,7 @@
+ 				case 4:
+ 					mes "Ok, estou te teleportando..!";
+ 					close2;
+-					warp "brasilis",266,105;
++					warp "prontera",76,55;
+ 					break;
+ 				default:
+ 					mes "Sem problemas, até a próxima!";
+@@ -73,7 +73,7 @@
+ alde_tt02	mapflag	nomemo
+ alde_tt02	mapflag	nosave	alde_tt02,24,186
+ 
+-brasilis,267,89,4	script	corrida_alde	45,1,1,{
++prontera,66,49,4	script	corrida_alde	45,1,1,{
+ 	callfunc("tirabuff_corrida");
+ 	warp "alde_tt02",24,186;
+ 	end;
+Index: npc/cortez/ev_devilsquare.txt
+===================================================================
+--- npc/cortez/ev_devilsquare.txt	(revision 791)
++++ npc/cortez/ev_devilsquare.txt	(working copy)
+@@ -176,7 +176,7 @@
+ 			deletearray .ds_mobs[0], getarraysize(.ds_mobs);
+ 			deletearray .ds_mobnr[0], getarraysize(.ds_mobnr);
+ 			set .ds_alive, 0;
+-			mapwarp "n_castle","brasilis",266,105;
++			mapwarp "n_castle","prontera",72,57;
+ 		}else{
+ 			initnpctimer;
+ 		}
+@@ -188,7 +188,7 @@
+ 		end;
+ }
+ 
+-brasilis,266,92,4	script	Devil Square	705,{
++prontera,66,53,4	script	Devil Square	705,{
+ 	if($devil_square!=1){
+ 		disablenpc "Devil Square";
+ 		doevent "#ev_devilsquare::OnInit";
+Index: npc/cortez/ev_pvp.txt
+===================================================================
+--- npc/cortez/ev_pvp.txt	(revision 791)
++++ npc/cortez/ev_pvp.txt	(working copy)
+@@ -238,7 +238,7 @@
+ 	end;
+ }
+ 
+-brasilis,267,92,5	script	Senhor do PvP#2	52,{
++prontera,69,57,5	script	Senhor do PvP#2	52,{
+ 	if ($eventopvp == 0) goto SEMEVENTO;
+ 	if (reborn == 0) set reborn, 1;
+ 	if (reborn-1 < $levelminimo || reborn-1 > $levelmaximo) goto SEMLEVEL;
+Index: npc/cortez/hats.txt
+===================================================================
+--- npc/cortez/hats.txt	(revision 791)
++++ npc/cortez/hats.txt	(working copy)
+@@ -6,7 +6,7 @@
+ 
+ // Nome do NPC: Yuuko
+ 
+-brasilis,311,128,5	script	Yuuko	859,{
++prontera,58,73,5	script	Yuuko	859,{
+ 	//if(getgmlevel()<50) close;
+ 	set .qtdeQuests, 7;
+ 	if($questAtual==0) set $questAtual, rand(1,.qtdeQuests);
+Index: npc/cortez/healer.txt
+===================================================================
+--- npc/cortez/healer.txt	(revision 791)
++++ npc/cortez/healer.txt	(working copy)
+@@ -1,4 +1,4 @@
+-brasilis,270,97,5	script	Totó::healer	81,{
++prontera,78,62,5	script	Totó::healer	81,{
+ 	if(.maxQuestionId==0)
+ 		query_sql "Select Max(id) From ro.Questions",.maxQuestionId;
+ 	if(.maxQuestionId==0)
+Index: npc/cortez/kafra/kafras.txt
+===================================================================
+--- npc/cortez/kafra/kafras.txt	(revision 791)
++++ npc/cortez/kafra/kafras.txt	(working copy)
+@@ -57,17 +57,17 @@
+ //callfunc "F_KafraExpress","Kafra Especial","",2,"prontera",142,199;
+ //close;
+ 
+-brasilis,265,99,4	script	Super Kafra#cortez	845,{
+-	callfunc "F_KafraExpress","Super Kafra","",2,"brasilis",266,105;
+-}
++//brasilis,265,99,4	script	Super Kafra#cortez	845,{
++//	callfunc "F_KafraExpress","Super Kafra","",2,"brasilis",266,105;
++//}
+ 
+ prontera,76,62,4	script	Super Kafra#prontera1	116,{
+-	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
++	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",78,60;
+ }
+ 
+-prontera,82,45,4	script	Super Kafra#prontera2	720,{
+-	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
+-}
++//prontera,82,45,4	script	Super Kafra#prontera2	720,{
++//	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
++//}
+ 
+ prontera,146,93,4	script	Super Kafra#prontera3	116,{
+ 	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",118,69;
+Index: npc/cortez/kafra/ke_main.txt
+===================================================================
+--- npc/cortez/kafra/ke_main.txt	(revision 791)
++++ npc/cortez/kafra/ke_main.txt	(working copy)
+@@ -270,7 +270,7 @@
+ 	}
+ 	if ($@ke_saveOnSpot) {
+ 		getmapxy @map$,@x,@y,0;
+-		if((@map$!="brasilis" && mobcount(@map$,"")>1) || @map$=="pvp_2vs2"){ // cidade principal liberado / mapa gvg bloqueado
++		if((@map$!="prontera" && mobcount(@map$,"")>1) || @map$=="pvp_2vs2"){ // cidade principal liberado / mapa gvg bloqueado
+ 			callfunc "F_keIntro", e_gg, "Este mapa tem monstros demais..";
+ 		}else{
+ 			savepoint @map$,@x,@y;
+Index: npc/cortez/kafra/ke_warp_town.txt
+===================================================================
+--- npc/cortez/kafra/ke_warp_town.txt	(revision 791)
++++ npc/cortez/kafra/ke_warp_town.txt	(working copy)
+@@ -32,7 +32,7 @@
+ 		if ($@kewt_showOnline) {
+ 			set @kmenu, select(
+ 				"- Voltar",
+-				"- Cortez (0z/"+(getmapusers("brasilis"))+" "+$@ked_users$+")",
++				"- Cortez (0z/"+(getmapusers("prontera"))+" "+$@ked_users$+")",
+ 				"- Alberta ("+@cost+"z/"+(getmapusers("alberta")+getmapusers("alberta_in"))+" "+$@ked_users$+")",
+ 				"- Al De Baran ("+@cost+"z/"+(getmapusers("aldebaran")+getmapusers("aldeba_in"))+" "+$@ked_users$+")",
+ 				"- Amatsu ("+@cost+"z/"+(getmapusers("amatsu")+getmapusers("ama_in01")+getmapusers("ama_in02"))
+@@ -104,7 +104,7 @@
+ 		}
+ 		switch (@kmenu) {
+ 		case 2:		//Cortez
+-			SF_warp 0,0,e_yawn,"brasilis",266,92;
++			SF_warp 0,0,e_yawn,"prontera",76,50;
+ 			break;
+ 		case 3:		//Alberta
+ 			if (SF_check(ketw_alberta, #ketw_alberta))
+Index: npc/cortez/leilao.txt
+===================================================================
+--- npc/cortez/leilao.txt	(revision 791)
++++ npc/cortez/leilao.txt	(working copy)
+@@ -2,7 +2,7 @@
+ //Insert Into leiloes (idItem,nomeItem,intMinimo,dtIni,intDias) Values (16501,'Asa de Deviling',1,now(),7)
+ // intStatus: 0=desativo 1=aguardando 2=ativo 3=esperando jogador 4=jogador pegou 5=jogador nao pegou 6=jogador nao pegou e foi punido //
+ 
+-brasilis,0,0,0	script	leilaoautomatico	-1,{
++prontera,0,0,0	script	leilaoautomatico	-1,{
+ 	OnClock2256:
+ 	//OnInit:
+ 	//debugmes "$leilao="+$leilao;
+@@ -384,7 +384,7 @@
+ // ===========================================
+ // ==   Duplicações dos Agentes de Leilão   ==
+ // ===========================================
+-brasilis,253,80,3	script	Agente de Leilão	56,{
++prontera,82,64,3	script	Agente de Leilão	56,{
+ 	set @outro,0;
+ 	set @name$, "Agron";       // <-- Nome do Agente de Leilão
+ 	set @sexx,1;               // <-- Sexo do Agente (1 = M / 2 = F)
+Index: npc/cortez/loteria.ea
+===================================================================
+--- npc/cortez/loteria.ea	(revision 791)
++++ npc/cortez/loteria.ea	(working copy)
+@@ -5,7 +5,7 @@
+ //	$lot_acc - account_id que ganhou o ultimo sorteio
+ //	$lot_ultimo - valor do ultimo prêmio
+ 
+-brasilis,256,80,5	script	Loteria	73,{
++prontera,110,51,5	script	Loteria	73,{
+ 	mes "[^666699 Loteria ^000000]";
+ 	mes "Oi caro viajante!";
+ 	L_Loteria:
+@@ -146,7 +146,7 @@
+ 				sleep 2000;
+ 				announce "[Loteria] Portanto, o prêmio dele será adicionado à loteria desta semana.",bc_all;
+ 				sleep 2000;
+-				callfunc("log_mes","[Loteria] "+$lot_id+": Vencedor "+$lot_acc+" não pegou prêmio "+$lot_ultimo,"loteria","brasilis",$lot_acc);
++				callfunc("log_mes","[Loteria] "+$lot_id+": Vencedor "+$lot_acc+" não pegou prêmio "+$lot_ultimo,"loteria","prontera",$lot_acc);
+ 				set $lot_ultimo, $lot_ultimo-$lot_start;
+ 				set $lot_tot, $lot_tot + $lot_ultimo;
+ 				set $lot_acc, 0;
+@@ -159,7 +159,7 @@
+ 			
+ 			query_sql "Select account_id, valor From loteria Where loteria_id="+$lot_id+" and valor>0 order by valor desc,account_id", .@acc, .@valor;
+ 			set .@vencedor, rand($lot_tot-$lot_ultimo+(($lot_tot-$lot_ultimo)/3));
+-			callfunc("log_mes","[Loteria] "+$lot_id+": *Resultado do Sorteio de "+$lot_tot+"-"+$lot_ultimo+"+"+(($lot_tot-$lot_ultimo)/3)+": "+.@vencedor,"loteria","brasilis");
++			callfunc("log_mes","[Loteria] "+$lot_id+": *Resultado do Sorteio de "+$lot_tot+"-"+$lot_ultimo+"+"+(($lot_tot-$lot_ultimo)/3)+": "+.@vencedor,"loteria","prontera");
+ 			set $lot_ultimo,0;
+ 			set .@i,-1;
+ 			while(.@vencedor > 0 && .@valor[.@i+1] > 0){
+@@ -172,14 +172,14 @@
+ 			if(.@vencedor<=0 && .@i>=0){
+ 				set $lot_acc, .@acc[.@i];
+ 				query_sql "Select char_name From loteria Where loteria_id="+$lot_id+" and account_id="+$lot_acc, .@char$;
+-				callfunc("log_mes","[Loteria] "+$lot_id+": *Vencedor nr."+.@vencedor+", "+.@premio$+", pos."+.@i,.@char$,"brasilis",$lot_acc);
++				callfunc("log_mes","[Loteria] "+$lot_id+": *Vencedor nr."+.@vencedor+", "+.@premio$+", pos."+.@i,.@char$,"prontera",$lot_acc);
+ 				set $lot_ultimo, $lot_tot - $lot_tot/10;
+ 				query_sql "Replace into site.vars (str,dt,valor,valorstr) values ('Loteria"+$serv+"',now(),"+$lot_ultimo+",'"+escape_sql(.@char$)+"')";
+ 				set $lot_tot, $lot_start;
+ 				set $lot_id, $lot_id+1;
+ 			}else{
+ 				set $lot_tot, $lot_tot + $lot_tot/9 + 1;
+-				callfunc("log_mes","[Loteria] "+$lot_id+": *Acumulou! Vencedor nr."+.@vencedor+" posicao "+.@i+" $lot_tot="+$lot_tot,"loteria","brasilis");
++				callfunc("log_mes","[Loteria] "+$lot_id+": *Acumulou! Vencedor nr."+.@vencedor+" posicao "+.@i+" $lot_tot="+$lot_tot,"loteria","prontera");
+ 				set $lot_ultimo, $lot_tot;
+ 				query_sql "Replace into site.vars (str,dt,valor,valorstr) values ('Loteria"+$serv+"',now(),"+$lot_tot+",null)";
+ 			}
+Index: npc/cortez/moedas.ea
+===================================================================
+--- npc/cortez/moedas.ea	(revision 791)
++++ npc/cortez/moedas.ea	(working copy)
+@@ -1,4 +1,4 @@
+-brasilis,277,80,4	script	Negociante	902,{
++prontera,65,47,4	script	Negociante	902,{
+ 	
+ 	mes	"[^660066 Negociante ^000000]";
+ 	mes "Olá!";
+Index: npc/cortez/necromancer.txt
+===================================================================
+--- npc/cortez/necromancer.txt	(revision 791)
++++ npc/cortez/necromancer.txt	(working copy)
+@@ -174,4 +174,4 @@
+ 		close;
+ }
+ 
+-brasilis,291,119,4	duplicate(necromancer)	Necromancer	 	735
++prontera,68,47,4	duplicate(necromancer)	Necromancer	 	735
+Index: npc/cortez/novos.txt
+===================================================================
+--- npc/cortez/novos.txt	(revision 791)
++++ npc/cortez/novos.txt	(working copy)
+@@ -1,8 +1,8 @@
+ new_zone01	mapflag	noloot
+-brasilis	mapflag	town
+-brasilis	mapflag	nodrop
+-brasilis	mapflag	restricted	3
+-brasilis	mapflag	restricted	4
++prontera	mapflag	town
++prontera	mapflag	nodrop
++prontera	mapflag	restricted	3
++prontera	mapflag	restricted	4
+ 
+ gon_in	mapflag	nodrop
+ gon_in	mapflag	restricted	3
+@@ -90,17 +90,17 @@
+ }
+ 
+ xmas_dun01,0,0,0,0	monster	Antonio	1247,40,0,0
+-//brasilis,0,0,0,0	monster	Antonio	1247,40,0,0
++//prontera,0,0,0,0	monster	Antonio	1247,40,0,0
+ 
+-brasilis,260,80,7	shop	Poções	58,611:-1,501:-1,502:-1,503:-1,504:-1,506:-1,522:-1,525:-1,509:-1,510:-1,547:-1,645:-1,656:-1,657:-1,684:-1,682:-1,683:-1
+-brasilis,263,80,7	shop	Utilidades	59,601:-1,602:-1,16764:-1,1065:-1,7135:-1,7136:-1,7137:-1,7138:-1,7139:-1,717:-1,716:-1,715:-1,1061:-1,911:-1,1093:-1,1092:-1
++prontera,56,47,7	shop	Poções	58,611:-1,501:-1,502:-1,503:-1,504:-1,506:-1,522:-1,525:-1,509:-1,510:-1,547:-1,645:-1,656:-1,657:-1,684:-1,682:-1,683:-1
++prontera,59,47,7	shop	Utilidades	59,601:-1,602:-1,16764:-1,1065:-1,7135:-1,7136:-1,7137:-1,7138:-1,7139:-1,717:-1,716:-1,715:-1,1061:-1,911:-1,1093:-1,1092:-1
+ 
+-brasilis,275,80,5	shop	Munições	82,16769:-1,1750:-1,1751:-1,1752:-1,1753:-1,1754:-1,1755:-1,1756:-1,1766:-1,7521:-1,7522:-1,7523:-1,7524:-1,13250:-1,13251:-1,13252:-1,13253:-1,13254:-1,13255:-1,13256:-1,13257:-1,13258:-1,13259:-1
+-brasilis,272,80,2	shop	Armamentos	63,1701:-1,1201:-1,1204:-1,1207:-1,1601:-1,1101:-1,1104:-1,1107:-1,1110:-1,1113:-1,1122:-1,1119:-1,1123:-1,1126:-1,1157:-1,1129:-1,1116:-1,1301:-1,1701:-1,1704:-1,1707:-1,1710:-1,1713:-1,1714:-1,1718:-1	//848
+-brasilis,269,80,3	shop	Armaduras	752,2101:-1,2103:-1,2105:-1,2401:-1,2403:-1,2405:-1,2501:-1,2503:-1,2505:-1,2220:-1,2226:-1,2301:-1,2303:-1,2305:-1,2328:-1,2307:-1,2309:-1,2312:-1,2314:-1,2316:-1,2627:-1,2117:-1			//846
++prontera,62,47,5	shop	Munições	82,16769:-1,1750:-1,1751:-1,1752:-1,1753:-1,1754:-1,1755:-1,1756:-1,1766:-1,7521:-1,7522:-1,7523:-1,7524:-1,13250:-1,13251:-1,13252:-1,13253:-1,13254:-1,13255:-1,13256:-1,13257:-1,13258:-1,13259:-1
++prontera,87,50,2	shop	Armamentos	63,1701:-1,1201:-1,1204:-1,1207:-1,1601:-1,1101:-1,1104:-1,1107:-1,1110:-1,1113:-1,1122:-1,1119:-1,1123:-1,1126:-1,1157:-1,1129:-1,1116:-1,1301:-1,1701:-1,1704:-1,1707:-1,1710:-1,1713:-1,1714:-1,1718:-1	//848
++prontera,90,50,3	shop	Armaduras	752,2101:-1,2103:-1,2105:-1,2401:-1,2403:-1,2405:-1,2501:-1,2503:-1,2505:-1,2220:-1,2226:-1,2301:-1,2303:-1,2305:-1,2328:-1,2307:-1,2309:-1,2312:-1,2314:-1,2316:-1,2627:-1,2117:-1			//846
+ 
+ aldebaran,135,136,4	shop	Manuais		750,7144:-1,7127:-1,7128:-1,7129:-1,7130:-1,7131:-1,7132:-1,7133:-1
+-brasilis,266,80,3	shop	Gunner#Gun Seller	900,13150:-1,13102:-1,13151:-1,13154:-1,13155:-1,13160:-1,13200:-1,13201:-1,13202:-1,13203:-1,13204:-1,13205:-1,13206:-1,13207:-1
++prontera,84,50,3	shop	Gunner#Gun Seller	900,13150:-1,13102:-1,13151:-1,13154:-1,13155:-1,13160:-1,13200:-1,13201:-1,13202:-1,13203:-1,13204:-1,13205:-1,13206:-1,13207:-1
+ 
+ //Guild Dungeons
+ gld_dun01,119,14,0	warp	gldd_001	1,1,gld_dun04,40,230
+@@ -112,10 +112,10 @@
+ gld_dun03,238,274,0	warp	gldd_005	1,1,gld_dun03,42,33
+ 
+ // Warp to morocc
+-brasilis,290,112,0	warp	city_moc	2,2,moc_fild12,159,378
+-moc_fild12,154,377,0	warp	moc_city	2,2,brasilis,266,105
++prontera,70,62,0	warp	city_moc	2,2,moc_fild12,159,378
++moc_fild12,154,377,0	warp	moc_city	2,2,prontera,70,65
+ 
+ //Guild flags
+-brasilis,260,120,4	duplicate(Kriemhild2)	Kriemhild#ctz	974
+-brasilis,263,120,4	duplicate(Trapesac2)	Trapesac#ctz	974
+-brasilis,266,120,4	duplicate(Ar03_Flag)	Horn#flag_Cortez	974
++prontera,56,53,4	duplicate(Kriemhild2)	Kriemhild#ctz	974
++prontera,56,57,4	duplicate(Trapesac2)	Trapesac#ctz	974
++prontera,56,61,4	duplicate(Ar03_Flag)	Horn#flag_Cortez	974
+Index: npc/cortez/playersells.ea
+===================================================================
+--- npc/cortez/playersells.ea	(revision 791)
++++ npc/cortez/playersells.ea	(working copy)
+@@ -8,7 +8,7 @@
+ // recebeu => Muda quando se dá o zeny para o vendedor
+ // pago => Muda quando se tira o zeny do comprador
+ 
+-brasilis,254,88,5	script	Wilbis	784,{
++prontera,105,69,5	script	Wilbis	784,{
+ 	mes "^993300[ " + .name$ + " ]^003399";
+ 	mes "Olá viajante... Eu vivo pelo mundo fazendo leilões...";
+ 	mes "Se quiser, eu posso vender um item seu, ou se preferir pode comprar algumas coisas que eu tenho.";
+@@ -147,7 +147,7 @@
+ 						logmes "[Wilbis] "+@id+" Lance "+@lance+"kk (pago)";
+ 						
+ 						set .@msg$, "Wilbis: Foi oferecido um lance de "+@lance+" milhões de Zeny pelo item "+@item$+"!";
+-						mapannounce "brasilis",	.@msg$, bc_map, .color;	//cidade principal
++						mapannounce "prontera",	.@msg$, bc_map, .color;	//cidade principal
+ 						mapannounce "pvp_y_1-2",.@msg$, bc_map, .color;	//cidade do comércio
+ 						mes "^993300[ " + .name$ + " ]^003399";
+ 						mes "Obrigado, seu lance de "+@lance+" milhões de Zeny foi registrado.";
+@@ -316,7 +316,7 @@
+ 			mes "Para verificar o status, basta falar comigo e escolher a opção de vender.";
+ 			next;
+ 			set .@msg$, "Wilbis: O item "+getitemname(@item)+" foi colocado à venda por "+@valor+" milhões de Zeny!";
+-			mapannounce "brasilis",	.@msg$,bc_map,.color;	//cidade principal
++			mapannounce "prontera",	.@msg$,bc_map,.color;	//cidade principal
+ 			mapannounce "pvp_y_1-2",.@msg$,bc_map,.color;	//cidade do comércio
+ 			
+ 			mes "^993300[ " + .name$ + " ]^003399";
+@@ -345,7 +345,7 @@
+ 				set $playerSellsId,.@playerSellsId[0];
+ 				if(.@item$!=""){
+ 					set .@msg$, .name$ + ": Olá! Venda do item " + .@item$[0] + " por " + .@valor$[0] + ". Confira!";
+-					mapannounce "brasilis",	.@msg$,bc_map,.color;	//cidade principal
++					mapannounce "prontera",	.@msg$,bc_map,.color;	//cidade principal
+ 					mapannounce "pvp_y_1-2",.@msg$,bc_map,.color;	//cidade do comércio
+ 				}else{
+ 					set $playerSellsId,0;
+Index: npc/cortez/poringball_start.txt
+===================================================================
+--- npc/cortez/poringball_start.txt	(revision 791)
++++ npc/cortez/poringball_start.txt	(working copy)
+@@ -1,4 +1,4 @@
+-brasilis,232,110,5	script	 Anfitrião do jogo#hj1	911,{
++prontera,92,63,5	script	 Anfitrião do jogo#hj1	911,{
+ 	callfunc "F_Anfitrião do jogo";
+ 	close;
+ }
+@@ -98,7 +98,7 @@
+ 		cutin "",255;
+ 	}
+ 
+-	savepoint "brasilis",266,92;
++	savepoint "prontera",72,61;
+ 	warp "SavePoint",0,0;
+ 	end;
+ }
+\ No newline at end of file
+Index: npc/cortez/profissoes.txt
+===================================================================
+--- npc/cortez/profissoes.txt	(revision 791)
++++ npc/cortez/profissoes.txt	(working copy)
+@@ -1046,12 +1046,12 @@
+ 	return;
+ }
+ 
+-brasilis,269,111,4	script	Profissões	780,{
++prontera,84,66,4	script	Profissões	780,{
+ 	callfunc "jobmaster";
+ 	end;
+ }
+ 
+-brasilis,0,0,0	script	#LvUpEvent	-1,{
++prontera,0,0,0	script	#LvUpEvent	-1,{
+ 	OnPCJobLvUpEvent:
+ 	if(NextJobExp==0) callfunc "jobmaster";
+ 	end;
+Index: npc/cortez/quest_armas.txt
+===================================================================
+--- npc/cortez/quest_armas.txt	(revision 791)
++++ npc/cortez/quest_armas.txt	(working copy)
+@@ -1,4 +1,4 @@
+-brasilis,257,111,6	script	Missões Cortez	733,{
++prontera,99,50,6	script	Missões Cortez	733,{
+ 	mes "^336699[ Missões Cortez ]^333333";
+ 	mes "Olá! Bem vindo ao Cortez Online";
+ 	mes "Claro, você quer fazer quests! O que deseja?";
+Index: npc/cortez/quivers.txt
+===================================================================
+--- npc/cortez/quivers.txt	(revision 791)
++++ npc/cortez/quivers.txt	(working copy)
+@@ -15,7 +15,7 @@
+ //= Fixed a few spelling errors. [Nexon]
+ //============================================================
+ 
+-brasilis,258,130,4	script	Jaax	832,{		//852
++prontera,111,84,4	script	Jaax	832,{		//852
+ 	mes "^666699[ Jaax, O inventor~ ]^333333";
+ 	mes "Meu nome é Jaax.";
+ 	mes "Sem exagerar, eu posso dizer que talvez eu seja o ^996600maior inventor dos nossos tempos.^333333";
+Index: npc/cortez/roll.txt
+===================================================================
+--- npc/cortez/roll.txt	(revision 791)
++++ npc/cortez/roll.txt	(working copy)
+@@ -1,6 +1,6 @@
+-//prt_in,47,29,0	warp	prt10-1	2,1,brasilis,266,92
++//prt_in,47,29,0	warp	prt10-1	2,1,prontera,67,47
+ 
+-brasilis,261,53,5	script	Jogos	715,{		//712
++prontera,67,48,5	script	Jogos	715,{		//712
+ 	mes "^ff0000[Velhinho Rico~]^000000";
+ 	mes "Deseja se divertir?";
+ 	menu "Agora não...",-,"Pode ser!",L_vai;
+Index: npc/cortez/senha.txt
+===================================================================
+--- npc/cortez/senha.txt	(revision 791)
++++ npc/cortez/senha.txt	(working copy)
+@@ -8,7 +8,7 @@
+ //		Define a % de autoloot da conta (0 = off)
+ //
+ 
+-brasilis,0,0,0	script	#LoginEvent	-1,{
++prontera,0,0,0	script	#LoginEvent	-1,{
+ 	OnPCLoginEvent:
+ 		announce "Seja bem vindo ao Cortez Online "+$serv$+" - leia as regras! cortezonline.org",bc_self,0x6699FF;
+ 		if(getgmlevel()>=10){
+@@ -146,7 +146,7 @@
+ 	end;
+ }
+ 
+-brasilis,248,111,5	script	Cortez Online Serviços	833,{	//61,108
++prontera,100,79,5	script	Serviços Cortez	833,{	//61,108
+ 	mes "^336699[Serviços Cortez]^333333";
+ 	mes "Se quiser trocar seu e-mail, senha, apagar ou salvar personagens (entre outras coisas), utilize o painel de controle.";
+ 	mes "O endereço é: ^0000FFwww.cortezonline.org/cp";
+Index: npc/cortez/whisper.txt
+===================================================================
+--- npc/cortez/whisper.txt	(revision 791)
++++ npc/cortez/whisper.txt	(working copy)
+@@ -1,5 +1,5 @@
+ 
+-brasilis,0,0,0	script	evento	-1,{
++prontera,0,0,0	script	evento	-1,{
+ 	end;
+ 	OnWhisperGlobal:
+ 		if(getgmlevel()>=10){
+@@ -25,7 +25,7 @@
+ 		end;
+ }
+ 
+-brasilis,0,0,0	script	bans	-1,{
++prontera,0,0,0	script	bans	-1,{
+ 	end;
+ 	OnWhisperGlobal:
+ 		if(getgmlevel()>=50){
+@@ -42,7 +42,7 @@
+ 		end;
+ }
+ 
+-brasilis,0,0,0	script	kafra	-1,{
++prontera,0,0,0	script	kafra	-1,{
+ 	end;
+ 	OnWhisperGlobal:
+ 	if(callfunc("podeusarcmd")){
+@@ -54,7 +54,7 @@
+ 		}else if(@whispervar0$=="resetskills"){
+ 			callfunc("resetSkills");
+ 		}else{
+-			callfunc "F_KafraExpress","Kafra Especial","",2,"brasilis",266,92;
++			callfunc "F_KafraExpress","Kafra Especial","",2,"prontera",78,60;
+ 		}
+ 	}
+ 	end;
+@@ -64,23 +64,23 @@
+ 			end;
+ 	
+ 	OnClock0000:
+-		setmapflag "brasilis",mf_fireworks;
++		setmapflag "prontera",mf_fireworks;
+ 		end;
+ 		
+ 	OnClock1200:
+-		removemapflag "brasilis",mf_fireworks;
++		removemapflag "prontera",mf_fireworks;
+ 		end;
+ }
+ 
+-brasilis,0,0,0	script	recall	-1,{
++prontera,0,0,0	script	recall	-1,{
+ 	end;
+ 	OnWhisperGlobal:
+ 	if(getgmlevel()>=60){
+ 		if(@whispervar0$!=""){
+ 			set @char_id,getcharid(0,@whispervar0$);
+ 			if(@char_id){
+-				warpchar "brasilis",150,343,@char_id;
+-				warp "brasilis",149,343;
++				warpchar "prontera",72,59,@char_id;
++				warp "prontera",72,60;
+ 			}else{
+ 				dispbottom "Personagem "+@whispervar0$+" não localizado";
+ 			}
+@@ -88,7 +88,7 @@
+ 	}
+ }
+ 
+-brasilis,0,0,0	script	prof	-1,{
++prontera,0,0,0	script	prof	-1,{
+ 	end;
+ 	OnWhisperGlobal:
+ 	if(callfunc("podeusarcmd"))
+Index: npc/guild/agit_template.txt
+===================================================================
+--- npc/guild/agit_template.txt	(revision 791)
++++ npc/guild/agit_template.txt	(working copy)
+@@ -1064,8 +1064,8 @@
+ 			setarray .@coordinates[0],116,72;
+ 		}
+ 	} else {
+-		setarray .@destination$[0],"Cortez","brasilis";
+-		setarray .@coordinates[0],266,105;
++		setarray .@destination$[0],"Cortez","prontera";
++		setarray .@coordinates[0],,;
+ 	}
+ 
+ 	cutin "kafra_01",2;
+Index: npc/guild/prtg_cas02.txt
+===================================================================
+--- npc/guild/prtg_cas02.txt	(revision 791)
++++ npc/guild/prtg_cas02.txt	(working copy)
+@@ -90,7 +90,7 @@
+ 	end;
+ }
+ 
+-//brasilis,263,120,4	duplicate(Hrist2)	Hrist#ctz	722
++//	duplicate(Hrist2)	Hrist#ctz	722
+ prt_gld,244,128,8	duplicate(Hrist2)	Hrist#p2-3	722
+ prt_gld,236,126,8	duplicate(Hrist2)	Hrist#p2-4	722
+ prt_gld,236,128,8	duplicate(Hrist2)	Hrist#p2-5	722
+Index: npc/merchants/shops.txt
+===================================================================
+--- npc/merchants/shops.txt	(revision 791)
++++ npc/merchants/shops.txt	(working copy)
+@@ -261,14 +261,14 @@
+ // Prontera
+ //=======================================================
+ prontera,73,134,0	shop	Leiteiro#p	90,519:-1
+-prontera,104,49,0	shop	Feirista#prt	102,512:-1,513:-1
++//prontera,104,49,0	shop	Feirista#prt	102,512:-1,513:-1
+ prontera,64,125,0	shop	Jardineiro#prt	87,517:-1,528:-1
+ prontera,58,182,0	shop	Florista#prt	96,712:-1,744:-1
+ prontera,113,42,0	shop	Flower Lady#prt	90,712:-1,744:-1
+ prontera,105,87,0	shop	Presentes#prt	91,734:-1,735:-1,736:-1,737:-1,746:-1
+ prontera,218,211,4	shop	Estilista#prt	125,537:-1,643:-1,10013:-1,10014:-1,554:-1,6113:-1,6114:-1,6115:-1
+ prontera,248,153,0	shop	Bonecos#prt	85,740:-1,741:-1,742:-1
+-prontera,48,58,0	shop	Feirista#prt2	91,515:-1,516:-1,535:-1
++//prontera,48,58,0	shop	Feirista#prt2	91,515:-1,516:-1,535:-1
+ prt_church,108,124,4	shop	Nun#prt	79,2608:-1,2216:-1,5092:-1,2323:-1,2325:-1,1501:-1,1504:-1,1507:-1,1510:-1,1513:-1,1519:-1
+ prt_fild05,290,221,2	shop	Utilidades#prt	83,1750:-1,611:-1,501:-1,502:-1,506:-1,645:-1,601:-1,602:-1
+ prt_in,211,169,0	shop	Casadeiro#prt	71,744:-1,745:-1,2338:-1,2206:-1,7170:-1

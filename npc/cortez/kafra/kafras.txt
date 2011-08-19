@@ -57,17 +57,17 @@
 //callfunc "F_KafraExpress","Kafra Especial","",2,"prontera",142,199;
 //close;
 
-brasilis,265,99,4	script	Super Kafra#cortez	845,{
-	callfunc "F_KafraExpress","Super Kafra","",2,"brasilis",266,105;
-}
+//brasilis,265,99,4	script	Super Kafra#cortez	845,{
+//	callfunc "F_KafraExpress","Super Kafra","",2,"brasilis",266,105;
+//}
 
 prontera,76,62,4	script	Super Kafra#prontera1	116,{
-	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
+	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",78,60;
 }
 
-prontera,82,45,4	script	Super Kafra#prontera2	720,{
-	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
-}
+//prontera,82,45,4	script	Super Kafra#prontera2	720,{
+//	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",83,63;
+//}
 
 prontera,146,93,4	script	Super Kafra#prontera3	116,{
 	callfunc "F_KafraExpress","Super Kafra","",0,"prontera",118,69;

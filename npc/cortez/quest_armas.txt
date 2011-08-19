@@ -1,4 +1,4 @@
-brasilis,257,111,6	script	Missões Cortez	733,{
+prontera,99,50,6	script	Missões Cortez	733,{
 	mes "^336699[ Missões Cortez ]^333333";
 	mes "Olá! Bem vindo ao Cortez Online";
 	mes "Claro, você quer fazer quests! O que deseja?";

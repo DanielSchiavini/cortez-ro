@@ -1,4 +1,4 @@
-brasilis,270,97,5	script	Totó::healer	81,{
+prontera,78,62,5	script	Totó::healer	81,{
 	if(.maxQuestionId==0)
 		query_sql "Select Max(id) From ro.Questions",.maxQuestionId;
 	if(.maxQuestionId==0)

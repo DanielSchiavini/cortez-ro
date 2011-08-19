@@ -1064,8 +1064,8 @@ OnGuardianDied:
 			setarray .@coordinates[0],116,72;
 		}
 	} else {
-		setarray .@destination$[0],"Cortez","brasilis";
-		setarray .@coordinates[0],266,105;
+		setarray .@destination$[0],"Cortez","prontera";
+		setarray .@coordinates[0],,;
 	}
 
 	cutin "kafra_01",2;

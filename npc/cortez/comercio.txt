@@ -4,9 +4,9 @@ pvp_y_room	mapflag	autotrade
 pvp_y_room	mapflag	nomemo
 pvp_y_room	mapflag	nosave	SavePoint
 pvp_y_room	mapflag	nochat
-brasilis	mapflag	novending
+prontera	mapflag	novending
 
-brasilis,284,105,4	script	Salas de Chat	748,{
+prontera,53,53,4	script	Salas de Chat	748,{
 	mes "[^3333CC Salas de Chat ^000000]";
 	mes "As salas de chat somente podem ser criadas em linha, na minha frente.";
 	mes "Assim podemos manter nossa cidade organizada.";
@@ -15,14 +15,14 @@ brasilis,284,105,4	script	Salas de Chat	748,{
 	
 	OnInit:
 		announce "NPCs carregados.",0;
-		setcell "brasilis",0,0,300,300,cell_nochat,1;
-		setcell "brasilis",284,105,284,87,cell_nochat,0;
+		setcell "prontera",0,0,300,300,cell_nochat,1;
+		setcell "prontera",53,53,53,35,cell_nochat,0;
 		setcell "pvp_y_room",0,0,300,300,cell_novending,1;
 		waitingroom "Chats na minha frente!",0;
 		end;
 }
 
-brasilis,255,91,4	script	CdC	726,{		//701,{
+prontera,80,64,4	script	CdC	726,{		//701,{
 	mes "Deseja ir para a cidade do comércio (CdC)?";
 	menu "Sim",MIr,"Não",-;
 	close;
@@ -78,8 +78,8 @@ pvp_y_room,51,17,4	script	Cidade Principal	726,{
 	MIr:
 	mes "Obrigado!!!";
 	close2;
-	warp "brasilis",266,105;
-	query_sql "Update `char` Set last_map='brasilis',last_x=266,last_y=105 Where char_id="+getcharid(0)+"";
+	warp "prontera",69,61;
+	query_sql "Update `char` Set last_map='prontera',last_x="",last_y="" Where char_id="+getcharid(0)+"";
 	end;
 }
 

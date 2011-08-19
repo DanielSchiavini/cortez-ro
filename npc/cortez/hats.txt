@@ -6,7 +6,7 @@
 
 // Nome do NPC: Yuuko
 
-brasilis,311,128,5	script	Yuuko	859,{
+prontera,58,73,5	script	Yuuko	859,{
 	//if(getgmlevel()<50) close;
 	set .qtdeQuests, 7;
 	if($questAtual==0) set $questAtual, rand(1,.qtdeQuests);

@@ -1,4 +1,4 @@
-brasilis,232,110,5	script	 Anfitrião do jogo#hj1	911,{
+prontera,92,63,5	script	 Anfitrião do jogo#hj1	911,{
 	callfunc "F_Anfitrião do jogo";
 	close;
 }
@@ -98,7 +98,7 @@ OnLeaveRoom:
 		cutin "",255;
 	}
 
-	savepoint "brasilis",266,92;
+	savepoint "prontera",72,61;
 	warp "SavePoint",0,0;
 	end;
 }

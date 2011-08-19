@@ -36,7 +36,7 @@
 // ==                     [ http://www.talk-scripts.cjb.net ]
 // ============================================================
 
-brasilis,228,74,4	script	Garota da Enquete::poll	831,{
+prontera,93,50,4	script	Garota da Enquete::poll	831,{
 
 if ($the_poll_question$ == "") goto L_NoQuestion;
 

@@ -1,4 +1,4 @@
-brasilis,296,87,5	script	Canibal	796,{		//792
+prontera,96,50,5	script	Canibal	796,{		//792
 	mes "[Canibal]";
 	mes "Olá, que tal me dar algo pra me alimentar?";
 	mes "Que tal você, aspira?";

@@ -176,7 +176,7 @@ n_castle,0,0,0	script	#ev_devilsquare	-1,{
 			deletearray .ds_mobs[0], getarraysize(.ds_mobs);
 			deletearray .ds_mobnr[0], getarraysize(.ds_mobnr);
 			set .ds_alive, 0;
-			mapwarp "n_castle","brasilis",266,105;
+			mapwarp "n_castle","prontera",72,57;
 		}else{
 			initnpctimer;
 		}
@@ -188,7 +188,7 @@ n_castle,0,0,0	script	#ev_devilsquare	-1,{
 		end;
 }
 
-brasilis,266,92,4	script	Devil Square	705,{
+prontera,66,53,4	script	Devil Square	705,{
 	if($devil_square!=1){
 		disablenpc "Devil Square";
 		doevent "#ev_devilsquare::OnInit";

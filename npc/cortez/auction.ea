@@ -1,4 +1,4 @@
-brasilis,253,90,6	script	Agente de Leilão#ctz	807,{
+prontera,84,64,6	script	Audições#ctz	807,{
 	mes "[Agente de leilão]";
 	mes "Olá, estou aqui para oferecer-lhe leilões!";
 	mes "Gostaria de ver o que tenho disponível?";

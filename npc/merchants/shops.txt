@@ -261,14 +261,14 @@ payon,177,131,4	shop	Estilista#pay	124,537:-1,643:-1,10013:-1,10014:-1,554:-1,61
 // Prontera
 //=======================================================
 prontera,73,134,0	shop	Leiteiro#p	90,519:-1
-prontera,104,49,0	shop	Feirista#prt	102,512:-1,513:-1
+//prontera,104,49,0	shop	Feirista#prt	102,512:-1,513:-1
 prontera,64,125,0	shop	Jardineiro#prt	87,517:-1,528:-1
 prontera,58,182,0	shop	Florista#prt	96,712:-1,744:-1
 prontera,113,42,0	shop	Flower Lady#prt	90,712:-1,744:-1
 prontera,105,87,0	shop	Presentes#prt	91,734:-1,735:-1,736:-1,737:-1,746:-1
 prontera,218,211,4	shop	Estilista#prt	125,537:-1,643:-1,10013:-1,10014:-1,554:-1,6113:-1,6114:-1,6115:-1
 prontera,248,153,0	shop	Bonecos#prt	85,740:-1,741:-1,742:-1
-prontera,48,58,0	shop	Feirista#prt2	91,515:-1,516:-1,535:-1
+//prontera,48,58,0	shop	Feirista#prt2	91,515:-1,516:-1,535:-1
 prt_church,108,124,4	shop	Nun#prt	79,2608:-1,2216:-1,5092:-1,2323:-1,2325:-1,1501:-1,1504:-1,1507:-1,1510:-1,1513:-1,1519:-1
 prt_fild05,290,221,2	shop	Utilidades#prt	83,1750:-1,611:-1,501:-1,502:-1,506:-1,645:-1,601:-1,602:-1
 prt_in,211,169,0	shop	Casadeiro#prt	71,744:-1,745:-1,2338:-1,2206:-1,7170:-1

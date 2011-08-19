@@ -270,7 +270,7 @@ L_SAVE:
 	}
 	if ($@ke_saveOnSpot) {
 		getmapxy @map$,@x,@y,0;
-		if((@map$!="brasilis" && mobcount(@map$,"")>1) || @map$=="pvp_2vs2"){ // cidade principal liberado / mapa gvg bloqueado
+		if((@map$!="prontera" && mobcount(@map$,"")>1) || @map$=="pvp_2vs2"){ // cidade principal liberado / mapa gvg bloqueado
 			callfunc "F_keIntro", e_gg, "Este mapa tem monstros demais..";
 		}else{
 			savepoint @map$,@x,@y;

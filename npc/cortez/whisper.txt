@@ -1,5 +1,5 @@
 
-brasilis,0,0,0	script	evento	-1,{
+prontera,0,0,0	script	evento	-1,{
 	end;
 	OnWhisperGlobal:
 		if(getgmlevel()>=10){
@@ -25,7 +25,7 @@ brasilis,0,0,0	script	evento	-1,{
 		end;
 }
 
-brasilis,0,0,0	script	bans	-1,{
+prontera,0,0,0	script	bans	-1,{
 	end;
 	OnWhisperGlobal:
 		if(getgmlevel()>=50){
@@ -42,7 +42,7 @@ brasilis,0,0,0	script	bans	-1,{
 		end;
 }
 
-brasilis,0,0,0	script	kafra	-1,{
+prontera,0,0,0	script	kafra	-1,{
 	end;
 	OnWhisperGlobal:
 	if(callfunc("podeusarcmd")){
@@ -54,7 +54,7 @@ brasilis,0,0,0	script	kafra	-1,{
 		}else if(@whispervar0$=="resetskills"){
 			callfunc("resetSkills");
 		}else{
-			callfunc "F_KafraExpress","Kafra Especial","",2,"brasilis",266,92;
+			callfunc "F_KafraExpress","Kafra Especial","",2,"prontera",78,60;
 		}
 	}
 	end;
@@ -64,23 +64,23 @@ brasilis,0,0,0	script	kafra	-1,{
 			end;
 	
 	OnClock0000:
-		setmapflag "brasilis",mf_fireworks;
+		setmapflag "prontera",mf_fireworks;
 		end;
 		
 	OnClock1200:
-		removemapflag "brasilis",mf_fireworks;
+		removemapflag "prontera",mf_fireworks;
 		end;
 }
 
-brasilis,0,0,0	script	recall	-1,{
+prontera,0,0,0	script	recall	-1,{
 	end;
 	OnWhisperGlobal:
 	if(getgmlevel()>=60){
 		if(@whispervar0$!=""){
 			set @char_id,getcharid(0,@whispervar0$);
 			if(@char_id){
-				warpchar "brasilis",150,343,@char_id;
-				warp "brasilis",149,343;
+				warpchar "prontera",72,59,@char_id;
+				warp "prontera",72,60;
 			}else{
 				dispbottom "Personagem "+@whispervar0$+" não localizado";
 			}
@@ -88,7 +88,7 @@ brasilis,0,0,0	script	recall	-1,{
 	}
 }
 
-brasilis,0,0,0	script	prof	-1,{
+prontera,0,0,0	script	prof	-1,{
 	end;
 	OnWhisperGlobal:
 	if(callfunc("podeusarcmd"))

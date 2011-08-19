@@ -174,4 +174,4 @@
 		close;
 }
 
-brasilis,291,119,4	duplicate(necromancer)	Necromancer	 	735
+prontera,68,47,4	duplicate(necromancer)	Necromancer	 	735
