@@ -1046,7 +1046,7 @@ function	script	platinum	{
 	return;
 }
 
-prontera,84,66,4	script	Profissões	780,{
+prontera,87,63,4	script	Profissões	780,{
 	callfunc "jobmaster";
 	end;
 }

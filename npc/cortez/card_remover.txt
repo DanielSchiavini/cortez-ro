@@ -2,7 +2,7 @@
 // DANGEROUS! TODO: Think.. think 8) [Lupus]
 
 
-prontera,71,66,4	script	Velhinha Esperta	863,{
+prontera,105,69,4	script	Velhinha Esperta	863,{
 
 	//mes "[Velhinha Esperta]";
 	//mes "Olá meu jovem.";

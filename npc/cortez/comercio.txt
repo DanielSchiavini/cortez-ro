@@ -78,7 +78,7 @@ pvp_y_room,51,17,4	script	Cidade Principal	726,{
 	MIr:
 	mes "Obrigado!!!";
 	close2;
-	warp "prontera",69,61;
+	warp "prontera",80,62;
 	query_sql "Update `char` Set last_map='prontera',last_x="",last_y="" Where char_id="+getcharid(0)+"";
 	end;
 }

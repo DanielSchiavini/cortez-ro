@@ -112,7 +112,7 @@ gld_dun03,42,30,0	warp	gldd_004	1,1,gld_dun03,238,271
 gld_dun03,238,274,0	warp	gldd_005	1,1,gld_dun03,42,33
 
 // Warp to morocc
-prontera,70,62,0	warp	city_moc	2,2,moc_fild12,159,378
+prontera,75,73,0	warp	city_moc	2,2,moc_fild12,159,378
 moc_fild12,154,377,0	warp	moc_city	2,2,prontera,70,65
 
 //Guild flags
