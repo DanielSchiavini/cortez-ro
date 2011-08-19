@@ -1,3 +1,7 @@
+// temporário até @go ser corrigido
+brasilis,266,92,0	warp	go_cortez	2,2,prontera,70,65
+ordeal_1-1,150,143,0	warp	old_to_pvp	1,1,poring_w01,97,99
+
 new_zone01	mapflag	noloot
 prontera	mapflag	town
 prontera	mapflag	nodrop
@@ -15,7 +19,6 @@ poring_w01	mapflag	nodrop
 poring_w01	mapflag	nopenalty
 poring_w01	mapflag	noreturn
 poring_w01	mapflag	nosave	SavePoint
-ordeal_1-1,150,143,0	warp	old_to_pvp	1,1,poring_w01,97,99
 
 guild_vs3	mapflag	pvp		//PvP iniciantes
 guild_vs3	mapflag	nogo
