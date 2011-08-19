@@ -1065,7 +1065,7 @@ OnGuardianDied:
 		}
 	} else {
 		setarray .@destination$[0],"Cortez","prontera";
-		setarray .@coordinates[0],,;
+		setarray .@coordinates[0],74,55;
 	}
 
 	cutin "kafra_01",2;
