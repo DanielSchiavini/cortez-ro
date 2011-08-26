@@ -607,32 +607,32 @@ function	script	jobmaster	{
 						deletearray @qtde[0],getarraysize(@qtde);
 						switch(JobLevel+1){
 							case 71:
-								setarray @itens[0],	2624,	2622,		2621,	5007;
-								setarray @itens$[0],"Luva",	"Brinco",	"Anel",	"Coroa do Lider";
-								setarray @qtde[0],	2,		2,			2,		1;
+								setarray @itens[0],	968,					7300,			7443,								1009;
+								setarray @itens$[0],"Insignia do Herói",	"Jewel Ore",	"Cabeça de Dragão de Três Cabeças",	"Mão Divina";
+								setarray @qtde[0],	60,						60,				60,									400;
 								break;
 							case 72:
-								setarray @itens[0],	7340,					7566,							5138,						2258;
-								setarray @itens$[0],"Desejo das Trevas",	"Desejo das Trevas Escarlate",	"Chapeu do Olho Magico",	"Chifres Pontudos";
-								setarray @qtde[0],	1,						1,								1,							1;
+								setarray @itens[0],	7109,						1015,		7023,							679;
+								setarray @itens$[0],"Lâmina de Lança Colossal",	"Língua",	"Lamina Perdida das Trevas",	"Recall Pills";
+								setarray @qtde[0],	10,							500,		50,								30;
 								break;
 							case 73:
-								setarray @itens[0],	7308,				2615,				7441,				7440;
-								setarray @itens$[0],"Tonico da Bruxa",	"Anel de Defesa",	"Pena Vermelha",	"Pena Azul";
-								setarray @qtde[0],	2,					4,					250,				250;
+								setarray @itens[0],	7169,		7113,				7211,				1029;
+								setarray @itens$[0],"Ba gua",	"Cetro do Faraó",	"Lasca de Pedra",	"Pele de Tigre";
+								setarray @qtde[0],	80,			60,					80,					100;
 								break;
 							case 74:
-								setarray @itens[0],	2660,				2661,				2662,				2246;
-								setarray @itens$[0],"Vesper Core 02",	"Vesper Core 03",	"Vesper Core 04",	"Peca Dourada";
-								setarray @qtde[0],	3,					3,					3,					5;
+								setarray @itens[0],	750,					751,					752,					753,				754;
+								setarray @itens$[0],"Bonecos de Bafomé",	"Bonecos de Osiris",	"Bonecos de Rocker",	"Bonecos de Yoyo",	"Bonecos de Fumacento";
+								setarray @qtde[0],	40,						50,						150,					350,				150;
 								break;
 							case 75:
-								setarray @itens[0],	1466,		7450,								7086;
-								setarray @itens$[0],"Foice",	"Pedaco de Armadura de Esqueleto",	"Simbolo do Deus Sol";
-								setarray @qtde[0],	1,			5,									3;
+								setarray @itens[0],	12129,							1552,			2268,			7036,			10016,			2677;
+								setarray @itens$[0],"Kit de Culinária Fantástico",	"Tabula[2]",	"Cachimbo[2]",	"Presa de Hati","Sino de Ouro",	"Anel Espiritual";
+								setarray @qtde[0],	100,							7,				10,				2,				10,				1;
 								break;
-								default:
-									close;
+							default:
+								close;
 						}
 						//Para caso de erro no script
 						if(getarraysize(@itens)<3){
