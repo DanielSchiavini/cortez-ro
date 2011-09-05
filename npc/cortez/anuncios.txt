@@ -3,27 +3,27 @@ end;
 	OnMinute13:
 	if(agitcheck()) end;
 	
-	switch(rand(1,6)){
+	switch(rand(1,8)){
 		case 1:
-			announce "[Atenção] Não recebam itens de graça, por dinheiro real ou por trocas entre servidores",0;
+			announce "[Atenção] Não recebam itens de graça, por dinheiro real ou por trocas entre servidores",bc_all;
 			sleep 3000;
-			announce "[Atenção] Os itens podem ser roubados e você pode acabar perdendo toda sua conta!!",0;
+			announce "[Atenção] Os itens podem ser roubados e você pode acabar perdendo toda sua conta!!",bc_all;
 			break;
 		case 2:
-			announce "[WoE] Atenção para os horários da guerra do emperium no servidor "+$serv$+"!!!",0;
+			announce "[WoE] Atenção para os horários da guerra do emperium no servidor "+$serv$+"!!!",bc_all;
 			sleep 3000;
 			if($serv$=="Supreme"){
-				announce "[WoE] Quarta-feira, das 20h às 22h, com 2 castelos em prontera (1.0)",0;
+				announce "[WoE] Quarta-feira, das 20h às 22h, com 2 castelos em prontera (1.0)",bc_all;
 				sleep 3000;
-				announce "[WoE] Sábado, das 14h às 16h, com um castelo em Arunafeltz (2.0)",0;
+				announce "[WoE] Sábado, das 14h às 16h, com um castelo em Arunafeltz (2.0)",bc_all;
 				sleep 3000;
-				announce "[WoE] Domingo, das 20h às 22h, com um castelo em Geffen (1.0)",0;
+				announce "[WoE] Domingo, das 20h às 22h, com um castelo em Geffen (1.0)",bc_all;
 			}else{
-				announce "[WoE] Terça-feira, das 20h às 22h, com 2 castelos em prontera (1.0)",0;
+				announce "[WoE] Terça-feira, das 20h às 22h, com 2 castelos em prontera (1.0)",bc_all;
 				sleep 3000;
-				announce "[WoE] Sexta-feira, das 20h às 22h, com um castelo em Arunafeltz (2.0)",0;
+				announce "[WoE] Sexta-feira, das 20h às 22h, com um castelo em Arunafeltz (2.0)",bc_all;
 				sleep 3000;
-				announce "[WoE] Domingo, das 14h às 16h, com um castelo em Geffen (1.0)",0;
+				announce "[WoE] Domingo, das 14h às 16h, com um castelo em Geffen (1.0)",bc_all;
 			}
 			break;
 		case 3:
@@ -36,29 +36,37 @@ end;
 			announce "[Doações] Ajude o Cortez Online fazendo sua doação! Você ganhará itens e conta vip!",8;
 			break;
 		case 4:
-			announce "[Atenção] NUNCA passe sua senha para NINGUÉM! A equipe do servidor não pede sua senha.",0;
+			announce "[Atenção] NUNCA passe sua senha para NINGUÉM! A equipe do servidor não pede sua senha.",bc_all;
 			sleep 30000;
-			announce "[Suporte] Tem alguma dúvida? Procure alguém com [TR] no nome!",0;
+			announce "[Suporte] Tem alguma dúvida? Procure alguém com [TR] no nome!",bc_all;
 			sleep 30000;
-			announce "[Dica] Quer ficar mais forte?",0;
+			announce "[Dica] Quer ficar mais forte?",bc_all;
 			sleep 1000;
-			announce "[Dica] Entre no Fórum Cortez Online!",0;
+			announce "[Dica] Entre no Fórum Cortez Online!",bc_all;
 			sleep 1000;
-			announce "[Dica] www.cortezonline.org/forum",0;
+			announce "[Dica] www.cortezonline.org/forum",bc_all;
 			break;
 		case 5:
-			announce "[Atenção] Ajude-nos a crescer, vote para o Cortez Online e chame seus amigos!",0;
-			sleep 2000;
-			announce "[Atenção] Este mês, se ficarmos entre os 8 primeiros do ranking,",0;
-			sleep 500;
-			announce "[Atenção] Ganharemos uma semana de rates dobradas!",0;
-			break;
 		case 6:
-			announce "[Atenção] Ajude-nos a crescer, vote para o Cortez Online e chame seus amigos!",0;
+			announce "[Atenção] Ajude-nos a crescer, vote para o Cortez Online e chame seus amigos!",bc_all;
 			sleep 2000;
-			announce "[Doações] Ajude o Cortez! Doações são a única forma de nos sustentar...",0;
+			announce "[Atenção] Este mês, se ficarmos entre os 25 primeiros do ranking,",bc_all;
+			sleep 500;
+			announce "[Atenção] Ganharemos uma semana de rates dobradas!",bc_all;
+			break;
+		case 7:
+			announce "Atenção jogadores do Cortez - Contas são pessoais e intransferíveis!",bc_all;
 			sleep 2000;
-			announce "[Doações] E você ainda ganha itens e conta VIP como agradecimento!",0;
+			announce "Dar, emprestar, vender ou comprar contas pode resultar em perder tudo que você tem!",bc_all;
+			sleep 2000;
+			announce "[Atenção] Para mais informações, veja o fórum de anúncios",bc_all;
+			break;
+		case 8:
+			announce "[Atenção] Ajude-nos a crescer, vote para o Cortez Online e chame seus amigos!",bc_all;
+			sleep 2000;
+			announce "[Doações] Ajude o Cortez! Doações são a única forma de nos sustentar...",bc_all;
+			sleep 2000;
+			announce "[Doações] E você ainda ganha itens e conta VIP como agradecimento!",bc_all;
 			break;
 		default:
 	}
