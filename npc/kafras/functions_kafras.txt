@@ -290,6 +290,7 @@ function	script	F_KafStor	{
 				return;
 			}
 			set Zeny, Zeny-getarg(1, 0);
+			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+getarg(1, 0)+",'F_KafStor')";
 			set RESRVPTS, RESRVPTS + (getarg(1, 0)/5);
 		}
 	}

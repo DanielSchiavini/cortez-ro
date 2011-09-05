@@ -59,8 +59,6 @@ end;
 			announce "[Doações] Ajude o Cortez! Doações são a única forma de nos sustentar...",0;
 			sleep 2000;
 			announce "[Doações] E você ainda ganha itens e conta VIP como agradecimento!",0;
-			//announce "[Doações] Ajude o Cortez! No mês de dezembro o queremos te ajudar mais ainda...",0;
-			//announce "[Doações] Cada R$ 1 doados iremos lhe dar 3 dias VIP! São R$ 10 para 30 dias de VIP!",0;
 			break;
 		default:
 	}

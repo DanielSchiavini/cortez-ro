@@ -75,6 +75,11 @@ function	script	F_keBank	{
 				break;
 			}
 			//mes "Valor disponível = "+#ke_bank+"+"+(@amount/1000000)+".000.000-(("+(@amount/100000)+".000*)*"+@feeD+")";
+			if(Zeny<@amount) {
+				debugmes "Jogador tentando depositar "+@amount+" mas só tem "+Zeny;
+				callfunc "F_keIntro", e_an, "Você não tem zeny suficiente";
+				break;
+			}
 			query_logsql "INSERT INTO zenylog(time,char_id,src_id,type,amount,map)VALUES(now(),"+getcharid(0)+","+getcharid(0)+",'N',-"+@amount+",'ke_bank')";
 			set Zeny,Zeny-@amount;
 			set #ke_bank,#ke_bank+@amount-((@amount/100)*@feeD);
@@ -98,7 +103,12 @@ function	script	F_keBank	{
 				break;
 			}
 			if(Zeny + @amount > 1000000000 && !checkweight(9929,1)){
-				callfunc "F_keIntro", e_X, "Você não pode sacar essa quantidade. Guarde seus itens e tente novamente!";
+				callfunc "F_keIntro", e_X, "Você não pode sacar essa quantidade. Guarde seus itens/zeny e tente novamente!";
+				break;
+			}
+			if(#ke_bank<@amount) {
+				debugmes "Jogador tentando sacar "+@amount+" mas só tem "+#ke_bank;
+				callfunc "F_keIntro", e_an, "Você não tem zeny suficiente";
 				break;
 			}
 			set #ke_bank,#ke_bank-@amount-((@amount/100)*@feeW);
