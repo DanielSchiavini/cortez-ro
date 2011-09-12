@@ -1,0 +1,8 @@
+userid: svtimaum
+passwd: H89d1jn78dhas*(SADh
+
+map_ip: 187.126.253.154
+char_port: 6905
+map_port: 6906
+
+use_grf: no

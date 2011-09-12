@@ -1,0 +1,9 @@
+MySQL:
+root cortezro
+balta H81,5,!0hx
+
+Routing:
+IP 187.126.253.154
+Wireless 192.168.0.1
+Cabo 192.168.1.254
+Cabo-Wireless interface 192.168.1.3

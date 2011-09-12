@@ -1,0 +1,18 @@
+userid: svtimaum
+passwd: H89d1jn78dhas*(SADh
+
+server_name: Cortez Timaum
+wisp_server_name: Server
+
+login_ip: server.cortezonline.org
+char_ip: 187.126.253.154
+char_port: 6905
+
+login_port: 6901
+max_connect_user: 5
+gm_allow_level: 10
+
+start_point: brasilis,266,105
+start_weapon: 1203
+start_armor: 2301
+start_zeny: 20000
