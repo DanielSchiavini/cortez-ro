@@ -4,7 +4,7 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 	if(getgmlevel()<15) close;
 	
 	mes	"[^660066 Entregador de Prêmios ^000000]";
-	if($premios_dia>=6){
+	if($premios_dia>=6 + 10 * $double_rates){ // Eventos extras com double rate
 		mes "O número máximo de prêmios foi esgotado.";
 		close;
 	}
@@ -36,7 +36,7 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 
 	L_Escolha:
 		next;
-		menu "Eventos pré-determinados",L_Eventos,"Premiação avulsa",L_avulsa,"Não quero nada disso",L_FAIL;
+		menu "Eventos pré-determinados",L_Eventos,"Premiação avulsa",L_Avulsa,"Não quero nada disso",L_FAIL;
 		next;
 
 	L_Eventos:
@@ -45,7 +45,7 @@ new_zone01,65,116,1	script	Entregador de Prêmios	902,{
 		menu "Dado da Morte",L_Dado,"Godzilla Z0MG",L_Godzilla,"Clique Rapido",L_Clique,"Nada disso",L_Escolha;
 		next;
 
-	L_avulsa:
+	L_Avulsa:
 		mes "Digite a quantidade de moedas";
 		input .@qtde[0];
 		if(.@qtde[0]==0)
