@@ -81,14 +81,98 @@ prontera,151,330,4	script	Guarda#prt_castle	105,{
 			announce "Servidor exclusivo para testes !!", bc_all;
 			set $serv$, "Testes";
 			set $serv, -1;
+			set $@rate_exp_normal, 200000;
 		}else{
 			if(getbattleflag("base_exp_rate")>=50000){
 				set $serv$, "Supreme";
 				set $serv, 5;
+				set $@rate_exp_normal, 200000;
 			}else{
 				set $serv$, "Memories";
 				set $serv, 6;
+				set $@rate_exp_normal, 20000;
 			}
+		}
+		
+	// **** Double Rates *** //
+	OnDay1001: // 1 de outubro, aumentar rates
+	OnDay1008: // 8 de outubro, voltar rates
+		set $double_rates, (gettime(6) == 10 && gettime(5) <= 7);
+		
+		if(!$@rate_exp_normal){
+			debugmes "Impossível aumentar rates neste servidor " + $serv;
+			end;
+		}
+		
+		set $@ratemult, 20; // 2x
+		set $@ratemult_boss, 15; // 1.5x
+		set $@ratemult_exp, 20; // 2x
+		set $@rate_exp_current, getbattleflag("base_exp_rate");
+		
+		if($double_rates && $@rate_exp_current == $@rate_exp_normal){
+			announce "[Rates] Obrigado por votar no Cortez!", bc_all;
+			sleep 2000;
+			announce "[Rates] As rates acabam de ser aumentadas!", bc_all;
+			debugmes "Aumentando rates";
+			callfunc("log_mes","Aumentando rates","Rates","prontera");
+			
+			//Drops.conf
+			setbattleflag "item_rate_common", (getbattleflag("item_rate_common")*$@ratemult)/10;
+			setbattleflag "item_rate_heal", (getbattleflag("item_rate_heal")*$@ratemult)/10;
+			setbattleflag "item_rate_use", (getbattleflag("item_rate_use")*$@ratemult)/10;
+			setbattleflag "item_rate_equip", (getbattleflag("item_rate_equip")*$@ratemult)/10;
+			setbattleflag "item_rate_card", (getbattleflag("item_rate_card")*$@ratemult)/10;
+			
+			setbattleflag "item_rate_common_boss", (getbattleflag("item_rate_common_boss")*$@ratemult_boss)/10;
+			setbattleflag "item_rate_heal_boss", (getbattleflag("item_rate_heal_boss")*$@ratemult_boss)/10;
+			setbattleflag "item_rate_use_boss", (getbattleflag("item_rate_use_boss")*$@ratemult_boss)/10;
+			setbattleflag "item_rate_equip_boss", (getbattleflag("item_rate_equip_boss")*$@ratemult_boss)/10;
+			setbattleflag "item_rate_card_boss", (getbattleflag("item_rate_card_boss")*$@ratemult_boss)/10;
+			
+			
+			setbattleflag "item_rate_mvp", (getbattleflag("item_rate_mvp")*$@ratemult_boss)/10;
+			setbattleflag "item_rate_adddrop", (getbattleflag("item_rate_adddrop")*$@ratemult)/10;
+			setbattleflag "item_rate_treasure", (getbattleflag("item_rate_treasure")*$@ratemult)/10;
+			setbattleflag "rare_drop_announce", (getbattleflag("rare_drop_announce")*$@ratemult_boss)/10;
+
+			//exp.conf
+			setbattleflag "base_exp_rate", (getbattleflag("base_exp_rate")*$@ratemult_exp)/10;
+			setbattleflag "job_exp_rate", (getbattleflag("job_exp_rate")*$@ratemult_exp)/10;
+			setbattleflag "mvp_exp_rate", (getbattleflag("mvp_exp_rate")*$@ratemult_exp)/10;
+			setbattleflag "quest_exp_rate", (getbattleflag("quest_exp_rate")*$@ratemult_exp)/10;
+		}
+		
+		if(!$double_rates && $@rate_exp_current!=$@rate_exp_normal){
+			announce "[Rates] Obrigado por votar no Cortez!", bc_all;
+			sleep 2000;
+			announce "[Rates] As rates acabam de voltar ao normal!", bc_all;
+			debugmes "Diminuindo rates";
+			callfunc("log_mes","Diminuindo rates","Rates","prontera");
+			
+			//Drops.conf
+			setbattleflag "item_rate_common", (getbattleflag("item_rate_common")*10)/$@ratemult;
+			setbattleflag "item_rate_heal", (getbattleflag("item_rate_heal")*10)/$@ratemult;
+			setbattleflag "item_rate_use", (getbattleflag("item_rate_use")*10)/$@ratemult;
+			setbattleflag "item_rate_equip", (getbattleflag("item_rate_equip")*10)/$@ratemult;
+			setbattleflag "item_rate_card", (getbattleflag("item_rate_card")*10)/$@ratemult;
+			
+			setbattleflag "item_rate_common_boss", (getbattleflag("item_rate_common_boss")*10)/$@ratemult_boss;
+			setbattleflag "item_rate_heal_boss", (getbattleflag("item_rate_heal_boss")*10)/$@ratemult_boss;
+			setbattleflag "item_rate_use_boss", (getbattleflag("item_rate_use_boss")*10)/$@ratemult_boss;
+			setbattleflag "item_rate_equip_boss", (getbattleflag("item_rate_equip_boss")*10)/$@ratemult_boss;
+			setbattleflag "item_rate_card_boss", (getbattleflag("item_rate_card_boss")*10)/$@ratemult_boss;
+			
+			
+			setbattleflag "item_rate_mvp", (getbattleflag("item_rate_mvp")*10)/$@ratemult_boss;
+			setbattleflag "item_rate_adddrop", (getbattleflag("item_rate_adddrop")*10)/$@ratemult;
+			setbattleflag "item_rate_treasure", (getbattleflag("item_rate_treasure")*10)/$@ratemult;
+			setbattleflag "rare_drop_announce", (getbattleflag("rare_drop_announce")*10)/$@ratemult_boss;
+
+			//exp.conf
+			setbattleflag "base_exp_rate", (getbattleflag("base_exp_rate")*10)/$@ratemult_exp;
+			setbattleflag "job_exp_rate", (getbattleflag("job_exp_rate")*10)/$@ratemult_exp;
+			setbattleflag "mvp_exp_rate", (getbattleflag("mvp_exp_rate")*10)/$@ratemult_exp;
+			setbattleflag "quest_exp_rate", (getbattleflag("quest_exp_rate")*10)/$@ratemult_exp;
 		}
 }
 
