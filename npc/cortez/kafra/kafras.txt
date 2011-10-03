@@ -106,7 +106,7 @@ rachel,129,132,4	script	Super Kafra#rachel	117,{
 	callfunc "F_KafraExpress","Super Kafra","kafra_01",1,"rachel",134,137;
 }
 
-gonryun,169,188,2	script	Super Kafra	117,{
+gonryun,169,188,2	script	Super Kafra#gonry	117,{
 	callfunc "F_KafraExpress","Super Kafra","kafra_01",2,"gonryun",168,199;
 }
 
@@ -332,7 +332,7 @@ umbala,120,284,3	script	Super Kafra#umb2	117,{
 //Guild War Kafras: Disabled by Default!
 
 //Al De Baran Guild Grounds
-alde_gld,145,91,3	script	Super Kafra	116,{
+alde_gld,145,91,3	script	Super Kafra#algd	116,{
 	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"alde_gld",156,157;
 }
 
