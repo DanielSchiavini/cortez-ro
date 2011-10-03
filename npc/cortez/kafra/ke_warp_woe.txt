@@ -43,8 +43,7 @@ function	script	F_keWarpWOE	{
 		"Mapa dos MvPs (" + (@cost/5) + "z, " + getmapusers("pvp_n_1-1")+" "+$@ked_users$ + ")",wvalk,
 		"Treinamento com MVPs (" + getmapusers("guild_vs2-2")+" "+$@ked_users$ + ")",wmvproom,
 		"GdE - Valfreyja (" + getmapusers("aru_gld")+" "+$@ked_users$ + " + " + getmapusers("arug_cas03") + ")",woe1,
-		"GdE - Prontera (" + getmapusers("prt_gld") + " + " + getmapusers("prtg_cas01") + "/" + getmapusers("prtg_cas02")+" "+$@ked_users$ + ")",woe2,
-		"GdE - Geffen (" + getmapusers("gef_fild13") + " + " + getmapusers("gefg_cas02") +" "+$@ked_users$ + ")",woe3;
+		"GdE - Aldebaran (" + getmapusers("alde_gld") + " + " + getmapusers("aldeg_cas01") + "/" + getmapusers("aldeg_cas05")+" "+$@ked_users$ + ")",woe2;
 		//,"Level 2 - Prontera (" + getmapusers("gld_dun03") + ")",gdun3
 	return;
 
@@ -54,11 +53,7 @@ function	script	F_keWarpWOE	{
 		return;
 	woe2:
 		set @cost,0;
-		callfunc "F_keWarp",@cost,0,e_com,"prt_gld",  159, 97;
-		return;
-	woe3:
-		set @cost,0;
-		callfunc "F_keWarp",@cost,0,e_com,"gef_fild13",310,232;
+		callfunc "F_keWarp",@cost,0,e_com,"alde_gld",  280, 160;
 		return;
 	gdun1:
 		//set @cost,@cost;

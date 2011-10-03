@@ -15,6 +15,8 @@
 //= 1.3 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
+// Mapflags
+//============================================================
 prtg_cas01	mapflag	gvg_castle
 prtg_cas01	mapflag	monster_noteleport
 prtg_cas01	mapflag	noicewall
@@ -27,6 +29,8 @@ prtg_cas01	mapflag	noreturn
 prtg_cas01	mapflag	nogo
 prtg_cas01	mapflag	nocommand	10
 
+// Warps
+//============================================================
 prt_gld,159,25,0	warp	prtg002	6,2,prt_castle,102,178
 prt_gld,159,298,0	warp	prtg001	1,1,prt_fild01,199,30
 

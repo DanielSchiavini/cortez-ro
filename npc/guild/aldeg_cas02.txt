@@ -14,9 +14,43 @@
 //= 1.2 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
+// Mapflags
+//============================================================
+aldeg_cas02	mapflag	gvg_castle
+aldeg_cas02	mapflag	monster_noteleport
+aldeg_cas02	mapflag	noicewall
+aldeg_cas02	mapflag	nomemo
+aldeg_cas02	mapflag	nosave	SavePoint
+aldeg_cas02	mapflag	noteleport
+aldeg_cas02	mapflag	nowarp
+aldeg_cas02	mapflag	nowarpto
+aldeg_cas02	mapflag	noreturn
+aldeg_cas02	mapflag	nogo
+aldeg_cas02	mapflag	nocommand	10
+
+// Warps
+//============================================================
+alde_gld,95,253,0	warp	aldg02	1,1,aldeg_cas02,88,163
+aldeg_cas02,88,159,0	warp	aldg02-1	1,1,alde_gld,95,249
+
+aldeg_cas02,84,208,0	warp	aldg201	1,1,aldeg_cas02,105,84
+aldeg_cas02,105,88,0	warp	aldg201-1	1,1,aldeg_cas02,79,208
+aldeg_cas02,45,39,0	warp	aldg201-2	1,1,aldeg_cas02,79,208
+aldeg_cas02,50,185,0	warp	aldg202	1,1,aldeg_cas02,192,192
+aldeg_cas02,192,196,0	warp	aldg202-1	1,1,aldeg_cas02,50,180
+aldeg_cas02,33,174,0	warp	aldg203	1,1,aldeg_cas02,126,61
+aldeg_cas02,130,61,0	warp	aldg203-1	1,1,aldeg_cas02,33,179
+aldeg_cas02,22,193,0	warp	aldg204	1,1,aldeg_cas02,88,11
+aldeg_cas02,88,8,0	warp	aldg204-1	1,1,aldeg_cas02,22,190
+aldeg_cas02,121,88,0	warp	aldg205	1,1,aldeg_cas02,177,135
+aldeg_cas02,177,131,0	warp	aldg205-1	1,1,aldeg_cas02,121,84
+aldeg_cas02,206,196,0	warp	aldg206	1,1,aldeg_cas02,197,13
+aldeg_cas02,197,9,0	warp	aldg206-1	1,1,aldeg_cas02,206,192
+
+
 // Guild Flag (Town)
 //============================================================
-aldebaran,149,97,4	script	Hohenschwangau#a2-1::Hohenschwangau	722,{
+aldebaran,149,97,4	script	Astrum#a2-1::Astrum	722,{
 	end;
 
 OnRecvCastleA02:
@@ -26,27 +60,21 @@ OnRecvCastleA02:
 
 // Guild Flag (Outside Castle)
 //============================================================
-alde_gld,99,251,4	script	Hohenschwangau#a2-2::Hohenschwangau2	722,{
+alde_gld,99,251,4	script	Astrum#a2-2::Astrum2	722,{
 	set .@GID, GetCastleData("aldeg_cas02",1);
 	if (.@GID == 0) {
-		mes " [ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
-		mes "1. Follow the ordinance of The Divine Rune Midgard Kingdom, ";
-		mes "We declare that";
-		mes "there is no formal master of this castle.";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
 		mes " ";
-		mes "2. To the one who can ";
-		mes "overcome all trials";
-		mes "and destroy the Emperium,";
-		mes "the king will endow the one with";
-		mes "ownership of this castle.";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
-			mes "Brave ones...";
-			mes "Do you wish to return to your honorable place?";
+			mes "Bravo aventureiro...";
+			mes "Deseja voltar ao seu local de glória e honra?";
 			next;
-			if (select("Return to the guild castle.:Quit.") == 1) {
+			if (select("Voltar:Sair.") == 1) {
 				if (getcharid(2) == GetCastleData("aldeg_cas02",1)) {
 					warp "aldeg_cas02",84,74;
 					//warp "aldeg_cas02",220,190;
@@ -55,17 +83,12 @@ alde_gld,99,251,4	script	Hohenschwangau#a2-2::Hohenschwangau2	722,{
 			}
 			close;
 		}
-		mes "[ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
-		mes "1. Following the ordinance of the";
-		mes "Divine Rune Midgard Kingdom,";
-		mes "we approve that this place is in";
-		mes "the private possession of ^ff0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. The guild Master of ^ff0000"+ GetGuildName(.@GID) + "^000000 Guild is";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "If there is anyone who objects to this,";
-		mes " prove your strength and honor with a steel blade in your hand.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
 	}
 	close;
 
@@ -74,11 +97,11 @@ OnRecvCastleA02:
 	end;
 }
 
-alde_gld,99,244,4	duplicate(Hohenschwangau2)	Hohenschwangau#a2-3	722
+alde_gld,99,244,4	duplicate(Astrum2)	Astrum#a2-3	722
 
 // Guild Flag (Inside Castle)
 //============================================================
-aldeg_cas02,82,71,2	script	Hohenschwangau#a2-4::Hohenschwangau3	722,{
+aldeg_cas02,82,71,2	script	Astrum#a2-4::Astrum3	722,{
 	end;
 
 OnRecvCastleA02:
@@ -86,20 +109,20 @@ OnRecvCastleA02:
 	end;
 }
 
-aldeg_cas02,67,30,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-5	722
-aldeg_cas02,183,140,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-6	722
-aldeg_cas02,212,152,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-7	722
-aldeg_cas02,108,39,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-8	722
-aldeg_cas02,57,213,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-9	722
-aldeg_cas02,91,181,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-10	722
-aldeg_cas02,103,53,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-11	722
-aldeg_cas02,73,53,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-12	722
-aldeg_cas02,63,41,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-13	722
-aldeg_cas02,229,6,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-14	722
-aldeg_cas02,230,40,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-15	722
-aldeg_cas02,197,40,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-16	722
-aldeg_cas02,32,213,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-17	722
-aldeg_cas02,121,29,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-18	722
+aldeg_cas02,67,30,2	duplicate(Astrum3)	Astrum#a2-5	722
+aldeg_cas02,183,140,2	duplicate(Astrum3)	Astrum#a2-6	722
+aldeg_cas02,212,152,2	duplicate(Astrum3)	Astrum#a2-7	722
+aldeg_cas02,108,39,2	duplicate(Astrum3)	Astrum#a2-8	722
+aldeg_cas02,57,213,2	duplicate(Astrum3)	Astrum#a2-9	722
+aldeg_cas02,91,181,2	duplicate(Astrum3)	Astrum#a2-10	722
+aldeg_cas02,103,53,2	duplicate(Astrum3)	Astrum#a2-11	722
+aldeg_cas02,73,53,2	duplicate(Astrum3)	Astrum#a2-12	722
+aldeg_cas02,63,41,2	duplicate(Astrum3)	Astrum#a2-13	722
+aldeg_cas02,229,6,2	duplicate(Astrum3)	Astrum#a2-14	722
+aldeg_cas02,230,40,2	duplicate(Astrum3)	Astrum#a2-15	722
+aldeg_cas02,197,40,2	duplicate(Astrum3)	Astrum#a2-16	722
+aldeg_cas02,32,213,2	duplicate(Astrum3)	Astrum#a2-17	722
+aldeg_cas02,121,29,2	duplicate(Astrum3)	Astrum#a2-18	722
 
 // AGIT Manager
 //============================================================
@@ -121,9 +144,9 @@ aldeg_cas02,84,74,0	duplicate(Gld_Kafra_Template)	Kafra Staff#aldeg_cas02	117
 //============================================================
 aldeg_cas02,139,235,0	script	#switch_A02	111,{
 	mes " ";
-	mes "There's a small lever. Will you pull it? ";
+	mes "Há um pequeno interruptor. Deseja apertá-lo?";
 	next;
-	if(select("Pull.:Do not.") == 2) close;
+	if(select("Apertar:Não") == 2) close;
 	warp "aldeg_cas02",78,75;
 	end;
 }

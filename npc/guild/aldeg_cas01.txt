@@ -13,6 +13,8 @@
 //= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
+// Mapflags
+//============================================================
 aldeg_cas01	mapflag	gvg_castle
 aldeg_cas01	mapflag	monster_noteleport
 aldeg_cas01	mapflag	noicewall
@@ -25,6 +27,8 @@ aldeg_cas01	mapflag	noreturn
 aldeg_cas01	mapflag	nogo
 aldeg_cas01	mapflag	nocommand	10
 
+// Warps
+//============================================================
 alde_gld,48,79,0	warp	aldg01	1,1,aldeg_cas01,34,248
 aldeg_cas01,34,252,0	warp	aldg01-1	1,1,alde_gld,48,83
 
@@ -80,7 +84,7 @@ alde_gld,61,87,6	script	Sirius#a1-2::Sirius2	722,{
 			}
 			close;
 		}
-		mes "[Edital do Reino das Valquírias]";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
 		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";

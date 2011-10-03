@@ -332,9 +332,9 @@ umbala,120,284,3	script	Super Kafra#umb2	117,{
 //Guild War Kafras: Disabled by Default!
 
 //Al De Baran Guild Grounds
-//alde_gld,145,91,3	script	Super Kafra	116,{
-//	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"alde_gld",156,157;
-//}
+alde_gld,145,91,3	script	Super Kafra	116,{
+	callfunc "F_KafraExpress","Super Kafra","kafra_02",1,"alde_gld",156,157;
+}
 
 //Geffen Guild Grounds
 //gef_fild13,237,182,6	script	Super Kafra	113,{

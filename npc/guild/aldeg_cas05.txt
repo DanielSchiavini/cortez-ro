@@ -14,9 +14,44 @@
 //= 1.2 Removed dialog from interior flags. [L0ne_W0lf]
 //============================================================
 
+// Mapflags
+//============================================================
+aldeg_cas05	mapflag	gvg_castle
+aldeg_cas05	mapflag	monster_noteleport
+aldeg_cas05	mapflag	noicewall
+aldeg_cas05	mapflag	nomemo
+aldeg_cas05	mapflag	nosave	SavePoint
+aldeg_cas05	mapflag	noteleport
+aldeg_cas05	mapflag	nowarp
+aldeg_cas05	mapflag	nowarpto
+aldeg_cas05	mapflag	noreturn
+aldeg_cas05	mapflag	nogo
+aldeg_cas05	mapflag	nocommand	10
+
+// Warps
+//============================================================
+alde_gld,259,90,0	warp	aldg05	1,1,aldeg_cas05,216,103
+aldeg_cas05,216,107,0	warp	aldg05-1	1,1,alde_gld,264,90
+
+aldeg_cas05,194,71,0	warp	aldg501	1,1,aldeg_cas05,129,194
+aldeg_cas05,125,194,0	warp	aldg501-1	1,1,aldeg_cas05,199,70
+aldeg_cas05,164,86,0	warp	aldg502	1,1,aldeg_cas05,66,189
+aldeg_cas05,70,189,0	warp	aldg502-1	1,1,aldeg_cas05,166,81
+aldeg_cas05,150,67,0	warp	aldg503	1,1,aldeg_cas05,9,187
+aldeg_cas05,5,187,0	warp	aldg503-1	1,1,aldeg_cas05,151,62
+aldeg_cas05,165,232,0	warp	aldg504	1,1,aldeg_cas05,193,49
+aldeg_cas05,188,49,0	warp	aldg504-1	1,1,aldeg_cas05,165,228	//fixed [Lupus]
+aldeg_cas05,195,42,0	warp	aldg505	1,1,aldeg_cas05,19,227
+aldeg_cas05,15,227,0	warp	aldg505-1	1,1,aldeg_cas05,195,46
+aldeg_cas05,13,175,0	warp	aldg506	1,1,aldeg_cas05,162,194
+aldeg_cas05,166,194,0	warp	aldg506-1	1,1,aldeg_cas05,13,179
+aldeg_cas05,156,231,0	warp	aldg507	1,1,aldeg_cas05,18,88
+aldeg_cas05,14,88,0	warp	aldg507-1	1,1,aldeg_cas05,156,227
+
+
 // Guild Flag (Town)
 //============================================================
-aldebaran,128,97,4	script	Rothenburg#a5-1::Rothenburg	722,{
+aldebaran,128,97,4	script	Acrux#a5-1::Acrux	722,{
 	end;
 
 OnRecvCastleA05:
@@ -26,27 +61,21 @@ OnRecvCastleA05:
 
 // Guild Flag (Outside Castle)
 //============================================================
-alde_gld,265,93,6	script	Rothenburg#a5-2::Rothenburg2	722,{
+alde_gld,265,93,6	script	Acrux#a5-2::Acrux2	722,{
 	set .@GID, GetCastleData("aldeg_cas05",1);
 	if (.@GID == 0) {
-		mes " [ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
-		mes "1. Follow the ordinance of The Divine Rune Midgard Kingdom, ";
-		mes "We declare that";
-		mes "there is no formal master of this castle.";
+		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
 		mes " ";
-		mes "2. To the one who can ";
-		mes "overcome all trials";
-		mes "and destroy the Emperium,";
-		mes "the king will endow the one with";
-		mes "ownership of this castle.";
+		mes "2. Para aquele que, apesar das dificuldades, conseguir destruir o Emperium, o Rei irá gratificar com a posse deste castelo.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
-			mes "Brave ones...";
-			mes "Do you wish to return to your honorable place?";
+			mes "Bravo aventureiro...";
+			mes "Deseja voltar ao seu local de glória e honra?";
 			next;
-			if (select("Return to the guild castle.:Quit.") == 1) {
+			if (select("Voltar:Sair.") == 1) {
 				if (getcharid(2) == GetCastleData("aldeg_cas05",1)) {
 					warp "aldeg_cas05",31,190;
 					//warp "aldeg_cas05",167,225;
@@ -55,17 +84,12 @@ alde_gld,265,93,6	script	Rothenburg#a5-2::Rothenburg2	722,{
 			}
 			close;
 		}
-		mes "[ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " [ Edital do Reino de Rune Midgard ]";
 		mes " ";
-		mes "1. Following the ordinance of the";
-		mes "Divine Rune Midgard Kingdom,";
-		mes "we approve that this place is in";
-		mes "the private possession of ^ff0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. The guild Master of ^ff0000"+ GetGuildName(.@GID) + "^000000 Guild is";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "If there is anyone who objects to this,";
-		mes " prove your strength and honor with a steel blade in your hand.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 é ^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se houver alguma objeção, prove sua força e honra com a lâmina de uma espada em suas mãos.";
 	}
 	close;
 
@@ -74,11 +98,11 @@ OnRecvCastleA05:
 	end;
 }
 
-alde_gld,265,87,6	duplicate(Rothenburg2)	Rothenburg#a5-3	722
+alde_gld,265,87,6	duplicate(Acrux2)	Acrux#a5-3	722
 
 // Guild Flag (Inside Castle)
 //============================================================
-aldeg_cas05,170,85,2	script	Rothenburg#a5-4::Rothenburg3	722,{
+aldeg_cas05,170,85,2	script	Acrux#a5-4::Acrux3	722,{
 	end;
 
 OnRecvCastleA05:
@@ -86,20 +110,20 @@ OnRecvCastleA05:
 	end;
 }
 
-aldeg_cas05,142,212,2	duplicate(Rothenburg3)	Rothenburg#a5-5	722
-aldeg_cas05,149,196,2	duplicate(Rothenburg3)	Rothenburg#a5-6	722
-aldeg_cas05,41,180,2	duplicate(Rothenburg3)	Rothenburg#a5-7	722
-aldeg_cas05,38,201,2	duplicate(Rothenburg3)	Rothenburg#a5-8	722
-aldeg_cas05,65,182,2	duplicate(Rothenburg3)	Rothenburg#a5-9	722
-aldeg_cas05,65,205,2	duplicate(Rothenburg3)	Rothenburg#a5-10	722
-aldeg_cas05,10,218,2	duplicate(Rothenburg3)	Rothenburg#a5-11	722
-aldeg_cas05,164,201,2	duplicate(Rothenburg3)	Rothenburg#a5-12	722
-aldeg_cas05,14,117,2	duplicate(Rothenburg3)	Rothenburg#a5-14	722
-aldeg_cas05,10,225,2	duplicate(Rothenburg3)	Rothenburg#a5-15	722
-aldeg_cas05,187,59,2	duplicate(Rothenburg3)	Rothenburg#a5-16	722
-aldeg_cas05,154,51,2	duplicate(Rothenburg3)	Rothenburg#a5-17	722
-aldeg_cas05,22,211,2	duplicate(Rothenburg3)	Rothenburg#a5-18	722
-aldeg_cas05,150,202,2	duplicate(Rothenburg3)	Rothenburg#a5-19	722
+aldeg_cas05,142,212,2	duplicate(Acrux3)	Acrux#a5-5	722
+aldeg_cas05,149,196,2	duplicate(Acrux3)	Acrux#a5-6	722
+aldeg_cas05,41,180,2	duplicate(Acrux3)	Acrux#a5-7	722
+aldeg_cas05,38,201,2	duplicate(Acrux3)	Acrux#a5-8	722
+aldeg_cas05,65,182,2	duplicate(Acrux3)	Acrux#a5-9	722
+aldeg_cas05,65,205,2	duplicate(Acrux3)	Acrux#a5-10	722
+aldeg_cas05,10,218,2	duplicate(Acrux3)	Acrux#a5-11	722
+aldeg_cas05,164,201,2	duplicate(Acrux3)	Acrux#a5-12	722
+aldeg_cas05,14,117,2	duplicate(Acrux3)	Acrux#a5-14	722
+aldeg_cas05,10,225,2	duplicate(Acrux3)	Acrux#a5-15	722
+aldeg_cas05,187,59,2	duplicate(Acrux3)	Acrux#a5-16	722
+aldeg_cas05,154,51,2	duplicate(Acrux3)	Acrux#a5-17	722
+aldeg_cas05,22,211,2	duplicate(Acrux3)	Acrux#a5-18	722
+aldeg_cas05,150,202,2	duplicate(Acrux3)	Acrux#a5-19	722
 
 // AGIT Manager
 //============================================================
@@ -121,9 +145,9 @@ aldeg_cas05,31,190,0	duplicate(Gld_Kafra_Template)	Kafra Staff#aldeg_cas05	117
 //============================================================
 aldeg_cas05,64,8,0	script	#switch_A05	111,{
 	mes " ";
-	mes "There's a small lever. Will you pull it? ";
+	mes "Há um pequeno interruptor. Deseja apertá-lo?";
 	next;
-	if(select("Pull.:Do not.") == 2) close;
+	if(select("Apertar:Não") == 2) close;
 	warp "aldeg_cas05",51,179;
 	end;
 }
