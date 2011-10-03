@@ -90,7 +90,7 @@ any_warp_GM_min_level: 20
 
 //guild.conf
 require_glory_guild: 0
-guild_max_castles: 2
+guild_max_castles: 3
 castle_defense_rate: 25
 gvg_short_attack_damage_rate: 50
 gvg_long_attack_damage_rate: 40
