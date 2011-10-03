@@ -105,7 +105,7 @@ prontera,151,330,4	script	Guarda#prt_castle	105,{
 		}
 		
 		set $@ratemult, 20; // 2x
-		set $@ratemult_boss, 15; // 1.5x
+		set $@ratemult_boss, 20; // 2x
 		set $@ratemult_exp, 20; // 2x
 		set $@rate_exp_current, getbattleflag("base_exp_rate");
 		
