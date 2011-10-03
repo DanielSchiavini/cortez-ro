@@ -64,7 +64,7 @@ OnRecvCastleA05:
 alde_gld,265,93,6	script	Acrux#a5-2::Acrux2	722,{
 	set .@GID, GetCastleData("aldeg_cas05",1);
 	if (.@GID == 0) {
-		mes " [ Edital do Reino de Rune Midgard ]";
+		mes "[Edital do Reino de Rune Midgard]";
 		mes " ";
 		mes "1. De acordo com as ordens do Divino Reino de Midgard, declaramos que não há um legítimo mestre para este castelo.";
 		mes " ";
@@ -84,7 +84,7 @@ alde_gld,265,93,6	script	Acrux#a5-2::Acrux2	722,{
 			}
 			close;
 		}
-		mes " [ Edital do Reino de Rune Midgard ]";
+		mes "[Edital do Reino de Rune Midgard]";
 		mes " ";
 		mes "1. Seguindo as ordens do Reino Divino de Midgard, aprovamos que este castelo está sob possessão do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
