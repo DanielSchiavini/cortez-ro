@@ -1464,7 +1464,7 @@
 4037,Snake_Card,Snake Card,6,,10,10,,,,,,,,2,,,,,{ bonus2 bAddEff,Eff_Poison,500; bonus bBaseAtk,5; },{},{}
 4038,Zombie_Card,Zombie Card,6,,10,10,,,,,,,,64,,,,,{ bonus bHPrecovRate,20; },{},{}
 4039,Stainer_Card,Stainer Card,6,,10,10,,,,,,,,769,,,,,{ bonus2 bResEff,Eff_Silence,2000; bonus bDef,1; },{},{}
-4040,Creamy_Card,Creamy Card,6,,10,10,,,,,,,,136,,,,,{ bonus2 bSkillAtk,"MG_LIGHTNINGBOLT",25; bonus2 bCastrate,"MG_LIGHTNINGBOLT",-20; },{},{}
+4040,Creamy_Card,Creamy Card,6,,10,10,,,,,,,,136,,,,,{ bonus2 bSkillAtk,"MG_LIGHTNINGBOLT",25; bonus2 bCastrate,"MG_LIGHTNINGBOLT",-25; },{},{}
 4041,Coco_Card,Coco Card,6,,10,10,,,,,,,,769,,,,,{ bonus2 bResEff,Eff_Sleep,2000; bonus bDef,1; },{},{}
 4042,Steel_Chonchon_Card,Steel Chonchon Card,6,,10,10,,,,,,,,16,,,,,{ bonus2 bSubEle,Ele_Wind,10; bonus bDef,2; },{},{}
 4043,Andre_Card,Andre Card,6,,10,10,,,,,,,,2,,,,,{ if(isequippedcnt(4043)>=2) { bonus bIgnoreDefRace,RC_NonBoss; bonus4 bAutoSpellWhenHit,42,10,200,0; bonus2 bAddRace,RC_DemiHuman,10; bonus bBaseAtk,-100; } else { bonus bBaseAtk,20; } },{},{ heal MaxHp/10-Hp,0; }
