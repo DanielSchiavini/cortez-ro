@@ -38,11 +38,11 @@
 -	script	Agit_Event	-1,{
 	end;
 
-//Quarta das 20h às 22h (2xProntera), Sábado das 14h às 16h (2.0) e Domingo das 20h às 22h (1xGeffen)
+//Quarta das 20h às 22h, Sábado das 15h às 17h e Domingo das 20h às 22h
 OnWed2000:
 OnWed2200:
-OnSat1400:
-OnSat1600:
+OnSat1500:
+OnSat1700:
 OnSun2000:
 OnSun2200:
 //Terça das 20h às 22h (2xProntera), Sexta das 20h às 22h (2.0) e Domingo das 14h às 16h (1xGeffen)
