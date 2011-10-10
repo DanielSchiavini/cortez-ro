@@ -144,7 +144,11 @@ function	script	F_WoeShowResults	{ //string map, int timer
 		set $woe_post$, $woe_post$ + "\\n" + gettimestr("%H:%M:%S",9) + " - Guerra do Emperium finalizada";
 		switch(gettime(4)){
 			case 0: set $@dia_semana$, "Dom "; break;
+			case 1: set $@dia_semana$, "Seg "; break;
 			case 2: set $@dia_semana$, "Ter "; break;
+			case 3: set $@dia_semana$, "Qua "; break;
+			case 4: set $@dia_semana$, "Qui "; break;
+			case 5: set $@dia_semana$, "Sex "; break;
 			case 6: set $@dia_semana$, "Sab "; break;
 		}
 		set $@titulo$, "Resumo - GdE de "+$@dia_semana$+gettimestr("%d/%m",6)+" - "+$serv$;

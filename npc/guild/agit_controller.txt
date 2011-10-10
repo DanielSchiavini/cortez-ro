@@ -50,14 +50,14 @@ OnInit:
 OnAgitStart:
 OnAgitStart2:
 	set $@dia1,5;	// Dia da WOE 1.0 com 2 castelos. 5 = Sexta
-	set $@hor1,20;	// Horário de início
-	
-	set $@dia2,6;	// Dia da WOE 2.0. 6 = Sábado
+		set $@hor1,20;	// Horário de início
+		
+		set $@dia2,6;	// Dia da WOE 2.0. 6 = Sábado
 	set $@hor2,20;	// Horário de início
-	
-	set $@dia3,0;	// Dia da WOE 1.0 com 1 castelo. 0 = Domingo
-	set $@hor3,20;	// Horário de início
-	
+		
+		set $@dia3,0;	// Dia da WOE 1.0 com 1 castelo. 0 = Domingo
+		set $@hor3,20;	// Horário de início
+		
 	set $@dia,gettime(4); // Dia da semana (0 a 6)
 	set $@hor,gettime(3);
 	set $@duracao, 2;
@@ -65,15 +65,15 @@ OnAgitStart2:
 	if(($@dia==$@dia1 && $@hor>=$@hor1 && $@hor<$@hor1+$@duracao) || ($@dia==$@dia2 && $@hor>=$@hor2 && $@hor<$@hor2+$@duracao) || ($@dia==$@dia3 && $@hor>=$@hor3 && $@hor<$@hor3+$@duracao)){
 		if(!agitcheck() && !agitcheck2()){
 			Announce "A Guerra do Emperium começou!",bc_npc;
-			if($@dia==$@dia1){ //WOE 1.0, 2 castelos
+			if($@dia==$@dia1){
 				set $castleMap1$,"aldeg_cas05";
-				set $castleMap2$,""; // prtg_cas02
+				set $castleMap2$,"";
 				AgitStart;
-			}else if($@dia==$@dia2){	//WOE 2.0
+			}else if($@dia==$@dia2){
 				set $castleMap1$,"arug_cas03";
 				set $castleMap2$,"";
 				AgitStart2;
-			}else if($@dia==$@dia3){	//WOE 1.0, 1 castelo
+			}else if($@dia==$@dia3){
 				set $castleMap1$,"aldeg_cas01";
 				set $castleMap2$,"";
 				AgitStart;
@@ -91,10 +91,10 @@ OnAgitStart2:
 		sleep 30000;
 		set $castleMap1$,"";
 		set $castleMap2$,"";
-	}else if(agitcheck()){	// testando
+	}else if(agitcheck()){
 		debugmes "Testando WOE!";
 		set $castleMap1$,"aldeg_cas01";
-	}else if(agitcheck2()){	// testando
+	}else if(agitcheck2()){
 		debugmes "Testando WOE 2.0!";
 		set $castleMap2$,"arug_cas03";
 	}else{
