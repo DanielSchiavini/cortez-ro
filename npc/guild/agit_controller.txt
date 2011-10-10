@@ -38,43 +38,25 @@
 -	script	Agit_Event	-1,{
 	end;
 
-//Quarta das 20h às 22h, Sábado das 15h às 17h e Domingo das 20h às 22h
-OnWed2000:
-OnWed2200:
-OnSat1500:
-OnSat1700:
-OnSun2000:
-OnSun2200:
-//Terça das 20h às 22h (2xProntera), Sexta das 20h às 22h (2.0) e Domingo das 14h às 16h (1xGeffen)
-OnTue2000:
-OnTue2200:
+//Supreme: Sexta, Sábado e Domingo das 20h às 22h
 OnFri2000:
 OnFri2200:
-OnSun1400:
-OnSun1600:
+OnSat2000:
+OnSat2200:
+OnSun2000:
+OnSun2200:
 OnInit:
 
 OnAgitStart:
 OnAgitStart2:
-	if($serv==5){
-		set $@dia1,3;	// Dia da WOE 1.0 com 2 castelos. 3 = Quarta
-		set $@hor1,20;	// Horário de início
-		
-		set $@dia2,6;	// Dia da WOE 2.0. 6 = Sábado
-		set $@hor2,15;	// Horário de início
-		
-		set $@dia3,0;	// Dia da WOE 1.0 com 1 castelo. 0 = Domingo
-		set $@hor3,20;	// Horário de início
-	}else{
-		set $@dia1,2;	// Dia da WOE 1.0 com 2 castelos. 2	 = Terça
-		set $@hor1,20;	// Horário de início
-		
-		set $@dia2,5;	// Dia da WOE 2.0. 5 = Sexta
-		set $@hor2,20;	// Horário de início
-		
-		set $@dia3,0;	// Dia da WOE 1.0 com 1 castelo. 0 = Domingo
-		set $@hor3,14;	// Horário de início
-	}
+	set $@dia1,5;	// Dia da WOE 1.0 com 2 castelos. 5 = Sexta
+	set $@hor1,20;	// Horário de início
+	
+	set $@dia2,6;	// Dia da WOE 2.0. 6 = Sábado
+	set $@hor2,20;	// Horário de início
+	
+	set $@dia3,0;	// Dia da WOE 1.0 com 1 castelo. 0 = Domingo
+	set $@hor3,20;	// Horário de início
 	
 	set $@dia,gettime(4); // Dia da semana (0 a 6)
 	set $@hor,gettime(3);
@@ -125,7 +107,7 @@ OnAgitStart2:
 // bool WoeCheck (string map, int version = 1.0)
 function	script	F_AgitCheck	{
 	set .@map$,getarg(0);
-	if($castleMap1$ == @map$ || $castleMap2$ == @map$){
+	if($castleMap1$ == .@map$ || $castleMap2$ == .@map$){
 		if(getarg(1, 1) == 2){
 			return agitcheck2();
 		}
