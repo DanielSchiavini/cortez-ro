@@ -95,9 +95,9 @@ prontera,151,330,4	script	Guarda#prt_castle	105,{
 		}
 		
 	// **** Double Rates *** //
-	OnDay1015: // 15 de outubro, aumentar rates
-	OnDay1017: // 17 de outubro, voltar rates
-		set $double_rates, (gettime(6) == 10 && gettime(5) >= 15 && gettime(5) < 17);
+	OnDay1102: // 2/11, aumentar rates
+	OnDay1109: // 9/11, voltar rates
+		set $double_rates, (gettime(6) == 11 && gettime(5) >= 2 && gettime(5) < 9);
 		
 		if(!$@rate_exp_normal){
 			debugmes "Impossível aumentar rates neste servidor " + $serv;
