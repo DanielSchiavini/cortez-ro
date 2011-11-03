@@ -93,6 +93,7 @@ prontera,151,330,4	script	Guarda#prt_castle	105,{
 				set $@rate_exp_normal, 20000;
 			}
 		}
+		Sleep 20000; // Bug when init
 		
 	// **** Double Rates *** //
 	OnDay1102: // 2/11, aumentar rates
@@ -109,7 +110,7 @@ prontera,151,330,4	script	Guarda#prt_castle	105,{
 		set $@ratemult_exp, 20; // 2x
 		set $@rate_exp_current, getbattleflag("base_exp_rate");
 		
-		if($double_rates && $@rate_exp_current == $@rate_exp_normal){
+		if($double_rates && $@rate_exp_current <= $@rate_exp_normal){
 			announce "[Rates] Obrigado por votar no Cortez!", bc_all;
 			sleep 2000;
 			announce "[Rates] As rates acabam de ser aumentadas!", bc_all;
