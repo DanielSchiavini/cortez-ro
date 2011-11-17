@@ -3,7 +3,7 @@
 //===== Por: =================================================
 //= L0ne_W0lf
 //===== Versão Atual: ========================================
-//= 2.6/2.0
+//= 2.6a/2.7
 //===== Descrição: ===========================================
 //= WoE SE Castelo de Schwaltzvalt 1
 //===== Comentários Adicionais: ==============================
@@ -34,6 +34,8 @@
 //= 2.4a Corrigido uma coordenada do tesouro. [RoM]
 //= 2.5 Atualizado o sistema de economia/defesa. [RoM]
 //= 2.6 Retirada emblemas dos Clãs no Serviço de Teleporte [Asus]
+//= 2.6a Removido show	[Yum]
+//= 2.7 Fixed a possible exploit in guild castle investment. [Brian]
 //============================================================
 
 schg_cas01,1,1,0	script	Gerente#sch01_02	111,{
@@ -2478,7 +2480,7 @@ schg_cas01,247,305,3	script	Steward#sch01	55,{
 			mes "não podemos aumentar mais.";
 			close;
 		}
-		if (GetCastleData("schg_cas01",5) == 2) {
+		if (GetCastleData("schg_cas01",5) >= 2) {
 			mes "Mestre, você ja investiu em";
 			mes "Defesa duas vezes por hoje.";
 			mes "Você precisará esperar até amanhã";
@@ -2501,6 +2503,15 @@ schg_cas01,247,305,3	script	Steward#sch01	55,{
 		next;
 		switch(select("Investir na Defesa:Cancelar")) {
 		case 1:
+			if (GetCastleData("schg_cas01",5) >= 2) {
+				mes "[ Steward ]";
+				mes "Mestre, você já";
+				mes "investiu em Defesa duas";
+				mes "vezes hoje. Você terá";
+				mes "que esperar até amanhã se você realmente";
+				mes "deseja aumentar as nossas defesas.";
+				close;
+			}
 			if (Zeny < .@def_invest) {
 				mes "[ Steward ]";
 				mes "Lamento, Mestre, mas";
@@ -2933,5 +2944,3 @@ OnRecvCastlesc01:
 }
 
 sch_gld,297,90,0	duplicate(Sc01_Flag)	Himinn#flag_sc01_2	722
-
- 	  	 
