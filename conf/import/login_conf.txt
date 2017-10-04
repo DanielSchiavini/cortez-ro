@@ -8,7 +8,7 @@ check_client_version: 1
 client_version_to_connect: 20
 
 //Comentado no servidor local:
-login_port: 6901
+login_port: 6900
 ipban_cleanup_interval: 600
 
 order: allow,deny

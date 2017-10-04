@@ -1,0 +1,244 @@
+[1;35m[SQL][0m: Unknown database 'log'
+[1;33m[Warning][0m: itemdb_readdb: File not found "db/item_db_rotx.txt", skipping.
+[1;31m[Error][0m: make_connection: connect failed (socket #2, code 10061)!
+[1;31m[Error][0m: make_connection: connect failed (socket #2, code 10061)!
+[1;33m[Warning][0m: itemdb_readdb: File not found "db/item_db_rotx.txt", skipping.
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;31m[Error][0m: make_connection: connect failed (socket #2, code 10061)!
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;35m[SQL][0m: DB error - Table 'rotx.npclog' doesn't exist
+[1;36m[Debug][0m: at c:\server\easvn\src\map\script.c:12819 - INSERT INTO npclog (npc_date,account_id,char_id,char_name,map,mes) Values (now(),01,0150000,'Rates','prontera','item_rate_card_boss=1000')
+[1;36m[Debug][0m: Source (NPC): Guarda#prt_castle at prontera (151,330)
+[1;36m[Debug][0m: mapindex_id2name: Requested name for non-existant map index [0] in cache.
+[1;35m[SQL][0m: DB error - Table 'rotx.atcommandlog' doesn't exist
+[1;36m[Debug][0m: at c:\server\easvn\src\map\log.c:284 - INSERT DELAYED INTO `atcommandlog` (`atcommand_date`, `account_id`, `char_id`, `char_name`, `map`, `command`) VALUES (NOW(), '0', '0', ?, '', ?)
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: itemdb_readdb: File not found "db/item_db_rotx.txt", skipping.
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;36m[Debug][0m: mapindex_id2name: Requested name for non-existant map index [0] in cache.
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;33m[Warning][0m: Connection to Char Server lost.
+
+[1;31m[Error][0m: make_connection: connect failed (socket #2, code 10061)!
+[1;31m[Error][0m: make_connection: connect failed (socket #2, code 10061)!
