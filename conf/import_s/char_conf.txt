@@ -1,13 +1,13 @@
-userid: server
-passwd: Hd83odasnH2s09
+userid: ragnarok
+passwd: ragnarok
 
 server_name: Supreme
 wisp_server_name: Server
 
-login_ip: 174.123.60.34
-char_ip: 174.123.60.34
-login_port: 6901
-char_port: 6902
+login_ip: 127.0.0.1
+char_ip: 127.0.0.1
+login_port: 6900
+char_port: 6121
 
 console_silent: 0
 console: off
